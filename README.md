@@ -17,6 +17,6 @@ Using ASMN64 Run: make.bat<br />
 <br />
 Howto Run:<br />
 I only test with a real N64 using a 64drive Cartridge by Retroactive:<br />
-http://64drive.retroactive.be/<br />
+http://64drive.retroactive.be<br />
 <br />
 You can also use N64 emulators like cen64 & the MESS N64 Driver.
