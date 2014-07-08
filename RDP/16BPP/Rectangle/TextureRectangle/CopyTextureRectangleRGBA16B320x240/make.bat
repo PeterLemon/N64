@@ -1,0 +1,2 @@
+asmn6432 /p CopyTextureRectangle16BPPRGBA16B320X240.ASM,CopyTextureRectangle16BPPRGBA16B320X240.N64
+chksum64 CopyTextureRectangle16BPPRGBA16B320X240.N64
