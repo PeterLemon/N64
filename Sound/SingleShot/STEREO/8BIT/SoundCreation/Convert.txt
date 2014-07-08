@@ -1,0 +1,2 @@
+Goldwave Save As:
+Raw, PCM signed 8 bit, stereo

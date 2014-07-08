@@ -1,0 +1,2 @@
+asmn6432 /p SingleShotSTEREO16BIT.ASM,SingleShotSTEREO16BIT.N64
+chksum64 SingleShotSTEREO16BIT.N64
