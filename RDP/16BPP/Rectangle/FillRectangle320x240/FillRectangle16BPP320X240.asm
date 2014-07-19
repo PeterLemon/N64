@@ -1,4 +1,4 @@
-; N64 'Bare Metal' 16BPP Fill Rectangle RDP Demo by krom (Peter Lemon):
+; N64 'Bare Metal' 16BPP 320x240 Fill Rectangle RDP Demo by krom (Peter Lemon):
 
   include LIB\N64.INC ; Include N64 Definitions
   dcb 2097152,$00 ; Set ROM Size
