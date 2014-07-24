@@ -1,0 +1,2 @@
+asmn6432 /p CPUOR.ASM,CPUOR.N64
+chksum64 CPUOR.N64
