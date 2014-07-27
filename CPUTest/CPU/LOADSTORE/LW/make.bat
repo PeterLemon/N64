@@ -1,0 +1,2 @@
+asmn6432 /p CPULW.ASM,CPULW.N64
+chksum64 CPULW.N64
