@@ -135,12 +135,12 @@ Fill_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,
   dw (dxmdy<<16)|dxmdyf ; LO Word 3: DxMDy Integer (Bit 16..31), DxMDy Fraction (Bit 0..15)
   endm
 
-Fill_ZBuffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,dxhdyf, xm,xmf,dxmdy,dxmdyf, z,zf,dzdx,dzdxf, dzde,dzdef,dzdy,dzdyf
+Fill_ZBuffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,dxhdyf, xm,xmf,dxmdy,dxmdyf
 ; Word 0: Left Major Flag (0=Left Major, 1=Right Major), Number Of Mip-Maps Minus One, Tile ID, Y Coordinate Of Low, Mid Minor, Major Edge (Fixed Point S.11.2)
 ; Word 1: X Coordinate Of Low    Edge Integer, Fraction, DxLDy Inverse Slope Of Low    Edge Integer, Fraction
 ; Word 2: X Coordinate Of Major  Edge Integer, Fraction, DxHDy Inverse Slope Of Major  Edge Integer, Fraction
 ; Word 3: X Coordinate Of Middle Edge Integer, Fraction, DxMDy Inverse Slope Of Middle Edge Integer, Fraction
-; Word 4: Z Inverse Depth Integer, Fraction, DzDx Change In Z Per Change In X Coordinate Integer, Fraction
+; Word 4: Z Inverse Depth Integer, Fraction, DzDx Change In Z Per Change In X Coordinate Integer, Fraction (ZBuffer Coefficients)
 ; Word 5: DzDe Change In Z Along Major Edge Integer, Fraction, DzDy Change In Z Per Change In Y Coordinate Integer, Fraction
   dw $09000000|(lft<<23)|(level<<19)|(tile<<16)|yl ; HI Word 0: COMMAND $09 (Bit 56..61), lft (Bit 55), Level (Bit 51..53), Tile (Bit 48..50), YL (Bit 32..45)
   dw (ym<<16)|yh                                   ; LO Word 0: YM (Bit 16..29), YH (Bit 9..13)
@@ -150,18 +150,14 @@ Fill_ZBuffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xh
   dw (dxhdy<<16)|dxhdyf ; LO Word 2: DxHDy Integer (Bit 16..31), DxHDy Fraction (Bit 0..15)
   dw (xm<<16)|xmf       ; HI Word 3: XM Integer (Bit 48..63), XM Fraction (Bit 32..47)
   dw (dxmdy<<16)|dxmdyf ; LO Word 3: DxMDy Integer (Bit 16..31), DxMDy Fraction (Bit 0..15)
-  dw (z<<16)|zf       ; HI Word 4: Z Integer (Bit 48..63), Z Fraction (Bit 32..47)
-  dw (dzdx<<16)|dzdxf ; LO Word 4: DzDx Integer (Bit 16..31), DzDx Fraction (Bit 0..15)
-  dw (dzde<<16)|dzdef ; HI Word 5: DzDe Integer (Bit 48..63), DzDe Fraction (Bit 32..47)
-  dw (dzdy<<16)|dzdyf ; LO Word 5: DzDy Integer (Bit 16..31), DzDy Fraction (Bit 0..15)
   endm
 
-Texture_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,dxhdyf, xm,xmf,dxmdy,dxmdyf s,t,w, dsdx,dtdx,dwdx, sf,tf,wf, dsdxf,dtdxf,dwdxf, dsde,dtde,dwde, dsdy,dtdy,dwdy, dsdef,dtdef,dwdef, dsdyf,dtdyf,dwdyf
+Texture_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,dxhdyf, xm,xmf,dxmdy,dxmdyf
 ; Word 0: Left Major Flag (0=Left Major, 1=Right Major), Number Of Mip-Maps Minus One, Tile ID, Y Coordinate Of Low, Mid Minor, Major Edge (Fixed Point S.11.2)
 ; Word 1: X Coordinate Of Low    Edge Integer, Fraction, DxLDy Inverse Slope Of Low    Edge Integer, Fraction
 ; Word 2: X Coordinate Of Major  Edge Integer, Fraction, DxHDy Inverse Slope Of Major  Edge Integer, Fraction
 ; Word 3: X Coordinate Of Middle Edge Integer, Fraction, DxMDy Inverse Slope Of Middle Edge Integer, Fraction
-; Word 4:  S Texture Coordinate Integer, T Texture Coordinate Integer, W Normalized Inverse Depth Integer
+; Word 4:  S Texture Coordinate Integer, T Texture Coordinate Integer, W Normalized Inverse Depth Integer (Texture Coefficients)
 ; Word 5:  DsDx Change In S, DtDx Change In T, DwDx Change In W Per Change In X Coordinate Integer
 ; Word 6:  S Texture Coordinate Fraction, T Texture Coordinate Fraction, W Normalized Inverse Depth Fraction
 ; Word 7:  DsDx Change In S, DtDx Change In T, DwDx Change In W Per Change In X Coordinate Fraction
@@ -177,30 +173,14 @@ Texture_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxh
   dw (dxhdy<<16)|dxhdyf ; LO Word 2: DxHDy Integer (Bit 16..31), DxHDy Fraction (Bit 0..15)
   dw (xm<<16)|xmf       ; HI Word 3: XM Integer (Bit 48..63), XM Fraction (Bit 32..47)
   dw (dxmdy<<16)|dxmdyf ; LO Word 3: DxMDy Integer (Bit 16..31), DxMDy Fraction (Bit 0..15)
-  dw (s<<16)|t ; HI WORD 4: S Integer (Bit 48..63), T Integer (Bit 32..47)
-  dw (w<<16)   ; LO WORD 4: W Integer (Bit 16..31)
-  dw (dsdx<<16)|dtdx ; HI WORD 5: DsDx Integer (Bit 48..63), DtDx Integer (Bit 32..47)
-  dw (dwDx<<16)      ; LO WORD 5: DwDx Integer (Bit 16..31)
-  dw (sf<<16)|tf ; HI WORD 6: S Fraction (Bit 48..63), T Fraction (Bit 32..47)
-  dw (wf<<16)    ; LO WORD 6: W Fraction (Bit 16..31)
-  dw (dsdxf<<16)|dtdxf ; HI WORD 7: DsDx Fraction (Bit 48..63), DtDx Fraction (Bit 32..47)
-  dw (dwDxf<<16)       ; LO WORD 7: DwDx Fraction (Bit 16..31)
-  dw (dsde<<16)|dtde ; HI WORD 8: DsDe Integer (Bit 48..63), DtDe Integer (Bit 32..47)
-  dw (dwDe<<16)      ; LO WORD 8: DwDe Integer (Bit 16..31)
-  dw (dsdy<<16)|dtdy ; HI WORD 9: DsDy Integer (Bit 48..63), DtDy Integer (Bit 32..47)
-  dw (dwDy<<16)      ; LO WORD 9: DwDy Integer (Bit 16..31)
-  dw (dsdef<<16)|dtdef ; HI WORD 10: DsDe Fraction (Bit 48..63), DtDe Fraction (Bit 32..47)
-  dw (dwDef<<16)       ; LO WORD 10: DwDe Fraction (Bit 16..31)
-  dw (dsdyf<<16)|dtdyf ; HI WORD 11: DsDy Fraction (Bit 48..63), DtDy Fraction (Bit 32..47)
-  dw (dwDyf<<16)       ; LO WORD 11: DwDy Fraction (Bit 16..31)
   endm
 
-Texture_ZBuffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,dxhdyf, xm,xmf,dxmdy,dxmdyf, s,t,w, dsdx,dtdx,dwdx, sf,tf,wf, dsdxf,dtdxf,dwdxf, dsde,dtde,dwde, dsdy,dtdy,dwdy, dsdef,dtdef,dwdef, dsdyf,dtdyf,dwdyf, z,zf,dzdx,dzdxf, dzde,dzdef,dzdy,dzdyf
+Texture_ZBuffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,dxhdyf, xm,xmf,dxmdy,dxmdyf
 ; Word 0: Left Major Flag (0=Left Major, 1=Right Major), Number Of Mip-Maps Minus One, Tile ID, Y Coordinate Of Low, Mid Minor, Major Edge (Fixed Point S.11.2)
 ; Word 1: X Coordinate Of Low    Edge Integer, Fraction, DxLDy Inverse Slope Of Low    Edge Integer, Fraction
 ; Word 2: X Coordinate Of Major  Edge Integer, Fraction, DxHDy Inverse Slope Of Major  Edge Integer, Fraction
 ; Word 3: X Coordinate Of Middle Edge Integer, Fraction, DxMDy Inverse Slope Of Middle Edge Integer, Fraction
-; Word 4:  S Texture Coordinate Integer, T Texture Coordinate Integer, W Normalized Inverse Depth Integer
+; Word 4:  S Texture Coordinate Integer, T Texture Coordinate Integer, W Normalized Inverse Depth Integer (Texture Coefficients)
 ; Word 5:  DsDx Change In S, DtDx Change In T, DwDx Change In W Per Change In X Coordinate Integer
 ; Word 6:  S Texture Coordinate Fraction, T Texture Coordinate Fraction, W Normalized Inverse Depth Fraction
 ; Word 7:  DsDx Change In S, DtDx Change In T, DwDx Change In W Per Change In X Coordinate Fraction
@@ -208,7 +188,7 @@ Texture_ZBuffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh
 ; Word 9:  DsDy Change In S, DtDy Change In T, DwDy Change In W Per Change In Y Coordinate Integer
 ; Word 10: DsDe Change In S, DtDe Change In T, DwDe Change In W Along The Edge Fraction
 ; Word 11: DsDy Change In S, DtDy Change In T, DwDy Change In W Per Change In Y Coordinate Fraction
-; Word 12: Z Inverse Depth Integer, Fraction, DzDx Change In Z Per Change In X Coordinate Integer, Fraction
+; Word 12: Z Inverse Depth Integer, Fraction, DzDx Change In Z Per Change In X Coordinate Integer, Fraction (ZBuffer Coefficients)
 ; Word 13: DzDe Change In Z Along Major Edge Integer, Fraction, DzDy Change In Z Per Change In Y Coordinate Integer, Fraction
   dw $0B000000|(lft<<23)|(level<<19)|(tile<<16)|yl ; HI Word 0: COMMAND $0B (Bit 56..61), lft (Bit 55), Level (Bit 51..53), Tile (Bit 48..50), YL (Bit 32..45)
   dw (ym<<16)|yh                                   ; LO Word 0: YM (Bit 16..29), YH (Bit 9..13)
@@ -218,34 +198,14 @@ Texture_ZBuffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh
   dw (dxhdy<<16)|dxhdyf ; LO Word 2: DxHDy Integer (Bit 16..31), DxHDy Fraction (Bit 0..15)
   dw (xm<<16)|xmf       ; HI Word 3: XM Integer (Bit 48..63), XM Fraction (Bit 32..47)
   dw (dxmdy<<16)|dxmdyf ; LO Word 3: DxMDy Integer (Bit 16..31), DxMDy Fraction (Bit 0..15)
-  dw (s<<16)|t ; HI WORD 4: S Integer (Bit 48..63), T Integer (Bit 32..47)
-  dw (w<<16)   ; LO WORD 4: W Integer (Bit 16..31)
-  dw (dsdx<<16)|dtdx ; HI WORD 5: DsDx Integer (Bit 48..63), DtDx Integer (Bit 32..47)
-  dw (dwDx<<16)      ; LO WORD 5: DwDx Integer (Bit 16..31)
-  dw (sf<<16)|tf ; HI WORD 6: S Fraction (Bit 48..63), T Fraction (Bit 32..47)
-  dw (wf<<16)    ; LO WORD 6: W Fraction (Bit 16..31)
-  dw (dsdxf<<16)|dtdxf ; HI WORD 7: DsDx Fraction (Bit 48..63), DtDx Fraction (Bit 32..47)
-  dw (dwDxf<<16)       ; LO WORD 7: DwDx Fraction (Bit 16..31)
-  dw (dsde<<16)|dtde ; HI WORD 8: DsDe Integer (Bit 48..63), DtDe Integer (Bit 32..47)
-  dw (dwDe<<16)      ; LO WORD 8: DwDe Integer (Bit 16..31)
-  dw (dsdy<<16)|dtdy ; HI WORD 9: DsDy Integer (Bit 48..63), DtDy Integer (Bit 32..47)
-  dw (dwDy<<16)      ; LO WORD 9: DwDy Integer (Bit 16..31)
-  dw (dsdef<<16)|dtdef ; HI WORD 10: DsDe Fraction (Bit 48..63), DtDe Fraction (Bit 32..47)
-  dw (dwDef<<16)       ; LO WORD 10: DwDe Fraction (Bit 16..31)
-  dw (dsdyf<<16)|dtdyf ; HI WORD 11: DsDy Fraction (Bit 48..63), DtDy Fraction (Bit 32..47)
-  dw (dwDyf<<16)       ; LO WORD 11: DwDy Fraction (Bit 16..31)
-  dw (z<<16)|zf       ; HI Word 12: Z Integer (Bit 48..63), Z Fraction (Bit 32..47)
-  dw (dzdx<<16)|dzdxf ; LO Word 12: DzDx Integer (Bit 16..31), DzDx Fraction (Bit 0..15)
-  dw (dzde<<16)|dzdef ; HI Word 13: DzDe Integer (Bit 48..63), DzDe Fraction (Bit 32..47)
-  dw (dzdy<<16)|dzdyf ; LO Word 13: DzDy Integer (Bit 16..31), DzDy Fraction (Bit 0..15)
   endm
 
-Shade_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,dxhdyf, xm,xmf,dxmdy,dxmdyf, r,g,b,a, drdx,dgdx,dbdx,dadx, rf,gf,bf,af, drdxf,dgdxf,dbdxf,dadxf, drde,dgde,dbde,dade, drdy,dgdy,dbdy,dady, drdef,dgdef,dbdef,dadef, drdyf,dgdyf,dbdyf,dadyf
+Shade_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,dxhdyf, xm,xmf,dxmdy,dxmdyf
 ; Word 0: Left Major Flag (0=Left Major, 1=Right Major), Number Of Mip-Maps Minus One, Tile ID, Y Coordinate Of Low, Mid Minor, Major Edge (Fixed Point S.11.2)
 ; Word 1: X Coordinate Of Low    Edge Integer, Fraction, DxLDy Inverse Slope Of Low    Edge Integer, Fraction
 ; Word 2: X Coordinate Of Major  Edge Integer, Fraction, DxHDy Inverse Slope Of Major  Edge Integer, Fraction
 ; Word 3: X Coordinate Of Middle Edge Integer, Fraction, DxMDy Inverse Slope Of Middle Edge Integer, Fraction
-; Word 4:  Red Color Component Integer, Green Color Component Integer, Blue Color Component Integer, Alpha Color Component Integer
+; Word 4:  Red Color Component Integer, Green Color Component Integer, Blue Color Component Integer, Alpha Color Component Integer (Shade Coefficients)
 ; Word 5:  DrDx Change In Red, DgDx Change In Green, DbDx Change In Blue, DaDx Change In Alpha Per Change In X Coordinate Integer
 ; Word 6:  Red Color Component Fraction, Green Color Component Fraction, Blue Color Component Fraction, Alpha Color Component Fraction
 ; Word 7:  DrDx Change In Red, DgDx Change In Green, DbDx Change In Blue, DaDx Change In Alpha Per Change In X Coordinate Fraction
@@ -261,30 +221,14 @@ Shade_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy
   dw (dxhdy<<16)|dxhdyf ; LO Word 2: DxHDy Integer (Bit 16..31), DxHDy Fraction (Bit 0..15)
   dw (xm<<16)|xmf       ; HI Word 3: XM Integer (Bit 48..63), XM Fraction (Bit 32..47)
   dw (dxmdy<<16)|dxmdyf ; LO Word 3: DxMDy Integer (Bit 16..31), DxMDy Fraction (Bit 0..15)
-  dw (r<<16)|g ; HI WORD 4: Red  Integer (Bit 48..63), Green Integer (Bit 32..47)
-  dw (b<<16)|a ; LO WORD 4: Blue Integer (Bit 16..31), Alpha Integer (Bit 0..15)
-  dw (drdx<<16)|dgdx ; HI WORD 5: DrDx Integer (Bit 48..63), DgDx Integer (Bit 32..47)
-  dw (dbDx<<16)|dadx ; LO WORD 5: DbDx Integer (Bit 16..31), DbDx Integer (Bit 0..15)
-  dw (rf<<16)|gf ; HI WORD 6: Red  Fraction (Bit 48..63), Green Fraction (Bit 32..47)
-  dw (bf<<16)|af ; LO WORD 6: Blue Fraction (Bit 16..31), Alpha Fraction (Bit 0..15)
-  dw (drdxf<<16)|dgdxf ; HI WORD 7: DrDx Fraction (Bit 48..63), DgDx Fraction (Bit 32..47)
-  dw (dbDxf<<16)|dadxf ; LO WORD 7: DbDx Fraction (Bit 16..31), DbDx Fraction (Bit 0..15)
-  dw (drde<<16)|dgde ; HI WORD 8: DrDe Integer (Bit 48..63), DgDe Integer (Bit 32..47)
-  dw (dbDe<<16)|dade ; LO WORD 8: DbDe Integer (Bit 16..31), DaDe Integer (Bit 0..15)
-  dw (drdy<<16)|dgdy ; HI WORD 9: DrDy Integer (Bit 48..63), DgDy Integer (Bit 32..47)
-  dw (dbDy<<16)|dady ; LO WORD 9: DbDy Integer (Bit 16..31), DaDy Integer (Bit 0..15)
-  dw (drdef<<16)|dgdef ; HI WORD 10: DrDe Fraction (Bit 48..63), DgDe Fraction (Bit 32..47)
-  dw (dbDef<<16)|dadef ; LO WORD 10: DbDe Fraction (Bit 16..31), DaDe Fraction (Bit 0..15)
-  dw (drdyf<<16)|dgdyf ; HI WORD 11: DrDy Fraction (Bit 48..63), DgDy Fraction (Bit 32..47)
-  dw (dbDyf<<16)|dadyf ; LO WORD 11: DbDy Fraction (Bit 16..31), DaDy Fraction (Bit 0..15)
   endm
 
-Shade_ZBuffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,dxhdyf, xm,xmf,dxmdy,dxmdyf, r,g,b,a, drdx,dgdx,dbdx,dadx, rf,gf,bf,af, drdxf,dgdxf,dbdxf,dadxf, drde,dgde,dbde,dade, drdy,dgdy,dbdy,dady, drdef,dgdef,dbdef,dadef, drdyf,dgdyf,dbdyf,dadyf, z,zf,dzdx,dzdxf, dzde,dzdef,dzdy,dzdyf
+Shade_ZBuffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,dxhdyf, xm,xmf,dxmdy,dxmdyf
 ; Word 0: Left Major Flag (0=Left Major, 1=Right Major), Number Of Mip-Maps Minus One, Tile ID, Y Coordinate Of Low, Mid Minor, Major Edge (Fixed Point S.11.2)
 ; Word 1: X Coordinate Of Low    Edge Integer, Fraction, DxLDy Inverse Slope Of Low    Edge Integer, Fraction
 ; Word 2: X Coordinate Of Major  Edge Integer, Fraction, DxHDy Inverse Slope Of Major  Edge Integer, Fraction
 ; Word 3: X Coordinate Of Middle Edge Integer, Fraction, DxMDy Inverse Slope Of Middle Edge Integer, Fraction
-; Word 4:  Red Color Component Integer, Green Color Component Integer, Blue Color Component Integer, Alpha Color Component Integer
+; Word 4:  Red Color Component Integer, Green Color Component Integer, Blue Color Component Integer, Alpha Color Component Integer (Shade Coefficients)
 ; Word 5:  DrDx Change In Red, DgDx Change In Green, DbDx Change In Blue, DaDx Change In Alpha Per Change In X Coordinate Integer
 ; Word 6:  Red Color Component Fraction, Green Color Component Fraction, Blue Color Component Fraction, Alpha Color Component Fraction
 ; Word 7:  DrDx Change In Red, DgDx Change In Green, DbDx Change In Blue, DaDx Change In Alpha Per Change In X Coordinate Fraction
@@ -292,7 +236,7 @@ Shade_ZBuffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,x
 ; Word 9:  DrDy Change In Red, DgDy Change In Green, DbDy Change In Blue, DaDy Change In Alpha Per Change In Y Coordinate Integer
 ; Word 10: DrDe Change In Red, DgDe Change In Green, DbDe Change In Blue, DaDe Change In Alpha Along The Edge Fraction
 ; Word 11: DrDy Change In Red, DgDy Change In Green, DbDy Change In Blue, DaDy Change In Alpha Per Change In Y Coordinate Fraction
-; Word 12: Z Inverse Depth Integer, Fraction, DzDx Change In Z Per Change In X Coordinate Integer, Fraction
+; Word 12: Z Inverse Depth Integer, Fraction, DzDx Change In Z Per Change In X Coordinate Integer, Fraction (ZBuffer Coefficients)
 ; Word 13: DzDe Change In Z Along Major Edge Integer, Fraction, DzDy Change In Z Per Change In Y Coordinate Integer, Fraction
   dw $0D000000|(lft<<23)|(level<<19)|(tile<<16)|yl ; HI Word 0: COMMAND $0D (Bit 56..61), lft (Bit 55), Level (Bit 51..53), Tile (Bit 48..50), YL (Bit 32..45)
   dw (ym<<16)|yh                                   ; LO Word 0: YM (Bit 16..29), YH (Bit 9..13)
@@ -302,34 +246,14 @@ Shade_ZBuffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,x
   dw (dxhdy<<16)|dxhdyf ; LO Word 2: DxHDy Integer (Bit 16..31), DxHDy Fraction (Bit 0..15)
   dw (xm<<16)|xmf       ; HI Word 3: XM Integer (Bit 48..63), XM Fraction (Bit 32..47)
   dw (dxmdy<<16)|dxmdyf ; LO Word 3: DxMDy Integer (Bit 16..31), DxMDy Fraction (Bit 0..15)
-  dw (r<<16)|g ; HI WORD 4: Red  Integer (Bit 48..63), Green Integer (Bit 32..47)
-  dw (b<<16)|a ; LO WORD 4: Blue Integer (Bit 16..31), Alpha Integer (Bit 0..15)
-  dw (drdx<<16)|dgdx ; HI WORD 5: DrDx Integer (Bit 48..63), DgDx Integer (Bit 32..47)
-  dw (dbDx<<16)|dadx ; LO WORD 5: DbDx Integer (Bit 16..31), DbDx Integer (Bit 0..15)
-  dw (rf<<16)|gf ; HI WORD 6: Red  Fraction (Bit 48..63), Green Fraction (Bit 32..47)
-  dw (bf<<16)|af ; LO WORD 6: Blue Fraction (Bit 16..31), Alpha Fraction (Bit 0..15)
-  dw (drdxf<<16)|dgdxf ; HI WORD 7: DrDx Fraction (Bit 48..63), DgDx Fraction (Bit 32..47)
-  dw (dbDxf<<16)|dadxf ; LO WORD 7: DbDx Fraction (Bit 16..31), DbDx Fraction (Bit 0..15)
-  dw (drde<<16)|dgde ; HI WORD 8: DrDe Integer (Bit 48..63), DgDe Integer (Bit 32..47)
-  dw (dbDe<<16)|dade ; LO WORD 8: DbDe Integer (Bit 16..31), DaDe Integer (Bit 0..15)
-  dw (drdy<<16)|dgdy ; HI WORD 9: DrDy Integer (Bit 48..63), DgDy Integer (Bit 32..47)
-  dw (dbDy<<16)|dady ; LO WORD 9: DbDy Integer (Bit 16..31), DaDy Integer (Bit 0..15)
-  dw (drdef<<16)|dgdef ; HI WORD 10: DrDe Fraction (Bit 48..63), DgDe Fraction (Bit 32..47)
-  dw (dbDef<<16)|dadef ; LO WORD 10: DbDe Fraction (Bit 16..31), DaDe Fraction (Bit 0..15)
-  dw (drdyf<<16)|dgdyf ; HI WORD 11: DrDy Fraction (Bit 48..63), DgDy Fraction (Bit 32..47)
-  dw (dbDyf<<16)|dadyf ; LO WORD 11: DbDy Fraction (Bit 16..31), DaDy Fraction (Bit 0..15)
-  dw (z<<16)|zf       ; HI Word 12: Z Integer (Bit 48..63), Z Fraction (Bit 32..47)
-  dw (dzdx<<16)|dzdxf ; LO Word 12: DzDx Integer (Bit 16..31), DzDx Fraction (Bit 0..15)
-  dw (dzde<<16)|dzdef ; HI Word 13: DzDe Integer (Bit 48..63), DzDe Fraction (Bit 32..47)
-  dw (dzdy<<16)|dzdyf ; LO Word 13: DzDy Integer (Bit 16..31), DzDy Fraction (Bit 0..15)
   endm
 
-Shade_Texture_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,dxhdyf, xm,xmf,dxmdy,dxmdyf, r,g,b,a, drdx,dgdx,dbdx,dadx, rf,gf,bf,af, drdxf,dgdxf,dbdxf,dadxf, drde,dgde,dbde,dade, drdy,dgdy,dbdy,dady, drdef,dgdef,dbdef,dadef, drdyf,dgdyf,dbdyf,dadyf, s,t,w, dsdx,dtdx,dwdx, sf,tf,wf, dsdxf,dtdxf,dwdxf, dsde,dtde,dwde, dsdy,dtdy,dwdy, dsdef,dtdef,dwdef, dsdyf,dtdyf,dwdyf
+Shade_Texture_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,dxhdyf, xm,xmf,dxmdy,dxmdyf
 ; Word 0: Left Major Flag (0=Left Major, 1=Right Major), Number Of Mip-Maps Minus One, Tile ID, Y Coordinate Of Low, Mid Minor, Major Edge (Fixed Point S.11.2)
 ; Word 1: X Coordinate Of Low    Edge Integer, Fraction, DxLDy Inverse Slope Of Low    Edge Integer, Fraction
 ; Word 2: X Coordinate Of Major  Edge Integer, Fraction, DxHDy Inverse Slope Of Major  Edge Integer, Fraction
 ; Word 3: X Coordinate Of Middle Edge Integer, Fraction, DxMDy Inverse Slope Of Middle Edge Integer, Fraction
-; Word 4:  Red Color Component Integer, Green Color Component Integer, Blue Color Component Integer, Alpha Color Component Integer
+; Word 4:  Red Color Component Integer, Green Color Component Integer, Blue Color Component Integer, Alpha Color Component Integer (Shade Coefficients)
 ; Word 5:  DrDx Change In Red, DgDx Change In Green, DbDx Change In Blue, DaDx Change In Alpha Per Change In X Coordinate Integer
 ; Word 6:  Red Color Component Fraction, Green Color Component Fraction, Blue Color Component Fraction, Alpha Color Component Fraction
 ; Word 7:  DrDx Change In Red, DgDx Change In Green, DbDx Change In Blue, DaDx Change In Alpha Per Change In X Coordinate Fraction
@@ -337,7 +261,7 @@ Shade_Texture_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,x
 ; Word 9:  DrDy Change In Red, DgDy Change In Green, DbDy Change In Blue, DaDy Change In Alpha Per Change In Y Coordinate Integer
 ; Word 10: DrDe Change In Red, DgDe Change In Green, DbDe Change In Blue, DaDe Change In Alpha Along The Edge Fraction
 ; Word 11: DrDy Change In Red, DgDy Change In Green, DbDy Change In Blue, DaDy Change In Alpha Per Change In Y Coordinate Fraction
-; Word 12: S Texture Coordinate Integer, T Texture Coordinate Integer, W Normalized Inverse Depth Integer
+; Word 12: S Texture Coordinate Integer, T Texture Coordinate Integer, W Normalized Inverse Depth Integer (Texture Coefficients)
 ; Word 13: DsDx Change In S, DtDx Change In T, DwDx Change In W Per Change In X Coordinate Integer
 ; Word 14: S Texture Coordinate Fraction, T Texture Coordinate Fraction, W Normalized Inverse Depth Fraction
 ; Word 15: DsDx Change In S, DtDx Change In T, DwDx Change In W Per Change In X Coordinate Fraction
@@ -353,46 +277,14 @@ Shade_Texture_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,x
   dw (dxhdy<<16)|dxhdyf ; LO Word 2: DxHDy Integer (Bit 16..31), DxHDy Fraction (Bit 0..15)
   dw (xm<<16)|xmf       ; HI Word 3: XM Integer (Bit 48..63), XM Fraction (Bit 32..47)
   dw (dxmdy<<16)|dxmdyf ; LO Word 3: DxMDy Integer (Bit 16..31), DxMDy Fraction (Bit 0..15)
-  dw (r<<16)|g ; HI WORD 4: Red  Integer (Bit 48..63), Green Integer (Bit 32..47)
-  dw (b<<16)|a ; LO WORD 4: Blue Integer (Bit 16..31), Alpha Integer (Bit 0..15)
-  dw (drdx<<16)|dgdx ; HI WORD 5: DrDx Integer (Bit 48..63), DgDx Integer (Bit 32..47)
-  dw (dbDx<<16)|dadx ; LO WORD 5: DbDx Integer (Bit 16..31), DbDx Integer (Bit 0..15)
-  dw (rf<<16)|gf ; HI WORD 6: Red  Fraction (Bit 48..63), Green Fraction (Bit 32..47)
-  dw (bf<<16)|af ; LO WORD 6: Blue Fraction (Bit 16..31), Alpha Fraction (Bit 0..15)
-  dw (drdxf<<16)|dgdxf ; HI WORD 7: DrDx Fraction (Bit 48..63), DgDx Fraction (Bit 32..47)
-  dw (dbDxf<<16)|dadxf ; LO WORD 7: DbDx Fraction (Bit 16..31), DbDx Fraction (Bit 0..15)
-  dw (drde<<16)|dgde ; HI WORD 8: DrDe Integer (Bit 48..63), DgDe Integer (Bit 32..47)
-  dw (dbDe<<16)|dade ; LO WORD 8: DbDe Integer (Bit 16..31), DaDe Integer (Bit 0..15)
-  dw (drdy<<16)|dgdy ; HI WORD 9: DrDy Integer (Bit 48..63), DgDy Integer (Bit 32..47)
-  dw (dbDy<<16)|dady ; LO WORD 9: DbDy Integer (Bit 16..31), DaDy Integer (Bit 0..15)
-  dw (drdef<<16)|dgdef ; HI WORD 10: DrDe Fraction (Bit 48..63), DgDe Fraction (Bit 32..47)
-  dw (dbDef<<16)|dadef ; LO WORD 10: DbDe Fraction (Bit 16..31), DaDe Fraction (Bit 0..15)
-  dw (drdyf<<16)|dgdyf ; HI WORD 11: DrDy Fraction (Bit 48..63), DgDy Fraction (Bit 32..47)
-  dw (dbDyf<<16)|dadyf ; LO WORD 11: DbDy Fraction (Bit 16..31), DaDy Fraction (Bit 0..15)
-  dw (s<<16)|t ; HI WORD 12: S Integer (Bit 48..63), T Integer (Bit 32..47)
-  dw (w<<16)   ; LO WORD 12: W Integer (Bit 16..31)
-  dw (dsdx<<16)|dtdx ; HI WORD 13: DsDx Integer (Bit 48..63), DtDx Integer (Bit 32..47)
-  dw (dwDx<<16)      ; LO WORD 13: DwDx Integer (Bit 16..31)
-  dw (sf<<16)|tf ; HI WORD 14: S Fraction (Bit 48..63), T Fraction (Bit 32..47)
-  dw (wf<<16)    ; LO WORD 14: W Fraction (Bit 16..31)
-  dw (dsdxf<<16)|dtdxf ; HI WORD 15: DsDx Fraction (Bit 48..63), DtDx Fraction (Bit 32..47)
-  dw (dwDxf<<16)       ; LO WORD 15: DwDx Fraction (Bit 16..31)
-  dw (dsde<<16)|dtde ; HI WORD 16: DsDe Integer (Bit 48..63), DtDe Integer (Bit 32..47)
-  dw (dwDe<<16)      ; LO WORD 16: DwDe Integer (Bit 16..31)
-  dw (dsdy<<16)|dtdy ; HI WORD 17: DsDy Integer (Bit 48..63), DtDy Integer (Bit 32..47)
-  dw (dwDy<<16)      ; LO WORD 17: DwDy Integer (Bit 16..31)
-  dw (dsdef<<16)|dtdef ; HI WORD 18: DsDe Fraction (Bit 48..63), DtDe Fraction (Bit 32..47)
-  dw (dwDef<<16)       ; LO WORD 18: DwDe Fraction (Bit 16..31)
-  dw (dsdyf<<16)|dtdyf ; HI WORD 19: DsDy Fraction (Bit 48..63), DtDy Fraction (Bit 32..47)
-  dw (dwDyf<<16)       ; LO WORD 19: DwDy Fraction (Bit 16..31)
   endm
 
-Shade_Texture_Z_Buffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,dxhdyf, xm,xmf,dxmdy,dxmdyf, r,g,b,a, drdx,dgdx,dbdx,dadx, rf,gf,bf,af, drdxf,dgdxf,dbdxf,dadxf, drde,dgde,dbde,dade, drdy,dgdy,dbdy,dady, drdef,dgdef,dbdef,dadef, drdyf,dgdyf,dbdyf,dadyf, s,t,w, dsdx,dtdx,dwdx, sf,tf,wf, dsdxf,dtdxf,dwdxf, dsde,dtde,dwde, dsdy,dtdy,dwdy, dsdef,dtdef,dwdef, dsdyf,dtdyf,dwdyf, z,zf,dzdx,dzdxf, dzde,dzdef,dzdy,dzdyf
+Shade_Texture_Z_Buffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxldyf, xh,xhf,dxhdy,dxhdyf, xm,xmf,dxmdy,dxmdyf
 ; Word 0: Left Major Flag (0=Left Major, 1=Right Major), Number Of Mip-Maps Minus One, Tile ID, Y Coordinate Of Low, Mid Minor, Major Edge (Fixed Point S.11.2)
 ; Word 1: X Coordinate Of Low    Edge Integer, Fraction, DxLDy Inverse Slope Of Low    Edge Integer, Fraction
 ; Word 2: X Coordinate Of Major  Edge Integer, Fraction, DxHDy Inverse Slope Of Major  Edge Integer, Fraction
 ; Word 3: X Coordinate Of Middle Edge Integer, Fraction, DxMDy Inverse Slope Of Middle Edge Integer, Fraction
-; Word 4:  Red Color Component Integer, Green Color Component Integer, Blue Color Component Integer, Alpha Color Component Integer
+; Word 4:  Red Color Component Integer, Green Color Component Integer, Blue Color Component Integer, Alpha Color Component Integer (Shade Coefficients)
 ; Word 5:  DrDx Change In Red, DgDx Change In Green, DbDx Change In Blue, DaDx Change In Alpha Per Change In X Coordinate Integer
 ; Word 6:  Red Color Component Fraction, Green Color Component Fraction, Blue Color Component Fraction, Alpha Color Component Fraction
 ; Word 7:  DrDx Change In Red, DgDx Change In Green, DbDx Change In Blue, DaDx Change In Alpha Per Change In X Coordinate Fraction
@@ -400,7 +292,7 @@ Shade_Texture_Z_Buffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxl
 ; Word 9:  DrDy Change In Red, DgDy Change In Green, DbDy Change In Blue, DaDy Change In Alpha Per Change In Y Coordinate Integer
 ; Word 10: DrDe Change In Red, DgDe Change In Green, DbDe Change In Blue, DaDe Change In Alpha Along The Edge Fraction
 ; Word 11: DrDy Change In Red, DgDy Change In Green, DbDy Change In Blue, DaDy Change In Alpha Per Change In Y Coordinate Fraction
-; Word 12: S Texture Coordinate Integer, T Texture Coordinate Integer, W Normalized Inverse Depth Integer
+; Word 12: S Texture Coordinate Integer, T Texture Coordinate Integer, W Normalized Inverse Depth Integer (Texture Coefficients)
 ; Word 13: DsDx Change In S, DtDx Change In T, DwDx Change In W Per Change In X Coordinate Integer
 ; Word 14: S Texture Coordinate Fraction, T Texture Coordinate Fraction, W Normalized Inverse Depth Fraction
 ; Word 15: DsDx Change In S, DtDx Change In T, DwDx Change In W Per Change In X Coordinate Fraction
@@ -408,7 +300,7 @@ Shade_Texture_Z_Buffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxl
 ; Word 17: DsDy Change In S, DtDy Change In T, DwDy Change In W Per Change In Y Coordinate Integer
 ; Word 18: DsDe Change In S, DtDe Change In T, DwDe Change In W Along The Edge Fraction
 ; Word 19: DsDy Change In S, DtDy Change In T, DwDy Change In W Per Change In Y Coordinate Fraction
-; Word 20: Z Inverse Depth Integer, Fraction, DzDx Change In Z Per Change In X Coordinate Integer, Fraction
+; Word 20: Z Inverse Depth Integer, Fraction, DzDx Change In Z Per Change In X Coordinate Integer, Fraction (ZBuffer Coefficients)
 ; Word 21: DzDe Change In Z Along Major Edge Integer, Fraction, DzDy Change In Z Per Change In Y Coordinate Integer, Fraction
   dw $0F000000|(lft<<23)|(level<<19)|(tile<<16)|yl ; HI Word 0: COMMAND $0F (Bit 56..61), lft (Bit 55), Level (Bit 51..53), Tile (Bit 48..50), YL (Bit 32..45)
   dw (ym<<16)|yh                                   ; LO Word 0: YM (Bit 16..29), YH (Bit 9..13)
@@ -418,42 +310,69 @@ Shade_Texture_Z_Buffer_Triangle: macro lft,level,tile,yl,ym,yh, xl,xlf,dxldy,dxl
   dw (dxhdy<<16)|dxhdyf ; LO Word 2: DxHDy Integer (Bit 16..31), DxHDy Fraction (Bit 0..15)
   dw (xm<<16)|xmf       ; HI Word 3: XM Integer (Bit 48..63), XM Fraction (Bit 32..47)
   dw (dxmdy<<16)|dxmdyf ; LO Word 3: DxMDy Integer (Bit 16..31), DxMDy Fraction (Bit 0..15)
-  dw (r<<16)|g ; HI WORD 4: Red  Integer (Bit 48..63), Green Integer (Bit 32..47)
-  dw (b<<16)|a ; LO WORD 4: Blue Integer (Bit 16..31), Alpha Integer (Bit 0..15)
-  dw (drdx<<16)|dgdx ; HI WORD 5: DrDx Integer (Bit 48..63), DgDx Integer (Bit 32..47)
-  dw (dbDx<<16)|dadx ; LO WORD 5: DbDx Integer (Bit 16..31), DbDx Integer (Bit 0..15)
-  dw (rf<<16)|gf ; HI WORD 6: Red  Fraction (Bit 48..63), Green Fraction (Bit 32..47)
-  dw (bf<<16)|af ; LO WORD 6: Blue Fraction (Bit 16..31), Alpha Fraction (Bit 0..15)
-  dw (drdxf<<16)|dgdxf ; HI WORD 7: DrDx Fraction (Bit 48..63), DgDx Fraction (Bit 32..47)
-  dw (dbDxf<<16)|dadxf ; LO WORD 7: DbDx Fraction (Bit 16..31), DbDx Fraction (Bit 0..15)
-  dw (drde<<16)|dgde ; HI WORD 8: DrDe Integer (Bit 48..63), DgDe Integer (Bit 32..47)
-  dw (dbDe<<16)|dade ; LO WORD 8: DbDe Integer (Bit 16..31), DaDe Integer (Bit 0..15)
-  dw (drdy<<16)|dgdy ; HI WORD 9: DrDy Integer (Bit 48..63), DgDy Integer (Bit 32..47)
-  dw (dbDy<<16)|dady ; LO WORD 9: DbDy Integer (Bit 16..31), DaDy Integer (Bit 0..15)
-  dw (drdef<<16)|dgdef ; HI WORD 10: DrDe Fraction (Bit 48..63), DgDe Fraction (Bit 32..47)
-  dw (dbDef<<16)|dadef ; LO WORD 10: DbDe Fraction (Bit 16..31), DaDe Fraction (Bit 0..15)
-  dw (drdyf<<16)|dgdyf ; HI WORD 11: DrDy Fraction (Bit 48..63), DgDy Fraction (Bit 32..47)
-  dw (dbDyf<<16)|dadyf ; LO WORD 11: DbDy Fraction (Bit 16..31), DaDy Fraction (Bit 0..15)
-  dw (s<<16)|t ; HI WORD 12: S Integer (Bit 48..63), T Integer (Bit 32..47)
-  dw (w<<16)   ; LO WORD 12: W Integer (Bit 16..31)
-  dw (dsdx<<16)|dtdx ; HI WORD 13: DsDx Integer (Bit 48..63), DtDx Integer (Bit 32..47)
-  dw (dwDx<<16)      ; LO WORD 13: DwDx Integer (Bit 16..31)
-  dw (sf<<16)|tf ; HI WORD 14: S Fraction (Bit 48..63), T Fraction (Bit 32..47)
-  dw (wf<<16)    ; LO WORD 14: W Fraction (Bit 16..31)
-  dw (dsdxf<<16)|dtdxf ; HI WORD 15: DsDx Fraction (Bit 48..63), DtDx Fraction (Bit 32..47)
-  dw (dwDxf<<16)       ; LO WORD 15: DwDx Fraction (Bit 16..31)
-  dw (dsde<<16)|dtde ; HI WORD 16: DsDe Integer (Bit 48..63), DtDe Integer (Bit 32..47)
-  dw (dwDe<<16)      ; LO WORD 16: DwDe Integer (Bit 16..31)
-  dw (dsdy<<16)|dtdy ; HI WORD 17: DsDy Integer (Bit 48..63), DtDy Integer (Bit 32..47)
-  dw (dwDy<<16)      ; LO WORD 17: DwDy Integer (Bit 16..31)
-  dw (dsdef<<16)|dtdef ; HI WORD 18: DsDe Fraction (Bit 48..63), DtDe Fraction (Bit 32..47)
-  dw (dwDef<<16)       ; LO WORD 18: DwDe Fraction (Bit 16..31)
-  dw (dsdyf<<16)|dtdyf ; HI WORD 19: DsDy Fraction (Bit 48..63), DtDy Fraction (Bit 32..47)
-  dw (dwDyf<<16)       ; LO WORD 19: DwDy Fraction (Bit 16..31)
-  dw (z<<16)|zf       ; HI Word 20: Z Integer (Bit 48..63), Z Fraction (Bit 32..47)
-  dw (dzdx<<16)|dzdxf ; LO Word 20: DzDx Integer (Bit 16..31), DzDx Fraction (Bit 0..15)
-  dw (dzde<<16)|dzdef ; HI Word 21: DzDe Integer (Bit 48..63), DzDe Fraction (Bit 32..47)
-  dw (dzdy<<16)|dzdyf ; LO Word 21: DzDy Integer (Bit 16..31), DzDy Fraction (Bit 0..15)
+  endm
+
+Shade_Coefficients: macro r,g,b,a, drdx,dgdx,dbdx,dadx, rf,gf,bf,af, drdxf,dgdxf,dbdxf,dadxf, drde,dgde,dbde,dade, drdy,dgdy,dbdy,dady, drdef,dgdef,dbdef,dadef, drdyf,dgdyf,dbdyf,dadyf
+; Word 0:  Red Color Component Integer, Green Color Component Integer, Blue Color Component Integer, Alpha Color Component Integer (Shade Coefficients)
+; Word 1:  DrDx Change In Red, DgDx Change In Green, DbDx Change In Blue, DaDx Change In Alpha Per Change In X Coordinate Integer
+; Word 2:  Red Color Component Fraction, Green Color Component Fraction, Blue Color Component Fraction, Alpha Color Component Fraction
+; Word 3:  DrDx Change In Red, DgDx Change In Green, DbDx Change In Blue, DaDx Change In Alpha Per Change In X Coordinate Fraction
+; Word 4:  DrDe Change In Red, DgDe Change In Green, DbDe Change In Blue, DaDe Change In Alpha Along The Edge Integer
+; Word 5:  DrDy Change In Red, DgDy Change In Green, DbDy Change In Blue, DaDy Change In Alpha Per Change In Y Coordinate Integer
+; Word 6: DrDe Change In Red, DgDe Change In Green, DbDe Change In Blue, DaDe Change In Alpha Along The Edge Fraction
+; Word 7: DrDy Change In Red, DgDy Change In Green, DbDy Change In Blue, DaDy Change In Alpha Per Change In Y Coordinate Fraction
+  dw (r<<16)|g ; HI WORD 0: Red  Integer (Bit 48..63), Green Integer (Bit 32..47)
+  dw (b<<16)|a ; LO WORD 0: Blue Integer (Bit 16..31), Alpha Integer (Bit 0..15)
+  dw (drdx<<16)|dgdx ; HI WORD 1: DrDx Integer (Bit 48..63), DgDx Integer (Bit 32..47)
+  dw (dbDx<<16)|dadx ; LO WORD 1: DbDx Integer (Bit 16..31), DbDx Integer (Bit 0..15)
+  dw (rf<<16)|gf ; HI WORD 2: Red  Fraction (Bit 48..63), Green Fraction (Bit 32..47)
+  dw (bf<<16)|af ; LO WORD 2: Blue Fraction (Bit 16..31), Alpha Fraction (Bit 0..15)
+  dw (drdxf<<16)|dgdxf ; HI WORD 3: DrDx Fraction (Bit 48..63), DgDx Fraction (Bit 32..47)
+  dw (dbDxf<<16)|dadxf ; LO WORD 3: DbDx Fraction (Bit 16..31), DbDx Fraction (Bit 0..15)
+  dw (drde<<16)|dgde ; HI WORD 4: DrDe Integer (Bit 48..63), DgDe Integer (Bit 32..47)
+  dw (dbDe<<16)|dade ; LO WORD 4: DbDe Integer (Bit 16..31), DaDe Integer (Bit 0..15)
+  dw (drdy<<16)|dgdy ; HI WORD 5: DrDy Integer (Bit 48..63), DgDy Integer (Bit 32..47)
+  dw (dbDy<<16)|dady ; LO WORD 5: DbDy Integer (Bit 16..31), DaDy Integer (Bit 0..15)
+  dw (drdef<<16)|dgdef ; HI WORD 6: DrDe Fraction (Bit 48..63), DgDe Fraction (Bit 32..47)
+  dw (dbDef<<16)|dadef ; LO WORD 6: DbDe Fraction (Bit 16..31), DaDe Fraction (Bit 0..15)
+  dw (drdyf<<16)|dgdyf ; HI WORD 7: DrDy Fraction (Bit 48..63), DgDy Fraction (Bit 32..47)
+  dw (dbDyf<<16)|dadyf ; LO WORD 7: DbDy Fraction (Bit 16..31), DaDy Fraction (Bit 0..15)
+  endm
+
+Texture_Coefficients: macro s,t,w, dsdx,dtdx,dwdx, sf,tf,wf, dsdxf,dtdxf,dwdxf, dsde,dtde,dwde, dsdy,dtdy,dwdy, dsdef,dtdef,dwdef, dsdyf,dtdyf,dwdyf
+; Word 0:  S Texture Coordinate Integer, T Texture Coordinate Integer, W Normalized Inverse Depth Integer
+; Word 1:  DsDx Change In S, DtDx Change In T, DwDx Change In W Per Change In X Coordinate Integer
+; Word 2:  S Texture Coordinate Fraction, T Texture Coordinate Fraction, W Normalized Inverse Depth Fraction
+; Word 3:  DsDx Change In S, DtDx Change In T, DwDx Change In W Per Change In X Coordinate Fraction
+; Word 4:  DsDe Change In S, DtDe Change In T, DwDe Change In W Along The Edge Integer
+; Word 5:  DsDy Change In S, DtDy Change In T, DwDy Change In W Per Change In Y Coordinate Integer
+; Word 6: DsDe Change In S, DtDe Change In T, DwDe Change In W Along The Edge Fraction
+; Word 7: DsDy Change In S, DtDy Change In T, DwDy Change In W Per Change In Y Coordinate Fraction
+  dw (s<<16)|t ; HI WORD 0: S Integer (Bit 48..63), T Integer (Bit 32..47)
+  dw (w<<16)   ; LO WORD 0: W Integer (Bit 16..31)
+  dw (dsdx<<16)|dtdx ; HI WORD 1: DsDx Integer (Bit 48..63), DtDx Integer (Bit 32..47)
+  dw (dwDx<<16)      ; LO WORD 1: DwDx Integer (Bit 16..31)
+  dw (sf<<16)|tf ; HI WORD 2: S Fraction (Bit 48..63), T Fraction (Bit 32..47)
+  dw (wf<<16)    ; LO WORD 2: W Fraction (Bit 16..31)
+  dw (dsdxf<<16)|dtdxf ; HI WORD 3: DsDx Fraction (Bit 48..63), DtDx Fraction (Bit 32..47)
+  dw (dwDxf<<16)       ; LO WORD 3: DwDx Fraction (Bit 16..31)
+  dw (dsde<<16)|dtde ; HI WORD 4: DsDe Integer (Bit 48..63), DtDe Integer (Bit 32..47)
+  dw (dwDe<<16)      ; LO WORD 4: DwDe Integer (Bit 16..31)
+  dw (dsdy<<16)|dtdy ; HI WORD 5: DsDy Integer (Bit 48..63), DtDy Integer (Bit 32..47)
+  dw (dwDy<<16)      ; LO WORD 5: DwDy Integer (Bit 16..31)
+  dw (dsdef<<16)|dtdef ; HI WORD 6: DsDe Fraction (Bit 48..63), DtDe Fraction (Bit 32..47)
+  dw (dwDef<<16)       ; LO WORD 6: DwDe Fraction (Bit 16..31)
+  dw (dsdyf<<16)|dtdyf ; HI WORD 7: DsDy Fraction (Bit 48..63), DtDy Fraction (Bit 32..47)
+  dw (dwDyf<<16)       ; LO WORD 7: DwDy Fraction (Bit 16..31)
+  endm
+
+ZBuffer_Coefficients: macro z,zf,dzdx,dzdxf, dzde,dzdef,dzdy,dzdyf
+; Word 0: Z Inverse Depth Integer, Fraction, DzDx Change In Z Per Change In X Coordinate Integer, Fraction (ZBuffer Coefficients)
+; Word 1: DzDe Change In Z Along Major Edge Integer, Fraction, DzDy Change In Z Per Change In Y Coordinate Integer, Fraction
+  dw (z<<16)|zf       ; HI Word 0: Z Integer (Bit 48..63), Z Fraction (Bit 32..47)
+  dw (dzdx<<16)|dzdxf ; LO Word 0: DzDx Integer (Bit 16..31), DzDx Fraction (Bit 0..15)
+  dw (dzde<<16)|dzdef ; HI Word 1: DzDe Integer (Bit 48..63), DzDe Fraction (Bit 32..47)
+  dw (dzdy<<16)|dzdyf ; LO Word 1: DzDy Integer (Bit 16..31), DzDy Fraction (Bit 0..15)
   endm
 
 Texture_Rectangle: macro xl,yl, tile, xh,yh, s,t, dsdx,dtdy
