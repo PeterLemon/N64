@@ -29,7 +29,7 @@ RDPBuffer:
   Fill_Rectangle 319<<2,239<<2, 0<<2,0<<2 ; Fill Rectangle: XL 319.0, YL 239.0, XH 0.0, YH 0.0
 
   Set_Fill_Color $FFFCFF00 ; Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels
-  Fill_Rectangle 179<<2,139<<2, 16<<2,8<<2 ; Fill Rectangle: XL 179.0, YL 129.0, XH 16.0, YH 8.0
+  Fill_Rectangle 179<<2,139<<2, 16<<2,8<<2 ; Fill Rectangle: XL 179.0, YL 139.0, XH 16.0, YH 8.0
 
   Set_Fill_Color $ACFCACFC ; Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels
   Fill_Rectangle 309<<2,229<<2, 159<<2,129<<2 ; Fill Rectangle: XL 309.0, YL 229.0, XH 159.0, YH 129.0
