@@ -40,7 +40,7 @@ RDPBuffer:
   Load_Tile 0<<2,0<<2, 0, 15<<2,15<<2 ; Load Tile: SL 0.0, TL 0.0, Tile 0, SH 15.0, TH 15.0
   Sync_Tile ; Sync Tile
   Set_Tile IMAGE_DATA_FORMAT_I|SIZE_OF_PIXEL_4B|(1<<9)|$000, (0<<24) ; Set Tile: I, SIZE 4B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
-  Texture_Rectangle 84<<2,76<<2, 0, 52<<2,44<<2, 0<<5,0<<5, $200,$200 ; Texture Rectangle: XL 84.0, YL 76.0, Tile 0, XH 68.0, YH 44.0, S 0.0, T 0.0, DSDX 0.5, DTDY 0.5
+  Texture_Rectangle 84<<2,76<<2, 0, 52<<2,44<<2, 0<<5,0<<5, $200,$200 ; Texture Rectangle: XL 84.0, YL 76.0, Tile 0, XH 52.0, YH 44.0, S 0.0, T 0.0, DSDX 0.5, DTDY 0.5
 
   Sync_Tile ; Sync Tile
   Texture_Rectangle 84<<2,130<<2, 0, 68<<2,114<<2, 0<<5,0<<5, 1<<10,1<<10 ; Texture Rectangle: XL 84.0, YL 130.0, Tile 0, XH 68.0, YH 114.0, S 0.0, T 0.0, DSDX 1.0, DTDY 1.0
