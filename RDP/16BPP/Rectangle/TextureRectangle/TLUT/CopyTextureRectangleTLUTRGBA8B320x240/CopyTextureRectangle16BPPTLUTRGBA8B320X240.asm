@@ -52,7 +52,7 @@ RDPBuffer:
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(32-1), $00200140 ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 32, DRAM ADDRESS $00200140
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(4<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 4 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 31<<2,31<<2 ; Load Tile: SL 0.0, TL 0.0, Tile 0, SH 31.0, TH 31.0
-  Texture_Rectangle 275<<2,129<<2, 0, 244<<2,98<<2, 0<<5,0<<5, 4<<10,1<<10 ; Texture Rectangle: XL 175.0, YL 129.0, Tile 0, XH 144.0, YH 98.0, S 0.0, T 0.0, DSDX 4.0, DTDY 1.0
+  Texture_Rectangle 275<<2,129<<2, 0, 244<<2,98<<2, 0<<5,0<<5, 4<<10,1<<10 ; Texture Rectangle: XL 275.0, YL 129.0, Tile 0, XH 244.0, YH 98.0, S 0.0, T 0.0, DSDX 4.0, DTDY 1.0
 
   Sync_Full ; Ensure Entire Scene Is Fully Drawn
 RDPBufferEnd:
