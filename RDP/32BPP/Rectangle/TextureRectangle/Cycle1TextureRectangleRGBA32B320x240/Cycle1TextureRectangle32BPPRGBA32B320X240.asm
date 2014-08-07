@@ -37,7 +37,7 @@ RDPBuffer:
   Set_Texture_Image SIZE_OF_PIXEL_32B|(8-1), $00200000 ; Set Texture Image: SIZE 32B, WIDTH 8, DRAM ADDRESS $00200000
   Set_Tile SIZE_OF_PIXEL_32B|(2<<9)|$000, 0<<24 ; Set Tile: SIZE 32B, Tile Line Size 2 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL 0.0, TL 0.0, Tile 0, SH 7.0, TH 7.0
-  Texture_Rectangle 80<<2,68<<2, 0, 64<<2,52<<2, 0<<5,0<<5, $200,$200 ; Texture Rectangle: XL 80.0, YL 60.0, Tile 0, XH 64.0, YH 52.0, S 0.0, T 0.0, DSDX 0.5, DTDY 0.5
+  Texture_Rectangle 80<<2,68<<2, 0, 64<<2,52<<2, 0<<5,0<<5, $200,$200 ; Texture Rectangle: XL 80.0, YL 68.0, Tile 0, XH 64.0, YH 52.0, S 0.0, T 0.0, DSDX 0.5, DTDY 0.5
 
   Sync_Tile ; Sync Tile
   Texture_Rectangle 80<<2,130<<2, 0, 72<<2,122<<2, 0<<5,0<<5, 1<<10,1<<10 ; Texture Rectangle: XL 80.0, YL 130.0, Tile 0, XH 72.0, YH 122.0, S 0.0, T 0.0, DSDX 1.0, DTDY 1.0
@@ -50,7 +50,7 @@ RDPBuffer:
   Set_Texture_Image SIZE_OF_PIXEL_32B|(16-1), $00200100 ; Set Texture_Image: SIZE 32B, WIDTH 16, DRAM ADDRESS $00200100
   Set_Tile SIZE_OF_PIXEL_32B|(4<<9)|$000, (0<<24)|SHIFT_S_1|SHIFT_T_1 ; Set Tile: SIZE 32B, Tile Line Size 4 (64bit Words), TMEM Address $000, Tile 0, Shift S 1,Shift T 1
   Load_Tile 0<<2,0<<2, 0, 15<<2,15<<2 ; Load Tile: SL 0.0, TL 0.0, Tile 0, SH 15.0, TH 15.0
-  Texture_Rectangle 168<<2,76<<2, 0, 136<<2,44<<2, 0<<5,0<<5, 1<<10,1<<10 ; Texture Rectangle: XL 168.0, YL 60.0, Tile 0, XH 152.0, YH 44.0, S 0.0, T 0.0, DSDX 1.0, DTDY 1.0
+  Texture_Rectangle 168<<2,76<<2, 0, 136<<2,44<<2, 0<<5,0<<5, 1<<10,1<<10 ; Texture Rectangle: XL 168.0, YL 76.0, Tile 0, XH 136.0, YH 44.0, S 0.0, T 0.0, DSDX 1.0, DTDY 1.0
 
   Sync_Tile ; Sync Tile
   Set_Tile SIZE_OF_PIXEL_32B|(4<<9)|$000, 0<<24 ; Set Tile: SIZE 32B, Tile Line Size 4 (64bit Words), TMEM Address $000, Tile 0
