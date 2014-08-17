@@ -138,7 +138,7 @@ RDPBuffer:
   ;        / \
   ; DxMDy /   \DxHDy
   ;      /     \  
-  ;     ._______. v[1]:(X:250.0) YM(Y:200.0), v[0]:XL(X:300.0) YL(Y:200.0)
+  ;     ._______. v[0]:(X:250.0) YL(Y:200.0), v[1]:XL(X:300.0) YM(Y:200.0)
   ;       DxLDy
   ;
   ; Output: Dir 0, Level 0, Tile 0, YL 200.0, YM 200.0, YH 150.0, XL 250.0, DxLDy 0.0, XH 275.0, DxHDy 0.5, XM 275.0, DxMDy -0.5
