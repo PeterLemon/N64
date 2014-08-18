@@ -116,7 +116,7 @@ RDPBuffer:
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Fill_Color $001F003F ; Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels (Blue Strips)
   ;
-  ;         . v[2]:XH,XM(X:225.1) YH(Y:150.0)
+  ;         . v[2]:XH,XM(X:225.0) YH(Y:150.0)
   ;        /|
   ; DxHDy / |DxMDy
   ;      .  | v[1]:XL(X:175.0) YM(Y:175.0)
