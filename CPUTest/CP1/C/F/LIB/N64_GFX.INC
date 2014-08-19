@@ -685,8 +685,8 @@ Set_Blend_Color: macro lo ; Set The Blending Color
 
 Set_Prim_Color: macro minlev,levfrac,lo ; Set The Primitive Color
 ; Word: Prim Min Level: Minimum Clamp For LOD Fraction When In Detail Or Sharpen Texture Modes (Fixed Point 0.5), Prim Level Frac: Level Of Detail Fraction For Primitive, Used Primarily In Multi-Tile Operations For Rectangle Primitives (Fixed Point 0.8), RGBA Color Components
-  dw $3A000000|(minlev<<40)|levfrac ; HI Word: COMMAND $3A (Bit 56..61), Prim Min Level (Bit 40..44), Prim Level Frac (Bit 32..39)
-  dw lo                             ; LO Word: Red Component (Bit 24..31), Green Component (Bit 16..23), Blue Component (Bit 8..15), Alpha Component (Bit 0..7)
+  dw $3A000000|(minlev<<8)|levfrac ; HI Word: COMMAND $3A (Bit 56..61), Prim Min Level (Bit 40..44), Prim Level Frac (Bit 32..39)
+  dw lo                            ; LO Word: Red Component (Bit 24..31), Green Component (Bit 16..23), Blue Component (Bit 8..15), Alpha Component (Bit 0..7)
   endm
 
 Set_Env_Color: macro lo ; Set The Environment Color
