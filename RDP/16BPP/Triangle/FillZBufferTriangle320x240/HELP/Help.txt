@@ -1,0 +1,59 @@
+The demo needs to show these ZBuffer attributes:
+
+There are 2 types of ZBuffer:
+This is selectable using the set other modes "Z_SOURCE_SEL"
+1. Per Pixel (Uses the full Zbuffer per pixel Z) Z_SOURCE_SEL = 0 (Default)
+2. Per Primitive (Uses the seprate RDP command "Set_Prim_Depth") Z_SOURCE_SEL = 1
+
+There are 4 modes of ZBuffer:
+This is selectable using set other modes
+1. Z_MODE_OPAQUE (Default)
+2. Z_MODE_INTERPENETRATING
+3. Z_MODE_TRANSPARENT
+4. Z_MODE_DECAL
+
+----------------------------------
+
+Try to Make the demo show all these modes:
+
+1. Per Pixel - Z_MODE_OPAQUE (Default)
+2. Per Pixel - Z_MODE_INTERPENETRATING
+3. Per Pixel - Z_MODE_TRANSPARENT
+4. Per Pixel - Z_MODE_DECAL
+
+5. Per Primitive - Z_MODE_OPAQUE (Default)
+6. Per Primitive - Z_MODE_INTERPENETRATING
+7. Per Primitive - Z_MODE_TRANSPARENT
+8. Per Primitive - Z_MODE_DECAL
+
+----------------------------------
+
+Page 182 of the big PDF has info on Fill/Copy/Cycle Modes & explains how the pipeline can crash if Zbuffer is used in Fill Mode
+Page 197/198 of the big PDF has info on the Color Combiner (CC) that needs to be set correctly for Per Primitive Color
+Page 205 of the big PDF has info on the different blending z mode types
+Page 210 of the big PDF has info on setting Z_SOURCE_SEL to use Set_Prim_Depth opcode especially for Fill_Rectangle & Texture_Rectangle
+
+----------------------------------
+
+This Colors Primitives using the Blend Color with "Force Blend":
+  Set_Other_Modes SAMPLE_TYPE|BI_LERP_0|BI_LERP_1|ALPHA_DITHER_SEL_NO_DITHER, B_M2A_0_2|FORCE_BLEND|IMAGE_READ_EN|Z_COMPARE_EN|Z_UPDATE_EN ; Set Other Modes
+  Set_Combine_Mode $F, $1F, 7, 7, $F, $1F, $F, $F, 7, 7, 7, 7, 7, 7, 7, 7 ; Set Combine Mode: SubA RGB0, MulRGB0, SubA Alpha0, MulAlpha0, SubA RGB1, MulRGB1, SubB RGB0, SubB RGB1, SubA Alpha1, MulAlpha1, AddRGB0, SubB Alpha0, AddAlpha0, AddRGB1, SubB Alpha1, AddAlpha1
+  Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 255, B 255, A 255
+
+This Colors Primitives using the Blend Color:
+  Set_Other_Modes SAMPLE_TYPE|BI_LERP_0|BI_LERP_1|ALPHA_DITHER_SEL_NO_DITHER, B_M1A_0_2|IMAGE_READ_EN|Z_COMPARE_EN|Z_UPDATE_EN ; Set Other Modes
+  ;Set_Combine_Mode $F, $1F, 7, 7, $F, $1F, $F, $F, 7, 7, 7, 7, 7, 7, 7, 7 ; Set Combine Mode: SubA RGB0, MulRGB0, SubA Alpha0, MulAlpha0, SubA RGB1, MulRGB1, SubB RGB0, SubB RGB1, SubA Alpha1, MulAlpha1, AddRGB0, SubB Alpha0, AddAlpha0, AddRGB1, SubB Alpha1, AddAlpha1
+  Set_Combine_Mode $0, $00, 0, 0, $1, $01, $0, $F, 1, 0, 1, 0, 0, 7, 7, 7 ; Set Combine Mode: SubA RGB0, MulRGB0, SubA Alpha0, MulAlpha0, SubA RGB1, MulRGB1, SubB RGB0, SubB RGB1, SubA Alpha1, MulAlpha1, AddRGB0, SubB Alpha0, AddAlpha0, AddRGB1, SubB Alpha1, AddAlpha1
+  Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 255, B 255, A 255
+
+----------------------------------
+
+Here are the max settings for the Color Combiner:
+  Set_Combine_Mode $F, $1F, 7, 7, $F, $1F, $F, $F, 7, 7, 7, 7, 7, 7, 7, 7 ; Set Combine Mode: SubA RGB0, MulRGB0, SubA Alpha0, MulAlpha0, SubA RGB1, MulRGB1, SubB RGB0, SubB RGB1, SubA Alpha1, MulAlpha1, AddRGB0, SubB Alpha0, AddAlpha0, AddRGB1, SubB Alpha1, AddAlpha1
+  
+
+B_M1A_0_1 = Blend with the Texture colours
+B_M2A_0_1|FORCE_BLEND = Blend with the Texture colours
+
+B_M1A_0_2 = Blend with Blend Color
+B_M2A_0_2|FORCE_BLEND = Blend with Blend Color

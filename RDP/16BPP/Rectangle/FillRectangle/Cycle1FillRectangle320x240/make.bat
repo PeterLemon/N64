@@ -1,0 +1,2 @@
+asmn6432 /p Cycle1FillRectangle16BPP320X240.ASM,Cycle1FillRectangle16BPP320X240.N64
+chksum64 Cycle1FillRectangle16BPP320X240.N64
