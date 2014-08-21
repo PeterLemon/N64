@@ -181,7 +181,7 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Green)
-  Set_Prim_Depth 100,0 ; Set Primitive Depth: PRIMITIVE Z 150, PRIMITIVE DELTA Z 0
+  Set_Prim_Depth 100,0 ; Set Primitive Depth: PRIMITIVE Z 100, PRIMITIVE DELTA Z 0
   ;
   ;        .     v[2]:XH,XM(X:50.0) YH(Y:125.0) (Z:100.0)
   ;       / \
@@ -198,7 +198,7 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Red)
-  Set_Prim_Depth 100,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
+  Set_Prim_Depth 100,0 ; Set Primitive Depth: PRIMITIVE Z 100, PRIMITIVE DELTA Z 0
   ;
   ;      DxHDy
   ;    ._______. v[2]:XH,XM(X:100.0) YH(Y:150.0), v[1]:XL(X:150.0) YM(Y:150.0) (Z:100.0)
@@ -214,7 +214,7 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Green)
-  Set_Prim_Depth 50,0 ; Set Primitive Depth: PRIMITIVE Z 150, PRIMITIVE DELTA Z 0
+  Set_Prim_Depth 50,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
   ;
   ;        .     v[2]:XH,XM(X:125.0) YH(Y:125.0) (Z:50.0)
   ;       / \
@@ -247,7 +247,7 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Green)
-  Set_Prim_Depth 100,0 ; Set Primitive Depth: PRIMITIVE Z 150, PRIMITIVE DELTA Z 0
+  Set_Prim_Depth 100,0 ; Set Primitive Depth: PRIMITIVE Z 100, PRIMITIVE DELTA Z 0
   ;
   ;        . v[2]:XH,XM(X:225.0) YH(Y:150.0) (Z:100.0)
   ;       /|
@@ -264,7 +264,7 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Red)
-  Set_Prim_Depth 100,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
+  Set_Prim_Depth 100,0 ; Set Primitive Depth: PRIMITIVE Z 100, PRIMITIVE DELTA Z 0
   ;
   ;      .    v[2]:XH,XM(X:250.0) YH(Y:150.0) (Z:100.0)
   ;      |\DxHDy
@@ -280,7 +280,7 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Green)
-  Set_Prim_Depth 50,0 ; Set Primitive Depth: PRIMITIVE Z 150, PRIMITIVE DELTA Z 0
+  Set_Prim_Depth 50,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
   ;
   ;        . v[2]:XH,XM(X:300.0) YH(Y:150.0) (Z:50.0)
   ;       /|
