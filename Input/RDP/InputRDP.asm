@@ -66,17 +66,18 @@ Render:
   addi t2,t7,7 ; T2 = YL
   subi t3,t6,8 ; T3 = XH
   subi t4,t7,8 ; T4 = YH
-  sll t1,14
-  sll t2,2
-  sll t3,14
-  sll t4,2
+  dsll32 t1,14
+  dsll32 t2,2
+  dsll t3,14
+  dsll t4,2
 
   lui t5,$3600 ; T5 = Fill Rect RDP Command
+  dsll32 t5,0
   or t5,t1
   or t5,t2
-  sw t5,0(t0) ; Store 1st Word
-  or t3,t4
-  sw t3,4(t0) ; Store 2nd Word
+  or t5,t3
+  or t5,t4
+  sd t5,0(t0) ; Store RDP Command
 
   j Loop
   nop ; Delay Slot
