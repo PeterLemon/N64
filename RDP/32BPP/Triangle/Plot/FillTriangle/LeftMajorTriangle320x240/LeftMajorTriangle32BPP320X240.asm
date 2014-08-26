@@ -138,14 +138,14 @@ Loop:
 
   mul.s f9,f4,f1 ; Convert To S.11.2
   cvt.w.s f9 ; F9 = YL
-  mfc1 t2,f9
+  mfc1 t2,f9 ; T2 = YL
   andi t2,$3FFF ; T2 &= S.11.2
   or t1,t2
   sw t1,0(t0) ; Store RDP Command (WORD 0 HI)
 
   mul.s f9,f6,f1 ; Convert To S.11.2
   cvt.w.s f9 ; F9 = YM
-  mfc1 t1,f9
+  mfc1 t1,f9 ; T1 = YM
   andi t1,$3FFF ; T1 &= S.11.2
   dsll t1,16 ; T1 = YM
 
@@ -190,7 +190,7 @@ Loop:
   div.s f9,f10 ; F9 = DxHDy
   mul.s f9,f2  ; Convert To S.15.16
   cvt.w.s f9 ; F9 = DxHDy
-  mfc1 t2,f9 ; T3 = DxHDy
+  mfc1 t2,f9 ; T2 = DxHDy
   DXHDY:
   sw t2,20(t0) ; Store RDP Command (WORD 2 LO)
 
@@ -232,64 +232,40 @@ RDPBuffer:
   Sync_Full ; Ensure Entire Scene Is Fully Drawn
 RDPBufferEnd:
 
-MULT:
+MULT: ; Float Multipy Data
   IEEE32     0.0 ; Multiply (Divide By Zero Check)
   IEEE32     4.0 ; Multiply (Fixed Point S.11.2)
   IEEE32 65536.0 ; Multiply (Fixed Point S.15.16)
 
-TRI:
-;  IEEE32  25.0 ; Triangle X0
-;  IEEE32  50.0 ; Triangle Y0
-;  IEEE32  25.0 ; Triangle X1
-;  IEEE32 100.0 ; Triangle Y1
-;  IEEE32  75.0 ; Triangle X2
-;  IEEE32  50.0 ; Triangle Y2
+TRI: ; Float 2D Triangle Data
+;  IEEE32 25.0,  50.0 ; Triangle X0, Y0
+;  IEEE32 25.0, 100.0 ; Triangle X1, Y1
+;  IEEE32 75.0,  50.0 ; Triangle X2, Y2
 
-;  IEEE32 100.0 ; Triangle X0
-;  IEEE32  50.0 ; Triangle Y0
-;  IEEE32 150.0 ; Triangle X1
-;  IEEE32 100.0 ; Triangle Y1
-;  IEEE32 150.0 ; Triangle X2
-;  IEEE32  50.0 ; Triangle Y2
+;  IEEE32 100.0,  50.0 ; Triangle X0, Y0
+;  IEEE32 150.0, 100.0 ; Triangle X1, Y1
+;  IEEE32 150.0,  50.0 ; Triangle X2, Y2
 
-;  IEEE32 225.0 ; Triangle X0
-;  IEEE32  50.0 ; Triangle Y0
-;  IEEE32 175.0 ; Triangle X1
-;  IEEE32 100.0 ; Triangle Y1
-;  IEEE32 225.0 ; Triangle X2
-;  IEEE32 100.0 ; Triangle Y2
+;  IEEE32 225.0,  50.0 ; Triangle X0, Y0
+;  IEEE32 175.0, 100.0 ; Triangle X1, Y1
+;  IEEE32 225.0, 100.0 ; Triangle X2, Y2
 
-;  IEEE32 250.0 ; Triangle X0
-;  IEEE32  50.0 ; Triangle Y0
-;  IEEE32 250.0 ; Triangle X1
-;  IEEE32 100.0 ; Triangle Y1
-;  IEEE32 300.0 ; Triangle X2
-;  IEEE32 100.0 ; Triangle Y2
+;  IEEE32 250.0,  50.0 ; Triangle X0, Y0
+;  IEEE32 250.0, 100.0 ; Triangle X1, Y1
+;  IEEE32 300.0, 100.0 ; Triangle X2, Y2
 
-;  IEEE32  25.0 ; Triangle X0
-;  IEEE32 150.0 ; Triangle Y0
-;  IEEE32  25.0 ; Triangle X1
-;  IEEE32 200.0 ; Triangle Y1
-;  IEEE32  75.0 ; Triangle X2
-;  IEEE32 175.0 ; Triangle Y2
+;  IEEE32  25.0, 150.0 ; Triangle X0, Y0
+;  IEEE32  25.0, 200.0 ; Triangle X1, Y1
+;  IEEE32  75.0, 175.0 ; Triangle X2, Y2
 
-;  IEEE32 100.0 ; Triangle X0
-;  IEEE32 150.0 ; Triangle Y0
-;  IEEE32 125.0 ; Triangle X1
-;  IEEE32 200.0 ; Triangle Y1
-;  IEEE32 150.0 ; Triangle X2
-;  IEEE32 150.0 ; Triangle Y2
+;  IEEE32 100.0, 150.0 ; Triangle X0, Y0
+;  IEEE32 125.0, 200.0 ; Triangle X1, Y1
+;  IEEE32 150.0, 150.0 ; Triangle X2, Y2
 
-;  IEEE32 225.0 ; Triangle X0
-;  IEEE32 150.0 ; Triangle Y0
-;  IEEE32 225.0 ; Triangle X1
-;  IEEE32 200.0 ; Triangle Y1
-;  IEEE32 175.0 ; Triangle X2
-;  IEEE32 175.0 ; Triangle Y2
+;  IEEE32 225.0, 150.0 ; Triangle X0, Y0
+;  IEEE32 225.0, 200.0 ; Triangle X1, Y1
+;  IEEE32 175.0, 175.0 ; Triangle X2, Y2
 
-  IEEE32 275.0 ; Triangle X0
-  IEEE32 150.0 ; Triangle Y0
-  IEEE32 250.0 ; Triangle X1
-  IEEE32 200.0 ; Triangle Y1
-  IEEE32 300.0 ; Triangle X2
-  IEEE32 200.0 ; Triangle Y2
+  IEEE32 275.0, 150.0 ; Triangle X0, Y0
+  IEEE32 250.0, 200.0 ; Triangle X1, Y1
+  IEEE32 300.0, 200.0 ; Triangle X2, Y2
