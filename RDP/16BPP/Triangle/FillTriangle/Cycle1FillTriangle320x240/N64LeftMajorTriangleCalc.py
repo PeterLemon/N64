@@ -11,7 +11,7 @@
 #tri = (225.0, 200.0), (175.0, 175.0), (225.0, 150.0) # Y Sorted Triangle
 tri = (300.0, 200.0), (250.0, 200.0), (275.0, 150.0) # Y Sorted Triangle
 
-if tri[1][0] <= tri[2][0]: dir = 0 # IF (tri[1].x < tri[2].x) Left Major Triangle (Direction Flag = 0)
+if tri[1][0] <= tri[2][0]: dir = 0 # IF (tri[1].x <= tri[2].x) Left Major Triangle (Direction Flag = 0)
 else: dir = 1 # Else Right Major Triangle (Direction Flag = 1)
 print ("Triangle Direction = %i\n" % dir)
 
