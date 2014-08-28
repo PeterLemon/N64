@@ -1,4 +1,4 @@
-; N64 'Bare Metal' 32BPP 320x240 Right Major Fill Triangle RDP Demo by krom (Peter Lemon):
+; N64 'Bare Metal' 32BPP 320x240 Plot Right Major Fill Triangle RDP Demo by krom (Peter Lemon):
 
   include LIB\N64.INC ; Include N64 Definitions
   dcb 2097152,$00 ; Set ROM Size
@@ -129,11 +129,17 @@ Loop:
 
 
   lui t1,$0800 ; T1 = Fill Triangle RDP Command (WORD 0)
-  c.lt.s f5,f7 ; IF (X1 < X2) DIR = 0 (Left Major Triangle)
+  c.lt.s f5,f3 ; IF (X1 < X0) DIR = 0 (Left Major Triangle)
   bc1t DIR     ; ELSE DIR = 1 (Right Major Triangle)
   lui t2,$0000 ; T2 = DIR 0
   lui t2,$0080 ; T2 = DIR 1
   DIR:
+  or t1,t2
+  c.lt.s f5,f7 ; IF (X1 < X2) DIR = 0 (Left Major Triangle)
+  bc1t DIRB      ; ELSE DIR = 1 (Right Major Triangle)
+  lui t2,$0000 ; T2 = DIR 0
+  lui t2,$0080 ; T2 = DIR 1
+  DIRB:
   or t1,t2
 
   mul.s f9,f4,f1 ; Convert To S.11.2
