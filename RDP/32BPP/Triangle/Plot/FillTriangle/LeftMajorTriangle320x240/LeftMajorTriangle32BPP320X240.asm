@@ -125,17 +125,17 @@ Loop:
   lwc1 f7,16(t0) ; F7 = Triangle X2 (XH/XM)
   lwc1 f8,20(t0) ; F8 = Triangle Y2 (YH)
 
-  la t0,$A0000000|(FillTri&$3FFFFF) ; T0 = Fill Rect RAM Offset
+  la t0,$A0000000|(FillTri&$3FFFFF) ; T0 = Fill Triangle RAM Offset
 
 
   lui t1,$0800 ; T1 = Fill Triangle RDP Command (WORD 0)
-  c.lt.s f5,f3 ; IF (X1 < X0) DIR = 0 (Left Major Triangle)
+  c.le.s f5,f3 ; IF (X1 <= X0) DIR = 0 (Left Major Triangle)
   bc1t DIR     ; ELSE DIR = 1 (Right Major Triangle)
   lui t2,$0000 ; T2 = DIR 0
   lui t2,$0080 ; T2 = DIR 1
   DIR:
   or t1,t2
-  c.lt.s f5,f7 ; IF (X1 < X2) DIR = 0 (Left Major Triangle)
+  c.le.s f5,f7 ; IF (X1 <= X2) DIR = 0 (Left Major Triangle)
   bc1t DIRB      ; ELSE DIR = 1 (Right Major Triangle)
   lui t2,$0000 ; T2 = DIR 0
   lui t2,$0080 ; T2 = DIR 1
