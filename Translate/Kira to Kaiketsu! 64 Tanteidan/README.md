@@ -15,7 +15,7 @@ Howto Compile:<br />
 You will need the original Japanese ROM in .Z64 (Big-Endian) Format, in the root directory of this patch<br />
 All the code compiles into a single binary (ROMNAME.Z64) file.<br />
 Using bass Run: make.bat<br />
-Or you can patch the original Japanese ROM using the IPS file.
+Or you can patch the original Japanese ROM using the IPS file.<br />
 <br />
 Howto Run:<br />
 I only test with a real N64 using a 64drive Cartridge by Retroactive:<br />
