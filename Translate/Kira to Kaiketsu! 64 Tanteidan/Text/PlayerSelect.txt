@@ -1,0 +1,103 @@
+﻿きょうは、なんにんであそぶの?
+Today, in the What do you play?
+$13A818
+A4 AD	A4 E7	A4 A6	A4 CF	A1 A2	A4 CA	A4 F3	A4 CB	A4 F3	A4 C7	A4 A2	A4 BD	A4 D6	A4 CE	A1 A9	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  き	 #  ょ	 #  う	 #  は	 #  、	 #  な	 #  ん	 #  に	 #  ん	 #  で	 #  あ	 #  そ	 #  ぶ	 #  の	 #  ?	 #  	 #  	 #  	 #  	 #  	 #  	 #  	 #  	 #  	| Original Japanese Text
+ #  H	 #  o	 #  w	 #   	 #  m	 #  a	 #  n	 #  y	 #   	 #  P	 #  l	 #  a	 #  y	 #  e	 #  r	 #  s	 #  	 #  t	 #  o	 #  d	 #  a	 #  y	 #  ?	 # 	| New English Text
+A3 C8	A3 EF	A3 F7	20 20	A3 ED	A3 E1	A3 EE	A3 F9	20 20	A3 D0	A3 EC	A3 E1	A3 F9	A3 E5	A3 F2	A3 F3	20 20	A3 F4	A3 EF	A3 E4	A3 E1	A3 F9	A1 A9	00 00	| New English Hex
+
+そのうちコンピュータはなんにん?
+Computer in the What of them?
+$13A848
+A4 BD	A4 CE	A4 A6	A4 C1	A5 B3	A5 F3	A5 D4	A5 E5	A1 BC	A5 BF	A4 CF	A4 CA	A4 F3	A4 CB	A4 F3	A1 A9	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  そ	 #  の	 #  う	 #  ち	 #  コ	 #  ン	 #  ピ	 #  ュ	 #  ー	 #  タ	 #  は	 #  な	 #  ん	 #  に	 #  ん	 #  ?	 #  	 #  	 #  	 #  	 #  	 #  	 #  	 #  	| Original Japanese Text
+ #  S	 #  e	 #  l	 #  e	 #  c	 #  t	 #   	 #  a	 #  n	 #  y	 #   	 #  C	 #  O	 #  M	 #   	 #  P	 #  l	 #  a	 #  y	 #  e	 #  r	 #  s	 #  ?	 #  	| New English Text
+A3 D3	A3 E5	20 EC	A3 E5	A3 E3	A3 F4	20 20	A3 E1	A3 EE	A3 F9	20 20	A3 C3	A3 CF	A3 CD	20 20	A3 D0	A3 EC	A3 E1	A3 F9	A3 E5	A3 F2	A3 F3	A1 A9	00 00	| New English Hex
+
+使うコントローラをえらんでね!
+I choose the controller to use!
+$13A878
+BB C8	A4 A6	A5 B3	A5 F3	A5 C8	A5 ED	A1 BC	A5 E9	A4 F2	A4 A8	A4 E9	A4 F3	A4 C7	A4 CD	21 2F	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  使	 #  う	 #  コ	 #  ン	 #  ト	 #  ロ	 #  ー	 #  ラ	 #  を	 #  え	 #  ら	 #  ん	 #  で	 #  ね	 #  !	 #   	 #   	 #   	 #   	 #   	 #   	 #   	 #   	 #   	| Original Japanese Text
+ #  C	 #  h	 #  o	 #  o	 #  s	 #  e	 #  	 #  y	 #  o	 #  u	 #  r	 #   	 #  C	 #  o	 #  n	 #  t	 #  r	 #  o	 #  l	 #  l	 #  e	 #  r	 #  !	 #   	| New English Text
+A3 C3	A3 E8	A3 EF	A3 EF	A3 F3	A3 E5	20 20	A3 F9	A3 EF	A3 F5	A3 F2	20 20	A3 C3	A3 EF	A3 EE	A3 F4	A3 F2	A3 EF	A3 EC	A3 EC	A3 E5	A3 F2	21 2F	00 00	| New English Hex
+
+きょうはどんなじけんを解決しようか?
+Do try to solve any affair today?
+$13A8A8
+A4 AD	A4 E7	A4 A6	A4 CF	A4 C9	A4 F3	A4 CA	A4 B8	A4 B1	A4 F3	A4 F2	B2 F2	B7 E8	A4 B7	A4 E8	A4 A6	A4 AB	A1 A9	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  き	 #  ょ	 #  う	 #  は	 #  ど	 #  ん	 #  な	 #  じ	 #  け	 #  ん	 #  を	 #  解	 #  決	 #  し	 #  よ	 #  う	 #  か	 #  ?	 #   	 #   	 #   	 #   	 #   	 #	| Original Japanese Text
+ #  C	 #  h	 #  o	 #  o	 #  s	 #  e	 #   	 #  a	 #   	 #  C	 #  a	 #  s	 #  e	 #   	 #  t	 #  o	 #   	 #  S	 #  o	 #  l	 #  v	 #  e	 #  ?	 #	| New English Text
+A3 C3	A3 E8	A3 EF	A3 EF	A3 F3	A3 E5	20 20	A3 E1	20 20	A3 C3	A3 E1	A3 F3	A3 E5	20 20	A3 F4	A3 EF	20 20	A3 A3	A3 EF	A3 EC	A3 F6	A3 E5	A1 A9	00 00	| New English Hex
+
+屋敷はどのくらいの大きさがすき?
+Mansion liked How big?
+$13A8D8
+B2 B0	C9 DF	A4 CF	A4 C9	A4 CE	A4 AF	A4 E9	A4 A4	A4 CE	C2 E7	A4 AD	A4 B5	A4 AC	A4 B9	A4 AD	A1 A9	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  屋	 #  敷	 #  は	 #  ど	 #  の	 #  く	 #  ら	 #  い	 #  の	 #  大	 #  き	 #  さ	 #  が	 #  す	 #  き	 #  ?	 #   	 #   	 #   	 #   	 #   	 #   	 #   	 #   	| Original Japanese Text
+ #  H	 #  o	 #  w	 #   	 #  B	 #  i	 #  g	 #   	 #  i	 #  s	 #   	 #  t	 #  h	 #  e	 #   	 #  M	 #  a	 #  n	 #  s	 #  i	 #  o	 #  n	 #  ?	 #	| New English Text
+A3 C8	A3 EF	A3 F7	20 20	A3 C2	A3 E9	A3 E7	20 20	A3 E9	A3 F3	20 20	A3 F4	A3 E8	A3 E5	20 20	A3 CD	A3 E1	A3 EE	A3 F3	A3 E9	A3 EF	A3 EE	A1 A9	00 00	| New English Hex
+
+これだと解決に
+To resolve that it is this
+$13A908
+A4 B3	A4 EC	A4 C0	A4 C8	B2 F2	B7 E8	A4 CB	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  こ	 #  れ	 #  だ	 #  と	 #  解	 #  決	 #  に	 #   	 #   	 #   	 #   	 #   	 #   	 #   	 #   	 #   	 #   	 #   	 #   	 #   	 #   	 #   	 #   	 #   	| Original Japanese Text
+ #  I	 #  s	 #   	 #  t	 #  h	 #  i	 #  s	 #   	 #  C	 #  o	 #  r	 #  r	 #  e	 #  c	 #  t	 #  : 	 #   	 #   	 #   	 #   	 #   	 #   	 #   	 #   	| New English Text
+A3 C9	A3 F3	20 20	A3 F4	A3 E8	A3 E9	A3 F3	20 20	A3 C3	A3 EF	A3 F2	A3 F2	A3 E5	A3 E3	A3 F4	A1 A7	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+これでゲームをはじめるね。ほんとにいい?
+I start the game now. The really good?
+$13A938
+A4 B3	A4 EC	A4 C7	A5 B2	A1 BC	A5 E0	A4 F2	A4 CF	A4 B8	A4 E1	A4 EB	A4 CD	A1 A3	A4 DB	A4 F3	A4 C8	A4 CB	A4 A4	A4 A4	A1 A9	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  こ	 #  れ	 #  で	 #  ゲ	 #  ー	 #  ム	 #  を	 #  は	 #  じ	 #  め	 #  る	 #  ね	 #  。	 #  ほ	 #  ん	 #  と	 #  に	 #  い	 #  い	 #  ?	 #   	 #   	 #   	 #   	| Original Japanese Text
+ #  W	 #  a	 #  n	 #  t	 #   	 #  t	 #  o	 #   	 #  S	 #  t	 #  a	 #  r	 #  t	 #   	 #  t	 #  h	 #  e	 #   	 #  G	 #  a	 #  m	 #  e	 #  ?	 #   	| New English Text
+A3 D7	A3 E1	A3 EE	A3 F4	20 20	A3 A4	A3 EF	20 20	A3 D3	A3 F4	A3 E1	A3 F2	A3 F4	20 20	A3 F4	A3 E8	A3 E5	20 20	A3 E7	A3 E1	A3 ED	A3 E5	A1 A9	00 00	| New English Hex
+
+なん時間かかるかわからないけど、それでもいい?
+I do not know what takes time, but it any good?
+$13A998
+A4 CA	A4 F3	BB FE	B4 D6	A4 AB	A4 AB	A4 EB	A4 AB	A4 EF	A4 AB	A4 E9	A4 CA	A4 A4	A4 B1	A4 C9	A1 A2	A4 BD	A4 EC	A4 C7	A4 E2	A4 A4	A4 A4	A1 A9	00 00	| Original Japanese Hex
+ #  な	 #  ん	 #  時	 #  間	 #  か	 #  か	 #  る	 #  か	 #  わ	 #  か	 #  ら	 #  な	 #  い	 #  け	 #  ど	 #  、	 #  そ	 #  れ	 #  で	 #  も	 #  い	 #  い	 #  ?	 #	| Original Japanese Text
+ #   	 #  T	 #  h	 #  e	 #  r	 #  e	 #   	 #  a	 #  r	 #  e	 #   	 #  N	 #  o	 #   	 #  M	 #  i	 #  s	 #  t	 #  a	 #  k	 #  e	 #  s	 #  ?	 #	| New English Text
+20 20	A3 D4	A3 E8	A3 E5	A3 F2	A3 E5	20 20	A3 E1	A3 F2	A3 E5	20 20	A3 CE	A3 EF	20 20	A3 CD	A3 E9	A3 F3	A3 F4	A3 E1	A3 CB	A3 E5	A3 F3	A1 A9	00 00	| New English Hex
+
+たいりょく
+Physical fitness / Strength / Stamina
+$0E8A66
+A4 BF	A4 A4	A4 EA	A4 E7	A4 AF	20 25	32 64	00 00	00 00	| Original Japanese Hex
+ #  た	 #  い	 #  り	 #  ょ	 #  く	 #	 #	 #	 #	| Original Japanese Text
+ #  H	 #  e	 #  a	 #  l	 #  t	 #  h	 #	 #	 #	| New English Text
+A3 C8	A3 E5	A3 E1	A3 ??	A3 F4	A3 E8	20 25	32 64	00 00	| New English Hex
+
+キラッとP
+Glittering / Sparkling / Twinkling / Brightly / See
+$0E8A7A
+A5 AD	A5 E9	A5 C3	A4 C8	A3 D0	20 25	32 64	00 00	00 00	| Original Japanese Hex
+ #  キ	 #  ラ	 #  ッ	 #  と	 #  P	 #	 #	 #	 #	| Original Japanese Text
+ #  B	 #  r	 #  i	 #  g	 #  h	 #  t	 #	 #	 #	| New English Text
+A3 C2	A3 F2	A3 E9	A3 E7	A3 E8	A3 F4	20 25	32 64	00 00	| New English Hex
+
+こうげき力
+Offensive power / Attack power / Attack strength / 
+$0E8A8E
+A4 B3	A4 A6	A4 B2	A4 AD	CE CF	20 25	32 64	00 00	00 00	| Original Japanese Hex
+ #  こ	 #  う	 #  げ	 #  き	 #  力	 #	 #	 #	 #	| Original Japanese Text
+ #  A	 #  t	 #  t	 #  a	 #  c	 #  k	 #	 #	 #	| New English Text
+A3 C1	A3 F4	A3 F4	A3 E1	A3 E3	A3 EB	20 25	32 64	00 00	| New English Hex
+
+たんさ力
+Exploration / Search / Probe / Survey  Force / Power / Strength
+$0E8AA2
+A4 BF	A4 F3	A4 B5	CE CF	20 20	20 25	32 64	00 00	00 00	| Original Japanese Hex
+ #  た	 #  ん	 #  さ	 #  力	 #   	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 #  e	 #  a	 #  r	 #  c	 #  h	 #	 #	 #	| New English Text
+A3 D3	A3 E5	A3 E1	A3 F2	A3 E3	A3 E8	20 25	32 64	00 00	| New English Hex
+
+すばやさ
+Readiness / Quickness / Agility / Nimbleness
+$0E8AB6
+A4 B9	A4 D0	A4 E4	A4 B5	20 20	20 25	32 64	00 00	00 00	| Original Japanese Hex
+ #  す	 #  ば	 #  や	 #  さ	 #   	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 #  p	 #  e	 #  e	 #  d	 #	 #	 #	 #	| New English Text
+A3 D3	A3 F0	A3 E5	A3 E5	A3 E4	20 20	20 25	32 64	00 00	| New English Hex
