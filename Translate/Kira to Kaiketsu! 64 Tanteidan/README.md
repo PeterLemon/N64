@@ -7,12 +7,12 @@ All code compiles out of box with the bass assembler:<br />
 http://byuu.org/programming/bass/<br />
 I have also included an IPS file of the translation as a patch.<br />
 <br />
-Special thanks to Zoinkity, who inspired me to get into N64 Translating =D<br />
+Special thanks to Zoinkity, who inspired me to get into N64 translating =D<br />
 Please check out RomHacking & their forum, a great resource for translation work:<br />
 http://www.romhacking.net<br />
 <br />
 Howto Compile:<br />
-You will need the original Japanese ROM in .Z64 (Big-Endian) Format, in the root directory of this patch"
+You will need the original Japanese ROM in .Z64 (Big-Endian) Format, in the root directory of this patch<br />
 All the code compiles into a single binary (ROMNAME.Z64) file.<br />
 Using bass Run: make.bat<br />
 Or you can patch the original Japanese ROM using the IPS file.
