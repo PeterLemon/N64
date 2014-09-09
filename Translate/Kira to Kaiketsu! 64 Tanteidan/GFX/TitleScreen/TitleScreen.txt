@@ -1,0 +1,7 @@
+﻿ミッション 開始
+Mission Start
+$1A7128, $1A7A70, $1A8380 | 3 * 64x32 TLUT RGBA 8B (2048 Bytes)
+
+ミッション 再開
+Mission Resume / Load
+$1A8FB8, $1A9910, $1AA220 | 3 * 64x32 TLUT RGBA 8B (2048 Bytes)

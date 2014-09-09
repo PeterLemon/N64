@@ -1,0 +1,9 @@
+// N64 64x32 TLUT RGBA 8B
+
+offset: 0x1AA220 * 8
+depth: 8
+palette: f(256) n * 0x010101
+
+blockWidth: 64
+blockHeight: 32
+blockStride: 64 * 32 * 8

@@ -1,2 +1,2 @@
 bass "Kira to Kaiketsu! 64 Tanteidan.asm"
-chksum64 "Kira to Kaiketsu! 64 Tanteidan.z64"
+chksum64 "Shining and Solving! 64 Detective Club.z64"

@@ -1,7 +1,21 @@
 // N64 "Kira to Kaiketsu! 64 Tanteidan" Japanese To English Translation by krom (Peter Lemon):
 
 endian msb // N64 MIPS requires Big-Endian Encoding (Most Significant Bit)
-output "Kira to Kaiketsu! 64 Tanteidan.z64", create
+output "Shining and Solving! 64 Detective Club.z64", create
+origin $000000; insert "Kira to Kaiketsu! 64 Tanteidan (J) [!].z64" // Include Japanese Kira to Kaiketsu! 64 Tanteidan N64 ROM
+
+// Title Screen GFX
+origin $1A7128; include "GFX\TitleScreen\MissionStartA.asm" // Include English GFX Tile, 64x32 TLUT RGBA 8B (2048 Bytes)
+origin $1A7A70; include "GFX\TitleScreen\MissionStartB.asm" // Include English GFX Tile, 64x32 TLUT RGBA 8B (2048 Bytes)
+origin $1A8380; include "GFX\TitleScreen\MissionStartC.asm" // Include English GFX Tile, 64x32 TLUT RGBA 8B (2048 Bytes)
+origin $1A8FB8; include "GFX\TitleScreen\MissionLoadA.asm" // Include English GFX Tile, 64x32 TLUT RGBA 8B (2048 Bytes)
+origin $1A9910; include "GFX\TitleScreen\MissionLoadB.asm" // Include English GFX Tile, 64x32 TLUT RGBA 8B (2048 Bytes)
+origin $1AA220; include "GFX\TitleScreen\MissionLoadC.asm" // Include English GFX Tile, 64x32 TLUT RGBA 8B (2048 Bytes)
+
+macro TextStyle1(OFFSET, TEXT) {
+  origin {OFFSET}
+  dw {TEXT}
+}
 
 // Char Table 1
 map ' ', $2020
@@ -10,17 +24,10 @@ map '.', $A1A6
 map ':', $A1A7
 map '?', $A1A9
 //map '!', $A1AA // Non-Italic
+map '0', $A3B0, 10 // Map Numbers
 map 'A', $A3C1, 26 // Map English "Upper Case" Characters
 map 'a', $A3E1, 26 // Map English "Lower Case" Characters
 map '-', $A8A1
-
-macro TextStyle1(OFFSET, TEXT) {
-  origin {OFFSET}
-  dw {TEXT}
-}
-
-origin $000000
-insert "Kira to Kaiketsu! 64 Tanteidan (J) [!].z64" // Include Japanese Kira to Kaiketsu! 64 Tanteidan N64 ROM
 
 // Boot Screen
 TextStyle1($0E1E20, "Yes")
@@ -63,14 +70,13 @@ TextStyle1($13A908, "Is this Correct:")
 TextStyle1($13A938, "Want to Start the Game?")
 TextStyle1($13A998, " There are No Mistakes?")
 TextStyle1($0E8A66, "Health"); dw $2025, $3264
-TextStyle1($0E8A7A, "Bright"); dw $2025, $3264
+TextStyle1($0E8A7A, "Shine "); dw $2025, $3264
 TextStyle1($0E8A8E, "Attack"); dw $2025, $3264
 TextStyle1($0E8AA2, "Search"); dw $2025, $3264
 TextStyle1($0E8AB6, "Speed "); dw $2025, $3264
 
 // Player Name Font Swap
-origin $0E2308
-insert "FontSwap.bin" // Include Swapped Font Data (3 * $12C Bytes)
+origin $0E2308; insert "FontSwap.bin" // Include Swapped Font Data (3 * $12C Bytes)
 TextStyle1($0E2698, "A"); dw $00A4, $A200, $A5A2
 
 // Player Names

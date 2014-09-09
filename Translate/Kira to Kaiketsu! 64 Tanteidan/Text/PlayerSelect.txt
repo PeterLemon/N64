@@ -75,8 +75,8 @@ Glittering / Sparkling / Twinkling / Brightly / See
 $0E8A7A
 A5 AD	A5 E9	A5 C3	A4 C8	A3 D0	20 25	32 64	00 00	00 00	| Original Japanese Hex
  #  キ	 #  ラ	 #  ッ	 #  と	 #  P	 #	 #	 #	 #	| Original Japanese Text
- #  B	 #  r	 #  i	 #  g	 #  h	 #  t	 #	 #	 #	| New English Text
-A3 C2	A3 F2	A3 E9	A3 E7	A3 E8	A3 F4	20 25	32 64	00 00	| New English Hex
+ #  S	 #  h	 #  i	 #  n	 #  e	 #   	 #	 #	 #	| New English Text
+A3 D3	A3 E8	A3 E9	A3 EE	A3 E5	20 20	20 25	32 64	00 00	| New English Hex
 
 こうげき力
 Offensive power / Attack power / Attack strength / 
