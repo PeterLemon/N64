@@ -13,6 +13,8 @@ origin $1A9910; include "GFX\TitleScreen\MissionLoadB.asm" // Include English GF
 origin $1AA220; include "GFX\TitleScreen\MissionLoadC.asm" // Include English GFX Tile, 64x32 TLUT RGBA 8B (2048 Bytes)
 
 // Player Select GFX
+origin $AF3F40; include "GFX\PlayerSelect\None.asm" // Include English GFX Tile, 88x23 TLUT RGBA 8B (2024 Bytes)
+origin $AF4730; include "GFX\PlayerSelect\Single.asm" // Include English GFX Tile, 88x23 TLUT RGBA 8B (2024 Bytes)
 origin $AF4F20; include "GFX\PlayerSelect\Pair.asm" // Include English GFX Tile, 88x23 TLUT RGBA 8B (2024 Bytes)
 origin $AF5710; include "GFX\PlayerSelect\3Player.asm" // Include English GFX Tile, 88x23 TLUT RGBA 8B (2024 Bytes)
 origin $AF5F00; include "GFX\PlayerSelect\4Player.asm" // Include English GFX Tile, 88x23 TLUT RGBA 8B (2024 Bytes)

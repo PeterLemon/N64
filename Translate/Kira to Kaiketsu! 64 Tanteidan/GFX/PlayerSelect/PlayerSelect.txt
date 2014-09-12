@@ -1,4 +1,12 @@
-﻿ふたり
+﻿いれない
+Not have / None
+$AF3F40 | 1 * 88x23 TLUT RGBA 8B (2024 Bytes)
+
+ひたり
+To Give Over / Single
+$AF4730 | 1 * 88x23 TLUT RGBA 8B (2024 Bytes)
+
+ふたり
 Two Persons, Two People, Pair, Couple
 $AF4F20 | 1 * 88x23 TLUT RGBA 8B (2024 Bytes)
 
