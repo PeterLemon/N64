@@ -12,6 +12,11 @@ origin $1A8FB8; include "GFX\TitleScreen\MissionLoadA.asm" // Include English GF
 origin $1A9910; include "GFX\TitleScreen\MissionLoadB.asm" // Include English GFX Tile, 64x32 TLUT RGBA 8B (2048 Bytes)
 origin $1AA220; include "GFX\TitleScreen\MissionLoadC.asm" // Include English GFX Tile, 64x32 TLUT RGBA 8B (2048 Bytes)
 
+// Player Select GFX
+origin $AF4F20; include "GFX\PlayerSelect\Pair.asm" // Include English GFX Tile, 88x23 TLUT RGBA 8B (2024 Bytes)
+origin $AF5710; include "GFX\PlayerSelect\3Player.asm" // Include English GFX Tile, 88x23 TLUT RGBA 8B (2024 Bytes)
+origin $AF5F00; include "GFX\PlayerSelect\4Player.asm" // Include English GFX Tile, 88x23 TLUT RGBA 8B (2024 Bytes)
+
 macro TextStyle1(OFFSET, TEXT) {
   origin {OFFSET}
   dw {TEXT}
@@ -61,7 +66,7 @@ TextStyle1($16581E, "GamePAK PushA")
 TextStyle1($165839, "WhenConnected")
 
 // Player Select
-TextStyle1($13A818, "How many Players today?")
+TextStyle1($13A818, "How many Players Today?")
 TextStyle1($13A848, "Select any COM Players?")
 TextStyle1($13A878, "Choose your Controller!")
 TextStyle1($13A8A8, "Choose a Case to Solve?")

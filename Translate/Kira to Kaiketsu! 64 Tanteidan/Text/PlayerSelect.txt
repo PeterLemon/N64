@@ -3,8 +3,8 @@ Today, in the What do you play?
 $13A818
 A4 AD	A4 E7	A4 A6	A4 CF	A1 A2	A4 CA	A4 F3	A4 CB	A4 F3	A4 C7	A4 A2	A4 BD	A4 D6	A4 CE	A1 A9	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
  #  き	 #  ょ	 #  う	 #  は	 #  、	 #  な	 #  ん	 #  に	 #  ん	 #  で	 #  あ	 #  そ	 #  ぶ	 #  の	 #  ?	 #  	 #  	 #  	 #  	 #  	 #  	 #  	 #  	 #  	| Original Japanese Text
- #  H	 #  o	 #  w	 #   	 #  m	 #  a	 #  n	 #  y	 #   	 #  P	 #  l	 #  a	 #  y	 #  e	 #  r	 #  s	 #  	 #  t	 #  o	 #  d	 #  a	 #  y	 #  ?	 # 	| New English Text
-A3 C8	A3 EF	A3 F7	20 20	A3 ED	A3 E1	A3 EE	A3 F9	20 20	A3 D0	A3 EC	A3 E1	A3 F9	A3 E5	A3 F2	A3 F3	20 20	A3 F4	A3 EF	A3 E4	A3 E1	A3 F9	A1 A9	00 00	| New English Hex
+ #  H	 #  o	 #  w	 #   	 #  m	 #  a	 #  n	 #  y	 #   	 #  P	 #  l	 #  a	 #  y	 #  e	 #  r	 #  s	 #  	 #  T	 #  o	 #  d	 #  a	 #  y	 #  ?	 # 	| New English Text
+A3 C8	A3 EF	A3 F7	20 20	A3 ED	A3 E1	A3 EE	A3 F9	20 20	A3 D0	A3 EC	A3 E1	A3 F9	A3 E5	A3 F2	A3 F3	20 20	A3 D4	A3 EF	A3 E4	A3 E1	A3 F9	A1 A9	00 00	| New English Hex
 
 そのうちコンピュータはなんにん?
 Computer in the What of them?

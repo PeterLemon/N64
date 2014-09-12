@@ -1,0 +1,11 @@
+﻿ふたり
+Two Persons, Two People, Pair, Couple
+$AF4F20 | 1 * 88x23 TLUT RGBA 8B (2024 Bytes)
+
+3にん
+3 Player / Persons
+$AF5710 | 1 * 88x23 TLUT RGBA 8B (2024 Bytes)
+
+4にん
+4 Player / Persons
+$AF5F00 | 1 * 88x23 TLUT RGBA 8B (2024 Bytes)
