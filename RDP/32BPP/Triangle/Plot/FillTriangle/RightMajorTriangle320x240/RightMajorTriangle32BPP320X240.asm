@@ -129,18 +129,27 @@ Loop:
 
 
   lui t1,$0800 ; T1 = Fill Triangle RDP Command (WORD 0)
-  c.le.s f5,f3 ; IF (X1 <= X0) DIR = 0 (Left Major Triangle)
-  bc1t DIR     ; ELSE DIR = 1 (Right Major Triangle)
-  lui t2,$0000 ; T2 = DIR 0
-  lui t2,$0080 ; T2 = DIR 1
+
+  mul.s f9,f3,f6 ; F9 = X0*Y1 // Triangle Winding calculation
+  mul.s f10,f5,f4 ; F10 = X1*Y0
+  sub.s f9,f10 ; F9 = X0*Y1 - X1*Y0
+  
+  mul.s f10,f5,f8 ; F10 = X1*Y2
+  mul.s f11,f7,f6 ; F11 = X2*Y1
+  sub.s f10,f11 ; F10 = X1*Y2 - X2*Y1
+  add.s f9,f10 ; F9 = (X0*Y1 - X1*Y0) + (X1*Y2 - X2*Y1)
+
+  mul.s f10,f7,f4 ; F10 = X2*Y0
+  mul.s f11,f3,f8 ; F11 = X0*Y2
+  sub.s f10,f11 ; F10 = X2*Y0 - X0*Y2
+  add.s f9,f10 ; F9 = (X0*Y1 - X1*Y0) + (X1*Y2 - X2*Y1) + (X2*Y0 - X0*Y2)
+
+  c.le.s f9,f0 ; IF (Triangle Winding == Clockwise) DIR = 0 (Left Major Triangle)
+  bc1f DIR     ; ELSE DIR = 1 (Right Major Triangle)
+  nop; Delay Slot
+  lui t1,$0880 ; T1 = DIR 1
   DIR:
-  or t1,t2
-  c.le.s f5,f7 ; IF (X1 <= X2) DIR = 0 (Left Major Triangle)
-  bc1t DIRB      ; ELSE DIR = 1 (Right Major Triangle)
-  lui t2,$0000 ; T2 = DIR 0
-  lui t2,$0080 ; T2 = DIR 1
-  DIRB:
-  or t1,t2
+
 
   mul.s f9,f4,f1 ; Convert To S.11.2
   cvt.w.s f9 ; F9 = YL

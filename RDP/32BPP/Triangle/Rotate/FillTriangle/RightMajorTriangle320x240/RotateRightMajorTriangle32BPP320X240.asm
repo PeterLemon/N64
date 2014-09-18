@@ -209,7 +209,7 @@ XYZRotCalc: macro x, y, z, precalc ; Return XYZ Rotation
   sub.s f3,f16     ; F3  = (XC * YC * ZC) - (XS * ZS)
   mul.s f4,f12     ; F4  =  XC * YC * ZS
   mul.s f16,f9,f11 ; F16 =  XS * ZC
-  add.s f4,f16     ; F4  =(XC * YC * ZS) + (XS * ZC)
+  add.s f4,f16     ; F4  = (XC * YC * ZS) + (XS * ZC)
   mul.s f5,f15     ; F5  = -XC * YS
   mul.s f9,f15     ; F9  =  XS * YS
   mul.s f11,f15    ; F11 =  ZC * YS
@@ -383,18 +383,27 @@ Loop:
 
 
   lui t1,$0800 ; T1 = Fill Triangle RDP Command (WORD 0)
-  c.le.s f17,f15 ; IF (X1 <= X0) DIR = 0 (Left Major Triangle)
-  bc1t DIR       ; ELSE DIR = 1 (Right Major Triangle)
-  lui t2,$0000 ; T2 = DIR 0
-  lui t2,$0080 ; T2 = DIR 1
+
+  mul.s f21,f15,f18 ; F21 = X0*Y1 // Triangle Winding calculation
+  mul.s f22,f17,f16 ; F22 = X1*Y0
+  sub.s f21,f22 ; F21 = X0*Y1 - X1*Y0
+  
+  mul.s f22,f17,f20 ; F22 = X1*Y2
+  mul.s f23,f19,f18 ; F23 = X2*Y1
+  sub.s f22,f23 ; F22 = X1*Y2 - X2*Y1
+  add.s f21,f22 ; F21 = (X0*Y1 - X1*Y0) + (X1*Y2 - X2*Y1)
+
+  mul.s f22,f19,f16 ; F22 = X2*Y0
+  mul.s f23,f15,f20 ; F23 = X0*Y2
+  sub.s f22,f23 ; F22 = X2*Y0 - X0*Y2
+  add.s f21,f22 ; F21 = (X0*Y1 - X1*Y0) + (X1*Y2 - X2*Y1) + (X2*Y0 - X0*Y2)
+
+  c.le.s f21,f0 ; IF (Triangle Winding == Clockwise) DIR = 0 (Left Major Triangle)
+  bc1f DIR      ; ELSE DIR = 1 (Right Major Triangle)
+  nop; Delay Slot
+  lui t1,$0880 ; T1 = DIR 1
   DIR:
-  or t1,t2
-  c.le.s f17,f19 ; IF (X1 <= X2) DIR = 0 (Left Major Triangle)
-  bc1t DIRB      ; ELSE DIR = 1 (Right Major Triangle)
-  lui t2,$0000 ; T2 = DIR 0
-  lui t2,$0080 ; T2 = DIR 1
-  DIRB:
-  or t1,t2
+
 
   mul.s f21,f16,f1 ; Convert To S.11.2
   cvt.w.s f21 ; F21 = YL

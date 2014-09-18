@@ -11,7 +11,8 @@
 #tri = (228.0, 129.0), (291.0, 66.0), (228.0, 66.0) # Y Sorted Triangle
 tri = (228.0, 130.0), (291.0, 130.0), (291.0, 67.0) # Y Sorted Triangle
 
-if tri[1][0] < tri[2][0]: dir = 0 # IF (tri[1].x < tri[2].x) Left Major Triangle (Direction Flag = 0)
+triwinding = (tri[0][0]*tri[1][1] - tri[1][0]*tri[0][1]) + (tri[1][0]*tri[2][1] - tri[2][0]*tri[1][1]) + (tri[2][0]*tri[0][1] - tri[0][0]*tri[2][1]) # (X0*Y1 - X1*Y0) + (X1*Y2 - X2*Y1) + (X2*Y0 - X0*Y2)
+if triwinding > 0.0: dir = 0 # IF (Triangle Winding == Clockwise) Left Major Triangle (Direction Flag = 0)
 else: dir = 1 # Else Right Major Triangle (Direction Flag = 1)
 print ("Triangle Direction = %i\n" % dir)
 
