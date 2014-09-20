@@ -18,6 +18,9 @@ origin $AF4730; include "GFX\PlayerSelect\Single.asm" // Include English GFX Til
 origin $AF4F20; include "GFX\PlayerSelect\Pair.asm" // Include English GFX Tile, 88x23 TLUT RGBA 8B (2024 Bytes)
 origin $AF5710; include "GFX\PlayerSelect\3Player.asm" // Include English GFX Tile, 88x23 TLUT RGBA 8B (2024 Bytes)
 origin $AF5F00; include "GFX\PlayerSelect\4Player.asm" // Include English GFX Tile, 88x23 TLUT RGBA 8B (2024 Bytes)
+origin $B25550; include "GFX\PlayerSelect\Random!A.asm" // Include English GFX Tile, 64x32 TLUT RGBA 8B (2048 Bytes)
+origin $B25D50; include "GFX\PlayerSelect\Random!B.asm" // Include English GFX Tile, 64x32 TLUT RGBA 8B (2048 Bytes)
+origin $B26550; include "GFX\PlayerSelect\Random!C.asm" // Include English GFX Tile, 32x32 TLUT RGBA 8B (1024 Bytes)
 
 macro TextStyle1(OFFSET, TEXT) {
   origin {OFFSET}
