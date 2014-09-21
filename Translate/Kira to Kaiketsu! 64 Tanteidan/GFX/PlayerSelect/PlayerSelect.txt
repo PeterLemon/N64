@@ -18,6 +18,10 @@ $AF5710 | 1 * 88x23 TLUT RGBA 8B (2024 Bytes)
 4 Player / Persons
 $AF5F00 | 1 * 88x23 TLUT RGBA 8B (2024 Bytes)
 
+爆弾除去
+Bomb Removal / Disposal
+$B22150, $B22950 | 2 * 64x32 TLUT RGBA 8B (2048 Bytes)
+
 盗品奪回
 Stolen goods recovery / rescue / recapture
 $B23150, $B23950 | 2 * 64x32 TLUT RGBA 8B (2048 Bytes)
