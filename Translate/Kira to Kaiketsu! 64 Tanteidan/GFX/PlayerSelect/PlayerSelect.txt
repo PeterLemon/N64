@@ -21,3 +21,7 @@ $AF5F00 | 1 * 88x23 TLUT RGBA 8B (2024 Bytes)
 おまかせ!
 leaving a decision to someone else (often of a meal to be selected by the chef)! / Random!
 $B25550, $B25D50, $B26550 | 2 * 64x32, 32x32 TLUT RGBA 8B (2048 Bytes), (1024 Bytes)
+
+部屋
+Room
+$B26950 | 64x32 TLUT RGBA 8B (2048 Bytes)
