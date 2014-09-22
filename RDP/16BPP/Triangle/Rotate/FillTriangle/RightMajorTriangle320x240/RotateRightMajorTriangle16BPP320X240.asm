@@ -518,9 +518,9 @@ Matrix3D: ; Float Matrix 3D Data
   IEEE32 0.0, 1.0, 0.0,  0.0 ; Y
   IEEE32 0.0, 0.0, 1.0, 15.0 ; Z
 
-XRot: dw 0 ; X Rotation Value (0..1023)
-YRot: dw 0 ; Y Rotation Value (0..1023)
-ZRot: dw 0 ; Z Rotation Value (0..1023)
+XRot: dw 120 ; X Rotation Value (0..1023)
+YRot: dw 360 ; Y Rotation Value (0..1023)
+ZRot: dw 200 ; Z Rotation Value (0..1023)
 
 ; Setup 3D
 HALF_SCREEN_X: IEEE32 160.0
