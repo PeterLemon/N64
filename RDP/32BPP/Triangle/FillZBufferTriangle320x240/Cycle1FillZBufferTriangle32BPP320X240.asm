@@ -39,11 +39,12 @@ RDPBuffer:
 
 
   Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Red)
+  ; Right Major Triangle (Dir=1)
   ;
-  ;      DxHDy
+  ;      DxMDy
   ;    ._______. v[2]:XH,XM(X:25.0) YH(Y:50.0), v[1]:XL(X:75.0) YM(Y:50.0) (Z:100.0)
   ;     \     /
-  ; DxMDy\   /DxLDy
+  ; DxHDy\   /DxLDy
   ;       \ /    v[0]:(X:50.0) YL(Y:75.0) (Z:0.0)
   ;        .
   ;
@@ -54,6 +55,7 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Green)
+  ; Right Major Triangle (Dir=1)
   ;
   ;        .     v[2]:XH,XM(X:50.0) YH(Y:25.0) (Z:50.0)
   ;       / \
@@ -70,11 +72,12 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Red)
+  ; Right Major Triangle (Dir=1)
   ;
-  ;      DxHDy
+  ;      DxMDy
   ;    ._______. v[2]:XH,XM(X:100.0) YH(Y:50.0), v[1]:XL(X:150.0) YM(Y:50.0) (Z:0.0)
   ;     \     /
-  ; DxMDy\   /DxLDy
+  ; DxHDy\   /DxLDy
   ;       \ /    v[0]:(X:125.0) YL(Y:75.0) (Z:100.0)
   ;        .
   ;
@@ -85,6 +88,7 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Green)
+  ; Right Major Triangle (Dir=1)
   ;
   ;        .     v[2]:XH,XM(X:125.0) YH(Y:25.0) (Z:50.0)
   ;       / \
@@ -101,11 +105,12 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Red)
+  ; Right Major Triangle (Dir=1)
   ;
   ;      .    v[2]:XH,XM(X:175.0) YH(Y:50.0) (Z:100.0)
-  ;      |\DxHDy
+  ;      |\DxMDy
   ;      | \
-  ; DxMDy|  . v[1]:XL(X:200.0) YM(Y:75.0) (Z:0.0)
+  ; DxHDy|  . v[1]:XL(X:200.0) YM(Y:75.0) (Z:0.0)
   ;      | /DxLDy
   ;      ./   v[0]:(X:175.0) YL(Y:100.0) (Z:100.0)
   ;
@@ -116,10 +121,11 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Green)
+  ; Left Major Triangle (Dir=0)
   ;
   ;        . v[2]:XH,XM(X:225.0) YH(Y:50.0) (Z:50.0)
   ;       /|
-  ; DxHDy/ |DxMDy
+  ; DxMDy/ |DxHDy
   ;     .  | v[1]:XL(X:150.0) YM(Y:75.0) (Z:50.0)
   ; DxLDy\ |
   ;       \. v[0]:(X:225.0) YL(Y:100.0) (Z:50.0)
@@ -132,11 +138,12 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Red)
+  ; Right Major Triangle (Dir=1)
   ;
   ;      .    v[2]:XH,XM(X:250.0) YH(Y:50.0) (Z:0.0)
-  ;      |\DxHDy
+  ;      |\DxMDy
   ;      | \
-  ; DxMDy|  . v[1]:XL(X:275.0) YM(Y:75.0) (Z:100.0)
+  ; DxHDy|  . v[1]:XL(X:275.0) YM(Y:75.0) (Z:100.0)
   ;      | /DxLDy
   ;      ./   v[0]:(X:250.0) YL(Y:100.0) (Z:0.0)
   ;
@@ -147,10 +154,11 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Green)
+  ; Left Major Triangle (Dir=0)
   ;
   ;        . v[2]:XH,XM(X:300.0) YH(Y:50.0) (Z:50.0)
   ;       /|
-  ; DxHDy/ |DxMDy
+  ; DxMDy/ |DxHDy
   ;     .  | v[1]:XL(X:225.0) YM(Y:75.0) (Z:50.0)
   ; DxLDy\ |
   ;       \. v[0]:(X:300.0) YL(Y:100.0) (Z:50.0)
@@ -166,11 +174,12 @@ RDPBuffer:
 
   Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Red)
   Set_Prim_Depth 50,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
+  ; Right Major Triangle (Dir=1)
   ;
-  ;      DxHDy
+  ;      DxMDy
   ;    ._______. v[2]:XH,XM(X:25.0) YH(Y:150.0), v[1]:XL(X:75.0) YM(Y:150.0) (Z:50.0)
   ;     \     /
-  ; DxMDy\   /DxLDy
+  ; DxHDy\   /DxLDy
   ;       \ /    v[0]:(X:50.0) YL(Y:175.0) (Z:50.0)
   ;        .
   ;
@@ -182,6 +191,7 @@ RDPBuffer:
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Green)
   Set_Prim_Depth 100,0 ; Set Primitive Depth: PRIMITIVE Z 100, PRIMITIVE DELTA Z 0
+  ; Right Major Triangle (Dir=1)
   ;
   ;        .     v[2]:XH,XM(X:50.0) YH(Y:125.0) (Z:100.0)
   ;       / \
@@ -199,11 +209,12 @@ RDPBuffer:
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Red)
   Set_Prim_Depth 100,0 ; Set Primitive Depth: PRIMITIVE Z 100, PRIMITIVE DELTA Z 0
+  ; Right Major Triangle (Dir=1)
   ;
-  ;      DxHDy
+  ;      DxMDy
   ;    ._______. v[2]:XH,XM(X:100.0) YH(Y:150.0), v[1]:XL(X:150.0) YM(Y:150.0) (Z:100.0)
   ;     \     /
-  ; DxMDy\   /DxLDy
+  ; DxHDy\   /DxLDy
   ;       \ /    v[0]:(X:125.0) YL(Y:175.0) (Z:100.0)
   ;        .
   ;
@@ -215,6 +226,7 @@ RDPBuffer:
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Green)
   Set_Prim_Depth 50,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
+  ; Right Major Triangle (Dir=1)
   ;
   ;        .     v[2]:XH,XM(X:125.0) YH(Y:125.0) (Z:50.0)
   ;       / \
@@ -232,11 +244,12 @@ RDPBuffer:
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Red)
   Set_Prim_Depth 50,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
+  ; Right Major Triangle (Dir=1)
   ;
   ;      .    v[2]:XH,XM(X:175.0) YH(Y:150.0) (Z:50.0)
-  ;      |\DxHDy
+  ;      |\DxMDy
   ;      | \
-  ; DxMDy|  . v[1]:XL(X:200.0) YM(Y:175.0) (Z:50.0)
+  ; DxHDy|  . v[1]:XL(X:200.0) YM(Y:175.0) (Z:50.0)
   ;      | /DxLDy
   ;      ./   v[0]:(X:175.0) YL(Y:200.0) (Z:50.0)
   ;
@@ -248,10 +261,11 @@ RDPBuffer:
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Green)
   Set_Prim_Depth 100,0 ; Set Primitive Depth: PRIMITIVE Z 100, PRIMITIVE DELTA Z 0
+  ; Left Major Triangle (Dir=0)
   ;
   ;        . v[2]:XH,XM(X:225.0) YH(Y:150.0) (Z:100.0)
   ;       /|
-  ; DxHDy/ |DxMDy
+  ; DxMDy/ |DxHDy
   ;     .  | v[1]:XL(X:150.0) YM(Y:175.0) (Z:100.0)
   ; DxLDy\ |
   ;       \. v[0]:(X:225.0) YL(Y:200.0) (Z:100.0)
@@ -265,11 +279,12 @@ RDPBuffer:
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Red)
   Set_Prim_Depth 100,0 ; Set Primitive Depth: PRIMITIVE Z 100, PRIMITIVE DELTA Z 0
+  ; Right Major Triangle (Dir=1)
   ;
   ;      .    v[2]:XH,XM(X:250.0) YH(Y:150.0) (Z:100.0)
-  ;      |\DxHDy
+  ;      |\DxMDy
   ;      | \
-  ; DxMDy|  . v[1]:XL(X:275.0) YM(Y:175.0) (Z:100.0)
+  ; DxHDy|  . v[1]:XL(X:275.0) YM(Y:175.0) (Z:100.0)
   ;      | /DxLDy
   ;      ./   v[0]:(X:250.0) YL(Y:200.0) (Z:100.0)
   ;
@@ -281,6 +296,7 @@ RDPBuffer:
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Green)
   Set_Prim_Depth 50,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
+  ; Left Major Triangle (Dir=0)
   ;
   ;        . v[2]:XH,XM(X:300.0) YH(Y:150.0) (Z:50.0)
   ;       /|

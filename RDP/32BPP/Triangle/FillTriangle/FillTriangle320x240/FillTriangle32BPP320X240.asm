@@ -30,11 +30,12 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Fill_Color $FF0000FF ; Set Fill Color: PACKED COLOR 32B R8G8B8A8 Pixel (Red)
+  ; Right Major Triangle (Dir=1)
   ;
-  ;      DxHDy
+  ;      DxMDy
   ;      .___. v[2]:XH,XM(X:25.0) YH(Y:50.0), v[1]:XL(X:75.0) YM(Y:50.0)
   ;      |  /
-  ; DxMDy| /DxLDy
+  ; DxHDy| /DxLDy
   ;      ./    v[0]:(X:25.0) YL(Y:100.0)
   ;
   ; Output: Dir 0, Level 0, Tile 0, YL 100.0, YM 50.0, YH 50.0, XL 25.0, DxLDy 0.0, XH 75.0, DxHDy -1.0, XM 75.0, DxMDy 0.0
@@ -44,11 +45,12 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Fill_Color $00FF00FF ; Set Fill Color: PACKED COLOR 32B R8G8B8A8 Pixel (Green)
+  ; Right Major Triangle (Dir=1)
   ;
-  ;    DxHDy
+  ;    DxMDy
   ;    .___. v[2]:XH,XM(X:100.0) YH(Y:50.0), v[1]:XL(X:150.0) YM(Y:50.0)
   ;     \  |
-  ; DxMDy\ |DxLDy
+  ; DxHDy\ |DxLDy
   ;       \. v[0]:(X:150.0) YL(Y:100.0)
   ;
   ; Output: Dir 0, Level 0, Tile 0, YL 100.0, YM 50.0, YH 50.0, XL 100.0, DxLDy 1.0, XH 150.0, DxHDy 0.0, XM 150.0, DxMDy 0.0
@@ -58,10 +60,11 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Fill_Color $0000FFFF ; Set Fill Color: PACKED COLOR 32B R8G8B8A8 Pixel (Blue)
+  ; Right Major Triangle (Dir=1)
   ;
   ;        . v[2]:XH,XM(X:225.0) YH(Y:50.0)
   ;       /|
-  ; DxMDy/ |DxHDy
+  ; DxHDy/ |DxMDy
   ;    ./__. v[0]:(X:175.0) YL(Y:100.0), v[1]:XL(X:225.0) YM(Y:100.0)
   ;    DxLDy
   ;
@@ -72,10 +75,11 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Fill_Color $FFFFFFFF ; Set Fill Color: PACKED COLOR 32B R8G8B8A8 Pixel (White)
+  ; Right Major Triangle (Dir=1)
   ;
   ;      .     v[2]:XH,XM(X:250.0) YH(Y:50.0)
   ;      |\
-  ; DxMDy| \DxHDy
+  ; DxHDy| \DxMDy
   ;      .__\. v[0]:(X:250.0) YL(Y:100.0), v[1]:XL(X:300.0) YM(Y:100.0)
   ;      DxLDy
   ;
@@ -86,11 +90,12 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Fill_Color $FF0000FF ; Set Fill Color: PACKED COLOR 32B R8G8B8A8 Pixel (Red)
+  ; Right Major Triangle (Dir=1)
   ;
   ;      .    v[2]:XH,XM(X:25.0) YH(Y:150.0)
-  ;      |\DxHDy
+  ;      |\DxMDy
   ;      | \
-  ; DxMDy|  . v[1]:XL(X:75.0) YM(Y:175.0)
+  ; DxHDy|  . v[1]:XL(X:75.0) YM(Y:175.0)
   ;      | /DxLDy
   ;      ./   v[0]:(X:25.0) YL(Y:200.0)
   ;
@@ -100,11 +105,12 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Fill_Color $00FF00FF ; Set Fill Color: PACKED COLOR 32B R8G8B8A8 Pixel (Green)
+  ; Right Major Triangle (Dir=1)
   ;
-  ;      DxHDy
+  ;      DxMDy
   ;    ._______. v[2]:XH,XM(X:100.0) YH(Y:150.0), v[1]:XL(X:150.0) YM(Y:150.0)
   ;     \     /
-  ; DxMDy\   /DxLDy
+  ; DxHDy\   /DxLDy
   ;       \ /
   ;        .     v[0]:(X:125.0) YL(Y:200.0)
   ;
@@ -115,10 +121,11 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Fill_Color $0000FFFF ; Set Fill Color: PACKED COLOR 32B R8G8B8A8 Pixel (Blue)
+  ; Left Major Triangle (Dir=0)
   ;
   ;        . v[2]:XH,XM(X:225.0) YH(Y:150.0)
   ;       /|
-  ; DxHDy/ |DxMDy
+  ; DxMDy/ |DxHDy
   ;     .  | v[1]:XL(X:175.0) YM(Y:175.0)
   ; DxLDy\ |
   ;       \. v[0]:(X:225.0) YL(Y:200.0)
@@ -133,10 +140,11 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Fill_Color $FFFFFFFF ; Set Fill Color: PACKED COLOR 32B R8G8B8A8 Pixel (White)
+  ; Right Major Triangle (Dir=1)
   ;
   ;        .     v[2]:XH,XM(X:275.0) YH(Y:150.0)
   ;       / \
-  ; DxMDy/   \DxHDy
+  ; DxHDy/   \DxMDy
   ;     /     \  
   ;    ._______. v[0]:(X:250.0) YL(Y:200.0), v[1]:XL(X:300.0) YM(Y:200.0)
   ;      DxLDy

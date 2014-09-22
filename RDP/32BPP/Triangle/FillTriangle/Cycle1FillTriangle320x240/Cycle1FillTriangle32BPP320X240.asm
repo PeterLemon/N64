@@ -33,11 +33,12 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Red)
+  ; Left Major Triangle (Dir=0)
   ;
-  ;      DxHDy
-  ;      .___. v[2]:XH,XM(X:25.0) YH(Y:50.0), v[1]:XL(X:75.0) YM(Y:50.0)
+  ;      DxMDy
+  ;      .___. v[1]:XL(X:25.0) YM(Y:50.0), v[2]:XH,XM(X:75.0) YH(Y:50.0)
   ;      |  /
-  ; DxMDy| /DxLDy
+  ; DxLDy| /DxHDy
   ;      ./    v[0]:(X:25.0) YL(Y:100.0)
   ;
   ; Output: Dir 0, Level 0, Tile 0, YL 100.0, YM 50.0, YH 50.0, XL 25.0, DxLDy 0.0, XH 75.0, DxHDy -1.0, XM 75.0, DxMDy 0.0
@@ -47,11 +48,12 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 0, G 255, B 0, A 255 (Green)
+  ; Left Major Triangle (Dir=0)
   ;
-  ;    DxHDy
-  ;    .___. v[2]:XH,XM(X:100.0) YH(Y:50.0), v[1]:XL(X:150.0) YM(Y:50.0)
+  ;    DxMDy   (Left Major Triangle)
+  ;    .___. v[1]:XL(X:100.0) YM(Y:50.0), v[2]:XH,XM(X:150.0) YH(Y:50.0)
   ;     \  |
-  ; DxMDy\ |DxLDy
+  ; DxLDy\ |DxHDy
   ;       \. v[0]:(X:150.0) YL(Y:100.0)
   ;
   ; Output: Dir 0, Level 0, Tile 0, YL 100.0, YM 50.0, YH 50.0, XL 100.0, DxLDy 1.0, XH 150.0, DxHDy 0.0, XM 150.0, DxMDy 0.0
@@ -61,11 +63,12 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $0000FFFF ; Set Blend Color: R 0, G 0, B 255, A 255 (Blue)
+  ; Left Major Triangle (Dir=0)
   ;
   ;        . v[2]:XH,XM(X:225.0) YH(Y:50.0)
   ;       /|
   ; DxMDy/ |DxHDy
-  ;    ./__. v[0]:(X:175.0) YL(Y:100.0), v[1]:XL(X:225.0) YM(Y:100.0)
+  ;    ./__. v[1]:XL(X:175.0) YM(Y:100.0), v[0]:(X:225.0) YL(Y:100.0)
   ;    DxLDy
   ;
   ; Output: Dir 0, Level 0, Tile 0, YL 100.0, YM 100.0, YH 50.0, XL 175.0, DxLDy 0.0, XH 225.0, DxHDy 0.0, XM 225.0, DxMDy -1.0
@@ -75,11 +78,12 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $FFFFFFFF ; Set Blend Color: R 255, G 255, B 255, A 255 (White)
+  ; Left Major Triangle (Dir=0)
   ;
   ;      .     v[2]:XH,XM(X:250.0) YH(Y:50.0)
   ;      |\
   ; DxMDy| \DxHDy
-  ;      .__\. v[0]:(X:250.0) YL(Y:100.0), v[1]:XL(X:300.0) YM(Y:100.0)
+  ;      .__\. v[1]:XL(X:250.0) YM(Y:100.0), v[0]:(X:300.0) YL(Y:100.0)
   ;      DxLDy
   ;
   ; Output: Dir 0, Level 0, Tile 0, YL 100.0, YM 100.0, YH 50.0, XL 250.0, DxLDy 0.0, XH 250.0, DxHDy 1.0, XM 250.0, DxMDy 0.0
@@ -89,11 +93,12 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 0, B 0, A 255 (Red)
+  ; Right Major Triangle (Dir=1)
   ;
   ;      .    v[2]:XH,XM(X:25.0) YH(Y:150.0)
-  ;      |\DxHDy
+  ;      |\DxMDy
   ;      | \
-  ; DxMDy|  . v[1]:XL(X:75.0) YM(Y:175.0)
+  ; DxHDy|  . v[1]:XL(X:75.0) YM(Y:175.0)
   ;      | /DxLDy
   ;      ./   v[0]:(X:25.0) YL(Y:200.0)
   ;
@@ -103,11 +108,12 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 0, G 255, B 0, A 255 (Green)
+  ; Left Major Triangle (Dir=0)
   ;
-  ;      DxHDy
-  ;    ._______. v[2]:XH,XM(X:100.0) YH(Y:150.0), v[1]:XL(X:150.0) YM(Y:150.0)
+  ;      DxMDy
+  ;    ._______. v[1]:XL(X:100.0) YM(Y:150.0), v[2]:XH,XM(X:150.0) YH(Y:150.0)
   ;     \     /
-  ; DxMDy\   /DxLDy
+  ; DxLDy\   /DxHDy
   ;       \ /
   ;        .     v[0]:(X:125.0) YL(Y:200.0)
   ;
@@ -118,10 +124,11 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $0000FFFF ; Set Blend Color: R 0, G 0, B 255, A 255 (Blue)
+  ; Left Major Triangle (Dir=0)
   ;
   ;        . v[2]:XH,XM(X:225.0) YH(Y:150.0)
   ;       /|
-  ; DxHDy/ |DxMDy
+  ; DxMDy/ |DxHDy
   ;     .  | v[1]:XL(X:175.0) YM(Y:175.0)
   ; DxLDy\ |
   ;       \. v[0]:(X:225.0) YL(Y:200.0)
@@ -132,12 +139,13 @@ RDPBuffer:
 
   Sync_Pipe ; Stall Pipeline, Until Preceeding Primitives Completely Finish
   Set_Blend_Color $FFFFFFFF ; Set Blend Color: R 255, G 255, B 255, A 255 (White)
+  ; Left Major Triangle (Dir=0)
   ;
   ;        .     v[2]:XH,XM(X:275.0) YH(Y:150.0)
   ;       / \
   ; DxMDy/   \DxHDy
   ;     /     \  
-  ;    ._______. v[0]:(X:250.0) YL(Y:200.0), v[1]:XL(X:300.0) YM(Y:200.0)
+  ;    ._______. v[1]:XL(X:250.0) YM(Y:200.0), v[0]:(X:300.0) YL(Y:200.0)
   ;      DxLDy
   ;
   ; Output: Dir 0, Level 0, Tile 0, YL 200.0, YM 200.0, YH 150.0, XL 250.0, DxLDy 0.0, XH 275.0, DxHDy 0.5, XM 275.0, DxMDy -0.5
