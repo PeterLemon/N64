@@ -382,8 +382,6 @@ Loop:
   la t0,$A0000000|(FillTri&$3FFFFF) ; T0 = RDP Fill Triangle RAM Offset
 
 
-  lui t1,$0800 ; T1 = Fill Triangle RDP Command (WORD 0)
-
   mul.s f21,f15,f18 ; F21 = X0*Y1 // Triangle Winding calculation
   mul.s f22,f17,f16 ; F22 = X1*Y0
   sub.s f21,f22 ; F21 = X0*Y1 - X1*Y0
@@ -400,7 +398,7 @@ Loop:
 
   c.le.s f21,f0 ; IF (Triangle Winding == Clockwise) DIR = 0 (Left Major Triangle)
   bc1f DIR      ; ELSE DIR = 1 (Right Major Triangle)
-  nop; Delay Slot
+  lui t1,$0800 ; T1 = DIR 0
   lui t1,$0880 ; T1 = DIR 1
   DIR:
 
