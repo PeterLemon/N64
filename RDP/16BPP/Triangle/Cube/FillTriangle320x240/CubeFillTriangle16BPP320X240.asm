@@ -33,7 +33,7 @@ Start:
   lwc1 f14,44(t0) ; F14 = Matrix3D[11]
 
 Loop:
-  WaitScanline $200 ; Wait For Scanline To Reach Vertical Blank
+  WaitScanline $1E0 ; Wait For Scanline To Reach Vertical Blank
   la t2,$A0000000|(RDPTri&$3FFFFF) ; T2 = RDP Triangle Buffer Offset
 
   la t0,XRot ; T0 = X Rotation Data Offset
