@@ -249,17 +249,17 @@ Loop:
   la t0,XRot ; T0 = X Rotation Data Offset
 
   lw t1,0(t0)  ; Load X Rotation Value
-  add t1,1     ; X Rotation += 1
+  addi t1,1    ; X Rotation += 1
   andi t1,1023 ; X Rotation &= 1023
   sw t1,0(t0)  ; Store X Rotation Value
 
   lw t1,4(t0)  ; Load Y Rotation Value
-  add t1,1     ; Y Rotation += 1
+  addi t1,1    ; Y Rotation += 1
   andi t1,1023 ; Y Rotation &= 1023
   sw t1,4(t0)  ; Store Y Rotation Value
 
   lw t1,8(t0)  ; Load Z Rotation Value
-  add t1,1     ; Z Rotation += 1
+  addi t1,1    ; Z Rotation += 1
   andi t1,1023 ; Z Rotation &= 1023
   sw t1,8(t0)  ; Store Z Rotation Value
 
