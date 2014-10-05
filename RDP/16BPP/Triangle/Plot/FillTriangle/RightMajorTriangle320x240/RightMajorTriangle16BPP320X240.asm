@@ -1,134 +1,130 @@
 ; N64 'Bare Metal' 16BPP 320x240 Plot Right Major Fill Triangle RDP Demo by krom (Peter Lemon):
-
   include LIB\N64.INC ; Include N64 Definitions
-  dcb 2097152,$00 ; Set ROM Size
+  dcb 1048576,$00 ; Set ROM Size
   org $80000000 ; Entry Point Of Code
   include LIB\N64_HEADER.ASM  ; Include 64 Byte Header & Vector Table
   incbin LIB\N64_BOOTCODE.BIN ; Include 4032 Byte Boot Code
 
 Start:
-  include LIB\N64_INIT.ASM ; Include Initialisation Routine
-  include LIB\N64_GFX.INC  ; Include Graphics Macros
+  include LIB\N64_GFX.INC ; Include Graphics Macros
+  N64_INIT ; Run N64 Initialisation Routine
 
-  ScreenNTSC 320,240, BPP16, $A0100000 ; Screen NTSC: 320x240, 16BPP, DRAM Origin $A0100000
+  ScreenNTSC 320, 240, BPP16, $A0100000 ; Screen NTSC: 320x240, 16BPP, DRAM Origin $A0100000
 
-  la t0,MULT ; T0 = Float Multipy Data Offset
-  lwc1 f0,0(t0) ; F0 = 0.0 (Divide By Zero Check)
-  lwc1 f1,4(t0) ; F1 = 4.0 (Fixed Point S.11.2)
-  lwc1 f2,8(t0) ; F2 = 65536.0 (Fixed Point S.15.16)
-
+  la a0,MULT ; A0 = Float Multipy Data Offset
+  lwc1 f0,0(a0) ; F0 = 0.0 (Divide By Zero Check)
+  lwc1 f1,4(a0) ; F1 = 4.0 (Fixed Point S.11.2)
+  lwc1 f2,8(a0) ; F2 = 65536.0 (Fixed Point S.15.16)
 
 Loop:
   WaitScanline $200 ; Wait For Scanline To Reach Vertical Blank
 
-  DPC RDPBuffer,RDPBufferEnd ; Run DPC Command Buffer: Start Address, End Address
+  DPC RDPBuffer, RDPBufferEnd ; Run DPC Command Buffer: Start Address, End Address
 
-  la t0,TRI ; T0 = Float Triangle Data Offset
+  la a0,TRI ; A0 = Float Triangle Data Offset
 
 
   ; PASS1 Sort Coordinate 0 & 1
-  lwc1 f3,4(t0)  ; F3 = Triangle Y0
-  lwc1 f4,12(t0) ; F4 = Triangle Y1
+  lwc1 f3,4(a0)  ; F3 = Triangle Y0
+  lwc1 f4,12(a0) ; F4 = Triangle Y1
   c.le.s f3,f4 ; IF (Y0 <= Y1) Swap Triangle Coordinates 0 & 1
   bc1f PASS101 ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f5,0(t0)  ; F5 = X0
-  lwc1 f6,8(t0)  ; F6 = X1
-  swc1 f6,0(t0)  ; X0 = X1
-  swc1 f4,4(t0)  ; Y0 = Y1
-  swc1 f5,8(t0)  ; X1 = X0
-  swc1 f3,12(t0) ; Y1 = Y0
+  lwc1 f5,0(a0)  ; F5 = X0
+  lwc1 f6,8(a0)  ; F6 = X1
+  swc1 f6,0(a0)  ; X0 = X1
+  swc1 f4,4(a0)  ; Y0 = Y1
+  swc1 f5,8(a0)  ; X1 = X0
+  swc1 f3,12(a0) ; Y1 = Y0
   PASS101:
 
   ; PASS1 Sort Coordinate 1 & 2
-  lwc1 f3,12(t0) ; F3 = Triangle Y1
-  lwc1 f4,20(t0) ; F4 = Triangle Y2
+  lwc1 f3,12(a0) ; F3 = Triangle Y1
+  lwc1 f4,20(a0) ; F4 = Triangle Y2
   c.le.s f3,f4 ; IF (Y1 <= Y2) Swap Triangle Coordinates 1 & 2
   bc1f PASS112 ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f5,8(t0)  ; F5 = X1
-  lwc1 f6,16(t0) ; F6 = X2
-  swc1 f6,8(t0)  ; X1 = X2
-  swc1 f4,12(t0) ; Y1 = Y2
-  swc1 f5,16(t0) ; X2 = X1
-  swc1 f3,20(t0) ; Y2 = Y1
+  lwc1 f5,8(a0)  ; F5 = X1
+  lwc1 f6,16(a0) ; F6 = X2
+  swc1 f6,8(a0)  ; X1 = X2
+  swc1 f4,12(a0) ; Y1 = Y2
+  swc1 f5,16(a0) ; X2 = X1
+  swc1 f3,20(a0) ; Y2 = Y1
   PASS112:
 
   ; PASS1 Sort Coordinate 2 & 0
-  lwc1 f3,4(t0)  ; F3 = Triangle Y0
-  lwc1 f4,20(t0) ; F4 = Triangle Y2
+  lwc1 f3,4(a0)  ; F3 = Triangle Y0
+  lwc1 f4,20(a0) ; F4 = Triangle Y2
   c.le.s f3,f4 ; IF (Y0 <= Y2) Swap Triangle Coordinates 0 & 2
   bc1f PASS120 ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f5,0(t0)  ; F5 = X0
-  lwc1 f6,16(t0) ; F6 = X2
-  swc1 f6,0(t0)  ; X0 = X2
-  swc1 f4,4(t0)  ; Y0 = Y2
-  swc1 f5,16(t0) ; X2 = X0
-  swc1 f3,20(t0) ; Y2 = Y0
+  lwc1 f5,0(a0)  ; F5 = X0
+  lwc1 f6,16(a0) ; F6 = X2
+  swc1 f6,0(a0)  ; X0 = X2
+  swc1 f4,4(a0)  ; Y0 = Y2
+  swc1 f5,16(a0) ; X2 = X0
+  swc1 f3,20(a0) ; Y2 = Y0
   PASS120:
 
   ; PASS1 Sort Coordinate 0 & 1
-  lwc1 f3,4(t0)  ; F3 = Triangle Y0
-  lwc1 f4,12(t0) ; F4 = Triangle Y1
+  lwc1 f3,4(a0)  ; F3 = Triangle Y0
+  lwc1 f4,12(a0) ; F4 = Triangle Y1
   c.le.s f3,f4  ; IF (Y0 <= Y1) Swap Triangle Coordinates 0 & 1
   bc1f PASS101B ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f5,0(t0)  ; F5 = X0
-  lwc1 f6,8(t0)  ; F6 = X1
-  swc1 f6,0(t0)  ; X0 = X1
-  swc1 f4,4(t0)  ; Y0 = Y1
-  swc1 f5,8(t0)  ; X1 = X0
-  swc1 f3,12(t0) ; Y1 = Y0
+  lwc1 f5,0(a0)  ; F5 = X0
+  lwc1 f6,8(a0)  ; F6 = X1
+  swc1 f6,0(a0)  ; X0 = X1
+  swc1 f4,4(a0)  ; Y0 = Y1
+  swc1 f5,8(a0)  ; X1 = X0
+  swc1 f3,12(a0) ; Y1 = Y0
   PASS101B:
 
 
   ; PASS2 Sort Coordinate 0 & 1
-  lwc1 f3,4(t0)  ; F3 = Triangle Y0
-  lwc1 f4,12(t0) ; F4 = Triangle Y1
+  lwc1 f3,4(a0)  ; F3 = Triangle Y0
+  lwc1 f4,12(a0) ; F4 = Triangle Y1
   c.eq.s f3,f4 ; IF (Y0 == Y1) Swap Triangle Coordinates 0 & 1
   bc1f PASS201 ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f5,0(t0) ; F5 = Triangle X0
-  lwc1 f6,8(t0) ; F6 = Triangle X1
+  lwc1 f5,0(a0) ; F5 = Triangle X0
+  lwc1 f6,8(a0) ; F6 = Triangle X1
   c.le.s f6,f5 ; IF (X0 >= X1) Swap Triangle Coordinates 0 & 1
   bc1f PASS201 ; ELSE No Swap
   nop ; Delay Slot
-  swc1 f6,0(t0)  ; X0 = X1
-  swc1 f4,4(t0)  ; Y0 = Y1
-  swc1 f5,8(t0)  ; X1 = X0
-  swc1 f3,12(t0) ; Y1 = Y0
+  swc1 f6,0(a0)  ; X0 = X1
+  swc1 f4,4(a0)  ; Y0 = Y1
+  swc1 f5,8(a0)  ; X1 = X0
+  swc1 f3,12(a0) ; Y1 = Y0
   PASS201:
 
   ; PASS2 Sort Coordinate 1 & 2
-  lwc1 f3,12(t0) ; F3 = Triangle Y1
-  lwc1 f4,20(t0) ; F4 = Triangle Y2
+  lwc1 f3,12(a0) ; F3 = Triangle Y1
+  lwc1 f4,20(a0) ; F4 = Triangle Y2
   c.eq.s f3,f4 ; IF (Y1 == Y2) Swap Triangle Coordinates 1 & 2
   bc1f PASS212 ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f5,8(t0)  ; F5 = X1
-  lwc1 f6,16(t0) ; F6 = X2
+  lwc1 f5,8(a0)  ; F5 = X1
+  lwc1 f6,16(a0) ; F6 = X2
   c.le.s f5,f6 ; IF (X1 <= X2) Swap Triangle Coordinates 1 & 2
   bc1f PASS212 ; ELSE No Swap
   nop ; Delay Slot
-  swc1 f6,8(t0)  ; X1 = X2
-  swc1 f4,12(t0) ; Y1 = Y2
-  swc1 f5,16(t0) ; X2 = X1
-  swc1 f3,20(t0) ; Y2 = Y1
+  swc1 f6,8(a0)  ; X1 = X2
+  swc1 f4,12(a0) ; Y1 = Y2
+  swc1 f5,16(a0) ; X2 = X1
+  swc1 f3,20(a0) ; Y2 = Y1
   PASS212:
 
 
-  lwc1 f3,0(t0)  ; F3 = Triangle X0
-  lwc1 f4,4(t0)  ; F4 = Triangle Y0 (YL)
-  lwc1 f5,8(t0)  ; F5 = Triangle X1 (XL)
-  lwc1 f6,12(t0) ; F6 = Triangle Y1 (YM)
-  lwc1 f7,16(t0) ; F7 = Triangle X2 (XH/XM)
-  lwc1 f8,20(t0) ; F8 = Triangle Y2 (YH)
+  lwc1 f3,0(a0)  ; F3 = Triangle X0
+  lwc1 f4,4(a0)  ; F4 = Triangle Y0 (YL)
+  lwc1 f5,8(a0)  ; F5 = Triangle X1 (XL)
+  lwc1 f6,12(a0) ; F6 = Triangle Y1 (YM)
+  lwc1 f7,16(a0) ; F7 = Triangle X2 (XH/XM)
+  lwc1 f8,20(a0) ; F8 = Triangle Y2 (YH)
 
-  la t0,$A0000000|(FillTri&$3FFFFF) ; T0 = Fill Triangle RAM Offset
+  la a0,$A0000000|(FillTri&$3FFFFF) ; A0 = Fill Triangle RAM Offset
 
-
-  lui t1,$0800 ; T1 = Fill Triangle RDP Command (WORD 0)
 
   mul.s f9,f3,f6 ; F9 = X0*Y1 // Triangle Winding calculation
   mul.s f10,f5,f4 ; F10 = X1*Y0
@@ -146,89 +142,89 @@ Loop:
 
   c.le.s f9,f0 ; IF (Triangle Winding == Clockwise) DIR = 0 (Left Major Triangle)
   bc1f DIR     ; ELSE DIR = 1 (Right Major Triangle)
-  nop; Delay Slot
-  lui t1,$0880 ; T1 = DIR 1
+  lui t0,$0800 ; T0 = DIR 0
+  lui t0,$0880 ; T0 = DIR 1
   DIR:
 
 
   mul.s f9,f4,f1 ; Convert To S.11.2
   cvt.w.s f9 ; F9 = YL
-  mfc1 t2,f9 ; T2 = YL
-  andi t2,$3FFF ; T2 &= S.11.2
-  or t1,t2
-  sw t1,0(t0) ; Store RDP Command (WORD 0 HI)
+  mfc1 t1,f9 ; T1 = YL
+  andi t1,$3FFF ; T1 &= S.11.2
+  or t0,t1
+  sw t0,0(a0) ; Store RDP Command (WORD 0 HI)
 
   mul.s f9,f6,f1 ; Convert To S.11.2
   cvt.w.s f9 ; F9 = YM
-  mfc1 t1,f9 ; T1 = YM
-  andi t1,$3FFF ; T1 &= S.11.2
-  dsll t1,16 ; T1 = YM
+  mfc1 t0,f9 ; T0 = YM
+  andi t0,$3FFF ; T0 &= S.11.2
+  dsll t0,16 ; T0 = YM
 
   mul.s f9,f8,f1 ; Convert To S.11.2
   cvt.w.s f9 ; F9 = YH
-  mfc1 t2,f9 ; T2 = YH
-  andi t2,$3FFF ; T2 &= S.11.2
-  or t1,t2
-  sw t1,4(t0) ; Store RDP Command (WORD 0 LO)
+  mfc1 t1,f9 ; T1 = YH
+  andi t1,$3FFF ; T1 &= S.11.2
+  or t0,t1
+  sw t0,4(a0) ; Store RDP Command (WORD 0 LO)
 
 
   mul.s f9,f5,f2 ; Convert To S.15.16
   cvt.w.s f9 ; F9 = XL
-  mfc1 t1,f9 ; T1 = XL
-  sw t1,8(t0) ; Store RDP Command (WORD 1 HI)
+  mfc1 t0,f9 ; T0 = XL
+  sw t0,8(a0) ; Store RDP Command (WORD 1 HI)
 
   sub.s f10,f4,f6
   c.eq.s f10,f0 ; IF ((Y0 - Y1) == 0) DxLDy = 0.0 
   bc1t DXLDY    ; ELSE DxLDy = (X0 - X1) / (Y0 - Y1)
-  andi t1,0 ; T1 = DxLDy 0.0
+  andi t0,0 ; T0 = DxLDy 0.0
 
   sub.s f9,f3,f5
   div.s f9,f10 ; F9 = DxLDy
   mul.s f9,f2  ; Convert To S.15.16
   cvt.w.s f9 ; F9 = DxLDy
-  mfc1 t1,f9 ; T1 = DxLDy
+  mfc1 t0,f9 ; T0 = DxLDy
   DXLDY:
-  sw t1,12(t0) ; Store RDP Command (WORD 1 LO)
+  sw t0,12(a0) ; Store RDP Command (WORD 1 LO)
 
 
   mul.s f9,f7,f2 ; Convert To S.15.16
   cvt.w.s f9 ; F9 = XH
-  mfc1 t1,f9 ; T1 = XH
-  sw t1,16(t0) ; Store RDP Command (WORD 2 HI) 
+  mfc1 t0,f9 ; T0 = XH
+  sw t0,16(a0) ; Store RDP Command (WORD 2 HI) 
 
   sub.s f10,f4,f8
   c.eq.s f10,f0 ; IF ((Y0 - Y2) == 0) DxHDy = 0.0 
   bc1t DXHDY    ; ELSE DxHDy = (X0 - X2) / (Y0 - Y2)
-  andi t2,0 ; T2 = DxHDy 0.0
+  andi t1,0 ; T1 = DxHDy 0.0
 
   sub.s f9,f3,f7
   div.s f9,f10 ; F9 = DxHDy
   mul.s f9,f2  ; Convert To S.15.16
   cvt.w.s f9 ; F9 = DxHDy
-  mfc1 t2,f9 ; T2 = DxHDy
+  mfc1 t1,f9 ; T1 = DxHDy
   DXHDY:
-  sw t2,20(t0) ; Store RDP Command (WORD 2 LO)
+  sw t1,20(a0) ; Store RDP Command (WORD 2 LO)
 
 
-  sw t1,24(t0) ; Store RDP Command (WORD 3 HI) T1 = XM (Uses Previous XH)
+  sw t0,24(a0) ; Store RDP Command (WORD 3 HI) T0 = XM (Uses Previous XH)
 
   sub.s f10,f6,f8
   c.eq.s f10,f0 ; IF ((Y1 - Y2) == 0) DxMDy = 0.0 
   bc1t DXMDY    ; ELSE DxMDy = (X1 - X2) / (Y1 - Y2)
-  andi t1,0 ; T1 = DxMDy 0.0
+  andi t0,0 ; T0 = DxMDy 0.0
 
   sub.s f9,f5,f7
   div.s f9,f10 ; F9 = DxMDy
   mul.s f9,f2  ; Convert To S.15.16
   cvt.w.s f9 ; F9 = DxMDy
-  mfc1 t1,f9 ; T1 = DxMDy
+  mfc1 t0,f9 ; T0 = DxMDy
   DXMDY:
-  sw t1,28(t0) ; Store RDP Command (WORD 3 LO)
+  sw t0,28(a0) ; Store RDP Command (WORD 3 LO)
 
   j Loop
   nop ; Delay Slot
 
-  align 8 ; Align 64-bit
+  align 8 ; Align 64-Bit
 RDPBuffer:
   Set_Scissor 0<<2,0<<2, 320<<2,240<<2, 0 ; Set Scissor: XH 0.0, YH 0.0, XL 320.0, YL 240.0, Scissor Field Enable Off
   Set_Other_Modes CYCLE_TYPE_FILL, 0 ; Set Other Modes
