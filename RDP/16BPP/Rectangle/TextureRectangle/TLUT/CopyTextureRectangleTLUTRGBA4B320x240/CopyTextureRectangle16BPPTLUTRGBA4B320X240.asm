@@ -1,28 +1,27 @@
 ; N64 'Bare Metal' 16BPP 320x240 Copy Texture Rectangle TLUT RGBA4B RDP Demo by krom (Peter Lemon):
-
   include LIB\N64.INC ; Include N64 Definitions
-  dcb 2097152,$00 ; Set ROM Size
+  dcb 1048576,$00 ; Set ROM Size
   org $80000000 ; Entry Point Of Code
   include LIB\N64_HEADER.ASM  ; Include 64 Byte Header & Vector Table
   incbin LIB\N64_BOOTCODE.BIN ; Include 4032 Byte Boot Code
 
 Start:
-  include LIB\N64_INIT.ASM ; Include Initialisation Routine
-  include LIB\N64_GFX.INC  ; Include Graphics Macros
+  include LIB\N64_GFX.INC ; Include Graphics Macros
+  N64_INIT ; Run N64 Initialisation Routine
 
-  ScreenNTSC 320,240, BPP16|AA_MODE_2, $A0100000 ; Screen NTSC: 320x240, 16BPP, Resample Only, DRAM Origin $A0100000
+  ScreenNTSC 320, 240, BPP16|AA_MODE_2, $A0100000 ; Screen NTSC: 320x240, 16BPP, Resample Only, DRAM Origin $A0100000
 
-  DMA Texture,TlutEnd, $00200000 ; DMA Data Copy Cart->DRAM: Start Cart Address, End Cart Address, Destination DRAM Address
+  DMA Texture, TlutEnd, $00200000 ; DMA Data Copy Cart->DRAM: Start Cart Address, End Cart Address, Destination DRAM Address
 
   WaitScanline $200 ; Wait For Scanline To Reach Vertical Blank
 
-  DPC RDPBuffer,RDPBufferEnd ; Run DPC Command Buffer: Start Address, End Address
+  DPC RDPBuffer, RDPBufferEnd ; Run DPC Command Buffer: Start Address, End Address
 
 Loop:
   j Loop
   nop ; Delay Slot
 
-  align 8 ; Align 64-bit
+  align 8 ; Align 64-Bit
 RDPBuffer:
   Set_Scissor 0<<2,0<<2, 320<<2,240<<2, 0 ; Set Scissor: XH 0.0, YH 0.0, XL 320.0, YL 240.0, Scissor Field Enable Off
   Set_Other_Modes CYCLE_TYPE_FILL, 0 ; Set Other Modes
@@ -64,7 +63,7 @@ RDPBuffer:
 RDPBufferEnd:
 
 Texture:
-  db $33,$00,$00,$02,$20,$00,$00,$00 // 16x16x4B = 128 Bytes
+  db $33,$00,$00,$02,$20,$00,$00,$00 ; 16x16x4B = 128 Bytes
   db $33,$00,$00,$21,$12,$00,$00,$00
   db $00,$00,$02,$11,$11,$20,$00,$00
   db $00,$00,$21,$11,$11,$12,$00,$00
@@ -81,7 +80,7 @@ Texture:
   db $00,$00,$02,$11,$11,$20,$00,$00
   db $00,$00,$02,$22,$22,$20,$00,$00
 
-  db $33,$33,$00,$00,$00,$00,$00,$02,$20,$00,$00,$00,$00,$00,$00,$00 // 32x32x4B = 512 Bytes
+  db $33,$33,$00,$00,$00,$00,$00,$02,$20,$00,$00,$00,$00,$00,$00,$00 ; 32x32x4B = 512 Bytes
   db $33,$33,$00,$00,$00,$00,$00,$21,$12,$00,$00,$00,$00,$00,$00,$00
   db $33,$33,$00,$00,$00,$00,$02,$11,$11,$20,$00,$00,$00,$00,$00,$00
   db $33,$33,$00,$00,$00,$00,$21,$11,$11,$12,$00,$00,$00,$00,$00,$00
@@ -114,7 +113,7 @@ Texture:
   db $00,$00,$00,$00,$00,$02,$11,$11,$11,$11,$20,$00,$00,$00,$00,$00
   db $00,$00,$00,$00,$00,$02,$22,$22,$22,$22,$20,$00,$00,$00,$00,$00
 
-  db $33,$33,$33,$33,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$02,$20,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 // 64x64x4B = 2048 Bytes
+  db $33,$33,$33,$33,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$02,$20,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 ; 64x64x4B = 2048 Bytes
   db $33,$33,$33,$33,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$21,$12,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 
   db $33,$33,$33,$33,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$02,$11,$11,$20,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 
   db $33,$33,$33,$33,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$21,$11,$11,$12,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 
@@ -181,7 +180,7 @@ Texture:
 TextureEnd:
 
 Tlut:
-  dh $0000,$FFFF,$0001,$F001,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000 // 4B Palette 0 (4x16B = 8 Bytes)
-  dh $0000,$F0FF,$0001,$F001,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000 // 4B Palette 1
-  dh $0000,$0FFF,$0001,$F001,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000 // 4B Palette 2
+  dh $0000,$FFFF,$0001,$F001,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000 ; 4B Palette 0 (4x16B = 8 Bytes)
+  dh $0000,$F0FF,$0001,$F001,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000 ; 4B Palette 1
+  dh $0000,$0FFF,$0001,$F001,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000 ; 4B Palette 2
 TlutEnd:
