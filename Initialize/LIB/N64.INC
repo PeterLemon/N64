@@ -1,4 +1,4 @@
-;============= 
+;=============
 ; N64 Include
 ;=============
 ; Memory Map
@@ -136,19 +136,25 @@ align: macro amount
   cnop 0, amount ; Align Byte Amount
   endm
 
+N64_INIT: macro ; Initialise N64 (Stop N64 From Crashing 5 Seconds After Boot)
+  lui a0,PIF_BASE ; A0 = PIF Base Register ($BFC00000)
+  li t0,8
+  sw t0,(PIF_RAM+$3C)(a0)
+  endm
+
 DMA: macro start, end, dest ; DMA Data Copy Cart->DRAM: Start Cart Address, End Cart Address, Destination DRAM Address
-  lui t0,PI_BASE ; PI Base Reg: Init DMA
+  lui a0,PI_BASE ; A0 = PI Base Register ($A4600000)
   DMABusy\@:
-    lb t1,PI_STATUS(t0) ; Load Byte From PI Status Reg $A4600010
+    lb t0,PI_STATUS(a0) ; T0 = Byte From PI Status Register ($A4600010)
     sync ; Sync Load
-    andi t1,3 ; And PI Status With 3
-    bnez t1,DMABusy\@ ; If True DMA Is Busy
+    andi t0,3 ; AND PI Status With 3
+    bnez t0,DMABusy\@ ; IF TRUE DMA Is Busy
     nop ; Delay Slot
 
-    la t1,dest&$7FFFFF ; Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
-    sw t1,PI_DRAM_ADDR(t0) ; Store RAM Offset To PI DRAM Address Reg $A4600000
-    la t1,$10000000|(start&$3FFFFFF) ; Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
-    sw t1,PI_CART_ADDR(t0) ; Store ROM Offset To PI Cart Address Reg $A4600004
-    la t1,(end-start)-1 ; Length Of DMA Transfer In Bytes - 1
-    sw t1,PI_WR_LEN(t0) ; Store DMA Length To PI Write Length Reg $A460000C
+    la t0,dest&$7FFFFF ; T0 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
+    sw t0,PI_DRAM_ADDR(a0) ; Store RAM Offset To PI DRAM Address Register ($A4600000)
+    la t0,$10000000|(start&$3FFFFFF) ; T0 = Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
+    sw t0,PI_CART_ADDR(a0) ; Store ROM Offset To PI Cart Address Register ($A4600004)
+    la t0,(end-start)-1 ; T0 = Length Of DMA Transfer In Bytes - 1
+    sw t0,PI_WR_LEN(a0) ; Store DMA Length To PI Write Length Register ($A460000C)
   endm
