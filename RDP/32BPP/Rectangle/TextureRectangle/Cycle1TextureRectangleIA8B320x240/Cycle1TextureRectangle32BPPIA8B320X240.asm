@@ -1,28 +1,27 @@
 ; N64 'Bare Metal' 32BPP 320x240 Cycle1 Texture Rectangle IA8B RDP Demo by krom (Peter Lemon):
-
   include LIB\N64.INC ; Include N64 Definitions
-  dcb 2097152,$00 ; Set ROM Size
+  dcb 1048576,$00 ; Set ROM Size
   org $80000000 ; Entry Point Of Code
   include LIB\N64_HEADER.ASM  ; Include 64 Byte Header & Vector Table
   incbin LIB\N64_BOOTCODE.BIN ; Include 4032 Byte Boot Code
 
 Start:
-  include LIB\N64_INIT.ASM ; Include Initialisation Routine
-  include LIB\N64_GFX.INC  ; Include Graphics Macros
+  include LIB\N64_GFX.INC ; Include Graphics Macros
+  N64_INIT ; Run N64 Initialisation Routine
 
-  ScreenNTSC 320,240, BPP32|AA_MODE_2, $A0100000 ; Screen NTSC: 320x240, 32BPP, Resample Only, DRAM Origin $A0100000
+  ScreenNTSC 320, 240, BPP32|AA_MODE_2, $A0100000 ; Screen NTSC: 320x240, 32BPP, Resample Only, DRAM Origin $A0100000
 
-  DMA Texture,TextureEnd, $00200000 ; DMA Data Copy Cart->DRAM: Start Cart Address, End Cart Address, Destination DRAM Address
+  DMA Texture, TextureEnd, $00200000 ; DMA Data Copy Cart->DRAM: Start Cart Address, End Cart Address, Destination DRAM Address
 
   WaitScanline $200 ; Wait For Scanline To Reach Vertical Blank
 
-  DPC RDPBuffer,RDPBufferEnd ; Run DPC Command Buffer: Start Address, End Address
+  DPC RDPBuffer, RDPBufferEnd ; Run DPC Command Buffer: Start Address, End Address
 
 Loop:
   j Loop
   nop ; Delay Slot
 
-  align 8 ; Align 64-bit
+  align 8 ; Align 64-Bit
 RDPBuffer:
   Set_Scissor 0<<2,0<<2, 320<<2,240<<2, 0 ; Set Scissor: XH 0.0, YH 0.0, XL 320.0, YL 240.0, Scissor Field Enable Off
   Set_Other_Modes CYCLE_TYPE_FILL, 0 ; Set Other Modes
@@ -77,7 +76,7 @@ RDPBuffer:
 RDPBufferEnd:
 
 Texture:
-  db $8F,$00,$00,$0F,$0F,$00,$00,$00 // 8x8x8B = 64 Bytes
+  db $8F,$00,$00,$0F,$0F,$00,$00,$00 ; 8x8x8B = 64 Bytes
   db $00,$00,$0F,$FF,$FF,$0F,$00,$00
   db $00,$0F,$FF,$FF,$FF,$FF,$0F,$00
   db $0F,$FF,$FF,$FF,$FF,$FF,$FF,$0F
@@ -86,7 +85,7 @@ Texture:
   db $00,$00,$0F,$FF,$FF,$0F,$00,$00
   db $00,$00,$0F,$0F,$0F,$0F,$00,$00
 
-  db $8F,$8F,$00,$00,$00,$00,$00,$0F,$0F,$00,$00,$00,$00,$00,$00,$00 // 16x16x8B = 256 Bytes
+  db $8F,$8F,$00,$00,$00,$00,$00,$0F,$0F,$00,$00,$00,$00,$00,$00,$00 ; 16x16x8B = 256 Bytes
   db $8F,$8F,$00,$00,$00,$00,$0F,$FF,$FF,$0F,$00,$00,$00,$00,$00,$00
   db $00,$00,$00,$00,$00,$0F,$FF,$FF,$FF,$FF,$0F,$00,$00,$00,$00,$00
   db $00,$00,$00,$00,$0F,$FF,$FF,$FF,$FF,$FF,$FF,$0F,$00,$00,$00,$00
@@ -103,7 +102,7 @@ Texture:
   db $00,$00,$00,$00,$00,$0F,$FF,$FF,$FF,$FF,$0F,$00,$00,$00,$00,$00
   db $00,$00,$00,$00,$00,$0F,$0F,$0F,$0F,$0F,$0F,$00,$00,$00,$00,$00
 
-  db $8F,$8F,$8F,$8F,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$0F,$0F,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 // 32x32x8B = 1024 Bytes
+  db $8F,$8F,$8F,$8F,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$0F,$0F,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 ; 32x32x8B = 1024 Bytes
   db $8F,$8F,$8F,$8F,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$0F,$FF,$FF,$0F,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   db $8F,$8F,$8F,$8F,$00,$00,$00,$00,$00,$00,$00,$00,$00,$0F,$FF,$FF,$FF,$FF,$0F,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   db $8F,$8F,$8F,$8F,$00,$00,$00,$00,$00,$00,$00,$00,$0F,$FF,$FF,$FF,$FF,$FF,$FF,$0F,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
