@@ -1,3 +1,6 @@
+;===========
+; N64 Input
+;===========
 JOY_CRIGHT: equ    $1 ; PIF HWORD: CAMERA RIGHT
 JOY_CLEFT:  equ    $2 ; PIF HWORD: CAMERA LEFT
 JOY_CDOWN:  equ    $4 ; PIF HWORD: CAMERA DOWN
@@ -14,21 +17,21 @@ JOY_B:      equ $4000 ; PIF HWORD: B
 JOY_A:      equ $8000 ; PIF HWORD: A
 
 InitController: macro PIF
-  lui s0,SI_BASE ; S0 = $A4800000 (SI_BASE)
-  la t1,PIF ; T1 = PIF1 Offset
-  sw t1,SI_DRAM_ADDR(s0) ; Store PIF1 To SI_DRAM_ADDR
-  la t1,((PIF_BASE<<16)|PIF_RAM) ; T1 = $BFC007C0 (PIF_RAM: JoyChannel)
-  sw t1,SI_PIF_ADDR_WR64B(s0) ; 64 Byte Write DRAM -> PIF
+  lui a0,SI_BASE ; A0 = SI Base Register ($A4800000)
+  la a1,PIF ; A1 = PIF1 Offset
+  sw a1,SI_DRAM_ADDR(a0) ; Store PIF1 To SI_DRAM_ADDR ($A4800000)
+  la a1,((PIF_BASE<<16)|PIF_RAM) ; A1 = PIF_RAM: JoyChannel ($BFC007C0)
+  sw a1,SI_PIF_ADDR_WR64B(a0) ; 64 Byte Write DRAM -> PIF ($A4800010)
   endm
 
 ReadController: macro PIF
-  lui s0,PIF_BASE ; S0 = $BFC00000 (PIF_BASE)
-  lui s1,SI_BASE ; S1 = $A4800000 (SI_BASE)
-  la t0,PIF ; T0 = PIF2 Offset
-  sw t0,SI_DRAM_ADDR(S1) ; Store PIF2 To SI_DRAM_ADDR
-  ori t0,s0,PIF_RAM ; T0 = $BFC007C0 (PIF_RAM: JoyChannel)
-  sw t0,SI_PIF_ADDR_RD64B(S1) ; 64 Byte Read PIF -> DRAM
-  lhu t0,PIF_HWORD(S0) ; T0 = Buttons ($BFC007C4)
-  lb t1,PIF_XBYTE(S0) ; T1 = Analog X ($BFC007C6)
-  lb t2,PIF_YBYTE(S0) ; T2 = Analog Y ($BFC007C7)
+  lui a0,PIF_BASE ; A0 = PIF Base Register ($BFC00000)
+  lui a1,SI_BASE ; A1 = SI Base Register ($A4800000)
+  la a2,PIF ; A2 = PIF2 Offset
+  sw a2,SI_DRAM_ADDR(a1) ; Store PIF2 To SI_DRAM_ADDR ($A4800000)
+  ori a2,a0,PIF_RAM ; A2 = PIF_RAM: JoyChannel ($BFC007C0)
+  sw a2,SI_PIF_ADDR_RD64B(a1) ; 64 Byte Read PIF -> DRAM ($A4800004)
+  lhu t0,PIF_HWORD(a0) ; T0 = Buttons ($BFC007C4)
+  lb t1,PIF_XBYTE(a0) ; T1 = Analog X ($BFC007C6)
+  lb t2,PIF_YBYTE(a0) ; T2 = Analog Y ($BFC007C7)
   endm
