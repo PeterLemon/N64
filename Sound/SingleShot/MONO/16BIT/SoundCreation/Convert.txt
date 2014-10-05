@@ -1,2 +1,0 @@
-Goldwave Save As:
-Raw, PCM signed 16 bit, big endian, mono
