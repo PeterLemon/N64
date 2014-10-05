@@ -1,10 +1,10 @@
 LoadXYZ: macro ; Load X,Y,Z
-  lwc1 f15,0(t0) ; F15 = X
-  addi t0,4
-  lwc1 f16,0(t0) ; F16 = Y
-  addi t0,4
-  lwc1 f17,0(t0) ; F17 = Z
-  addi t0,4
+  lwc1 f15,0(a0) ; F15 = X
+  addi a0,4
+  lwc1 f16,0(a0) ; F16 = Y
+  addi a0,4
+  lwc1 f17,0(a0) ; F17 = Z
+  addi a0,4
   Calc3D
   endm
 
@@ -31,15 +31,15 @@ Calc3D: macro ; Calculate X,Y,Z 3D
   endm
 
 Calc2D: macro ; Calculate X,Y 2D
-  la t4,HALF_SCREEN_X ; T4 = HALF SCREEN X Data Offset
-  lwc1 f15,0(t4) ; F15 = HALF SCREEN X
-  lwc1 f16,4(t4) ; F16 = HALF SCREEN Y
+  la t0,HALF_SCREEN_X ; T0 = HALF SCREEN X Data Offset
+  lwc1 f15,0(t0) ; F15 = HALF SCREEN X
+  lwc1 f16,4(t0) ; F16 = HALF SCREEN Y
 
   c.le.s f20,f0 ; IF (Z <= 0.0) Do Not Divide By Zero
   bc1t ZeroZ\@
   nop ; Delay Slot
 
-  lwc1 f17,8(t4) ; F17 = FOV
+  lwc1 f17,8(t0) ; F17 = FOV
   div.s f21,f20,f17 ; F21 = Z / FOV
 
   div.s f18,f21 ; X = X / Z + (ScreenX / 2)
@@ -48,29 +48,29 @@ Calc2D: macro ; Calculate X,Y 2D
   div.s f19,f21 ; Y = (ScreenY / 2) - Y / Z 
   sub.s f19,f16,f19
 
-  swc1 f18,0(t3)
-  addi t3,4
-  swc1 f19,0(t3)
-  addi t3,4
+  swc1 f18,0(a3)
+  addi a3,4
+  swc1 f19,0(a3)
+  addi a3,4
 
   b Calc2DEnd\@
   nop ; Delay Slot
 
   ZeroZ\@:
-  swc1 f15,0(t3)
-  addi t3,4
-  swc1 f16,0(t3)
-  addi t3,4
+  swc1 f15,0(a3)
+  addi a3,4
+  swc1 f16,0(a3)
+  addi a3,4
   Calc2DEnd\@:
   endm
 
 PolyWinding: macro ; Test Polygon Winding Direction
-  lwc1 f15,0(t3)  ; F15 = Triangle X0
-  lwc1 f16,4(t3)  ; F16 = Triangle Y0 (YL)
-  lwc1 f17,8(t3)  ; F17 = Triangle X1 (XL)
-  lwc1 f18,12(t3) ; F18 = Triangle Y1 (YM)
-  lwc1 f19,16(t3) ; F19 = Triangle X2 (XH/XM)
-  lwc1 f20,20(t3) ; F20 = Triangle Y2 (YH)
+  lwc1 f15,0(a3)  ; F15 = Triangle X0
+  lwc1 f16,4(a3)  ; F16 = Triangle Y0 (YL)
+  lwc1 f17,8(a3)  ; F17 = Triangle X1 (XL)
+  lwc1 f18,12(a3) ; F18 = Triangle Y1 (YM)
+  lwc1 f19,16(a3) ; F19 = Triangle X2 (XH/XM)
+  lwc1 f20,20(a3) ; F20 = Triangle Y2 (YH)
 
   mul.s f21,f15,f18 ; F21 = X0*Y1
   mul.s f22,f17,f16 ; F22 = X1*Y0
@@ -89,105 +89,105 @@ PolyWinding: macro ; Test Polygon Winding Direction
 
 FillTriHead: macro ; Fill Triangle Header
   ; Store RDP Triangle Buffer
-  lui t4,$2700 ; T4 = Sync Pipe RDP Command
-  sw t4,0(t2)
+  lui t0,$2700 ; T0 = Sync Pipe RDP Command
+  sw t0,0(a2)
 
-  lui t4,$3900 ; T4 = Set Blend Color RDP Command
-  sw t4,8(t2)  ; Store RDP Command (WORD 0 HI) (Triangle Color)
-  lw t4,0(t0)  ; T4 = Triangle Color
-  sw t4,12(t2) ; Store RDP Command (WORD 0 LO) (Triangle Color)
-  addi t2,16 ; T2 += 16
+  lui t0,$3900 ; T0 = Set Blend Color RDP Command
+  sw t0,8(a2)  ; Store RDP Command (WORD 0 HI) (Triangle Color)
+  lw t0,0(a0)  ; T0 = Triangle Color
+  sw t0,12(a2) ; Store RDP Command (WORD 0 LO) (Triangle Color)
+  addi a2,16 ; A2 += 16
   endm
 
 LeftMajorTri: macro ; Left Major Triangle Calculation
   ; PASS1 Sort Coordinate 0 & 1
-  lwc1 f15,4(t3)  ; F15 = Triangle Y0
-  lwc1 f16,12(t3) ; F16 = Triangle Y1
+  lwc1 f15,4(a3)  ; F15 = Triangle Y0
+  lwc1 f16,12(a3) ; F16 = Triangle Y1
   c.le.s f15,f16  ; IF (Y0 <= Y1) Swap Triangle Coordinates 0 & 1
   bc1f PASS101\@  ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f17,0(t3)  ; F17 = X0
-  lwc1 f18,8(t3)  ; F18 = X1
-  swc1 f18,0(t3)  ; X0 = X1
-  swc1 f16,4(t3)  ; Y0 = Y1
-  swc1 f17,8(t3)  ; X1 = X0
-  swc1 f15,12(t3) ; Y1 = Y0
+  lwc1 f17,0(a3)  ; F17 = X0
+  lwc1 f18,8(a3)  ; F18 = X1
+  swc1 f18,0(a3)  ; X0 = X1
+  swc1 f16,4(a3)  ; Y0 = Y1
+  swc1 f17,8(a3)  ; X1 = X0
+  swc1 f15,12(a3) ; Y1 = Y0
   PASS101\@:
 
   ; PASS1 Sort Coordinate 1 & 2
-  lwc1 f15,12(t3) ; F15 = Triangle Y1
-  lwc1 f16,20(t3) ; F16 = Triangle Y2
+  lwc1 f15,12(a3) ; F15 = Triangle Y1
+  lwc1 f16,20(a3) ; F16 = Triangle Y2
   c.le.s f15,f16  ; IF (Y1 <= Y2) Swap Triangle Coordinates 1 & 2
   bc1f PASS112\@  ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f17,8(t3)  ; F17 = X1
-  lwc1 f18,16(t3) ; F18 = X2
-  swc1 f18,8(t3)  ; X1 = X2
-  swc1 f16,12(t3) ; Y1 = Y2
-  swc1 f17,16(t3) ; X2 = X1
-  swc1 f15,20(t3) ; Y2 = Y1
+  lwc1 f17,8(a3)  ; F17 = X1
+  lwc1 f18,16(a3) ; F18 = X2
+  swc1 f18,8(a3)  ; X1 = X2
+  swc1 f16,12(a3) ; Y1 = Y2
+  swc1 f17,16(a3) ; X2 = X1
+  swc1 f15,20(a3) ; Y2 = Y1
   PASS112\@:
 
   ; PASS1 Sort Coordinate 2 & 0
-  lwc1 f15,4(t3)  ; F15 = Triangle Y0
-  lwc1 f16,20(t3) ; F16 = Triangle Y2
+  lwc1 f15,4(a3)  ; F15 = Triangle Y0
+  lwc1 f16,20(a3) ; F16 = Triangle Y2
   c.le.s f15,f16  ; IF (Y0 <= Y2) Swap Triangle Coordinates 0 & 2
   bc1f PASS120\@  ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f17,0(t3)  ; F17 = X0
-  lwc1 f18,16(t3) ; F18 = X2
-  swc1 f18,0(t3)  ; X0 = X2
-  swc1 f16,4(t3)  ; Y0 = Y2
-  swc1 f17,16(t3) ; X2 = X0
-  swc1 f15,20(t3) ; Y2 = Y0
+  lwc1 f17,0(a3)  ; F17 = X0
+  lwc1 f18,16(a3) ; F18 = X2
+  swc1 f18,0(a3)  ; X0 = X2
+  swc1 f16,4(a3)  ; Y0 = Y2
+  swc1 f17,16(a3) ; X2 = X0
+  swc1 f15,20(a3) ; Y2 = Y0
   PASS120\@:
 
   ; PASS1 Sort Coordinate 0 & 1
-  lwc1 f15,4(t3)  ; F15 = Triangle Y0
-  lwc1 f16,12(t3) ; F16 = Triangle Y1
+  lwc1 f15,4(a3)  ; F15 = Triangle Y0
+  lwc1 f16,12(a3) ; F16 = Triangle Y1
   c.le.s f15,f16  ; IF (Y0 <= Y1) Swap Triangle Coordinates 0 & 1
   bc1f PASS101B\@ ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f17,0(t3)  ; F17 = X0
-  lwc1 f18,8(t3)  ; F18 = X1
-  swc1 f18,0(t3)  ; X0 = X1
-  swc1 f16,4(t3)  ; Y0 = Y1
-  swc1 f17,8(t3)  ; X1 = X0
-  swc1 f15,12(t3) ; Y1 = Y0
+  lwc1 f17,0(a3)  ; F17 = X0
+  lwc1 f18,8(a3)  ; F18 = X1
+  swc1 f18,0(a3)  ; X0 = X1
+  swc1 f16,4(a3)  ; Y0 = Y1
+  swc1 f17,8(a3)  ; X1 = X0
+  swc1 f15,12(a3) ; Y1 = Y0
   PASS101B\@:
 
   ; PASS2 Sort Coordinate 0 & 1
-  lwc1 f15,4(t3)  ; F15 = Triangle Y0
-  lwc1 f16,12(t3) ; F16 = Triangle Y1
+  lwc1 f15,4(a3)  ; F15 = Triangle Y0
+  lwc1 f16,12(a3) ; F16 = Triangle Y1
   c.eq.s f15,f16  ; IF (Y0 == Y1) Swap Triangle Coordinates 0 & 1
   bc1f PASS201\@  ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f17,0(t3)  ; F17 = Triangle X0
-  lwc1 f18,8(t3)  ; F18 = Triangle X1
+  lwc1 f17,0(a3)  ; F17 = Triangle X0
+  lwc1 f18,8(a3)  ; F18 = Triangle X1
   c.le.s f17,f18  ; IF (X0 <= X1) Swap Triangle Coordinates 0 & 1
   bc1f PASS201\@  ; ELSE No Swap
   nop ; Delay Slot
-  swc1 f18,0(t3)  ; X0 = X1
-  swc1 f16,4(t3)  ; Y0 = Y1
-  swc1 f17,8(t3)  ; X1 = X0
-  swc1 f15,12(t3) ; Y1 = Y0
+  swc1 f18,0(a3)  ; X0 = X1
+  swc1 f16,4(a3)  ; Y0 = Y1
+  swc1 f17,8(a3)  ; X1 = X0
+  swc1 f15,12(a3) ; Y1 = Y0
   PASS201\@:
 
   ; PASS2 Sort Coordinate 1 & 2
-  lwc1 f15,12(t3) ; F15 = Triangle Y1
-  lwc1 f16,20(t3) ; F16 = Triangle Y2
+  lwc1 f15,12(a3) ; F15 = Triangle Y1
+  lwc1 f16,20(a3) ; F16 = Triangle Y2
   c.eq.s f15,f16  ; IF (Y1 == Y2) Swap Triangle Coordinates 1 & 2
   bc1f PASS212\@  ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f17,8(t3)  ; F17 = X1
-  lwc1 f18,16(t3) ; F18 = X2
+  lwc1 f17,8(a3)  ; F17 = X1
+  lwc1 f18,16(a3) ; F18 = X2
   c.le.s f18,f17  ; IF (X1 >= X2) Swap Triangle Coordinates 1 & 2
   bc1f PASS212\@  ; ELSE No Swap
   nop ; Delay Slot
-  swc1 f18,8(t3)  ; X1 = X2
-  swc1 f16,12(t3) ; Y1 = Y2
-  swc1 f17,16(t3) ; X2 = X1
-  swc1 f15,20(t3) ; Y2 = Y1
+  swc1 f18,8(a3)  ; X1 = X2
+  swc1 f16,12(a3) ; Y1 = Y2
+  swc1 f17,16(a3) ; X2 = X1
+  swc1 f15,20(a3) ; Y2 = Y1
   PASS212\@:
 
 
@@ -205,7 +205,7 @@ LeftMajorTri: macro ; Left Major Triangle Calculation
   mfc1 t4,f21 ; T4 = YL
   andi t4,$3FFF ; T4 &= S.11.2
   or t3,t4
-  sw t3,0(t2) ; Store RDP Command (WORD 0 HI)
+  sw t3,0(a2) ; Store RDP Command (WORD 0 HI)
 
   mul.s f21,f18,f1 ; Convert To S.11.2
   cvt.w.s f21 ; F21 = YM
@@ -218,13 +218,13 @@ LeftMajorTri: macro ; Left Major Triangle Calculation
   mfc1 t4,f21 ; T4 = YH
   andi t4,$3FFF ; T4 &= S.11.2
   or t3,t4
-  sw t3,4(t2) ; Store RDP Command (WORD 0 LO)
+  sw t3,4(a2) ; Store RDP Command (WORD 0 LO)
 
 
   mul.s f21,f17,f2 ; Convert To S.15.16
   cvt.w.s f21 ; F21 = XL
   mfc1 t3,f21 ; T3 = XL
-  sw t3,8(t2) ; Store RDP Command (WORD 1 HI)
+  sw t3,8(a2) ; Store RDP Command (WORD 1 HI)
 
   sub.s f22,f18,f16
   c.eq.s f22,f0 ; IF ((Y1 - Y0) == 0) DxLDy = 0.0 
@@ -237,13 +237,13 @@ LeftMajorTri: macro ; Left Major Triangle Calculation
   cvt.w.s f21 ; F21 = DxLDy
   mfc1 t3,f21 ; T3 = DxLDy
   DXLDY\@:
-  sw t3,12(t2) ; Store RDP Command (WORD 1 LO)
+  sw t3,12(a2) ; Store RDP Command (WORD 1 LO)
 
 
   mul.s f21,f19,f2 ; Convert To S.15.16
   cvt.w.s f21 ; F21 = XH
   mfc1 t3,f21 ; T3 = XH
-  sw t3,16(t2) ; Store RDP Command (WORD 2 HI) 
+  sw t3,16(a2) ; Store RDP Command (WORD 2 HI) 
 
   sub.s f22,f20,f16
   c.eq.s f22,f0 ; IF ((Y2 - Y0) == 0) DxHDy = 0.0 
@@ -256,10 +256,10 @@ LeftMajorTri: macro ; Left Major Triangle Calculation
   cvt.w.s f21 ; F21 = DxHDy
   mfc1 t4,f21 ; T4 = DxHDy
   DXHDY\@:
-  sw t4,20(t2) ; Store RDP Command (WORD 2 LO)
+  sw t4,20(a2) ; Store RDP Command (WORD 2 LO)
 
 
-  sw t3,24(t2) ; Store RDP Command (WORD 3 HI) T3 = XM (Uses Previous XH)
+  sw t3,24(a2) ; Store RDP Command (WORD 3 HI) T3 = XM (Uses Previous XH)
   sub.s f22,f20,f18
   c.eq.s f22,f0 ; IF ((Y2 - Y1) == 0) DxMDy = 0.0 
   bc1t DXMDY\@  ; ELSE DxMDy = (X2 - X1) / (Y2 - Y1)
@@ -271,99 +271,99 @@ LeftMajorTri: macro ; Left Major Triangle Calculation
   cvt.w.s f21 ; F21 = DxMDy
   mfc1 t3,f21 ; T3 = DxMDy
   DXMDY\@:
-  sw t3,28(t2) ; Store RDP Command (WORD 3 LO)
-  addi t2,32 ; T2 += 32
+  sw t3,28(a2) ; Store RDP Command (WORD 3 LO)
+  addi a2,32 ; A2 += 32
   endm
 
 RightMajorTri: macro ; Right Major Triangle Calculation
   ; PASS1 Sort Coordinate 0 & 1
-  lwc1 f15,4(t3)  ; F15 = Triangle Y0
-  lwc1 f16,12(t3) ; F16 = Triangle Y1
+  lwc1 f15,4(a3)  ; F15 = Triangle Y0
+  lwc1 f16,12(a3) ; F16 = Triangle Y1
   c.le.s f15,f16  ; IF (Y0 <= Y1) Swap Triangle Coordinates 0 & 1
   bc1f PASS101\@  ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f17,0(t3)  ; F17 = X0
-  lwc1 f18,8(t3)  ; F18 = X1
-  swc1 f18,0(t3)  ; X0 = X1
-  swc1 f16,4(t3)  ; Y0 = Y1
-  swc1 f17,8(t3)  ; X1 = X0
-  swc1 f15,12(t3) ; Y1 = Y0
+  lwc1 f17,0(a3)  ; F17 = X0
+  lwc1 f18,8(a3)  ; F18 = X1
+  swc1 f18,0(a3)  ; X0 = X1
+  swc1 f16,4(a3)  ; Y0 = Y1
+  swc1 f17,8(a3)  ; X1 = X0
+  swc1 f15,12(a3) ; Y1 = Y0
   PASS101\@:
 
   ; PASS1 Sort Coordinate 1 & 2
-  lwc1 f15,12(t3) ; F15 = Triangle Y1
-  lwc1 f16,20(t3) ; F16 = Triangle Y2
+  lwc1 f15,12(a3) ; F15 = Triangle Y1
+  lwc1 f16,20(a3) ; F16 = Triangle Y2
   c.le.s f15,f16  ; IF (Y1 <= Y2) Swap Triangle Coordinates 1 & 2
   bc1f PASS112\@  ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f17,8(t3)  ; F17 = X1
-  lwc1 f18,16(t3) ; F18 = X2
-  swc1 f18,8(t3)  ; X1 = X2
-  swc1 f16,12(t3) ; Y1 = Y2
-  swc1 f17,16(t3) ; X2 = X1
-  swc1 f15,20(t3) ; Y2 = Y1
+  lwc1 f17,8(a3)  ; F17 = X1
+  lwc1 f18,16(a3) ; F18 = X2
+  swc1 f18,8(a3)  ; X1 = X2
+  swc1 f16,12(a3) ; Y1 = Y2
+  swc1 f17,16(a3) ; X2 = X1
+  swc1 f15,20(a3) ; Y2 = Y1
   PASS112\@:
 
   ; PASS1 Sort Coordinate 2 & 0
-  lwc1 f15,4(t3)  ; F15 = Triangle Y0
-  lwc1 f16,20(t3) ; F16 = Triangle Y2
+  lwc1 f15,4(a3)  ; F15 = Triangle Y0
+  lwc1 f16,20(a3) ; F16 = Triangle Y2
   c.le.s f15,f16  ; IF (Y0 <= Y2) Swap Triangle Coordinates 0 & 2
   bc1f PASS120\@  ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f17,0(t3)  ; F17 = X0
-  lwc1 f18,16(t3) ; F18 = X2
-  swc1 f18,0(t3)  ; X0 = X2
-  swc1 f16,4(t3)  ; Y0 = Y2
-  swc1 f17,16(t3) ; X2 = X0
-  swc1 f15,20(t3) ; Y2 = Y0
+  lwc1 f17,0(a3)  ; F17 = X0
+  lwc1 f18,16(a3) ; F18 = X2
+  swc1 f18,0(a3)  ; X0 = X2
+  swc1 f16,4(a3)  ; Y0 = Y2
+  swc1 f17,16(a3) ; X2 = X0
+  swc1 f15,20(a3) ; Y2 = Y0
   PASS120\@:
 
   ; PASS1 Sort Coordinate 0 & 1
-  lwc1 f15,4(t3)  ; F15 = Triangle Y0
-  lwc1 f16,12(t3) ; F16 = Triangle Y1
+  lwc1 f15,4(a3)  ; F15 = Triangle Y0
+  lwc1 f16,12(a3) ; F16 = Triangle Y1
   c.le.s f15,f16  ; IF (Y0 <= Y1) Swap Triangle Coordinates 0 & 1
   bc1f PASS101B\@ ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f17,0(t3)  ; F17 = X0
-  lwc1 f18,8(t3)  ; F18 = X1
-  swc1 f18,0(t3)  ; X0 = X1
-  swc1 f16,4(t3)  ; Y0 = Y1
-  swc1 f17,8(t3)  ; X1 = X0
-  swc1 f15,12(t3) ; Y1 = Y0
+  lwc1 f17,0(a3)  ; F17 = X0
+  lwc1 f18,8(a3)  ; F18 = X1
+  swc1 f18,0(a3)  ; X0 = X1
+  swc1 f16,4(a3)  ; Y0 = Y1
+  swc1 f17,8(a3)  ; X1 = X0
+  swc1 f15,12(a3) ; Y1 = Y0
   PASS101B\@:
 
   ; PASS2 Sort Coordinate 0 & 1
-  lwc1 f15,4(t3)  ; F15 = Triangle Y0
-  lwc1 f16,12(t3) ; F16 = Triangle Y1
+  lwc1 f15,4(a3)  ; F15 = Triangle Y0
+  lwc1 f16,12(a3) ; F16 = Triangle Y1
   c.eq.s f15,f16  ; IF (Y0 == Y1) Swap Triangle Coordinates 0 & 1
   bc1f PASS201\@  ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f17,0(t3)  ; F17 = Triangle X0
-  lwc1 f18,8(t3)  ; F18 = Triangle X1
+  lwc1 f17,0(a3)  ; F17 = Triangle X0
+  lwc1 f18,8(a3)  ; F18 = Triangle X1
   c.le.s f18,f17  ; IF (X0 >= X1) Swap Triangle Coordinates 0 & 1
   bc1f PASS201\@  ; ELSE No Swap
   nop ; Delay Slot
-  swc1 f18,0(t3)  ; X0 = X1
-  swc1 f16,4(t3)  ; Y0 = Y1
-  swc1 f17,8(t3)  ; X1 = X0
-  swc1 f15,12(t3) ; Y1 = Y0
+  swc1 f18,0(a3)  ; X0 = X1
+  swc1 f16,4(a3)  ; Y0 = Y1
+  swc1 f17,8(a3)  ; X1 = X0
+  swc1 f15,12(a3) ; Y1 = Y0
   PASS201\@:
 
   ; PASS2 Sort Coordinate 1 & 2
-  lwc1 f15,12(t3) ; F15 = Triangle Y1
-  lwc1 f16,20(t3) ; F16 = Triangle Y2
+  lwc1 f15,12(a3) ; F15 = Triangle Y1
+  lwc1 f16,20(a3) ; F16 = Triangle Y2
   c.eq.s f15,f16  ; IF (Y1 == Y2) Swap Triangle Coordinates 1 & 2
   bc1f PASS212\@  ; ELSE No Swap
   nop ; Delay Slot
-  lwc1 f17,8(t3)  ; F17 = X1
-  lwc1 f18,16(t3) ; F18 = X2
+  lwc1 f17,8(a3)  ; F17 = X1
+  lwc1 f18,16(a3) ; F18 = X2
   c.le.s f17,f18  ; IF (X1 <= X2) Swap Triangle Coordinates 1 & 2
   bc1f PASS212\@  ; ELSE No Swap
   nop ; Delay Slot
-  swc1 f18,8(t3)  ; X1 = X2
-  swc1 f16,12(t3) ; Y1 = Y2
-  swc1 f17,16(t3) ; X2 = X1
-  swc1 f15,20(t3) ; Y2 = Y1
+  swc1 f18,8(a3)  ; X1 = X2
+  swc1 f16,12(a3) ; Y1 = Y2
+  swc1 f17,16(a3) ; X2 = X1
+  swc1 f15,20(a3) ; Y2 = Y1
   PASS212\@:
 
 
@@ -381,7 +381,7 @@ RightMajorTri: macro ; Right Major Triangle Calculation
   mfc1 t4,f21 ; T4 = YL
   andi t4,$3FFF ; T4 &= S.11.2
   or t3,t4
-  sw t3,0(t2) ; Store RDP Command (WORD 0 HI)
+  sw t3,0(a2) ; Store RDP Command (WORD 0 HI)
 
   mul.s f21,f18,f1 ; Convert To S.11.2
   cvt.w.s f21 ; F21 = YM
@@ -394,13 +394,13 @@ RightMajorTri: macro ; Right Major Triangle Calculation
   mfc1 t4,f21 ; T4 = YH
   andi t4,$3FFF ; T4 &= S.11.2
   or t3,t4
-  sw t3,4(t2) ; Store RDP Command (WORD 0 LO)
+  sw t3,4(a2) ; Store RDP Command (WORD 0 LO)
 
 
   mul.s f21,f17,f2 ; Convert To S.15.16
   cvt.w.s f21 ; F21 = XL
   mfc1 t3,f21 ; T3 = XL
-  sw t3,8(t2) ; Store RDP Command (WORD 1 HI)
+  sw t3,8(a2) ; Store RDP Command (WORD 1 HI)
 
   sub.s f22,f16,f18
   c.eq.s f22,f0 ; IF ((Y0 - Y1) == 0) DxLDy = 0.0 
@@ -413,13 +413,13 @@ RightMajorTri: macro ; Right Major Triangle Calculation
   cvt.w.s f21 ; F21 = DxLDy
   mfc1 t3,f21 ; T3 = DxLDy
   DXLDY\@:
-  sw t3,12(t2) ; Store RDP Command (WORD 1 LO)
+  sw t3,12(a2) ; Store RDP Command (WORD 1 LO)
 
 
   mul.s f21,f19,f2 ; Convert To S.15.16
   cvt.w.s f21 ; F21 = XH
   mfc1 t3,f21 ; T3 = XH
-  sw t3,16(t2) ; Store RDP Command (WORD 2 HI) 
+  sw t3,16(a2) ; Store RDP Command (WORD 2 HI) 
 
   sub.s f22,f16,f20
   c.eq.s f22,f0 ; IF ((Y0 - Y2) == 0) DxHDy = 0.0 
@@ -432,10 +432,10 @@ RightMajorTri: macro ; Right Major Triangle Calculation
   cvt.w.s f21 ; F21 = DxHDy
   mfc1 t4,f21 ; T4 = DxHDy
   DXHDY\@:
-  sw t4,20(t2) ; Store RDP Command (WORD 2 LO)
+  sw t4,20(a2) ; Store RDP Command (WORD 2 LO)
 
 
-  sw t3,24(t2) ; Store RDP Command (WORD 3 HI) T3 = XM (Uses Previous XH)
+  sw t3,24(a2) ; Store RDP Command (WORD 3 HI) T3 = XM (Uses Previous XH)
   sub.s f22,f18,f20
   c.eq.s f22,f0 ; IF ((Y1 - Y2) == 0) DxMDy = 0.0 
   bc1t DXMDY\@  ; ELSE DxMDy = (X1 - X2) / (Y1 - Y2)
@@ -447,172 +447,172 @@ RightMajorTri: macro ; Right Major Triangle Calculation
   cvt.w.s f21 ; F21 = DxMDy
   mfc1 t3,f21 ; T3 = DxMDy
   DXMDY\@:
-  sw t3,28(t2) ; Store RDP Command (WORD 3 LO)
-  addi t2,32 ; T2 += 32
+  sw t3,28(a2) ; Store RDP Command (WORD 3 LO)
+  addi a2,32 ; A2 += 32
   endm
 
 FillTriLeft: macro start, end ; Fill Triangle, Left Major
-  la t0,start ; T0 = 3D Triangle Object Data Start Offset
-  la t1,end ; T1 = 3D Triangle Object Data End Offset
+  la a0,start ; A0 = 3D Triangle Object Data Start Offset
+  la a1,end   ; A1 = 3D Triangle Object Data End Offset
   LoopTris\@:
-    la t3,TRI ; T3 = 2D Triangle Float Data Start Offset
+    la a3,TRI ; A3 = 2D Triangle Float Data Start Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 0 To 2D Triangle Data Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 1 To 2D Triangle Data Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 2 To 2D Triangle Data Offset
 
-    subi t3,24 ; T3 = 2D Triangle Float Data Start Offset
-    FillTriHead ; Fill Triangle Header
+    subi a3,24 ; A3 = 2D Triangle Float Data Start Offset
+    FillTriHead  ; Fill Triangle Header
     LeftMajorTri ; Run Left Major Triangle Calculation
-    addi t0,4 ; T0 += 4
-    bne t0,t1,LoopTris\@ ; Loop Triangles In Object Data
+    addi a0,4 ; A0 += 4
+    bne a0,a1,LoopTris\@ ; Loop Triangles In Object Data
     nop ; Delay Slot
   endm
 
 FillTriLeftCullBack: macro start, end ; Fill Triangle, Left Major, Back Face Culling
-  la t0,start ; T0 = 3D Triangle Object Data Start Offset
-  la t1,end ; T1 = 3D Triangle Object Data End Offset
+  la a0,start ; A0 = 3D Triangle Object Data Start Offset
+  la a1,end   ; A1 = 3D Triangle Object Data End Offset
   LoopTris\@:
-    la t3,TRI ; T3 = 2D Triangle Float Data Start Offset
+    la a3,TRI ; A3 = 2D Triangle Float Data Start Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 0 To 2D Triangle Data Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 1 To 2D Triangle Data Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 2 To 2D Triangle Data Offset
 
     ; Polygon Back Face Culling
-    subi t3,24 ; T3 = 2D Triangle Float Data Start Offset
+    subi a3,24 ; A3 = 2D Triangle Float Data Start Offset
     PolyWinding ; Run Polygon Winding Test
-    c.le.s f21,f0 ; IF (Triangle Winding == Clockwise) Draw Polygon
+    c.le.s f21,f0   ; IF (Triangle Winding == Clockwise) Draw Polygon
     bc1t SkipPoly\@ ; ELSE Skip Polygon
     nop ; Delay Slot
 
-    FillTriHead ; Fill Triangle Header
+    FillTriHead  ; Fill Triangle Header
     LeftMajorTri ; Run Left Major Triangle Calculation
 
-  SkipPoly\@:
-    addi t0,4 ; T0 += 4
-    bne t0,t1,LoopTris\@ ; Loop Triangles In Object Data
-    nop ; Delay Slot
+    SkipPoly\@:
+      addi a0,4 ; A0 += 4
+      bne a0,a1,LoopTris\@ ; Loop Triangles In Object Data
+      nop ; Delay Slot
   endm
 
 FillTriLeftCullFront: macro start, end ; Fill Triangle, Left Major, Front Face Culling
-  la t0,start ; T0 = 3D Triangle Object Data Start Offset
-  la t1,end ; T1 = 3D Triangle Object Data End Offset
+  la a0,start ; A0 = 3D Triangle Object Data Start Offset
+  la a1,end   ; A1 = 3D Triangle Object Data End Offset
   LoopTris\@:
-    la t3,TRI ; T3 = 2D Triangle Float Data Start Offset
+    la a3,TRI ; A3 = 2D Triangle Float Data Start Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 0 To 2D Triangle Data Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 1 To 2D Triangle Data Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 2 To 2D Triangle Data Offset
 
     ; Polygon Front Face Culling
-    subi t3,24 ; T3 = 2D Triangle Float Data Start Offset
+    subi a3,24 ; A3 = 2D Triangle Float Data Start Offset
     PolyWinding ; Run Polygon Winding Test
-    c.le.s f21,f0 ; IF (Triangle Winding == Anti-Clockwise) Draw Polygon
+    c.le.s f21,f0   ; IF (Triangle Winding == Anti-Clockwise) Draw Polygon
     bc1f SkipPoly\@ ; ELSE Skip Polygon
     nop ; Delay Slot
 
-    FillTriHead ; Fill Triangle Header
+    FillTriHead  ; Fill Triangle Header
     LeftMajorTri ; Run Left Major Triangle Calculation
 
-  SkipPoly\@:
-    addi t0,4 ; T0 += 4
-    bne t0,t1,LoopTris\@ ; Loop Triangles In Object Data
-    nop ; Delay Slot
+    SkipPoly\@:
+      addi a0,4 ; A0 += 4
+      bne a0,a1,LoopTris\@ ; Loop Triangles In Object Data
+      nop ; Delay Slot
   endm
 
 FillTriRight: macro start, end ; Fill Triangle, Left Major
-  la t0,start ; T0 = 3D Triangle Object Data Start Offset
-  la t1,end ; T1 = 3D Triangle Object Data End Offset
+  la a0,start ; A0 = 3D Triangle Object Data Start Offset
+  la a1,end   ; A1 = 3D Triangle Object Data End Offset
   LoopTris\@:
-    la t3,TRI ; T3 = 2D Triangle Float Data Start Offset
+    la a3,TRI ; A3 = 2D Triangle Float Data Start Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 0 To 2D Triangle Data Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 1 To 2D Triangle Data Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 2 To 2D Triangle Data Offset
 
-    subi t3,24 ; T3 = 2D Triangle Float Data Start Offset
-    FillTriHead ; Fill Triangle Header
+    subi a3,24 ; A3 = 2D Triangle Float Data Start Offset
+    FillTriHead   ; Fill Triangle Header
     RightMajorTri ; Run Right Major Triangle Calculation
-    addi t0,4 ; T0 += 4
-    bne t0,t1,LoopTris\@ ; Loop Triangles In Object Data
+    addi a0,4 ; A0 += 4
+    bne a0,a1,LoopTris\@ ; Loop Triangles In Object Data
     nop ; Delay Slot
   endm
 
 FillTriRightCullBack: macro start, end ; Fill Triangle, Right Major, Back Face Culling
-  la t0,start ; T0 = 3D Triangle Object Data Start Offset
-  la t1,end ; T1 = 3D Triangle Object Data End Offset
+  la a0,start ; A0 = 3D Triangle Object Data Start Offset
+  la a1,end   ; A1 = 3D Triangle Object Data End Offset
   LoopTris\@:
-    la t3,TRI ; T3 = 2D Triangle Float Data Start Offset
+    la a3,TRI ; A3 = 2D Triangle Float Data Start Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 0 To 2D Triangle Data Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 1 To 2D Triangle Data Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 2 To 2D Triangle Data Offset
 
     ; Polygon Back Face Culling
-    subi t3,24 ; T3 = 2D Triangle Float Data Start Offset
+    subi a3,24 ; A3 = 2D Triangle Float Data Start Offset
     PolyWinding ; Run Polygon Winding Test
-    c.le.s f21,f0 ; IF (Triangle Winding == Clockwise) Draw Polygon
+    c.le.s f21,f0   ; IF (Triangle Winding == Clockwise) Draw Polygon
     bc1t SkipPoly\@ ; ELSE Skip Polygon
     nop ; Delay Slot
 
-    FillTriHead ; Fill Triangle Header
+    FillTriHead   ; Fill Triangle Header
     RightMajorTri ; Run Right Major Triangle Calculation
 
-  SkipPoly\@:
-    addi t0,4 ; T0 += 4
-    bne t0,t1,LoopTris\@ ; Loop Triangles In Object Data
-    nop ; Delay Slot
+    SkipPoly\@:
+      addi a0,4 ; A0 += 4
+      bne a0,a1,LoopTris\@ ; Loop Triangles In Object Data
+      nop ; Delay Slot
   endm
 
 FillTriRightCullFront: macro start, end ; Fill Triangle, Right Major, Front Face Culling
-  la t0,start ; T0 = 3D Triangle Object Data Start Offset
-  la t1,end ; T1 = 3D Triangle Object Data End Offset
+  la a0,start ; A0 = 3D Triangle Object Data Start Offset
+  la a1,end   ; A1 = 3D Triangle Object Data End Offset
   LoopTris\@:
-    la t3,TRI ; T3 = 2D Triangle Float Data Start Offset
+    la a3,TRI ; A3 = 2D Triangle Float Data Start Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 0 To 2D Triangle Data Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 1 To 2D Triangle Data Offset
     LoadXYZ ; Load 3D Transformed Triangle Coordinate 2 To 2D Triangle Data Offset
 
     ; Polygon Front Face Culling
-    subi t3,24 ; T3 = 2D Triangle Float Data Start Offset
+    subi a3,24 ; A3 = 2D Triangle Float Data Start Offset
     PolyWinding ; Run Polygon Winding Test
-    c.le.s f21,f0 ; IF (Triangle Winding == Anti-Clockwise) Draw Polygon
+    c.le.s f21,f0   ; IF (Triangle Winding == Anti-Clockwise) Draw Polygon
     bc1f SkipPoly\@ ; ELSE Skip Polygon
     nop ; Delay Slot
 
-    FillTriHead ; Fill Triangle Header
+    FillTriHead   ; Fill Triangle Header
     RightMajorTri ; Run Right Major Triangle Calculation
 
-  SkipPoly\@:
-    addi t0,4 ; T0 += 4
-    bne t0,t1,LoopTris\@ ; Loop Triangles In Object Data
-    nop ; Delay Slot
+    SkipPoly\@:
+      addi a0,4 ; A0 += 4
+      bne a0,a1,LoopTris\@ ; Loop Triangles In Object Data
+      nop ; Delay Slot
   endm
 
 XPos: macro x ; Object X Translation
-  la t0,x ; Load X Translation Value
-  lwc1 f6,0(t0)  ;  F6 = Matrix3D[3] (Translation X)
+  la a0,x ; Load X Translation Value
+  lwc1 f6,0(a0)  ;  F6 = Matrix3D[3] (Translation X)
   endm
 
 YPos: macro y ; Object Y Translation
-  la t0,y ; Load Y Translation Value
-  lwc1 f10,0(t0) ; F10 = Matrix3D[7] (Translation Y)
+  la a0,y ; Load Y Translation Value
+  lwc1 f10,0(a0) ; F10 = Matrix3D[7] (Translation Y)
   endm
 
 ZPos: macro z ; Object Z Translation
-  la t0,z ; Load Z Translation Value
-  lwc1 f14,0(t0) ; F14 = Matrix3D[11] (Translation Z)
+  la a0,z ; Load Z Translation Value
+  lwc1 f14,0(a0) ; F14 = Matrix3D[11] (Translation Z)
   endm
 
 XYZPos: macro xyz ; Object X, Y, Z Translation
-  la t0,xyz ; Load X, Y, Z Translation Value
-  lwc1 f6,0(t0)  ;  F6 = Matrix3D[3]  (Translation X)
-  lwc1 f10,4(t0) ; F10 = Matrix3D[7]  (Translation Y)
-  lwc1 f14,8(t0) ; F14 = Matrix3D[11] (Translation Z)
+  la a0,xyz ; Load X, Y, Z Translation Value
+  lwc1 f6,0(a0)  ;  F6 = Matrix3D[3]  (Translation X)
+  lwc1 f10,4(a0) ; F10 = Matrix3D[7]  (Translation Y)
+  lwc1 f14,8(a0) ; F14 = Matrix3D[11] (Translation Z)
   endm
 
 XRotCalc: macro x, precalc ; Return X Rotation
-  la t0,x     ; Load X Rotate Value
-  lw t0,0(t0) ; T0 = X Rotate Value
-  la t1,precalc ; T1 = Pre Calculated Rotation Values
+  la a0,x     ; Load X Rotate Value
+  lw t0,0(a0) ; T0 = X Rotate Value
+  la a0,precalc ; A0 = Pre Calculated Rotation Values
   sll t0,4      ; T0 *= 16
-  add t0,t1     ; T0 = Correct Rotate Pre Calculated X Value (* 16)
+  add t0,a0     ; T0 = Correct Rotate Pre Calculated X Value (* 16)
   lwc1 f8,0(t0)  ; F8  =  XC
   lwc1 f9,4(t0)  ; F9  = -XS
   lwc1 f12,8(t0) ; F12 =  XS
@@ -620,11 +620,11 @@ XRotCalc: macro x, precalc ; Return X Rotation
   endm
 
 YRotCalc: macro y, precalc ; Return Y Rotation
-  la t0,y     ; Load Y Rotate Value
-  lw t0,0(t0) ; T0 = Y Rotate Value
-  la t1,precalc ; T1 = Pre Calculated Rotation Values
+  la a0,y     ; Load Y Rotate Value
+  lw t0,0(a0) ; T0 = Y Rotate Value
+  la a0,precalc ; A0 = Pre Calculated Rotation Values
   sll t0,4      ; T0 *= 16
-  add t0,t1     ; T0 = Correct Rotate Pre Calculated Y Value (* 16)
+  add t0,a0     ; T0 = Correct Rotate Pre Calculated Y Value (* 16)
   lwc1 f3,0(t0)  ; F3  =  YC
   lwc1 f11,4(t0) ; F11 = -YS
   lwc1 f5,8(t0)  ; F5  =  YS
@@ -632,11 +632,11 @@ YRotCalc: macro y, precalc ; Return Y Rotation
   endm
 
 ZRotCalc: macro z, precalc ; Return Z Rotation
-  la t0,z     ; Load Z Rotate Value
-  lw t0,0(t0) ; T0 = Z Rotate Value
-  la t1,precalc ; T1 = Pre Calculated Rotation Values
+  la a0,z     ; Load Z Rotate Value
+  lw t0,0(a0) ; T0 = Z Rotate Value
+  la a0,precalc ; A0 = Pre Calculated Rotation Values
   sll t0,4      ; T0 *= 16
-  add t0,t1     ; T0 = Correct Rotate Pre Calculated Z Value (* 16)
+  add t0,a0     ; T0 = Correct Rotate Pre Calculated Z Value (* 16)
   lwc1 f3,0(t0) ; F3 =  ZC
   lwc1 f4,4(t0) ; F4 = -ZS
   lwc1 f7,8(t0) ; F7 =  ZS
@@ -644,15 +644,15 @@ ZRotCalc: macro z, precalc ; Return Z Rotation
   endm
 
 XYRotCalc: macro x, y, precalc ; Return XY Rotation
-  la t0,x     ; Load X Rotate Value
-  lw t0,0(t0) ; T0 = X Rotate Value
-  la t1,y     ; Load Y Rotate Value
-  lw t1,0(t1) ; T1 = Y Rotate Value
-  la t3,precalc ; T3 = Pre Calculated Rotation Values
+  la a0,x     ; Load X Rotate Value
+  lw t0,0(a0) ; T0 = X Rotate Value
+  la a0,y     ; Load Y Rotate Value
+  lw t1,0(a0) ; T1 = Y Rotate Value
+  la a0,precalc ; A0 = Pre Calculated Rotation Values
   sll t0,4      ; T0 *= 16
-  add t0,t3     ; T0 = Correct Rotate Pre Calculated X Value (* 16)
+  add t0,a0     ; T0 = Correct Rotate Pre Calculated X Value (* 16)
   sll t1,4      ; T1 *= 16
-  add t1,t3     ; T1 = Correct Rotate Pre Calculated Y Value (* 16)
+  add t1,a0     ; T1 = Correct Rotate Pre Calculated Y Value (* 16)
   lwc1 f8,0(t0)   ; F8  =  XC
   lwc1 f12,4(t0)  ; F12 = -XS
   lwc1 f9,8(t0)   ; F9  =  XS
@@ -666,15 +666,15 @@ XYRotCalc: macro x, y, precalc ; Return XY Rotation
   endm
 
 XZRotCalc: macro x, z, precalc ; Return XZ Rotation
-  la t0,x     ; Load X Rotate Value
-  lw t0,0(t0) ; T0 = X Rotate Value
-  la t1,z     ; Load Z Rotate Value
-  lw t1,0(t1) ; T1 = Z Rotate Value
-  la t3,precalc ; T3 = Pre Calculated Rotation Values
+  la a0,x     ; Load X Rotate Value
+  lw t0,0(a0) ; T0 = X Rotate Value
+  la a0,z     ; Load Z Rotate Value
+  lw t1,0(a0) ; T1 = Z Rotate Value
+  la a0,precalc ; A0 = Pre Calculated Rotation Values
   sll t0,4      ; T0 *= 16
-  add t0,t3     ; T0 = Correct Rotate Pre Calculated X Value (* 16)
+  add t0,a0     ; T0 = Correct Rotate Pre Calculated X Value (* 16)
   sll t1,4      ; T1 *= 16
-  add t1,t3     ; T1 = Correct Rotate Pre Calculated Z Value (* 16)
+  add t1,a0     ; T1 = Correct Rotate Pre Calculated Z Value (* 16)
   lwc1 f13,0(t0)  ; F13 =  XC
   lwc1 f9,8(t0)   ; F9  =  XS
   lwc1 f3,0(t1)   ; F3  =  ZC
@@ -688,15 +688,15 @@ XZRotCalc: macro x, z, precalc ; Return XZ Rotation
   endm
 
 YZRotCalc: macro y, z, precalc ; Return YZ Rotation
-  la t0,y     ; Load Y Rotate Value
-  lw t0,0(t0) ; T0 = Y Rotate Value
-  la t1,z     ; Load Z Rotate Value
-  lw t1,0(t1) ; T1 = Z Rotate Value
-  la t3,precalc ; T3 = Pre Calculated Rotation Values
+  la a0,y     ; Load Y Rotate Value
+  lw t0,0(a0) ; T0 = Y Rotate Value
+  la a0,z     ; Load Z Rotate Value
+  lw t1,0(a0) ; T1 = Z Rotate Value
+  la a0,precalc ; A0 = Pre Calculated Rotation Values
   sll t0,4      ; T0 *= 16
-  add t0,t3     ; T0 = Correct Rotate Pre Calculated Y Value (* 16)
+  add t0,a0     ; T0 = Correct Rotate Pre Calculated Y Value (* 16)
   sll t1,4      ; T1 *= 16
-  add t1,t3     ; T1 = Correct Rotate Pre Calculated Z Value (* 16)
+  add t1,a0     ; T1 = Correct Rotate Pre Calculated Z Value (* 16)
   lwc1 f13,0(t0)  ; F13 =  YC
   lwc1 f11,8(t0)  ; F11 =  YS
   lwc1 f8,0(t1)   ; F8  =  ZC
@@ -710,27 +710,27 @@ YZRotCalc: macro y, z, precalc ; Return YZ Rotation
   endm
 
 XYZRotCalc: macro x, y, z, precalc ; Return XYZ Rotation
-  la t0,x     ; Load X Rotate Value
-  lw t0,0(t0) ; T0 = X Rotate Value
-  la t1,y     ; Load Y Rotate Value
-  lw t1,0(t1) ; T1 = Y Rotate Value
-  la t3,z     ; Load Z Rotate Value
-  lw t3,0(t3) ; T3 = Z Rotate Value
-  la t4,precalc ; T4 = Pre Calculated Rotation Values
+  la a0,x     ; Load X Rotate Value
+  lw t0,0(a0) ; T0 = X Rotate Value
+  la a0,y     ; Load Y Rotate Value
+  lw t1,0(a0) ; T1 = Y Rotate Value
+  la a0,z     ; Load Z Rotate Value
+  lw t2,0(a0) ; T2 = Z Rotate Value
+  la a0,precalc ; A0 = Pre Calculated Rotation Values
   sll t0,4      ; T0 *= 16
-  add t0,t4     ; T0 = Correct Rotate Pre Calculated Y Value (* 16)
+  add t0,a0     ; T0 = Correct Rotate Pre Calculated Y Value (* 16)
   sll t1,4      ; T1 *= 16
-  add t1,t4     ; T1 = Correct Rotate Pre Calculated Y Value (* 16)
-  sll t3,4      ; T3 *= 16
-  add t3,t4     ; T3 = Correct Rotate Pre Calculated Z Value (* 16)
+  add t1,a0     ; T1 = Correct Rotate Pre Calculated Y Value (* 16)
+  sll t2,4      ; T2 *= 16
+  add t2,a0     ; T2 = Correct Rotate Pre Calculated Z Value (* 16)
   lwc1 f4,0(t0)    ; F4  =  XC
   lwc1 f7,4(t0)    ; F7  = -XS
   lwc1 f9,8(t0)    ; F9  =  XS
   lwc1 f5,12(t0)   ; F5  = -XC
   lwc1 f13,0(t1)   ; F13 =  YC
   lwc1 f15,8(t1)   ; F15 =  YS TEMP
-  lwc1 f11,0(t3)   ; F11 =  ZC
-  lwc1 f12,8(t3)   ; F12 =  ZS
+  lwc1 f11,0(t2)   ; F11 =  ZC
+  lwc1 f12,8(t2)   ; F12 =  ZS
   mul.s f8,f7,f13  ; F8  = -XS * YC
   mul.s f7,f8,f11  ; F7  = -XS * YC * ZC
   mul.s f16,f4,f12 ; F16 =  XC * ZS TEMP
