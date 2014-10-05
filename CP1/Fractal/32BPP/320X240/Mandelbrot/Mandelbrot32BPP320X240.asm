@@ -1,33 +1,31 @@
 ; N64 'Bare Metal' CP1 32BPP 320x240 Mandelbrot Fractal Demo by krom (Peter Lemon):
-
   include LIB\N64.INC ; Include N64 Definitions
-  dcb 2097152,$00 ; Set ROM Size
+  dcb 1048576,$00 ; Set ROM Size
   org $80000000 ; Entry Point Of Code
   include LIB\N64_HEADER.ASM  ; Include 64 Byte Header & Vector Table
   incbin LIB\N64_BOOTCODE.BIN ; Include 4032 Byte Boot Code
 
 Start:
-  include LIB\N64_INIT.ASM ; Include Initialisation Routine
-  include LIB\N64_GFX.INC  ; Include Graphics Macros
+  include LIB\N64_GFX.INC ; Include Graphics Macros
+  N64_INIT ; Run N64 Initialisation Routine
 
-  ScreenNTSC 320,240, BPP32, $A0100000 ; Screen NTSC: 320x240, 32BPP, DRAM Origin $A0100000
+  ScreenNTSC 320, 240, BPP32, $A0100000 ; Screen NTSC: 320x240, 32BPP, DRAM Origin $A0100000
 
-  li t0,($A0100000+(320*240*4)-4) ; T0 = Frame Buffer Pointer Last Pixel
+  la a0,DATA ; A0 = Double Data Offset
+  ldc1 f0,0(a0) ; F0 = X%
+  ldc1 f1,8(a0) ; F1 = Y%
+  ldc1 f2,0(a0) ; F2 = SX
+  ldc1 f3,8(a0) ; F3 = SY
+  ldc1 f4,16(a0) ; F4 = XMax
+  ldc1 f5,24(a0) ; F5 = YMax
+  ldc1 f6,32(a0) ; F6 = XMin
+  ldc1 f7,40(a0) ; F7 = YMin
+  ldc1 f8,48(a0) ; F8 = RMax
+  ldc1 f9,56(a0) ; F9 = 1.0
+  ldc1 f16,64(a0) ; F16 = 0.0
 
-  la t1,DATA     ; Load Double Data Offset
-  ldc1 f0,0(t1)  ; F0 = X%
-  ldc1 f2,0(t1)  ; F2 = SX
-  ldc1 f1,8(t1)  ; F1 = Y%
-  ldc1 f3,8(t1)  ; F3 = SY
-  ldc1 f4,16(t1) ; F4 = XMax
-  ldc1 f5,24(t1) ; F5 = YMax
-  ldc1 f6,32(t1) ; F6 = XMin
-  ldc1 f7,40(t1) ; F7 = YMin
-  ldc1 f8,48(t1) ; F8 = RMax
-  ldc1 f9,56(t1) ; F9 = 1.0
-  ldc1 f16,64(t1) ; F16 = 0.0
-
-  li t7,$231AF900 ; T7 = Multiply Colour
+  li a0,($A0100000+(320*240*4)-4) ; A0 = Frame Buffer Pointer Last Pixel
+  li t0,$231AF900 ; T0 = Multiply Colour
 
 LoopY:
   mov.d f0,f2 ; F0 = X%
@@ -63,32 +61,32 @@ LoopY:
       mul.d f15,f13,f13
       add.d f14,f15 ; F14 = R
 
-      c.le.d f14,f8 ; IF R > 4 THEN GOTO Plot
+      c.le.d f14,f8 ; IF (R > 4) Plot
       bc1f Plot ; Branch On FP False
       nop ; Delay Slot
 
-      bnez t1,Iterate ; IF IT != 0 THEN GOTO Iterate
-      sub t1,t1,1 ; IT = IT - 1
+      bnez t1,Iterate ; IF (IT != 0) Iterate
+      subi t1,1 ; IT = IT - 1
 
     Plot:
-      mul t1,t1,t7 ; Set The Colour To RGBA 32 bit
-      sw t1,0(t0) ; Store Pixel Colour To Frame Buffer
+      mul t1,t1,t0 ; Set The Colour To RGBA 32 bit
+      sw t1,0(a0) ; Store Pixel Colour To Frame Buffer
 
       sub.d f0,f9 ; Decrement X%
       c.eq.d f0,f16
-      bc1f LoopX ; IF X% != 0 LoopX
-      sub t0,t0,4 ; Sub 4 To RDRAM Offset
+      bc1f LoopX ; IF (X% != 0) LoopX
+      subi a0,4 ; Sub 4 To RDRAM Offset
 
       sub.d f1,f9 ; Decrement Y%
       c.eq.d f1,f16
-      bc1f LoopY ; IF Y% != 0 LoopY
+      bc1f LoopY ; IF (Y% != 0) LoopY
       nop ; Delay Slot
 
 Loop:
   j Loop
   nop ; Delay Slot
 
-  align 8 ; Align 64-bit
+  align 8 ; Align 64-Bit
 DATA:
   IEEE64 320.0 ; SCREEN X
   IEEE64 240.0 ; SCREEN Y
