@@ -1,3 +1,6 @@
+;==============
+; N64 Graphics
+;==============
 BPP0:  equ $0000 ; VI Status/Control: Color Depth Blank (No Data Or Sync) (Bit 0..1)
 ;*RESERVED*: equ $0001 ; VI Status/Control: Color Depth Reserved (Bit 0..1)
 BPP16: equ $0002 ; VI Status/Control: Color Depth 16BPP R5/G5/B5/A1 (Bit 0..1)
@@ -33,86 +36,86 @@ PIXEL_ADV_F: equ $0F000 ; VI Status/Control: Pixel Advance F (Bit 12..15)
 DITHER_FILTER_EN: equ $10000 ; VI Status/Control: Dither Filter Enable (Used With 16BPP Display) (Bit 16)
 
 ScreenNTSC: macro width,height, status, origin
-  lui t0,VI_BASE ; Load VI Base Register
-  li t1,status        ; Set Status/Control
-  sw t1,VI_STATUS(t0) ; Store Status/Control into VI Status Reg $A4400000
-  la t1,origin        ; Set Origin (Frame Buffer Origin In Bytes)
-  sw t1,VI_ORIGIN(t0) ; Store Origin into VI Origin Reg $A4400004
-  li t1,width         ; Set Width (Frame Buffer Line Width In Pixels)
-  sw t1,VI_WIDTH(t0)  ; Store Width into VI Width Reg $A4400008
-  li t1,$200          ; Set Vertical Interrupt (Interrupt When Current Half-Line $200)
-  sw t1,VI_V_INTR(t0) ; Store Vertical Interupt into VI Intr Reg $A440000C
-  li t1,0                     ; Set Current Vertical Line (Current Half-Line, Sampled Once Per Line = 0)
-  sw t1,VI_V_CURRENT_LINE(t0) ; Store Current Vertical Line into VI Current Reg $A4400010
-  li t1,$3E52239      ; Set Video Timing (Start Of Color Burst In Pixels from H-Sync = 3, Vertical Sync Width In Half Lines = 229, Color Burst Width In Pixels = 34, Horizontal Sync Width In Pixels = 57)
-  sw t1,VI_TIMING(t0) ; Store Video Timing into VI Burst Reg $A4400014
-  li t1,$20D          ; Set Vertical Sync (Number Of Half-Lines Per Field = 525)
-  sw t1,VI_V_SYNC(t0) ; Store Vertical Sync into VI V Sync Reg $A4400018
-  li t1,$C15          ; Set Horizontal Sync (5-bit Leap Pattern Used For PAL only = 0, Total Duration Of A Line In 1/4 Pixel = 3093)
-  sw t1,VI_H_SYNC(t0) ; Store Horizontal Sync into VI H Sync Reg $A440001C
-  li t1,$C150C15           ; Set Horizontal Sync Leap (Identical To H Sync = 3093, Identical To H Sync = 3093)
-  sw t1,VI_H_SYNC_LEAP(t0) ; Store Horizontal Sync Leap into VI Leap Reg $A4400020
-  li t1,$6C02EC        ; Set Horizontal Video (Start Of Active Video In Screen Pixels = 108, End Of Active Video In Screen Pixels = 748)
-  sw t1,VI_H_VIDEO(t0) ; Store Horizontal Video into VI H Start Reg $A4400024
-  li t1,$2501FF        ; Set Vertical Video (Start Of Active Video In Screen Half-Lines = 37, End Of Active Video In Screen Half-Lines = 511)
-  sw t1,VI_V_VIDEO(t0) ; Store Vertical Video into VI V Start Reg $A4400028
-  li t1,$E0204         ; Set Vertical Burst (Start Of Color Burst Enable In Half-Lines = 14, End Of Color Burst Enable In Half-Lines = 516)
-  sw t1,VI_V_BURST(t0) ; Store Vertical Burst into VI V Burst Reg $A440002C
-  li t1,($100*(width/160)) ; Set X-Scale (Horizontal Subpixel Offset In 2.10 Format = 0, 1/Horizontal Scale Up Factor In 2.10 Format)
-  sw t1,VI_X_SCALE(t0)     ; Store X-Scale into VI X Scale Reg $A4400030
-  li t1,($100*(height/60)) ; Set Y-Scale (Vertical Subpixel Offset In 2.10 Format = 0, 1/Vertical Scale Up Factor In 2.10 Format)
-  sw t1,VI_Y_SCALE(t0) ; Store Y-Scale into VI Y Scale Reg $A4400034
+  lui a0,VI_BASE ; A0 = VI Base Register ($A4400000)
+  li t0,status        ; T0 = Status/Control
+  sw t0,VI_STATUS(a0) ; Store Status/Control To VI Status Register ($A4400000)
+  la t0,origin        ; T0 = Origin (Frame Buffer Origin In Bytes)
+  sw t0,VI_ORIGIN(a0) ; Store Origin To VI Origin Register ($A4400004)
+  li t0,width         ; T0 = Width (Frame Buffer Line Width In Pixels)
+  sw t0,VI_WIDTH(a0)  ; Store Width To VI Width Register ($A4400008)
+  li t0,$200          ; T0 = Vertical Interrupt (Interrupt When Current Half-Line $200)
+  sw t0,VI_V_INTR(a0) ; Store Vertical Interrupt To VI Interrupt Register ($A440000C)
+  li t0,0                     ; T0 = Current Vertical Line (Current Half-Line, Sampled Once Per Line = 0)
+  sw t0,VI_V_CURRENT_LINE(a0) ; Store Current Vertical Line To VI Current Register ($A4400010)
+  li t0,$3E52239      ; T0 = Video Timing (Start Of Color Burst In Pixels from H-Sync = 3, Vertical Sync Width In Half Lines = 229, Color Burst Width In Pixels = 34, Horizontal Sync Width In Pixels = 57)
+  sw t0,VI_TIMING(a0) ; Store Video Timing To VI Burst Register ($A4400014)
+  li t0,$20D          ; T0 = Vertical Sync (Number Of Half-Lines Per Field = 525)
+  sw t0,VI_V_SYNC(a0) ; Store Vertical Sync To VI V Sync Register ($A4400018)
+  li t0,$C15          ; T0 = Horizontal Sync (5-bit Leap Pattern Used For PAL only = 0, Total Duration Of A Line In 1/4 Pixel = 3093)
+  sw t0,VI_H_SYNC(a0) ; Store Horizontal Sync To VI H Sync Register ($A440001C)
+  li t0,$C150C15           ; T0 = Horizontal Sync Leap (Identical To H Sync = 3093, Identical To H Sync = 3093)
+  sw t0,VI_H_SYNC_LEAP(a0) ; Store Horizontal Sync Leap To VI Leap Register ($A4400020)
+  li t0,$6C02EC        ; T0 = Horizontal Video (Start Of Active Video In Screen Pixels = 108, End Of Active Video In Screen Pixels = 748)
+  sw t0,VI_H_VIDEO(a0) ; Store Horizontal Video To VI H Start Register ($A4400024)
+  li t0,$2501FF        ; T0 = Vertical Video (Start Of Active Video In Screen Half-Lines = 37, End Of Active Video In Screen Half-Lines = 511)
+  sw t0,VI_V_VIDEO(a0) ; Store Vertical Video To VI V Start Register ($A4400028)
+  li t0,$E0204         ; T0 = Vertical Burst (Start Of Color Burst Enable In Half-Lines = 14, End Of Color Burst Enable In Half-Lines = 516)
+  sw t0,VI_V_BURST(a0) ; Store Vertical Burst To VI V Burst Register ($A440002C)
+  li t0,($100*(width/160)) ; T0 = X-Scale (Horizontal Subpixel Offset In 2.10 Format = 0, 1/Horizontal Scale Up Factor In 2.10 Format)
+  sw t0,VI_X_SCALE(a0)     ; Store X-Scale To VI X Scale Register ($A4400030)
+  li t0,($100*(height/60)) ; T0 = Y-Scale (Vertical Subpixel Offset In 2.10 Format = 0, 1/Vertical Scale Up Factor In 2.10 Format)
+  sw t0,VI_Y_SCALE(a0)     ; Store Y-Scale To VI Y Scale Register ($A4400034)
   endm
 
 ScreenPAL: macro width,height, status, origin
-  lui t0,VI_BASE ; Load VI Base Register
-  li t1,status        ; Set Status/Control
-  sw t1,VI_STATUS(t0) ; Store Status/Control into VI Status Reg $A4400000
-  la t1,origin        ; Set Origin (Frame Buffer Origin In Bytes)
-  sw t1,VI_ORIGIN(t0) ; Store Origin into VI Origin Reg $A4400004
-  li t1,width         ; Set Width (Frame Buffer Line Width In Pixels)
-  sw t1,VI_WIDTH(t0)  ; Store Width into VI Width Reg $A4400008
-  li t1,$200          ; Set Vertical Interrupt (Interrupt When Current Half-Line $200)
-  sw t1,VI_V_INTR(t0) ; Store Vertical Interupt into VI Intr Reg $A440000C
-  li t1,0                     ; Set Current Vertical Line (Current Half-Line, Sampled Once Per Line = 0)
-  sw t1,VI_V_CURRENT_LINE(t0) ; Store Current Vertical Line into VI Current Reg $A4400010
-  li t1,$404233A      ; Set Video Timing (Start Of Color Burst In Pixels from H-Sync = 4, Vertical Sync Width In Half Lines = 04, Color Burst Width In Pixels = 35, Horizontal Sync Width In Pixels = 58)
-  sw t1,VI_TIMING(t0) ; Store Video Timing into VI Burst Reg $A4400014
-  li t1,$271          ; Set Vertical Sync (Number Of Half-Lines Per Field = 625)
-  sw t1,VI_V_SYNC(t0) ; Store Vertical Sync into VI V Sync Reg $A4400018
-  li t1,$150C69       ; Set Horizontal Sync (5-bit Leap Pattern Used For PAL only = 21: %10101, Total Duration Of A Line In 1/4 Pixel = 3177)
-  sw t1,VI_H_SYNC(t0) ; Store Horizontal Sync into VI H Sync Reg $A440001C
-  li t1,$C6F0C6E           ; Set Horizontal Sync Leap (Identical To H Sync = 3183, Identical To H Sync = 3182)
-  sw t1,VI_H_SYNC_LEAP(t0) ; Store Horizontal Sync Leap into VI Leap Reg $A4400020
-  li t1,$800300        ; Set Horizontal Video (Start Of Active Video In Screen Pixels = 128, End Of Active Video In Screen Pixels = 768)
-  sw t1,VI_H_VIDEO(t0) ; Store Horizontal Video into VI H Start Reg $A4400024
-  li t1,$5F0239        ; Set Vertical Video (Start Of Active Video In Screen Half-Lines = 95, End Of Active Video In Screen Half-Lines = 569)
-  sw t1,VI_V_VIDEO(t0) ; Store Vertical Video into VI V Start Reg $A4400028
-  li t1,$9026B         ; Set Vertical Burst (Start Of Color Burst Enable In Half-Lines = 9, End Of Color Burst Enable In Half-Lines = 619)
-  sw t1,VI_V_BURST(t0) ; Store Vertical Burst into VI V Burst Reg $A440002C
-  li t1,($100*(width/160)) ; Set X-Scale (Horizontal Subpixel Offset In 2.10 Format = 0, 1/Horizontal Scale Up Factor In 2.10 Format)
-  sw t1,VI_X_SCALE(t0)     ; Store X-Scale into VI X Scale Reg $A4400030
-  li t1,($100*(height/60)) ; Set Y-Scale (Vertical Subpixel Offset In 2.10 Format = 0, 1/Vertical Scale Up Factor In 2.10 Format)
-  sw t1,VI_Y_SCALE(t0) ; Store Y-Scale into VI Y Scale Reg $A4400034
+  lui a0,VI_BASE ; A0 = VI Base Register ($A4400000)
+  li t0,status        ; T0 = Status/Control
+  sw t0,VI_STATUS(a0) ; Store Status/Control To VI Status Register ($A4400000)
+  la t0,origin        ; T0 = Origin (Frame Buffer Origin In Bytes)
+  sw t0,VI_ORIGIN(a0) ; Store Origin To VI Origin Register ($A4400004)
+  li t0,width         ; T0 = Width (Frame Buffer Line Width In Pixels)
+  sw t0,VI_WIDTH(a0)  ; Store Width To VI Width Register ($A4400008)
+  li t0,$200          ; T0 = Vertical Interrupt (Interrupt When Current Half-Line $200)
+  sw t0,VI_V_INTR(a0) ; Store Vertical Interrupt To VI Interrupt Register ($A440000C)
+  li t0,0                     ; T0 = Current Vertical Line (Current Half-Line, Sampled Once Per Line = 0)
+  sw t0,VI_V_CURRENT_LINE(a0) ; Store Current Vertical Line To VI Current Register ($A4400010)
+  li t0,$404233A      ; T0 = Video Timing (Start Of Color Burst In Pixels from H-Sync = 4, Vertical Sync Width In Half Lines = 04, Color Burst Width In Pixels = 35, Horizontal Sync Width In Pixels = 58)
+  sw t0,VI_TIMING(a0) ; Store Video Timing To VI Burst Register ($A4400014)
+  li t0,$271          ; T0 = Vertical Sync (Number Of Half-Lines Per Field = 625)
+  sw t0,VI_V_SYNC(a0) ; Store Vertical Sync To VI V Sync Register ($A4400018)
+  li t0,$150C69       ; T0 = Horizontal Sync (5-bit Leap Pattern Used For PAL only = 21: %10101, Total Duration Of A Line In 1/4 Pixel = 3177)
+  sw t0,VI_H_SYNC(a0) ; Store Horizontal Sync To VI H Sync Register ($A440001C)
+  li t0,$C6F0C6E           ; T0 = Horizontal Sync Leap (Identical To H Sync = 3183, Identical To H Sync = 3182)
+  sw t0,VI_H_SYNC_LEAP(a0) ; Store Horizontal Sync Leap To VI Leap Register ($A4400020)
+  li t0,$800300        ; T0 = Horizontal Video (Start Of Active Video In Screen Pixels = 128, End Of Active Video In Screen Pixels = 768)
+  sw t0,VI_H_VIDEO(a0) ; Store Horizontal Video To VI H Start Register ($A4400024)
+  li t0,$5F0239        ; T0 = Vertical Video (Start Of Active Video In Screen Half-Lines = 95, End Of Active Video In Screen Half-Lines = 569)
+  sw t0,VI_V_VIDEO(a0) ; Store Vertical Video To VI V Start Register ($A4400028)
+  li t0,$9026B         ; T0 = Vertical Burst (Start Of Color Burst Enable In Half-Lines = 9, End Of Color Burst Enable In Half-Lines = 619)
+  sw t0,VI_V_BURST(a0) ; Store Vertical Burst To VI V Burst Register ($A440002C)
+  li t0,($100*(width/160)) ; T0 = X-Scale (Horizontal Subpixel Offset In 2.10 Format = 0, 1/Horizontal Scale Up Factor In 2.10 Format)
+  sw t0,VI_X_SCALE(a0)     ; Store X-Scale To VI X Scale Register ($A4400030)
+  li t0,($100*(height/60)) ; T0 = Y-Scale (Vertical Subpixel Offset In 2.10 Format = 0, 1/Vertical Scale Up Factor In 2.10 Format)
+  sw t0,VI_Y_SCALE(a0)     ; Store Y-Scale To VI Y Scale Register ($A4400034)
   endm
 
 WaitScanline: macro scanline; Wait For RDP To Reach Scanline
-  lui t0,VI_BASE
-  li t1,scanline
-  VSync\@:
-    lw t2,VI_V_CURRENT_LINE(t0) ; T2 = Current Scan Line
+  lui a0,VI_BASE ; A0 = VI Base Register ($A4400000)
+  li t0,scanline ; T0 = Scan Line
+  Wait\@:
+    lw t1,VI_V_CURRENT_LINE(a0) ; T1 = Current Scan Line
     sync ; Sync Load
-    bne t2,t1,VSync\@
-    nop ; Delay Slot
+    bne t1,t0,Wait\@ ; IF (Current Scan Line != Scan Line) Wait
+    nop ; Delay Slot ; ELSE Continue
   endm
 
-; RDP
+; RDP Commands
 DPC: macro start,end ; Run DPC Command Buffer: Start Address, End Address
-  lui t0,DPC_BASE ; Reality Display Processer Control Interface
-  la t1,start ; Set DPC Command Start Address
-  sw t1,DPC_START(t0) ; Store DPC Command Start Address To DP Start Reg
-  addi t1,end-start ; Set DPC Command End Address
-  sw t1,DPC_END(t0) ; Store DPC Command End Address To DP End Reg
+  lui a0,DPC_BASE ; A0 = Reality Display Processer Control Interface Base Register ($A4100000)
+  la a1,start ; A1 = DPC Command Start Address
+  sw a1,DPC_START(a0) ; Store DPC Command Start Address To DP Start Register ($A4100000)
+  addi a1,end-start ; A1 = DPC Command End Address
+  sw a1,DPC_END(a0) ; Store DPC Command End Address To DP End Register ($A4100004)
   endm
 
 No_Op: macro ; No Effect On RDP Command Execution, Useful For Padding Command Buffers
