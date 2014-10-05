@@ -1,26 +1,25 @@
 ; N64 'Bare Metal' 16BPP 320x240 Fill Rectangle RDP Demo by krom (Peter Lemon):
-
   include LIB\N64.INC ; Include N64 Definitions
-  dcb 2097152,$00 ; Set ROM Size
+  dcb 1048576,$00 ; Set ROM Size
   org $80000000 ; Entry Point Of Code
   include LIB\N64_HEADER.ASM  ; Include 64 Byte Header & Vector Table
   incbin LIB\N64_BOOTCODE.BIN ; Include 4032 Byte Boot Code
 
 Start:
-  include LIB\N64_INIT.ASM ; Include Initialisation Routine
-  include LIB\N64_GFX.INC  ; Include Graphics Macros
+  include LIB\N64_GFX.INC ; Include Graphics Macros
+  N64_INIT ; Run N64 Initialisation Routine
 
-  ScreenNTSC 320,240, BPP16, $A0100000 ; Screen NTSC: 320x240, 16BPP, DRAM Origin $A0100000
+  ScreenNTSC 320, 240, BPP16, $A0100000 ; Screen NTSC: 320x240, 16BPP, DRAM Origin $A0100000
 
   WaitScanline $200 ; Wait For Scanline To Reach Vertical Blank
 
-  DPC RDPBuffer,RDPBufferEnd ; Run DPC Command Buffer: Start, End
+  DPC RDPBuffer, RDPBufferEnd ; Run DPC Command Buffer: Start, End
 
 Loop:
   j Loop
   nop ; Delay Slot
 
-  align 8 ; Align 64-bit
+  align 8 ; Align 64-Bit
 RDPBuffer:
   Set_Scissor 0<<2,0<<2, 320<<2,240<<2, 0 ; Set Scissor: XH 0.0, YH 0.0, XL 320.0, YL 240.0, Scissor Field Enable Off
   Set_Other_Modes CYCLE_TYPE_FILL, 0 ; Set Other Modes
