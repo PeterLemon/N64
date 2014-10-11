@@ -145,11 +145,6 @@ ClearScreen:
   PrintString $A010,0,16,FontBlack,PAGEBREAK,79 ; Print Text String To VRAM Using Font At X,Y Position
 
 
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
   ; Load RSP Code To IMEM
   DMASPRD RSPADDCode, RSPADDCodeEND, SP_IMEM ; DMA Data Copy MEM->RSP RAM: Start Address, End Address, Destination DRAM Address
 
@@ -198,11 +193,6 @@ ClearScreen:
   PrintString $A010,528,32,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   ADDENDA:
 
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)
   la a1,VALUEWORDB ; A1 = Word Data Offset
@@ -211,11 +201,6 @@ ClearScreen:
   la a1,VALUEWORDC ; A1 = Word Data Offset
   lw t0,0(a1)      ; T0 = Word Data
   sw t0,4(a0)      ; Store Word Data To DMEM
-
-  ; Set RSP Program Counter
-  lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
-  li t0,$0000 ; T0 = RSP Program Counter Set To Zero (Start Of RSP Code)
-  sw t0,SP_PC(a0) ; Store RSP Program Counter To SP PC Register ($A4080000)
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -247,11 +232,6 @@ ClearScreen:
   PrintString $A010,528,56,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   ADDENDB:
 
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)
   la a1,VALUEWORDC ; A1 = Word Data Offset
@@ -260,11 +240,6 @@ ClearScreen:
   la a1,VALUEWORDD ; A1 = Word Data Offset
   lw t0,0(a1)      ; T0 = Word Data
   sw t0,4(a0)      ; Store Word Data To DMEM
-
-  ; Set RSP Program Counter
-  lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
-  li t0,$0000 ; T0 = RSP Program Counter Set To Zero (Start Of RSP Code)
-  sw t0,SP_PC(a0) ; Store RSP Program Counter To SP PC Register ($A4080000)
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -296,11 +271,6 @@ ClearScreen:
   PrintString $A010,528,80,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   ADDENDC:
 
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)
   la a1,VALUEWORDD ; A1 = Word Data Offset
@@ -309,11 +279,6 @@ ClearScreen:
   la a1,VALUEWORDE ; A1 = Word Data Offset
   lw t0,0(a1)      ; T0 = Word Data
   sw t0,4(a0)      ; Store Word Data To DMEM
-
-  ; Set RSP Program Counter
-  lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
-  li t0,$0000 ; T0 = RSP Program Counter Set To Zero (Start Of RSP Code)
-  sw t0,SP_PC(a0) ; Store RSP Program Counter To SP PC Register ($A4080000)
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -345,11 +310,6 @@ ClearScreen:
   PrintString $A010,528,104,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   ADDENDD:
 
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)
   la a1,VALUEWORDE ; A1 = Word Data Offset
@@ -358,11 +318,6 @@ ClearScreen:
   la a1,VALUEWORDF ; A1 = Word Data Offset
   lw t0,0(a1)      ; T0 = Word Data
   sw t0,4(a0)      ; Store Word Data To DMEM
-
-  ; Set RSP Program Counter
-  lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
-  li t0,$0000 ; T0 = RSP Program Counter Set To Zero (Start Of RSP Code)
-  sw t0,SP_PC(a0) ; Store RSP Program Counter To SP PC Register ($A4080000)
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -394,11 +349,6 @@ ClearScreen:
   PrintString $A010,528,128,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   ADDENDE:
 
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)
   la a1,VALUEWORDF ; A1 = Word Data Offset
@@ -407,11 +357,6 @@ ClearScreen:
   la a1,VALUEWORDG ; A1 = Word Data Offset
   lw t0,0(a1)      ; T0 = Word Data
   sw t0,4(a0)      ; Store Word Data To DMEM
-
-  ; Set RSP Program Counter
-  lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
-  li t0,$0000 ; T0 = RSP Program Counter Set To Zero (Start Of RSP Code)
-  sw t0,SP_PC(a0) ; Store RSP Program Counter To SP PC Register ($A4080000)
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -443,11 +388,6 @@ ClearScreen:
   PrintString $A010,528,152,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   ADDENDF:
 
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)
   la a1,VALUEWORDA ; A1 = Word Data Offset
@@ -456,11 +396,6 @@ ClearScreen:
   la a1,VALUEWORDG ; A1 = Word Data Offset
   lw t0,0(a1)      ; T0 = Word Data
   sw t0,4(a0)      ; Store Word Data To DMEM
-
-  ; Set RSP Program Counter
-  lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
-  li t0,$0000 ; T0 = RSP Program Counter Set To Zero (Start Of RSP Code)
-  sw t0,SP_PC(a0) ; Store RSP Program Counter To SP PC Register ($A4080000)
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -493,11 +428,6 @@ ClearScreen:
   ADDENDG:
 
 
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
   ; Load RSP Code To IMEM
   DMASPRD RSPADDICodeA, RSPADDICodeAEND, SP_IMEM ; DMA Data Copy MEM->RSP RAM: Start Address, End Address, Destination DRAM Address
 
@@ -506,11 +436,6 @@ ClearScreen:
   la a1,VALUEWORDA ; A1 = Word Data Offset
   lw t0,0(a1) ; T0 = Word Data
   sw t0,0(a0) ; Store Word Data To DMEM
-
-  ; Set RSP Program Counter
-  lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
-  li t0,$0000 ; T0 = RSP Program Counter Set To Zero (Start Of RSP Code)
-  sw t0,SP_PC(a0) ; Store RSP Program Counter To SP PC Register ($A4080000)
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -543,11 +468,6 @@ ClearScreen:
   PrintString $A010,528,200,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   ADDIENDA:
 
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
   ; Load RSP Code To IMEM
   DMASPRD RSPADDICodeB, RSPADDICodeBEND, SP_IMEM ; DMA Data Copy MEM->RSP RAM: Start Address, End Address, Destination DRAM Address
 
@@ -556,11 +476,6 @@ ClearScreen:
   la a1,VALUEWORDB ; A1 = Word Data Offset
   lw t0,0(a1) ; T0 = Word Data
   sw t0,0(a0) ; Store Word Data To DMEM
-
-  ; Set RSP Program Counter
-  lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
-  li t0,$0000 ; T0 = RSP Program Counter Set To Zero (Start Of RSP Code)
-  sw t0,SP_PC(a0) ; Store RSP Program Counter To SP PC Register ($A4080000)
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -592,11 +507,6 @@ ClearScreen:
   PrintString $A010,528,224,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   ADDIENDB:
 
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
   ; Load RSP Code To IMEM
   DMASPRD RSPADDICodeC, RSPADDICodeCEND, SP_IMEM ; DMA Data Copy MEM->RSP RAM: Start Address, End Address, Destination DRAM Address
 
@@ -605,11 +515,6 @@ ClearScreen:
   la a1,VALUEWORDC ; A1 = Word Data Offset
   lw t0,0(a1) ; T0 = Word Data
   sw t0,0(a0) ; Store Word Data To DMEM
-
-  ; Set RSP Program Counter
-  lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
-  li t0,$0000 ; T0 = RSP Program Counter Set To Zero (Start Of RSP Code)
-  sw t0,SP_PC(a0) ; Store RSP Program Counter To SP PC Register ($A4080000)
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -641,11 +546,6 @@ ClearScreen:
   PrintString $A010,528,248,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   ADDIENDC:
 
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
   ; Load RSP Code To IMEM
   DMASPRD RSPADDICodeD, RSPADDICodeDEND, SP_IMEM ; DMA Data Copy MEM->RSP RAM: Start Address, End Address, Destination DRAM Address
 
@@ -654,11 +554,6 @@ ClearScreen:
   la a1,IWORDD ; A1 = Word Data Offset
   lw t0,0(a1) ; T0 = Word Data
   sw t0,0(a0) ; Store Word Data To DMEM
-
-  ; Set RSP Program Counter
-  lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
-  li t0,$0000 ; T0 = RSP Program Counter Set To Zero (Start Of RSP Code)
-  sw t0,SP_PC(a0) ; Store RSP Program Counter To SP PC Register ($A4080000)
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -690,11 +585,6 @@ ClearScreen:
   PrintString $A010,528,272,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   ADDIENDD:
 
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
   ; Load RSP Code To IMEM
   DMASPRD RSPADDICodeE, RSPADDICodeEEND, SP_IMEM ; DMA Data Copy MEM->RSP RAM: Start Address, End Address, Destination DRAM Address
 
@@ -703,11 +593,6 @@ ClearScreen:
   la a1,VALUEWORDE ; A1 = Word Data Offset
   lw t0,0(a1) ; T0 = Word Data
   sw t0,0(a0) ; Store Word Data To DMEM
-
-  ; Set RSP Program Counter
-  lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
-  li t0,$0000 ; T0 = RSP Program Counter Set To Zero (Start Of RSP Code)
-  sw t0,SP_PC(a0) ; Store RSP Program Counter To SP PC Register ($A4080000)
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -739,11 +624,6 @@ ClearScreen:
   PrintString $A010,528,296,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   ADDIENDE:
 
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
   ; Load RSP Code To IMEM
   DMASPRD RSPADDICodeF, RSPADDICodeFEND, SP_IMEM ; DMA Data Copy MEM->RSP RAM: Start Address, End Address, Destination DRAM Address
 
@@ -752,11 +632,6 @@ ClearScreen:
   la a1,VALUEWORDF ; A1 = Word Data Offset
   lw t0,0(a1) ; T0 = Word Data
   sw t0,0(a0) ; Store Word Data To DMEM
-
-  ; Set RSP Program Counter
-  lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
-  li t0,$0000 ; T0 = RSP Program Counter Set To Zero (Start Of RSP Code)
-  sw t0,SP_PC(a0) ; Store RSP Program Counter To SP PC Register ($A4080000)
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -788,21 +663,11 @@ ClearScreen:
   PrintString $A010,528,320,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   ADDIENDF:
 
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)
   la a1,VALUEWORDA ; A1 = Word Data Offset
   lw t0,0(a1) ; T0 = Word Data
   sw t0,0(a0) ; Store Word Data To DMEM
-
-  ; Set RSP Program Counter
-  lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
-  li t0,$0000 ; T0 = RSP Program Counter Set To Zero (Start Of RSP Code)
-  sw t0,SP_PC(a0) ; Store RSP Program Counter To SP PC Register ($A4080000)
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -837,11 +702,6 @@ ClearScreen:
 
   PrintString $A010,0,352,FontBlack,PAGEBREAK,79 ; Print Text String To VRAM Using Font At X,Y Position
 
-
-  ; Set RSP Status (Halt Execution)
-  lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  li t0,SET_HLT ; T0 = RSP Status: Set Halt
-  sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
 
 Loop:
   WaitScanline $1E0 ; Wait For Scanline To Reach Vertical Blank
@@ -940,9 +800,7 @@ RSPADDCode:
   lw t1,4(a0) ; T1 = Word Data 1
   add t0,t1 ; T0 = Test Word Data
   sw t0,0(a0) ; RSP DMEM = Test Word Data
-  RSPADDLoop:
-    j RSPADDLoop
-    nop ; Delay Slot
+  break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
   objend ; Set End Of RSP Code Object
 RSPADDCodeEND:
 
@@ -953,9 +811,7 @@ RSPADDICodeA:
   lw t0,0(a0) ; T0 = Word Data 0
   addi t0,VALUEIWORDB ; T0 = Test Word Data
   sw t0,0(a0) ; RSP DMEM = Test Word Data
-  RSPADDILoopA:
-    j RSPADDILoopA
-    nop ; Delay Slot
+  break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
   objend ; Set End Of RSP Code Object
 RSPADDICodeAEND:
 
@@ -966,9 +822,7 @@ RSPADDICodeB:
   lw t0,0(a0) ; T0 = Word Data 0
   addi t0,VALUEIWORDC ; T0 = Test Word Data
   sw t0,0(a0) ; RSP DMEM = Test Word Data
-  RSPADDILoopB:
-    j RSPADDILoopB
-    nop ; Delay Slot
+  break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
   objend ; Set End Of RSP Code Object
 RSPADDICodeBEND:
 
@@ -979,9 +833,7 @@ RSPADDICodeC:
   lw t0,0(a0) ; T0 = Word Data 0
   addi t0,VALUEIWORDD ; T0 = Test Word Data
   sw t0,0(a0) ; RSP DMEM = Test Word Data
-  RSPADDILoopC:
-    j RSPADDILoopC
-    nop ; Delay Slot
+  break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
   objend ; Set End Of RSP Code Object
 RSPADDICodeCEND:
 
@@ -992,9 +844,7 @@ RSPADDICodeD:
   lw t0,0(a0) ; T0 = Word Data 0
   addi t0,VALUEIWORDE ; T0 = Test Word Data
   sw t0,0(a0) ; RSP DMEM = Test Word Data
-  RSPADDILoopD:
-    j RSPADDILoopD
-    nop ; Delay Slot
+  break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
   objend ; Set End Of RSP Code Object
 RSPADDICodeDEND:
 
@@ -1005,9 +855,7 @@ RSPADDICodeE:
   lw t0,0(a0) ; T0 = Word Data 0
   addi t0,VALUEIWORDF ; T0 = Test Word Data
   sw t0,0(a0) ; RSP DMEM = Test Word Data
-  RSPADDILoopE:
-    j RSPADDILoopE
-    nop ; Delay Slot
+  break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
   objend ; Set End Of RSP Code Object
 RSPADDICodeEEND:
 
@@ -1018,8 +866,6 @@ RSPADDICodeF:
   lw t0,0(a0) ; T0 = Word Data 0
   addi t0,VALUEIWORDG ; T0 = Test Word Data
   sw t0,0(a0) ; RSP DMEM = Test Word Data
-  RSPADDILoopF:
-    j RSPADDILoopF
-    nop ; Delay Slot
+  break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
   objend ; Set End Of RSP Code Object
 RSPADDICodeFEND:
