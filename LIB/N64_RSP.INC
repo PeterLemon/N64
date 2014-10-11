@@ -21,7 +21,7 @@ RSP_SG7: equ $0004000 ; SP_STATUS: Signal 7 Set (Bit 14)
 ; SP Status Write Flags:
 CLR_HLT: equ $0000001 ; SP_STATUS: Clear Halt (Bit 0)
 SET_HLT: equ $0000002 ; SP_STATUS: Set Halt (Bit 1)
-CLR_BRK: equ $0000004 ; SP_STATUS: Clear Break (Bit 2)
+CLR_BRK: equ $0000004 ; SP_STATUS: Clear Broke (Bit 2)
 CLR_INT: equ $0000008 ; SP_STATUS: Clear Interrupt (Bit 3)
 SET_INT: equ $0000010 ; SP_STATUS: Set Interrupt (Bit 4)
 CLR_STP: equ $0000020 ; SP_STATUS: Clear Single Step (Bit 5)
