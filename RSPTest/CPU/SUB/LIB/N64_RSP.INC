@@ -97,7 +97,7 @@ SET_SG6: equ $0400000 ; SP_STATUS: Set Signal 6 (Bit 22)
 CLR_SG7: equ $0800000 ; SP_STATUS: Clear Signal 7 (Bit 23)
 SET_SG7: equ $1000000 ; SP_STATUS: Set Signal 7 (Bit 24)
 
-DMASPRD: macro start, end, dest ; DMA Data Copy MEM->RSP RAM: Start Address, End Address, Destination DRAM Address
+DMASPRD: macro start, end, dest ; DMA Data Read MEM->RSP RAM: Start Address, End Address, Destination DRAM Address
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
   lui t0,SP_MEM_BASE ; T0 = SP Memory Base Register ($A4000000)
   ori t0,dest&$1FFF ; T0 = SP Memory Address Offset ($A4000000..$A4001FFF 8KB)
@@ -108,7 +108,7 @@ DMASPRD: macro start, end, dest ; DMA Data Copy MEM->RSP RAM: Start Address, End
   sw t0,SP_RD_LEN(a0) ; Store DMA Length To SP Read Length Register ($A4040008)
   endm
 
-DMASPWR: macro start, end, dest ; DMA Data Copy RSP RAM->MEM: Start Address, End Address, Destination DRAM Address
+DMASPWR: macro start, end, dest ; DMA Data Write RSP RAM->MEM: Start Address, End Address, Source DRAM Address
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
   lui t0,SP_MEM_BASE ; T0 = SP Memory Base Register ($A4000000)
   ori t0,dest&$1FFF ; T0 = SP Memory Address Offset ($A4000000..$A4001FFF 8KB)
