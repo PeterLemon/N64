@@ -122,7 +122,7 @@ DMASPWR: macro start, end, dest ; DMA Data Copy RSP RAM->MEM: Start Address, End
 ; RSP CP2 Vector Operation Matrix Instructions (COP2):
 VMULF: macro vd, vs, vt, element ; Vector Multiply Signed Fractions: VMULF VD,VS,VT[ELEMENT]
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
-  dw $4A000000|(element<<21)|(vt<<16)|(vt<<11)|(vd<<6)|$00 ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VMULF $00 (Bit 0..5)
+  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$00 ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VMULF $00 (Bit 0..5)
   endm
 VMULU: macro vd, vs, vt, element ; Vector Multiply Unsigned Fractions: VMULU VD,VS,VT[ELEMENT]
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
