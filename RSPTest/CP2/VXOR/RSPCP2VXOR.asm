@@ -967,7 +967,7 @@ RSPVXORCode:
   obj $0000 ; Set Base Of RSP Code Object To Zero
   lqv v00,(e0),$00,(0) ; V0 = 128-Bit DMEM $000(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   lqv v01,(e0),$01,(0) ; V1 = 128-Bit DMEM $010(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
-  vxor v00,v00,v01,(e0) ; V0 = V0 + V1[0], Vector Logical Exclusive OR Short Elements: VXOR VD,VS,VT[ELEMENT]
+  vxor v00,v00,v01,(e0) ; V0 = V0 ^ V1[0], Vector Logical Exclusive OR Short Elements: VXOR VD,VS,VT[ELEMENT]
   sqv v00,(e0),$00,(0) ; 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
   objend ; Set End Of RSP Code Object
@@ -978,7 +978,7 @@ RSPVNXORCode:
   obj $0000 ; Set Base Of RSP Code Object To Zero
   lqv v00,(e0),$00,(0) ; V0 = 128-Bit DMEM $000(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   lqv v01,(e0),$01,(0) ; V1 = 128-Bit DMEM $010(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
-  vnxor v00,v00,v01,(e0) ; V0 = V0 + V1[0], Vector Logical NOT Exclusive OR Short Elements With Carry: VNXOR VD,VS,VT[ELEMENT]
+  vnxor v00,v00,v01,(e0) ; V0 = !(V0 ^ V1[0]), Vector Logical NOT Exclusive OR Short Elements With Carry: VNXOR VD,VS,VT[ELEMENT]
   sqv v00,(e0),$00,(0) ; 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
   objend ; Set End Of RSP Code Object
