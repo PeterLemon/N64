@@ -218,7 +218,7 @@ ClearScreen:
   lw t0,28(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
-  la a1,VC0VCCWORD ; A1 = Word Data Offset
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
   lw t0,32(a0) ; T0 = Word Data
   sw t0,0(a1)  ; Store Word Data To MEM
 
@@ -260,10 +260,10 @@ ClearScreen:
   PrintString $A010,472,56,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,56,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
 
-  PrintString $A010,528,24,FontBlack,VC0HEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,24,FontBlack,VC0VCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,24,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,24,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,32,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,32,FontBlack,VC0VCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,32,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,40,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,576,40,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
 
@@ -293,9 +293,9 @@ ClearScreen:
   bne t0,t1,VANDFAILA ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
-  la a0,VC0VCCWORD       ; A0 = Word Data Offset
+  la a0,VCOVCCWORD       ; A0 = Word Data Offset
   lw t0,0(a0)            ; T0 = Word Data
-  la a0,VANDVC0VCCCHECKA ; A0 = Word Check Data Offset
+  la a0,VANDVCOVCCCHECKA ; A0 = Word Check Data Offset
   lw t1,0(a0)            ; T1 = Word Check Data
   bne t0,t1,VANDFAILA ; Compare Result Equality With Check Data
 
@@ -380,7 +380,7 @@ ClearScreen:
   lw t0,28(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
-  la a1,VC0VCCWORD ; A1 = Word Data Offset
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
   lw t0,32(a0) ; T0 = Word Data
   sw t0,0(a1)  ; Store Word Data To MEM
 
@@ -422,10 +422,10 @@ ClearScreen:
   PrintString $A010,472,104,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,104,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
 
-  PrintString $A010,528,72,FontBlack,VC0HEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,72,FontBlack,VC0VCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,72,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,72,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,80,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,80,FontBlack,VC0VCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,80,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,88,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,576,88,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
 
@@ -455,9 +455,9 @@ ClearScreen:
   bne t0,t1,VANDFAILB ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
-  la a0,VC0VCCWORD       ; A0 = Word Data Offset
+  la a0,VCOVCCWORD       ; A0 = Word Data Offset
   lw t0,0(a0)            ; T0 = Word Data
-  la a0,VANDVC0VCCCHECKB ; A0 = Word Check Data Offset
+  la a0,VANDVCOVCCCHECKB ; A0 = Word Check Data Offset
   lw t1,0(a0)            ; T1 = Word Check Data
   bne t0,t1,VANDFAILB ; Compare Result Equality With Check Data
 
@@ -542,7 +542,7 @@ ClearScreen:
   lw t0,28(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
-  la a1,VC0VCCWORD ; A1 = Word Data Offset
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
   lw t0,32(a0) ; T0 = Word Data
   sw t0,0(a1)  ; Store Word Data To MEM
 
@@ -584,10 +584,10 @@ ClearScreen:
   PrintString $A010,472,152,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,152,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
 
-  PrintString $A010,528,120,FontBlack,VC0HEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,120,FontBlack,VC0VCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,120,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,120,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,128,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,128,FontBlack,VC0VCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,128,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,136,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,576,136,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
 
@@ -617,9 +617,9 @@ ClearScreen:
   bne t0,t1,VANDFAILC ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
-  la a0,VC0VCCWORD       ; A0 = Word Data Offset
+  la a0,VCOVCCWORD       ; A0 = Word Data Offset
   lw t0,0(a0)            ; T0 = Word Data
-  la a0,VANDVC0VCCCHECKC ; A0 = Word Check Data Offset
+  la a0,VANDVCOVCCCHECKC ; A0 = Word Check Data Offset
   lw t1,0(a0)            ; T1 = Word Check Data
   bne t0,t1,VANDFAILC ; Compare Result Equality With Check Data
 
@@ -704,7 +704,7 @@ ClearScreen:
   lw t0,28(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
-  la a1,VC0VCCWORD ; A1 = Word Data Offset
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
   lw t0,32(a0) ; T0 = Word Data
   sw t0,0(a1)  ; Store Word Data To MEM
 
@@ -746,10 +746,10 @@ ClearScreen:
   PrintString $A010,472,200,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,200,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
 
-  PrintString $A010,528,168,FontBlack,VC0HEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,168,FontBlack,VC0VCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,168,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,168,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,176,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,176,FontBlack,VC0VCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,176,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,184,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,576,184,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
 
@@ -779,9 +779,9 @@ ClearScreen:
   bne t0,t1,VANDFAILD ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
-  la a0,VC0VCCWORD       ; A0 = Word Data Offset
+  la a0,VCOVCCWORD       ; A0 = Word Data Offset
   lw t0,0(a0)            ; T0 = Word Data
-  la a0,VANDVC0VCCCHECKD ; A0 = Word Check Data Offset
+  la a0,VANDVCOVCCCHECKD ; A0 = Word Check Data Offset
   lw t1,0(a0)            ; T1 = Word Check Data
   bne t0,t1,VANDFAILD ; Compare Result Equality With Check Data
 
@@ -875,7 +875,7 @@ ClearScreen:
   lw t0,28(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
-  la a1,VC0VCCWORD ; A1 = Word Data Offset
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
   lw t0,32(a0) ; T0 = Word Data
   sw t0,0(a1)  ; Store Word Data To MEM
 
@@ -917,10 +917,10 @@ ClearScreen:
   PrintString $A010,472,248,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,248,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
 
-  PrintString $A010,528,216,FontBlack,VC0HEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,216,FontBlack,VC0VCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,216,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,216,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,224,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,224,FontBlack,VC0VCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,224,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,232,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,576,232,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
 
@@ -950,9 +950,9 @@ ClearScreen:
   bne t0,t1,VNANDFAILA ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
-  la a0,VC0VCCWORD        ; A0 = Word Data Offset
+  la a0,VCOVCCWORD        ; A0 = Word Data Offset
   lw t0,0(a0)             ; T0 = Word Data
-  la a0,VNANDVC0VCCCHECKA ; A0 = Word Check Data Offset
+  la a0,VNANDVCOVCCCHECKA ; A0 = Word Check Data Offset
   lw t1,0(a0)             ; T1 = Word Check Data
   bne t0,t1,VNANDFAILA ; Compare Result Equality With Check Data
 
@@ -1037,7 +1037,7 @@ ClearScreen:
   lw t0,28(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
-  la a1,VC0VCCWORD ; A1 = Word Data Offset
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
   lw t0,32(a0) ; T0 = Word Data
   sw t0,0(a1)  ; Store Word Data To MEM
 
@@ -1079,10 +1079,10 @@ ClearScreen:
   PrintString $A010,472,296,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,296,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
 
-  PrintString $A010,528,264,FontBlack,VC0HEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,264,FontBlack,VC0VCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,264,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,264,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,272,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,272,FontBlack,VC0VCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,272,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,280,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,576,280,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
 
@@ -1112,9 +1112,9 @@ ClearScreen:
   bne t0,t1,VNANDFAILB ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
-  la a0,VC0VCCWORD        ; A0 = Word Data Offset
+  la a0,VCOVCCWORD        ; A0 = Word Data Offset
   lw t0,0(a0)             ; T0 = Word Data
-  la a0,VNANDVC0VCCCHECKB ; A0 = Word Check Data Offset
+  la a0,VNANDVCOVCCCHECKB ; A0 = Word Check Data Offset
   lw t1,0(a0)             ; T1 = Word Check Data
   bne t0,t1,VNANDFAILB ; Compare Result Equality With Check Data
 
@@ -1199,7 +1199,7 @@ ClearScreen:
   lw t0,28(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
-  la a1,VC0VCCWORD ; A1 = Word Data Offset
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
   lw t0,32(a0) ; T0 = Word Data
   sw t0,0(a1)  ; Store Word Data To MEM
 
@@ -1241,10 +1241,10 @@ ClearScreen:
   PrintString $A010,472,344,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,344,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
 
-  PrintString $A010,528,312,FontBlack,VC0HEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,312,FontBlack,VC0VCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,312,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,312,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,320,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,320,FontBlack,VC0VCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,320,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,328,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,576,328,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
 
@@ -1274,9 +1274,9 @@ ClearScreen:
   bne t0,t1,VNANDFAILC ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
-  la a0,VC0VCCWORD        ; A0 = Word Data Offset
+  la a0,VCOVCCWORD        ; A0 = Word Data Offset
   lw t0,0(a0)             ; T0 = Word Data
-  la a0,VNANDVC0VCCCHECKC ; A0 = Word Check Data Offset
+  la a0,VNANDVCOVCCCHECKC ; A0 = Word Check Data Offset
   lw t1,0(a0)             ; T1 = Word Check Data
   bne t0,t1,VNANDFAILC ; Compare Result Equality With Check Data
 
@@ -1361,7 +1361,7 @@ ClearScreen:
   lw t0,28(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
-  la a1,VC0VCCWORD ; A1 = Word Data Offset
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
   lw t0,32(a0) ; T0 = Word Data
   sw t0,0(a1)  ; Store Word Data To MEM
 
@@ -1403,10 +1403,10 @@ ClearScreen:
   PrintString $A010,472,392,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,392,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
 
-  PrintString $A010,528,360,FontBlack,VC0HEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,360,FontBlack,VC0VCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,360,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,360,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,368,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,576,368,FontBlack,VC0VCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,368,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,528,376,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,576,376,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
 
@@ -1436,9 +1436,9 @@ ClearScreen:
   bne t0,t1,VNANDFAILD ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
-  la a0,VC0VCCWORD        ; A0 = Word Data Offset
+  la a0,VCOVCCWORD        ; A0 = Word Data Offset
   lw t0,0(a0)             ; T0 = Word Data
-  la a0,VNANDVC0VCCCHECKD ; A0 = Word Check Data Offset
+  la a0,VNANDVCOVCCCHECKD ; A0 = Word Check Data Offset
   lw t1,0(a0)             ; T1 = Word Check Data
   bne t0,t1,VNANDFAILD ; Compare Result Equality With Check Data
 
@@ -1485,7 +1485,7 @@ PASS: db "PASS"
 
 DOLLAR: db "$"
 
-VC0HEX: db "VC0: $"
+VCOHEX: db "VCO: $"
 VCCHEX: db "VCC: $"
 VCEHEX: db "VCE: $"
 
@@ -1524,17 +1524,17 @@ VNANDVACHECKD: dh $0011, $2233, $4455, $6677, $8899, $AABB, $CCDD, $EEFF
 VAQUAD: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
 VDQUAD: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
 
-VANDVC0VCCCHECKA: dh $0000, $008F
-VANDVC0VCCCHECKB: dh $0000, $008F
-VANDVC0VCCCHECKC: dh $0000, $008F
-VANDVC0VCCCHECKD: dh $0000, $008F
+VANDVCOVCCCHECKA: dh $0000, $008F
+VANDVCOVCCCHECKB: dh $0000, $008F
+VANDVCOVCCCHECKC: dh $0000, $008F
+VANDVCOVCCCHECKD: dh $0000, $008F
 
-VNANDVC0VCCCHECKA: dh $0000, $008F
-VNANDVC0VCCCHECKB: dh $0000, $008F
-VNANDVC0VCCCHECKC: dh $0000, $008F
-VNANDVC0VCCCHECKD: dh $0000, $008F
+VNANDVCOVCCCHECKA: dh $0000, $008F
+VNANDVCOVCCCHECKB: dh $0000, $008F
+VNANDVCOVCCCHECKC: dh $0000, $008F
+VNANDVCOVCCCHECKD: dh $0000, $008F
 
-VC0VCCWORD: dh $0000, $0000
+VCOVCCWORD: dh $0000, $0000
 
 VANDVCECHECKA: db $00
 VANDVCECHECKB: db $00
@@ -1557,11 +1557,11 @@ RSPVANDCode:
   sqv v00,(e0),$00,(0)  ; 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   vsar v00,v00,v00,(e10) ; V0 = Vector Accumulator, Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT]
   sqv v00,(e0),$01,(0)   ; 128-Bit DMEM $010(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
-  cfc2 t0,vc0   ; T0 = CP2 Control Register VC0
+  cfc2 t0,vco   ; T0 = RSP CP2 Control Register VCO: VCO (Vector Carry Out)
   sh t0,$20(r0) ; 16-Bit DMEM $020(R0) = T0
-  cfc2 t0,vcc   ; T0 = CP2 Control Register VCC
+  cfc2 t0,vcc   ; T0 = RSP CP2 Control Register VCC: VCC (Vector Compare Code)
   sh t0,$22(r0) ; 16-Bit DMEM $022(R0) = T0
-  cfc2 t0,vce   ; T0 = CP2 Control Register VCE
+  cfc2 t0,vce   ; T0 = RSP CP2 Control Register VCE: VCE (Vector Compare Extension)
   sb t0,$24(r0) ;  8-Bit DMEM $024(R0) = T0
   break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
   align 8 ; Align 64-Bit
@@ -1577,11 +1577,11 @@ RSPVNANDCode:
   sqv v00,(e0),$00,(0)   ; 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   vsar v00,v00,v00,(e10) ; V0 = Vector Accumulator, Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT]
   sqv v00,(e0),$01,(0)   ; 128-Bit DMEM $010(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
-  cfc2 t0,vc0   ; T0 = CP2 Control Register VC0
+  cfc2 t0,vco   ; T0 = RSP CP2 Control Register VCO: VCO (Vector Carry Out)
   sh t0,$20(r0) ; 16-Bit DMEM $020(R0) = T0
-  cfc2 t0,vcc   ; T0 = CP2 Control Register VCC
+  cfc2 t0,vcc   ; T0 = RSP CP2 Control Register VCC: VCC (Vector Compare Code)
   sh t0,$22(r0) ; 16-Bit DMEM $022(R0) = T0
-  cfc2 t0,vce   ; T0 = CP2 Control Register VCE
+  cfc2 t0,vce   ; T0 = RSP CP2 Control Register VCE: VCE (Vector Compare Extension)
   sb t0,$24(r0) ;  8-Bit DMEM $024(R0) = T0
   break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
   align 8 ; Align 64-Bit

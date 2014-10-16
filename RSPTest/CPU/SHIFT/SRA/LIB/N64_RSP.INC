@@ -54,9 +54,9 @@ E14: equ 14
 E15: equ 15
 
 ; RSP CP2 Control Registers (CFC2/CTC2):
-VC0: equr 0
-VCC: equr 1
-VCE: equr 2
+VCO: equr 0 ; RSP CP2 Control Register 0: Vector Carry Out
+VCC: equr 1 ; RSP CP2 Control Register 1: Vector Compare Code
+VCE: equr 2 ; RSP CP2 Control Register 2: Vector Compare Extension
 
 ; SP Status Read Flags:
 RSP_HLT: equ $0001 ; SP_STATUS: Halt (Bit 0)
