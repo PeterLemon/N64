@@ -53,6 +53,11 @@ E13: equ 13
 E14: equ 14
 E15: equ 15
 
+; RSP CP2 Control Registers (CFC2/CTC2):
+VC0: equr 0
+VCC: equr 1
+VCE: equr 2
+
 ; SP Status Read Flags:
 RSP_HLT: equ $0001 ; SP_STATUS: Halt (Bit 0)
 RSP_BRK: equ $0002 ; SP_STATUS: Break (Bit 1)
