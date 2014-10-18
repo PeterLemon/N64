@@ -137,7 +137,7 @@ ClearScreen:
 
 
   PrintString $A010,88,8,FontRed,VSVTHEX,10 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,336,8,FontRed,VDHEX,7 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString $A010,336,8,FontRed,VAVDHEX,10 ; Print Text String To VRAM Using Font At X,Y Position
   PrintString $A010,528,8,FontRed,TEST,10 ; Print Text String To VRAM Using Font At X,Y Position
 
 
@@ -208,6 +208,41 @@ ClearScreen:
   lw t0,12(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
+  la a1,VAQUAD ; A1 = Quad Data Offset
+  lw t0,16(a0) ; T0 = Quad Data
+  sw t0,0(a1)  ; Store Quad Data To MEM
+  lw t0,20(a0) ; T0 = Quad Data
+  sw t0,4(a1)  ; Store Quad Data To MEM
+  lw t0,24(a0) ; T0 = Quad Data
+  sw t0,8(a1)  ; Store Quad Data To MEM
+  lw t0,28(a0) ; T0 = Quad Data
+  sw t0,12(a1) ; Store Quad Data To MEM
+
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
+  lw t0,32(a0) ; T0 = Word Data
+  sw t0,0(a1)  ; Store Word Data To MEM
+
+  la a1,VCEBYTE ; A1 = Byte Data Offset
+  lb t0,36(a0) ; T0 = Byte Data
+  sb t0,0(a1)  ; Store Byte Data To MEM
+
+  PrintString $A010,328,24,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,24,FontBlack,VAQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,24,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,24,FontBlack,VAQUAD+2,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,24,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,24,FontBlack,VAQUAD+4,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,24,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,24,FontBlack,VAQUAD+6,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,328,32,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,32,FontBlack,VAQUAD+8,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,32,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,32,FontBlack,VAQUAD+10,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,32,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,32,FontBlack,VAQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,32,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,32,FontBlack,VAQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+
   PrintString $A010,328,48,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,336,48,FontBlack,VDQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,376,48,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
@@ -224,18 +259,52 @@ ClearScreen:
   PrintValue  $A010,432,56,FontBlack,VDQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,472,56,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,56,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  la a0,VDQUAD     ; A0 = Quad Data Offset
-  ld t0,0(a0)      ; T0 = Quad Data
-  la a0,VXORCHECKA ; A0 = Quad Check Data Offset
-  ld t1,0(a0)      ; T1 = Quad Check Data
+
+  PrintString $A010,528,24,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,24,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,32,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,32,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,40,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,40,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
+
+  la a0,VDQUAD       ; A0 = Quad Data Offset
+  ld t0,0(a0)        ; T0 = Quad Data
+  la a0,VXORVDCHECKA ; A0 = Quad Check Data Offset
+  ld t1,0(a0)        ; T1 = Quad Check Data
   bne t0,t1,VXORFAILA ; Compare Result Equality With Check Data
   nop ; Delay Slot
-  la a0,VDQUAD     ; A0 = Quad Data Offset
-  ld t0,8(a0)      ; T0 = Quad Data
-  la a0,VXORCHECKA ; A0 = Quad Check Data Offset
-  ld t1,8(a0)      ; T1 = Quad Check Data
+  la a0,VDQUAD       ; A0 = Quad Data Offset
+  ld t0,8(a0)        ; T0 = Quad Data
+  la a0,VXORVDCHECKA ; A0 = Quad Check Data Offset
+  ld t1,8(a0)        ; T1 = Quad Check Data
   bne t0,t1,VXORFAILA ; Compare Result Equality With Check Data
   nop ; Delay Slot
+
+  la a0,VAQUAD       ; A0 = Quad Data Offset
+  ld t0,0(a0)        ; T0 = Quad Data
+  la a0,VXORVACHECKA ; A0 = Quad Check Data Offset
+  ld t1,0(a0)        ; T1 = Quad Check Data
+  bne t0,t1,VXORFAILA ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+  la a0,VAQUAD       ; A0 = Quad Data Offset
+  ld t0,8(a0)        ; T0 = Quad Data
+  la a0,VXORVACHECKA ; A0 = Quad Check Data Offset
+  ld t1,8(a0)        ; T1 = Quad Check Data
+  bne t0,t1,VXORFAILA ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+
+  la a0,VCOVCCWORD       ; A0 = Word Data Offset
+  lw t0,0(a0)            ; T0 = Word Data
+  la a0,VXORVCOVCCCHECKA ; A0 = Word Check Data Offset
+  lw t1,0(a0)            ; T1 = Word Check Data
+  bne t0,t1,VXORFAILA ; Compare Result Equality With Check Data
+
+  la a0,VCEBYTE       ; A0 = Byte Data Offset
+  lb t0,0(a0)         ; T0 = Byte Data
+  la a0,VXORVCECHECKA ; A0 = Byte Check Data Offset
+  lb t1,0(a0)         ; T1 = Byte Check Data
+  bne t0,t1,VXORFAILA ; Compare Result Equality With Check Data
+
   PrintString $A010,528,56,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   j VXORENDA
   nop ; Delay Slot
@@ -301,6 +370,41 @@ ClearScreen:
   lw t0,12(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
+  la a1,VAQUAD ; A1 = Quad Data Offset
+  lw t0,16(a0) ; T0 = Quad Data
+  sw t0,0(a1)  ; Store Quad Data To MEM
+  lw t0,20(a0) ; T0 = Quad Data
+  sw t0,4(a1)  ; Store Quad Data To MEM
+  lw t0,24(a0) ; T0 = Quad Data
+  sw t0,8(a1)  ; Store Quad Data To MEM
+  lw t0,28(a0) ; T0 = Quad Data
+  sw t0,12(a1) ; Store Quad Data To MEM
+
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
+  lw t0,32(a0) ; T0 = Word Data
+  sw t0,0(a1)  ; Store Word Data To MEM
+
+  la a1,VCEBYTE ; A1 = Byte Data Offset
+  lb t0,36(a0) ; T0 = Byte Data
+  sb t0,0(a1)  ; Store Byte Data To MEM
+
+  PrintString $A010,328,72,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,72,FontBlack,VAQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,72,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,72,FontBlack,VAQUAD+2,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,72,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,72,FontBlack,VAQUAD+4,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,72,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,72,FontBlack,VAQUAD+6,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,328,80,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,80,FontBlack,VAQUAD+8,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,80,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,80,FontBlack,VAQUAD+10,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,80,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,80,FontBlack,VAQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,80,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,80,FontBlack,VAQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+
   PrintString $A010,328,96,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,336,96,FontBlack,VDQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,376,96,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
@@ -317,18 +421,52 @@ ClearScreen:
   PrintValue  $A010,432,104,FontBlack,VDQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,472,104,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,104,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  la a0,VDQUAD     ; A0 = Quad Data Offset
-  ld t0,0(a0)      ; T0 = Quad Data
-  la a0,VXORCHECKB ; A0 = Quad Check Data Offset
-  ld t1,0(a0)      ; T1 = Quad Check Data
+
+  PrintString $A010,528,72,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,72,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,80,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,80,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,88,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,88,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
+
+  la a0,VDQUAD       ; A0 = Quad Data Offset
+  ld t0,0(a0)        ; T0 = Quad Data
+  la a0,VXORVDCHECKB ; A0 = Quad Check Data Offset
+  ld t1,0(a0)        ; T1 = Quad Check Data
   bne t0,t1,VXORFAILB ; Compare Result Equality With Check Data
   nop ; Delay Slot
-  la a0,VDQUAD     ; A0 = Quad Data Offset
-  ld t0,8(a0)      ; T0 = Quad Data
-  la a0,VXORCHECKB ; A0 = Quad Check Data Offset
-  ld t1,8(a0)      ; T1 = Quad Check Data
+  la a0,VDQUAD       ; A0 = Quad Data Offset
+  ld t0,8(a0)        ; T0 = Quad Data
+  la a0,VXORVDCHECKB ; A0 = Quad Check Data Offset
+  ld t1,8(a0)        ; T1 = Quad Check Data
   bne t0,t1,VXORFAILB ; Compare Result Equality With Check Data
   nop ; Delay Slot
+
+  la a0,VAQUAD       ; A0 = Quad Data Offset
+  ld t0,0(a0)        ; T0 = Quad Data
+  la a0,VXORVACHECKB ; A0 = Quad Check Data Offset
+  ld t1,0(a0)        ; T1 = Quad Check Data
+  bne t0,t1,VXORFAILB ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+  la a0,VAQUAD       ; A0 = Quad Data Offset
+  ld t0,8(a0)        ; T0 = Quad Data
+  la a0,VXORVACHECKB ; A0 = Quad Check Data Offset
+  ld t1,8(a0)        ; T1 = Quad Check Data
+  bne t0,t1,VXORFAILB ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+
+  la a0,VCOVCCWORD       ; A0 = Word Data Offset
+  lw t0,0(a0)            ; T0 = Word Data
+  la a0,VXORVCOVCCCHECKB ; A0 = Word Check Data Offset
+  lw t1,0(a0)            ; T1 = Word Check Data
+  bne t0,t1,VXORFAILB ; Compare Result Equality With Check Data
+
+  la a0,VCEBYTE       ; A0 = Byte Data Offset
+  lb t0,0(a0)         ; T0 = Byte Data
+  la a0,VXORVCECHECKB ; A0 = Byte Check Data Offset
+  lb t1,0(a0)         ; T1 = Byte Check Data
+  bne t0,t1,VXORFAILB ; Compare Result Equality With Check Data
+
   PrintString $A010,528,104,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   j VXORENDB
   nop ; Delay Slot
@@ -394,6 +532,41 @@ ClearScreen:
   lw t0,12(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
+  la a1,VAQUAD ; A1 = Quad Data Offset
+  lw t0,16(a0) ; T0 = Quad Data
+  sw t0,0(a1)  ; Store Quad Data To MEM
+  lw t0,20(a0) ; T0 = Quad Data
+  sw t0,4(a1)  ; Store Quad Data To MEM
+  lw t0,24(a0) ; T0 = Quad Data
+  sw t0,8(a1)  ; Store Quad Data To MEM
+  lw t0,28(a0) ; T0 = Quad Data
+  sw t0,12(a1) ; Store Quad Data To MEM
+
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
+  lw t0,32(a0) ; T0 = Word Data
+  sw t0,0(a1)  ; Store Word Data To MEM
+
+  la a1,VCEBYTE ; A1 = Byte Data Offset
+  lb t0,36(a0) ; T0 = Byte Data
+  sb t0,0(a1)  ; Store Byte Data To MEM
+
+  PrintString $A010,328,120,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,120,FontBlack,VAQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,120,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,120,FontBlack,VAQUAD+2,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,120,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,120,FontBlack,VAQUAD+4,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,120,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,120,FontBlack,VAQUAD+6,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,328,128,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,128,FontBlack,VAQUAD+8,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,128,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,128,FontBlack,VAQUAD+10,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,128,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,128,FontBlack,VAQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,128,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,128,FontBlack,VAQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+
   PrintString $A010,328,144,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,336,144,FontBlack,VDQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,376,144,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
@@ -410,18 +583,52 @@ ClearScreen:
   PrintValue  $A010,432,152,FontBlack,VDQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,472,152,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,152,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  la a0,VDQUAD     ; A0 = Quad Data Offset
-  ld t0,0(a0)      ; T0 = Quad Data
-  la a0,VXORCHECKC ; A0 = Quad Check Data Offset
-  ld t1,0(a0)      ; T1 = Quad Check Data
+
+  PrintString $A010,528,120,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,120,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,128,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,128,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,136,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,136,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
+
+  la a0,VDQUAD       ; A0 = Quad Data Offset
+  ld t0,0(a0)        ; T0 = Quad Data
+  la a0,VXORVDCHECKC ; A0 = Quad Check Data Offset
+  ld t1,0(a0)        ; T1 = Quad Check Data
   bne t0,t1,VXORFAILC ; Compare Result Equality With Check Data
   nop ; Delay Slot
-  la a0,VDQUAD     ; A0 = Quad Data Offset
-  ld t0,8(a0)      ; T0 = Quad Data
-  la a0,VXORCHECKC ; A0 = Quad Check Data Offset
-  ld t1,8(a0)      ; T1 = Quad Check Data
+  la a0,VDQUAD       ; A0 = Quad Data Offset
+  ld t0,8(a0)        ; T0 = Quad Data
+  la a0,VXORVDCHECKC ; A0 = Quad Check Data Offset
+  ld t1,8(a0)        ; T1 = Quad Check Data
   bne t0,t1,VXORFAILC ; Compare Result Equality With Check Data
   nop ; Delay Slot
+
+  la a0,VAQUAD       ; A0 = Quad Data Offset
+  ld t0,0(a0)        ; T0 = Quad Data
+  la a0,VXORVACHECKC ; A0 = Quad Check Data Offset
+  ld t1,0(a0)        ; T1 = Quad Check Data
+  bne t0,t1,VXORFAILC ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+  la a0,VAQUAD       ; A0 = Quad Data Offset
+  ld t0,8(a0)        ; T0 = Quad Data
+  la a0,VXORVACHECKC ; A0 = Quad Check Data Offset
+  ld t1,8(a0)        ; T1 = Quad Check Data
+  bne t0,t1,VXORFAILC ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+
+  la a0,VCOVCCWORD       ; A0 = Word Data Offset
+  lw t0,0(a0)            ; T0 = Word Data
+  la a0,VXORVCOVCCCHECKC ; A0 = Word Check Data Offset
+  lw t1,0(a0)            ; T1 = Word Check Data
+  bne t0,t1,VXORFAILC ; Compare Result Equality With Check Data
+
+  la a0,VCEBYTE       ; A0 = Byte Data Offset
+  lb t0,0(a0)         ; T0 = Byte Data
+  la a0,VXORVCECHECKC ; A0 = Byte Check Data Offset
+  lb t1,0(a0)         ; T1 = Byte Check Data
+  bne t0,t1,VXORFAILC ; Compare Result Equality With Check Data
+
   PrintString $A010,528,152,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   j VXORENDC
   nop ; Delay Slot
@@ -487,6 +694,41 @@ ClearScreen:
   lw t0,12(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
+  la a1,VAQUAD ; A1 = Quad Data Offset
+  lw t0,16(a0) ; T0 = Quad Data
+  sw t0,0(a1)  ; Store Quad Data To MEM
+  lw t0,20(a0) ; T0 = Quad Data
+  sw t0,4(a1)  ; Store Quad Data To MEM
+  lw t0,24(a0) ; T0 = Quad Data
+  sw t0,8(a1)  ; Store Quad Data To MEM
+  lw t0,28(a0) ; T0 = Quad Data
+  sw t0,12(a1) ; Store Quad Data To MEM
+
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
+  lw t0,32(a0) ; T0 = Word Data
+  sw t0,0(a1)  ; Store Word Data To MEM
+
+  la a1,VCEBYTE ; A1 = Byte Data Offset
+  lb t0,36(a0) ; T0 = Byte Data
+  sb t0,0(a1)  ; Store Byte Data To MEM
+
+  PrintString $A010,328,168,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,168,FontBlack,VAQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,168,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,168,FontBlack,VAQUAD+2,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,168,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,168,FontBlack,VAQUAD+4,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,168,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,168,FontBlack,VAQUAD+6,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,328,176,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,176,FontBlack,VAQUAD+8,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,176,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,176,FontBlack,VAQUAD+10,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,176,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,176,FontBlack,VAQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,176,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,176,FontBlack,VAQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+
   PrintString $A010,328,192,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,336,192,FontBlack,VDQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,376,192,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
@@ -503,18 +745,52 @@ ClearScreen:
   PrintValue  $A010,432,200,FontBlack,VDQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,472,200,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,200,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  la a0,VDQUAD     ; A0 = Quad Data Offset
-  ld t0,0(a0)      ; T0 = Quad Data
-  la a0,VXORCHECKD ; A0 = Quad Check Data Offset
-  ld t1,0(a0)      ; T1 = Quad Check Data
+
+  PrintString $A010,528,168,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,168,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,176,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,176,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,184,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,184,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
+
+  la a0,VDQUAD       ; A0 = Quad Data Offset
+  ld t0,0(a0)        ; T0 = Quad Data
+  la a0,VXORVDCHECKD ; A0 = Quad Check Data Offset
+  ld t1,0(a0)        ; T1 = Quad Check Data
   bne t0,t1,VXORFAILD ; Compare Result Equality With Check Data
   nop ; Delay Slot
-  la a0,VDQUAD     ; A0 = Quad Data Offset
-  ld t0,8(a0)      ; T0 = Quad Data
-  la a0,VXORCHECKD ; A0 = Quad Check Data Offset
-  ld t1,8(a0)      ; T1 = Quad Check Data
+  la a0,VDQUAD       ; A0 = Quad Data Offset
+  ld t0,8(a0)        ; T0 = Quad Data
+  la a0,VXORVDCHECKD ; A0 = Quad Check Data Offset
+  ld t1,8(a0)        ; T1 = Quad Check Data
   bne t0,t1,VXORFAILD ; Compare Result Equality With Check Data
   nop ; Delay Slot
+
+  la a0,VAQUAD       ; A0 = Quad Data Offset
+  ld t0,0(a0)        ; T0 = Quad Data
+  la a0,VXORVACHECKD ; A0 = Quad Check Data Offset
+  ld t1,0(a0)        ; T1 = Quad Check Data
+  bne t0,t1,VXORFAILD ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+  la a0,VAQUAD       ; A0 = Quad Data Offset
+  ld t0,8(a0)        ; T0 = Quad Data
+  la a0,VXORVACHECKD ; A0 = Quad Check Data Offset
+  ld t1,8(a0)        ; T1 = Quad Check Data
+  bne t0,t1,VXORFAILD ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+
+  la a0,VCOVCCWORD       ; A0 = Word Data Offset
+  lw t0,0(a0)            ; T0 = Word Data
+  la a0,VXORVCOVCCCHECKD ; A0 = Word Check Data Offset
+  lw t1,0(a0)            ; T1 = Word Check Data
+  bne t0,t1,VXORFAILD ; Compare Result Equality With Check Data
+
+  la a0,VCEBYTE       ; A0 = Byte Data Offset
+  lb t0,0(a0)         ; T0 = Byte Data
+  la a0,VXORVCECHECKD ; A0 = Byte Check Data Offset
+  lb t1,0(a0)         ; T1 = Byte Check Data
+  bne t0,t1,VXORFAILD ; Compare Result Equality With Check Data
+
   PrintString $A010,528,200,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   j VXORENDD
   nop ; Delay Slot
@@ -589,6 +865,41 @@ ClearScreen:
   lw t0,12(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
+  la a1,VAQUAD ; A1 = Quad Data Offset
+  lw t0,16(a0) ; T0 = Quad Data
+  sw t0,0(a1)  ; Store Quad Data To MEM
+  lw t0,20(a0) ; T0 = Quad Data
+  sw t0,4(a1)  ; Store Quad Data To MEM
+  lw t0,24(a0) ; T0 = Quad Data
+  sw t0,8(a1)  ; Store Quad Data To MEM
+  lw t0,28(a0) ; T0 = Quad Data
+  sw t0,12(a1) ; Store Quad Data To MEM
+
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
+  lw t0,32(a0) ; T0 = Word Data
+  sw t0,0(a1)  ; Store Word Data To MEM
+
+  la a1,VCEBYTE ; A1 = Byte Data Offset
+  lb t0,36(a0) ; T0 = Byte Data
+  sb t0,0(a1)  ; Store Byte Data To MEM
+
+  PrintString $A010,328,216,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,216,FontBlack,VAQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,216,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,216,FontBlack,VAQUAD+2,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,216,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,216,FontBlack,VAQUAD+4,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,216,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,216,FontBlack,VAQUAD+6,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,328,224,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,224,FontBlack,VAQUAD+8,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,224,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,224,FontBlack,VAQUAD+10,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,224,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,224,FontBlack,VAQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,224,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,224,FontBlack,VAQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+
   PrintString $A010,328,240,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,336,240,FontBlack,VDQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,376,240,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
@@ -605,18 +916,52 @@ ClearScreen:
   PrintValue  $A010,432,248,FontBlack,VDQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,472,248,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,248,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  la a0,VDQUAD      ; A0 = Quad Data Offset
-  ld t0,0(a0)       ; T0 = Quad Data
-  la a0,VNXORCHECKA ; A0 = Quad Check Data Offset
-  ld t1,0(a0)       ; T1 = Quad Check Data
+
+  PrintString $A010,528,216,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,216,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,224,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,224,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,232,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,232,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
+
+  la a0,VDQUAD        ; A0 = Quad Data Offset
+  ld t0,0(a0)         ; T0 = Quad Data
+  la a0,VNXORVDCHECKA ; A0 = Quad Check Data Offset
+  ld t1,0(a0)         ; T1 = Quad Check Data
   bne t0,t1,VNXORFAILA ; Compare Result Equality With Check Data
   nop ; Delay Slot
-  la a0,VDQUAD      ; A0 = Quad Data Offset
-  ld t0,8(a0)       ; T0 = Quad Data
-  la a0,VNXORCHECKA ; A0 = Quad Check Data Offset
-  ld t1,8(a0)       ; T1 = Quad Check Data
+  la a0,VDQUAD        ; A0 = Quad Data Offset
+  ld t0,8(a0)         ; T0 = Quad Data
+  la a0,VNXORVDCHECKA ; A0 = Quad Check Data Offset
+  ld t1,8(a0)         ; T1 = Quad Check Data
   bne t0,t1,VNXORFAILA ; Compare Result Equality With Check Data
   nop ; Delay Slot
+
+  la a0,VAQUAD        ; A0 = Quad Data Offset
+  ld t0,0(a0)         ; T0 = Quad Data
+  la a0,VNXORVACHECKA ; A0 = Quad Check Data Offset
+  ld t1,0(a0)         ; T1 = Quad Check Data
+  bne t0,t1,VNXORFAILA ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+  la a0,VAQUAD        ; A0 = Quad Data Offset
+  ld t0,8(a0)         ; T0 = Quad Data
+  la a0,VNXORVACHECKA ; A0 = Quad Check Data Offset
+  ld t1,8(a0)         ; T1 = Quad Check Data
+  bne t0,t1,VNXORFAILA ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+
+  la a0,VCOVCCWORD        ; A0 = Word Data Offset
+  lw t0,0(a0)             ; T0 = Word Data
+  la a0,VNXORVCOVCCCHECKA ; A0 = Word Check Data Offset
+  lw t1,0(a0)             ; T1 = Word Check Data
+  bne t0,t1,VNXORFAILA ; Compare Result Equality With Check Data
+
+  la a0,VCEBYTE        ; A0 = Byte Data Offset
+  lb t0,0(a0)          ; T0 = Byte Data
+  la a0,VNXORVCECHECKA ; A0 = Byte Check Data Offset
+  lb t1,0(a0)          ; T1 = Byte Check Data
+  bne t0,t1,VNXORFAILA ; Compare Result Equality With Check Data
+
   PrintString $A010,528,248,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   j VNXORENDA
   nop ; Delay Slot
@@ -682,6 +1027,41 @@ ClearScreen:
   lw t0,12(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
+  la a1,VAQUAD ; A1 = Quad Data Offset
+  lw t0,16(a0) ; T0 = Quad Data
+  sw t0,0(a1)  ; Store Quad Data To MEM
+  lw t0,20(a0) ; T0 = Quad Data
+  sw t0,4(a1)  ; Store Quad Data To MEM
+  lw t0,24(a0) ; T0 = Quad Data
+  sw t0,8(a1)  ; Store Quad Data To MEM
+  lw t0,28(a0) ; T0 = Quad Data
+  sw t0,12(a1) ; Store Quad Data To MEM
+
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
+  lw t0,32(a0) ; T0 = Word Data
+  sw t0,0(a1)  ; Store Word Data To MEM
+
+  la a1,VCEBYTE ; A1 = Byte Data Offset
+  lb t0,36(a0) ; T0 = Byte Data
+  sb t0,0(a1)  ; Store Byte Data To MEM
+
+  PrintString $A010,328,264,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,264,FontBlack,VAQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,264,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,264,FontBlack,VAQUAD+2,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,264,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,264,FontBlack,VAQUAD+4,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,264,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,264,FontBlack,VAQUAD+6,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,328,272,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,272,FontBlack,VAQUAD+8,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,272,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,272,FontBlack,VAQUAD+10,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,272,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,272,FontBlack,VAQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,272,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,272,FontBlack,VAQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+
   PrintString $A010,328,288,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,336,288,FontBlack,VDQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,376,288,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
@@ -698,18 +1078,52 @@ ClearScreen:
   PrintValue  $A010,432,296,FontBlack,VDQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,472,296,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,296,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  la a0,VDQUAD      ; A0 = Quad Data Offset
-  ld t0,0(a0)       ; T0 = Quad Data
-  la a0,VNXORCHECKB ; A0 = Quad Check Data Offset
-  ld t1,0(a0)       ; T1 = Quad Check Data
+
+  PrintString $A010,528,264,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,264,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,272,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,272,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,280,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,280,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
+
+  la a0,VDQUAD        ; A0 = Quad Data Offset
+  ld t0,0(a0)         ; T0 = Quad Data
+  la a0,VNXORVDCHECKB ; A0 = Quad Check Data Offset
+  ld t1,0(a0)         ; T1 = Quad Check Data
   bne t0,t1,VNXORFAILB ; Compare Result Equality With Check Data
   nop ; Delay Slot
-  la a0,VDQUAD      ; A0 = Quad Data Offset
-  ld t0,8(a0)       ; T0 = Quad Data
-  la a0,VNXORCHECKB ; A0 = Quad Check Data Offset
-  ld t1,8(a0)       ; T1 = Quad Check Data
+  la a0,VDQUAD        ; A0 = Quad Data Offset
+  ld t0,8(a0)         ; T0 = Quad Data
+  la a0,VNXORVDCHECKB ; A0 = Quad Check Data Offset
+  ld t1,8(a0)         ; T1 = Quad Check Data
   bne t0,t1,VNXORFAILB ; Compare Result Equality With Check Data
   nop ; Delay Slot
+
+  la a0,VAQUAD        ; A0 = Quad Data Offset
+  ld t0,0(a0)         ; T0 = Quad Data
+  la a0,VNXORVACHECKB ; A0 = Quad Check Data Offset
+  ld t1,0(a0)         ; T1 = Quad Check Data
+  bne t0,t1,VNXORFAILB ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+  la a0,VAQUAD        ; A0 = Quad Data Offset
+  ld t0,8(a0)         ; T0 = Quad Data
+  la a0,VNXORVACHECKB ; A0 = Quad Check Data Offset
+  ld t1,8(a0)         ; T1 = Quad Check Data
+  bne t0,t1,VNXORFAILB ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+
+  la a0,VCOVCCWORD        ; A0 = Word Data Offset
+  lw t0,0(a0)             ; T0 = Word Data
+  la a0,VNXORVCOVCCCHECKB ; A0 = Word Check Data Offset
+  lw t1,0(a0)             ; T1 = Word Check Data
+  bne t0,t1,VNXORFAILB ; Compare Result Equality With Check Data
+
+  la a0,VCEBYTE        ; A0 = Byte Data Offset
+  lb t0,0(a0)          ; T0 = Byte Data
+  la a0,VNXORVCECHECKB ; A0 = Byte Check Data Offset
+  lb t1,0(a0)          ; T1 = Byte Check Data
+  bne t0,t1,VNXORFAILB ; Compare Result Equality With Check Data
+
   PrintString $A010,528,296,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   j VNXORENDB
   nop ; Delay Slot
@@ -775,6 +1189,41 @@ ClearScreen:
   lw t0,12(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
+  la a1,VAQUAD ; A1 = Quad Data Offset
+  lw t0,16(a0) ; T0 = Quad Data
+  sw t0,0(a1)  ; Store Quad Data To MEM
+  lw t0,20(a0) ; T0 = Quad Data
+  sw t0,4(a1)  ; Store Quad Data To MEM
+  lw t0,24(a0) ; T0 = Quad Data
+  sw t0,8(a1)  ; Store Quad Data To MEM
+  lw t0,28(a0) ; T0 = Quad Data
+  sw t0,12(a1) ; Store Quad Data To MEM
+
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
+  lw t0,32(a0) ; T0 = Word Data
+  sw t0,0(a1)  ; Store Word Data To MEM
+
+  la a1,VCEBYTE ; A1 = Byte Data Offset
+  lb t0,36(a0) ; T0 = Byte Data
+  sb t0,0(a1)  ; Store Byte Data To MEM
+
+  PrintString $A010,328,312,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,312,FontBlack,VAQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,312,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,312,FontBlack,VAQUAD+2,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,312,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,312,FontBlack,VAQUAD+4,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,312,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,312,FontBlack,VAQUAD+6,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,328,320,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,320,FontBlack,VAQUAD+8,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,320,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,320,FontBlack,VAQUAD+10,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,320,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,320,FontBlack,VAQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,320,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,320,FontBlack,VAQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+
   PrintString $A010,328,336,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,336,336,FontBlack,VDQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,376,336,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
@@ -791,18 +1240,52 @@ ClearScreen:
   PrintValue  $A010,432,344,FontBlack,VDQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,472,344,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,344,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  la a0,VDQUAD      ; A0 = Quad Data Offset
-  ld t0,0(a0)       ; T0 = Quad Data
-  la a0,VNXORCHECKC ; A0 = Quad Check Data Offset
-  ld t1,0(a0)       ; T1 = Quad Check Data
+
+  PrintString $A010,528,312,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,312,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,320,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,320,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,328,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,328,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
+
+  la a0,VDQUAD        ; A0 = Quad Data Offset
+  ld t0,0(a0)         ; T0 = Quad Data
+  la a0,VNXORVDCHECKC ; A0 = Quad Check Data Offset
+  ld t1,0(a0)         ; T1 = Quad Check Data
   bne t0,t1,VNXORFAILC ; Compare Result Equality With Check Data
   nop ; Delay Slot
-  la a0,VDQUAD      ; A0 = Quad Data Offset
-  ld t0,8(a0)       ; T0 = Quad Data
-  la a0,VNXORCHECKC ; A0 = Quad Check Data Offset
-  ld t1,8(a0)       ; T1 = Quad Check Data
+  la a0,VDQUAD        ; A0 = Quad Data Offset
+  ld t0,8(a0)         ; T0 = Quad Data
+  la a0,VNXORVDCHECKC ; A0 = Quad Check Data Offset
+  ld t1,8(a0)         ; T1 = Quad Check Data
   bne t0,t1,VNXORFAILC ; Compare Result Equality With Check Data
   nop ; Delay Slot
+
+  la a0,VAQUAD        ; A0 = Quad Data Offset
+  ld t0,0(a0)         ; T0 = Quad Data
+  la a0,VNXORVACHECKC ; A0 = Quad Check Data Offset
+  ld t1,0(a0)         ; T1 = Quad Check Data
+  bne t0,t1,VNXORFAILC ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+  la a0,VAQUAD        ; A0 = Quad Data Offset
+  ld t0,8(a0)         ; T0 = Quad Data
+  la a0,VNXORVACHECKC ; A0 = Quad Check Data Offset
+  ld t1,8(a0)         ; T1 = Quad Check Data
+  bne t0,t1,VNXORFAILC ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+
+  la a0,VCOVCCWORD        ; A0 = Word Data Offset
+  lw t0,0(a0)             ; T0 = Word Data
+  la a0,VNXORVCOVCCCHECKC ; A0 = Word Check Data Offset
+  lw t1,0(a0)             ; T1 = Word Check Data
+  bne t0,t1,VNXORFAILC ; Compare Result Equality With Check Data
+
+  la a0,VCEBYTE        ; A0 = Byte Data Offset
+  lb t0,0(a0)          ; T0 = Byte Data
+  la a0,VNXORVCECHECKC ; A0 = Byte Check Data Offset
+  lb t1,0(a0)          ; T1 = Byte Check Data
+  bne t0,t1,VNXORFAILC ; Compare Result Equality With Check Data
+
   PrintString $A010,528,344,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   j VNXORENDC
   nop ; Delay Slot
@@ -868,6 +1351,41 @@ ClearScreen:
   lw t0,12(a0) ; T0 = Quad Data
   sw t0,12(a1) ; Store Quad Data To MEM
 
+  la a1,VAQUAD ; A1 = Quad Data Offset
+  lw t0,16(a0) ; T0 = Quad Data
+  sw t0,0(a1)  ; Store Quad Data To MEM
+  lw t0,20(a0) ; T0 = Quad Data
+  sw t0,4(a1)  ; Store Quad Data To MEM
+  lw t0,24(a0) ; T0 = Quad Data
+  sw t0,8(a1)  ; Store Quad Data To MEM
+  lw t0,28(a0) ; T0 = Quad Data
+  sw t0,12(a1) ; Store Quad Data To MEM
+
+  la a1,VCOVCCWORD ; A1 = Word Data Offset
+  lw t0,32(a0) ; T0 = Word Data
+  sw t0,0(a1)  ; Store Word Data To MEM
+
+  la a1,VCEBYTE ; A1 = Byte Data Offset
+  lb t0,36(a0) ; T0 = Byte Data
+  sb t0,0(a1)  ; Store Byte Data To MEM
+
+  PrintString $A010,328,360,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,360,FontBlack,VAQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,360,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,360,FontBlack,VAQUAD+2,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,360,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,360,FontBlack,VAQUAD+4,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,360,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,360,FontBlack,VAQUAD+6,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,328,368,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,336,368,FontBlack,VAQUAD+8,1  ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,376,368,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,384,368,FontBlack,VAQUAD+10,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,424,368,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,432,368,FontBlack,VAQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,472,368,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,480,368,FontBlack,VAQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+
   PrintString $A010,328,384,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,336,384,FontBlack,VDQUAD,1    ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,376,384,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
@@ -884,18 +1402,52 @@ ClearScreen:
   PrintValue  $A010,432,392,FontBlack,VDQUAD+12,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,472,392,FontBlack,DOLLAR,0    ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,480,392,FontBlack,VDQUAD+14,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  la a0,VDQUAD      ; A0 = Quad Data Offset
-  ld t0,0(a0)       ; T0 = Quad Data
-  la a0,VNXORCHECKD ; A0 = Quad Check Data Offset
-  ld t1,0(a0)       ; T1 = Quad Check Data
+
+  PrintString $A010,528,360,FontBlack,VCOHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,360,FontBlack,VCOVCCWORD,1   ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,368,FontBlack,VCCHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,368,FontBlack,VCOVCCWORD+2,1 ; Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString $A010,528,376,FontBlack,VCEHEX,5       ; Print Text String To VRAM Using Font At X,Y Position
+  PrintValue  $A010,576,376,FontBlack,VCEBYTE,0      ; Print HEX Chars To VRAM Using Font At X,Y Position
+
+  la a0,VDQUAD        ; A0 = Quad Data Offset
+  ld t0,0(a0)         ; T0 = Quad Data
+  la a0,VNXORVDCHECKD ; A0 = Quad Check Data Offset
+  ld t1,0(a0)         ; T1 = Quad Check Data
   bne t0,t1,VNXORFAILD ; Compare Result Equality With Check Data
   nop ; Delay Slot
-  la a0,VDQUAD      ; A0 = Quad Data Offset
-  ld t0,8(a0)       ; T0 = Quad Data
-  la a0,VNXORCHECKD ; A0 = Quad Check Data Offset
-  ld t1,8(a0)       ; T1 = Quad Check Data
+  la a0,VDQUAD        ; A0 = Quad Data Offset
+  ld t0,8(a0)         ; T0 = Quad Data
+  la a0,VNXORVDCHECKD ; A0 = Quad Check Data Offset
+  ld t1,8(a0)         ; T1 = Quad Check Data
   bne t0,t1,VNXORFAILD ; Compare Result Equality With Check Data
   nop ; Delay Slot
+
+  la a0,VAQUAD        ; A0 = Quad Data Offset
+  ld t0,0(a0)         ; T0 = Quad Data
+  la a0,VNXORVACHECKD ; A0 = Quad Check Data Offset
+  ld t1,0(a0)         ; T1 = Quad Check Data
+  bne t0,t1,VNXORFAILD ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+  la a0,VAQUAD        ; A0 = Quad Data Offset
+  ld t0,8(a0)         ; T0 = Quad Data
+  la a0,VNXORVACHECKD ; A0 = Quad Check Data Offset
+  ld t1,8(a0)         ; T1 = Quad Check Data
+  bne t0,t1,VNXORFAILD ; Compare Result Equality With Check Data
+  nop ; Delay Slot
+
+  la a0,VCOVCCWORD        ; A0 = Word Data Offset
+  lw t0,0(a0)             ; T0 = Word Data
+  la a0,VNXORVCOVCCCHECKD ; A0 = Word Check Data Offset
+  lw t1,0(a0)             ; T1 = Word Check Data
+  bne t0,t1,VNXORFAILD ; Compare Result Equality With Check Data
+
+  la a0,VCEBYTE        ; A0 = Byte Data Offset
+  lb t0,0(a0)          ; T0 = Byte Data
+  la a0,VNXORVCECHECKD ; A0 = Byte Check Data Offset
+  lb t1,0(a0)          ; T1 = Byte Check Data
+  bne t0,t1,VNXORFAILD ; Compare Result Equality With Check Data
+
   PrintString $A010,528,392,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
   j VNXORENDD
   nop ; Delay Slot
@@ -925,13 +1477,17 @@ Loop:
 VXORTEXT:  db "VXOR"
 VNXORTEXT: db "VNXOR"
 
-VDHEX: db "VD (Hex)"
+VAVDHEX: db "VA/VD (Hex)"
 VSVTHEX: db "VS/VT (Hex)"
 TEST: db "Test Result"
 FAIL: db "FAIL"
 PASS: db "PASS"
 
 DOLLAR: db "$"
+
+VCOHEX: db "VCO: $"
+VCCHEX: db "VCC: $"
+VCEHEX: db "VCE: $"
 
 PAGEBREAK: db "--------------------------------------------------------------------------------"
 
@@ -945,22 +1501,52 @@ VALUEQUADBEND:
 VALUEQUADC: dh $FFEE, $DDCC, $BBAA, $9988, $7766, $5544, $3322, $1100
 VALUEQUADCEND:
 
-VXORCHECKA: dh $0011, $2233, $4455, $6677, $8899, $AABB, $CCDD, $EEFF
-VXORCHECKB: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
-VXORCHECKC: dh $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF
-VXORCHECKD: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
+VXORVDCHECKA: dh $0011, $2233, $4455, $6677, $8899, $AABB, $CCDD, $EEFF
+VXORVDCHECKB: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
+VXORVDCHECKC: dh $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF
+VXORVDCHECKD: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
 
-VNXORCHECKA: dh $FFEE, $DDCC, $BBAA, $9988, $7766, $5544, $3322, $1100
-VNXORCHECKB: dh $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF
-VNXORCHECKC: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
-VNXORCHECKD: dh $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF
+VNXORVDCHECKA: dh $FFEE, $DDCC, $BBAA, $9988, $7766, $5544, $3322, $1100
+VNXORVDCHECKB: dh $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF
+VNXORVDCHECKC: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
+VNXORVDCHECKD: dh $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF
 
+VXORVACHECKA: dh $0011, $2233, $4455, $6677, $8899, $AABB, $CCDD, $EEFF
+VXORVACHECKB: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
+VXORVACHECKC: dh $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF
+VXORVACHECKD: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
+
+VNXORVACHECKA: dh $FFEE, $DDCC, $BBAA, $9988, $7766, $5544, $3322, $1100
+VNXORVACHECKB: dh $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF
+VNXORVACHECKC: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
+VNXORVACHECKD: dh $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF
+
+VAQUAD: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
 VDQUAD: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
-VDQUADEND:
 
-FontBlack: incbin FontBlack8x8.bin
-FontGreen: incbin FontGreen8x8.bin
-FontRed: incbin FontRed8x8.bin
+VXORVCOVCCCHECKA: dh $0000, $008F
+VXORVCOVCCCHECKB: dh $0000, $008F
+VXORVCOVCCCHECKC: dh $0000, $008F
+VXORVCOVCCCHECKD: dh $0000, $008F
+
+VNXORVCOVCCCHECKA: dh $0000, $008F
+VNXORVCOVCCCHECKB: dh $0000, $008F
+VNXORVCOVCCCHECKC: dh $0000, $008F
+VNXORVCOVCCCHECKD: dh $0000, $008F
+
+VCOVCCWORD: dh $0000, $0000
+
+VXORVCECHECKA: db $00
+VXORVCECHECKB: db $00
+VXORVCECHECKC: db $00
+VXORVCECHECKD: db $00
+
+VNXORVCECHECKA: db $00
+VNXORVCECHECKB: db $00
+VNXORVCECHECKC: db $00
+VNXORVCECHECKD: db $00
+
+VCEBYTE: db $00
 
   align 8 ; Align 64-Bit
 RSPVXORCode:
@@ -968,8 +1554,17 @@ RSPVXORCode:
   lqv v00,(e0),$00,(0) ; V0 = 128-Bit DMEM $000(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   lqv v01,(e0),$01,(0) ; V1 = 128-Bit DMEM $010(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   vxor v00,v00,v01,(e0) ; V0 = V0 ^ V1[0], Vector Logical Exclusive OR Short Elements: VXOR VD,VS,VT[ELEMENT]
-  sqv v00,(e0),$00,(0) ; 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  sqv v00,(e0),$00,(0)  ; 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  vsar v00,v00,v00,(e10) ; V0 = Vector Accumulator, Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT]
+  sqv v00,(e0),$01,(0)   ; 128-Bit DMEM $010(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  cfc2 t0,vco   ; T0 = RSP CP2 Control Register VCO: VCO (Vector Carry Out)
+  sh t0,$20(r0) ; 16-Bit DMEM $020(R0) = T0
+  cfc2 t0,vcc   ; T0 = RSP CP2 Control Register VCC: VCC (Vector Compare Code)
+  sh t0,$22(r0) ; 16-Bit DMEM $022(R0) = T0
+  cfc2 t0,vce   ; T0 = RSP CP2 Control Register VCE: VCE (Vector Compare Extension)
+  sb t0,$24(r0) ;  8-Bit DMEM $024(R0) = T0
   break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  align 8 ; Align 64-Bit
   objend ; Set End Of RSP Code Object
 RSPVXORCodeEND:
 
@@ -979,7 +1574,20 @@ RSPVNXORCode:
   lqv v00,(e0),$00,(0) ; V0 = 128-Bit DMEM $000(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   lqv v01,(e0),$01,(0) ; V1 = 128-Bit DMEM $010(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   vnxor v00,v00,v01,(e0) ; V0 = !(V0 ^ V1[0]), Vector Logical NOT Exclusive OR Short Elements: VNXOR VD,VS,VT[ELEMENT]
-  sqv v00,(e0),$00,(0) ; 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  sqv v00,(e0),$00,(0)   ; 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  vsar v00,v00,v00,(e10) ; V0 = Vector Accumulator, Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT]
+  sqv v00,(e0),$01,(0)   ; 128-Bit DMEM $010(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  cfc2 t0,vco   ; T0 = RSP CP2 Control Register VCO: VCO (Vector Carry Out)
+  sh t0,$20(r0) ; 16-Bit DMEM $020(R0) = T0
+  cfc2 t0,vcc   ; T0 = RSP CP2 Control Register VCC: VCC (Vector Compare Code)
+  sh t0,$22(r0) ; 16-Bit DMEM $022(R0) = T0
+  cfc2 t0,vce   ; T0 = RSP CP2 Control Register VCE: VCE (Vector Compare Extension)
+  sb t0,$24(r0) ;  8-Bit DMEM $024(R0) = T0
   break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  align 8 ; Align 64-Bit
   objend ; Set End Of RSP Code Object
 RSPVNXORCodeEND:
+
+FontBlack: incbin FontBlack8x8.bin
+FontGreen: incbin FontGreen8x8.bin
+FontRed: incbin FontRed8x8.bin
