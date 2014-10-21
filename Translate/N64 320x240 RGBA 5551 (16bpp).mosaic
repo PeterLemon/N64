@@ -1,0 +1,16 @@
+//N64 320x240 RGBA 5551 (16bpp)
+//
+offset: 0
+width: 320
+height: 240
+
+depth: 15
+endian: 0
+
+palette: f(32768) ((n & 0x1F)<<3) | ((n & 0x3E0)<<6) | ((n & 0x7C00)<<9)
+
+block: f(7) 9 + n, f(8) 0 + n
+
+blockWidth: 1
+blockHeight: 1
+blockStride: 16
