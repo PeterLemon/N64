@@ -2037,7 +2037,7 @@ RSPVADDCCode:
   lqv v00,(e0),$00,(0)   ; V0 = 128-Bit DMEM $000(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   lqv v01,(e0),$01,(0)   ; V1 = 128-Bit DMEM $010(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   vaddc v00,v00,v01,(e0) ; V0 = V0 + V1[0], Vector Add Short Elements With Carry: VADDC VD,VS,VT[ELEMENT]
-  sqv v00,(e0),$00,(0)  ; 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  sqv v00,(e0),$00,(0)   ; 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   vsar v00,v00,v00,(e8) ; V0 = Vector Accumulator HI, Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT]
   sqv v00,(e0),$01,(0)  ; 128-Bit DMEM $010(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   vsar v00,v00,v00,(e9) ; V0 = Vector Accumulator MD, Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT]
