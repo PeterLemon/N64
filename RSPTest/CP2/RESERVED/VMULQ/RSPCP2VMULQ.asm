@@ -1,4 +1,4 @@
-; N64 'Bare Metal' RSP CP2 Vector Vector Multiply Integer Test Demo by krom (Peter Lemon):
+; N64 'Bare Metal' RSP CP2 Vector Multiply Integer Test Demo by krom (Peter Lemon):
   include LIB\N64.INC ; Include N64 Definitions
   dcb 1052672,$00 ; Set ROM Size
   org $80000000 ; Entry Point Of Code
