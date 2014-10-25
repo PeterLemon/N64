@@ -347,17 +347,18 @@ VEXTN: macro vd, vs, vt, element ; Vector Extract Nibble (4/4/4/4) (Sign Extende
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
   dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$3A ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VEXTN $3A (Bit 0..5)
   endm
+
 VINST: macro vd, vs, vt, element ; Vector Insert Triple (5/5/5/1): VINST VD,VS,VT[ELEMENT] (Reserved)
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
-  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$3B ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VINST $3B (Bit 0..5)
+  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$3C ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VINST $3C (Bit 0..5)
   endm
 VINSQ: macro vd, vs, vt, element ; Vector Insert Quad (4/4/4/4): VINSQ VD,VS,VT[ELEMENT] (Reserved)
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
-  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$3C ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VINSQ $3C (Bit 0..5)
+  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$3D ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VINSQ $3D (Bit 0..5)
   endm
 VINSN: macro vd, vs, vt, element ; Vector Insert Nibble (4/4/4/4) (Sign Extended): VINSN VD,VS,VT[ELEMENT] (Reserved)
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
-  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$3D ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VINSN $3D (Bit 0..5)
+  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$3E ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VINSN $3E (Bit 0..5)
   endm
 
 ; RSP CP2 Vector Load Instructions (LWC2):
