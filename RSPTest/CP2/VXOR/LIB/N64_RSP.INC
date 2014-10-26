@@ -423,9 +423,9 @@ LFV: macro vt, element, offset, base ; Load Fourth Bytes To Vector: LFV VT[ELEME
 ; Word: Base Register (0..31), Destination Vector (0..31), Destination Element (0..15), Offset ($00..$3F)
   dw $C8000000|(base<<21)|(vt<<16)|($09<<11)|(element<<7)|offset ; Word: LWC2 $C8 (Bit 26..31), Base (Bit 21..25), Vector (Bit 16..20), LFV $09 (Bit 11..15), Element (Bit 7..10), Offset (Bit 0..5)
   endm
-LWV: macro vt, element, offset, base ; Load Transposed Wrapped Bytes To Vector: LWV VT[ELEMENT],$OFFSET(BASE)
+LTWV: macro vt, element, offset, base ; Load Transposed Wrapped Bytes To Vector: LTWV VT[ELEMENT],$OFFSET(BASE) (Reserved)
 ; Word: Base Register (0..31), Destination Vector (0..31), Destination Element (0..15), Offset ($00..$3F)
-  dw $C8000000|(base<<21)|(vt<<16)|($0A<<11)|(element<<7)|offset ; Word: LWC2 $C8 (Bit 26..31), Base (Bit 21..25), Vector (Bit 16..20), LWV $0A (Bit 11..15), Element (Bit 7..10), Offset (Bit 0..5)
+  dw $C8000000|(base<<21)|(vt<<16)|($0A<<11)|(element<<7)|offset ; Word: LWC2 $C8 (Bit 26..31), Base (Bit 21..25), Vector (Bit 16..20), LTWV $0A (Bit 11..15), Element (Bit 7..10), Offset (Bit 0..5)
   endm
 LTV: macro vt, element, offset, base ; Load Transposed Bytes To Vector: LTV VT[ELEMENT],$OFFSET(BASE)
 ; Word: Base Register (0..31), Destination Vector (0..31), Destination Element (0..15), Offset ($00..$3F)
