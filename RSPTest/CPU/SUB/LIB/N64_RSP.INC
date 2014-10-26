@@ -245,7 +245,14 @@ VSAR: macro vd, vs, vt, element ; Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
   dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$1D ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VSAR $1D (Bit 0..5)
   endm
-
+V036: macro vd, vs, vt, element ; Vector Row 3 Column 6: V036 VD,VS,VT[ELEMENT] (Reserved)
+; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
+  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$1E ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), V036 $1E (Bit 0..5)
+  endm
+V037: macro vd, vs, vt, element ; Vector Row 3 Column 7: V037 VD,VS,VT[ELEMENT] (Reserved)
+; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
+  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$1F ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), V037 $1F (Bit 0..5)
+  endm
 VLT: macro vd, vs, vt, element ; Vector Select Less Than: VLT VD,VS,VT[ELEMENT]
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
   dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$20 ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VLT $20 (Bit 0..5)
@@ -302,7 +309,14 @@ VNXOR: macro vd, vs, vt, element ; Vector Logical NOT Exclusive OR Short Element
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
   dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$2D ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VNXOR $2D (Bit 0..5)
   endm
-
+V056: macro vd, vs, vt, element ; Vector Row 5 Column 6: V056 VD,VS,VT[ELEMENT] (Reserved)
+; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
+  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$2E ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), V056 $2E (Bit 0..5)
+  endm
+V057: macro vd, vs, vt, element ; Vector Row 5 Column 7: V057 VD,VS,VT[ELEMENT] (Reserved)
+; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
+  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$2F ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), V057 $2F (Bit 0..5)
+  endm
 VRCP: macro vd, vs, vt, element ; Vector Element Scalar Reciprocal (Single Precision): VRCP VD,VS,VT[ELEMENT]
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
   dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$30 ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VRCP $30 (Bit 0..5)
@@ -347,7 +361,10 @@ VEXTN: macro vd, vs, vt, element ; Vector Extract Nibble (4/4/4/4) (Sign Extende
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
   dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$3A ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VEXTN $3A (Bit 0..5)
   endm
-
+V073: macro vd, vs, vt, element ; Vector Row 7 Column 3: V073 VD,VS,VT[ELEMENT] (Reserved)
+; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
+  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$3B ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), V073 $3B (Bit 0..5)
+  endm
 VINST: macro vd, vs, vt, element ; Vector Insert Triple (5/5/5/1): VINST VD,VS,VT[ELEMENT] (Reserved)
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
   dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$3C ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VINST $3C (Bit 0..5)
@@ -359,6 +376,10 @@ VINSQ: macro vd, vs, vt, element ; Vector Insert Quad (4/4/4/4): VINSQ VD,VS,VT[
 VINSN: macro vd, vs, vt, element ; Vector Insert Nibble (4/4/4/4) (Sign Extended): VINSN VD,VS,VT[ELEMENT] (Reserved)
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
   dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$3E ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VINSN $3E (Bit 0..5)
+  endm
+V077: macro vd, vs, vt, element ; Vector Row 7 Column 7: V077 VD,VS,VT[ELEMENT] (Reserved)
+; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
+  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$3F ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), V077 $3F (Bit 0..5)
   endm
 
 ; RSP CP2 Vector Load Instructions (LWC2):
