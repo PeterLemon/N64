@@ -2012,7 +2012,7 @@ RSPVEXTQCode:
   obj $0000 ; Set Base Of RSP Code Object To Zero
   lqv v00,(e0),$00,(0)   ; V0 = 128-Bit DMEM $000(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   lqv v01,(e0),$01,(0)   ; V1 = 128-Bit DMEM $010(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
-  vextq v00,v00,v01,(e0) ; V0 = V0 EXTT V1[0], Vector Extract Quad (4/4/4/4): VEXTQ VD,VS,VT[ELEMENT]
+  vextq v00,v00,v01,(e0) ; V0 = V0 EXTQ V1[0], Vector Extract Quad (4/4/4/4): VEXTQ VD,VS,VT[ELEMENT]
   sqv v00,(e0),$00,(0)   ; 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   vsar v00,v00,v00,(e8) ; V0 = Vector Accumulator HI, Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT]
   sqv v00,(e0),$01,(0)  ; 128-Bit DMEM $010(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
@@ -2036,7 +2036,7 @@ RSPVINSQCode:
   obj $0000 ; Set Base Of RSP Code Object To Zero
   lqv v00,(e0),$00,(0)   ; V0 = 128-Bit DMEM $000(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   lqv v01,(e0),$01,(0)   ; V1 = 128-Bit DMEM $010(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
-  vinsq v00,v00,v01,(e0) ; V0 = V0 INST V1[0], Vector Insert Quad (4/4/4/4): VINSQ VD,VS,VT[ELEMENT]
+  vinsq v00,v00,v01,(e0) ; V0 = V0 INSQ V1[0], Vector Insert Quad (4/4/4/4): VINSQ VD,VS,VT[ELEMENT]
   sqv v00,(e0),$00,(0)   ; 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   vsar v00,v00,v00,(e8) ; V0 = Vector Accumulator HI, Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT]
   sqv v00,(e0),$01,(0)  ; 128-Bit DMEM $010(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
