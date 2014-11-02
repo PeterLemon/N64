@@ -21,7 +21,7 @@
   dd 0 ; UNUSED
 
 ; PROGRAM TITLE (27 Byte ASCII String, Use Spaces For Unused Bytes)
-  db "RSP TEST CP2 V073 V077     "
+  db "RSP TEST CP2 V073 VNULL    "
 ;    "123456789012345678901234567"
 
 ; DEVELOPER ID CODE 
