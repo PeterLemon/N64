@@ -1022,7 +1022,7 @@ ClearScreen:
 
 
   ; Load RSP Code To IMEM
-  DMASPRD RSPVADCBCode, RSPVADCBCodeEND, SP_IMEM ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD RSPVACCBCode, RSPVACCBCodeEND, SP_IMEM ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
 
   ; Load RSP Data To DMEM
   DMASPRD VALUEQUADA, VALUEQUADAEND, SP_DMEM    ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
@@ -1038,7 +1038,7 @@ ClearScreen:
   li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB ; T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
   sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
 
-  PrintString $A010,0,216,FontRed,VADCBTEXT,4 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString $A010,0,216,FontRed,VACCBTEXT,4 ; Print Text String To VRAM Using Font At X,Y Position
   PrintString $A010,48,216,FontBlack,DOLLAR,0       ; Print Text String To VRAM Using Font At X,Y Position
   PrintValue  $A010,56,216,FontBlack,VALUEQUADA,7   ; Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString $A010,48,224,FontBlack,DOLLAR,0       ; Print Text String To VRAM Using Font At X,Y Position
@@ -1177,72 +1177,72 @@ ClearScreen:
 
   la a0,VDQUAD        ; A0 = Quad Data Offset
   ld t0,0(a0)         ; T0 = Quad Data
-  la a0,VADCBVDCHECKA ; A0 = Quad Check Data Offset
+  la a0,VACCBVDCHECKA ; A0 = Quad Check Data Offset
   ld t1,0(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILA ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILA ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VDQUAD        ; A0 = Quad Data Offset
   ld t0,8(a0)         ; T0 = Quad Data
-  la a0,VADCBVDCHECKA ; A0 = Quad Check Data Offset
+  la a0,VACCBVDCHECKA ; A0 = Quad Check Data Offset
   ld t1,8(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILA ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILA ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,0(a0)         ; T0 = Quad Data
-  la a0,VADCBVACHECKA ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKA ; A0 = Quad Check Data Offset
   ld t1,0(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILA ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILA ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,8(a0)         ; T0 = Quad Data
-  la a0,VADCBVACHECKA ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKA ; A0 = Quad Check Data Offset
   ld t1,8(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILA ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILA ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,16(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKA ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKA ; A0 = Quad Check Data Offset
   ld t1,16(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILA ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILA ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,24(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKA ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKA ; A0 = Quad Check Data Offset
   ld t1,24(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILA ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILA ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,32(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKA ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKA ; A0 = Quad Check Data Offset
   ld t1,32(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILA ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILA ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,40(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKA ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKA ; A0 = Quad Check Data Offset
   ld t1,40(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILA ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILA ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
   la a0,VCOVCCWORD        ; A0 = Word Data Offset
   lw t0,0(a0)             ; T0 = Word Data
-  la a0,VADCBVCOVCCCHECKA ; A0 = Word Check Data Offset
+  la a0,VACCBVCOVCCCHECKA ; A0 = Word Check Data Offset
   lw t1,0(a0)             ; T1 = Word Check Data
-  bne t0,t1,VADCBFAILA ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILA ; Compare Result Equality With Check Data
 
   la a0,VCEBYTE        ; A0 = Byte Data Offset
   lb t0,0(a0)          ; T0 = Byte Data
-  la a0,VADCBVCECHECKA ; A0 = Byte Check Data Offset
+  la a0,VACCBVCECHECKA ; A0 = Byte Check Data Offset
   lb t1,0(a0)          ; T1 = Byte Check Data
-  bne t0,t1,VADCBFAILA ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILA ; Compare Result Equality With Check Data
 
   PrintString $A010,576,248,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
-  j VADCBENDA
+  j VACCBENDA
   nop ; Delay Slot
-  VADCBFAILA:
+  VACCBFAILA:
   PrintString $A010,576,248,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
-  VADCBENDA:
+  VACCBENDA:
 
   PrintString $A010,0,256,FontBlack,PAGEBREAK,79 ; Print Text String To VRAM Using Font At X,Y Position
 
@@ -1394,72 +1394,72 @@ ClearScreen:
 
   la a0,VDQUAD        ; A0 = Quad Data Offset
   ld t0,0(a0)         ; T0 = Quad Data
-  la a0,VADCBVDCHECKB ; A0 = Quad Check Data Offset
+  la a0,VACCBVDCHECKB ; A0 = Quad Check Data Offset
   ld t1,0(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILB ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILB ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VDQUAD        ; A0 = Quad Data Offset
   ld t0,8(a0)         ; T0 = Quad Data
-  la a0,VADCBVDCHECKB ; A0 = Quad Check Data Offset
+  la a0,VACCBVDCHECKB ; A0 = Quad Check Data Offset
   ld t1,8(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILB ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILB ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,0(a0)         ; T0 = Quad Data
-  la a0,VADCBVACHECKB ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKB ; A0 = Quad Check Data Offset
   ld t1,0(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILB ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILB ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,8(a0)         ; T0 = Quad Data
-  la a0,VADCBVACHECKB ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKB ; A0 = Quad Check Data Offset
   ld t1,8(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILB ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILB ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,16(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKB ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKB ; A0 = Quad Check Data Offset
   ld t1,16(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILB ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILB ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,24(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKB ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKB ; A0 = Quad Check Data Offset
   ld t1,24(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILB ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILB ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,32(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKB ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKB ; A0 = Quad Check Data Offset
   ld t1,32(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILB ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILB ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,40(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKB ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKB ; A0 = Quad Check Data Offset
   ld t1,40(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILB ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILB ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
   la a0,VCOVCCWORD        ; A0 = Word Data Offset
   lw t0,0(a0)             ; T0 = Word Data
-  la a0,VADCBVCOVCCCHECKB ; A0 = Word Check Data Offset
+  la a0,VACCBVCOVCCCHECKB ; A0 = Word Check Data Offset
   lw t1,0(a0)             ; T1 = Word Check Data
-  bne t0,t1,VADCBFAILB ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILB ; Compare Result Equality With Check Data
 
   la a0,VCEBYTE        ; A0 = Byte Data Offset
   lb t0,0(a0)          ; T0 = Byte Data
-  la a0,VADCBVCECHECKB ; A0 = Byte Check Data Offset
+  la a0,VACCBVCECHECKB ; A0 = Byte Check Data Offset
   lb t1,0(a0)          ; T1 = Byte Check Data
-  bne t0,t1,VADCBFAILB ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILB ; Compare Result Equality With Check Data
 
   PrintString $A010,576,296,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
-  j VADCBENDB
+  j VACCBENDB
   nop ; Delay Slot
-  VADCBFAILB:
+  VACCBFAILB:
   PrintString $A010,576,296,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
-  VADCBENDB:
+  VACCBENDB:
 
   PrintString $A010,0,304,FontBlack,PAGEBREAK,79 ; Print Text String To VRAM Using Font At X,Y Position
 
@@ -1611,72 +1611,72 @@ ClearScreen:
 
   la a0,VDQUAD        ; A0 = Quad Data Offset
   ld t0,0(a0)         ; T0 = Quad Data
-  la a0,VADCBVDCHECKC ; A0 = Quad Check Data Offset
+  la a0,VACCBVDCHECKC ; A0 = Quad Check Data Offset
   ld t1,0(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILC ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILC ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VDQUAD        ; A0 = Quad Data Offset
   ld t0,8(a0)         ; T0 = Quad Data
-  la a0,VADCBVDCHECKC ; A0 = Quad Check Data Offset
+  la a0,VACCBVDCHECKC ; A0 = Quad Check Data Offset
   ld t1,8(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILC ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILC ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,0(a0)         ; T0 = Quad Data
-  la a0,VADCBVACHECKC ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKC ; A0 = Quad Check Data Offset
   ld t1,0(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILC ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILC ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,8(a0)         ; T0 = Quad Data
-  la a0,VADCBVACHECKC ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKC ; A0 = Quad Check Data Offset
   ld t1,8(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILC ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILC ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,16(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKC ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKC ; A0 = Quad Check Data Offset
   ld t1,16(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILC ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILC ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,24(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKC ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKC ; A0 = Quad Check Data Offset
   ld t1,24(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILC ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILC ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,32(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKC ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKC ; A0 = Quad Check Data Offset
   ld t1,32(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILC ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILC ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,40(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKC ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKC ; A0 = Quad Check Data Offset
   ld t1,40(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILC ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILC ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
   la a0,VCOVCCWORD        ; A0 = Word Data Offset
   lw t0,0(a0)             ; T0 = Word Data
-  la a0,VADCBVCOVCCCHECKC ; A0 = Word Check Data Offset
+  la a0,VACCBVCOVCCCHECKC ; A0 = Word Check Data Offset
   lw t1,0(a0)             ; T1 = Word Check Data
-  bne t0,t1,VADCBFAILC ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILC ; Compare Result Equality With Check Data
 
   la a0,VCEBYTE        ; A0 = Byte Data Offset
   lb t0,0(a0)          ; T0 = Byte Data
-  la a0,VADCBVCECHECKC ; A0 = Byte Check Data Offset
+  la a0,VACCBVCECHECKC ; A0 = Byte Check Data Offset
   lb t1,0(a0)          ; T1 = Byte Check Data
-  bne t0,t1,VADCBFAILC ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILC ; Compare Result Equality With Check Data
 
   PrintString $A010,576,344,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
-  j VADCBENDC
+  j VACCBENDC
   nop ; Delay Slot
-  VADCBFAILC:
+  VACCBFAILC:
   PrintString $A010,576,344,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
-  VADCBENDC:
+  VACCBENDC:
 
   PrintString $A010,0,352,FontBlack,PAGEBREAK,79 ; Print Text String To VRAM Using Font At X,Y Position
 
@@ -1828,72 +1828,72 @@ ClearScreen:
 
   la a0,VDQUAD        ; A0 = Quad Data Offset
   ld t0,0(a0)         ; T0 = Quad Data
-  la a0,VADCBVDCHECKD ; A0 = Quad Check Data Offset
+  la a0,VACCBVDCHECKD ; A0 = Quad Check Data Offset
   ld t1,0(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILD ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILD ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VDQUAD        ; A0 = Quad Data Offset
   ld t0,8(a0)         ; T0 = Quad Data
-  la a0,VADCBVDCHECKD ; A0 = Quad Check Data Offset
+  la a0,VACCBVDCHECKD ; A0 = Quad Check Data Offset
   ld t1,8(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILD ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILD ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,0(a0)         ; T0 = Quad Data
-  la a0,VADCBVACHECKD ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKD ; A0 = Quad Check Data Offset
   ld t1,0(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILD ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILD ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,8(a0)         ; T0 = Quad Data
-  la a0,VADCBVACHECKD ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKD ; A0 = Quad Check Data Offset
   ld t1,8(a0)         ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILD ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILD ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,16(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKD ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKD ; A0 = Quad Check Data Offset
   ld t1,16(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILD ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILD ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,24(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKD ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKD ; A0 = Quad Check Data Offset
   ld t1,24(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILD ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILD ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,32(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKD ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKD ; A0 = Quad Check Data Offset
   ld t1,32(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILD ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILD ; Compare Result Equality With Check Data
   nop ; Delay Slot
   la a0,VAQUAD        ; A0 = Quad Data Offset
   ld t0,40(a0)        ; T0 = Quad Data
-  la a0,VADCBVACHECKD ; A0 = Quad Check Data Offset
+  la a0,VACCBVACHECKD ; A0 = Quad Check Data Offset
   ld t1,40(a0)        ; T1 = Quad Check Data
-  bne t0,t1,VADCBFAILD ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILD ; Compare Result Equality With Check Data
   nop ; Delay Slot
 
   la a0,VCOVCCWORD        ; A0 = Word Data Offset
   lw t0,0(a0)             ; T0 = Word Data
-  la a0,VADCBVCOVCCCHECKD ; A0 = Word Check Data Offset
+  la a0,VACCBVCOVCCCHECKD ; A0 = Word Check Data Offset
   lw t1,0(a0)             ; T1 = Word Check Data
-  bne t0,t1,VADCBFAILD ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILD ; Compare Result Equality With Check Data
 
   la a0,VCEBYTE        ; A0 = Byte Data Offset
   lb t0,0(a0)          ; T0 = Byte Data
-  la a0,VADCBVCECHECKD ; A0 = Byte Check Data Offset
+  la a0,VACCBVCECHECKD ; A0 = Byte Check Data Offset
   lb t1,0(a0)          ; T1 = Byte Check Data
-  bne t0,t1,VADCBFAILD ; Compare Result Equality With Check Data
+  bne t0,t1,VACCBFAILD ; Compare Result Equality With Check Data
 
   PrintString $A010,576,392,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
-  j VADCBENDD
+  j VACCBENDD
   nop ; Delay Slot
-  VADCBFAILD:
+  VACCBFAILD:
   PrintString $A010,576,392,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
-  VADCBENDD:
+  VACCBENDD:
 
   PrintString $A010,0,400,FontBlack,PAGEBREAK,79 ; Print Text String To VRAM Using Font At X,Y Position
 
@@ -1915,7 +1915,7 @@ Loop:
   nop ; Delay Slot
 
 VADDBTEXT: db "VADDB"
-VADCBTEXT: db "VADCB"
+VACCBTEXT: db "VACCB"
 
 VAVDHEX: db "VA/VD (Hex)"
 VSVTHEX: db "VS/VT (Hex)"
@@ -1946,10 +1946,10 @@ VADDBVDCHECKB: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
 VADDBVDCHECKC: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
 VADDBVDCHECKD: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
 
-VADCBVDCHECKA: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
-VADCBVDCHECKB: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
-VADCBVDCHECKC: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
-VADCBVDCHECKD: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
+VACCBVDCHECKA: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
+VACCBVDCHECKB: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
+VACCBVDCHECKC: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
+VACCBVDCHECKD: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
 
 VADDBVACHECKA: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
                dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
@@ -1964,16 +1964,16 @@ VADDBVACHECKD: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
                dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
                dh $FFDC, $BB98, $7754, $3310, $EECC, $AA88, $6644, $2200
 
-VADCBVACHECKA: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
+VACCBVACHECKA: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
                dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
                dh $0011, $2233, $4455, $6677, $8899, $AABB, $CCDD, $EEFF
-VADCBVACHECKB: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
+VACCBVACHECKB: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
                dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
                dh $0022, $4466, $88AA, $CCEE, $1132, $5576, $99BA, $DDFE
-VADCBVACHECKC: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
+VACCBVACHECKC: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
                dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
                dh $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF
-VADCBVACHECKD: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
+VACCBVACHECKD: dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
                dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
                dh $FFDC, $BB98, $7754, $3310, $EECC, $AA88, $6644, $2200
 
@@ -1988,10 +1988,10 @@ VADDBVCOVCCCHECKB: dh $0000, $0000
 VADDBVCOVCCCHECKC: dh $0000, $0000
 VADDBVCOVCCCHECKD: dh $0000, $0000
 
-VADCBVCOVCCCHECKA: dh $0000, $0000
-VADCBVCOVCCCHECKB: dh $0000, $0000
-VADCBVCOVCCCHECKC: dh $0000, $0000
-VADCBVCOVCCCHECKD: dh $0000, $0000
+VACCBVCOVCCCHECKA: dh $0000, $0000
+VACCBVCOVCCCHECKB: dh $0000, $0000
+VACCBVCOVCCCHECKC: dh $0000, $0000
+VACCBVCOVCCCHECKD: dh $0000, $0000
 
 VCOVCCWORD: dh $0000, $0000
 
@@ -2000,10 +2000,10 @@ VADDBVCECHECKB: db $00
 VADDBVCECHECKC: db $00
 VADDBVCECHECKD: db $00
 
-VADCBVCECHECKA: db $00
-VADCBVCECHECKB: db $00
-VADCBVCECHECKC: db $00
-VADCBVCECHECKD: db $00
+VACCBVCECHECKA: db $00
+VACCBVCECHECKB: db $00
+VACCBVCECHECKC: db $00
+VACCBVCECHECKD: db $00
 
 VCEBYTE: db $00
 
@@ -2032,11 +2032,11 @@ RSPVADDBCode:
 RSPVADDBCodeEND:
 
   align 8 ; Align 64-Bit
-RSPVADCBCode:
+RSPVACCBCode:
   obj $0000 ; Set Base Of RSP Code Object To Zero
   lqv v00,(e0),$00,(0)   ; V0 = 128-Bit DMEM $000(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   lqv v01,(e0),$01,(0)   ; V1 = 128-Bit DMEM $010(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
-  vadcb v00,v00,v01,(e0) ; V0 = V0 + V1[0], Vector Add Byte Elements With Carry: VADCB VD,VS,VT[ELEMENT]
+  vaccb v00,v00,v01,(e0) ; V0 = V0 + V1[0], Vector Add Byte Elements With Carry: VACCB VD,VS,VT[ELEMENT]
   sqv v00,(e0),$00,(0)   ; 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   vsar v00,v00,v00,(e8) ; V0 = Vector Accumulator HI, Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT]
   sqv v00,(e0),$01,(0)  ; 128-Bit DMEM $010(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
@@ -2053,7 +2053,7 @@ RSPVADCBCode:
   break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
   align 8 ; Align 64-Bit
   objend ; Set End Of RSP Code Object
-RSPVADCBCodeEND:
+RSPVACCBCodeEND:
 
 FontBlack: incbin FontBlack8x8.bin
 FontGreen: incbin FontGreen8x8.bin

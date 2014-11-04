@@ -221,9 +221,9 @@ VSUBB: macro vd, vs, vt, element ; Vector Subtract Byte Elements: VSUBB VD,VS,VT
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
   dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$17 ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VSUBB $17 (Bit 0..5)
   endm
-VADCB: macro vd, vs, vt, element ; Vector Add Byte Elements With Carry: VADCB VD,VS,VT[ELEMENT] (Reserved)
+VACCB: macro vd, vs, vt, element ; Vector Add Byte Elements With Carry: VACCB VD,VS,VT[ELEMENT] (Reserved)
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
-  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$18 ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VADCB $18 (Bit 0..5)
+  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$18 ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VACCB $18 (Bit 0..5)
   endm
 VSUCB: macro vd, vs, vt, element ; Vector Subtract Byte Elements With Carry: VSUCB VD,VS,VT[ELEMENT] (Reserved)
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
@@ -245,9 +245,9 @@ VSAR: macro vd, vs, vt, element ; Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
   dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$1D ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VSAR $1D (Bit 0..5)
   endm
-VADC: macro vd, vs, vt, element ; Vector Add Elements With Carry: VADC VD,VS,VT[ELEMENT] (Reserved)
+VACC: macro vd, vs, vt, element ; Vector Add Elements With Carry: VACC VD,VS,VT[ELEMENT] (Reserved)
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
-  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$1E ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VADC $1E (Bit 0..5)
+  dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$1E ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VACC $1E (Bit 0..5)
   endm
 VSUC: macro vd, vs, vt, element ; Vector Subtract Elements With Carry: VSUC VD,VS,VT[ELEMENT] (Reserved)
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
@@ -277,7 +277,7 @@ VCH: macro vd, vs, vt, element ; Vector Select Clip Test High: VCH VD,VS,VT[ELEM
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
   dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$25 ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VCH $25 (Bit 0..5)
   endm
-VCR: macro vd, vs, vt, element ; Vector Select Clip Test Low (Single Precision): VCR VD,VS,VT[ELEMENT]
+VCR: macro vd, vs, vt, element ; Vector Select Crimp Test Low: VCR VD,VS,VT[ELEMENT]
 ; Word: Element (0..15), Source Vector 2 (0..31), Source Vector 1 (0..31), Destination Vector (0..31)
   dw $4A000000|(element<<21)|(vt<<16)|(vs<<11)|(vd<<6)|$26 ; Word: COP2 $48 (Bit 26..31), Function Bit 1 (Bit 25), Element (Bit 21..25), Source Vector 2 (Bit 16..20), Source Vector 1 (Bit 11..15), Destination Vector (Bit 6..10), VCR $26 (Bit 0..5)
   endm
