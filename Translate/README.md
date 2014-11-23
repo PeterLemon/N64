@@ -1,5 +1,5 @@
-N64 "Kira to Kaiketsu! 64 Tanteidan" Japanese To English Translation
-====================================================================
+N64 Japanese To English Translation
+====================================
 <br />
 Translation by krom (Peter Lemon).<br />
 <br />
