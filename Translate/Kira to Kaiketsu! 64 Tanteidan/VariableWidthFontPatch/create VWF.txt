@@ -1,0 +1,341 @@
+﻿Can handle unaligned wchars.
+Recognises but can not print 1-byte ASCII.
+
+801EB578	first displayed string
+
+800476B8	string writer
+	#8004779C
+	while True:
+		src = @SP+6C	#p->source
+		c = src[0]
+		if not c:
+			goto 80047AF0
+		if c == '\n':	#0xA
+			#800477D4
+			SP+72 = @SP+86
+			@SP+6C += 1
+			@SP+8A -= 1
+			goto 80047A5C
+		#80047804
+		if src[0:2] =='\\n':	#'\n'
+			#8004781C
+			SP+72 = @SP+86
+			@SP+6C += 2
+			@SP+8A -= 1
+			goto 80047A5C
+		#8004785C
+		if (@SP+72 + 2) == @SP+86:
+			@SP+63 = 0
+			@SP+74 = 0
+			#80047884
+			while not @SP+63:
+				if not SP+20[@SP+74]:
+					break
+				if SP+20[@SP+74:@SP+74 + 2] == @SP=6C[2:4]:
+					SP+72 = @SP+86
+					SP+63 = 1
+					@SP+8A -= 1
+					break
+				else:
+					@SP+74 += 2
+			#80047920
+			@SP+74 = 0
+			while not @SP+63:
+				if not SP+18[@SP+74]:
+					break
+				if SP+18[@SP+74:@SP+74 + 2] == @SP=6C[0:2]:
+					SP+72 = @SP+86
+					SP+63 = 2
+					@SP+8A -= 1
+					break
+				else:
+					@SP+74 += 2
+			#800479CC
+			if not @SP+63:
+				SP+68[0] = SP+6C[0]
+				SP+68 += 1	#advance out
+				SP+6C += 1	#advance source
+				@SP+72 += 1
+		#80047A20
+		else:
+			SP+68[0] = SP+6C[0]
+			SP+68 += 1	#advance out
+			SP+6C += 1	#advance source
+			@SP+72 += 1
+		#80047A5C
+		if @SP+72 >= @SP+86:
+			@SP+68 = 0	#NULL terminate and advance
+			SP+68 += 1
+			v = @SP+82 + 15*@SP+73
+			call 8005F1FC(@SP+7E, @SP+64, v)
+			@SP+73 += 1
+			@SP+72 = 0
+			SP+68 = SP+64
+		#80047AD0
+		@SP+76 += 1
+		if @SP+76 >= @SP+8A:
+			break	#goto 8004779C if @SP+76 < @SP+8A
+	#80047AF0
+	@SP+68 = 0	#NULL terminate and advance
+	SP+68 += 1
+	v = @SP+82 + 15*@SP+73
+	call 8005F1FC(@SP+7E, @SP+64, v)	#format and print string A1 to buffer A2 at A0
+	SP+5C = @SP+7E + 14 * @SP+72
+	SP+5E = @SP+82 + 15 * @SP+73
+	return SP+5C
+80047B88
+
+8005F110	set font color to (A0,A1,A2,A3)
+	accepts: A0=red, A1=green, A2=blue, A3=alpha
+8005F148	unconditional return
+8005F150	set font x and y spacings; A0->801060A2, A1->801060A3
+	accepts: A0=xspacing, A1=yspacing
+8005F170	unconditional return
+8005F178	set current encoded string bank to @8010609C
+8005F1A0	unconditional return
+8005F1A8
+8005F1F4	unconditional return
+8005F1FC	0x5FDFC	format and encode string A2 for display at (A0,A1)
+	accepts: A0=xpos, A1=ypos, A2=p->string
+	...
+	#8005F3F8
+	#8005F40C
+	while buf[0]:	#buf = A2
+		c = buf[0]
+		@80106098.append(0xFF)
+		#single byte chars @801B7108: "0123456789():/+-*|+P"
+		#8005F434:	search 801B7108 for matching char; SP+6 is current index, ends at NULL
+		for SP+6,i in enumerate(801B7108):
+			if c == i:
+				@80106098.append(0x80)
+				@80106098.append(@SP+6)
+				buf+=1
+				break
+		#8005F4E4:	search euc-jp codepage (801B6C68) for match; SP+6 is current index, ends at NULL
+		else:
+			for SP+6,i in enumerate(801B6C68):
+				if buf[0:2] == i:
+					80104090 = @SP+6	#probably just a buffer
+					@80106098.append(80104090[0])
+					@80106098.append(80104090[1])
+					buf+=2
+			elif c in (0x9, 0xA, 0x20):	#catch whitespace: tabs, newlines, and spaces
+				@80106098.append(0x40)
+				@80106098.append(@buf)
+				buf+=1
+			else:
+				80104090 = 0x00EE	#probably just a buffer
+				@80106098.append(80104090[0])
+				@80106098.append(80104090[1])
+				buf+=1
+		#8005F6E8
+		# loop until end of string
+	#8005F6F8
+	@80106098.append(0)	#append NULL
+	return
+8005F72C	0x6032C	generate DL for encoded string
+	#8005FBF4:	loop while first char is 0xFF
+	while buf[0] == 0xFF:
+		...
+		#8005FDFC:	0x609FC	do...something...with each code in buffer
+		buf = @SP+B8
+		while buf[0]:
+			buf += 1
+			SP+B7 = 1
+			if buf[0] & 0x40:	#whitespace flag
+				buf += 1
+				c = buf[0]	#buf[2]
+				if c==0x9:	#8005FEC8: tab
+					buf += 1
+					@SP+B4 += 0x1C << (SP+AF + 0x1F)
+				elif c==0xA:	#8005FF00: newline
+					buf += 1
+					SP+B4 = @SP+B0
+					@SP+B2 += 14
+					SP+B7 = 0
+				elif c==' ':	#8005FE90: space
+					buf += 1
+					@SP+B4 += 7 << (SP+AF + 0x1F)
+				else:	#8005FF38
+					SP+B7 = 0
+			#8005FF44
+			if not @SP+B7:
+				goto 8006046C
+			if buf[0] & 0x80:	#single-byte char flag
+				#80060144
+				SP+B7 = 2
+				buf += 1
+				SP+BE = buf[0]
+				buf += 1
+				dl = @8018D910
+				v = 801DC340 + (@SP+BE << 0x100)	#literal offset to char image binary!
+				dl.append(0xFD48000F, v)	#settextureimage: ci8, width=16, addr=v
+				dl.append(0xF5480400, 0x07000000)	#settile: ci8, line=2, tile=7
+				dl.append(0xE6000000, 0)	#loadsync
+				dl.append(0xF4000000, 0x07034034)	#loadtile: tile=7, ul=(0,0), lr=(14,14)
+				dl.append(0xE7000000, 0)	#pipesync
+				dl.append(0xF5480400, 0)	#settile: tile=0, ci8, line=2
+				dl.append(0xF2000000, 0x00034034)	#settilesize: tile=0, ul=(0,0), lr=(14,14)
+			else:
+				#8005FF70
+				80104090[0:2] = buf[0:2]
+				buf += 2
+				SP+BE = 80104090[0:2]
+				dl = @8018D910
+				v = 801B7340 + (@SP+BE << 0x100)	#literal offset to char image binary!
+				dl.append(0xFD48000F, v)	#settextureimage: ci8, width=16, addr=v
+				dl.append(0xF5480400, 0x07000000)	#settile: ci8, line=2, tile=7
+				dl.append(0xE6000000, 0)	#loadsync
+				dl.append(0xF4000000, 0x07034034)	#loadtile: tile=7, ul=(0,0), lr=(14,14)
+				dl.append(0xE7000000, 0)	#pipesync
+				dl.append(0xF5480400, 0)	#settile: ci8, line=2, tile=0
+				dl.append(0xF2000000, 0x00034034)	#settilesize: tile=0, ul=(0,0), lr=(14,14)
+			#800602F4
+			l = (4*@SP+B4 & 0xFFF) << 12	#lrx
+			l|= (4*@SP+B2 & 0xFFF)	#lry
+			u = 0xE4000000
+			u|= (4*(@SP+B4 + 14 << (@SP+AF + 0x1F)) & 0xFFF) << 12	#ulx
+			u|= (4*(@SP+B2 + 14 << (@SP+AE + 0x1F)) & 0xFFF)	#uly
+			dl.append(u, l)	#texrect: ulx, uly, lrx, lry
+			dl.append(0xB4000000, 0)	#texrect(u): uls=0, ult=0
+			l = (1 << (11 - @SP+AF)) << 16
+			l|= (1 << (11 - @SP+AE))
+			dl.append(0xB3000000, l)	#texrect(l): dsx, dty
+			#80060420
+			if @SP+B7 == 1:
+				@SP+B4 += 14 << (@SP+AF + 0x1F)
+			else:
+				@SP+B4 += 7 << (@SP+AF + 0x1F)
+		#8006046C
+		buf += 1
+	# Omitting a completely useless branch to return just below it.
+	return
+800604C0	0x610C0
+
+8007D424	set HW A0 in next available slot at 801AE394
+8007D494
+
+80095128	draw flag animation at (A0,A1) in color (A2,A3,SP+10)
+	accepts: A0=xpos, A1=ypos, A2=red, A3=green, SP+10=blue
+	call 8005F110(red, green, blue, 255)
+	v = @801A9970
+	if v < 10:
+		call 8005F1FC(xpos, ypos, p->"C3")	#A2 = 800E95C4
+	elif v < 20:
+		call 8005F1FC(xpos, ypos, p->"C2")	#A2 = 800E95C8
+	elif v < 30:
+		call 8005F1FC(xpos, ypos, p->"C1")	#A2 = 800E95CC
+	else:
+		call 8005F1FC(xpos, ypos, p->"C0")	#A2 = 800E95D0
+	#80095210
+	if not @801A9970:
+		801A9970 = 40
+	@801A9970 -= 1
+8009525C	draw pencil animation at (A0,A1) in color (A2,A3,SP+10)
+	accepts: A0=xpos, A1=ypos, A2=red, A3=green, SP+10=blue
+	call 8005F110(red, green, blue, 255 - @801B23A2)
+	v = @800E5520
+	if v < 4:
+		call 8005F1FC(xpos, ypos, p->"D3")	#A2 = 800E95D4
+	elif v < 8:
+		call 8005F1FC(xpos, ypos, p->"D2")	#A2 = 800E95D8
+	elif v < 12:
+		call 8005F1FC(xpos, ypos, p->"D1")	#A2 = 800E95DC
+	else:
+		call 8005F1FC(xpos, ypos, p->"D0")	#A2 = 800E95E0
+	#80095344
+	if not @800E5524:
+		if not @800E5520:
+			800E5520 = 16
+			800E5524 = 180
+		else:
+			@800E5520 -= 1
+	else:
+		@800E5524 -= 1
+800953D0	conditionally display +up+ at (A0,A1)
+	accepts: A0=xpos, A1=ypos
+	call 8005F110(255, 255, 255, 255)
+	if @801B23A8:
+		call 8005F1FC(xpos, ypos, p->"B0")	#A2 = 800E95E4
+80095440	conditionally display +down+ at (A0,A1)
+	accepts: A0=xpos, A1=ypos
+	if @801B23A9 >= (@801B23A4 * @801B23A5)+@801B23A4+@801B23A8:
+		call 8005F1FC(xpos, ypos, p->"B1")	#A2 = 800E95E8
+800954B8
+
+
+special chars:
+A0	heart
+A1	spyglass
+A2	fist
+A3	star
+A4	shoe
+B0	up
+B1	down
+B2	left
+B3	right
+C0	flag(1)
+C1	flag(2)
+C2	flag(3)
+C3	flag(4)
+D0	pencil(1)
+D1	pencil(2)
+D2	pencil(3)
+D3	pencil(4)
+E1	cat(1)
+E2	cat(2)
+E3	cat(3)
+F1	flag(1)
+F2	flag(2)
+F3	flag(3)
+G0	select box
+J0	yes
+J1	no
+J2	?
+H0	#
+H1	'
+H2	*
+H3	,
+H4	.
+H5	@
+H6	diacritic voiced
+H7	diacritic semi-voicedrrr
+
++_+
+
+Method!
+Use a bogus char (0x7F maybe) to XOR trigger "ASCII doom!" mode.  Sets flag (9x20) for all subsequent encoded text until next encounter.  Map against the normal table.
+During encoding, while flag set ignore the normal 1-char lookup.  Use value as index in table.
+80104092 can be current flag setting, or just shove onto an Sx register.  SP+B7 stores actual advance.
+Ranges:
+0-9	range(0,0xA)
+A-Z	range(0xAC, 0xC6)
+a-z	range(0xC6, 0xE0)
+
+encoding table:	actually, encode just one byte since all fall before 0x100
+0x21 - 0x7E: {, |, } recoded to !, !!, !?; all --- entries should be st to 0EE (fill char)
+   EB E2 EE EE EE EE EE E5 E6 F1 EF EE F0 E8 ED
+00 01 02 03 04 05 06 07 08 09 E7 EE EE F3 EE F4
+EE AC AD AE AF B0 B1 B2 B3 B4 B5 B6 B7 B8 B9 BA
+BB BC BD BE BF C0 C1 C2 C3 C4 C5 E3 F2 E4 EE EC
+EE C6 C7 C8 C9 CA CB CC CD CE CF D0 D1 D2 D3 D4
+D5 D6 D7 D8 D9 DA DB DC DD DE DF F5 F6 F7 E1
+
+Correction table:	max width is 0xE, need left shift and advance
+upper nibble:	advance; actual value, not a correction
+lower nibble:	leftshift, subtracted from display xpos
+
+Passes actual advance value.  Other fixed types can then pass an actual as well, so only one advance routine needed.
+Implementated as SP+B4 - offset.  Then, add width.  So, for a char like "1", sub -3 to display, then add 10.  Total right shift is +7.
+
+Y corrections for 0x67, 0x6A, 0x70, 0x71, 0x79
+
+1 spacing on each end:
+     E100 B200 E000 E000 E000 E000 E000 E800 7000 D000 D000 E000 E000 A4FC E000 
+D000 A300 D000 D000 D000 D000 D000 D000 D000 D000 A400 E000 E000 E000 E000 E100
+E000 E000 E000 E000 E000 E000 E000 E000 D000 A300 D100 D000 E100 E000 E000 E000
+E000 E000 E000 D100 E000 D000 E000 E000 E000 E000 E000 E600 E000 9000 E000 E000
+E000 D100 B100 C100 B100 C100 B200 C2FD D200 9400 B2FF C200 8300 E000 D100 C100
+C2FD C1FD B100 C200 B100 C100 D000 E000 C100 C2FD D200 9400 B200 E000 E000
+
+That is one ugly font though.  Seriously, could reencode as 4bit ia and have twice the depth with softer edges...

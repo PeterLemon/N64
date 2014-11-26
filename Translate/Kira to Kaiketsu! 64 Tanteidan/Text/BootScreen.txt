@@ -3,143 +3,143 @@ Yes
 $0E1E20 (Line 1)
 A4 CF	A4 A4	00 00	00 00	| Original Japanese Hex
  #  は	 #  い	 #	 #	| Original Japanese Text
- #  Y	 #  e	 #  s	 #	| New English Text
-A3 D9	A3 E5	A3 F3	00 00	| New English Hex
+ #  Y	 e  s	 #	 #	| New English Text
+7F 59	65 73	00 00	00 00	| New English Hex
 いいえ
 No
 $0E1E27 (Line 2)
 A4 A4	A4 A4	A4 A8	00 00	| Original Japanese Hex
  #  い	 #  い	 #  え	 #	| Original Japanese Text
- #  N	 #  o	 #	 #	| New English Text
-A3 CE	A3 EF	00 00	00 00	| New English Hex
+ #  N	 o  # 	 #  え	 #	| New English Text
+7F 4E	6F 00	A4 A8	00 00	| New English Hex
 
 メニューをおわりにしますか?
 Are you sure you want to end the menu?
 $165094
 A5 E1	A5 CB	A5 E5	A1 BC	A4 F2	A4 AA	A4 EF	A4 EA	A4 CB	A4 B7	A4 DE	A4 B9	A4 AB	A1 A9	00 00	00 00	| Original Japanese Hex
  #  メ	 #  ニ	 #  ュ	 #  ー	 #  を	 #  お	 #  わ	 #  り	 #  に	 #  し	 #  ま	 #  す	 #  か	 #  ?	 #	 #	| Original Japanese Text
- #  E	 #  x	 #  i	 #  t	 #   	 #  T	 #  h	 #  e	 #   	 #  M	 #  e	 #  n	 #  u	 #  ?	 #	 #	| New English Text
-A3 C5	A3 F8	A3 E9	A3 F4	20 20	A3 D4	A3 E8	A3 E5	20 20	A3 CD	A3 E5	A3 EE	A3 F5	A1 A9	00 00	00 00	| New English Hex
+ #  W	 a  n	 t   	 T  o	    E	 x  i	 t   	 M  e    n  u	 ?  # 	 #  ま	 #  す	 #  か	 #  ?	 #	 #   	| New English Text
+7F 57	61 6E	74 20	54 6F	20 45	78 69	74 20	4D 65	6E 75	3F 00	A4 DE	A4 B9	A4 AB	A1 A9	00 00	00 00	| New English Hex
 
 コントローラのせつぞくに
 To connect the controller
 $165148 (Line 1)
 A5 B3	A5 F3	A5 C8	A5 ED	A1 BC	A5 E9	A4 CE	A4 BB	A4 C4	A4 BE	A4 AF	A4 CB	| Original Japanese Hex
  #  コ	 #  ン	 #  ト	 #  ロ	 #  ー	 #  ラ	 #  の	 #  せ	 #  つ	 #  ぞ	 #  く	 #  に	| Original Japanese Text
- #  P	 #  l	 #  e	 #  a	 #  s	 #  e	 #  I	 #  n	 #  s	 #  e	 #  r	 #  t	| New English Text
-A3 D0	A3 EC	A3 E5	A3 E1	A3 F3	A3 E5	A3 C9	A3 EE	A3 F3	A3 E5	A3 F2	A3 F4	| New English Hex
+ #  P	 l  e	 a  s	 e   	 I  n	 s  e	 r  t	    A	 #   	 #   	 #   	 #   	| New English Text
+7F 50	6C 65	61 73	65 20	49 6E	73 65	72 74	20 41	A4 C4	A4 BE	A4 AF	A4 CB	| New English Hex
 いじょうがあります
 There is a transfer
 $165160 (Line 2)
 20 20	A4 A4	A4 B8	A4 E7	A4 A6	A4 AC	A4 A2	A4 EA	A4 DE	A4 B9	0A 0A	| Original Japanese Hex
  #   	 #  い	 #  じ	 #  ょ	 #  う	 #  が	 #  あ	 #  り	 #  ま	 #  す	 #	| Original Japanese Text
- #  C	 #  o	 #  n	 #  t	 #  r	 #  o	 #  l	 #  P	 #  A	 #  K	 #	| New English Text
-A3 C3	A3 EF	A3 EE	A3 F4	A3 F2	A3 FE	A3 EC	A3 D0	A3 C1	A3 CB	0A 0A	| New English Hex
+ #  C	 o  n	 t  r	 o  l	 l  e	 r   	 P  A	 K  #	 #   	 #   	 #  #	| New English Text
+7F C3	6F 6E	74 72	6F 6C	6C 65	72 20	50 41	4B 0A	0A DE	A4 B9	0A 0A	| New English Hex
 コントローラのせつぞくを
 The connection of the controller
 $165176 (Line 3)
 A5 B3	A5 F3	A5 C8	A5 ED	A1 BC	A5 E9	A4 CE	A4 BB	A4 C4	A4 BE	A4 AF	A4 F2	| Original Japanese Hex
  #  コ	 #  ン	 #  ト	 #  ロ	 #  ー	 #  ラ	 #  の	 #  せ	 #  つ	 #  ぞ	 #  く	 #  を	| Original Japanese Text
- #  M	 #  a	 #  k	 #  e	 #   	 #  S	 #  u	 #  r	 #  e	 #   	 #  O	 #  f	| New English Text
-A3 CD	A3 E1	A3 EB	A3 E5	20 20	A3 D3	A3 F5	A3 F2	A3 E5	20 20	A3 CF	A3 E6	| New English Hex
+ #   	    M	 a  k	 e   	 S  u	 r  e	    O	 f  #	 #  つ	 #  ぞ	 #  く	 #  を	| New English Text
+7F 20	20 4D	61 6B	65 20	53 75	72 65	20 4F	66 0A	A4 C4	A4 BE	A4 AF	A4 F2	| New English Hex
 たしかめてください
 Please make sure
 $16518E (Line 4)
 20 20	A4 BF	A4 B7	A4 AB	A4 E1	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	00 00	| Original Japanese Hex
  #   	 #  た	 #  し	 #  か	 #  め	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #	| Original Japanese Text
- #  R	 #  e	 #  -	 #  C	 #  o	 #  n	 #  n	 #  e	 #  c	 #  t	 #	| New English Text
-A3 D2	A3 E5	A8 A1	A3 C3	A3 EF	A3 EE	A3 EE	A3 E5	A3 E3	A3 F4	00 00	| New English Hex
+ #   	 R  e	 -  C	 o  n	 n  e	 c  t	 i  o	 n  # 	 #  さ	 #  い	 #	| New English Text
+7F 20	52 65	5F 43	6F 6E	6E 65	63 74	69 6F	6E 00	A4 B5	A4 A4	00 00	| New English Hex
 
 セーブをするためには  
 In order to save the
 $16545C (Line 1)
 20 20	A5 BB	A1 BC	A5 D6	A4 F2	A4 B9	A4 EB	A4 BF	A4 E1	A4 CB	A4 CF	20 20	20 20	| Original Japanese Hex
  #   	 #  セ	 #  ー	 #  ブ	 #  を	 #  す	 #  る	 #  た	 #  め	 #  に	 #  は	 #    	 #    	| Original Japanese Text
- #  S	 #  a	 #  v	 #  e	 #   	 #  R	 #  e	 #  q	 #  u	 #  i	 #  r	 #  e  	 #  s	| New English Text
-A3 F3	A3 EF	A3 F6	A3 E5	20 20	A3 D2	A3 E5	A3 F1	A3 F5	A3 E9	A3 F2	A3 E5	A3 F3	| New English Hex
+ #  S	 a  v	 i  n	 g   	 R  e	 q  u	 i  r	 e  s	    A	 #  に	 #  は	 #    	 #    	| New English Text
+7F 53	61 76	65 6E	67 20	52 65	71 75	69 72	65 73	20 41	A4 CB	A4 CF	20 20	20 20	| New English Hex
 1コントローラにパックを
 A pack to one controller
 $165476 (Line 2)
 A3 B1	A5 B3	A5 F3	A5 C8	A5 ED	A1 BC	A5 E9	A4 CB	A5 D1	A5 C3	A5 AF	A4 F2	20 20	| Original Japanese Hex
  #  1	 #  コ	 #  ン	 #  ト	 #  ロ	 #  ー	 #  ラ	 #  に	 #  パ	 #  ッ	 #  ク	 #  を	 #    	| Original Japanese Text
- #  A	 #   	 #  C	 #  o	 #  n	 #  t	 #  r	 #  o	 #  l	 #   	 #  P	 #  A	 #  K   | New English Text
-A3 C1	20 20	A3 C3	A3 EF	A3 EE	A3 F4	A3 F2	A3 EF	A3 EC	20 20	A3 D0	A3 C1	A3 CB	| New English Hex
+ #   	C  o	n  t	 r  o	 l l	 e  r	    P	 A  K    #  パ	 #  ッ	 #  ク	 #  を	 #    	| New English Text
+7F 20	43 6F	6E 74	72 6F	6C 6C	65 72	20 50	41 4B	0A D1	A5 C3	A5 AF	A4 F2	20 20	| New English Hex
 せつぞくしてください
 Please connect
 $165490 (Line 3)
 20 20	A4 BB	A4 C4	A4 BE	A4 AF	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	20 20	20 20	| Original Japanese Hex
  #   	 #  せ	 #  つ	 #  ぞ	 #  く	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #   	 #   	| Original Japanese Text
- #  P	 #  l	 #  e	 #  a	 #  s	 #  e	 #   	 #  I	 #  n	 #  s	 #  e	 #  r	 #  t  	| New English Text
-A3 D0	A3 EC	A3 E5	A3 E1	A3 F3	A3 E5	20 20	A3 C9	A3 EE	A3 F3	A3 E5	A3 F2	A3 F4	| New English Hex
+ #  P	 l  e	 a  s	 e   	 I  n	 s  e	 r  t	    N	 o  w	 #  さ	 #  い	 #   	 #   	| New English Text
+7F 50	63 65	61 73	65 20	49 6E	73 65	72 74	20 4E	6F 77	A4 B5	A4 A4	20 20	20 20	| New English Hex
 このままゲームをはじめると
 If you start the game in this state
 $1654AA (Line 4)
 A4 B3	A4 CE	A4 DE	A4 DE	A5 B2	A1 BC	A5 E0	A4 F2	A4 CF	A4 B8	A4 E1	A4 EB	A4 C8	| Original Japanese Hex
  #  こ	 #  の	 #  ま	 #  ま	 #  ゲ	 #  ー	 #  ム	 #  を	 #  は	 #  じ	 #  め	 #  る	 #  と	| Original Japanese Text
- #  S	 #  a	 #  v	 #  e	 #   	 #  D	 #  i	 #  s	 #  a	 #  b	 #  l	 #  e	 #  d	| New English Text
-A3 D3	A3 E1	A3 F6	A3 E5	20 20	A3 C4	A3 E9	A3 F3	A3 E1	A3 E2	A3 EC	A3 E5	A3 E4	| New English Hex
+ #   	 S  a	 v  e	    I	 s	 D  i	 s  a	 b  l	 e  d	 #  じ	 #  め	 #  る	 #  と	| New English Text
+7F 20	53 61	76 65	20 49	73 20	44 69	73 61	62 6C	65 64	A4 B8	A4 E1	A4 EB	A4 C8	| New English Hex
 セーブができません
 It is not possible to save
 $1654C4 (Line 5)
 20 20	20 20	A5 BB	A1 BC	A5 D6	A4 AC	A4 C7	A4 AD	A4 DE	A4 BB	A4 F3	00 00	| Original Japanese Hex
  #   	 #   	 #  セ	 #  ー	 #  ブ	 #  が	 #  で	 #  き	 #  ま	 #  せ	 #  ん	 #	| Original Japanese Text
- #  I	 #  f	 #   	 #  S	 #  t	 #  a	 #  r	 #  t	 #  i	 #  n	 #  g	 #	| New English Text
-A3 C9	A3 C6	20 20	A3 D3	A3 F4	A3 E1	A3 F2	A3 F4	A3 E9	A3 EE	A3 E7	00 00	| New English Hex
+ #  I	 f   	 Y  o	 u   	 S  t	 a  r	 t   	 G  a	 m  e	 #  せ	 #  ん	 #	| New English Text
+7F 49	66 20	59 6F	75 20	53 74	61 72	74 20	47 61	6D 65	00 BB	A4 F3	00 00	| New English Hex
 よろしいですか?
 Would you like?
 $1654DC (Line 6)
 A4 E8	A4 ED	A4 B7	A4 A4	A4 C7	A4 B9	A4 AB	A1 A9	00 00	00 00	| Original Japanese Hex
  #  よ	 #  ろ	 #  し	 #  い	 #  で	 #  す	 #  か	 #  ?	 #	 #	| Original Japanese Text
- #  C	 #  o	 #  n	 #  t	 #  i	 #  n	 #  u	 #  e	 #  ?	 #	| New English Text
-A3 C3	A3 EF	A3 EE	A3 F4	A3 E9	A3 EE	A3 F5	A3 E5	A1 A9	00 00	| New English Hex
-
-「セーブなし」
-"No save"
-$165624 (Line 1)
-A1 D6	A5 BB	A1 BC	A5 D6	A4 CA	A4 B7	A1 D7	00 00	| Original Japanese Hex
- #  「	 #  セ	 #  ー	 #  ブ	 #  な	 #  し	 #  」	 #	| Original Japanese Text
- #  N	 #  o	 #   	 #  S	 #  a	 #  v	 #  e	 #	| New English Text
-A3 CE	A3 EF	20 20	A3 D3	A3 E1	A3 F6	A3 E5	00 00	| New English Hex
-で
-At / In / On
-$165634 (Line 1)
-A4 C7	00 00	| Original Japanese Hex
- #  で	 #	| Original Japanese Text
- #   	 #	| New English Text
-20 20	00 00	| New English Hex
-ゲームをはじめます
-I will start the game
-$165638 (Line 2)
-A5 B2	A1 BC	A5 E0	A4 F2	A4 CF	A4 B8	A4 E1	A4 DE	A4 B9	00 00	| Original Japanese Hex
- #  ゲ	 #  ー	 #  ム	 #  を	 #  は	 #  じ	 #  め	 #  ま	 #  す	 #	| Original Japanese Text
- #  I	 #  s	 #	 #  C	 #  h	 #  o	 #  s	 #  e	 #  n	 #	| New English Text
-A3 C9	A3 F3	20 20	A3 C3	A3 E8	A3 EF	A3 F3	A3 E5	A3 EE	00 00	| New English Hex
+ #  S	 t  a	 r  t	    A	 n  y	 w  a	 y  ?	 #  ?	 #	 #	| New English Text
+7F 53	74 61	72 74	20 41	6E 79	77 61	77 3F	00 A9	00 00	00 00	| New English Hex
 
 1コントローラにパックを
 A pack to one controller
 $1654F0 (Line 1)
 A3 B1	A5 B3	A5 F3	A5 C8	A5 ED	A1 BC	A5 E9	A4 CB	A5 D1	A5 C3	A5 AF	A4 F2	20 20	| Original Japanese Hex
  #  1	 #  コ	 #  ン	 #  ト	 #  ロ	 #  ー	 #  ラ	 #  に	 #  パ	 #  ッ	 #  ク	 #  を	 #    	| Original Japanese Text
- #  P	 #  l	 #  e	 #  a	 #  s	 #  e	 #   	 #  I	 #  n	 #  s	 #  e	 #  r	 #  t  	| New English Text
-A3 D0	A3 EC	A3 E5	A3 E1	A3 F3	A3 E5	20 20	A3 C9	A3 EE	A3 F3	A3 E5	A3 F2	A3 F4	| New English Hex
+ #  R	 e  a	 d  y	    t	 o   	 I  n	 s  e	 r  t	 #  パ	 #  ッ	 #  ク	 #  を	 #    	| New English Text
+7F 52	65 61	64 79	20 74	6F 20	49 6E	73 65	72 74	0A D1	A5 C3	A5 AF	A4 F2	20 20	| New English Hex
 せつぞくしてください
 Please connect
 $16550A (Line 2)
 20 20	A4 BB	A4 C4	A4 BE	A4 AF	A4 B7	A4 C6	A4 AF	?? C0	A4 B5	A4 A4	20 20	20 20	| Original Japanese Hex
  #   	 #  せ	 #  つ	 #  ぞ	 #  く	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #   	 #   	| Original Japanese Text
- #  A	 #   	 #  C	 #  o	 #  n	 #  t	 #  r	 #  o	 #  l	 #   	 #  P	 #  A	 #  K   | New English Text
-A3 C1	20 20	A3 C3	A3 EF	A3 EE	A3 F4	A3 F2	A3 EF	A3 EC	20 20	A3 D0	A3 C1	A3 CB	| New English Hex
+ #  A	    C	 o  n	 t  r	 o  l	 l  e	 r   	 P  A	 K   	 #  さ	 #  い	 #   	 #   	| New English Text
+7F 41	20 43	6F 6E	74 72	6F 6C	6C 65	72 20	50 41	4B 00	A4 B5	A4 A4	20 20	20 20	| New English Hex
 コントローラパックメニューに
 The controller pack menu
 $165528 (Line 3)
 A5 B3	A5 F3	A5 C8	A5 ED	A1 BC	A5 E9	A5 D1	A5 C3	A5 AF	A5 E1	A5 CB	A5 E5	A1 BC	A4 CB	00 00	| Original Japanese Hex
  #  コ	 #  ン	 #  ト	 #  ロ	 #  ー	 #  ラ	 #  パ	 #  ッ	 #  ク	 #  メ	 #  ニ	 #  ュ	 #  ー	 #  に	 #	| Original Japanese Text
- #  C	 #  o	 #  n	 #  t	 #  r	 #  o	 #  l	 #  P	 #  A	 #  K	 #  M	 #  e	 #  n	 #  u	 #	| New English Text
-A3 C3	A3 EF	A3 EE	A3 F4	A3 F2	A3 FE	A3 EC	A3 D0	A3 C1	A3 CB	A3 CD	A3 E5	A3 EE	A3 F5	00 00	| New English Hex
+ #  C	 o  n	 t  r	 o  l	 l  e	 r   	 P  A	 K   	 M  e	 n  u	 #  ニ	 #  ュ	 #  ー	 #  に	 #	| New English Text
+7F 43	6F 6E	74 72	6F 6C	6C 65	72 20	50 41	4B 20	4D 65	6E 75	00 CB	A5 E5	A1 BC	A4 CB	00 00	| New English Hex
 入ります
 Will enter
 $165548 (Line 4)
 C6 FE	A4 EA	A4 DE	A4 B9	00 00	00 00	| Original Japanese Hex
  #  入	 #  り	 #  ま	 #  す	 #	 #	| Original Japanese Text
- #  S	 #  t	 #  a	 #  r	 #  t	 #	| New English Text
-A3 D3	A3 F4	A3 E1	A3 F2	A3 F4	00 00	| New English Hex
+ #  S	 t  a	 r  t	 i  n	 g  # 	 #	| New English Text
+7F 53	74 61	72 74	69 6E	67 00	00 00	| New English Hex
+
+「セーブなし」
+"No save"
+$165624 (Line 1)
+A1 D6	A5 BB	A1 BC	A5 D6	A4 CA	A4 B7	A1 D7	00 00	| Original Japanese Hex
+ #  「	 #  セ	 #  ー	 #  ブ	 #  な	 #  し	 #  」	 #	| Original Japanese Text
+ #  S	 a  v	 i  n	 g   	 G  a	 m  e	 #  」	 #	| New English Text
+7F 53	61 76	69 6E	67 20	47 61	6D 65	00 D7	00 00	| New English Hex
+で
+At / In / On
+$165634 (Line 1)
+A4 C7	00 00	| Original Japanese Hex
+ #  で	 #	| Original Japanese Text
+ #   	 #	| New English Text
+7F 20	00 00	| New English Hex
+ゲームをはじめます
+I will start the game
+$165638 (Line 2)
+A5 B2	A1 BC	A5 E0	A4 F2	A4 CF	A4 B8	A4 E1	A4 DE	A4 B9	00 00	| Original Japanese Hex
+ #  ゲ	 #  ー	 #  ム	 #  を	 #  は	 #  じ	 #  め	 #  ま	 #  す	 #	| Original Japanese Text
+ #  I	 s    	 D  i 	 s  a	 b  l	 e  d	 #  め	 #  ま	 #  す	 #	| New English Text
+7F 49	73 20	44 69	73 61	62 6C	65 64	00 E1	A4 DE	A4 B9	00 00	| New English Hex

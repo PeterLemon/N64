@@ -3,48 +3,48 @@ Load
 $164E18 (Line 1)
 A5 ED	A1 BC	A5 C9	00 00	| Original Japanese Hex
  #  ロ	 #  ー	 #  ド	 #	| Original Japanese Text
- #  P	 #  u	 #  t	 #	| New English Text
-A3 D0	A3 F5	A3 F4	00 00	| New English Hex
+ #  L	 o  a	 d  #  	 #	| New English Text
+7F 4C	6F 61	64 7F	00 00	| New English Hex
 をするパックを
 The pack to
 $164DB8 (Line 1)
 A4 F2	A4 B9	A4 EB	A5 D1	A5 C3	A5 AF	A4 F2	0A 20	| Original Japanese Hex
  #  を	 #  す	 #  る	 #  パ	 #  ッ	 #  ク	 #  を	 #	| Original Japanese Text
- #   	 #  T	 #  h	 #  e	 #  P	 #  A	 #  K	 #	| New English Text
-20 20	A3 D4	A3 E8	A3 E5	A3 D0	A3 C1	A3 CB	0A 20	| New English Hex
+ #   	 T  h	 e   	 P  A	 K  #	 #  ク	 #  を	 #	| New English Text
+7F 20	54 68	65 20	50 41	4B 0A	A5 AF	A4 F2	0A 20	| New English Hex
 せつぞくして
 Connect
 $164DCD (Line 2)
 A4 BB	A4 C4	A4 BE	A4 AF	A4 B7	A4 C6	0A 00	| Original Japanese Hex
  #  せ	 #  つ	 #  ぞ	 #  く	 #  し	 #  て	 #	| Original Japanese Text
- #  P	 #  u	 #  s	 #  h	 #   	 #  A	 #	| New English Text
-A3 D0	A3 F5	A3 F3	A3 E8	20 20	A3 C1	0A 00	| New English Hex
+ #  P	 r  e	 s  s	    A	 #  # 	 #  て	 #	| New English Text
+7F 50	72 65	73 73	20 41	7F 00	A4 C6	0A 00	| New English Hex
 Aボタンをおしてください
 Please press the A button
 $165652 (Line 3)
 A3 C1	A5 DC	A5 BF	A5 F3	A4 F2	A4 AA	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	00 00	| Original Japanese Hex
  #  A	 #  ボ	 #  タ	 #  ン	 #  を	 #  お	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #	| Original Japanese Text
- #  I	 #  f	 #   	 #  C	 #  o	 #  n	 #  n	 #  e	 #  c	 #  t	 #  e	 #  d	 #	| New English Text
-A3 C9	A3 E6	20 20	A3 C3	A3 EF	A3 EE	A3 EE	A3 E5	A3 E3	A3 F4	A3 E5	A3 E4	00 00	| New English Hex
+ #  W	 h  e	 n   	 C  o	 n  n	 e  c	 t  e	 d  #	 #  く	 #  だ	 #  さ	 #  い	 #	| New English Text
+7F 57	68 65	6E 20	43 6F	6E 6E	65 63	74 65	64 7F	00 AF	A4 C0	A4 B5	A4 A4	00 00	| New English Hex
 
 しんどうパックをつかうばあいは
 If you are using a Shindo pack
 $165800 (Line 1)
 A4 B7	A4 F3	A4 C9	A4 A6	A5 D1	A5 C3	A5 AF	A4 F2	A4 C4	A4 AB	A4 A6	A4 D0	A4 A2	A4 A4	A4 CF	00 00	| Original Japanese Hex
  #  し	 #  ん	 #  ど	 #  う	 #  パ	 #  ッ	 #  ク	 #  を	 #  つ	 #  か	 #  う	 #  ば	 #  あ	 #  い	 #  は	 #	| Original Japanese Text
- #  I	 #  f	 #   	 #  u	 #  s	 #  i	 #  n	 #  g	 #   	 #  a	 #   	 #  S	 #  a	 #  v	 #  e	 #	| New English Text
-A3 C9	A3 E6	20 20	A3 F5	A3 F3	A3 E9	F3 EE	F3 E7	20 20	F3 E1	20 20	F3 C3	F3 E1	F3 F6	F3 E5	00 00	| New English Hex
+ #  I	 f   	 U  s	 i  n	 g   	 a   	 S  a	 v  e	 G  a	 m  e  	 #  # 	 #  ば	 #  あ	 #  い	 #  は	 #	| New English Text
+7F 49	66 20	55 73	69 6E	67 20	61 20	53 61	76 65	47 61	6D 65	7F 00	A4 D0	A4 A2	A4 A4	A4 CF	00 00	| New English Hex
 パックをとりかえてから
 After replacing the pack
 $16581E (Line 2)
 20 20	20 20	A5 D1	A5 C3	A5 AF	A4 F2	A4 C8	A4 EA	A4 AB	A4 A8	A4 C6	A4 AB	A4 E9	0A 20	| Original Japanese Hex
  #   	 #   	 #  パ	 #  ッ	 #  ク	 #  を	 #  と	 #  り	 #  か	 #  え	 #  て	 #  か	 #  ら	 #	| Original Japanese Text
- #  G	 #  a	 #  m	 #  e	 #  P	 #  A	 #  K	 #   	 #  P	 #  u	 #  s	 #  h	 #  A	 #	| New English Text
-A3 C7	A3 E1	A3 ED	A3 E5	A3 D0	A3 C1	A3 CB	20 20	A3 D0	A3 F5	F3 F3	F3 E8	20 20	0A 20	| New English Hex
+ #  C	 o  n	 t  r	 o  l	 l   	 P  A	 K   	 P  u	 s  h	    A    #  て	 #  か	 #  ら	 #	| New English Text
+7F 43	6F 6E	74 72	6F 6C	6C 20	50 41	4B 20	50 75	73 68	20 41	A4 C6	A4 AB	A4 E9	0A 20	| New English Hex
 Aボタンをおしてください
 Please press the A button
 $165839 (Line 3)
 20 20	A3 C1	A5 DC	A5 BF	A5 F3	A4 F2	A4 AA	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	00 80	| Original Japanese Hex
  #   	 #  A	 #  ボ	 #  タ	 #  ン	 #  を	 #  お	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #	| Original Japanese Text
- #  w    #  h	 #  e	 #  n 	 #  C	 #  o	 #  n	 #  n	 #  e	 #  c	 #  t	 #  e	 #  d	 #	| New English Text
-A3 F7	A3 E8	A3 E5	A3 EE	A3 C3	A3 EF	A3 EE	A3 EE	A3 E5	A3 E3	A3 F4	A3 E5	A3 E4	00 80	| New English Hex
+ #  W    h  e	 n   	 I  t	 '  s	    C	 o  n	 n  e	 c  t	 e  d	 #  だ	 #  さ	 #  い	 #	| New English Text
+7F 57	68 65	6E 20	49 74	27 73	20 43	6F 6E	6E 65	63 74	65 64	00 C0	A4 B5	A4 A4	00 80	| New English Hex

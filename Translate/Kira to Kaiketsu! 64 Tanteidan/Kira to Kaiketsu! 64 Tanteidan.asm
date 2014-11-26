@@ -1,8 +1,8 @@
-// N64 "Kira to Kaiketsu! 64 Tanteidan" Japanese To English Translation by krom (Peter Lemon):
+// N64 "Kira to Kaiketsu! 64 Tanteidan" Japanese To English Translation by krom (Peter Lemon) & Variable Width Font Engine by Zoinkity:
 
 endian msb // N64 MIPS requires Big-Endian Encoding (Most Significant Bit)
 output "Shining and Solving! 64 Detective Club.z64", create
-origin $000000; insert "Kira to Kaiketsu! 64 Tanteidan (J) [!].z64" // Include Japanese Kira to Kaiketsu! 64 Tanteidan N64 ROM
+origin $000000; insert "Kira to Kaiketsu! 64 Tanteidan VWF.z64" // Include Japanese Kira to Kaiketsu! 64 Tanteidan N64 ROM With Variable Width Font Patch By Zoinkity Applied
 
 // Title Screen GFX
 origin $1A7128; include "GFX\TitleScreen\MissionStartA.asm" // Include English GFX Tile, 64x32 TLUT RGBA 8B (2048 Bytes)
@@ -32,118 +32,123 @@ origin $B26950; include "GFX\PlayerSelect\Room.asm" // Include English GFX Tile,
 
 macro TextStyle1(OFFSET, TEXT) {
   origin {OFFSET}
-  dw {TEXT}
+  db $7F // Special Character $7F = Print ASCII Variable Width Font
+  db {TEXT} // ASCII Text To Print
 }
 
 // Char Table 1
-map ' ', $2020
-map '!', $212F // Italic
-map '.', $A1A6
-map ':', $A1A7
-map '?', $A1A9
-//map '!', $A1AA // Non-Italic
-map '0', $A3B0, 10 // Map Numbers
-map 'A', $A3C1, 26 // Map English "Upper Case" Characters
-map 'a', $A3E1, 26 // Map English "Lower Case" Characters
-map '-', $A8A1
+map ' ', $20, 32 // Map Special Chars & Numbers
+map 'A', $41, 26 // Map English "Upper Case" Characters
+map 'a', $61, 26 // Map English "Lower Case" Characters
 
 // Boot Screen
-TextStyle1($0E1E20, "Yes")
-TextStyle1($0E1E27, "No ")
-TextStyle1($165094, "Exit The Menu?")
-TextStyle1($165148, "PleaseInsert")
-TextStyle1($165160, "ControlPAK")
-TextStyle1($165176, "Make Sure Of")
-TextStyle1($16518E, "Re-Connect")
-TextStyle1($16545C, "Save Requires")
-TextStyle1($165476, "A Control PAK")
-TextStyle1($165490, "Please Insert")
-TextStyle1($1654AA, "Save Disabled")
-TextStyle1($1654C4, "If Starting")
-TextStyle1($1654DC, "Continue?")
-TextStyle1($1654F0, "Please Insert")
-TextStyle1($16550A, "A Control PAK")
-TextStyle1($165528, "ControlPAKMenu")
-TextStyle1($165548, "Start")
-TextStyle1($165624, "No Save")
-TextStyle1($165634, " ")
-TextStyle1($165638, "Is Chosen")
+TextStyle1($0E1E20, "Yes"); db $00
+TextStyle1($0E1E27, "No"); db $00
+TextStyle1($165094, "Want To Exit Menu?"); db $00
+TextStyle1($165148, "Please Insert A")
+                 db " Controller PAK", $0A,$0A
+                 db "  Make Sure Of", $0A
+                 db " Re-Connection", $00
+TextStyle1($16545C, "Saving Requires A")
+                 db "  Controller PAK", $0A
+                 db "Please Insert Now"
+                 db " Save Is Disabled"
+                 db "If You Start Game", $00
+TextStyle1($1654DC, "Start Anyway?"); db $00
+TextStyle1($1654F0, " Ready To Insert"); db $0A
+                 db " A Controller PAK", $00
+TextStyle1($165528, "Controller PAK Menu"); db $00
+TextStyle1($165548, "Starting"); db $00
+TextStyle1($165624, "Saving Game"); db $00
+TextStyle1($165634, " "); db $00
+TextStyle1($165638, "  Is Disabled"); db $00
 
 // Load Screen
-TextStyle1($164DB8, " ThePAK")
-TextStyle1($164DCD, "Push A")
-TextStyle1($164E18, "Put")
-TextStyle1($165652, "If Connected")
-TextStyle1($165800, "If using a Save")
-TextStyle1($16581E, "GamePAK PushA")
-TextStyle1($165839, "WhenConnected")
+TextStyle1($164DB8, " The PAK"); db $0A
+                 db " Press Button A", $7F, $00
+TextStyle1($164E18, "Load"); db $7F, $00
+TextStyle1($165652, " When Connected"); db $7F, $00
+TextStyle1($165800, "If Using A SaveGame")
+                 db "Controll PAK Push A"
+                 db "When It's Connected", $00
 
 // Player Select
-TextStyle1($13A818, "How many Players Today?")
-TextStyle1($13A848, "Select any COM Players?")
-TextStyle1($13A878, "Choose your Controller!")
-TextStyle1($13A8A8, "Choose a Case to Solve?")
-TextStyle1($13A8D8, "How Big is the Mansion?")
-TextStyle1($13A908, "Is this Correct:")
-TextStyle1($13A938, "Want to Start the Game?")
-TextStyle1($13A998, " There are No Mistakes?")
-TextStyle1($0E8A66, "Health"); dw $2025, $3264
-TextStyle1($0E8A7A, "Shine "); dw $2025, $3264
-TextStyle1($0E8A8E, "Attack"); dw $2025, $3264
-TextStyle1($0E8AA2, "Search"); dw $2025, $3264
-TextStyle1($0E8AB6, "Speed "); dw $2025, $3264
+TextStyle1($13A818, "How many Players")
+                 db "will be Competing"
+                 db "Today?", $00
+TextStyle1($13A848, "Do You Want any"); db $0A
+                 db "Computer Players"
+                 db "Today?", $00
+TextStyle1($13A878, "Now I need You"); db $0A
+                 db "to Select Your", $0A
+                 db "Controller!", $00
+TextStyle1($13A8A8, "Choose the Type"); db $0A
+                 db "of Case to Solve?", $00
+TextStyle1($13A8D8, "How Big a Mansion")
+                 db "Would You Like?", $00
+TextStyle1($13A908, "Is it all Correct:"); db $7F, $00
+TextStyle1($13A938, "Do You want Me to")
+                 db "Start the Game?", $00
+TextStyle1($13A998, "You're sure there")
+                 db "are No Mistakes?", $00
+
+origin $0E8A64; db $20,$25, $32,$64, $20, $41,$30, $7F, "Health", $00
+origin $0E8A78; db $20,$25, $32,$64, $20, $41,$33, $7F, "Shine", $00
+origin $0E8A8C; db $20,$25, $32,$64, $20, $41,$32, $7F, "Attack", $00
+origin $0E8AA0; db $20,$25, $32,$64, $20, $41,$31, $7F, "Search", $00
+origin $0E8AB4; db $20,$25, $32,$64, $20, $41,$34, $7F, "Speed", $00
 
 // Player Name Font Swap
 origin $0E2308; insert "FontSwap.bin" // Include Swapped Font Data (3 * $12C Bytes)
 TextStyle1($0E2698, "A"); dw $00A4, $A200, $A5A2
 
 // Player Names
-TextStyle1($0E1FC8, "Kenta")
-TextStyle1($0E1FD5, "Hirosh")
-TextStyle1($0E1FE2, "Yosuke")
-TextStyle1($0E1FEF, "Shota")
-TextStyle1($0E1FFC, "Takuya")
-TextStyle1($0E2009, "Jun")
-TextStyle1($0E2016, "Koichi")
-TextStyle1($0E2023, "Shotar")
-TextStyle1($0E2030, "Ken")
-TextStyle1($0E203D, "Hasega")
-TextStyle1($0E204A, "Tomo")
-TextStyle1($0E2057, "Yuki")
-TextStyle1($0E2064, "Anna")
-TextStyle1($0E2071, "Kurumi")
-TextStyle1($0E207E, "Yoshik")
-TextStyle1($0E208B, "Sanae")
-TextStyle1($0E2098, "Yumi")
-TextStyle1($0E20A5, "Ai")
-TextStyle1($0E20B2, "Emi")
-TextStyle1($0E20BF, "Nakaji")
-TextStyle1($0E20CC, "Jet"); dw $0000
-TextStyle1($0E20D9, "Saburo")
-TextStyle1($0E20E6, "koji")
-TextStyle1($0E20F3, "Eiji")
-TextStyle1($0E2100, "Akira")
-TextStyle1($0E210D, "Giraud")
-TextStyle1($0E211A, "Shiger")
-TextStyle1($0E2127, "Tetsu")
-TextStyle1($0E2134, "Jin")
-TextStyle1($0E2141, "Yamada")
-TextStyle1($0E214E, "Ryoko")
-TextStyle1($0E215B, "Kyoko")
-TextStyle1($0E2168, "Reiko")
-TextStyle1($0E2175, "Mayumi")
-TextStyle1($0E2182, "Nobuko")
-TextStyle1($0E218F, "Noriko")
-TextStyle1($0E219C, "Shiho")
-TextStyle1($0E21A9, "Eriko")
-TextStyle1($0E21B6, "Momoko")
-TextStyle1($0E21C3, "Hasega")
-TextStyle1($0E21D0, "Robo P")
-TextStyle1($0E21DD, "Ponkic")
-TextStyle1($0E21F7, "Plot")
-TextStyle1($0E2204, "Sanz")
-TextStyle1($0E2211, "RoboTa")
-TextStyle1($0E221E, "RoboSu")
-TextStyle1($0E222B, "RoboBe")
-TextStyle1($0E2238, "Holmes")
-TextStyle1($0E2245, "Koike")
+TextStyle1($0E1FC8, "Kenta"); db $00
+TextStyle1($0E1FD5, "Hiroshi"); db $00
+TextStyle1($0E1FE2, "Yosuke"); db $00
+TextStyle1($0E1FEF, "Shota"); db $00
+TextStyle1($0E1FFC, "Takuya"); db $00
+TextStyle1($0E2009, "Jun"); db $00
+TextStyle1($0E2016, "Koichi"); db $00
+TextStyle1($0E2023, "Shotaro"); db $00
+TextStyle1($0E2030, "Ken"); db $00
+TextStyle1($0E203D, "Hasegawa"); db $00
+TextStyle1($0E204A, "Tomo"); db $00
+TextStyle1($0E2057, "Yuki"); db $00
+TextStyle1($0E2064, "Anna"); db $00
+TextStyle1($0E2071, "Kurumi"); db $00
+TextStyle1($0E207E, "Yoshiko"); db $00
+TextStyle1($0E208B, "Sanae"); db $00
+TextStyle1($0E2098, "Yumi"); db $00
+TextStyle1($0E20A5, "Ai"); db $00
+TextStyle1($0E20B2, "Emi"); db $00
+TextStyle1($0E20BF, "Nakajima"); db $00
+TextStyle1($0E20CC, "Jet"); db $00
+TextStyle1($0E20D9, "Saburouta"); db $00
+TextStyle1($0E20E6, "Koji"); db $00
+TextStyle1($0E20F3, "Eiji"); db $00
+TextStyle1($0E2100, "Akira"); db $00
+TextStyle1($0E210D, "Giraud"); db $00
+TextStyle1($0E211A, "Shigeru"); db $00
+TextStyle1($0E2127, "Tetsuya"); db $00
+TextStyle1($0E2134, "Jin"); db $00
+TextStyle1($0E2141, "Yamada"); db $00
+TextStyle1($0E214E, "Ryoko"); db $00
+TextStyle1($0E215B, "Kyoko"); db $00
+TextStyle1($0E2168, "Reiko"); db $00
+TextStyle1($0E2175, "Mayumi"); db $00
+TextStyle1($0E2182, "Nobuko"); db $00
+TextStyle1($0E218F, "Noriko"); db $00
+TextStyle1($0E219C, "Shiho"); db $00
+TextStyle1($0E21A9, "Eriko"); db $00
+TextStyle1($0E21B6, "Momoko"); db $00
+TextStyle1($0E21C3, "Hasegawa"); db $00
+TextStyle1($0E21D0, "Robo P"); db $00
+TextStyle1($0E21DD, "Ponkichi"); db $00
+TextStyle1($0E21F7, "Plot"); db $00
+TextStyle1($0E2204, "Sanz"); db $00
+TextStyle1($0E2211, "Robo Yu"); db $00
+TextStyle1($0E221E, "RoboSuke"); db $00
+TextStyle1($0E222B, "Robo Be"); db $00
+TextStyle1($0E2238, "Holmes"); db $00
+TextStyle1($0E2245, "Koike"); db $00

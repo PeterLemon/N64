@@ -3,389 +3,389 @@ Kenta
 $0E1FC8
 A4 B1	A4 F3	A4 BF	00 00	00 00	00 00	| Original Japanese Hex
  #  け	 #  ん	 #  た	 #	 #	 #	| Original Japanese Text
- #  K	 #  e	 #  n	 #  t	 #  a	 #	| New English Text
-A3 CB	A3 E5	A3 EE	A3 F4	A3 E1	00 00	| New English Hex
+ #  K	 e  n	 t  a	 #	 #	 #	| New English Text
+7F 4B	65 6E	74 61	00 00	00 00	00 00	| New English Hex
 
 ヒロシ
 Hiroshi
 $0E1FD5
 A5 D2	A5 ED	A5 B7	00 00	00 00	00 00	| Original Japanese Hex
  #  ヒ	 #  ロ	 #  シ	 #	 #	 #	| Original Japanese Text
- #  H	 #  i	 #  r	 #  o	 #  s	 #  h	| New English Text
-A3 C8	A3 E9	A3 F2	A3 EF	A3 F3	A3 E8	| New English Hex
+ #  H	 i  r	 o  s	 h  i	 #	 #	| New English Text
+7F 48	69 72	6F 73	68 69	00 00	00 00	| New English Hex
 
 ヨウスケ
 Yosuke
 $0E1FE2
 A5 E8	A5 A6	A5 B9	A5 B1	00 00	00 00	| Original Japanese Hex
  #  ヨ	 #  ウ	 #  ス	 #  ケ	 #	 #	| Original Japanese Text
- #  Y	 #  o	 #  s	 #  u	 #  k	 #  e	| New English Text
-A3 D9	A3 EF	A3 F3	A3 F5	A3 EB	A3 E5	| New English Hex
+ #  Y	 o  s	 u  k	 e  ケ	 #	 #	| New English Text
+7F 59	6F 73	75 6B	65 B1	00 00	00 00	| New English Hex
 
 しょうた
 Shota
 $0E1FEF
 A4 B7	A4 E7	A4 A6	A4 BF	00 00	00 00	| Original Japanese Hex
  #  し	 #  ょ	 #  う	 #  た	 #	 #	| Original Japanese Text
- #  S	 #  h	 #  o	 #  t	 #  a	 #	| New English Text
-A3 D3	A3 E8	A3 EF	A3 F4	A3 E1	00 00	| New English Hex
+ #  S	 h  o	 t  a	 #  た	 #	 #	| New English Text
+7F 53	68 6F	74 61	00 BF	00 00	00 00	| New English Hex
 
 たくや
 Takuya
 $0E1FFC
 A4 BF	A4 AF	A4 E4	00 00	00 00	00 00	| Original Japanese Hex
  #  た	 #  く	 #  や	 #	 #	 #	| Original Japanese Text
- #  T	 #  a	 #  k	 #  u	 #  y	 #  a	| New English Text
-A3 D4	A3 E1	A3 EB	A3 F5	A3 F9	A3 E1	| New English Hex
+ #  T	 a  k	 u  y	 a	 #	 #	| New English Text
+7F 54	61 6B	75 79	61 00	00 00	00 00	| New English Hex
 
 じゅん
 Jun
 $0E2009
 A4 B8	A4 E5	A4 F3	00 00	00 00	00 00	| Original Japanese Hex
  #  じ	 #  ゅ	 #  ん	 #	 #	 #	| Original Japanese Text
- #  J	 #  u	 #  n	 #	 #	 #	| New English Text
-A3 CA	A3 F5	A3 EE	00 00	00 00	00 00	| New English Hex
+ #  J	 u  n	 #  ん	 #	 #	 #	| New English Text
+7F 4A	75 6E	00 F3	00 00	00 00	00 00	| New English Hex
 
 コウイチ
 Koichi
 $0E2016
 A5 B3	A5 A6	A5 A4	A5 C1	00 00	00 00	| Original Japanese Hex
  #  コ	 #  ウ	 #  イ	 #  チ	 #	 #	| Original Japanese Text
- #  K	 #  o	 #  i	 #  c	 #  h	 #  i	| New English Text
-A3 CB	A3 EF	A3 E9	A3 E3	A3 E8	A3 E9	| New English Hex
+ #  K	 o  i	 c  h	 i  #	 #	 #	| New English Text
+7F 4B	6F 69	63 68	69 00	00 00	00 00	| New English Hex
 
 しょうたろう
 Shotaro
 $0E2023
 A4 B7	A4 E7	A4 A6	A4 BF	A4 ED	A4 A6	| Original Japanese Hex
  #  し	 #  ょ	 #  う	 #  た	 #  ろ	 #  う	| Original Japanese Text
- #  S	 #  h	 #  o	 #  t	 #  a	 #  r	| New English Text
-A3 D3	A3 E8	A3 EF	A3 F4	A3 E1	A3 F2	| New English Hex
+ #  S	 h  o	 t  a	 r  o	 #  ろ	 #  う	| New English Text
+7F 53	68 6F	74 61	72 6F	00 ED	A4 A6	| New English Hex
 
 ケン
 Ken
 $0E2030
 A5 B1	A5 F3	00 00	00 00	00 00	00 00	| Original Japanese Hex
  #  ケ	 #  ン	 #	 #	 #	 #	| Original Japanese Text
- #  K	 #  e	 #  n	 #	 #	 #	| New English Text
-A3 CB	A3 E5	A3 EE	00 00	00 00	00 00	| New English Hex
+ #  K	 e  n	 #	 #	 #	 #	| New English Text
+7F 4B	65 6E	00 00	00 00	00 00	00 00	| New English Hex
 
 はせがわ
 Hasegawa
 $0E203D
 A4 CF	A4 BB	A4 AC	A4 EF	00 00	00 00	| Original Japanese Hex
  #  は	 #  せ	 #  が	 #  わ	 #	 #	| Original Japanese Text
- #  H	 #  a	 #  s	 #  e	 #  g	 #  a	| New English Text
-A3 C8	A3 E1	A3 F3	A3 E5	A3 E7	A3 E1	| New English Hex
+ #  H	 a  s	 e  g	 a  w	 a  #	 #	| New English Text
+7F 48	61 73	65 67	61 77	61 00	00 00	| New English Hex
 
 トモ
 Tomo
 $0E204A
 A5 C8	A5 E2	00 00	00 00	00 00	00 00	| Original Japanese Hex
  #  ト	 #  モ	 #	 #	 #	 #	| Original Japanese Text
- #  T	 #  o	 #  m	 #  o	 #	 #	| New English Text
-A3 D4	A3 EF	A3 ED	A3 EF	00 00	00 00	| New English Hex
+ #  T	 o  m	 o  #	 #	 #	 #	| New English Text
+7F 54	6F 6D	6F 00	00 00	00 00	00 00	| New English Hex
 
 ユキ
 Yuki / Snow
 $0E2057
 A5 E6	A5 AD	00 00	00 00	00 00	00 00	| Original Japanese Hex
  #  ユ	 #  キ	 #	 #	 #	 #	| Original Japanese Text
- #  Y	 #  u	 #  k	 #  i	 #	 #	| New English Text
-A3 F9	A3 F5	A3 EB	A3 E9	00 00	00 00	| New English Hex
+ #  Y	 u  k	 i  #	 #	 #	 #	| New English Text
+7F 59	75 6B	69 00	00 00	00 00	00 00	| New English Hex
 
 アンナ
 Anna
 $0E2064
 A5 A2	A5 F3	A5 CA	00 00	00 00	00 00	| Original Japanese Hex
  #  ア	 #  ン	 #  ナ	 #	 #	 #	| Original Japanese Text
- #  A	 #  n	 #  n	 #  a	 #	 #	| New English Text
-A3 C1	A3 EE	A3 EE	A3 E1	00 00	00 00	| New English Hex
+ #  A	 n  n	 a  #	 #	 #	 #	| New English Text
+7F 41	6E 6E	61 00	00 00	00 00	00 00	| New English Hex
 
 くるみ
 Kurumi / Walnut
 $0E2071
 A4 AF	A4 EB	A4 DF	00 00	00 00	00 00	| Original Japanese Hex
  #  く	 #  る	 #  み	 #	 #	 #	| Original Japanese Text
- #  K	 #  u	 #  r	 #  u	 #  m	 #  i	| New English Text
-A3 CB	A3 F5	A3 F2	A3 F5	A3 ED	A3 E9	| New English Hex
+ #  K	 u  r	 u  m	 i  #	 #	 #	| New English Text
+7F 4B	75 72	75 6D	69 00	00 00	00 00	| New English Hex
 
 よしこ
 Yoshiko
 $0E207E
 A4 E8	A4 B7	A4 B3	00 00	00 00	00 00	| Original Japanese Hex
  #  よ	 #  し	 #  こ	 #	 #	 #	| Original Japanese Text
- #  Y	 #  o	 #  s	 #  h	 #  i	 #  k	| New English Text
-A3 D9	A3 EF	A3 F3	A3 E8	A3 E9	A3 EB	| New English Hex
+ #  Y	 o  s	 h  i	 k  o	 #	 #	| New English Text
+7F 59	6F 73	68 69	6B 6F	00 00	00 00	| New English Hex
 
 さなえ
 Sanae
 $0E208B
 A4 B5	A4 CA	A4 A8	00 00	00 00	00 00	| Original Japanese Hex
  #  さ	 #  な	 #  え	 #	 #	 #	| Original Japanese Text
- #  S	 #  a	 #  n	 #  a	 #  e	 #	| New English Text
-A3 F3	A3 E1	A3 EE	A3 E1	A3 E5	00 00	| New English Hex
+ #  S	 a  n	 a  e	 #	 #	 #	| New English Text
+7F 53	61 6E	61 65	00 00	00 00	00 00	| New English Hex
 
 ユミ
 Yumi
 $0E2098
 A5 E6	A5 DF	00 00	00 00	00 00	00 00	| Original Japanese Hex
  #  ユ	 #  ミ	 #	 #	 #	 #	| Original Japanese Text
- #  Y	 #  u	 #  m	 #  i	 #	 #	| New English Text
-A3 D9	A3 F5	A3 ED	A3 E9	00 00	00 00	| New English Hex
+ #  Y	 u  m	 i  #	 #	 #	 #	| New English Text
+7F 59	75 6D	69 00	00 00	00 00	00 00	| New English Hex
 
 あい
 Ai / Love
 $0E20A5
 A4 A2	A4 A4	00 00	00 00	00 00	00 00	| Original Japanese Hex
  #  あ	 #  い	 #	 #	 #	 #	| Original Japanese Text
- #  A	 #  i	 #	 #	 #	 #	| New English Text
-A3 C1	A3 E9	00 00	00 00	00 00	00 00	| New English Hex
+ #  A	 i  #	 #	 #	 #	 #	| New English Text
+7F 41	69 00	00 00	00 00	00 00	00 00	| New English Hex
 
 えみ
 Emi / Smile
 $0E20B2
 A4 A8	A4 DF	00 00	00 00	00 00	00 00	| Original Japanese Hex
  #  え	 #  み	 #	 #	 #	 #	| Original Japanese Text
- #  E	 #  m	 #  i	 #	 #	 #	| New English Text
-A3 C5	A3 ED	A3 E9	00 00	00 00	00 00	| New English Hex
+ #  E	 m  i	 #	 #	 #	 #	| New English Text
+7F 45	6D 69	00 00	00 00	00 00	00 00	| New English Hex
 
 なかじま
 Nakajima
 $0E20BF
 A4 CA	A4 AB	A4 B8	A4 DE	00 00	00 00	| Original Japanese Hex
  #  な	 #  か	 #  じ	 #  ま	 #	 #	| Original Japanese Text
- #  N	 #  a	 #  k	 #  a	 #  j	 #  i	| New English Text
-A3 CE	A3 E1	A3 EB	A3 E1	A3 EA	A3 E9	| New English Hex
+ #  N	 a  k	 a  j	 i  m	 a  #	 #	| New English Text
+7F 4E	61 6B	61 6A	69 6D	61 00	00 00	| New English Hex
 
 ジェット
 Jet
 $0E20CC
 A5 B8	A5 A7	A5 C3	A5 C8	00 00	00 00	| Original Japanese Hex
  #  ジ	 #  ェ	 #  ッ	 #  ト	 #	 #	| Original Japanese Text
- #  J	 #  e	 #  t	 #	 #	 #	| New English Text
-A3 EA	A3 E5	A3 F4	00 00	00 00	00 00	| New English Hex
+ #  J	 e  t	 #  ッ	 #  ト	 #	 #	| New English Text
+7F 4A	65 74	00 C3	A5 C8	00 00	00 00	| New English Hex
 
 さぶろうた
 Saburouta
 $0E20D9
 A4 B5	A4 D6	A4 ED	A4 A6	A4 BF	00 00	| Original Japanese Hex
  #  さ	 #  ぶ	 #  ろ	 #  う	 #  た	 #	| Original Japanese Text
- #  S	 #  a	 #  b	 #  u	 #  r	 #  o	| New English Text
-A3 D3	A3 E1	A3 E2	A3 F5	A3 F2	A3 EF	| New English Hex
+ #  S	 a  b	 u  r	 o  u	 t  a	 #	| New English Text
+7F 53	61 62	75 72	6F 75	74 61	00 00	| New English Hex
 
 コウジ
 Koji
 $0E20E6
 A5 B3	A5 A6	A5 B8	00 00	00 00	00 00	| Original Japanese Hex
  #  コ	 #  ウ	 #  ジ	 #	 #	 #	| Original Japanese Text
- #  K	 #  o	 #  j	 #  i	 #	 #	| New English Text
-A3 CB	A3 EF	A3 EA	A3 E9	00 00	00 00	| New English Hex
+ #  K	 o  j	 i  #	 #	 #	 #	| New English Text
+7F 4B	6F 6A	69 00	00 00	00 00	00 00	| New English Hex
 
 エイジ
 Eiji / Age
 $0E20F3
 A5 A8	A5 A4	A5 B8	00 00	00 00	00 00	| Original Japanese Hex
  #  エ	 #  イ	 #  ジ	 #	 #	 #	| Original Japanese Text
- #  E	 #  i	 #  j	 #  i	 #	 #	| New English Text
-A3 C5	A3 E9	A3 EA	A3 E9	00 00	00 00	| New English Hex
+ #  E	 i  j	 i  #	 #	 #	 #	| New English Text
+7F 45	69 6A	A3 00	00 00	00 00	00 00	| New English Hex
 
 あきら
 Akira
 $0E2100
 A4 A2	A4 AD	A4 E9	00 00	00 00	00 00	| Original Japanese Hex
  #  あ	 #  き	 #  ら	 #	 #	 #	| Original Japanese Text
- #  A	 #  k	 #  i	 #  r	 #  a	 #	| New English Text
-A3 C1	A3 EB	A3 E9	A3 F2	A3 E1	00 00	| New English Hex
+ #  A	 k  i	 r  a	 #	 #	 #	| New English Text
+7F 41	4B 69	72 61	00 00	00 00	00 00	| New English Hex
 
 ジロー
 Giraud
 $0E210D
 A5 B8	A5 ED	A1 BC	00 00	00 00	00 00	| Original Japanese Hex
  #  ジ	 #  ロ	 #  ー	 #	 #	 #	| Original Japanese Text
- #  G	 #  i	 #  r	 #  a	 #  u	 # d	| New English Text
-A3 E7	A3 E9	A3 F2	A3 E1	A3 F5	A3 E4	| New English Hex
+ #  G	 i  r	 a  u	 d  #	 #	 #	| New English Text
+7F 47	69 72	61 75	64 00	00 00	00 00	| New English Hex
 
 シゲル
 Shigeru
 $0E211A
 A5 B7	A5 B2	A5 EB	00 00	00 00	00 00	| Original Japanese Hex
  #  シ	 #  ゲ	 #  ル	 #	 #	 #	| Original Japanese Text
- #  S	 #  h	 #  i	 #  g	 #  e	 #  r	| New English Text
-A3 D3	A3 E8	A3 E9	A3 E7	A3 E5	A3 F2	| New English Hex
+ #  S	 h  i	 g  e	 r  u	 #	 #	| New English Text
+7F 53	68 69	67 65	72 75	00 00	00 00	| New English Hex
 
 てつや
 Tetsuya
 $0E2127
 A4 C6	A4 C4	A4 E4	00 00	00 00	00 00	| Original Japanese Hex
  #  て	 #  つ	 #  や	 #	 #	 #	| Original Japanese Text
- #  T	 #  e	 #  t	 #  s	 #  u	 #	| New English Text
-A3 D4	A3 E5	A3 F4	A3 F3	A3 F5	00 00	| New English Hex
+ #  T	 e  t	 s  u	 y  a	 #	 #	| New English Text
+7F 54	65 74	73 75	79 61	00 00	00 00	| New English Hex
 
 ジン
 Jin / Gin
 $0E2134
 A5 B8	A5 F3	00 00	00 00	00 00	00 00	| Original Japanese Hex
  #  ジ	 #  ン	 #	 #	 #	 #	| Original Japanese Text
- #  J	 #  i	 #  n	 #	 #	 #	| New English Text
-A3 CA	A3 E9	A3 EE	00 00	00 00	00 00	| New English Hex
+ #  J	 i  n	 #	 #	 #	 #	| New English Text
+7F 4A	69 6E	00 00	00 00	00 00	00 00	| New English Hex
 
 やまだ
 Yamada
 $0E2141
 A4 E4	A4 DE	A4 C0	00 00	00 00	00 00	| Original Japanese Hex
  #  や	 #  ま	 #  だ	 #	 #	 #	| Original Japanese Text
- #  Y	 #  a	 #  m	 #  a	 #  d	 #  a	| New English Text
-A3 F9	A3 E1	A3 ED	A3 E1	A3 E4	A3 E1	| New English Hex
+ #  Y	 a  m	 a  d	 a  #	 #	 #	| New English Text
+7F 59	61 6D	61 64	61 00	00 00	00 00	| New English Hex
 
 りょうこ
 Ryoko
 $0E214E
 A4 EA	A4 E7	A4 A6	A4 B3	00 00	00 00	| Original Japanese Hex
  #  り	 #  ょ	 #  う	 #  こ	 #	 #	| Original Japanese Text
- #  R	 #  y	 #  o	 #  k	 #  o	 #	| New English Text
-A3 D2	A3 F9	A3 EF	A3 EB	A3 EF	00 00	| New English Hex
+ #  R	 y  o	 k  o	 #	 #	 #	| New English Text
+7F 52	79 6F	6B 6F	00 00	00 00	00 00	| New English Hex
 
 きょうこ
 Kyoko
 $0E215B
 A4 AD	A4 E7	A4 A6	A4 B3	00 00	00 00	| Original Japanese Hex
  #  き	 #  ょ	 #  う	 #  こ	 #	 #	| Original Japanese Text
- #  K	 #  y	 #  o	 #  k	 #  o	 #	| New English Text
-A3 CB	A3 F9	A3 EF	A3 EB	A3 EF	00 00	| New English Hex
+ #  K	 y  o	 k  o	 #  こ	 #	 #	| New English Text
+7F 4B	79 6F	6B 6F	00 B3	00 00	00 00	| New English Hex
 
 れいこ
 Reiko
 $0E2168
 A4 EC	A4 A4	A4 B3	00 00	00 00	00 00	| Original Japanese Hex
  #  れ	 #  い	 #  こ	 #	 #	 #	| Original Japanese Text
- #  R	 #  e	 #  i	 #  k	 #  o	 #	| New English Text
-A3 D2	A3 E5	A3 E9	A3 EB	A3 EF	00 00	| New English Hex
+ #  R	 e  i	 k  o	 #	 #	 #	| New English Text
+7F 52	65 69	6B 6F	00 00	00 00	00 00	| New English Hex
 
 まゆみ
 Mayumi
 $0E2175
 A4 DE	A4 E6	A4 DF	00 00	00 00	00 00	| Original Japanese Hex
  #  ま	 #  ゆ	 #  み	 #	 #	 #	| Original Japanese Text
- #  M	 #  a	 #  y	 #  u	 #  m	 #  i	| New English Text
-A3 CD	A3 E1	A3 E9	A3 F5	A5 ED	A3 E9	| New English Hex
+ #  M	 a  y	 u  m	 i  #	 #	 #	| New English Text
+7F 4D	61 79	75 6D	69 00	00 00	00 00	| New English Hex
 
 のぶこ
 Nobuko
 $0E2182
 A4 CE	A4 D6	A4 B3	00 00	00 00	00 00	| Original Japanese Hex
  #  の	 #  ぶ	 #  こ	 #	 #	 #	| Original Japanese Text
- #  N	 #  o	 #  b	 #  u	 #  k	 #  o	| New English Text
-A3 CE	A3 EF	A3 E2	A3 F5	A3 EB	A3 EF	| New English Hex
+ #  N	 o  b	 u  k	 o  #	 #	 #	| New English Text
+7F 4E	6F 62	75 6B	6F 00	00 00	00 00	| New English Hex
 
 ノリコ
 Noriko
 $0E218F
 A5 CE	A5 EA	A5 B3	00 00	00 00	00 00	| Original Japanese Hex
  #  ノ	 #  リ	 #  コ	 #	 #	 #	| Original Japanese Text
- #  N	 #  o	 #  r	 #  i	 #  k	 #  o	| New English Text
-A3 CE	A3 EF	A3 F2	A3 E9	A3 EB	A3 EF	| New English Hex
+ #  N	 o  r	 i  k	 o  #	 #	 #	| New English Text
+7F 4E	6F 72	69 6B	6F 00	00 00	00 00	| New English Hex
 
 しほ
 Shiho
 $0E219C
 A4 B7	A4 DB	00 00	00 00	00 00	00 00	| Original Japanese Hex
  #  し	 #  ほ	 #	 #	 #	 #	| Original Japanese Text
- #  S	 #  h	 #  i	 #  h	 #  o	 #	| New English Text
-A3 D3	A3 E8	A3 E9	A3 E8	A3 EF	00 00	| New English Hex
+ #  S	 h  i	 h  o	 #	 #	 #	| New English Text
+7F 53	68 69	68 6F	00 00	00 00	00 00	| New English Hex
 
 エリコ
 Eriko / Jericho
 $0E21A9
 A5 A8	A5 EA	A5 B3	00 00	00 00	00 00	| Original Japanese Hex
  #  エ	 #  リ	 #  コ	 #	 #	 #	| Original Japanese Text
- #  E	 #  r	 #  i	 #  k	 #  o	 #	| New English Text
-A3 C5	A3 F2	A3 E9	A3 EB	A3 EF	00 00	| New English Hex
+ #  E	 r  i	 k  o	 #	 #	 #	| New English Text
+7F 45	72 69	6B 6F	00 00	00 00	00 00	| New English Hex
 
 モモコ
 Momoko
 $0E21B6
 A5 E2	A5 E2	A5 B3	00 00	00 00	00 00	| Original Japanese Hex
  #  モ	 #  モ	 #  コ	 #	 #	 #	| Original Japanese Text
- #  M	 #  o	 #  m	 #  o	 #  k	 #  o	| New English Text
-A3 CD	A3 EF	A3 ED	A3 EF	A3 EB	A3 EF	| New English Hex
+ #  M	 o  m	 o  k	 o  #	 #	 #	| New English Text
+7F 4D	6F 6D	6F 6B	6F 00	00 00	00 00	| New English Hex
 
 はせがわ
 Hasegawa
 $0E21C3
 A4 CF	A4 BB	A4 AC	A4 EF	00 00	00 00	| Original Japanese Hex
  #  は	 #  せ	 #  が	 #  わ	 #	 #	| Original Japanese Text
- #  H	 #  a	 #  s	 #  e	 #  g	 #  a	| New English Text
-A3 C8	A3 E1	A3 F3	A3 E5	A3 E7	A3 E1	| New English Hex
+ #  H	 a  s	 e  g	 a  w	 a  #	 #	| New English Text
+7F 48	61 73	65 67	61 77	61 00	00 00	| New English Hex
 
 ロボP
 Robo P
 $0E21D0
 A5 ED	A5 DC	A3 D0	00 00	00 00	00 00	| Original Japanese Hex
  #  ロ	 #  ボ	 #  P	 #	 #	 #	| Original Japanese Text
- #  R	 #  o	 #  b	 #  o	 #  P	 #	| New English Text
-A3 D2	A3 EF	A3 E2	A3 EF	A3 D0	00 00	| New English Hex
+ #  R	 o  b	 o       P  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	50 00	00 00	00 00	| New English Hex
 
 ポンキチ
 Ponkichi
 $0E21DD
 A5 DD	A5 F3	A5 AD	A5 C1	00 00	00 00	| Original Japanese Hex
  #  ポ	 #  ン	 #  キ	 #  チ	 #	 #	| Original Japanese Text
- #  P	 #  o	 #  n	 #  k	 #  i	 #  c	| New English Text
-A3 D0	A3 EF	A3 EE	A3 EB	A3 E9	A3 E3	| New English Hex
+ #  P	 o  n	 k  i	 c  h	 i  #	 #	| New English Text
+7F 50	6F 6E	6B 69	63 68	69 00	00 00	| New English Hex
 
 プロット
 Plot
 $E21F7
 A5 D7	A5 ED	A5 C3	A5 C8	00 00	00 00	| Original Japanese Hex
  #  プ	 #  ロ	 #  ッ	 #  ト	 #	 #	| Original Japanese Text
- #  P	 #  l	 #  o	 #  t	 #	 #	| New English Text
-A3 D0	A3 EC	A3 EF	A3 F4	00 00	00 00	| New English Hex
+ #  P	 l  o	 t  #	 #  ト	 #	 #	| New English Text
+7F 50	6C 6F	74 00	A5 C8	00 00	00 00	| New English Hex
 
 さんすけ
 Sanz
 $0E2204
 A4 B5	A4 F3	A4 B9	A4 B1	00 00	00 00	| Original Japanese Hex
  #  さ	 #  ん	 #  す	 #  け	 #	 #	| Original Japanese Text
- #  S	 #  a	 #  n	 #  z	 #	 #	| New English Text
-A3 D3	A3 E1	A3 EE	A3 FA	00 00	00 00	| New English Hex
+ #  S	 a  n	 z  #	 #  け	 #	 #	| New English Text
+7F 53	61 6E	7A 00	A4 B1	00 00	00 00	| New English Hex
 
 ロボたろゆ
 Robo Taroyu / Robotaro yu
 $0E2211
 A5 ED	A5 DC	A4 BF	A4 ED	A4 E6	00 00	| Original Japanese Hex
  #  ロ	 #  ボ	 #  た	 #  ろ	 #  ゆ	 #	| Original Japanese Text
- #  R	 #  o	 #  b	 #  o	 #  T	 #  a	| New English Text
-A3 D2	A3 EF	A3 E2	A3 EF	A3 C4	A3 E1	| New English Hex
+ #  R	 o  b	 o   	 Y  u	 #  ゆ	 #	| New English Text
+7F 52	6F 62	6F 20	59 75	00 E6	00 00	| New English Hex
 
 ロボスケ
 Robosuke
 $0E221E
 A5 ED	A5 DC	A5 B9	A5 B1	00 00	00 00	| Original Japanese Hex
  #  ロ	 #  ボ	 #  ス	 #  ケ	 #	 #	| Original Japanese Text
- #  R	 #  o	 #  b	 #  o	 #  S	 #  u	| New English Text
-A3 D2	A3 EF	A3 E2	A3 EF	A3 C3	A3 F5	| New English Hex
+ #  R	 o  b	 o  S	 u  k	 e  #	 #	| New English Text
+7F 52	6F 62	6F 53	75  6B	65 00	00 00	| New English Hex
 
 ロボべぇ
 Robo Be~e
 $0E222B
 A5 ED	A5 DC	A4 D9	A4 A7	00 00	00 00	| Original Japanese Hex
  #  ロ	 #  ボ	 #  べ	 #  ぇ	 #	 #	| Original Japanese Text
- #  R	 #  o	 #  b	 #  o	 #  B	 #  e	| New English Text
-A3 D2	A3 EF	A3 E2	A3 EF	A3 C2	A3 E5	| New English Hex
+ #  R	 o  b	 o   	 B  e	 #	 #	| New English Text
+7F 52	6F 62	6F 20	42 65	00 00	00 00	| New English Hex
 
 ホームズ
 Holmes
 $0E2238
 A5 DB	A1 BC	A5 E0	A5 BA	00 00	00 00	| Original Japanese Hex
  #  ホ	 #  ー	 #  ム	 #  ズ	 #	 #	| Original Japanese Text
- #  H	 #  o	 #  l	 #  m	 #  e	 #  s	| New English Text
-A3 C8	A3 EF	A3 EC	A3 ED	A3 E5	A3 F3	| New English Hex
+ #  H	 o  l	 m  e	 s  #	 #	 #	| New English Text
+7F 48	6F 6C	6D 65	73 00	00 00	00 00	| New English Hex
 
 こいけ
 Koike
 $0E2245
 A4 B3	A4 A4	A4 B1	00 00	00 00	00 00	| Original Japanese Hex
  #  こ	 #  い	 #  け	 #	 #	 #	| Original Japanese Text
- #  K	 #  o	 #  i	 #  k	 #  e	 #	| New English Text
-A3 CB	A3 EF	A3 E9	A3 EB	A3 E5	00 00	| New English Hex
+ #  K	 o  i	 k  e	 #	 #	 #	| New English Text
+7F 4B	6F 69	6B 65	00 00	00 00	00 00	| New English Hex
