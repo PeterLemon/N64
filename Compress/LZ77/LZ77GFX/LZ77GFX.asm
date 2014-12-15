@@ -1,6 +1,6 @@
 ; N64 'Bare Metal' LZ77 GFX Demo by krom (Peter Lemon):
   include LIB\N64.INC ; Include N64 Definitions
-  dcb 2097152,$00 ; Set ROM Size
+  dcb 1052672,$00 ; Set ROM Size
   org $80000000 ; Entry Point Of Code
   include LIB\N64_HEADER.ASM  ; Include 64 Byte Header & Vector Table
   incbin LIB\N64_BOOTCODE.BIN ; Include 4032 Byte Boot Code

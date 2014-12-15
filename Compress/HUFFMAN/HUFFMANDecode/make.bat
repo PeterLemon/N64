@@ -1,0 +1,2 @@
+asmn6432 /p HUFFMANDecode.ASM,HUFFMANDecode.N64
+chksum64 HUFFMANDecode.N64
