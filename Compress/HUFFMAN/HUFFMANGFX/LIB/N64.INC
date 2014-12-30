@@ -116,6 +116,7 @@ SI_STATUS:         equ $18 ; $04800018..$0480001B SI: Status Register
 
 CART_DOM2_ADDR1: equ $A500 ; $05000000..$0507FFFF Cartridge Domain 2(Address 1) SRAM
 CART_DOM1_ADDR1: equ $A600 ; $06000000..$07FFFFFF Cartridge Domain 1(Address 1) 64DD
+CART_DOM2_ADDR2: equ $A800 ; $08000000..$0FFFFFFF Cartridge Domain 2(Address 2) SRAM
 CART_DOM1_ADDR2: equ $B000 ; $10000000..$18000803 Cartridge Domain 1(Address 2) ROM
 
 PIF_BASE: equ $BFC0 ; $1FC00000..$1FC007BF PIF Base Register
@@ -124,6 +125,10 @@ PIF_RAM:   equ $7C0 ; $1FC007C0..$1FC007FF PIF: RAM (JoyChannel)
 PIF_HWORD: equ $7C4 ; $1FC007C4..$1FC007C5 PIF: HWORD
 PIF_XBYTE: equ $7C6 ; $1FC007C6 PIF: Analog X Byte
 PIF_YBYTE: equ $7C7 ; $1FC007C7 PIF: Analog Y Byte
+
+CART_DOM1_ADDR3: equ $BFD0 ; $1FD00000..$7FFFFFFF Cartridge Domain 1 (Address 3)
+
+EXT_SYS_AD: equ $8000 ; $80000000..$FFFFFFFF External SysAD Device
 
 VI_NTSC_CLOCK equ 48681812 ; NTSC: Hz = 48.681812 MHz
 VI_PAL_CLOCK  equ 49656530 ; PAL:  Hz = 49.656530 MHz
