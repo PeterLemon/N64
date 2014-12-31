@@ -12,8 +12,8 @@ Start:
   ScreenNTSC 640, 480, BPP32|INTERLACE|AA_MODE_2, $A0100000 ; Screen NTSC: 640x480, 32BPP, DRAM Origin $A0100000
 
   lui a0,$A010 ; A0 = DRAM Start Offset
-  la a1,$B0000000|(Image&$3FFFFFF) ; T1 = Image ROM Start Offset ($B0000000..$B3FFFFFF)
-  la a2,$B0000000|(ImageEnd&$3FFFFFF) ; T2 = Image ROM End Offset ($B0000000..$B3FFFFFF)
+  la a1,$B0000000|(Image&$3FFFFFF) ; A1 = Image ROM Start Offset ($B0000000..$B3FFFFFF)
+  la a2,$B0000000|(ImageEnd&$3FFFFFF) ; A2 = Image ROM End Offset ($B0000000..$B3FFFFFF)
 DrawImage:
   lw t0,0(a1) ; T0 = Next Word From Image
   sync ; Sync Load
