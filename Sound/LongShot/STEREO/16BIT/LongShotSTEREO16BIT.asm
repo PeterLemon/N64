@@ -45,10 +45,6 @@ AIBusy:
   j LoopBuffer
   nop ; Delay Slot
 
-Loop:
-  j Loop
-  nop ; Delay Slot
-
 Sample: ; 16-Bit 44100Hz Signed Big-Endian Stereo Sound Sample
   incbin Sample.bin
 SampleEND:
