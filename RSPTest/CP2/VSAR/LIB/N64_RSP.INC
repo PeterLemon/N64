@@ -53,6 +53,24 @@ E13: equ 13
 E14: equ 14
 E15: equ 15
 
+; RSP CP0 Control Registers (MTF0/MTC0):
+C0:  equr 00 ; RSP CP0 Control Register 00: I/DMEM Address For DMA (RW) ($04040000)
+C1:  equr 01 ; RSP CP0 Control Register 01:   DRAM Address For DMA (RW) ($04040004)
+C2:  equr 02 ; RSP CP0 Control Register 02: DMA READ  Length (DRAM -> I/DMEM) (RW) ($04040008)
+C3:  equr 03 ; RSP CP0 Control Register 03: DMA WRITE Length (DRAM <- I/DMEM) (RW) ($0404000C)
+C4:  equr 04 ; RSP CP0 Control Register 04: RSP Status (RW) ($04040010)
+C5:  equr 05 ; RSP CP0 Control Register 05: DMA Full (R) ($04040014)
+C6:  equr 06 ; RSP CP0 Control Register 06: DMA Busy (R) ($04040018)
+C7:  equr 07 ; RSP CP0 Control Register 07: CPU-RSP Semaphore (RW) ($0404001C)
+C8:  equr 08 ; RSP CP0 Control Register 08: RDP Command Buffer START (RW) ($04100000)
+C9:  equr 09 ; RSP CP0 Control Register 09: RDP Command Buffer END (RW) ($04100004)
+C10: equr 10 ; RSP CP0 Control Register 10: RDP Command Buffer CURRENT (R) ($04100008)
+C11: equr 11 ; RSP CP0 Control Register 11: RDP Status (RW) ($0410000C)
+C12: equr 12 ; RSP CP0 Control Register 12: RDP Clock Counter (R) ($04100010)
+C13: equr 13 ; RSP CP0 Control Register 13: RDP Command Buffer BUSY (R) ($04100014)
+C14: equr 14 ; RSP CP0 Control Register 14: RDP Pipe BUSY (R) ($04100018)
+C15: equr 15 ; RSP CP0 Control Register 15: RDP TMEM BUSY (R) ($0410001C)
+
 ; RSP CP2 Control Registers (CFC2/CTC2):
 VCO: equr 0 ; RSP CP2 Control Register 0: Vector Carry Out
 VCC: equr 1 ; RSP CP2 Control Register 1: Vector Compare Code
@@ -122,6 +140,13 @@ DMASPWR: macro start, end, source ; DMA Data Write RSP RAM->MEM: Start Address, 
   sw t0,SP_DRAM_ADDR(a0) ; Store RAM Offset To SP DRAM Address Register ($A4040004)
   la t0,(end-start)-1 ; T0 = Length Of DMA Transfer In Bytes - 1
   sw t0,SP_WR_LEN(a0) ; Store DMA Length To SP Write Length Register ($A404000C)
+  endm
+
+RSPDPC: macro start,end ; Run DPC Command Buffer: Start Address, End Address
+  la a0,start ; A0 = DPC Command Start Address
+  mtc0 a0,c8 ; Store DPC Command Start Address To DP Start Register ($A4100000)
+  addi a0,end-start ; A0 = DPC Command End Address
+  mtc0 a0,c9 ; Store DPC Command End Address To DP End Register ($A4100004)
   endm
 
 ; RSP CP2 Vector Operation Matrix Instructions (COP2):
