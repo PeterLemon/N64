@@ -1,6 +1,6 @@
 ; N64 'Bare Metal' 320x240 GRB LZ Video Decode Demo by krom (Peter Lemon):
   include LIB\N64.INC ; Include N64 Definitions
-  dcb 19922944,$00 ; Set ROM Size
+  dcb 27262976,$00 ; Set ROM Size
   org $80000000 ; Entry Point Of Code
   include LIB\N64_HEADER.ASM  ; Include 64 Byte Header & Vector Table
   incbin LIB\N64_BOOTCODE.BIN ; Include 4032 Byte Boot Code
@@ -13,7 +13,18 @@ Start:
 
   ScreenNTSC 320, 240, BPP16, $A0100000 ; Screen NTSC: 320x240, 16BPP, DRAM Origin $A0100000
 
+  lui a0,AI_BASE ; A0 = AI Base Register ($A4500000)
+  li t0,1 ; T0 = AI Control DMA Enable Bit (1)
+  sw t0,AI_CONTROL(a0) ; Store AI Control DMA Enable Bit To AI Control Register ($A4500008)
+  li t0,15 ; T0 = Sample Bit Rate (Bitrate-1)
+  sw t0,AI_BITRATE(a0) ; Store Sample Bit Rate To AI Bit Rate Register ($A4500014)
+  li t0,(VI_NTSC_CLOCK/38000)-1 ; T0 = Sample Frequency: (VI_NTSC_CLOCK(48681812) / FREQ(44100)) - 1
+  sw t0,AI_DACRATE(a0) ; Store Sample Frequency To AI DAC Rate Register ($A4500010)
+
 LoopVideo:
+  la t6,Sample ; T6 = Sample DRAM Offset
+  la t7,$10000000|(Sample&$3FFFFFF) ; T7 = Sample Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
+
   lui t8,$A010 ; T8 = Double Buffer Frame Offset = Frame A
   li t9,(520-1) ; T9 = Frame Count - 1
   la a3,$10000000|(LZVideo&$3FFFFFF) ; A0 = Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
@@ -39,6 +50,25 @@ LoopVideo:
     FrameEnd:
     la a0,$A0000000|(DoubleBuffer&$3FFFFF)
     sw t8,4(a0)
+
+    ; Buffer Sound
+    lui a0,AI_BASE ; A0 = AI Base Register ($A4500000)
+    lb t0,AI_STATUS(a0) ; T0 = AI Status Register Byte ($A450000C)
+    andi t0,$40 ; AND AI Status With AI Status DMA Busy Bit ($40XXXXXX)
+    bnez t0,AIBusy ; IF TRUE AI DMA Is Busy
+    nop ; Delay Slot
+
+    lui a0,PI_BASE ; A0 = PI Base Register ($A4600000)
+    sw t6,PI_DRAM_ADDR(a0) ; Store RAM Offset To PI DRAM Address Register ($A4600000)
+    sw t7,PI_CART_ADDR(a0) ; Store ROM Offset To PI Cart Address Register ($A4600004)
+    li t0,$2FFFE ; T0 = Length Of DMA Transfer In Bytes - 1
+    sw t0,PI_WR_LEN(a0) ; Store DMA Length To PI Write Length Register ($A460000C)
+
+    lui a0,AI_BASE ; A0 = AI Base Register ($A4500000)
+    sw t6,AI_DRAM_ADDR(a0) ; Store Sample DRAM Offset To AI DRAM Address Register ($A4500000)
+    sw t0,AI_LEN(a0) ; Store Length Of Sample Buffer To AI Length Register ($A4500004)
+    add t7,t0 ; Sample ROM Offset += $2FFFF
+    AIBusy:
 
     la a0,LZVideo ; A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
     lui a1,$A030 ; A1 = Destination Address (DRAM Start Offset)
@@ -536,3 +566,7 @@ TLUTB: ; 32x16B = 64 Bytes
 
 LZVideo:
   incbin Video.lz
+
+Sample: ; 16-Bit 44100Hz Signed Big-Endian Stereo Sound Sample
+  incbin Sample.bin
+SampleEND:
