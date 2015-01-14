@@ -1,6 +1,6 @@
 ; N64 'Bare Metal' 320x240 GRB LZ Video Decode Demo by krom (Peter Lemon):
   include LIB\N64.INC ; Include N64 Definitions
-  dcb 27262976,$00 ; Set ROM Size
+  dcb 32505856,$00 ; Set ROM Size
   org $80000000 ; Entry Point Of Code
   include LIB\N64_HEADER.ASM  ; Include 64 Byte Header & Vector Table
   incbin LIB\N64_BOOTCODE.BIN ; Include 4032 Byte Boot Code
@@ -26,7 +26,7 @@ LoopVideo:
   la t7,$10000000|(Sample&$3FFFFFF) ; T7 = Sample Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
 
   lui t8,$A010 ; T8 = Double Buffer Frame Offset = Frame A
-  li t9,(520-1) ; T9 = Frame Count - 1
+  li t9,(647-1) ; T9 = Frame Count - 1
   la a3,$10000000|(LZVideo&$3FFFFFF) ; A0 = Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
   
   LoopFrames:
@@ -34,7 +34,7 @@ LoopVideo:
     la t0,(LZVideo&$7FFFFF) ; T0 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
     sw t0,PI_DRAM_ADDR(a0) ; Store RAM Offset To PI DRAM Address Register ($A4600000)
     sw a3,PI_CART_ADDR(a0) ; Store ROM Offset To PI Cart Address Register ($A4600004)
-    la t0,57035 ; T0 = Length Of DMA Transfer In Bytes - 1
+    la t0,57051 ; T0 = Length Of DMA Transfer In Bytes - 1
     sw t0,PI_WR_LEN(a0) ; Store DMA Length To PI Write Length Register ($A460000C)
 
     WaitScanline $0 ; Wait For Scanline To Reach Vertical Start
@@ -61,13 +61,13 @@ LoopVideo:
     lui a0,PI_BASE ; A0 = PI Base Register ($A4600000)
     sw t6,PI_DRAM_ADDR(a0) ; Store RAM Offset To PI DRAM Address Register ($A4600000)
     sw t7,PI_CART_ADDR(a0) ; Store ROM Offset To PI Cart Address Register ($A4600004)
-    li t0,$2FFFE ; T0 = Length Of DMA Transfer In Bytes - 1
+    li t0,$11080 ; T0 = Length Of DMA Transfer In Bytes - 1
     sw t0,PI_WR_LEN(a0) ; Store DMA Length To PI Write Length Register ($A460000C)
 
     lui a0,AI_BASE ; A0 = AI Base Register ($A4500000)
     sw t6,AI_DRAM_ADDR(a0) ; Store Sample DRAM Offset To AI DRAM Address Register ($A4500000)
     sw t0,AI_LEN(a0) ; Store Length Of Sample Buffer To AI Length Register ($A4500004)
-    add t7,t0 ; Sample ROM Offset += $2FFFF
+    add t7,t0 ; Sample ROM Offset += $11080
     AIBusy:
 
     la a0,LZVideo ; A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
@@ -104,6 +104,21 @@ LoopVideo:
       nop ; Delay Slot
 
       LZDecode:
+        andi t3,a0,1
+        bnez t3,LZDecodeByte
+        nop ; Delay Slot
+
+        lhu t3,0(a0) ; T3 = Number Of Bytes To Copy & Disp MSB's & Disp LSB's
+        addiu a0,2 ; Add 2 To LZ Offset
+        andi t4,t3,$FFF ; T4 = Disp
+        addiu t4,1    ; T4 = Disp + 1
+        subu t4,a1,t4 ; T4 = Destination - Disp - 1
+        srl t3,12  ; T3 = Number Of Bytes To Copy (Minus 3)
+        addiu t3,3 ; T3 = Number Of Bytes To Copy
+        j LZCopy
+        nop ; Delay Slot
+
+        LZDecodeByte:
         lbu t3,0(a0) ; T3 = Number Of Bytes To Copy & Disp MSB's
         addiu a0,1 ; Add 1 To LZ Offset
         lbu t4,0(a0) ; T4 = Disp LSB's
@@ -115,12 +130,62 @@ LoopVideo:
         subu t4,a1,t4 ; T4 = Destination - Disp - 1
         srl t3,4  ; T3 = Number Of Bytes To Copy (Minus 3)
         addiu t3,3 ; T3 = Number Of Bytes To Copy
+
         LZCopy:
+          li t5,1
+          beq t3,t5,LZCompByte
+          nop ; Delay Slot
+
+          li t5,2
+          beq t3,t5,LZCompShort
+          nop ; Delay Slot
+
+          li t5,4
+          blt t3,t5,LZCompShort
+          nop ; Delay Slot
+
+          andi t5,t4,3
+          bnez t5,LZCompShort
+          nop ; Delay Slot
+
+          andi t5,a1,3
+          bnez t5,LZCompShort
+          nop ; Delay Slot
+
+          lwu t5,0(t4) ; T5 = Word To Copy
+          addiu t4,4 ; Add 4 To T4 Offset
+          sw t5,0(a1) ; Store Word To DRAM
+          addiu a1,4 ; Add 4 To DRAM Offset
+          subiu t3,4 ; Number Of Bytes To Copy -= 4
+          j LZCompEnd
+          nop ; Delay Slot
+
+          LZCompShort:
+
+          andi t5,t4,1
+          bnez t5,LZCompByte
+          nop ; Delay Slot
+
+          andi t5,a1,1
+          bnez t5,LZCompByte
+          nop ; Delay Slot
+
+          lhu t5,0(t4) ; T5 = Short To Copy
+          addiu t4,2 ; Add 2 To T4 Offset
+          sh t5,0(a1) ; Store Short To DRAM
+          addiu a1,2 ; Add 2 To DRAM Offset
+          subiu t3,2 ; Number Of Bytes To Copy -= 2
+          j LZCompEnd
+          nop ; Delay Slot
+
+          LZCompByte:
           lbu t5,0(t4) ; T5 = Byte To Copy
           addiu t4,1 ; Add 1 To T4 Offset
           sb t5,0(a1) ; Store Byte To DRAM
           addiu a1,1 ; Add 1 To DRAM Offset
           subiu t3,1 ; Number Of Bytes To Copy -= 1
+
+          LZCompEnd:
           bnez t3,LZCopy ; IF (Number Of Bytes To Copy != 0) LZCopy Bytes
           nop ; Delay Slot
           j LZBlockLoop
