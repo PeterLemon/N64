@@ -10,7 +10,7 @@ I have included binaries of all the demos.<br />
 Special thanks to gbaguy/n64guy/asmguy, who with his tutorials, helped me get into N64 Coding =D<br />
 Please check out cen64, a cycle accurate N64 Emulator by MarathonMan, & his RSP Assembler:<br />
 http://www.cen64.com<br />
-Also I'd like to thank marshallh, who designed the 64drive, the best development cartridge for the N64<br />
+Also I'd like to thank marshallh, who designed the 64drive, the best development cartridge for the N64.<br />
 <br />
 Howto Compile:<br />
 All the code compiles into a single binary (ROMNAME.N64) file.<br />
