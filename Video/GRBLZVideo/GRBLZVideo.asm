@@ -72,15 +72,7 @@ LoopVideo:
 
     la a0,LZVideo ; A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
     lui a1,$A030 ; A1 = Destination Address (DRAM Start Offset)
-
-    lbu t0,3(a0) ; T0 = HI Data Length Byte
-    sll t0,8
-    lbu t1,2(a0) ; T1 = MID Data Length Byte
-    or t0,t1
-    sll t0,8
-    lbu t1,1(a0) ; T1 = LO Data Length Byte
-    or t0,t1 ; T0 = Data Length
-    addu t0,a1 ; T0 = Destination End Offset (DRAM End Offset)
+    li t0,(GRB+100800) ; T0 = Destination End Offset (DRAM End Offset)
     addiu a0,4 ; Add 4 To LZ Offset
 
   LZLoop:
@@ -102,7 +94,6 @@ LoopVideo:
       addiu a1,1 ; Add 1 To DRAM Offset
       j LZBlockLoop
       nop ; Delay Slot
-
       LZDecode:
         andi t3,a0,1
         bnez t3,LZDecodeByte
@@ -194,19 +185,9 @@ LoopVideo:
 
     ; Skip Zero's At End Of LZ77 Compressed File
     andi t0,a0,3  ; Compare LZ77 Offset To A Multiple Of 4
-    beqz t0,LZEOF ; Run LZEOF IF Not Multiple Of 4
-    nop ; Delay Slot
-    addiu a0,1 ; Add 1 To the LZ77 Offset If not a Multiple Of 4 (Delay Slot)
-
-    andi t0,a0,3  ; Compare LZ77 Offset To A Multiple Of 4
-    beqz t0,LZEOF ; Run LZEOF IF Not Multiple Of 4
-    nop ; Delay Slot
-    addiu a0,1 ; Add 1 To the LZ77 Offset If not a Multiple Of 4 (Delay Slot)
-
-    andi t0,a0,3  ; Compare LZ77 Offset To A Multiple Of 4
-    beqz t0,LZEOF ; Run LZEOF IF Not Multiple Of 4
-    nop ; Delay Slot
-    addiu a0,1 ; Add 1 To the LZ77 Offset If not a Multiple Of 4 (Delay Slot)
+    beqz t0,LZEOF ; IF (Multiple Of 4) LZEOF
+    subu a0,t0 ; Delay Slot
+    addiu a0,4 ; LZ77 Offset += 4
     LZEOF:
 
     la a1,LZVideo
