@@ -1,6 +1,8 @@
 ; N64 'Bare Metal' CP1 32BPP 320x240 Julia Fractal Input Demo by krom (Peter Lemon):
 ; A = Zoom In
 ; B = Zoom Out
+; R = Iteration Up
+; L = Iteration Down
 ; DPad = X/Y Translation
 ; Analog = CX/CY Julia Settings
 ; Start = Reset All Settings
