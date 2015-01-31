@@ -195,8 +195,8 @@ Analog:
         bc1f LoopY ; IF (Y% != 0) LoopY
         nop ; Delay Slot
 
-       j Refresh
-       nop ; Delay Slot
+      j Refresh
+      nop ; Delay Slot
 
   align 8 ; Align 64-Bit
 DATA:

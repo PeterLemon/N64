@@ -86,10 +86,10 @@ Refresh:
         blt a0,a1,LoopY ; IF (Y% != 0) LoopY
         sub.d f1,f9 ; Decrement Y%
 
-       sub.d f12,f17 ; Change Julia Settings
-	 add.d f13,f17
-       j Refresh
-       nop ; Delay Slot
+      sub.d f12,f17 ; Change Julia Settings
+	add.d f13,f17
+      j Refresh
+      nop ; Delay Slot
 
   align 8 ; Align 64-Bit
 DATA:
