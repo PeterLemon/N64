@@ -145,11 +145,11 @@ ClearScreen:
 
 
   ; Load RSP Code To IMEM
-  DMASPRD RSPVRNDPCode, RSPVRNDPCodeEND, SP_IMEM ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD RSPVRNDPCode, RSPVRNDPCodeEND, SP_IMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Load RSP Data To DMEM
-  DMASPRD VALUEQUADA, VALUEQUADAEND, SP_DMEM    ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
-  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM+16 ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD VALUEQUADA, VALUEQUADAEND, SP_DMEM    ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM+16 ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Set RSP Program Counter
   lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
@@ -371,8 +371,8 @@ ClearScreen:
 
 
   ; Load RSP Data To MEM
-  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM    ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
-  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM+16 ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM    ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM+16 ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -588,8 +588,8 @@ ClearScreen:
 
 
   ; Load RSP Data To MEM
-  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM    ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
-  DMASPRD VALUEQUADC, VALUEQUADCEND, SP_DMEM+16 ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM    ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPRD VALUEQUADC, VALUEQUADCEND, SP_DMEM+16 ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -805,8 +805,8 @@ ClearScreen:
 
 
   ; Load RSP Data To DMEM
-  DMASPRD VALUEQUADC, VALUEQUADCEND, SP_DMEM    ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
-  DMASPRD VALUEQUADC, VALUEQUADCEND, SP_DMEM+16 ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD VALUEQUADC, VALUEQUADCEND, SP_DMEM    ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPRD VALUEQUADC, VALUEQUADCEND, SP_DMEM+16 ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -1022,11 +1022,11 @@ ClearScreen:
 
 
   ; Load RSP Code To IMEM
-  DMASPRD RSPVRNDNCode, RSPVRNDNCodeEND, SP_IMEM ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD RSPVRNDNCode, RSPVRNDNCodeEND, SP_IMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Load RSP Data To DMEM
-  DMASPRD VALUEQUADA, VALUEQUADAEND, SP_DMEM    ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
-  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM+16 ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD VALUEQUADA, VALUEQUADAEND, SP_DMEM    ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM+16 ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Set RSP Program Counter
   lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
@@ -1248,8 +1248,8 @@ ClearScreen:
 
 
   ; Load RSP Data To DMEM
-  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM    ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
-  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM+16 ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM    ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM+16 ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -1465,8 +1465,8 @@ ClearScreen:
 
 
   ; Load RSP Data To DMEM
-  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM    ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
-  DMASPRD VALUEQUADC, VALUEQUADCEND, SP_DMEM+16 ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD VALUEQUADB, VALUEQUADBEND, SP_DMEM    ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPRD VALUEQUADC, VALUEQUADCEND, SP_DMEM+16 ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
@@ -1682,8 +1682,8 @@ ClearScreen:
 
 
   ; Load RSP Data To DMEM
-  DMASPRD VALUEQUADC, VALUEQUADCEND, SP_DMEM    ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
-  DMASPRD VALUEQUADC, VALUEQUADCEND, SP_DMEM+16 ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD VALUEQUADC, VALUEQUADCEND, SP_DMEM    ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPRD VALUEQUADC, VALUEQUADCEND, SP_DMEM+16 ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Set RSP Status (Start Execution)
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)

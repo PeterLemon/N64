@@ -146,7 +146,7 @@ ClearScreen:
 
 
   ; Load RSP Code To IMEM
-  DMASPRD RSPORCode, RSPORCodeEND, SP_IMEM ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD RSPORCode, RSPORCodeEND, SP_IMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)
@@ -429,7 +429,7 @@ ClearScreen:
 
 
   ; Load RSP Code To IMEM
-  DMASPRD RSPORICodeA, RSPORICodeAEND, SP_IMEM ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD RSPORICodeA, RSPORICodeAEND, SP_IMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)
@@ -469,7 +469,7 @@ ClearScreen:
   ORIENDA:
 
   ; Load RSP Code To IMEM
-  DMASPRD RSPORICodeB, RSPORICodeBEND, SP_IMEM ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD RSPORICodeB, RSPORICodeBEND, SP_IMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)
@@ -508,7 +508,7 @@ ClearScreen:
   ORIENDB:
 
   ; Load RSP Code To IMEM
-  DMASPRD RSPORICodeC, RSPORICodeCEND, SP_IMEM ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD RSPORICodeC, RSPORICodeCEND, SP_IMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)
@@ -547,7 +547,7 @@ ClearScreen:
   ORIENDC:
 
   ; Load RSP Code To IMEM
-  DMASPRD RSPORICodeD, RSPORICodeDEND, SP_IMEM ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD RSPORICodeD, RSPORICodeDEND, SP_IMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)
@@ -586,7 +586,7 @@ ClearScreen:
   ORIENDD:
 
   ; Load RSP Code To IMEM
-  DMASPRD RSPORICodeE, RSPORICodeEEND, SP_IMEM ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD RSPORICodeE, RSPORICodeEEND, SP_IMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)
@@ -625,7 +625,7 @@ ClearScreen:
   ORIENDE:
 
   ; Load RSP Code To IMEM
-  DMASPRD RSPORICodeF, RSPORICodeFEND, SP_IMEM ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD RSPORICodeF, RSPORICodeFEND, SP_IMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)

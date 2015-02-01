@@ -146,7 +146,7 @@ ClearScreen:
 
 
   ; Load RSP Code To IMEM
-  DMASPRD RSPSUBCode, RSPSUBCodeEND, SP_IMEM ; DMA Data Read MEM->RSP DRAM: Start Address, End Address, Destination RSP DRAM Address
+  DMASPRD RSPSUBCode, RSPSUBCodeEND, SP_IMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Load RSP Data To DMEM
   lui a0,SP_MEM_BASE ; A0 = SP Memory Base Offset (DMEM)
