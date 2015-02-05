@@ -1,0 +1,2047 @@
+﻿むすこ
+Son
+$AD92B0
+A4 E0	A4 B9	A4 B3	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  む	 #  す	 #  こ	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 o  n	 #  こ	 #	 #	 #	 #	| New English Text
+7F 53	6F 6E	00 B3	00 00	00 00	00 00	00 00	| New English Hex
+
+青年実業家
+Young businessman
+$AD92BE
+C0 C4	C7 AF	BC C2	B6 C8	B2 C8	00 00	00 00	| Original Japanese Hex
+ #  青	 #  年	 #  実	 #  業	 #  家	 #	 #	| Original Japanese Text
+ #  B	 u  s	 i  n	 e  s	 s  m	 a  n	 #	| New English Text
+7F 42	75 73	69 6E	65 73	73 6D	61 6E	00 00	| New English Hex
+
+わかしゃ長
+Young President
+$AD92CC
+A4 EF	A4 AB	A4 B7	A4 E3	C4 B9	00 00	00 00	| Original Japanese Hex
+ #  わ	 #  か	 #  し	 #  ゃ	 #  長	 #	 #	| Original Japanese Text
+ #  P	 r  e	 s  i	 d  e	 n  t	 J  r	 .  #	| New English Text
+7F 50	72 65	73 69	64 65	6E 74	4A 72	2E 00	| New English Hex
+
+きまじめな男
+No-nonsense / too serious / man
+$AD92DA
+A4 AD	A4 DE	A4 B8	A4 E1	A4 CA	C3 CB	00 00	| Original Japanese Hex
+ #  き	 #  ま	 #  じ	 #  め	 #  な	 #  男	 #	| Original Japanese Text
+ #  S	 e  r	 i  o	 u  s	    M	 a  n	 #	| New English Text
+7F 53	65 72	69 6F	75 73	20 4D	61 6E	00 00	| New English Hex
+
+エリート
+Elite
+$AD92E8
+A5 A8	A5 EA	A1 BC	A5 C8	00 00	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  リ	 #  ー	 #  ト	 #	 #	 #	| Original Japanese Text
+ #  E	 l  i	 t  e	 #  ト	 #	 #	 #	| New English Text
+7F 45	6C 69	74 65	00 C8	00 00	00 00	00 00	| New English Hex
+
+おきゃくさん
+Visitor / Guest
+$AD92F6
+A4 AA	A4 AD	A4 E3	A4 AF	A4 B5	A4 F3	00 00	| Original Japanese Hex
+ #  お	 #  き	 #  ゃ	 #  く	 #  さ	 #  ん	 #	| Original Japanese Text
+ #  V	 i  s	 i  t	 o  r	 #  さ	 #  ん	 #	| New English Text
+7F 56	69 73	69 74	6F 72	00 B5	A4 F3	00 00	| New English Hex
+
+いさお
+Isao / Distinguished service
+$AD9304
+A4 A4	A4 B5	A4 AA	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  い	 #  さ	 #  お	 #	 #	 #	 #	| Original Japanese Text
+ #  I	 s  a	 o  #	 #	 #	 #	 #	| New English Text
+7F 49	73 61	6F 00	00 00	00 00	00 00	00 00	| New English Hex
+
+しゅういち
+Shuichi
+$AD9312
+A4 B7	A4 E5	A4 A6	A4 A4	A4 C1	00 00	00 00	| Original Japanese Hex
+ #  し	 #  ゅ	 #  う	 #  い	 #  ち	 #	 #	| Original Japanese Text
+ #  S	 h  u	 i  c	 h  i	 #	 #	 #	| New English Text
+7F 53	68 75	69 63	68 69	00 C1	00 00	00 00	| New English Hex
+
+しつじ
+Butler
+$AD9320
+A4 B7	A4 C4	A4 B8	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  し	 #  つ	 #  じ	 #	 #	 #	 #	| Original Japanese Text
+ #  B	 u  t	 l  e	 r  #	 #	 #	 #	| New English Text
+7F 42	75 74	6C 65	72 00	00 00	00 00	00 00	| New English Hex
+
+ガンコオヤジ
+Stubborn / Tough father / dad
+$AD932E
+A5 AC	A5 F3	A5 B3	A5 AA	A5 E4	A5 B8	00 00	| Original Japanese Hex
+ #  ガ	 #  ン	 #  コ	 #  オ	 #  ヤ	 #  ジ	 #	| Original Japanese Text
+ #  T	 o  u	 g  h	    D	 a  d	 #  ジ	 #	| New English Text
+7F 54	6F 75	67 68	20 44	61 64	00 B8	00 00	| New English Hex
+
+しゃ長
+President
+$AD933C
+A4 B7	A4 E3	C4 B9	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  し	 #  ゃ	 #  長	 #	 #	 #	 #	| Original Japanese Text
+ #  P	 r  e	 s  i	 d  e	 n  t	 #	 #	| New English Text
+7F 50	72 65	73 69	64 65	6E 74	00 00	00 00	| New English Hex
+
+セバスチャン
+Sebastian
+$AD934A
+A5 BB	A5 D0	A5 B9	A5 C1	A5 E3	A5 F3	00 00	| Original Japanese Hex
+ #  セ	 #  バ	 #  ス	 #  チ	 #  ャ	 #  ン	 #	| Original Japanese Text
+ #  S	 e  b	 a  s	 t  i	 a  n	 #  ン	 #	| New English Text
+7F 53	65 62	61 73	74 69	61 6E	00 F3	00 00	| New English Hex
+
+シブイオヤジ
+Bitter father / old man
+$AD9358
+A5 B7	A5 D6	A5 A4	A5 AA	A5 E4	A5 B8	00 00	| Original Japanese Hex
+ #  シ	 #  ブ	 #  イ	 #  オ	 #  ヤ	 #  ジ	 #	| Original Japanese Text
+ #  O	 l  d	    M	 a  n	 #  ヤ	 #  ジ	 #	| New English Text
+7F 4F	6C 64	20 4D	61 6E	00 E4	A5 B8	00 00	| New English Hex
+
+おきゃくさん
+Visitor / Guest
+$AD9366
+A4 AA	A4 AD	A4 E3	A4 AF	A4 B5	A4 F3	00 00	| Original Japanese Hex
+ #  お	 #  き	 #  ゃ	 #  く	 #  さ	 #  ん	 #	| Original Japanese Text
+ #  V	 i  s	 i  t	 o  r	 #  さ	 #  ん	 #	| New English Text
+7F 56	69 73	69 74	6F 72	00 B5	A4 F3	00 00	| New English Hex
+
+すけざえもん
+Sukezaemon
+$AD9374
+A4 B9	A4 B1	A4 B6	A4 A8	A4 E2	A4 F3	00 00	| Original Japanese Hex
+ #  す	 #  け	 #  ざ	 #  え	 #  も	 #  ん	 #	| Original Japanese Text
+ #  S	 u  k	 e  z	 a  e	 m  o	 n  #	 #	| New English Text
+7F 53	75 6B	65 7A	61 65	6D 6F	6E 00	00 00	| New English Hex
+
+だいじろう
+Daijiro
+$AD9382
+A4 C0	A4 A4	A4 B8	A4 ED	A4 A6	00 00	00 00	| Original Japanese Hex
+ #  だ	 #  い	 #  じ	 #  ろ	 #  う	 #	 #	| Original Japanese Text
+ #  D	 a  i	 j  i	 r  o	 #  う	 #	 #	| New English Text
+7F 44	61 69	6A 69	72 6F	00 A6	00 00	00 00	| New English Hex
+
+シュ人
+Gerhard people
+$AD9390
+A5 B7	A5 E5	BF CD	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  シ	 #  ュ	 #  人	 #	 #	 #	 #	| Original Japanese Text
+ #  G	 e  r	 h  a	 r  d	 #	 #	 #	| New English Text
+7F 47	65 72	68 61	72 64	00 00	00 00	00 00	| New English Hex
+
+お父さん
+Dad / Father
+$AD939E
+A4 AA	C9 E3	A4 B5	A4 F3	00 00	00 00	00 00	| Original Japanese Hex
+ #  お	 #  父	 #  さ	 #  ん	 #	 #	 #	| Original Japanese Text
+ #  D	 a  d	 d  y	 #	 #	 #	 #	| New English Text
+7F 44	61 64	64 79	00 00	00 00	00 00	00 00	| New English Hex
+
+おきゃくさん
+Visitor / Guest
+$AD93AC
+A4 AA	A4 AD	A4 E3	A4 AF	A4 B5	A4 F3	00 00	| Original Japanese Hex
+ #  お	 #  き	 #  ゃ	 #  く	 #  さ	 #  ん	 #	| Original Japanese Text
+ #  V	 i  s	 i  t	 o  r	 #  さ	 #  ん	 #	| New English Text
+7F 56	69 73	69 74	6F 72	00 B5	A4 F3	00 00	| New English Hex
+
+パパ
+Papa / Dad / Father
+$AD93BA
+A5 D1	A5 D1	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  パ	 #  パ	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  F	 a  t	 h  e	 r  #	 #	 #	 #	| New English Text
+7F 46	61 74	68 65	72 00	00 00	00 00	00 00	| New English Hex
+
+気のよわい男
+Weak man of care / mind
+$AD93C8
+B5 A4	A4 CE	A4 E8	A4 EF	A4 A4	C3 CB	00 00	| Original Japanese Hex
+ #  気	 #  の	 #  よ	 #  わ	 #  い	 #  男	 #	| Original Japanese Text
+ #  W	 i  m	 p  y	 #  わ	 #  い	 #  男	 #	| New English Text
+7F 57	69 6D	70 79	00 EF	A4 A4	C3 CB	00 00	| New English Hex
+
+タレ目の男
+Drooping eyes of man / Droopy
+$AD93D6
+A5 BF	A5 EC	CC DC	A4 CE	C3 CB	00 00	00 00	| Original Japanese Hex
+ #  タ	 #  レ	 #  目	 #  の	 #  男	 #	 #	| Original Japanese Text
+ #  D	 r  o	 o  p	 y  #	 #  男	 #	 #	| New English Text
+7F 44	72 6F	6F 70	79 00	C3 CB	00 00	00 00	| New English Hex
+
+こうたろう
+Kotaro
+$AD93E4
+A4 B3	A4 A6	A4 BF	A4 ED	A4 A6	00 00	00 00	| Original Japanese Hex
+ #  こ	 #  う	 #  た	 #  ろ	 #  う	 #	 #	| Original Japanese Text
+ #  K	 o  t	 a  r	 o  #	 #  う	 #	 #	| New English Text
+7F 4B	6F 74	61 72	6F 00	A4 A6	00 00	00 00	| New English Hex
+
+ケイスケ
+Keisuke
+$AD93F2
+A5 B1	A5 A4	A5 B9	A5 B1	00 00	00 00	00 00	| Original Japanese Hex
+ #  ケ	 #  イ	 #  ス	 #  ケ	 #	 #	 #	| Original Japanese Text
+ #  K	 e  i	 s  u	 k  e	 #	 #	 #	| New English Text
+7F 4B	65 69	73 75	6B 65	00 00	00 00	00 00	| New English Hex
+
+マスター
+Master / Proprietor
+$AD9400
+A5 DE	A5 B9	A5 BF	A1 BC	00 00	00 00	00 00	| Original Japanese Hex
+ #  マ	 #  ス	 #  タ	 #  ー	 #	 #	 #	| Original Japanese Text
+ #  M	 a  s	 t  e	 r  #	 #	 #	 #	| New English Text
+7F 4D	61 73	74 65	72 00	00 00	00 00	00 00	| New English Hex
+
+金パツの外人
+Foreigner with blonde hair / Tourist
+$AD940E
+B6 E2	A5 D1	A5 C4	A4 CE	B3 B0	BF CD	00 00	| Original Japanese Hex
+ #  金	 #  パ	 #  ツ	 #  の	 #  外	 #  人	 #	| Original Japanese Text
+ #  F	 o  r	 e  i	 g  n	 e  r	 #  人	 #	| New English Text
+7F 46	6F 72	65 69	67 6E	65 72	00 CD	00 00	| New English Hex
+
+いそうろう
+Sponger / Freeloader
+$AD941C
+A4 A4	A4 BD	A4 A6	A4 ED	A4 A6	00 00	00 00	| Original Japanese Hex
+ #  い	 #  そ	 #  う	 #  ろ	 #  う	 #	 #	| Original Japanese Text
+ #  F	 r  e	 e  l	 o  a	 d  e	 r  #	 #	| New English Text
+7F 46	72 65	65 6C	6F 61	64 65	72 00	00 00	| New English Hex
+
+おきゃくさん
+Visitor / Guest
+$AD942A
+A4 AA	A4 AD	A4 E3	A4 AF	A4 B5	A4 F3	00 00	| Original Japanese Hex
+ #  お	 #  き	 #  ゃ	 #  く	 #  さ	 #  ん	 #	| Original Japanese Text
+ #  G	 u  e	 s  t	 #  く	 #  さ	 #  ん	 #	| New English Text
+7F 47	75 65	73 74	00 AF	A4 B5	A4 F3	00 00	| New English Hex
+
+シュ人の友人
+Gerhard friend
+$AD9438
+A5 B7	A5 E5	BF CD	A4 CE	CD A7	BF CD	00 00	| Original Japanese Hex
+ #  シ	 #  ュ	 #  人	 #  の	 #  友	 #  人	 #	| Original Japanese Text
+ #  G	 e  r	 h  a	 r  d	 #  友	 #  人	 #	| New English Text
+7F 47	65 72	68 61	72 64	00 A7	BF CD	00 00	| New English Hex
+
+エドワード
+Edward
+$AD9446
+A5 A8	A5 C9	A5 EF	A1 BC	A5 C9	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  ド	 #  ワ	 #  ー	 #  ド	 #	 #	| Original Japanese Text
+ #  E	 d  w	 a  r	 d  #	 #  ド	 #	 #	| New English Text
+7F 45	64 77	61 72	64 00	A5 C9	00 00	00 00	| New English Hex
+
+マイケル
+Michael
+$AD9454
+A5 DE	A5 A4	A5 B1	A5 EB	00 00	00 00	00 00	| Original Japanese Hex
+ #  マ	 #  イ	 #  ケ	 #  ル	 #	 #	 #	| Original Japanese Text
+ #  M	 i  c	 h  a	 e  l	 #	 #	 #	| New English Text
+7F 4D	69 63	68 61	65 6C	00 00	00 00	00 00	| New English Hex
+
+ジェフ
+Jeff
+$AD9462
+A5 B8	A5 A7	A5 D5	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ジ	 #  ェ	 #  フ	 #	 #	 #	 #	| Original Japanese Text
+ #  J	 e  f	 f  #	 #	 #	 #	 #	| New English Text
+7F 4A	65 66	66 00	00 00	00 00	00 00	00 00	| New English Hex
+
+メイド
+Maid
+$AD9470
+A5 E1	A5 A4	A5 C9	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  メ	 #  イ	 #  ド	 #	 #	 #	 #	| Original Japanese Text
+ #  M	 a  i	 d  #	 #	 #	 #	 #	| New English Text
+7F 4D	61 69	64 00	00 00	00 00	00 00	00 00	| New English Hex
+
+かせいふさん
+Housekeeper
+$AD947E
+A4 AB	A4 BB	A4 A4	A4 D5	A4 B5	A4 F3	00 00	| Original Japanese Hex
+ #  か	 #  せ	 #  い	 #  ふ	 #  さ	 #  ん	 #	| Original Japanese Text
+ #  H	 o  u	 s  e	 k  e	 e  p	 e  r	 #	| New English Text
+7F 48	6F 75	73 65	6B 65	65 70	65 72	00 00	| New English Hex
+
+エプロンの娘
+Daughter of apron
+$AD948C
+A5 A8	A5 D7	A5 ED	A5 F3	A4 CE	CC BC	00 00	| Original Japanese Hex
+ #  エ	 #  プ	 #  ロ	 #  ン	 #  の	 #  娘	 #	| Original Japanese Text
+ #  D	 a  u	 g  h	 t  e	 r  #	 #  娘	 #	| New English Text
+7F 44	61 75	67 68	74 65	72 00	CC BC	00 00	| New English Hex
+
+新人のメイド
+Rookie of maid
+$AD949A
+BF B7	BF CD	A4 CE	A5 E1	A5 A4	A5 C9	00 00	| Original Japanese Hex
+ #  新	 #  人	 #  の	 #  メ	 #  イ	 #  ド	 #	| Original Japanese Text
+ #  R	 o  o	 k  i	 e   	 M  a	 i  d	 #	| New English Text
+7F 52	6F 6F	6B 69	65 20	4D 61	69 64	00 00	| New English Hex
+
+ゆめ子
+Yumeko
+$AD94A8
+A4 E6	A4 E1	BB D2	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ゆ	 #  め	 #  子	 #	 #	 #	 #	| Original Japanese Text
+ #  Y	 u  m	 e  k	 o  #	 #	 #	 #	| New English Text
+7F 59	75 6D	65 6B	6F 00	00 00	00 00	00 00	| New English Hex
+
+ナミ
+Nami
+$AD94B6
+A5 CA	A5 DF	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ナ	 #  ミ	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  N	 a  m	 i  #	 #	 #	 #	 #	| New English Text
+7F 4E	61 6D	69 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ゆきえ
+Yukie
+$AD94C4
+A4 E6	A4 AD	A4 A8	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ゆ	 #  き	 #  え	 #	 #	 #	 #	| Original Japanese Text
+ #  Y	 u  k	 i  e	 #	 #	 #	 #	| New English Text
+7F 59	75 6B	69 65	00 00	00 00	00 00	00 00	| New English Hex
+
+スミレ
+Violet
+$AD94D2
+A5 B9	A5 DF	A5 EC	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ス	 #  ミ	 #  レ	 #	 #	 #	 #	| Original Japanese Text
+ #  V	 i  o	 l  e	 t  #	 #	 #	 #	| New English Text
+7F 56	69 6F	6C 65	74 00	00 00	00 00	00 00	| New English Hex
+
+おじょうさま
+Princess
+$AD94E0
+A4 AA	A4 B8	A4 E7	A4 A6	A4 B5	A4 DE	00 00	| Original Japanese Hex
+ #  お	 #  じ	 #  ょ	 #  う	 #  さ	 #  ま	 #	| Original Japanese Text
+ #  P	 r  i	 n  c	 e  s	 s  #	 #  ま	 #	| New English Text
+7F 50	72 69	6E 63	65 73	73 00	A4 DE	00 00	| New English Hex
+
+娘
+Daughter
+$AD94EE
+CC BC	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  娘	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  D	 a  u	 g  h	 t  e	 r  #	 #	 #	| New English Text
+7F 44	61 75	67 68	74 65	72 00	00 00	00 00	| New English Hex
+
+わかおくさま
+Young wife
+$AD94FC
+A4 EF	A4 AB	A4 AA	A4 AF	A4 B5	A4 DE	00 00	| Original Japanese Hex
+ #  わ	 #  か	 #  お	 #  く	 #  さ	 #  ま	 #	| Original Japanese Text
+ #  Y	 o  u	 n  g	    W	 i  f	 e  #	 #	| New English Text
+7F 59	6F 75	6E 67	20 57	69 66	65 00	00 00	| New English Hex
+
+おきゃくさん
+Visitor / Guest
+$AD950A
+A4 AA	A4 AD	A4 E3	A4 AF	A4 B5	A4 F3	00 00	| Original Japanese Hex
+ #  お	 #  き	 #  ゃ	 #  く	 #  さ	 #  ん	 #	| Original Japanese Text
+ #  G	 u  e	 s  t	 #  く	 #  さ	 #  ん	 #	| New English Text
+7F 47	75 65	73 74	00 AF	A4 B5	A4 F3	00 00	| New English Hex
+
+ゆみ子
+Yumiko
+$AD9518
+A4 E6	A4 DF	BB D2	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ゆ	 #  み	 #  子	 #	 #	 #	 #	| Original Japanese Text
+ #  Y	 u  m	 i  k	 o  #	 #	 #	 #	| New English Text
+7F 59	75 6D	69 6B	6F 00	00 00	00 00	00 00	| New English Hex
+
+しず子
+Shizuko
+$AD9526
+A4 B7	A4 BA	BB D2	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  し	 #  ず	 #  子	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 h  i	 z  u	 k  o	 #	 #	 #	| New English Text
+7F 53	68 69	7A 75	6B 6F	00 00	00 00	00 00	| New English Hex
+
+さと子
+Satoko
+$AD9534
+A4 B5	A4 C8	BB D2	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  さ	 #  と	 #  子	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 a  t	 o  k	 o  #	 #	 #	 #	| New English Text
+7F 53	61 74	6F 6B	6F 00	00 00	00 00	00 00	| New English Hex
+
+ゆう子
+Yuko
+$AD9542
+A4 E6	A4 A6	BB D2	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ゆ	 #  う	 #  子	 #	 #	 #	 #	| Original Japanese Text
+ #  Y	 u  k	 o  #	 #	 #	 #	 #	| New English Text
+7F 59	75 6B	6F 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ひしょ
+Secretary
+$AD9550
+A4 D2	A4 B7	A4 E7	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ひ	 #  し	 #  ょ	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 e  c	 r  e	 t  a	 r  y	 #	 #	| New English Text
+7F 53	65 63	72 65	74 61	72 79	00 00	00 00	| New English Hex
+
+色黒の女
+Woman of dark complexion
+$AD955E
+BF A7	B9 F5	A4 CE	BD F7	00 00	00 00	00 00	| Original Japanese Hex
+ #  色	 #  黒	 #  の	 #  女	 #	 #	 #	| Original Japanese Text
+ #  W	 o  m	 a  n	 #  女	 #	 #	 #	| New English Text
+7F 57	6F 6D	61 6E	00 F7	00 00	00 00	00 00	| New English Hex
+
+オシャレな娘
+Stylish daughter
+$AD956C
+A5 AA	A5 B7	A5 E3	A5 EC	A4 CA	CC BC	00 00	| Original Japanese Hex
+ #  オ	 #  シ	 #  ャ	 #  レ	 #  な	 #  娘	 #	| Original Japanese Text
+ #  D	 a  u	 g  h	 t  e	 r  #	 #  娘	 #	| New English Text
+7F 44	61 75	67 68	74 65	72 00	CC BC	00 00	| New English Hex
+
+娘
+Daughter
+$AD957A
+CC BC	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  娘	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  D	 a  u	 g  h	 t  e	 r  #	 #	 #	| New English Text
+7F 44	61 75	67 68	74 65	72 00	00 00	00 00	| New English Hex
+
+ケイコ
+Keiko
+$AD9588
+A5 B1	A5 A4	A5 B3	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ケ	 #  イ	 #  コ	 #	 #	 #	 #	| Original Japanese Text
+ #  K	 e  i	 k  o	 #	 #	 #	 #	| New English Text
+7F 4B	65 69	6B 6F	00 00	00 00	00 00	00 00	| New English Hex
+
+ミキ
+Miki
+$AD9596
+A5 DF	A5 AD	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ミ	 #  キ	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  M	 i  k	 i  #	 #	 #	 #	 #	| New English Text
+7F 4D	69 6B	69 00	00 00	00 00	00 00	00 00	| New English Hex
+
+アケミ
+Akemi
+$AD95A4
+A5 A2	A5 B1	A5 DF	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ア	 #  ケ	 #  ミ	 #	 #	 #	 #	| Original Japanese Text
+ #  A	 k  e	 m  i	 #	 #	 #	 #	| New English Text
+7F 41	6B 65	6D 69	00 00	00 00	00 00	00 00	| New English Hex
+
+トモミ
+Tomomi
+$AD95B2
+A5 C8	A5 E2	A5 DF	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ト	 #  モ	 #  ミ	 #	 #	 #	 #	| Original Japanese Text
+ #  T	 o  m	 o  m	 i  #	 #	 #	 #	| New English Text
+7F 54	6F 6D	6F 6D	69 00	00 00	00 00	00 00	| New English Hex
+
+モデル
+Model
+$AD95C0
+A5 E2	A5 C7	A5 EB	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  モ	 #  デ	 #  ル	 #	 #	 #	 #	| Original Japanese Text
+ #  M	 o  d	 e  l	 #	 #	 #	 #	| New English Text
+7F 4D	6F 64	65 6C	00 00	00 00	00 00	00 00	| New English Hex
+
+金パツの娘
+Daughter of blonde
+$AD95CE
+B6 E2	A5 D1	A5 C4	A4 CE	CC BC	00 00	00 00	| Original Japanese Hex
+ #  金	 #  パ	 #  ツ	 #  の	 #  娘	 #	 #	| Original Japanese Text
+ #  D	 a  u	 g  h	 t  e	 r  #	 #	 #	| New English Text
+7F 44	61 75	67 68	74 65	72 00	00 00	00 00	| New English Hex
+
+ソバカスの娘
+Daughter of freckles
+$AD95DC
+A5 BD	A5 D0	A5 AB	A5 B9	A4 CE	CC BC	00 00	| Original Japanese Hex
+ #  ソ	 #  バ	 #  カ	 #  ス	 #  の	 #  娘	 #	| Original Japanese Text
+ #  D	 a  u	 g  h	 t  e	 r  #	 #  娘	 #	| New English Text
+7F 44	61 75	67 68	74 65	72 00	CC BC	00 00	| New English Hex
+
+外国人の女
+Woman of foreigners
+$AD95EA
+B3 B0	B9 F1	BF CD	A4 CE	BD F7	00 00	00 00	| Original Japanese Hex
+ #  外	 #  国	 #  人	 #  の	 #  女	 #	 #	| Original Japanese Text
+ #  F	 o  r	 e  i	 g  n	 e  r	 #	 #	| New English Text
+7F 46	6F 72	65 69	67 6E	65 72	00 00	00 00	| New English Hex
+
+ボニー
+Bonnie
+$AD95F8
+A5 DC	A5 CB	A1 BC	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ボ	 #  ニ	 #  ー	 #	 #	 #	 #	| Original Japanese Text
+ #  B	 o  n	 n  i	 e  #	 #	 #	 #	| New English Text
+7F 42	6F 6E	6E 69	65 00	00 00	00 00	00 00	| New English Hex
+
+エイプリル
+April
+$AD9606
+A5 A8	A5 A4	A5 D7	A5 EA	A5 EB	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  イ	 #  プ	 #  リ	 #  ル	 #	 #	| Original Japanese Text
+ #  A	 p  r	 i  l	 #  リ	 #  ル	 #	 #	| New English Text
+7F 41	70 72	69 6C	00 EA	A5 EB	00 00	00 00	| New English Hex
+
+レベッカ
+Rebecca
+$AD9614
+A5 EC	A5 D9	A5 C3	A5 AB	00 00	00 00	00 00	| Original Japanese Hex
+ #  レ	 #  ベ	 #  ッ	 #  カ	 #	 #	 #	| Original Japanese Text
+ #  R	 e  b	 e  c	 c  a	 #	 #	 #	| New English Text
+7F 52	65 62	65 63	63 61	00 00	00 00	00 00	| New English Hex
+
+パトリシア
+Patricia
+$AD9622
+A5 D1	A5 C8	A5 EA	A5 B7	A5 A2	00 00	00 00	| Original Japanese Hex
+ #  パ	 #  ト	 #  リ	 #  シ	 #  ア	 #	 #	| Original Japanese Text
+ #  P	 a  t	 r  i	 c  i	 a  #	 #	 #	| New English Text
+7F 50	61 74	72 69	63 69	61 00	00 00	00 00	| New English Hex
+
+ドクター
+Doctor
+$AD9630
+A5 C9	A5 AF	A5 BF	A1 BC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ド	 #  ク	 #  タ	 #  ー	 #	 #	 #	| Original Japanese Text
+ #  D	 o  c	 t  o	 r  #	 #	 #	 #	| New English Text
+7F 44	6F 63	74 6F	72 00	00 00	00 00	00 00	| New English Hex
+
+金パツの医者
+Doctor of blonde
+$AD963E
+B6 E2	A5 D1	A5 C4	A4 CE	B0 E5	BC D4	00 00	| Original Japanese Hex
+ #  金	 #  パ	 #  ツ	 #  の	 #  医	 #  者	 #	| Original Japanese Text
+ #  D	 o  c	 t  o	 r  #	 #  医	 #  者	 #	| New English Text
+7F 44	6F 63	74 6F	72 00	B0 E5	BC D4	00 00	| New English Hex
+
+長身の男
+Tall Man
+$AD964C
+C4 B9	BF C8	A4 CE	C3 CB	00 00	00 00	00 00	| Original Japanese Hex
+ #  長	 #  身	 #  の	 #  男	 #	 #	 #	| Original Japanese Text
+ #  T	 a  l	 l   	 M  a	 n  #	 #	 #	| New English Text
+7F 54	61 6C	6C 20	4D 61	6E 00	00 00	00 00	| New English Hex
+
+しゅじ医
+Family doctor
+$AD965A
+A4 B7	A4 E5	A4 B8	B0 E5	00 00	00 00	00 00	| Original Japanese Hex
+ #  し	 #  ゅ	 #  じ	 #  医	 #	 #	 #	| Original Japanese Text
+ #  D	 o  c	 t  o	 r  #	 #	 #	 #	| New English Text
+7F 44	6F 63	74 6F	72 00	00 00	00 00	00 00	| New English Hex
+
+外人の医者
+Doctor of foreigner
+$AD9668
+B3 B0	BF CD	A4 CE	B0 E5	BC D4	00 00	00 00	| Original Japanese Hex
+ #  外	 #  人	 #  の	 #  医	 #  者	 #	 #	| Original Japanese Text
+ #  D	 o  c	 t  o	 r  #	 #  者	 #	 #	| New English Text
+7F 44	6F 63	74 6F	72 00	BC D4	00 00	00 00	| New English Hex
+
+赤メガネの男
+Man of red glasses
+$AD9676
+C0 D6	A5 E1	A5 AC	A5 CD	A4 CE	C3 CB	00 00	| Original Japanese Hex
+ #  赤	 #  メ	 #  ガ	 #  ネ	 #  の	 #  男	 #	| Original Japanese Text
+ #  R	 e  d	    G	 l  a	 s  s	 e  s	 #	| New English Text
+7F 52	65 64	20 47	6C 61	73 73	65 73	00 00	| New English Hex
+
+エリック
+Erik
+$AD9684
+A5 A8	A5 EA	A5 C3	A5 AF	00 00	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  リ	 #  ッ	 #  ク	 #	 #	 #	| Original Japanese Text
+ #  E	 r  i	 k  #	 #  ク	 #	 #	 #	| New English Text
+7F 45	72 69	6B 00	A5 AF	00 00	00 00	00 00	| New English Hex
+
+ギルバート
+Gilbert
+$AD9692
+A5 AE	A5 EB	A5 D0	A1 BC	A5 C8	00 00	00 00	| Original Japanese Hex
+ #  ギ	 #  ル	 #  バ	 #  ー	 #  ト	 #	 #	| Original Japanese Text
+ #  G	 i  l	 b  e	 r  t	 #  ト	 #	 #	| New English Text
+7F 47	69 6C	62 65	72 74	00 C8	00 00	00 00	| New English Hex
+
+マッドな学者
+Mad scholar
+$AD96A0
+A5 DE	A5 C3	A5 C9	A4 CA	B3 D8	BC D4	00 00	| Original Japanese Hex
+ #  マ	 #  ッ	 #  ド	 #  な	 #  学	 #  者	 #	| Original Japanese Text
+ #  M	 a  d	    S	 c  h	 o  l	 a  r	 #	| New English Text
+7F 4D	61 64	20 53	63 68	6F 6C	61 72	00 00	| New English Hex
+
+黒カミの学者
+Scholar Black Hair
+$AD96AE
+B9 F5	A5 AB	A5 DF	A4 CE	B3 D8	BC D4	00 00	| Original Japanese Hex
+ #  黒	 #  カ	 #  ミ	 #  の	 #  学	 #  者	 #	| Original Japanese Text
+ #  S	 c  h	 o  l	 a  r	 #  学	 #  者	 #	| New English Text
+7F 53	63 68	6F 6C	61 72	00 D8	BC D4	00 00	| New English Hex
+
+マッサージし
+Masseuse / Masseur
+$AD96BC
+A5 DE	A5 C3	A5 B5	A1 BC	A5 B8	A4 B7	00 00	| Original Japanese Hex
+ #  マ	 #  ッ	 #  サ	 #  ー	 #  ジ	 #  し	 #	| Original Japanese Text
+ #  M	 a  s	 s  e	 u  r	 #  ジ	 #  し	 #	| New English Text
+7F 4D	61 73	73 65	75 72	00 B8	A4 B7	00 00	| New English Hex
+
+ナゾの中国人
+Foreigners in the mystery
+$AD96CA
+A5 CA	A5 BE	A4 CE	C3 E6	B9 F1	BF CD	00 00	| Original Japanese Hex
+ #  ナ	 #  ゾ	 #  の	 #  中	 #  国	 #  人	 #	| Original Japanese Text
+ #  F	 o  r	 e  i	 g  n	 e  r	 #  人	 #	| New English Text
+7F 46	6F 72	65 69	67 6E	65 72	00 CD	00 00	| New English Hex
+
+チャン.リー
+Chan. Lee
+$AD96D8
+A5 C1	A5 E3	A5 F3	A1 A6	A5 EA	A1 BC	00 00	| Original Japanese Hex
+ #  チ	 #  ャ	 #  ン	 #  .	 #  リ	 #  ー	 #	| Original Japanese Text
+ #  C	 h  a	 n  .	    L	 e  e	 #  ー	 #	| New English Text
+7F 43	68 61	6E 2E	20 4C	65 65	00 BC	00 00	| New English Hex
+
+ジャック石本
+Jack Ishimoto
+$AD96E6
+A5 B8	A5 E3	A5 C3	A5 AF	C0 D0	CB DC	00 00	| Original Japanese Hex
+ #  ジ	 #  ャ	 #  ッ	 #  ク	 #  石	 #  本	 #	| Original Japanese Text
+ #  J	 a  c	 k   	 I  s	 h  i	 m  o	 #	| New English Text
+7F 4A	61 63	6B 20	49 73	68 69	6D 6F	00 00	| New English Hex
+
+ゲン.ナガイ
+Gen. Nagai
+$AD96F4
+A5 B2	A5 F3	A1 A6	A5 CA	A5 AC	A5 A4	00 00	| Original Japanese Hex
+ #  ゲ	 #  ン	 #  .	 #  ナ	 #  ガ	 #  イ	 #	| Original Japanese Text
+ #  G	 e  n	 .   	 N  a	 g  a	 i  #	 #	| New English Text
+7F 47	65 6E	2E 20	4E 61	67 61	69 00	00 00	| New English Hex
+
+ナゾの学者
+Scholar of mystery
+$AD9702
+A5 CA	A5 BE	A4 CE	B3 D8	BC D4	00 00	00 00	| Original Japanese Hex
+ #  ナ	 #  ゾ	 #  の	 #  学	 #  者	 #	 #	| Original Japanese Text
+ #  S	 c  h	 o  l	 a  r	 #  者	 #	 #	| New English Text
+7F 53	63 68	6F 6C	61 72	00 D4	00 00	00 00	| New English Hex
+
+人工生めい体
+Artificial life niece
+$AD8710
+BF CD	B9 A9	C0 B8	A4 E1	A4 A4	C2 CE	00 00	| Original Japanese Hex
+ #  人	 #  工	 #  生	 #  め	 #  い	 #  体	 #	| Original Japanese Text
+ #  A	 .  I	 .   	 N  i	 e  c	 e  #	 #	| New English Text
+7F 41	2E 49	2E 20	4E 69	65 63	65 00	00 00	| New English Hex
+
+しっぱいさく
+Bomb
+$AD971E
+A4 B7	A4 C3	A4 D1	A4 A4	A4 B5	A4 AF	00 00	| Original Japanese Hex
+ #  し	 #  っ	 #  ぱ	 #  い	 #  さ	 #  く	 #	| Original Japanese Text
+ #  B	 o  m	 b  #	 #  い	 #  さ	 #  く	 #	| New English Text
+7F 42	6F 6D	62 00	A4 A4	A4 B5	A4 AF	00 00	| New English Hex
+
+KT2000
+KT2000
+$AD972C
+A3 CB	A3 D4	A3 B2	A3 B0	A3 B0	A3 B0	00 00	| Original Japanese Hex
+ #  K	 #  T	 #  2	 #  0	 #  0	 #  0	 #	| Original Japanese Text
+ #  K	 T  2	 0  0	 0  #	 #  0	 #  0	 #	| New English Text
+7F 4B	54 32	30 30	30 00	A3 B0	A3 B0	00 00	| New English Hex
+
+ピンクアイ
+Pink Eye
+$AD973A
+A5 D4	A5 F3	A5 AF	A5 A2	A5 A4	00 00	00 00	| Original Japanese Hex
+ #  ピ	 #  ン	 #  ク	 #  ア	 #  イ	 #	 #	| Original Japanese Text
+ #  P	 i  n	 k   	 E  y	 e  #	 #	 #	| New English Text
+7F 50	69 6E	6B 20	45 79	65 00	00 00	00 00	| New English Hex
+
+ブルーヘッド
+Blue Head
+$AD9748
+A5 D6	A5 EB	A1 BC	A5 D8	A5 C3	A5 C9	00 00	| Original Japanese Hex
+ #  ブ	 #  ル	 #  ー	 #  ヘ	 #  ッ	 #  ド	 #	| Original Japanese Text
+ #  B	 l  u	 e   	 H  e	 a  d	 #  ド	 #	| New English Text
+7F 42	6C 75	65 20	48 65	61 64	00 C9	00 00	| New English Hex
+
+バイオマン
+Bio-Man
+$AD9756
+A5 D0	A5 A4	A5 AA	A5 DE	A5 F3	00 00	00 00	| Original Japanese Hex
+ #  バ	 #  イ	 #  オ	 #  マ	 #  ン	 #	 #	| Original Japanese Text
+ #  B	 i  o	 -  M	 a  n	 #  ン	 #	 #	| New English Text
+7F 42	69 6F	2D 4D	61 6E	00 F3	00 00	00 00	| New English Hex
+
+23ごう
+23 Go
+$AD9764
+A3 B2	A3 B3	A4 B4	A4 A6	00 00	00 00	00 00	| Original Japanese Hex
+ #  2	 #  3	 #  ご	 #  う	 #	 #	 #	| Original Japanese Text
+ #  2	 3   	 G  o	 #  う	 #	 #	 #	| New English Text
+7F 32	33 20	47 6F	00 A6	00 00	00 00	00 00	| New English Hex
+
+ナンバー6
+Number 6
+$AD9772
+A5 CA	A5 F3	A5 D0	A1 BC	A3 B6	00 00	00 00	| Original Japanese Hex
+ #  ナ	 #  ン	 #  バ	 #  ー	 #  6	 #	 #	| Original Japanese Text
+ #  N	 u  m	 b  e	 r   	 6  #	 #	 #	| New English Text
+7F 4E	75 6D	62 65	72 20	36 00	00 00	00 00	| New English Hex
+
+サイボーグ
+Cyborg
+$AD9780
+A5 B5	A5 A4	A5 DC	A1 BC	A5 B0	00 00	00 00	| Original Japanese Hex
+ #  サ	 #  イ	 #  ボ	 #  ー	 #  グ	 #	 #	| Original Japanese Text
+ #  C	 y  b	 o  r	 g  #	 #  グ	 #	 #	| New English Text
+7F 43	79 62	6F 72	67 00	A5 B0	00 00	00 00	| New English Hex
+
+しさくロボ
+Policy Robo
+$AD978E
+A4 B7	A4 B5	A4 AF	A5 ED	A5 DC	00 00	00 00	| Original Japanese Hex
+ #  し	 #  さ	 #  く	 #  ロ	 #  ボ	 #	 #	| Original Japanese Text
+ #  P	 o  l	 i  c	 y   	 R  o	 b  o	 #	| New English Text
+7F 50	6F 6C	69 63	79 20	52 6F	62 6F	00 00	| New English Hex
+
+プロトタイプ
+Prototype
+$AD979C
+A5 D7	A5 ED	A5 C8	A5 BF	A5 A4	A5 D7	00 00	| Original Japanese Hex
+ #  プ	 #  ロ	 #  ト	 #  タ	 #  イ	 #  プ	 #	| Original Japanese Text
+ #  P	 r  o	 t  o	 t  y	 p  e	 #  プ	 #	| New English Text
+7F 50	72 6F	74 6F	74 79	70 65	00 D7	00 00	| New English Hex
+
+ドクターロボ
+Doctor Robo
+$AD97AA
+A5 C9	A5 AF	A5 BF	A1 BC	A5 ED	A5 DC	00 00	| Original Japanese Hex
+ #  ド	 #  ク	 #  タ	 #  ー	 #  ロ	 #  ボ	 #	| Original Japanese Text
+ #  D	 o  c	 t  o	 r   	 R  o	 b  o	 #	| New English Text
+7F 44	6F 63	74 6F	72 20	52 6F	62 6F	00 00	| New English Hex
+
+オレンジアイ
+Orange Eye
+$AD97B8
+A5 AA	A5 EC	A5 F3	A5 B8	A5 A2	A5 A4	00 00	| Original Japanese Hex
+ #  オ	 #  レ	 #  ン	 #  ジ	 #  ア	 #  イ	 #	| Original Japanese Text
+ #  O	 r  a	 n  g	 e   	 E  y	 e  #	 #	| New English Text
+7F 4F	72 61	6E 67	65 20	45 79	65 00	00 00	| New English Hex
+
+KR2010
+KR2010
+$AD97C6
+A3 CB	A3 D2	A3 B2	A3 B0	A3 B1	A3 B0	00 00	| Original Japanese Hex
+ #  K	 #  R	 #  2	 #  0	 #  1	 #  0	 #	| Original Japanese Text
+ #  K	 R  2	 0  1	 0  #	 #  1	 #  0	 #	| New English Text
+7F 4B	52 32	30 31	30 00	A3 B1	A3 B0	00 00	| New English Hex
+
+25ごう
+25 Go
+$AD97D4
+A3 B2	A3 B5	A4 B4	A4 A6	00 00	00 00	00 00	| Original Japanese Hex
+ #  2	 #  5	 #  ご	 #  う	 #	 #	 #	| Original Japanese Text
+ #  2	 5   	 G  o	 #  う	 #	 #	 #	| New English Text
+7F 32	35 20	47 6F	00 A6	00 00	00 00	00 00	| New English Hex
+
+ナンバー8
+Number 8
+$AD97E2
+A5 CA	A5 F3	A5 D0	A1 BC	A3 B8	00 00	00 00	| Original Japanese Hex
+ #  ナ	 #  ン	 #  バ	 #  ー	 #  8	 #	 #	| Original Japanese Text
+ #  N	 u  m	 b  e	 r   	 8  #	 #	 #	| New English Text
+7F 4E	75 6D	62 65	72 20	38 00	00 00	00 00	| New English Hex
+
+ワルしゃ長
+Walther President
+$AD97F0
+A5 EF	A5 EB	A4 B7	A4 E3	C4 B9	00 00	00 00	| Original Japanese Hex
+ #  ワ	 #  ル	 #  し	 #  ゃ	 #  長	 #	 #	| Original Japanese Text
+ #  W	 a  l	 t  h	 e  r	 #  長	 #	 #	| New English Text
+7F 57	61 6C	74 68	65 72	00 B9	00 00	00 00	| New English Hex
+
+成金シュミ男
+Millionaire Man / Nouveau Riche Man
+$AD97FE
+C0 AE	B6 E2	A5 B7	A5 E5	A5 DF	C3 CB	00 00	| Original Japanese Hex
+ #  成	 #  金	 #  シ	 #  ュ	 #  ミ	 #  男	 #	| Original Japanese Text
+ #  M	 i  l	 l  i	 o  n	 a  i	 r  e	 #	| New English Text
+7F 4D	69 6C	6C 69	6F 6E	61 69	72 65	00 00	| New English Hex
+
+デブオヤジ
+Deb Father
+$AD980C
+A5 C7	A5 D6	A5 AA	A5 E4	A5 B8	00 00	00 00	| Original Japanese Hex
+ #  デ	 #  ブ	 #  オ	 #  ヤ	 #  ジ	 #	 #	| Original Japanese Text
+ #  D	 e  b	    F	 a  t	 h  e	 r  #	 #	| New English Text
+7F 44	65 62	20 46	61 74	68 65	72 00	00 00	| New English Hex
+
+せいじ家
+Seijie
+$AD981A
+A4 BB	A4 A4	A4 B8	B2 C8	00 00	00 00	00 00	| Original Japanese Hex
+ #  せ	 #  い	 #  じ	 #  家	 #	 #	 #	| Original Japanese Text
+ #  S	 e  i	 j  i	 e  #	 #	 #	 #	| New English Text
+7F 53	65 69	6A 69	65 00	00 00	00 00	00 00	| New English Hex
+
+ごく悪人
+Small Villain
+$AD9828
+A4 B4	A4 AF	B0 AD	BF CD	00 00	00 00	00 00	| Original Japanese Hex
+ #  ご	 #  く	 #  悪	 #  人	 #	 #	 #	| Original Japanese Text
+ #  V	 i  l	 l  a	 i  n	 #	 #	 #	| New English Text
+7F 56	69 6C	6C 61	69 6E	00 00	00 00	00 00	| New English Hex
+
+ハゲオヤジ
+Bald Father
+$AD9836
+A5 CF	A5 B2	A5 AA	A5 E4	A5 B8	00 00	00 00	| Original Japanese Hex
+ #  ハ	 #  ゲ	 #  オ	 #  ヤ	 #  ジ	 #	 #	| Original Japanese Text
+ #  B	 a  l	 d   	 F  a	 t  h	 e  r	 #	| New English Text
+7F 42	61 6C	64 20	46 61	74 68	65 72	00 00	| New English Hex
+
+ごんぞう
+Gonzo
+$AD9844
+A4 B4	A4 F3	A4 BE	A4 A6	00 00	00 00	00 00	| Original Japanese Hex
+ #  ご	 #  ん	 #  ぞ	 #  う	 #	 #	 #	| Original Japanese Text
+ #  G	 o  n	 z  o	 #  う	 #	 #	 #	| New English Text
+7F 47	6F 6E	7A 6F	00 A6	00 00	00 00	00 00	| New English Hex
+
+くみ長
+Kumicho
+$AD9852
+A4 AF	A4 DF	C4 B9	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  く	 #  み	 #  長	 #	 #	 #	 #	| Original Japanese Text
+ #  K	 u  m	 i  c	 h  o	 #	 #	 #	| New English Text
+7F 4B	75 6D	69 63	68 6F	00 00	00 00	00 00	| New English Hex
+
+プロレスラー
+Professional Wrestler
+$AD9860
+A5 D7	A5 ED	A5 EC	A5 B9	A5 E9	A1 BC	00 00	| Original Japanese Hex
+ #  プ	 #  ロ	 #  レ	 #  ス	 #  ラ	 #  ー	 #	| Original Japanese Text
+ #  P	 r  o	    W	 r  e	 s  t	 l  e	 r  #	| New English Text
+7F 50	72 6F	20 57	72 65	73 74	6C 65	72 00	| New English Hex
+
+キング
+King
+$AD986E
+A5 AD	A5 F3	A5 B0	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  キ	 #  ン	 #  グ	 #	 #	 #	 #	| Original Japanese Text
+ #  K	 i  n	 g  #	 #	 #	 #	 #	| New English Text
+7F 4B	69 6E	67 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ようきな黒人
+Cheerful Black
+$AD987C
+A4 E8	A4 A6	A4 AD	A4 CA	B9 F5	BF CD	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  き	 #  な	 #  黒	 #  人	 #	| Original Japanese Text
+ #  C	 h  e	 e  r	 f  u	 l   	 M  a	 n	| New English Text
+7F 43	68 65	65 72	66 75	6C 20	4D 61	6E 00	| New English Hex
+
+かしゅ
+Singer
+$AD988A
+A4 AB	A4 B7	A4 E5	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  か	 #  し	 #  ゅ	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 i  n	 g  e	 r  #	 #	 #	 #	| New English Text
+7F 53	69 6E	67 65	72 00	00 00	00 00	00 00	| New English Hex
+
+ボス
+Boss
+$AD9898
+A5 DC	A5 B9	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ボ	 #  ス	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  B	 o  s	 s  #	 #	 #	 #	 #	| New English Text
+7F 42	6F 73	73 00	00 00	00 00	00 00	00 00	| New English Hex
+
+シルベスター
+Sylvester
+$AD98A6
+A5 B7	A5 EB	A5 D9	A5 B9	A5 BF	A1 BC	00 00	| Original Japanese Hex
+ #  シ	 #  ル	 #  ベ	 #  ス	 #  タ	 #  ー	 #	| Original Japanese Text
+ #  S	 y  l	 v  e	 s  t	 e  r	 #  ー	 #	| New English Text
+7F 53	79 6C	76 65	73 74	65 72	00 BC	00 00	| New English Hex
+
+ジョニー
+Johnny
+$AD98B4
+A5 B8	A5 E7	A5 CB	A1 BC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ジ	 #  ョ	 #  ニ	 #  ー	 #	 #	 #	| Original Japanese Text
+ #  J	 o  h	 n  n	 y  #	 #	 #	 #	| New English Text
+7F 4A	6F 68	6E 6E	79 00	00 00	00 00	00 00	| New English Hex
+
+フレッド
+Fred
+$AD98C2
+A5 D5	A5 EC	A5 C3	A5 C9	00 00	00 00	00 00	| Original Japanese Hex
+ #  フ	 #  レ	 #  ッ	 #  ド	 #	 #	 #	| Original Japanese Text
+ #  F	 r  e	 d  #	 #  ド	 #	 #	 #	| New English Text
+7F 46	72 65	64 00	A5 C9	00 00	00 00	00 00	| New English Hex
+
+たいしょう
+Taisho
+$AD98D0
+A4 BF	A4 A4	A4 B7	A4 E7	A4 A6	00 00	00 00	| Original Japanese Hex
+ #  た	 #  い	 #  し	 #  ょ	 #  う	 #	 #	| Original Japanese Text
+ #  T	 a  i	 s  h	 o  #	 #  う	 #	 #	| New English Text
+7F 54	61 69	73 68	6F 00	A4 A6	00 00	00 00	| New English Hex
+
+おっちゃん
+Uncle
+$AD98DE
+A4 AA	A4 C3	A4 C1	A4 E3	A4 F3	00 00	00 00	| Original Japanese Hex
+ #  お	 #  っ	 #  ち	 #  ゃ	 #  ん	 #	 #	| Original Japanese Text
+ #  U	 n  c	 l  e	 #  ゃ	 #  ん	 #	 #	| New English Text
+7F 55	6E 63	6C 65	00 E3	A4 F3	00 00	00 00	| New English Hex
+
+ランニング男
+Running Man
+$AD98EC
+A5 E9	A5 F3	A5 CB	A5 F3	A5 B0	C3 CB	00 00	| Original Japanese Hex
+ #  ラ	 #  ン	 #  ニ	 #  ン	 #  グ	 #  男	 #	| Original Japanese Text
+ #  R	 u  n	 n  i	 n  g	    M	 a  n	 #	| New English Text
+7F 52	75 6E	6E 69	6E 67	20 4D	61 6E	00 00	| New English Hex
+
+げいじゅつ家
+Geijutsu
+$AD98FA
+A4 B2	A4 A4	A4 B8	A4 E5	A4 C4	B2 C8	00 00	| Original Japanese Hex
+ #  げ	 #  い	 #  じ	 #  ゅ	 #  つ	 #  家	 #	| Original Japanese Text
+ #  G	 e  i	 j  u	 t  s	 u  #	 #  家	 #	| New English Text
+7F 47	65 69	6A 75	74 73	75 00	B2 C8	00 00	| New English Hex
+
+たけし
+Takeshi
+$AD9908
+A4 BF	A4 B1	A4 B7	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  た	 #  け	 #  し	 #	 #	 #	 #	| Original Japanese Text
+ #  T	 a  k	 e  s	 h  i	 #	 #	 #	| New English Text
+7F 54	61 6B	65 73	68 69	00 00	00 00	00 00	| New English Hex
+
+たろう
+Taro
+$AD9916
+A4 BF	A4 ED	A4 A6	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  た	 #  ろ	 #  う	 #	 #	 #	 #	| Original Japanese Text
+ #  T	 a  r	 o  #	 #	 #	 #	 #	| New English Text
+7F 54	61 72	6F 00	00 00	00 00	00 00	00 00	| New English Hex
+
+いちろう
+Ichiro
+$AD9924
+A4 A4	A4 C1	A4 ED	A4 A6	00 00	00 00	00 00	| Original Japanese Hex
+ #  い	 #  ち	 #  ろ	 #  う	 #	 #	 #	| Original Japanese Text
+ #  I	 c  h	 i  r	 o  #	 #	 #	 #	| New English Text
+7F 49	63 68	69 72	6F 00	00 00	00 00	00 00	| New English Hex
+
+ひろすけ
+Hirosuke
+$AD9932
+A4 D2	A4 ED	A4 B9	A4 B1	00 00	00 00	00 00	| Original Japanese Hex
+ #  ひ	 #  ろ	 #  す	 #  け	 #	 #	 #	| Original Japanese Text
+ #  H	 i  r	 o  s	 u  k	 e  #	 #	 #	| New English Text
+7F 48	69 72	6F 73	75 6B	65 00	00 00	00 00	| New English Hex
+
+ナイスオヤジ
+Nice Father
+$AD9940
+A5 CA	A5 A4	A5 B9	A5 AA	A5 E4	A5 B8	00 00	| Original Japanese Hex
+ #  ナ	 #  イ	 #  ス	 #  オ	 #  ヤ	 #  ジ	 #	| Original Japanese Text
+ #  N	 i  c	 e   	 F  a	 t  h	 e  r	 #	| New English Text
+7F 4E	69 63	65 20	46 61	74 68	65 72	00 00	| New English Hex
+
+Ｔシャツ男
+T-shirt Man
+$AD994E
+A3 D4	A5 B7	A5 E3	A5 C4	C3 CB	00 00	00 00	| Original Japanese Hex
+ #  T	 #  シ	 #  ャ	 #  ツ	 #  男	 #	 #	| Original Japanese Text
+ #  T	 -  s	 h  i	 r  t	    M	 a  n	 #	| New English Text
+7F 54	2D 73	68 69	72 74	20 4D	61 6E	00 00	| New English Hex
+
+グラサンの男
+Man of Gurasan
+$AD995C
+A5 B0	A5 E9	A5 B5	A5 F3	A4 CE	C3 CB	00 00	| Original Japanese Hex
+ #  グ	 #  ラ	 #  サ	 #  ン	 #  の	 #  男	 #	| Original Japanese Text
+ #  G	 u  r	 a  s	 a  n	    M	 a  n	 #	| New English Text
+7F 47	75 72	61 73	61 6E	20 4D	61 6E	00 00	| New English Hex
+
+バイク好き
+Favorite bike
+$AD996A
+A5 D0	A5 A4	A5 AF	B9 A5	A4 AD	00 00	00 00	| Original Japanese Hex
+ #  バ	 #  イ	 #  ク	 #  好	 #  き	 #	 #	| Original Japanese Text
+ #  B	 i  k	 e  r	 #  好	 #  き	 #	 #	| New English Text
+7F 42	69 6B	65 72	00 A5	A4 AD	00 00	00 00	| New English Hex
+
+ジョー
+Joe
+$AD9978
+A5 B8	A5 E7	A1 BC	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ジ	 #  ョ	 #  ー	 #	 #	 #	 #	| Original Japanese Text
+ #  J	 o  e	 #  ー	 #	 #	 #	 #	| New English Text
+7F 4A	6F 65	00 BC	00 00	00 00	00 00	00 00	| New English Hex
+
+リッキー
+Ricky
+$AD9986
+A5 EA	A5 C3	A5 AD	A1 BC	00 00	00 00	00 00	| Original Japanese Hex
+ #  リ	 #  ッ	 #  キ	 #  ー	 #	 #	 #	| Original Japanese Text
+ #  R	 i  c	 k  y	 #  ー	 #	 #	 #	| New English Text
+7F 52	69 63	6B 79	00 BC	00 00	00 00	00 00	| New English Hex
+
+ヨシヲ
+Yoshiwo
+$AD9994
+A5 E8	A5 B7	A5 F2	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ヨ	 #  シ	 #  ヲ	 #	 #	 #	 #	| Original Japanese Text
+ #  Y	 o  s	 h  i	 w  o	 #	 #	 #	| New English Text
+7F 59	6F 73	68 69	77 6F	00 00	00 00	00 00	| New English Hex
+
+リュウ
+Ryū
+$AD99A2
+A5 EA	A5 E5	A5 A6	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  リ	 #  ュ	 #  ウ	 #	 #	 #	 #	| Original Japanese Text
+ #  R	 y  u	 #  ウ	 #	 #	 #	 #	| New English Text
+7F 52	79 75	00 A6	00 00	00 00	00 00	00 00	| New English Hex
+
+ガードマン
+Security Guard / Guard Man
+$AD99B0
+A5 AC	A1 BC	A5 C9	A5 DE	A5 F3	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  マ	 #  ン	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    M	 a  n	 #	 #	| New English Text
+7F 47	75 61	72 64	20 4D	61 6E	00 00	00 00	| New English Hex
+
+ガードマン
+Security Guard / Guard Man
+$AD99BE
+A5 AC	A1 BC	A5 C9	A5 DE	A5 F3	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  マ	 #  ン	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    M	 a  n	 #	 #	| New English Text
+7F 47	75 61	72 64	20 4D	61 6E	00 00	00 00	| New English Hex
+
+ガードマン
+Security Guard / Guard Man
+$AD99CC
+A5 AC	A1 BC	A5 C9	A5 DE	A5 F3	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  マ	 #  ン	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    M	 a  n	 #	 #	| New English Text
+7F 47	75 61	72 64	20 4D	61 6E	00 00	00 00	| New English Hex
+
+ガードマン
+Security Guard / Guard Man
+$AD99DA
+A5 AC	A1 BC	A5 C9	A5 DE	A5 F3	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  マ	 #  ン	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    M	 a  n	 #	 #	| New English Text
+7F 47	75 61	72 64	20 4D	61 6E	00 00	00 00	| New English Hex
+
+ガードマン
+Security Guard / Guard Man
+$AD99E8
+A5 AC	A1 BC	A5 C9	A5 DE	A5 F3	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  マ	 #  ン	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    M	 a  n	 #	 #	| New English Text
+7F 47	75 61	72 64	20 4D	61 6E	00 00	00 00	| New English Hex
+
+ガードマン
+Security Guard / Guard Man
+$AD99F6
+A5 AC	A1 BC	A5 C9	A5 DE	A5 F3	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  マ	 #  ン	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    M	 a  n	 #	 #	| New English Text
+7F 47	75 61	72 64	20 4D	61 6E	00 00	00 00	| New English Hex
+
+ガードマン
+Security Guard / Guard Man
+$AD9A04
+A5 AC	A1 BC	A5 C9	A5 DE	A5 F3	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  マ	 #  ン	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    M	 a  n	 #	 #	| New English Text
+7F 47	75 61	72 64	20 4D	61 6E	00 00	00 00	| New English Hex
+
+ガードマン
+Security Guard / Guard Man
+$AD9A12
+A5 AC	A1 BC	A5 C9	A5 DE	A5 F3	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  マ	 #  ン	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    M	 a  n	 #	 #	| New English Text
+7F 47	75 61	72 64	20 4D	61 6E	00 00	00 00	| New English Hex
+
+ガードロボ
+Guard Robo
+$AD9A20
+A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    R	 o  b	 o  #	 #	| New English Text
+7F 47	75 61	72 64	20 52	6F 62	6F 00	00 00	| New English Hex
+
+ガードロボ
+Guard Robo
+$AD9A2E
+A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    R	 o  b	 o  #	 #	| New English Text
+7F 47	75 61	72 64	20 52	6F 62	6F 00	00 00	| New English Hex
+
+ガードロボ
+Guard Robo
+$AD9A3C
+A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    R	 o  b	 o  #	 #	| New English Text
+7F 47	75 61	72 64	20 52	6F 62	6F 00	00 00	| New English Hex
+
+ガードロボ
+Guard Robo
+$AD9A4A
+A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    R	 o  b	 o  #	 #	| New English Text
+7F 47	75 61	72 64	20 52	6F 62	6F 00	00 00	| New English Hex
+
+ガードロボ
+Guard Robo
+$AD9A58
+A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    R	 o  b	 o  #	 #	| New English Text
+7F 47	75 61	72 64	20 52	6F 62	6F 00	00 00	| New English Hex
+
+ガードロボ
+Guard Robo
+$AD9A66
+A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    R	 o  b	 o  #	 #	| New English Text
+7F 47	75 61	72 64	20 52	6F 62	6F 00	00 00	| New English Hex
+
+ガードロボ
+Guard Robo
+$AD9A74
+A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    R	 o  b	 o  #	 #	| New English Text
+7F 47	75 61	72 64	20 52	6F 62	6F 00	00 00	| New English Hex
+
+ガードロボ
+Guard Robo
+$AD9A82
+A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	 #	| Original Japanese Text
+ #  G	 u  a	 r  d	    R	 o  b	 o  #	 #	| New English Text
+7F 47	75 61	72 64	20 52	6F 62	6F 00	00 00	| New English Hex
+
+Sガードロボ
+S.Guard Robo
+$AD9A90
+A3 D3	A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	| Original Japanese Hex
+ #  S	 #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	| Original Japanese Text
+ #  S	 .  G	 u  a	 r  d	    R	 o  b	 o	| New English Text
+7F 53	2E 47	75 61	72 64	20 52	6F 62	6F 00	| New English Hex
+
+Sガードロボ
+S.Guard Robo
+$AD9A9E
+A3 D3	A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	| Original Japanese Hex
+ #  S	 #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	| Original Japanese Text
+ #  S	 .  G	 u  a	 r  d	    R	 o  b	 o	| New English Text
+7F 53	2E 47	75 61	72 64	20 52	6F 62	6F 00	| New English Hex
+
+Sガードロボ
+S.Guard Robo
+$AD9AAC
+A3 D3	A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	| Original Japanese Hex
+ #  S	 #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	| Original Japanese Text
+ #  S	 .  G	 u  a	 r  d	    R	 o  b	 o	| New English Text
+7F 53	2E 47	75 61	72 64	20 52	6F 62	6F 00	| New English Hex
+
+Sガードロボ
+S.Guard Robo
+$AD9ABA
+A3 D3	A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	| Original Japanese Hex
+ #  S	 #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	| Original Japanese Text
+ #  S	 .  G	 u  a	 r  d	    R	 o  b	 o	| New English Text
+7F 53	2E 47	75 61	72 64	20 52	6F 62	6F 00	| New English Hex
+
+Sガードロボ
+S.Guard Robo
+$AD9AC8
+A3 D3	A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	| Original Japanese Hex
+ #  S	 #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	| Original Japanese Text
+ #  S	 .  G	 u  a	 r  d	    R	 o  b	 o	| New English Text
+7F 53	2E 47	75 61	72 64	20 52	6F 62	6F 00	| New English Hex
+
+Sガードロボ
+S.Guard Robo
+$AD9AD6
+A3 D3	A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	| Original Japanese Hex
+ #  S	 #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	| Original Japanese Text
+ #  S	 .  G	 u  a	 r  d	    R	 o  b	 o	| New English Text
+7F 53	2E 47	75 61	72 64	20 52	6F 62	6F 00	| New English Hex
+
+Sガードロボ
+S.Guard Robo
+$AD9AE4
+A3 D3	A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	| Original Japanese Hex
+ #  S	 #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	| Original Japanese Text
+ #  S	 .  G	 u  a	 r  d	    R	 o  b	 o	| New English Text
+7F 53	2E 47	75 61	72 64	20 52	6F 62	6F 00	| New English Hex
+
+Sガードロボ
+S.Guard Robo
+$AD9AF2
+A3 D3	A5 AC	A1 BC	A5 C9	A5 ED	A5 DC	00 00	| Original Japanese Hex
+ #  S	 #  ガ	 #  ー	 #  ド	 #  ロ	 #  ボ	 #	| Original Japanese Text
+ #  S	 .  G	 u  a	 r  d	    R	 o  b	 o	| New English Text
+7F 53	2E 47	75 61	72 64	20 52	6F 62	6F 00	| New English Hex
+
+けいびいん
+Guard / Security (Officer) / Guardsman
+$AD9B00
+A4 B1	A4 A4	A4 D3	A4 A4	A4 F3	00 00	00 00	| Original Japanese Hex
+ #  け	 #  い	 #  び	 #  い	 #  ん	 #	 #	| Original Japanese Text
+ #  S	 e  c	 u  r	 i  t	 y  #	 #	 #	| New English Text
+7F 53	65 63	75 72	69 74	79 00	00 00	00 00	| New English Hex
+
+けいびいん
+Guard / Security (Officer) / Guardsman
+$AD9B0E
+A4 B1	A4 A4	A4 D3	A4 A4	A4 F3	00 00	00 00	| Original Japanese Hex
+ #  け	 #  い	 #  び	 #  い	 #  ん	 #	 #	| Original Japanese Text
+ #  S	 e  c	 u  r	 i  t	 y  #	 #	 #	| New English Text
+7F 53	65 63	75 72	69 74	79 00	00 00	00 00	| New English Hex
+
+けいびいん
+Guard / Security (Officer) / Guardsman
+$AD9B1C
+A4 B1	A4 A4	A4 D3	A4 A4	A4 F3	00 00	00 00	| Original Japanese Hex
+ #  け	 #  い	 #  び	 #  い	 #  ん	 #	 #	| Original Japanese Text
+ #  S	 e  c	 u  r	 i  t	 y  #	 #	 #	| New English Text
+7F 53	65 63	75 72	69 74	79 00	00 00	00 00	| New English Hex
+
+けいびいん
+Guard / Security (Officer) / Guardsman
+$AD9B2A
+A4 B1	A4 A4	A4 D3	A4 A4	A4 F3	00 00	00 00	| Original Japanese Hex
+ #  け	 #  い	 #  び	 #  い	 #  ん	 #	 #	| Original Japanese Text
+ #  S	 e  c	 u  r	 i  t	 y  #	 #	 #	| New English Text
+7F 53	65 63	75 72	69 74	79 00	00 00	00 00	| New English Hex
+
+けいびいん
+Guard / Security (Officer) / Guardsman
+$AD9B38
+A4 B1	A4 A4	A4 D3	A4 A4	A4 F3	00 00	00 00	| Original Japanese Hex
+ #  け	 #  い	 #  び	 #  い	 #  ん	 #	 #	| Original Japanese Text
+ #  S	 e  c	 u  r	 i  t	 y  #	 #	 #	| New English Text
+7F 53	65 63	75 72	69 74	79 00	00 00	00 00	| New English Hex
+
+けいびいん
+Guard / Security (Officer) / Guardsman
+$AD9B46
+A4 B1	A4 A4	A4 D3	A4 A4	A4 F3	00 00	00 00	| Original Japanese Hex
+ #  け	 #  い	 #  び	 #  い	 #  ん	 #	 #	| Original Japanese Text
+ #  S	 e  c	 u  r	 i  t	 y  #	 #	 #	| New English Text
+7F 53	65 63	75 72	69 74	79 00	00 00	00 00	| New English Hex
+
+けいびいん
+Guard / Security (Officer) / Guardsman
+$AD9B54
+A4 B1	A4 A4	A4 D3	A4 A4	A4 F3	00 00	00 00	| Original Japanese Hex
+ #  け	 #  い	 #  び	 #  い	 #  ん	 #	 #	| Original Japanese Text
+ #  S	 e  c	 u  r	 i  t	 y  #	 #	 #	| New English Text
+7F 53	65 63	75 72	69 74	79 00	00 00	00 00	| New English Hex
+
+けいびいん
+Guard / Security (Officer) / Guardsman
+$AD9B62
+A4 B1	A4 A4	A4 D3	A4 A4	A4 F3	00 00	00 00	| Original Japanese Hex
+ #  け	 #  い	 #  び	 #  い	 #  ん	 #	 #	| Original Japanese Text
+ #  S	 e  c	 u  r	 i  t	 y  #	 #	 #	| New English Text
+7F 53	65 63	75 72	69 74	79 00	00 00	00 00	| New English Hex
+
+いぬ
+Dog
+$AD9B70
+A4 A4	A4 CC	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  い	 #  ぬ	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  D	 o  g	 #	 #	 #	 #	 #	| New English Text
+7F 44	6F 67	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+いぬ
+Dog
+$AD9B7E
+A4 A4	A4 CC	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  い	 #  ぬ	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  D	 o  g	 #	 #	 #	 #	 #	| New English Text
+7F 44	6F 67	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+いぬ
+Dog
+$AD9B8C
+A4 A4	A4 CC	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  い	 #  ぬ	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  D	 o  g	 #	 #	 #	 #	 #	| New English Text
+7F 44	6F 67	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+いぬ
+Dog
+$AD9B9A
+A4 A4	A4 CC	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  い	 #  ぬ	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  D	 o  g	 #	 #	 #	 #	 #	| New English Text
+7F 44	6F 67	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+いぬ
+Dog
+$AD9BA8
+A4 A4	A4 CC	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  い	 #  ぬ	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  D	 o  g	 #	 #	 #	 #	 #	| New English Text
+7F 44	6F 67	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+いぬ
+Dog
+$AD9BB6
+A4 A4	A4 CC	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  い	 #  ぬ	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  D	 o  g	 #	 #	 #	 #	 #	| New English Text
+7F 44	6F 67	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+いぬ
+Dog
+$AD9BC4
+A4 A4	A4 CC	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  い	 #  ぬ	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  D	 o  g	 #	 #	 #	 #	 #	| New English Text
+7F 44	6F 67	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+いぬ
+Dog
+$AD9BD2
+A4 A4	A4 CC	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  い	 #  ぬ	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  D	 o  g	 #	 #	 #	 #	 #	| New English Text
+7F 44	6F 67	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9BE0
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9BEE
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9BFC
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9C0A
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9C18
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9C26
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9C34
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9C42
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9C50
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9C5E
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9C6C
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9C7A
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9C88
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9C96
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9CA4
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9CB2
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9CC0
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9CCE
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9CDC
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9CEA
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9CF8
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9D06
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9D14
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ロボいぬ
+Robo Dog
+$AD9D22
+A5 ED	A5 DC	A4 A4	A4 CC	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ボ	 #  い	 #  ぬ	 #	 #	 #	| Original Japanese Text
+ #  R	 o  b	 o   	 D  o	 g  #	 #	 #	| New English Text
+7F 52	6F 62	6F 20	44 6F	67 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9D30
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9D3E
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9D4C
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9D5A
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9D68
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9D76
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9D84
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9D92
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9DA0
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9DAE
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9DBC
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9DCA
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9DD8
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9DE6
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9DF4
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9E02
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9E10
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9E1E
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9E2C
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9E3A
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9E48
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9E56
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9E64
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9E72
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9E80
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9E8E
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9E9C
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9EAA
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9EB8
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9EC6
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9ED4
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+ようせい
+Fairy
+$AD9EE2
+A4 E8	A4 A6	A4 BB	A4 A4	00 00	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  う	 #  せ	 #  い	 #	 #	 #	| Original Japanese Text
+ #  F	 a  i	 r  y	 #  い	 #	 #	 #	| New English Text
+7F 46	61 69	72 79	00 A4	00 00	00 00	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9EF0
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9EFE
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9F0C
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9F1A
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9F28
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9F36
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9F44
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9F52
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9F60
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9F6E
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9F7C
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9F8A
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9F98
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9FA6
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9FB4
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9FC2
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9FD0
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9FDE
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9FEC
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$AD9FFA
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$ADA008
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$ADA016
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$ADA024
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$ADA032
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$ADA040
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$ADA04E
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$ADA05C
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$ADA06A
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$ADA078
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$ADA086
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$ADA094
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex
+
+うちゅうじん
+Cosmic Dust
+$ADA0A2
+A4 A6	A4 C1	A4 E5	A4 A6	A4 B8	A4 F3	00 00	| Original Japanese Hex
+ #  う	 #  ち	 #  ゅ	 #  う	 #  じ	 #  ん	 #	| Original Japanese Text
+ #  C	 o  s	 m  i	 c   	 D  u	 s  t	 #	| New English Text
+7F 43	6F 73	6D 69	63 20	64 75	73 74	00 00	| New English Hex

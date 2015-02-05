@@ -152,3 +152,261 @@ TextStyle1($0E221E, "RoboSuke"); db $00
 TextStyle1($0E222B, "Robo Be"); db $00
 TextStyle1($0E2238, "Holmes"); db $00
 TextStyle1($0E2245, "Koike"); db $00
+
+// NPC Names
+TextStyle1($AD92B0, "Son"); db $00
+TextStyle1($AD92BE, "Businessman"); db $00
+TextStyle1($AD92CC, "PresidentJr."); db $00
+TextStyle1($AD92DA, "Serious Man"); db $00
+TextStyle1($AD92E8, "Elite"); db $00
+TextStyle1($AD92F6, "Visitor"); db $00
+TextStyle1($AD9304, "Isao"); db $00
+TextStyle1($AD9312, "Shuichi"); db $00
+TextStyle1($AD9320, "Butler"); db $00
+TextStyle1($AD932E, "Tough Dad"); db $00
+TextStyle1($AD933C, "President"); db $00
+TextStyle1($AD934A, "Sebastian"); db $00
+TextStyle1($AD9358, "Old Man"); db $00
+TextStyle1($AD9366, "Visitor"); db $00
+TextStyle1($AD9374, "Sukezaemon"); db $00
+TextStyle1($AD9382, "Daijiro"); db $00
+TextStyle1($AD9390, "Gerhard"); db $00
+TextStyle1($AD939E, "Daddy"); db $00
+TextStyle1($AD93AC, "Visitor"); db $00
+TextStyle1($AD93BA, "Father"); db $00
+TextStyle1($AD93C8, "Wimpy"); db $00
+TextStyle1($AD93D6, "Droopy"); db $00
+TextStyle1($AD93E4, "Kotaro"); db $00
+TextStyle1($AD93F2, "Keisuke"); db $00
+TextStyle1($AD9400, "Master"); db $00
+TextStyle1($AD940E, "Foreigner"); db $00
+TextStyle1($AD941C, "Freeloader"); db $00
+TextStyle1($AD942A, "Guest"); db $00
+TextStyle1($AD9438, "Gerhard"); db $00
+TextStyle1($AD9446, "Edward"); db $00
+TextStyle1($AD9454, "Michael"); db $00
+TextStyle1($AD9462, "Jeff"); db $00
+TextStyle1($AD9470, "Maid"); db $00
+TextStyle1($AD947E, "Housekeeper"); db $00
+TextStyle1($AD948C, "Daughter"); db $00
+TextStyle1($AD949A, "Rookie Maid"); db $00
+TextStyle1($AD94A8, "Yumeko"); db $00
+TextStyle1($AD94B6, "Nami"); db $00
+TextStyle1($AD94C4, "Yukie"); db $00
+TextStyle1($AD94D2, "Violet"); db $00
+TextStyle1($AD94E0, "Princess"); db $00
+TextStyle1($AD94EE, "Daughter"); db $00
+TextStyle1($AD94FC, "Young Wife"); db $00
+TextStyle1($AD950A, "Guest"); db $00
+TextStyle1($AD9518, "Yumiko"); db $00
+TextStyle1($AD9526, "Shizuko"); db $00
+TextStyle1($AD9534, "Satoko"); db $00
+TextStyle1($AD9542, "Yuko"); db $00
+TextStyle1($AD9550, "Secretary"); db $00
+TextStyle1($AD955E, "Woman"); db $00
+TextStyle1($AD956C, "Daughter"); db $00
+TextStyle1($AD957A, "Daughter"); db $00
+TextStyle1($AD9588, "Keiko"); db $00
+TextStyle1($AD9596, "Miki"); db $00
+TextStyle1($AD95A4, "Akemi"); db $00
+TextStyle1($AD95B2, "Tomomi"); db $00
+TextStyle1($AD95C0, "Model"); db $00
+TextStyle1($AD95CE, "Daughter"); db $00
+TextStyle1($AD95DC, "Daughter"); db $00
+TextStyle1($AD95EA, "Foreigner"); db $00
+TextStyle1($AD95F8, "Bonnie"); db $00
+TextStyle1($AD9606, "April"); db $00
+TextStyle1($AD9614, "Rebecca"); db $00
+TextStyle1($AD9622, "Patricia"); db $00
+TextStyle1($AD9630, "Doctor"); db $00
+TextStyle1($AD963E, "Doctor"); db $00
+TextStyle1($AD964C, "Tall Man"); db $00
+TextStyle1($AD965A, "Doctor"); db $00
+TextStyle1($AD9668, "Doctor"); db $00
+TextStyle1($AD9676, "Red Glasses"); db $00
+TextStyle1($AD9684, "Erik"); db $00
+TextStyle1($AD9692, "Gilbert"); db $00
+TextStyle1($AD96A0, "Mad Scholar"); db $00
+TextStyle1($AD96AE, "Scholar"); db $00
+TextStyle1($AD96BC, "Masseur"); db $00
+TextStyle1($AD96CA, "Foreigner"); db $00
+TextStyle1($AD96D8, "Chan. Lee"); db $00
+TextStyle1($AD96E6, "Jack Ishimo"); db $00
+TextStyle1($AD96F4, "Gen. Nagai"); db $00
+TextStyle1($AD9702, "Scholar"); db $00
+TextStyle1($AD9710, "A.I. Niece"); db $00
+TextStyle1($AD971E, "Bomb"); db $00
+TextStyle1($AD972C, "KT2000"); db $00
+TextStyle1($AD973A, "Pink Eye"); db $00
+TextStyle1($AD9748, "Blue Head"); db $00
+TextStyle1($AD9756, "Bio-Man"); db $00
+TextStyle1($AD9764, "23 Go"); db $00
+TextStyle1($AD9772, "Number 6"); db $00
+TextStyle1($AD9780, "Cyborg"); db $00
+TextStyle1($AD978E, "Policy Robo"); db $00
+TextStyle1($AD979C, "Prototype"); db $00
+TextStyle1($AD97AA, "Doctor Robo"); db $00
+TextStyle1($AD97B8, "Orange Eye"); db $00
+TextStyle1($AD97C6, "KR2010"); db $00
+TextStyle1($AD97D4, "25 Go"); db $00
+TextStyle1($AD97E2, "Number 8"); db $00
+TextStyle1($AD97F0, "Walther"); db $00
+TextStyle1($AD97FE, "Millionaire"); db $00
+TextStyle1($AD980C, "Deb Father"); db $00
+TextStyle1($AD981A, "Seijie"); db $00
+TextStyle1($AD9828, "Villain"); db $00
+TextStyle1($AD9836, "Bald Father"); db $00
+TextStyle1($AD9844, "Gonzo"); db $00
+TextStyle1($AD9852, "Kumicho"); db $00
+TextStyle1($AD9860, "Pro Wrestler"); db $00
+TextStyle1($AD986E, "King"); db $00
+TextStyle1($AD987C, "Cheerful Man"); db $00
+TextStyle1($AD988A, "Singer"); db $00
+TextStyle1($AD9898, "Boss"); db $00
+TextStyle1($AD98A6, "Sylvester"); db $00
+TextStyle1($AD98B4, "Johnny"); db $00
+TextStyle1($AD98C2, "Fred"); db $00
+TextStyle1($AD98D0, "Taisho"); db $00
+TextStyle1($AD98DE, "Uncle"); db $00
+TextStyle1($AD98EC, "Running Man"); db $00
+TextStyle1($AD98FA, "Geijutsu"); db $00
+TextStyle1($AD9908, "Takeshi"); db $00
+TextStyle1($AD9916, "Taro"); db $00
+TextStyle1($AD9924, "Ichiro"); db $00
+TextStyle1($AD9932, "Hirosuke"); db $00
+TextStyle1($AD9940, "Nice Father"); db $00
+TextStyle1($AD994E, "T-shirt Man"); db $00
+TextStyle1($AD995C, "Gurasan Man"); db $00
+TextStyle1($AD996A, "Biker"); db $00
+TextStyle1($AD9978, "Joe"); db $00
+TextStyle1($AD9986, "Ricky"); db $00
+TextStyle1($AD9994, "Yoshiwo"); db $00
+TextStyle1($AD99A2, "Ryu"); db $00
+TextStyle1($AD99B0, "Guard Man"); db $00
+TextStyle1($AD99BE, "Guard Man"); db $00
+TextStyle1($AD99CC, "Guard Man"); db $00
+TextStyle1($AD99DA, "Guard Man"); db $00
+TextStyle1($AD99E8, "Guard Man"); db $00
+TextStyle1($AD99F6, "Guard Man"); db $00
+TextStyle1($AD9A04, "Guard Man"); db $00
+TextStyle1($AD9A12, "Guard Man"); db $00
+TextStyle1($AD9A20, "Guard Robo"); db $00
+TextStyle1($AD9A2E, "Guard Robo"); db $00
+TextStyle1($AD9A3C, "Guard Robo"); db $00
+TextStyle1($AD9A4A, "Guard Robo"); db $00
+TextStyle1($AD9A58, "Guard Robo"); db $00
+TextStyle1($AD9A66, "Guard Robo"); db $00
+TextStyle1($AD9A74, "Guard Robo"); db $00
+TextStyle1($AD9A82, "Guard Robo"); db $00
+TextStyle1($AD9A90, "S.Guard Robo"); db $00
+TextStyle1($AD9A9E, "S.Guard Robo"); db $00
+TextStyle1($AD9AAC, "S.Guard Robo"); db $00
+TextStyle1($AD9ABA, "S.Guard Robo"); db $00
+TextStyle1($AD9AC8, "S.Guard Robo"); db $00
+TextStyle1($AD9AD6, "S.Guard Robo"); db $00
+TextStyle1($AD9AE4, "S.Guard Robo"); db $00
+TextStyle1($AD9AF2, "S.Guard Robo"); db $00
+TextStyle1($AD9B00, "Security"); db $00
+TextStyle1($AD9B0E, "Security"); db $00
+TextStyle1($AD9B1C, "Security"); db $00
+TextStyle1($AD9B2A, "Security"); db $00
+TextStyle1($AD9B38, "Security"); db $00
+TextStyle1($AD9B46, "Security"); db $00
+TextStyle1($AD9B54, "Security"); db $00
+TextStyle1($AD9B62, "Security"); db $00
+TextStyle1($AD9B70, "Dog"); db $00
+TextStyle1($AD9B7E, "Dog"); db $00
+TextStyle1($AD9B8C, "Dog"); db $00
+TextStyle1($AD9B9A, "Dog"); db $00
+TextStyle1($AD9BA8, "Dog"); db $00
+TextStyle1($AD9BB6, "Dog"); db $00
+TextStyle1($AD9BC4, "Dog"); db $00
+TextStyle1($AD9BD2, "Dog"); db $00
+TextStyle1($AD9BE0, "Robo Dog"); db $00
+TextStyle1($AD9BEE, "Robo Dog"); db $00
+TextStyle1($AD9BFC, "Robo Dog"); db $00
+TextStyle1($AD9C0A, "Robo Dog"); db $00
+TextStyle1($AD9C18, "Robo Dog"); db $00
+TextStyle1($AD9C26, "Robo Dog"); db $00
+TextStyle1($AD9C34, "Robo Dog"); db $00
+TextStyle1($AD9C42, "Robo Dog"); db $00
+TextStyle1($AD9C50, "Robo Dog"); db $00
+TextStyle1($AD9C5E, "Robo Dog"); db $00
+TextStyle1($AD9C6C, "Robo Dog"); db $00
+TextStyle1($AD9C7A, "Robo Dog"); db $00
+TextStyle1($AD9C88, "Robo Dog"); db $00
+TextStyle1($AD9C96, "Robo Dog"); db $00
+TextStyle1($AD9CA4, "Robo Dog"); db $00
+TextStyle1($AD9CB2, "Robo Dog"); db $00
+TextStyle1($AD9CC0, "Robo Dog"); db $00
+TextStyle1($AD9CCE, "Robo Dog"); db $00
+TextStyle1($AD9CDC, "Robo Dog"); db $00
+TextStyle1($AD9CEA, "Robo Dog"); db $00
+TextStyle1($AD9CF8, "Robo Dog"); db $00
+TextStyle1($AD9D06, "Robo Dog"); db $00
+TextStyle1($AD9D14, "Robo Dog"); db $00
+TextStyle1($AD9D22, "Robo Dog"); db $00
+TextStyle1($AD9D30, "Fairy"); db $00
+TextStyle1($AD9D3E, "Fairy"); db $00
+TextStyle1($AD9D4C, "Fairy"); db $00
+TextStyle1($AD9D5A, "Fairy"); db $00
+TextStyle1($AD9D68, "Fairy"); db $00
+TextStyle1($AD9D76, "Fairy"); db $00
+TextStyle1($AD9D84, "Fairy"); db $00
+TextStyle1($AD9D92, "Fairy"); db $00
+TextStyle1($AD9DA0, "Fairy"); db $00
+TextStyle1($AD9DAE, "Fairy"); db $00
+TextStyle1($AD9DBC, "Fairy"); db $00
+TextStyle1($AD9DCA, "Fairy"); db $00
+TextStyle1($AD9DD8, "Fairy"); db $00
+TextStyle1($AD9DE6, "Fairy"); db $00
+TextStyle1($AD9DF4, "Fairy"); db $00
+TextStyle1($AD9E02, "Fairy"); db $00
+TextStyle1($AD9E10, "Fairy"); db $00
+TextStyle1($AD9E1E, "Fairy"); db $00
+TextStyle1($AD9E2C, "Fairy"); db $00
+TextStyle1($AD9E3A, "Fairy"); db $00
+TextStyle1($AD9E48, "Fairy"); db $00
+TextStyle1($AD9E56, "Fairy"); db $00
+TextStyle1($AD9E64, "Fairy"); db $00
+TextStyle1($AD9E72, "Fairy"); db $00
+TextStyle1($AD9E80, "Fairy"); db $00
+TextStyle1($AD9E8E, "Fairy"); db $00
+TextStyle1($AD9E9C, "Fairy"); db $00
+TextStyle1($AD9EAA, "Fairy"); db $00
+TextStyle1($AD9EB8, "Fairy"); db $00
+TextStyle1($AD9EC6, "Fairy"); db $00
+TextStyle1($AD9ED4, "Fairy"); db $00
+TextStyle1($AD9EE2, "Fairy"); db $00
+TextStyle1($AD9EF0, "Cosmic Dust"); db $00
+TextStyle1($AD9EFE, "Cosmic Dust"); db $00
+TextStyle1($AD9F0C, "Cosmic Dust"); db $00
+TextStyle1($AD9F1A, "Cosmic Dust"); db $00
+TextStyle1($AD9F28, "Cosmic Dust"); db $00
+TextStyle1($AD9F36, "Cosmic Dust"); db $00
+TextStyle1($AD9F44, "Cosmic Dust"); db $00
+TextStyle1($AD9F52, "Cosmic Dust"); db $00
+TextStyle1($AD9F60, "Cosmic Dust"); db $00
+TextStyle1($AD9F6E, "Cosmic Dust"); db $00
+TextStyle1($AD9F7C, "Cosmic Dust"); db $00
+TextStyle1($AD9F8A, "Cosmic Dust"); db $00
+TextStyle1($AD9F98, "Cosmic Dust"); db $00
+TextStyle1($AD9FA6, "Cosmic Dust"); db $00
+TextStyle1($AD9FB4, "Cosmic Dust"); db $00
+TextStyle1($AD9FC2, "Cosmic Dust"); db $00
+TextStyle1($AD9FD0, "Cosmic Dust"); db $00
+TextStyle1($AD9FDE, "Cosmic Dust"); db $00
+TextStyle1($AD9FEC, "Cosmic Dust"); db $00
+TextStyle1($AD9FFA, "Cosmic Dust"); db $00
+TextStyle1($ADA008, "Cosmic Dust"); db $00
+TextStyle1($ADA016, "Cosmic Dust"); db $00
+TextStyle1($ADA024, "Cosmic Dust"); db $00
+TextStyle1($ADA032, "Cosmic Dust"); db $00
+TextStyle1($ADA040, "Cosmic Dust"); db $00
+TextStyle1($ADA04E, "Cosmic Dust"); db $00
+TextStyle1($ADA05C, "Cosmic Dust"); db $00
+TextStyle1($ADA06A, "Cosmic Dust"); db $00
+TextStyle1($ADA078, "Cosmic Dust"); db $00
+TextStyle1($ADA086, "Cosmic Dust"); db $00
+TextStyle1($ADA094, "Cosmic Dust"); db $00
+TextStyle1($ADA0A2, "Cosmic Dust"); db $00
