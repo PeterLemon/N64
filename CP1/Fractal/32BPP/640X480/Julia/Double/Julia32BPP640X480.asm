@@ -25,6 +25,11 @@ Start:
   ldc1 f16,64(a0) ; F16 = 0.0
   ldc1 f17,72(a0) ; F17 = ANIM
 
+  sub.d f18,f4,f6 ; F18 = XMax - XMin
+  sub.d f19,f5,f7 ; F19 = YMax - YMin
+  div.d f20,f9,f2 ; F20 = (1.0 / SX)
+  div.d f21,f9,f3 ; F21 = (1.0 / SY)
+
   mov.d f12,f9 ; F12 = CX (1.0)
   mov.d f13,f7 ; F13 = CY (-2.0)
 
@@ -37,14 +42,12 @@ Refresh:
   LoopY:
     mov.d f0,f2 ; F0 = X%
     LoopX:
-      sub.d f10,f4,f6 ; ZX = XMin + ((X% * (XMax - XMin)) / SX)
-      mul.d f10,f0
-      div.d f10,f2
+      mul.d f10,f0,f18 ; ZX = XMin + ((X% * (XMax - XMin)) * (1.0 / SX))
+      mul.d f10,f20
       add.d f10,f6 ; F10 = ZX
 
-      sub.d f11,f5,f7 ; ZY = YMin + ((Y% * (YMax - YMin)) / SY)
-      mul.d f11,f1
-      div.d f11,f3
+      mul.d f11,f1,f19 ; ZY = YMin + ((Y% * (YMax - YMin)) * (1.0 / SY))
+      mul.d f11,f21
       add.d f11,f7 ; F11 = ZY
 
       li t1,192 ; T1 = IT (Iterations)

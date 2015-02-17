@@ -33,6 +33,9 @@ Start:
   ldc1 f16,64(a0) ; F16 = 0.0
   ldc1 f17,72(a0) ; F17 = X/Y TRANSLATE/ZOOM ANIM
 
+  div.d f20,f9,f2 ; F20 = (1.0 / SX)
+  div.d f21,f9,f3 ; F21 = (1.0 / SY)
+
   li t8,25 ; T8 = Iterations
   li t9,$231AF900 ; T9 = Multiply Colour
 
@@ -117,19 +120,20 @@ Zoom_Out:
   sub.d f7,f18
 
 Render:
+  sub.d f18,f4,f6 ; F18 = XMax - XMin
+  sub.d f19,f5,f7 ; F19 = YMax - YMin
+
   li a0,($A0100000+(320*240*4)-4) ; A0 = Frame Buffer Pointer Last Pixel
   mov.d f1,f3 ; F1 = Y%
   LoopY:
     mov.d f0,f2 ; F0 = X%
     LoopX:
-      sub.d f10,f4,f6 ; CX = XMin + ((X% * (XMax - XMin)) / SX)
-      mul.d f10,f0
-      div.d f10,f2
+      mul.d f10,f0,f18 ; CX = XMin + ((X% * (XMax - XMin)) * (1.0 / SX))
+      mul.d f10,f20
       add.d f10,f6 ; F10 = CX
 
-      sub.d f11,f5,f7 ; CY = YMin + ((Y% * (YMax - YMin)) / SY)
-      mul.d f11,f1
-      div.d f11,f3
+      mul.d f11,f1,f19 ; CY = YMin + ((Y% * (YMax - YMin)) * (1.0 / SY))
+      mul.d f11,f21
       add.d f11,f7 ; F11 = CY
 
       move t1,t8 ; T1 = IT (Iterations)

@@ -35,6 +35,9 @@ Start:
   ldc1 f17,72(a0) ; F17 = X/Y TRANSLATE/ZOOM ANIM
   ldc1 f18,80(a0) ; F18 = CX/CY ANIM
 
+  div.d f21,f9,f2 ; F21 = (1.0 / SX)
+  div.d f22,f9,f3 ; F22 = (1.0 / SY)
+
   mov.d f12,f16 ; F12 = CX (0.0)
   mov.d f13,f16 ; F13 = CY (0.0)
 
@@ -141,19 +144,20 @@ Analog:
   mul.d f20,f18
   add.d f13,f20
 
+  sub.d f19,f4,f6 ; F19 = XMax - XMin
+  sub.d f20,f5,f7 ; F20 = YMax - YMin
+
   li a0,($A0100000+(320*240*4)-4) ; A0 = Frame Buffer Pointer Last Pixel
   mov.d f1,f3 ; F1 = Y%
   LoopY:
     mov.d f0,f2 ; F0 = X%
     LoopX:
-      sub.d f10,f4,f6 ; ZX = XMin + ((X% * (XMax - XMin)) / SX)
-      mul.d f10,f0
-      div.d f10,f2
+      mul.d f10,f0,f19 ; ZX = XMin + ((X% * (XMax - XMin)) * (1.0 / SX))
+      mul.d f10,f21
       add.d f10,f6 ; F10 = ZX
 
-      sub.d f11,f5,f7 ; ZY = YMin + ((Y% * (YMax - YMin)) / SY)
-      mul.d f11,f1
-      div.d f11,f3
+      mul.d f11,f1,f20 ; ZY = YMin + ((Y% * (YMax - YMin)) * (1.0 / SY))
+      mul.d f11,f22
       add.d f11,f7 ; F11 = ZY
 
       move t1,t8 ; T1 = IT (Iterations)

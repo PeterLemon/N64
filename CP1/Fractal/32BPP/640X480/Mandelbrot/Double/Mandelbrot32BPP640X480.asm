@@ -13,8 +13,8 @@ Start:
 
   la a0,DATA ; A0 = Double Data Offset
   ldc1 f0,0(a0) ; F0 = X%
-  ldc1 f2,0(a0) ; F2 = SX
   ldc1 f1,8(a0) ; F1 = Y%
+  ldc1 f2,0(a0) ; F2 = SX
   ldc1 f3,8(a0) ; F3 = SY
   ldc1 f4,16(a0) ; F4 = XMax
   ldc1 f5,24(a0) ; F5 = YMax
@@ -24,20 +24,23 @@ Start:
   ldc1 f9,56(a0) ; F9 = 1.0
   ldc1 f16,64(a0) ; F16 = 0.0
 
+  sub.d f17,f4,f6 ; F17 = XMax - XMin
+  sub.d f18,f5,f7 ; F18 = YMax - YMin
+  div.d f19,f9,f2 ; F19 = (1.0 / SX)
+  div.d f20,f9,f3 ; F20 = (1.0 / SY)
+
   li a0,($A0100000+(640*480*4)-4) ; A0 = Frame Buffer Pointer Last Pixel
   li t0,$231AF900 ; T0 = Multiply Colour
 
 LoopY:
   mov.d f0,f2 ; F0 = X%
   LoopX:
-    sub.d f10,f4,f6 ; CX = XMin + ((X% * (XMax - XMin)) / SX)
-    mul.d f10,f0
-    div.d f10,f2
+    mul.d f10,f0,f17 ; CX = XMin + ((X% * (XMax - XMin)) * (1.0 / SX))
+    mul.d f10,f19
     add.d f10,f6 ; F10 = CX
 
-    sub.d f11,f5,f7 ; CY = YMin + ((Y% * (YMax - YMin)) / SY)
-    mul.d f11,f1
-    div.d f11,f3
+    mul.d f11,f1,f18 ; CY = YMin + ((Y% * (YMax - YMin)) * (1.0 / SY))
+    mul.d f11,f20
     add.d f11,f7 ; F11 = CY
 
     li t1,192 ; T1 = IT (Iterations)
