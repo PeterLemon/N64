@@ -51,9 +51,9 @@ RSPCode:
 LoopVRAM:  
   move a0,r0 ; A0 = 0
 LoopScanline:
-  lqv v00,(e0),$00,(4)  ; V0 = 128-Bit DMEM $000(A0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
+  lqv v00,(e0),$00,(4) ; V0 = 128-Bit DMEM $000(A0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   vsubc v00,v00,v01,(e0) ; V0 = V0 - V1[0], Vector Subtract Short Elements With Carry: VSUBC VD,VS,VT[ELEMENT]
-  sqv v00,(e0),$00,(4)  ; 128-Bit DMEM $000(A0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  sqv v00,(e0),$00,(4) ; 128-Bit DMEM $000(A0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   bne a0,t0,LoopScanline
   addi a0,16 ; A0 += 16 (Delay Slot)
 
@@ -62,7 +62,7 @@ LoopScanline:
   mtc0 t1,c3 ; Store DMA Length To SP Write Length Register ($A404000C)
 
   DMABusy:
-    mfc0 t2,c4 ; T2 = RSP Status Register ($04040010)
+    mfc0 t2,c4 ; T2 = RSP Status Register ($A4040010)
     andi t2,$C ; AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t2,DMABusy ; IF TRUE DMA Is Busy
     nop ; Delay Slot
