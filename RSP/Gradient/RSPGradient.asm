@@ -63,7 +63,7 @@ LoopScanline:
 
   DMABusy:
     mfc0 t2,c4 ; T2 = RSP Status Register ($04040010)
-    andi t2,3 ; AND RSP Status Status With 3
+    andi t2,$C ; AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t2,DMABusy ; IF TRUE DMA Is Busy
     nop ; Delay Slot
 
