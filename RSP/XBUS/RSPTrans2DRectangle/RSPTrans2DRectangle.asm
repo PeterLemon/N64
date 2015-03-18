@@ -46,8 +46,8 @@ RSPCode:
   lqv v01,(e0),$01,(0) ; V1 = Point Y ($010)
 
 ; Calculate X,Y 2D
-  lqv v02,(e0),$02,(0) ; V4 = Screen X / 2 ($020)
-  lqv v03,(e0),$03,(0) ; V5 = Screen Y / 2 ($030)
+  lqv v02,(e0),$02,(0) ; V2 = Screen X / 2 ($020)
+  lqv v03,(e0),$03,(0) ; V3 = Screen Y / 2 ($030)
  
   vadd v00,v00,v02,(e0) ; X = X + (ScreenX / 2)
   vsub v01,v03,v01,(e0) ; Y = (ScreenY / 2) - Y
