@@ -21,7 +21,7 @@ Start:
   DMASPRD RSPCode, RSPCodeEND, SP_IMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Load RSP Data To DMEM
-  DMASPRD RDPBuffer, RDPBufferEND, SP_DMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPRD RSPData, RSPDataEND, SP_DMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   ; Set RSP Program Counter
   lui a0,SP_PC_BASE ; A0 = SP PC Base Register ($A4080000)
@@ -41,7 +41,7 @@ Loop:
 RSPCode:
   obj $0000 ; Set Base Of RSP Code Object To Zero
 
-  RSPDPC SP_DMEM, SP_DMEM+(RDPBufferEnd-RDPBuffer) ; Run DPC Command Buffer: Start, End
+  RSPDPC RDPBuffer, RDPBufferEnd ; Run DPC Command Buffer: Start, End
 
   break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
   align 8 ; Align 64-Bit
@@ -49,6 +49,9 @@ RSPCode:
 RSPCodeEND:
 
   align 8 ; Align 64-Bit
+RSPData:
+  obj $0000 ; Set Base Of RSP Data Object To Zero
+
 RDPBuffer:
   Set_Scissor 0<<2,0<<2, 320<<2,240<<2, 0 ; Set Scissor: XH 0.0, YH 0.0, XL 320.0, YL 240.0, Scissor Field Enable Off
   Set_Other_Modes CYCLE_TYPE_FILL, 0 ; Set Other Modes
@@ -88,3 +91,7 @@ RDPBuffer:
 
   Sync_Full ; Ensure Entire Scene Is Fully Drawn
 RDPBufferEnd:
+
+  align 8 ; Align 64-Bit
+  objend ; Set End Of RSP Data Object
+RSPDataEnd:
