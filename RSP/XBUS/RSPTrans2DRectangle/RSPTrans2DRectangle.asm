@@ -125,28 +125,28 @@ RDPBuffer:
 RectangleZ:
   Set_Prim_Depth 50<<2,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
 RectangleXY:
-  Fill_Rectangle 32<<2,32<<2, 30<<2,30<<2 ; Fill Rectangle: XL 32.0, YL 32.0, XH 30.0, YH 30.0
+  Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Set_Prim_Depth 50<<2,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
-  Fill_Rectangle 288<<2,32<<2, 286<<2,30<<2 ; Fill Rectangle: XL 288.0, YL 32.0, XH 286.0, YH 30.0
+  Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Set_Prim_Depth 50<<2,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
-  Fill_Rectangle 32<<2,208<<2, 30<<2,206<<2 ; Fill Rectangle: XL 32.0, YL 208.0, XH 30.0, YH 206.0
+  Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Set_Prim_Depth 50<<2,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
-  Fill_Rectangle 288<<2,208<<2, 286<<2,206<<2 ; Fill Rectangle: XL 288.0, YL 208.0, XH 286.0, YH 206.0
+  Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Set_Prim_Depth 50<<2,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
-  Fill_Rectangle 32<<2,32<<2, 30<<2,30<<2 ; Fill Rectangle: XL 32.0, YL 32.0, XH 30.0, YH 30.0
+  Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Set_Prim_Depth 50<<2,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
-  Fill_Rectangle 288<<2,32<<2, 286<<2,30<<2 ; Fill Rectangle: XL 288.0, YL 32.0, XH 286.0, YH 30.0
+  Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Set_Prim_Depth 50<<2,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
-  Fill_Rectangle 32<<2,208<<2, 30<<2,206<<2 ; Fill Rectangle: XL 32.0, YL 208.0, XH 30.0, YH 206.0
+  Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Set_Prim_Depth 50<<2,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
-  Fill_Rectangle 288<<2,208<<2, 286<<2,206<<2 ; Fill Rectangle: XL 288.0, YL 208.0, XH 286.0, YH 206.0
+  Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Sync_Full ; Ensure Entire Scene Is Fully Drawn
 RDPBufferEnd:
