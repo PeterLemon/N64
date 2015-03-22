@@ -125,7 +125,7 @@ Start:
   include LIB\N64_RSP.INC ; Include RSP Macros
   N64_INIT ; Run N64 Initialisation Routine
 
-  ScreenNTSC 640, 480, BPP32|INTERLACE|AA_MODE_2, $A0100000 ; Screen NTSC: 640x480, 32BPP, Interlace, Reample Only, DRAM Origin = $A0100000
+  ScreenNTSC 640, 480, BPP32|INTERLACE|AA_MODE_2, $A0100000 ; Screen NTSC: 640x480, 32BPP, Interlace, Resample Only, DRAM Origin = $A0100000
 
   lui a0,$A010 ; A0 = VRAM Start Offset
   addi a1,a0,((640*480*4)-4) ; A1 = VRAM End Offset
