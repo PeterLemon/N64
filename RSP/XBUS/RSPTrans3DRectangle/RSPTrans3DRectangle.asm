@@ -191,36 +191,36 @@ RDPBuffer:
 
   Set_Blend_Color $FF0000FF ; Set Blend Color: R 255, G 0, B 0, A 255
 RectangleZ:
-  Set_Prim_Depth 50<<2,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
+  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z, PRIMITIVE DELTA Z
 RectangleXY:
   Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Set_Blend_Color $00FF00FF ; Set Blend Color: R 0, G 255, B 0, A 255
-  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
+  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z, PRIMITIVE DELTA Z
   Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Set_Blend_Color $0000FFFF ; Set Blend Color: R 0, G 0, B 255, A 255
-  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
+  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z, PRIMITIVE DELTA Z
   Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Set_Blend_Color $FFFFFFFF ; Set Blend Color: R 255, G 255, B 255, A 255
-  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
+  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z, PRIMITIVE DELTA Z
   Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Set_Blend_Color $800000FF ; Set Blend Color: R 128, G 0, B 0, A 255
-  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
+  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z, PRIMITIVE DELTA Z
   Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Set_Blend_Color $008000FF ; Set Blend Color: R 0, G 128, B 0, A 255
-  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
+  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z, PRIMITIVE DELTA Z
   Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Set_Blend_Color $000080FF ; Set Blend Color: R 0, G 0, B 128, A 255
-  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
+  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z, PRIMITIVE DELTA Z
   Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Set_Blend_Color $808080FF ; Set Blend Color: R 128, G 128, B 128, A 255
-  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z 50, PRIMITIVE DELTA Z 0
+  Set_Prim_Depth 0,0 ; Set Primitive Depth: PRIMITIVE Z, PRIMITIVE DELTA Z
   Fill_Rectangle 0,0, 0,0 ; Fill Rectangle: XL,YL, XH,YH
 
   Sync_Full ; Ensure Entire Scene Is Fully Drawn
