@@ -89,7 +89,7 @@ RSPCode:
   sqv v09,(e0),$02,(0) ; DMEM $002 = Point Z
 
 ; Calculate X,Y 2D
-  vmudh v08,v08,v05,(e0) ; V2 = Z / FOV
+  vmudh v08,v08,v05,(e0) ; V8 = Z / FOV
 
   vmulf v06,v06,v08,(e0) ; X = X / Z + (ScreenX / 2)
   vadd v06,v06,v03,(e0)
