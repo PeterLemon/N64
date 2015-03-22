@@ -9,7 +9,7 @@ Start:
   include LIB\N64_GFX.INC  ; Include Graphics Macros
   N64_INIT ; Run N64 Initialisation Routine
 
-  ScreenNTSC 640, 480, BPP32|INTERLACE|AA_MODE_2, $A0100000 ; Screen NTSC: 640x480, 32BPP, DRAM Origin $A0100000
+  ScreenNTSC 640, 480, BPP32|INTERLACE|AA_MODE_2, $A0100000 ; Screen NTSC: 640x480, 32BPP, Interlace, Resample Only, DRAM Origin $A0100000
 
   DMA Image, ImageEnd, $00100000 ; DMA Data Copy Cart->DRAM: Start Cart Address, End Cart Address, Destination DRAM Address
 
