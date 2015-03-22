@@ -10,7 +10,7 @@ Start:
   include LIB\N64_RSP.INC ; Include RSP Macros
   N64_INIT ; Run N64 Initialisation Routine
 
-  ScreenNTSC 320, 240, BPP16|INTERLACE|AA_MODE_2, $A0100000 ; Screen NTSC: 320x240, 16BPP, Interlace, Reample Only, DRAM Origin = $A0100000
+  ScreenNTSC 320, 240, BPP16|INTERLACE|AA_MODE_2, $A0100000 ; Screen NTSC: 320x240, 16BPP, Interlace, Resample Only, DRAM Origin = $A0100000
 
   ; Switch to RSP DMEM for RDP Commands
   lui a0,DPC_BASE ; A0 = Reality Display Processer Control Interface Base Register ($A4100000)
