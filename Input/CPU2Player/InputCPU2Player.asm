@@ -1,4 +1,4 @@
-; N64 'Bare Metal' Input CPU Demo by krom (Peter Lemon):
+; N64 'Bare Metal' Input CPU 2 Player Demo by krom (Peter Lemon):
   include LIB\N64.INC ; Include N64 Definitions
   dcb 1052672,$00 ; Set ROM Size
   org $80000000 ; Entry Point Of Code
