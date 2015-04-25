@@ -11,8 +11,6 @@ Start:
 
   ScreenNTSC 320, 240, BPP32|AA_MODE_2, $A0100000 ; Screen NTSC: 320x240, 32BPP, Resample Only, DRAM Origin $A0100000
 
-  DMA Texture, TlutEnd, $00200000 ; DMA Data Copy Cart->DRAM: Start Cart Address, End Cart Address, Destination DRAM Address
-
   WaitScanline $200 ; Wait For Scanline To Reach Vertical Blank
 
   DPC RDPBuffer, RDPBufferEnd ; Run DPC Command Buffer: Start Address, End Address
@@ -32,13 +30,13 @@ RDPBuffer:
   Set_Other_Modes EN_TLUT|SAMPLE_TYPE|BI_LERP_0|ALPHA_DITHER_SEL_NO_DITHER, B_M2A_0_1|FORCE_BLEND|IMAGE_READ_EN ; Set Other Modes
   Set_Combine_Mode $0, $00, 0, 0, $1, $01, $0, $F, 1, 0, 0, 0, 0, 7, 7, 7 ; Set Combine Mode: SubA RGB0, MulRGB0, SubA Alpha0, MulAlpha0, SubA RGB1, MulRGB1, SubB RGB0, SubB RGB1, SubA Alpha1, MulAlpha1, AddRGB0, SubB Alpha0, AddAlpha0, AddRGB1, SubB Alpha1, AddAlpha1
 
-  Set_Texture_Image SIZE_OF_PIXEL_16B, $00200540 ; Set Texture Image: SIZE 16B, DRAM ADDRESS $00200540
+  Set_Texture_Image SIZE_OF_PIXEL_16B, Tlut ; Set Texture Image: SIZE 16B, Tlut DRAM ADDRESS
   Set_Tile $100, 0<<24 ; Set Tile: TMEM Address $100, Tile 0
   Load_Tlut 0<<2,0<<2, 0, 3<<2,0<<2 ; Load Tlut: SL 0.0, TL 0.0, Tile 0, SH 3.0, TH 0.0
 
 
   Sync_Tile ; Sync Tile
-  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), $00200000 ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, DRAM ADDRESS $00200000
+  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), Texture8x8 ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Texture8x8 DRAM ADDRESS
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(1<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL 0.0, TL 0.0, Tile 0, SH 7.0, TH 7.0
   ; Right Major Triangle (Dir=1)
@@ -120,7 +118,7 @@ RDPBuffer:
 
 
   Sync_Tile ; Sync Tile
-  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(16-1), $00200040 ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 16, DRAM ADDRESS $00200040
+  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(16-1), Texture16x16 ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 16, Texture16x16 DRAM ADDRESS
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(2<<9)|$000, (0<<24)|SHIFT_S_1|SHIFT_T_1 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 2 (64bit Words), TMEM Address $000, Tile 0, Shift S 1,Shift T 1
   Load_Tile 0<<2,0<<2, 0, 15<<2,15<<2 ; Load Tile: SL 0.0, TL 0.0, Tile 0, SH 15.0, TH 15.0
   ; Right Major Triangle (Dir=1)
@@ -203,7 +201,7 @@ RDPBuffer:
 
 
   Sync_Tile ; Sync Tile
-  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(32-1), $00200140 ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 32, DRAM ADDRESS $00200140
+  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(32-1), Texture32x32 ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 32, Texture32x32 DRAM ADDRESS
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(4<<9)|$000, (0<<24)|MIRROR_S|MIRROR_T|MASK_S_4|MASK_T_4 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 4 (64bit Words), TMEM Address $000, Tile 0, MIRROR S, MIRROR T, MASK S 4, MASK T 4
   Load_Tile 0<<2,0<<2, 0, 31<<2,31<<2 ; Load Tile: SL 0.0, TL 0.0, Tile 0, SH 31.0, TH 31.0
   ; Right Major Triangle (Dir=1)
@@ -287,7 +285,7 @@ RDPBuffer:
   Sync_Full ; Ensure Entire Scene Is Fully Drawn
 RDPBufferEnd:
 
-Texture:
+Texture8x8:
   db $03,$00,$00,$02,$02,$00,$00,$00 ; 8x8x8B = 64 Bytes
   db $00,$00,$02,$01,$01,$02,$00,$00
   db $00,$02,$01,$01,$01,$01,$02,$00
@@ -297,6 +295,7 @@ Texture:
   db $00,$00,$02,$01,$01,$02,$00,$00
   db $00,$00,$02,$02,$02,$02,$00,$00
 
+Texture16x16:
   db $03,$03,$00,$00,$00,$00,$00,$02,$02,$00,$00,$00,$00,$00,$00,$00 ; 16x16x8B = 256 Bytes
   db $03,$03,$00,$00,$00,$00,$02,$01,$01,$02,$00,$00,$00,$00,$00,$00
   db $00,$00,$00,$00,$00,$02,$01,$01,$01,$01,$02,$00,$00,$00,$00,$00
@@ -314,6 +313,7 @@ Texture:
   db $00,$00,$00,$00,$00,$02,$01,$01,$01,$01,$02,$00,$00,$00,$00,$00
   db $00,$00,$00,$00,$00,$02,$02,$02,$02,$02,$02,$00,$00,$00,$00,$00
 
+Texture32x32:
   db $03,$03,$03,$03,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$02,$02,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 ; 32x32x8B = 1024 Bytes
   db $03,$03,$03,$03,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$02,$01,$01,$02,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   db $03,$03,$03,$03,$00,$00,$00,$00,$00,$00,$00,$00,$00,$02,$01,$01,$01,$01,$02,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
@@ -346,8 +346,6 @@ Texture:
   db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$02,$01,$01,$01,$01,$01,$01,$01,$01,$02,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$02,$01,$01,$01,$01,$01,$01,$01,$01,$02,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-TextureEnd:
 
 Tlut:
   dh $0000,$FFFF,$0001,$F001 ; 4x16B = 8 Bytes
-TlutEnd:

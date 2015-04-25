@@ -11,8 +11,6 @@ Start:
 
   ScreenNTSC 320, 240, BPP32|AA_MODE_2, $A0100000 ; Screen NTSC: 320x240, 32BPP, Resample Only, DRAM Origin $A0100000
 
-  DMA Texture, TextureEnd, $00200000 ; DMA Data Copy Cart->DRAM: Start Cart Address, End Cart Address, Destination DRAM Address
-
   WaitScanline $200 ; Wait For Scanline To Reach Vertical Blank
 
   DPC RDPBuffer, RDPBufferEnd ; Run DPC Command Buffer: Start Address, End Address
@@ -33,7 +31,7 @@ RDPBuffer:
   Set_Combine_Mode $0, $00, 0, 0, $1, $01, $0, $F, 1, 0, 0, 0, 0, 7, 7, 7 ; Set Combine Mode: SubA RGB0, MulRGB0, SubA Alpha0, MulAlpha0, SubA RGB1, MulRGB1, SubB RGB0, SubB RGB1, SubA Alpha1, MulAlpha1, AddRGB0, SubB Alpha0, AddAlpha0, AddRGB1, SubB Alpha1, AddAlpha1
 
 
-  Set_Texture_Image SIZE_OF_PIXEL_16B|(8-1), $00200000 ; Set Texture Image: SIZE 16B, WIDTH 8, DRAM ADDRESS $00200000
+  Set_Texture_Image SIZE_OF_PIXEL_16B|(8-1), Texture8x8 ; Set Texture Image: SIZE 16B, WIDTH 8, Texture8x8 DRAM ADDRESS
   Set_Tile IMAGE_DATA_FORMAT_IA|SIZE_OF_PIXEL_16B|(2<<9)|$000, 0<<24 ; Set Tile: IA, SIZE 16B, Tile Line Size 2 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL 0.0, TL 0.0, Tile 0, SH 7.0, TH 7.0
   ; Right Major Triangle (Dir=1)
@@ -115,7 +113,7 @@ RDPBuffer:
 
 
   Sync_Tile ; Sync Tile
-  Set_Texture_Image SIZE_OF_PIXEL_16B|(16-1), $00200080 ; Set Texture Image: SIZE 16B, WIDTH 16, DRAM ADDRESS $00200080
+  Set_Texture_Image SIZE_OF_PIXEL_16B|(16-1), Texture16x16 ; Set Texture Image: SIZE 16B, WIDTH 16, Texture16x16 DRAM ADDRESS
   Set_Tile IMAGE_DATA_FORMAT_IA|SIZE_OF_PIXEL_16B|(4<<9)|$000, (0<<24)|SHIFT_S_1|SHIFT_T_1 ; Set Tile: IA, SIZE 16B, Tile Line Size 4 (64bit Words), TMEM Address $000, Tile 0, Shift S 1,Shift T 1
   Load_Tile 0<<2,0<<2, 0, 15<<2,15<<2 ; Load Tile: SL 0.0, TL 0.0, Tile 0, SH 15.0, TH 15.0
   ; Right Major Triangle (Dir=1)
@@ -198,7 +196,7 @@ RDPBuffer:
 
 
   Sync_Tile ; Sync Tile
-  Set_Texture_Image SIZE_OF_PIXEL_16B|(32-1), $00200280 ; Set Texture Image: SIZE 16B, WIDTH 32, DRAM ADDRESS $00200280
+  Set_Texture_Image SIZE_OF_PIXEL_16B|(32-1), Texture32x32 ; Set Texture Image: SIZE 16B, WIDTH 32, Texture32x32 DRAM ADDRESS
   Set_Tile IMAGE_DATA_FORMAT_IA|SIZE_OF_PIXEL_16B|(8<<9)|$000, (0<<24)|MIRROR_S|MIRROR_T|MASK_S_4|MASK_T_4 ; Set Tile: IA, SIZE 16B, Tile Line Size 8 (64bit Words), TMEM Address $000, Tile 0, MIRROR S, MIRROR T, MASK S 4, MASK T 4
   Load_Tile 0<<2,0<<2, 0, 31<<2,31<<2 ; Load Tile: SL 0.0, TL 0.0, Tile 0, SH 31.0, TH 31.0
   ; Right Major Triangle (Dir=1)
@@ -282,7 +280,7 @@ RDPBuffer:
   Sync_Full ; Ensure Entire Scene Is Fully Drawn
 RDPBufferEnd:
 
-Texture:
+Texture8x8:
   dh $80FF,$0000,$0000,$00FF,$00FF,$0000,$0000,$0000 ; 8x8x16B = 128 Bytes
   dh $0000,$0000,$00FF,$FFFF,$FFFF,$00FF,$0000,$0000
   dh $0000,$00FF,$FFFF,$FFFF,$FFFF,$FFFF,$00FF,$0000
@@ -292,6 +290,7 @@ Texture:
   dh $0000,$0000,$00FF,$FFFF,$FFFF,$00FF,$0000,$0000
   dh $0000,$0000,$00FF,$00FF,$00FF,$00FF,$0000,$0000
 
+Texture16x16:
   dh $80FF,$80FF,$0000,$0000,$0000,$0000,$0000,$00FF,$00FF,$0000,$0000,$0000,$0000,$0000,$0000,$0000 ; 16x16x16B = 512 Bytes
   dh $80FF,$80FF,$0000,$0000,$0000,$0000,$00FF,$FFFF,$FFFF,$00FF,$0000,$0000,$0000,$0000,$0000,$0000
   dh $0000,$0000,$0000,$0000,$0000,$00FF,$FFFF,$FFFF,$FFFF,$FFFF,$00FF,$0000,$0000,$0000,$0000,$0000
@@ -309,6 +308,7 @@ Texture:
   dh $0000,$0000,$0000,$0000,$0000,$00FF,$FFFF,$FFFF,$FFFF,$FFFF,$00FF,$0000,$0000,$0000,$0000,$0000
   dh $0000,$0000,$0000,$0000,$0000,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF,$0000,$0000,$0000,$0000,$0000
 
+Texture32x32:
   dh $80FF,$80FF,$80FF,$80FF,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$00FF,$00FF,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000 ; 32x32x16B = 2048 Bytes
   dh $80FF,$80FF,$80FF,$80FF,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$00FF,$FFFF,$FFFF,$00FF,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000
   dh $80FF,$80FF,$80FF,$80FF,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$00FF,$FFFF,$FFFF,$FFFF,$FFFF,$00FF,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000
@@ -341,4 +341,3 @@ Texture:
   dh $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$00FF,$FFFF,$FFFF,$FFFF,$FFFF,$FFFF,$FFFF,$FFFF,$FFFF,$00FF,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000
   dh $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$00FF,$FFFF,$FFFF,$FFFF,$FFFF,$FFFF,$FFFF,$FFFF,$FFFF,$00FF,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000
   dh $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF,$00FF,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000
-TextureEnd:

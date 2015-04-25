@@ -11,8 +11,6 @@ Start:
 
   ScreenNTSC 320, 240, BPP32|AA_MODE_2, $A0100000 ; Screen NTSC: 320x240, 32BPP, Resample Only, DRAM Origin $A0100000
 
-  DMA Texture, TextureEnd, $00200000 ; DMA Data Copy Cart->DRAM: Start Cart Address, End Cart Address, Destination DRAM Address
-
   WaitScanline $200 ; Wait For Scanline To Reach Vertical Blank
 
   DPC RDPBuffer, RDPBufferEnd ; Run DPC Command Buffer: Start Address, End Address
@@ -33,7 +31,7 @@ RDPBuffer:
   Set_Combine_Mode $0, $00, 0, 0, $1, $01, $0, $F, 1, 0, 0, 0, 0, 7, 7, 7 ; Set Combine Mode: SubA RGB0, MulRGB0, SubA Alpha0, MulAlpha0, SubA RGB1, MulRGB1, SubB RGB0, SubB RGB1, SubA Alpha1, MulAlpha1, AddRGB0, SubB Alpha0, AddAlpha0, AddRGB1, SubB Alpha1, AddAlpha1
 
 
-  Set_Texture_Image SIZE_OF_PIXEL_16B|(4-1), $00200000 ; Set Texture Image: SIZE 16B, WIDTH 4, DRAM ADDRESS $00200000
+  Set_Texture_Image SIZE_OF_PIXEL_16B|(4-1), Texture16x16 ; Set Texture Image: SIZE 16B, WIDTH 4, Texture16x16 DRAM ADDRESS
   Set_Tile SIZE_OF_PIXEL_16B|(1<<9)|$000, 0<<24 ; Set Tile: SIZE 16B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 15<<2,15<<2 ; Load Tile: SL 0.0, TL 0.0, Tile 0, SH 15.0, TH 15.0
   Sync_Tile ; Sync Tile
@@ -48,7 +46,7 @@ RDPBuffer:
 
 
   Sync_Tile ; Sync Tile
-  Set_Texture_Image SIZE_OF_PIXEL_16B|(8-1), $00200080 ; Set Texture Image: SIZE 16B, WIDTH 8, DRAM ADDRESS $00200080
+  Set_Texture_Image SIZE_OF_PIXEL_16B|(8-1), Texture32x32 ; Set Texture Image: SIZE 16B, WIDTH 8, Texture32x32 DRAM ADDRESS
   Set_Tile SIZE_OF_PIXEL_16B|(2<<9)|$000, 0<<24 ; Set Tile: SIZE 16B, Tile Line Size 2 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 31<<2,31<<2 ; Load Tile: SL 0.0, TL 0.0, Tile 0, SH 31.0, TH 31.0
   Sync_Tile ; Sync Tile
@@ -64,7 +62,7 @@ RDPBuffer:
 
 
   Sync_Tile ; Sync Tile
-  Set_Texture_Image SIZE_OF_PIXEL_16B|(16-1), $00200280 ; Set Texture Image: SIZE 16B, WIDTH 16, DRAM ADDRESS $00200280
+  Set_Texture_Image SIZE_OF_PIXEL_16B|(16-1), Texture64x64 ; Set Texture Image: SIZE 16B, WIDTH 16, Texture64x64 DRAM ADDRESS
   Set_Tile SIZE_OF_PIXEL_16B|(4<<9)|$000, 0<<24 ; Set Tile: SIZE 16B, Tile Line Size 4 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 63<<2,63<<2 ; Load Tile: SL 0.0, TL 0.0, Tile 0, SH 63.0, TH 63.0
   Sync_Tile ; Sync Tile
@@ -77,7 +75,7 @@ RDPBuffer:
   Sync_Full ; Ensure Entire Scene Is Fully Drawn
 RDPBufferEnd:
 
-Texture:
+Texture16x16:
   db $EE,$00,$00,$08,$80,$00,$00,$00 ; 16x16x4B = 128 Bytes
   db $EE,$00,$00,$8F,$F8,$00,$00,$00
   db $00,$00,$08,$FF,$FF,$80,$00,$00
@@ -95,6 +93,7 @@ Texture:
   db $00,$00,$08,$FF,$FF,$80,$00,$00
   db $00,$00,$08,$88,$88,$80,$00,$00
 
+Texture32x32:
   db $EE,$EE,$00,$00,$00,$00,$00,$08,$80,$00,$00,$00,$00,$00,$00,$00 ; 32x32x4B = 512 Bytes
   db $EE,$EE,$00,$00,$00,$00,$00,$8F,$F8,$00,$00,$00,$00,$00,$00,$00
   db $EE,$EE,$00,$00,$00,$00,$08,$FF,$FF,$80,$00,$00,$00,$00,$00,$00
@@ -128,6 +127,7 @@ Texture:
   db $00,$00,$00,$00,$00,$08,$FF,$FF,$FF,$FF,$80,$00,$00,$00,$00,$00
   db $00,$00,$00,$00,$00,$08,$88,$88,$88,$88,$80,$00,$00,$00,$00,$00
 
+Texture64x64:
   db $EE,$EE,$EE,$EE,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$08,$80,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 ; 64x64x4B = 2048 Bytes
   db $EE,$EE,$EE,$EE,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$8F,$F8,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 
   db $EE,$EE,$EE,$EE,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$08,$FF,$FF,$80,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 
@@ -192,4 +192,3 @@ Texture:
   db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$08,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$80,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$08,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$80,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$08,$88,$88,$88,$88,$88,$88,$88,$88,$80,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-TextureEnd:
