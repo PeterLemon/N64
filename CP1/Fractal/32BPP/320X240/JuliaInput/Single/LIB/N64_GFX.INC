@@ -372,8 +372,8 @@ Texture_Coefficients: macro s,t,w, dsdx,dtdx,dwdx, sf,tf,wf, dsdxf,dtdxf,dwdxf, 
 ZBuffer_Coefficients: macro z,zf,dzdx,dzdxf, dzde,dzdef,dzdy,dzdyf
 ; Word 0: Z Inverse Depth Integer, Fraction, DzDx Change In Z Per Change In X Coordinate Integer, Fraction (ZBuffer Coefficients)
 ; Word 1: DzDe Change In Z Along Major Edge Integer, Fraction, DzDy Change In Z Per Change In Y Coordinate Integer, Fraction
-  dw (z<<16)|(zf&$FFFF) ; HI Word 0: Z Integer (Bit 48..63), Z Fraction (Bit 32..47)
-  dw (dzdx<<16)|dzdxf   ; LO Word 0: DzDx Integer (Bit 16..31), DzDx Fraction (Bit 0..15)
+  dw (z<<16)|zf       ; HI Word 0: Z Integer (Bit 48..63), Z Fraction (Bit 32..47)
+  dw (dzdx<<16)|dzdxf ; LO Word 0: DzDx Integer (Bit 16..31), DzDx Fraction (Bit 0..15)
   dw (dzde<<16)|dzdef ; HI Word 1: DzDe Integer (Bit 48..63), DzDe Fraction (Bit 32..47)
   dw (dzdy<<16)|dzdyf ; LO Word 1: DzDy Integer (Bit 16..31), DzDy Fraction (Bit 0..15)
   endm
@@ -383,8 +383,8 @@ Texture_Rectangle: macro xl,yl, tile, xh,yh, s,t, dsdx,dtdy
 ; Word 1: S/T Texture Coordinate Top Left (Fixed Point S.10.5), DsDx Change In S Per Change In X, DtDy Change In T Per Change In Y (Fixed Point S.5.10)
   dw $24000000|(xl<<12)|yl  ; HI Word 0: COMMAND $24 (Bit 56..61), XL (Bit 44..55), YL (Bit 32..43)
   dw (tile<<24)|(xh<<12)|yh ; LO Word 0: Tile (Bit 24..26), XH (Bit 12..23), YH (Bit 0..11)
-  dw (s<<16)|t       ; HI Word 1: S (Bit 48..63), T (Bit 32..47)
-  dw (dsdx<<16)|dtdy ; LO Word 1: DsDx (Bit 16..31), DtDy (Bit 0..15)
+  dw (s<<16)|(t&$FFFF)       ; HI Word 1: S (Bit 48..63), T (Bit 32..47)
+  dw (dsdx<<16)|(dtdy&$FFFF) ; LO Word 1: DsDx (Bit 16..31), DtDy (Bit 0..15)
   endm
 
 Texture_Rectangle_Flip: macro xl,yl, tile, xh,yh, s,t, dsdx,dtdy ; Same As Texture Rectangle Except Hardware Swaps S/T & DsDx/DtDy
@@ -392,8 +392,8 @@ Texture_Rectangle_Flip: macro xl,yl, tile, xh,yh, s,t, dsdx,dtdy ; Same As Textu
 ; Word 1: S/T Texture Coordinate Top Left (Fixed Point S.10.5), DsDx Change In S Per Change In X, DtDy Change In T Per Change In Y (Fixed Point S.5.10)
   dw $25000000|(xl<<12)|yl  ; HI Word 0: COMMAND $25 (Bit 56..61), XL (Bit 44..55), YL (Bit 32..43)
   dw (tile<<24)|(xh<<12)|yh ; LO Word 0: Tile (Bit 24..26), XH (Bit 12..23), YH (Bit 0..11)
-  dw (s<<16)|t       ; HI Word 1: S (Bit 48..63), T (Bit 32..47)
-  dw (dsdx<<16)|dtdy ; LO Word 1: DsDx (Bit 16..31), DtDy (Bit 0..15)
+  dw (s<<16)|(t&$FFFF)       ; HI Word 1: S (Bit 48..63), T (Bit 32..47)
+  dw (dsdx<<16)|(dtdy&$FFFF) ; LO Word 1: DsDx (Bit 16..31), DtDy (Bit 0..15)
   endm
 
 Sync_Load: macro ; Stall Execution Of Load Commands, Until Preceeding Primitives Completely Finish (Usually Preceed Load Commands)
