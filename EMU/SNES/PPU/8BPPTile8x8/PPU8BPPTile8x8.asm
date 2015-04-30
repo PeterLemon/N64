@@ -107,8 +107,8 @@ LoopPAL:
 
 
   li t0,$28000 ; Wait For RSP To Compute
-Delay2:
-  bnez t0,Delay2
+Delay:
+  bnez t0,Delay
   subi t0,1
 
   DPC RDPBuffer, RDPBufferEnd ; Run DPC Command Buffer: Start Address, End Address
@@ -725,8 +725,6 @@ RDPBuffer:
   Texture_Rectangle_Flip 288<<2,16<<2, 0, 280<<2,8<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
 
-
-
 ; BG Row 1
   Sync_Tile ; Sync Tile
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), N64TILE+(64*33) ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Tile 33 DRAM ADDRESS
@@ -919,10 +917,6 @@ RDPBuffer:
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(1<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL,TL, Tile, SH,TH
   Texture_Rectangle_Flip 288<<2,24<<2, 0, 280<<2,16<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
-
-
-
-
 
 
 ; BG Row 2
@@ -1119,7 +1113,6 @@ RDPBuffer:
   Texture_Rectangle_Flip 288<<2,32<<2, 0, 280<<2,24<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
 
-
 ; BG Row 3
   Sync_Tile ; Sync Tile
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), N64TILE+(64*97) ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Tile 97 DRAM ADDRESS
@@ -1312,7 +1305,6 @@ RDPBuffer:
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(1<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL,TL, Tile, SH,TH
   Texture_Rectangle_Flip 288<<2,40<<2, 0, 280<<2,32<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
-
 
 
 ; BG Row 4
@@ -1509,7 +1501,6 @@ RDPBuffer:
   Texture_Rectangle_Flip 288<<2,48<<2, 0, 280<<2,40<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
 
-
 ; BG Row 5
   Sync_Tile ; Sync Tile
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), N64TILE+(64*161) ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Tile 161 DRAM ADDRESS
@@ -1702,7 +1693,6 @@ RDPBuffer:
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(1<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL,TL, Tile, SH,TH
   Texture_Rectangle_Flip 288<<2,56<<2, 0, 280<<2,48<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
-
 
 
 ; BG Row 6
@@ -1899,7 +1889,6 @@ RDPBuffer:
   Texture_Rectangle_Flip 288<<2,64<<2, 0, 280<<2,56<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
 
-
 ; BG Row 7
   Sync_Tile ; Sync Tile
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), N64TILE+(64*225) ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Tile 225 DRAM ADDRESS
@@ -2092,7 +2081,6 @@ RDPBuffer:
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(1<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL,TL, Tile, SH,TH
   Texture_Rectangle_Flip 288<<2,72<<2, 0, 280<<2,64<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
-
 
 
 ; BG Row 8
@@ -2289,7 +2277,6 @@ RDPBuffer:
   Texture_Rectangle_Flip 288<<2,80<<2, 0, 280<<2,72<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
 
-
 ; BG Row 9
   Sync_Tile ; Sync Tile
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), N64TILE+(64*289) ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Tile 289 DRAM ADDRESS
@@ -2482,7 +2469,6 @@ RDPBuffer:
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(1<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL,TL, Tile, SH,TH
   Texture_Rectangle_Flip 288<<2,88<<2, 0, 280<<2,80<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
-
 
 
 ; BG Row 10
@@ -2679,7 +2665,6 @@ RDPBuffer:
   Texture_Rectangle_Flip 288<<2,96<<2, 0, 280<<2,88<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
 
-
 ; BG Row 11
   Sync_Tile ; Sync Tile
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), N64TILE+(64*353) ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Tile 353 DRAM ADDRESS
@@ -2872,7 +2857,6 @@ RDPBuffer:
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(1<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL,TL, Tile, SH,TH
   Texture_Rectangle_Flip 288<<2,104<<2, 0, 280<<2,96<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
-
 
 
 ; BG Row 12
@@ -3069,7 +3053,6 @@ RDPBuffer:
   Texture_Rectangle_Flip 288<<2,112<<2, 0, 280<<2,104<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
 
-
 ; BG Row 13
   Sync_Tile ; Sync Tile
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), N64TILE+(64*417) ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Tile 417 DRAM ADDRESS
@@ -3262,7 +3245,6 @@ RDPBuffer:
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(1<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL,TL, Tile, SH,TH
   Texture_Rectangle_Flip 288<<2,120<<2, 0, 280<<2,112<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
-
 
 
 ; BG Row 14
@@ -3459,7 +3441,6 @@ RDPBuffer:
   Texture_Rectangle_Flip 288<<2,128<<2, 0, 280<<2,120<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
 
-
 ; BG Row 15
   Sync_Tile ; Sync Tile
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), N64TILE+(64*481) ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Tile 481 DRAM ADDRESS
@@ -3652,7 +3633,6 @@ RDPBuffer:
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(1<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL,TL, Tile, SH,TH
   Texture_Rectangle_Flip 288<<2,136<<2, 0, 280<<2,128<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
-
 
 
 ; BG Row 16
@@ -3849,7 +3829,6 @@ RDPBuffer:
   Texture_Rectangle_Flip 288<<2,144<<2, 0, 280<<2,136<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
 
-
 ; BG Row 17
   Sync_Tile ; Sync Tile
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), N64TILE+(64*545) ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Tile 545 DRAM ADDRESS
@@ -4042,7 +4021,6 @@ RDPBuffer:
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(1<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL,TL, Tile, SH,TH
   Texture_Rectangle_Flip 288<<2,152<<2, 0, 280<<2,144<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
-
 
 
 ; BG Row 18
@@ -4239,7 +4217,6 @@ RDPBuffer:
   Texture_Rectangle_Flip 288<<2,160<<2, 0, 280<<2,152<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
 
-
 ; BG Row 19
   Sync_Tile ; Sync Tile
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), N64TILE+(64*609) ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Tile 609 DRAM ADDRESS
@@ -4432,7 +4409,6 @@ RDPBuffer:
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(1<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL,TL, Tile, SH,TH
   Texture_Rectangle_Flip 288<<2,168<<2, 0, 280<<2,160<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
-
 
 
 ; BG Row 20
@@ -4629,7 +4605,6 @@ RDPBuffer:
   Texture_Rectangle_Flip 288<<2,176<<2, 0, 280<<2,168<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
 
-
 ; BG Row 21
   Sync_Tile ; Sync Tile
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), N64TILE+(64*673) ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Tile 673 DRAM ADDRESS
@@ -4822,7 +4797,6 @@ RDPBuffer:
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(1<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL,TL, Tile, SH,TH
   Texture_Rectangle_Flip 288<<2,184<<2, 0, 280<<2,176<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
-
 
 
 ; BG Row 22
@@ -5019,7 +4993,6 @@ RDPBuffer:
   Texture_Rectangle_Flip 288<<2,192<<2, 0, 280<<2,184<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
 
-
 ; BG Row 23
   Sync_Tile ; Sync Tile
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), N64TILE+(64*737) ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Tile 737 DRAM ADDRESS
@@ -5212,7 +5185,6 @@ RDPBuffer:
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(1<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL,TL, Tile, SH,TH
   Texture_Rectangle_Flip 288<<2,200<<2, 0, 280<<2,192<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
-
 
 
 ; BG Row 24
@@ -5409,7 +5381,6 @@ RDPBuffer:
   Texture_Rectangle_Flip 288<<2,208<<2, 0, 280<<2,200<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
 
-
 ; BG Row 25
   Sync_Tile ; Sync Tile
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), N64TILE+(64*801) ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Tile 801 DRAM ADDRESS
@@ -5604,8 +5575,6 @@ RDPBuffer:
   Texture_Rectangle_Flip 288<<2,216<<2, 0, 280<<2,208<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
 
-
-
 ; BG Row 26
   Sync_Tile ; Sync Tile
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(8-1), N64TILE+(64*833) ; Set Texture Image: COLOR INDEX, SIZE 8B, WIDTH 8, Tile 833 DRAM ADDRESS
@@ -5798,7 +5767,6 @@ RDPBuffer:
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX|SIZE_OF_PIXEL_8B|(1<<9)|$000, 0<<24 ; Set Tile: COLOR INDEX, SIZE 8B, Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
   Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 ; Load Tile: SL,TL, Tile, SH,TH
   Texture_Rectangle_Flip 288<<2,224<<2, 0, 280<<2,216<<2, 0<<5,7<<5, 1<<10,-1<<10 ; Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
-
 
 
 ; BG Row 27
