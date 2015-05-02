@@ -14,14 +14,15 @@ Start:
 
   WaitScanline $200 ; Wait For Scanline To Reach Vertical Blank
 
+; Convert SNES Palette To N64 TLUT
   ; Load RSP Code To IMEM
-  DMASPRD RSPSHIFTCode, RSPSHIFTCodeEND, SP_IMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPRD RSPPALCode, RSPPALCodeEND, SP_IMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
   lui a0,SP_BASE ; A0 = SP Base Register ($A4040000)
-  SHIFTCodeDMABusy:
+  PALCodeDMABusy:
     lb t0,SP_STATUS(a0) ; T0 = Byte From SP Status Register ($A4040010)
-    andi t0,$4 ; AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,SHIFTCodeDMABusy ; IF TRUE DMA Is Busy
+    andi t0,$C ; AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
+    bnez t0,PALCodeDMABusy ; IF TRUE DMA Is Busy
     nop ; Delay Slot
 
   ; Set RSP Program Counter
@@ -34,57 +35,13 @@ Start:
   li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB ; T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
   sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
 
-
-  ; Convert SNES Palette To N64 TLUT
-  la a0,$A0000000|SNESPAL ; A0 = SNES Palette Address
-  la a1,$A0000000|N64TLUT ; A1 = N64 TLUT Address
-  li t3,254 ; T3 = Color Count
-
-  lbu t0,1(a0) ; T0 = SNES Palette Color HI Byte (Clear Color 0 Alpha = 0)
-  lbu t1,0(a0) ; T1 = SNES Palette Color LO Byte
-  sll t0,8 ; Convert To Big-Endian
-  or t0,t1 ; T0 = Big-Endian SNES Color
-
-  andi t1,t0,$1F ; Grab R
-  sll t2,t1,11
-
-  andi t1,t0,$3E0 ; Grab G
-  sll t1,1
-  or t2,t1
-
-  andi t1,t0,$7C00 ; Grab B
-  srl t1,9
-  or t2,t1
-
-  sh t2,0(a1) ; Store N64 TLUT Color
-  addi a0,2 ; Increment SNES Palette Address
-  addi a1,2 ; Increment N64 TLUT Address
-
-LoopPAL:
-  lbu t0,1(a0) ; T0 = SNES Palette Color HI Byte (Colors 1..255 Alpha = 1)
-  lbu t1,0(a0) ; T1 = SNES Palette Color LO Byte
-  sll t0,8 ; Convert To Big-Endian
-  or t0,t1 ; T0 = Big-Endian SNES Color
-
-  andi t1,t0,$1F ; Grab R
-  sll t2,t1,11
-
-  andi t1,t0,$3E0 ; Grab G
-  sll t1,1
-  or t2,t1
-
-  andi t1,t0,$7C00 ; Grab B
-  srl t1,9
-  or t2,t1
-
-  ori t2,$0001 ; Alpha Set
-  sh t2,0(a1) ; Store N64 TLUT Color
-  addi a0,2 ; Increment SNES Palette Address
-  addi a1,2 ; Increment N64 TLUT Address
-  bnez t3,LoopPAL
-  subi t3,1 ; Decrement Color Count (Delay Slot)
+  li t0,$800 ; Wait For RSP To Compute
+DelayPAL:
+  bnez t0,DelayPAL
+  subi t0,1
 
 
+; Convert SNES Tiles To N64 Linear Texture
   ; Load RSP Code To IMEM
   DMASPRD RSPTILECode, RSPTILECodeEND, SP_IMEM ; DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
@@ -105,10 +62,9 @@ LoopPAL:
   li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB ; T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
   sw t0,SP_STATUS(a0) ; Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
 
-
-  li t0,$28000 ; Wait For RSP To Compute
-Delay:
-  bnez t0,Delay
+  li t0,$22000 ; Wait For RSP To Compute
+DelayTILES:
+  bnez t0,DelayTILES
   subi t0,1
 
   DPC RDPBuffer, RDPBufferEnd ; Run DPC Command Buffer: Start Address, End Address
@@ -134,6 +90,21 @@ SNESTILE:
   incbin BG.pic
 
   align 8 ; Align 64-Bit
+RSPPALData:
+  dh $00FF, $00FF, $00FF, $00FF, $00FF, $00FF, $00FF, $00FF ; 8 * $00FF (AND Lo Byte)
+  dh $FF00, $FF00, $FF00, $FF00, $FF00, $FF00, $FF00, $FF00 ; 8 * $FF00 (AND Hi Byte)
+  dh $001F, $001F, $001F, $001F, $001F, $001F, $001F, $001F ; 8 * $001F (AND Red   5 Bits)
+  dh $03E0, $03E0, $03E0, $03E0, $03E0, $03E0, $03E0, $03E0 ; 8 * $03E0 (AND Green 5 Bits)
+  dh $7C00, $7C00, $7C00, $7C00, $7C00, $7C00, $7C00, $7C00 ; 8 * $7C00 (AND Blue  5 Bits)
+  dh $0100, $0100, $0100, $0100, $0100, $0100, $0100, $0100 ; 8 * $0100 (Left  Shift Using Multiply: << 8), (Right Shift Using Multiply: >> 8)
+  dh $0800, $0800, $0800, $0800, $0800, $0800, $0800, $0800 ; 8 * $0800 (Left  Shift Using Multiply: << 11) (Red)
+  dh $0002, $0002, $0002, $0002, $0002, $0002, $0002, $0002 ; 8 * $0002 (Left  Shift Using Multiply: << 1)  (Green)
+  dh $0080, $0080, $0080, $0080, $0080, $0080, $0080, $0080 ; 8 * $0080 (Right Shift Using Multiply: >> 9)  (Blue)
+  dh $0000, $0001, $0001, $0001, $0001, $0001, $0001, $0001 ; 1 * $0000, 7 * $0001 (OR Alpha 1 Bit) (1st 8 Colors)
+  dh $0001, $0001, $0001, $0001, $0001, $0001, $0001, $0001 ; 8 * $0001 (OR Alpha 1 Bit) (Other Colors)
+RSPPALDataEND:
+
+  align 8 ; Align 64-Bit
 RSPSHIFTData:
   dh $0001, $0001, $0001, $0001, $0001, $0001, $0001, $0001 ; 8 * $0001 (Left Shift Using Multiply: << 0),  (Right Shift Using Multiply: >> 16)
   dh $0002, $0002, $0002, $0002, $0002, $0002, $0002, $0002 ; 8 * $0002 (Left Shift Using Multiply: << 1),  (Right Shift Using Multiply: >> 15)
@@ -151,14 +122,141 @@ RSPSHIFTData:
   dh $2000, $2000, $2000, $2000, $2000, $2000, $2000, $2000 ; 8 * $2000 (Left Shift Using Multiply: << 13), (Right Shift Using Multiply: >> 3)
   dh $4000, $4000, $4000, $4000, $4000, $4000, $4000, $4000 ; 8 * $4000 (Left Shift Using Multiply: << 14), (Right Shift Using Multiply: >> 2)
   dh $8000, $8000, $8000, $8000, $8000, $8000, $8000, $8000 ; 8 * $8000 (Left Shift Using Multiply: << 15), (Right Shift Using Multiply: >> 1)
+RSPSHIFTDataEND:
+
 
   align 8 ; Align 64-Bit
-RSPSHIFTCode:
+RSPPALCode:
   obj $0000 ; Set Base Of RSP Code Object To Zero
 
-  li a0,0 ; A0 = Tile Start Offset
+; Load Static Palette Data
+  li a0,0 ; A0 = Shift Start Offset
+  li a1,RSPPALData ; A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
+  li t0,(RSPPALDataEND-RSPPALData)-1 ; T0 = Length Of DMA Transfer In Bytes - 1
+
+  mtc0 a0,c0 ; Store Memory Offset To SP Memory Address Register ($A4040000)
+  mtc0 a1,c1 ; Store RAM Offset To SP DRAM Address Register ($A4040004)
+  mtc0 t0,c2 ; Store DMA Length To SP Read Length Register ($A4040008)
+
+  PALDATADMAREADBusy:
+    mfc0 t0,c4 ; T2 = RSP Status Register ($A4040010)
+    andi t0,$C ; AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
+    bnez t0,PALDATADMAREADBusy ; IF TRUE DMA Is Busy
+    nop ; Delay Slot
+
+  lqv v00,(e0),0,(0)  ;  V0 = 8 * $00FF (AND Lo Byte)
+  lqv v01,(e0),1,(0)  ;  V1 = 8 * $FF00 (AND Hi Byte)
+  lqv v02,(e0),2,(0)  ;  V2 = 8 * $001F (AND Red   5 Bits)
+  lqv v03,(e0),3,(0)  ;  V3 = 8 * $03E0 (AND Green 5 Bits)
+  lqv v04,(e0),4,(0)  ;  V4 = 8 * $7C00 (AND Blue  5 Bits)
+  lqv v05,(e0),5,(0)  ;  V5 = 8 * $0100 (Left  Shift Using Multiply: << 8), (Right Shift Using Multiply: >> 8)
+  lqv v06,(e0),6,(0)  ;  V6 = 8 * $0800 (Left  Shift Using Multiply: << 11) (Red)
+  lqv v07,(e0),7,(0)  ;  V7 = 8 * $0002 (Left  Shift Using Multiply: << 1)  (Green)
+  lqv v08,(e0),8,(0)  ;  V8 = 8 * $0080 (Right Shift Using Multiply: >> 9)  (Blue)
+  lqv v09,(e0),9,(0)  ; V09 = 1 * $0000, 7 * $0001 (OR Alpha 1 Bit) (1st 8 Colors)
+  lqv v10,(e0),10,(0) ; V10 = 8 * $0001 (OR Alpha 1 Bit) (Other Colors)
+
+; Decode Colors
+  li a0,0 ; A0 = Palette Start Offset
+  li a1,N64TLUT ; A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
+  li a2,SNESPAL ; A2 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
+
+  li t0,511 ; T0 = Length Of DMA Transfer In Bytes - 1
+  li t1,30 ; T1 = Color Counter
+
+  mtc0 a0,c0 ; Store Memory Offset To SP Memory Address Register ($A4040000)
+  mtc0 a2,c1 ; Store RAM Offset To SP DRAM Address Register ($A4040004)
+  mtc0 t0,c2 ; Store DMA Length To SP Read Length Register ($A4040008)
+
+  PALDMAREADBusy:
+    mfc0 t0,c4 ; T2 = RSP Status Register ($A4040010)
+    andi t0,$C ; AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
+    bnez t0,PALDMAREADBusy ; IF TRUE DMA Is Busy
+    nop ; Delay Slot
+
+; Vector Grab 1st 8 Colors:
+  lqv v11,(e0),0,(4) ; V11 = Palette Colors 0..7
+
+  vand  v12,v00,v11,(e0) ; V12 = Lo Byte Color 0..7 (& $00FF)
+  vand  v13,v01,v11,(e0) ; V13 = Hi Byte Color 0..7 (& $FF00)
+  vmudn v12,v05,v12,(e0) ; V12 = Lo Byte Color 0..7 << 8
+  vmudl v13,v05,v13,(e0) ; V13 = Hi Byte Color 0..7 >> 8
+  vor   v12,v12,v13,(e0) ; V12 = Color 0..7 Big-Endian
+
+  vand  v13,v02,v12,(e0) ; V13 = RED 5 Bits, Color 0..7 (& $001F)
+  vmudn v13,v06,v13,(e0) ; V13 = RED 5 Bits, Color 0..7 << 11
+
+  vand  v14,v03,v12,(e0) ; V14 = GREEN 5 Bits, Color 0..7 (& $03E0)
+  vmudn v14,v07,v14,(e0) ; V14 = GREEN 5 Bits, Color 0..7 << 1
+  vor   v13,v13,v14,(e0) ; V13 = RED,GREEN 10 Bits, Color 0..7
+
+  vand  v14,v04,v12,(e0) ; V14 = BLUE 5 Bits, Color 0..7 (& $7C00)
+  vmudl v14,v08,v14,(e0) ; V14 = BLUE 5 Bits, Color 0..7 >> 9
+  vor   v13,v13,v14,(e0) ; V13 = RED,GREEN,BLUE 15 Bits, Color 0..7
+  vor   v13,v13,v09,(e0) ; V13 = RED,GREEN,BLUE,ALPHA 16 Bits, Color 0..7
+
+; Store Colors 0..7:
+  sqv v13,(e0),0,(4) ; Palette Colors 0..8 = V13 Quad
+
+
+LoopColors:
+; Vector Grab Next 8 Colors:
+  addi a0,16
+  lqv v11,(e0),0,(4) ; V11 = Palette Colors 0..7
+
+  vand  v12,v00,v11,(e0) ; V12 = Lo Byte Color 0..7 (& $00FF)
+  vand  v13,v01,v11,(e0) ; V13 = Hi Byte Color 0..7 (& $FF00)
+  vmudn v12,v05,v12,(e0) ; V12 = Lo Byte Color 0..7 << 8
+  vmudl v13,v05,v13,(e0) ; V13 = Hi Byte Color 0..7 >> 8
+  vor   v12,v12,v13,(e0) ; V12 = Color 0..7 Big-Endian
+
+  vand  v13,v02,v12,(e0) ; V13 = RED 5 Bits, Color 0..7 (& $001F)
+  vmudn v13,v06,v13,(e0) ; V13 = RED 5 Bits, Color 0..7 << 11
+
+  vand  v14,v03,v12,(e0) ; V14 = GREEN 5 Bits, Color 0..7 (& $03E0)
+  vmudn v14,v07,v14,(e0) ; V14 = GREEN 5 Bits, Color 0..7 << 1
+  vor   v13,v13,v14,(e0) ; V13 = RED,GREEN 10 Bits, Color 0..7
+
+  vand  v14,v04,v12,(e0) ; V14 = BLUE 5 Bits, Color 0..7 (& $7C00)
+  vmudl v14,v08,v14,(e0) ; V14 = BLUE 5 Bits, Color 0..7 >> 9
+  vor   v13,v13,v14,(e0) ; V13 = RED,GREEN,BLUE 15 Bits, Color 0..7
+  vor   v13,v13,v10,(e0) ; V13 = RED,GREEN,BLUE,ALPHA 16 Bits, Color 0..7
+
+; Store Colors 0..7:
+  sqv v13,(e0),0,(4) ; Palette Colors 0..8 = V13 Quad
+
+  bnez t1,LoopColors ; IF (Tile Counter != 0) Loop Colors
+  subi t1,1 ; Decrement Color Counter (Delay Slot)
+
+
+  li a0,0 ; A0 = SP Memory Address Offset DMEM ($A4000000..$A4001FFF 8KB)
+  li t0,511 ; T0 = Length Of DMA Transfer In Bytes - 1
+
+  mtc0 a0,c0 ; Store Memory Offset To SP Memory Address Register ($A4040000)
+  mtc0 a1,c1 ; Store RAM Offset To SP DRAM Address Register ($A4040004)
+  mtc0 t0,c3 ; Store DMA Length To SP Write Length Register ($A404000C)
+
+  PALDMAWRITEBusy:
+    mfc0 t0,c4 ; T2 = RSP Status Register ($A4040010)
+    andi t0,$C ; AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
+    bnez t0,PALDMAWRITEBusy ; IF TRUE DMA Is Busy
+    nop ; Delay Slot
+
+
+  break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  align 8 ; Align 64-Bit
+  objend ; Set End Of RSP Code Object
+RSPPALCodeEND:
+
+
+  align 8 ; Align 64-Bit
+RSPTILECode:
+  obj $0000 ; Set Base Of RSP Code Object To Zero
+
+; Load Static Shift Data
+  li a0,0 ; A0 = Shift Start Offset
   li a1,RSPSHIFTData ; A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
-  li t0,255 ; T0 = Length Of DMA Transfer In Bytes - 1
+  li t0,(RSPSHIFTDataEND-RSPSHIFTData)-1 ; T0 = Length Of DMA Transfer In Bytes - 1
 
   mtc0 a0,c0 ; Store Memory Offset To SP Memory Address Register ($A4040000)
   mtc0 a1,c1 ; Store RAM Offset To SP DRAM Address Register ($A4040004)
@@ -187,15 +285,7 @@ RSPSHIFTCode:
   lqv v14,(e0),14,(0) ; V14 = 8 * $4000 (Left Shift Using Multiply: << 14), (Right Shift Using Multiply: >> 2)
   lqv v15,(e0),15,(0) ; V15 = 8 * $8000 (Left Shift Using Multiply: << 15), (Right Shift Using Multiply: >> 1)
 
-  break $0000 ; Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
-  align 8 ; Align 64-Bit
-  objend ; Set End Of RSP Code Object
-RSPSHIFTCodeEND:
-
-  align 8 ; Align 64-Bit
-RSPTILECode:
-  obj $0000 ; Set Base Of RSP Code Object To Zero
-
+; Decode Tiles
   li t2,15 ; T2 = Tile Block Counter
   li a0,0 ; A0 = Tile Start Offset
   li a1,N64TILE ; A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
@@ -224,28 +314,28 @@ LoopTiles:
 ; Vector Grab Column 0:
   vand  v20,v08,v16,(e0) ; V20 = bp0 Of r0..r7 (& $0100)
   vand  v21,v00,v16,(e0) ; V21 = bp1 Of r0..r7 (& $0001)
-  vmudm v20,v20,v15,(e0) ; V20 = bp0 Of r0..r7 >> 1
-  vmudh v21,v21,v08,(e0) ; V21 = bp1 Of r0..r7 << 8
+  vmudl v20,v15,v20,(e0) ; V20 = bp0 Of r0..r7 >> 1
+  vmudn v21,v08,v21,(e0) ; V21 = bp1 Of r0..r7 << 8
   vor   v22,v20,v21,(e0) ; V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
   vand  v20,v08,v17,(e0) ; V20 = bp2 Of r0..r7 (& $0100)
   vand  v21,v00,v17,(e0) ; V21 = bp3 Of r0..r7 (& $0001)
-  vmudh v20,v20,v01,(e0) ; V20 = bp2 Of r0..r7 << 1
-  vmudh v21,v21,v10,(e0) ; V21 = bp3 Of r0..r7 << 10
+  vmudn v20,v01,v20,(e0) ; V20 = bp2 Of r0..r7 << 1
+  vmudn v21,v10,v21,(e0) ; V21 = bp3 Of r0..r7 << 10
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
   vand  v20,v08,v18,(e0) ; V20 = bp4 Of r0..r7 (& $0100)
   vand  v21,v00,v18,(e0) ; V21 = bp5 Of r0..r7 (& $0001)
-  vmudh v20,v20,v03,(e0) ; V20 = bp4 Of r0..r7 << 3
-  vmudh v21,v21,v12,(e0) ; V21 = bp5 Of r0..r7 << 12
+  vmudn v20,v03,v20,(e0) ; V20 = bp4 Of r0..r7 << 3
+  vmudn v21,v12,v21,(e0) ; V21 = bp5 Of r0..r7 << 12
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5 Of r0..r7 In Unsigned Byte (%00111111)
 
   vand  v20,v08,v19,(e0) ; V20 = bp6 Of r0..r7 (& $0100)
   vand  v21,v00,v19,(e0) ; V21 = bp7 Of r0..r7 (& $0001)
-  vmudh v20,v20,v05,(e0) ; V20 = bp6 Of r0..r7 << 5
-  vmudh v21,v21,v14,(e0) ; V21 = bp7 Of r0..r7 << 14
+  vmudn v20,v05,v20,(e0) ; V20 = bp6 Of r0..r7 << 5
+  vmudn v21,v14,v21,(e0) ; V21 = bp7 Of r0..r7 << 14
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6/bp7 Of r0..r7 In Unsigned Byte (%11111111)
 
@@ -256,27 +346,27 @@ LoopTiles:
 ; Vector Grab Column 1:
   vand  v20,v09,v16,(e0) ; V20 = bp0 Of r0..r7 (& $0200)
   vand  v21,v01,v16,(e0) ; V21 = bp1 Of r0..r7 (& $0002)
-  vmudm v20,v20,v14,(e0) ; V20 = bp0 Of r0..r7 >> 2
-  vmudh v21,v21,v07,(e0) ; V21 = bp1 Of r0..r7 << 7
+  vmudl v20,v14,v20,(e0) ; V20 = bp0 Of r0..r7 >> 2
+  vmudn v21,v07,v21,(e0) ; V21 = bp1 Of r0..r7 << 7
   vor   v22,v20,v21,(e0) ; V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
   vand  v20,v09,v17,(e0) ; V20 = bp2 Of r0..r7 (& $0200)
   vand  v21,v01,v17,(e0) ; V21 = bp3 Of r0..r7 (& $0002)
-  vmudh v21,v21,v09,(e0) ; V21 = bp3 Of r0..r7 << 9
+  vmudn v21,v09,v21,(e0) ; V21 = bp3 Of r0..r7 << 9
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
   vand  v20,v09,v18,(e0) ; V20 = bp4 Of r0..r7 (& $0200)
   vand  v21,v01,v18,(e0) ; V21 = bp5 Of r0..r7 (& $0002)
-  vmudh v20,v20,v02,(e0) ; V20 = bp4 Of r0..r7 << 2
-  vmudh v21,v21,v11,(e0) ; V21 = bp5 Of r0..r7 << 11
+  vmudn v20,v02,v20,(e0) ; V20 = bp4 Of r0..r7 << 2
+  vmudn v21,v11,v21,(e0) ; V21 = bp5 Of r0..r7 << 11
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5 Of r0..r7 In Unsigned Byte (%00111111)
 
   vand  v20,v09,v19,(e0) ; V20 = bp6 Of r0..r7 (& $0200)
   vand  v21,v01,v19,(e0) ; V21 = bp7 Of r0..r7 (& $0002)
-  vmudh v20,v20,v04,(e0) ; V20 = bp6 Of r0..r7 << 4
-  vmudh v21,v21,v13,(e0) ; V21 = bp7 Of r0..r7 << 13
+  vmudn v20,v04,v20,(e0) ; V20 = bp6 Of r0..r7 << 4
+  vmudn v21,v13,v21,(e0) ; V21 = bp7 Of r0..r7 << 13
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6/bp7 Of r0..r7 In Unsigned Byte (%11111111)
 
@@ -288,28 +378,28 @@ LoopTiles:
 ; Vector Grab Column 2:
   vand  v20,v10,v16,(e0) ; V20 = bp0 Of r0..r7 (& $0400)
   vand  v21,v02,v16,(e0) ; V21 = bp1 Of r0..r7 (& $0004)
-  vmudm v20,v20,v13,(e0) ; V20 = bp0 Of r0..r7 >> 3
-  vmudh v21,v21,v06,(e0) ; V21 = bp1 Of r0..r7 << 6
+  vmudl v20,v13,v20,(e0) ; V20 = bp0 Of r0..r7 >> 3
+  vmudn v21,v06,v21,(e0) ; V21 = bp1 Of r0..r7 << 6
   vor   v22,v20,v21,(e0) ; V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
   vand  v20,v10,v17,(e0) ; V20 = bp2 Of r0..r7 (& $0400)
   vand  v21,v02,v17,(e0) ; V21 = bp3 Of r0..r7 (& $0004)
-  vmudm v20,v20,v15,(e0) ; V20 = bp2 Of r0..r7 >> 1
-  vmudh v21,v21,v08,(e0) ; V21 = bp3 Of r0..r7 << 8
+  vmudl v20,v15,v20,(e0) ; V20 = bp2 Of r0..r7 >> 1
+  vmudn v21,v08,v21,(e0) ; V21 = bp3 Of r0..r7 << 8
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
   vand  v20,v10,v18,(e0) ; V20 = bp4 Of r0..r7 (& $0400)
   vand  v21,v02,v18,(e0) ; V21 = bp5 Of r0..r7 (& $0004)
-  vmudh v20,v20,v01,(e0) ; V20 = bp4 Of r0..r7 << 1
-  vmudh v21,v21,v10,(e0) ; V21 = bp5 Of r0..r7 << 10
+  vmudn v20,v01,v20,(e0) ; V20 = bp4 Of r0..r7 << 1
+  vmudn v21,v10,v21,(e0) ; V21 = bp5 Of r0..r7 << 10
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5 Of r0..r7 In Unsigned Byte (%00111111)
 
   vand  v20,v10,v19,(e0) ; V20 = bp6 Of r0..r7 (& $0400)
   vand  v21,v02,v19,(e0) ; V21 = bp7 Of r0..r7 (& $0004)
-  vmudh v20,v20,v03,(e0) ; V20 = bp6 Of r0..r7 << 3
-  vmudh v21,v21,v12,(e0) ; V21 = bp7 Of r0..r7 << 12
+  vmudn v20,v03,v20,(e0) ; V20 = bp6 Of r0..r7 << 3
+  vmudn v21,v12,v21,(e0) ; V21 = bp7 Of r0..r7 << 12
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6/bp7 Of r0..r7 In Unsigned Byte (%11111111)
 
@@ -321,27 +411,27 @@ LoopTiles:
 ; Vector Grab Column 3:
   vand  v20,v11,v16,(e0) ; V20 = bp0 Of r0..r7 (& $0800)
   vand  v21,v03,v16,(e0) ; V21 = bp1 Of r0..r7 (& $0008)
-  vmudm v20,v20,v12,(e0) ; V20 = bp0 Of r0..r7 >> 4
-  vmudh v21,v21,v05,(e0) ; V21 = bp1 Of r0..r7 << 5
+  vmudl v20,v12,v20,(e0) ; V20 = bp0 Of r0..r7 >> 4
+  vmudn v21,v05,v21,(e0) ; V21 = bp1 Of r0..r7 << 5
   vor   v22,v20,v21,(e0) ; V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
   vand  v20,v11,v17,(e0) ; V20 = bp2 Of r0..r7 (& $0800)
   vand  v21,v03,v17,(e0) ; V21 = bp3 Of r0..r7 (& $0008)
-  vmudm v20,v20,v14,(e0) ; V20 = bp2 Of r0..r7 >> 2
-  vmudh v21,v21,v07,(e0) ; V21 = bp3 Of r0..r7 << 7
+  vmudl v20,v14,v20,(e0) ; V20 = bp2 Of r0..r7 >> 2
+  vmudn v21,v07,v21,(e0) ; V21 = bp3 Of r0..r7 << 7
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
   vand  v20,v11,v18,(e0) ; V20 = bp4 Of r0..r7 (& $0800)
   vand  v21,v03,v18,(e0) ; V21 = bp5 Of r0..r7 (& $0008)
-  vmudh v21,v21,v09,(e0) ; V21 = bp5 Of r0..r7 << 9
+  vmudn v21,v09,v21,(e0) ; V21 = bp5 Of r0..r7 << 9
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5 Of r0..r7 In Unsigned Byte (%00111111)
 
   vand  v20,v11,v19,(e0) ; V20 = bp6 Of r0..r7 (& $0800)
   vand  v21,v03,v19,(e0) ; V21 = bp7 Of r0..r7 (& $0008)
-  vmudh v20,v20,v02,(e0) ; V20 = bp6 Of r0..r7 << 2
-  vmudh v21,v21,v11,(e0) ; V21 = bp7 Of r0..r7 << 11
+  vmudn v20,v02,v20,(e0) ; V20 = bp6 Of r0..r7 << 2
+  vmudn v21,v11,v21,(e0) ; V21 = bp7 Of r0..r7 << 11
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6/bp7 Of r0..r7 In Unsigned Byte (%11111111)
 
@@ -353,28 +443,28 @@ LoopTiles:
 ; Vector Grab Column 4:
   vand  v20,v12,v16,(e0) ; V20 = bp0 Of r0..r7 (& $1000)
   vand  v21,v04,v16,(e0) ; V21 = bp1 Of r0..r7 (& $0010)
-  vmudm v20,v20,v11,(e0) ; V20 = bp0 Of r0..r7 >> 5
-  vmudh v21,v21,v04,(e0) ; V21 = bp1 Of r0..r7 << 4
+  vmudl v20,v11,v20,(e0) ; V20 = bp0 Of r0..r7 >> 5
+  vmudn v21,v04,v21,(e0) ; V21 = bp1 Of r0..r7 << 4
   vor   v22,v20,v21,(e0) ; V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
   vand  v20,v12,v17,(e0) ; V20 = bp2 Of r0..r7 (& $1000)
   vand  v21,v04,v17,(e0) ; V21 = bp3 Of r0..r7 (& $0010)
-  vmudm v20,v20,v13,(e0) ; V20 = bp2 Of r0..r7 >> 3
-  vmudh v21,v21,v06,(e0) ; V21 = bp3 Of r0..r7 << 6
+  vmudl v20,v13,v20,(e0) ; V20 = bp2 Of r0..r7 >> 3
+  vmudn v21,v06,v21,(e0) ; V21 = bp3 Of r0..r7 << 6
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
   vand  v20,v12,v18,(e0) ; V20 = bp4 Of r0..r7 (& $1000)
   vand  v21,v04,v18,(e0) ; V21 = bp5 Of r0..r7 (& $0010)
-  vmudm v20,v20,v15,(e0) ; V20 = bp4 Of r0..r7 >> 1
-  vmudh v21,v21,v08,(e0) ; V21 = bp5 Of r0..r7 << 8
+  vmudl v20,v15,v20,(e0) ; V20 = bp4 Of r0..r7 >> 1
+  vmudn v21,v08,v21,(e0) ; V21 = bp5 Of r0..r7 << 8
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5 Of r0..r7 In Unsigned Byte (%00111111)
 
   vand  v20,v12,v19,(e0) ; V20 = bp6 Of r0..r7 (& $1000)
   vand  v21,v04,v19,(e0) ; V21 = bp7 Of r0..r7 (& $0010)
-  vmudh v20,v20,v01,(e0) ; V20 = bp6 Of r0..r7 << 1
-  vmudh v21,v21,v10,(e0) ; V21 = bp7 Of r0..r7 << 10
+  vmudn v20,v01,v20,(e0) ; V20 = bp6 Of r0..r7 << 1
+  vmudn v21,v10,v21,(e0) ; V21 = bp7 Of r0..r7 << 10
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6/bp7 Of r0..r7 In Unsigned Byte (%11111111)
 
@@ -386,27 +476,27 @@ LoopTiles:
 ; Vector Grab Column 5:
   vand  v20,v13,v16,(e0) ; V20 = bp0 Of r0..r7 (& $2000)
   vand  v21,v05,v16,(e0) ; V21 = bp1 Of r0..r7 (& $0020)
-  vmudm v20,v20,v10,(e0) ; V20 = bp0 Of r0..r7 >> 6
-  vmudh v21,v21,v03,(e0) ; V21 = bp1 Of r0..r7 << 3
+  vmudl v20,v10,v20,(e0) ; V20 = bp0 Of r0..r7 >> 6
+  vmudn v21,v03,v21,(e0) ; V21 = bp1 Of r0..r7 << 3
   vor   v22,v20,v21,(e0) ; V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
   vand  v20,v13,v17,(e0) ; V20 = bp2 Of r0..r7 (& $2000)
   vand  v21,v05,v17,(e0) ; V21 = bp3 Of r0..r7 (& $0020)
-  vmudm v20,v20,v12,(e0) ; V20 = bp2 Of r0..r7 >> 4
-  vmudh v21,v21,v05,(e0) ; V21 = bp3 Of r0..r7 << 5
+  vmudl v20,v12,v20,(e0) ; V20 = bp2 Of r0..r7 >> 4
+  vmudn v21,v05,v21,(e0) ; V21 = bp3 Of r0..r7 << 5
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
   vand  v20,v13,v18,(e0) ; V20 = bp4 Of r0..r7 (& $2000)
   vand  v21,v05,v18,(e0) ; V21 = bp5 Of r0..r7 (& $0020)
-  vmudm v20,v20,v14,(e0) ; V20 = bp4 Of r0..r7 >> 2
-  vmudh v21,v21,v07,(e0) ; V21 = bp5 Of r0..r7 << 7
+  vmudl v20,v14,v20,(e0) ; V20 = bp4 Of r0..r7 >> 2
+  vmudn v21,v07,v21,(e0) ; V21 = bp5 Of r0..r7 << 7
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5 Of r0..r7 In Unsigned Byte (%00111111)
 
   vand  v20,v13,v19,(e0) ; V20 = bp6 Of r0..r7 (& $2000)
   vand  v21,v05,v19,(e0) ; V21 = bp7 Of r0..r7 (& $0020)
-  vmudh v21,v21,v09,(e0) ; V21 = bp7 Of r0..r7 << 9
+  vmudn v21,v09,v21,(e0) ; V21 = bp7 Of r0..r7 << 9
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6/bp7 Of r0..r7 In Unsigned Byte (%11111111)
 
@@ -418,28 +508,28 @@ LoopTiles:
 ; Vector Grab Column 6:
   vand  v20,v14,v16,(e0) ; V20 = bp0 Of r0..r7 (& $4000)
   vand  v21,v06,v16,(e0) ; V21 = bp1 Of r0..r7 (& $0040)
-  vmudm v20,v20,v09,(e0) ; V20 = bp0 Of r0..r7 >> 7
-  vmudh v21,v21,v02,(e0) ; V21 = bp1 Of r0..r7 << 2
+  vmudl v20,v09,v20,(e0) ; V20 = bp0 Of r0..r7 >> 7
+  vmudn v21,v02,v21,(e0) ; V21 = bp1 Of r0..r7 << 2
   vor   v22,v20,v21,(e0) ; V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
   vand  v20,v14,v17,(e0) ; V20 = bp2 Of r0..r7 (& $4000)
   vand  v21,v06,v17,(e0) ; V21 = bp3 Of r0..r7 (& $0040)
-  vmudm v20,v20,v11,(e0) ; V20 = bp2 Of r0..r7 >> 5
-  vmudh v21,v21,v04,(e0) ; V21 = bp3 Of r0..r7 << 4
+  vmudl v20,v11,v20,(e0) ; V20 = bp2 Of r0..r7 >> 5
+  vmudn v21,v04,v21,(e0) ; V21 = bp3 Of r0..r7 << 4
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
   vand  v20,v14,v18,(e0) ; V20 = bp4 Of r0..r7 (& $4000)
   vand  v21,v06,v18,(e0) ; V21 = bp5 Of r0..r7 (& $0040)
-  vmudm v20,v20,v13,(e0) ; V20 = bp4 Of r0..r7 >> 3
-  vmudh v21,v21,v06,(e0) ; V21 = bp5 Of r0..r7 << 6
+  vmudl v20,v13,v20,(e0) ; V20 = bp4 Of r0..r7 >> 3
+  vmudn v21,v06,v21,(e0) ; V21 = bp5 Of r0..r7 << 6
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5 Of r0..r7 In Unsigned Byte (%00111111)
 
   vand  v20,v14,v19,(e0) ; V20 = bp6 Of r0..r7 (& $4000)
   vand  v21,v06,v19,(e0) ; V21 = bp7 Of r0..r7 (& $0040)
-  vmudm v20,v20,v15,(e0) ; V20 = bp6 Of r0..r7 >> 1
-  vmudh v21,v21,v08,(e0) ; V21 = bp7 Of r0..r7 << 8
+  vmudl v20,v15,v20,(e0) ; V20 = bp6 Of r0..r7 >> 1
+  vmudn v21,v08,v21,(e0) ; V21 = bp7 Of r0..r7 << 8
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6/bp7 Of r0..r7 In Unsigned Byte (%11111111)
 
@@ -451,32 +541,28 @@ LoopTiles:
 ; Vector Grab Column 7:
   vand  v20,v15,v16,(e0) ; V20 = bp0 Of r0..r7 (& $8000)
   vand  v21,v07,v16,(e0) ; V21 = bp1 Of r0..r7 (& $0080)
-  vmudm v20,v20,v08,(e0) ; V20 = bp0 Of r0..r7 >> 8
-  vand  v20,v07,v20,(e0) ; V21 = bp0 Of r0..r7 (& $0080)
-  vmudh v21,v21,v01,(e0) ; V21 = bp1 Of r0..r7 << 1
+  vmudl v20,v08,v20,(e0) ; V20 = bp0 Of r0..r7 >> 8
+  vmudn v21,v01,v21,(e0) ; V21 = bp1 Of r0..r7 << 1
   vor   v22,v20,v21,(e0) ; V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
   vand  v20,v15,v17,(e0) ; V20 = bp2 Of r0..r7 (& $8000)
   vand  v21,v07,v17,(e0) ; V21 = bp3 Of r0..r7 (& $0080)
-  vmudm v20,v20,v10,(e0) ; V20 = bp2 Of r0..r7 >> 6
-  vand  v20,v09,v20,(e0) ; V21 = bp2 Of r0..r7 (& $0200)
-  vmudh v21,v21,v03,(e0) ; V21 = bp3 Of r0..r7 << 3
+  vmudl v20,v10,v20,(e0) ; V20 = bp2 Of r0..r7 >> 6
+  vmudn v21,v03,v21,(e0) ; V21 = bp3 Of r0..r7 << 3
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
   vand  v20,v15,v18,(e0) ; V20 = bp4 Of r0..r7 (& $8000)
   vand  v21,v07,v18,(e0) ; V21 = bp5 Of r0..r7 (& $0080)
-  vmudm v20,v20,v12,(e0) ; V20 = bp4 Of r0..r7 >> 4
-  vand  v20,v11,v20,(e0) ; V21 = bp4 Of r0..r7 (& $0800)
-  vmudh v21,v21,v05,(e0) ; V21 = bp5 Of r0..r7 << 5
+  vmudl v20,v12,v20,(e0) ; V20 = bp4 Of r0..r7 >> 4
+  vmudn v21,v05,v21,(e0) ; V21 = bp5 Of r0..r7 << 5
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5 Of r0..r7 In Unsigned Byte (%00111111)
 
   vand  v20,v15,v19,(e0) ; V20 = bp6 Of r0..r7 (& $8000)
   vand  v21,v07,v19,(e0) ; V21 = bp7 Of r0..r7 (& $0080)
-  vmudm v20,v20,v14,(e0) ; V20 = bp6 Of r0..r7 >> 2
-  vand  v20,v13,v20,(e0) ; V21 = bp6 Of r0..r7 (& $2000)
-  vmudh v21,v21,v07,(e0) ; V21 = bp7 Of r0..r7 << 7
+  vmudl v20,v14,v20,(e0) ; V20 = bp6 Of r0..r7 >> 2
+  vmudn v21,v07,v21,(e0) ; V21 = bp7 Of r0..r7 << 7
   vor   v22,v22,v20,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6 Of r0..r7 In Unsigned Byte
   vor   v22,v22,v21,(e0) ; V22 = bp0/bp1/bp2/bp3/bp4/bp5/bp6/bp7 Of r0..r7 In Unsigned Byte (%11111111)
 
