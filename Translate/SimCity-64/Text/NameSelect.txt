@@ -1,0 +1,23 @@
+﻿あなたの名前をいれてください
+Please type in your name
+$1227C54
+A4 A2	A4 CA	A4 BF	A4 CE	CC BE	C1 B0	A4 F2	A4 A4	A4 EC	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	00 00	00 00	| Original Japanese Hex
+ #  あ	 #  な	 #  た	 #  の	 #  名	 #  前	 #  を	 #  い	 #  れ	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  #	 #  #	| Original Japanese Text
+ P  l	 e  a	 s  e	    t	 y  p	 e   	 i  n	    y	 o  u	 r   	 n  a	 m  e	 #  #	 #  #	 #  #	 #  #	| New English Text
+50 6C	65 61	73 65	20 74	79 70	65 20	69 6E	20 79	6F 75	72 20	6E 61	6D 65	00 00	00 00	00 00	00 00	| New English Hex
+
+都市に名前をつけてください
+Please name the city
+$1227C74
+C5 D4	BB D4	A4 CB	CC BE	C1 B0	A4 F2	A4 C4	A4 B1	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	00 00	| Original Japanese Hex
+ #  都	 #  市	 #  に	 #  名	 #  前	 #  を	 #  つ	 #  け	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  #	| Original Japanese Text
+ P  l	 e  a	 s  e	    n	 a  m	 e   	 t  h	 e   	 c  i	 t  y	 #  #	 #  #	 #  #	 #  #	| New English Text
+50 6C	65 61	73 65	20 6E	61 6D	65 20	74 68	65 20	63 69	74 79	00 00	00 00	00 00	00 00	| New English Hex
+
+文字を入力してください
+Please enter some characters
+$1228374
+A1 A1	A1 A1	A1 A1	A1 A1	CA B8	BB FA	A4 F2	C6 FE	CE CF	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #   	 #   	 #   	 #   	 #  文	 #  字	 #  を	 #  入	 #  力	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+     	 P  l	 e  a	 s  e	    e	 n  t	 e  r	    s	 o  m	 e LF	     	     	     	 c  h	 a  r	 a  c	 t  e	 r  s	 #  #	 #  #	 #  #	 #  #	| New English Text
+20 20	50 6C	65 61	73 65	20 65	6E 74	65 72	20 73	6F 6D	65 0A	20 20	20 20	20 20	63 68	61 72	61 63	74 65	72 73	00 00	00 00	00 00	00 00	| New English Hex

@@ -1,0 +1,667 @@
+﻿就任おめでとうございます。
+Congratulations.
+$119E6F0 (Line 1)
+BD A2	C7 A4	A4 AA	A4 E1	A4 C7	A4 C8	A4 A6	A4 B4	A4 B6	A4 A4	A4 DE	A4 B9	A1 A3	0A	| Original Japanese Hex
+ #  就	 #  任	 #  お	 #  め	 #  で	 #  と	 #  う	 #  ご	 #  ざ	 #  い	 #  ま	 #  す	 #  。	LF	| Original Japanese Text
+ C  o	 n  g	 r  a	 t  u	 l  a	 t  i	 o  n	 s  .	LF  I	    a	 m   	 s  e	 r  v	 i	| New English Text
+43 6F	6E 67	72 61	74 75	6C 61	74 69	6F 6E	73 2E	0A 49	20 61	6D 20	73 65	72 76	69	| New English Hex
+助役を勤めさせていただく、
+I am serving as the deputy Mayor,
+$119E70B (Line 2)
+BD F5	CC F2	A4 F2	B6 D0	A4 E1	A4 B5	A4 BB	A4 C6	A4 A4	A4 BF	A4 C0	A4 AF	A1 A2	0A	| Original Japanese Hex
+ #  助	 #  役	 #  を	 #  勤	 #  め	 #  さ	 #  せ	 #  て	 #  い	 #  た	 #  だ	 #  く	 #  、	LF	| Original Japanese Text
+ n  g	    a	 s LF  	 t  h	e    	 d  e	 p  u	 t  y	    M	 a  y	 o  r	LF  &	    m	 y	| New English Text
+6E 67	20 61	73 0A	74 68	65 20	64 65	70 75	74 79	20 4D	61 79	6F 72	0A 26	20 6D	79	| New English Hex
+Dr.ライトと申します。
+& my name is Dr. Wright.
+$119E726 (Line 3)
+A2 E9	A2 EA	A5 E9	A5 A4	A5 C8	A4 C8	BF BD	A4 B7	A4 DE	A4 B9	A1 A3	00 00	00 00	| Original Japanese Hex
+ D  r	 #  .	 #  ラ	 #  イ	 #  ト	 #  と	 #  申	 #  し	 #  ま	 #  す	 #  。	 #	 #	| Original Japanese Text
+    n	 a  m	 e  	 i  s	LF  D	 r #	.    	 W  r	 i  g	 h  t	 .  #	 #  #	 #  #	| New English Text
+20 6E	61 6D	65 20	69 73	0A A2	E9 A2	EA 20	57 72	69 67	68 74	2E 00	00 00	00 00	| New English Hex
+
+このビギナーズモードでは、
+In this beginner mode,
+$119E740 (Line 1)
+A4 B3	A4 CE	A5 D3	A5 AE	A5 CA	A1 BC	A5 BA	A5 E2	A1 BC	A5 C9	A4 C7	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  こ	 #  の	 #  ビ	 #  ギ	 #  ナ	 #  ー	 #  ズ	 #  モ	 #  ー	 #  ド	 #  で	 #  は	 #  、	LF	| Original Japanese Text
+ I  n	    t	 h  i	 s   	 b  e	 g  i	 n  n	 e  r	LF  m	 o  d	 e  ,	    o	 b  j	e	| New English Text
+49 6E	20 74	68 69	73 20	62 65	67 69	6E 6E	65 72	0A 6D	6F 64	65 2C	20 6F	62 6A	65	| New English Hex
+わたしと一緒に決定した目標を
+objectives chosen by me
+$119E75B (Line 2)
+A4 EF	A4 BF	A4 B7	A4 C8	B0 EC	BD EF	A4 CB	B7 E8	C4 EA	A4 B7	A4 BF	CC DC	C9 B8	A4 F2	0A	| Original Japanese Hex
+ #  わ	 #  た	 #  し	 #  と	 #  一	 #  緒	 #  に	 #  決	 #  定	 #  し	 #  た	 #  目	 #  標	 #  を	LF	| Original Japanese Text
+ c  t	 i  v	 e  s	LF  c	 h  o	 s  e	 n   	 b  y	    m	 e   	 a  r	 e LF	 t  o	    b	e	| New English Text
+63 74	69 76	65 73	0A 63	68 6F	73 65	6E 20	62 79	20 6D	65 20	61 72	65 0A	74 6F	20 62	65	| New English Hex
+制限時間内に達成することが、
+are to be achieved in time,
+$119E778 (Line 3)
+C0 A9	B8 C2	BB FE	B4 D6	C6 E2	A4 CB	C3 A3	C0 AE	A4 B9	A4 EB	A4 B3	A4 C8	A4 AC	A1 A2	0A	| Original Japanese Hex
+ #  制	 #  限	 #  時	 #  間	 #  内	 #  に	 #  達	 #  成	 #  す	 #  る	 #  こ	 #  と	 #  が	 #  、	LF	| Original Japanese Text
+    a	 c  h	 i  e	 v  e	 d LF	 i  n	    a	    t	 i  m	 e   	 l  i	 m  i	 t LF	 w  o  	 r	| New English Text
+20 61	63 68	69 65	76 65	64 0A	69 6E	20 61	20 74	69 6D	65 20	6C 69	6D 69	74 0A	77 6F	72	| New English Hex
+市長の仕事となります。
+with you working as Mayor.
+$119E795 (Line 4)
+BB D4	C4 B9	A4 CE	BB C5	BB F6	A4 C8	A4 CA	A4 EA	A4 DE	A4 B9	A1 A3	00	| Original Japanese Hex
+ #  市	 #  長	 #  の	 #  仕	 #  事	 #  と	 #  な	 #  り	 #  ま	 #  す	 #  。	 #	| Original Japanese Text
+ k  i	 n  g	    a 	 s   	 M  a	 y  o	 r   	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+6B 69	6E 67	20 61	73 20	4D 61	79 6F	72 00	00 00	00 00	00 00	00 00	00	| New English Hex
+
+もし、制限時間内に目標を
+If you do not achieve the
+$119E7AC (Line 1)
+A4 E2	A4 B7	A1 A2	C0 A9	B8 C2	BB FE	B4 D6	C6 E2	A4 CB	CC DC	C9 B8	A4 F2	0A	| Original Japanese Hex
+ #  も	 #  し	 #  、	 #  制	 #  限	 #  時	 #  間	 #  内	 #  に	 #  目	 #  標	 #  を	LF	| Original Japanese Text
+ I  f	    y	 o  u	    d	 o   	 n  o	 t LF	 a  c	 h  i	 e  v	 e   	 t  h	e	| New English Text
+49 66	20 79	6F 75	20 64	6F 20	6E 6F	74 0A	61 63	68 69	65 76	65 20	74 68	65	| New English Hex
+達成出来なかったときは、
+goal within the time limit,
+$119E7C5 (Line 2)
+C3 A3	C0 AE	BD D0	CD E8	A4 CA	A4 AB	A4 C3	A4 BF	A4 C8	A4 AD	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  達	 #  成	 #  出	 #  来	 #  な	 #  か	 #  っ	 #  た	 #  と	 #  き	 #  は	 #  、	LF	| Original Japanese Text
+    g	 o  a	 l LF	 w  i	 t  h	 i  n	    t	 h  e	    t	 i  m	 e LF  	 l  i	m	| New English Text
+20 67	6F 61	6C 0A	77 69	74 68	69 6E	20 74	68 65	20 74	69 6D	65 0A	6C 69	6D	| New English Hex
+市長を解任されてしまいますので
+you will be dismissed as
+$119E7DE (Line 3)
+BB D4	C4 B9	A4 F2	B2 F2	C7 A4	A4 B5	A4 EC	A4 C6	A4 B7	A4 DE	A4 A4	A4 DE	A4 B9	A4 CE	A4 C7	0A	| Original Japanese Hex
+ #  市	 #  長	 #  を	 #  解	 #  任	 #  さ	 #  れ	 #  て	 #  し	 #  ま	 #  い	 #  ま	 #  す	 #  の	 #  で	LF	| Original Japanese Text
+ i  t	 ,   	 y  o	 u   	 w  i	 l  l	    b	 e   	 d  i	 s  m	 i  s	 s  e	 d   	 a  s	LF  t	h	| New English Text
+69 74	2C 20	79 6F	75 20	77 69	6C 6C	0A 62	65 20	64 69	73 6D	69 73	73 65	64 20	61 73	0A 74	68	| New English Hex
+注意してください。
+the city Mayor.
+$119E7FD (Line 4)
+C3 ED	B0 D5	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00	| Original Japanese Hex
+ #  注	 #  意	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #	| Original Japanese Text
+ e   	 c  i	 t  y	    M	 a  y	 o  r	 .  #	 #  #	 #  #	 #	| New English Text
+65 20	63 69	74 79	20 4D	61 79	65 72	2E 00	00 00	00 00	00	| New English Hex
+
+かしこまりました。
+All right.
+$119E810 (Line 1)
+A4 AB	A4 B7	A4 B3	A4 DE	A4 EA	A4 DE	A4 B7	A4 BF	A1 A3	0A	| Original Japanese Hex
+ #  か	 #  し	 #  こ	 #  ま	 #  り	 #  ま	 #  し	 #  た	 #  。	LF	| Original Japanese Text
+ A  l	 l   	 r  i	 g  h	 t  .	LF  #	 ？  #	 ？  #	 ？  #	？	| New English Text
+41 6C	6C 20	72 69	67 68	74 2E	0A A1	A9 A1	A9 A1	A9 A1	A9	| New English Hex
+？？？？？？？？の
+？？？？？？？？ City
+$119E823 (Line 2)
+A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A4 CE	0A	| Original Japanese Hex
+ #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  の	LF	| Original Japanese Text
+ #  ？	 #  ？	 #  ？	 #  ？	    C	 i  t	 y   	LF  #	 ＊  #	 ＊	| New English Text
+A1 A9	A1 A9	A1 A9	A1 A9	20 43	69 74	79 20	0A A1	F6 A1	F6	| New English Hex
+＊＊＊＊＊＊＊＊市長ですね。
+＊＊＊＊＊＊＊＊ Mayor.
+$119E836 (Line 3)
+A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	BB D4	C4 B9	A4 C7	A4 B9	A4 CD	A1 A3	00 00	| Original Japanese Hex
+ #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  市	 #  長	 #  で	 #  す	 #  ね	 #  。	 #  #	| Original Japanese Text
+ #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊ 	    M	 a  y	 o  r	 .   	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	20 4D	61 79	6F 72	2E 20	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+コホン、それでは……。
+Ahem, so...
+$119E854 (Line 1)
+A5 B3	A5 DB	A5 F3	A1 A2	A4 BD	A4 EC	A4 C7	A4 CF	A1 C4	A1 C4	A1 A3	0A	| Original Japanese Hex
+ #  コ	 #  ホ	 #  ン	 #  、	 #  そ	 #  れ	 #  で	 #  は	 #  …	 #  …	 #  。	LF	| Original Japanese Text
+ A  h	 e  m	 ,   	 s  o	 .  .	 . LF	 I   	 w  i	 l  l	    e	 x  p	 l	| New English Text
+41 68	65 6D	2C 20	73 6F	2E 2E	2E 0A	49 20	77 69	6C 6C	20 65	78 70	6C	| New English Hex
+？？？？？？？？の状況について
+I will explain a little
+$119E86B (Line 2)
+A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A4 CE	BE F5	B6 B7	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  の	 #  状	 #  況	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ a  i	 n   	 a LF  	 l  i	 t  t	 l  e	    a	 b  o	 u  t	    t	 h  e	    s	 i  t	 u  a	 t  i	o	| New English Text
+61 69	6E 20	61 0A	6C 69	74 74	6C 65	20 61	62 6F	75 74	20 74	68 65	0A 73	69 74	75 61	74 69	6F	| New English Hex
+少し説明させていただきます。
+about the situation of ？？？？？？？？.
+$119E88A (Line 3)
+BE AF	A4 B7	C0 E2	CC C0	A4 B5	A4 BB	A4 C6	A4 A4	A4 BF	A4 C0	A4 AD	A4 DE	A4 B9	A1 A3	00 00	| Original Japanese Hex
+ #  少	 #  し	 #  説	 #  明	 #  さ	 #  せ	 #  て	 #  い	 #  た	 #  だ	 #  き	 #  ま	 #  す	 #  。	 #  #	| Original Japanese Text
+ n   	 o  f	LF  #	 ？  #	 ？  #	 ？  #	 ？  #	 ？  #	 ？  #	 ？  #	 ？  .	    #	 #  #	 #  #	 #  #	| New English Text
+6E 20	6F 66	0A A1	A9 A1	A9 A1	A9 A1	A9 A1	A9 A1	A9 A1	A9 A1	A9 2E	20 00	00 00	00 00	00 00	| New English Hex
+
+？？？？？？？？は、
+？？？？？？？？ is a,
+$119E8A8 (Line 1)
+A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  は	 #  、	LF	| Original Japanese Text
+ #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	    i	 s   	 a	| New English Text
+A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	20 69	73 20	61	| New English Hex
+街の規模こそ小さいですが、
+small scale city, 
+$119E8BD (Line 2)
+B3 B9	A4 CE	B5 AC	CC CF	A4 B3	A4 BD	BE AE	A4 B5	A4 A4	A4 C7	A4 B9	A4 AC	A1 A2	0A	| Original Japanese Hex
+ #  街	 #  の	 #  規	 #  模	 #  こ	 #  そ	 #  小	 #  さ	 #  い	 #  で	 #  す	 #  が	 #  、	LF	| Original Japanese Text
+ , LF  	 s  m	 a  l	 l   	 s  c	 a  l	 e   	 c  i	 t  y	LF  i	 t  '	 s   	 a   	 p	| New English Text
+2C 0A	73 6D	61 6C	6C 20	73 63	61 6C	65 20	63 69	74 79	0A 69	74 27	73 20	61 20	70	| New English Hex
+順調に発展を続けている
+it's a promising
+$119E8D8 (Line 3)
+BD E7	C4 B4	A4 CB	C8 AF	C5 B8	A4 F2	C2 B3	A4 B1	A4 C6	A4 A4	A4 EB	0A	| Original Japanese Hex
+ #  順	 #  調	 #  に	 #  発	 #  展	 #  を	 #  続	 #  け	 #  て	 #  い	 #  る	LF	| Original Japanese Text
+ r  o	 m  i	 s  i	 n  g	LF    c	 i  t	 y   	 t  h	 a  t	    h	 a  s	LF	| New English Text
+72 6F	6D 69	73 69	6E 67	0A 63	69 74	79 20	74 68	61 74	20 68	61 73	0A	| New English Hex
+将来有望な街として
+city that has continued
+$119E8EF (Line 4)
+BE AD	CD E8	CD AD	CB BE	A4 CA	B3 B9	A4 C8	A4 B7	A4 C6	0A	| Original Japanese Hex
+ #  将	 #  来	 #  有	 #  望	 #  な	 #  街	 #  と	 #  し	 #  て	LF	| Original Japanese Text
+ c  o	 n  t	 i  n	 u  e	 d   	 t  o	LF  s	 t  e	 a  d	 i	| New English Text
+63 6F	6E 74	69 6E	75 65	64 20	74 6F	0A 73	74 65	61 64	69	| New English Hex
+知られています。
+to steadily develop.
+$119E902 (Line 5)
+C3 CE	A4 E9	A4 EC	A4 C6	A4 A4	A4 DE	A4 B9	A1 A3	00 00	| Original Japanese Hex
+ #  知	 #  ら	 #  れ	 #  て	 #  い	 #  ま	 #  す	 #  。	 #  #	| Original Japanese Text
+ l  y	    d	 e  v	 e  l	 o  p	 #  #	 #  #	 #  #	 #  #	| New English Text
+6C 79	20 64	65 76	65 6C	6F 70	00 00	00 00	00 00	00 00	| New English Hex
+
+この街が大きく発展するか、
+If this city becomes a large development,
+$119E914 (Line 1)
+A4 B3	A4 CE	B3 B9	A4 AC	C2 E7	A4 AD	A4 AF	C8 AF	C5 B8	A4 B9	A4 EB	A4 AB	A1 A2	0A	| Original Japanese Hex
+ #  こ	 #  の	 #  街	 #  が	 #  大	 #  き	 #  く	 #  発	 #  展	 #  す	 #  る	 #  か	 #  、	LF	| Original Japanese Text
+ I  f	    t	 h  i	 s   	 c  i	 t  y	LF  b	 e  c	 o  m	 e  s	    a	    l	 a  r	 g	| New English Text
+49 66	20 74	68 69	73 20	63 69	74 79	0A 62	65 63	6F 6D	65 73	20 61	20 6C	61 72	67	| New English Hex
+小さな街で終わってしまうかは、
+or it ends up as a smaller one,
+$119E92F (Line 2)
+BE AE	A4 B5	A4 CA	B3 B9	A4 C7	BD AA	A4 EF	A4 C3	A4 C6	A4 B7	A4 DE	A4 A6	A4 AB	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  小	 #  さ	 #  な	 #  街	 #  で	 #  終	 #  わ	 #  っ	 #  て	 #  し	 #  ま	 #  う	 #  か	 #  は	 #  、	LF	| Original Japanese Text
+ e LF	 d  e	 v  e	 l  o	 p  m	 e  n	 t  , 	    o	 r LF	 i  t	    e	 n  d	 s   	 u  p	    a	 s 	| New English Text
+65 0A	64 65	76 65	6C 6F	70 6D	65 6E	74 2C	20 6F	72 0A	69 74	20 65	6E 64	73 20	75 70	20 61	73	| New English Hex
+市長であるあなたの手腕に
+will be down to your
+$119E94E (Line 3)
+BB D4	C4 B9	A4 C7	A4 A2	A4 EB	A4 A2	A4 CA	A4 BF	A4 CE	BC EA	CF D3	A4 CB	0A	| Original Japanese Hex
+ #  市	 #  長	 #  で	 #  あ	 #  る	 #  あ	 #  な	 #  た	 #  の	 #  手	 #  腕	 #  に	LF	| Original Japanese Text
+    a	LF  s	 m  a	 l  l	 e  r	    o	 n  e	 , LF	 w  i	 l  l	    b	 e   	 d	| New English Text
+20 61	0A 73	6D 61	6C 6C	65 72	20 6F	6E 65	2C 0A	77 69	6C 6C	20 62	65 20	64	| New English Hex
+委ねられています。
+ability as Mayor.
+$119E967 (Line 4)
+B0 D1	A4 CD	A4 E9	A4 EC	A4 C6	A4 A4	A4 DE	A4 B9	A1 A3	00 00	00	| Original Japanese Hex
+ #  委	 #  ね	 #  ら	 #  れ	 #  て	 #  い	 #  ま	 #  す	 #  。	 #  #	 #	| Original Japanese Text
+ o  w	 n LF	 t  o	    y	 o  u	 r   	 a  b	 i  l	 i  t	 y  .	 #	| New English Text
+6F 77	6E 0A	74 6F	20 79	6F 75	72 20	61 62	69 6C	69 74	79 2E	00	| New English Hex
+
+＊＊＊＊＊＊＊＊市長ならば、
+Mayor ＊＊＊＊＊＊＊＊,
+$119E97C (Line 1)
+A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	BB D4	C4 B9	A4 CA	A4 E9	A4 D0	A1 A2	0A	| Original Japanese Hex
+ #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  市	 #  長	 #  な	 #  ら	 #  ば	 #  、	LF	| Original Japanese Text
+ M  a	 y  o	 r   	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 ,   	LF  I	    a	 m	| New English Text
+4D 61	79 6F	72 20	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	2C 20	0A 49	20 61	6D	| New English Hex
+きっと、大成功すると
+I am sure that you will
+$119E999 (Line 2)
+A4 AD	A4 C3	A4 C8	A1 A2	C2 E7	C0 AE	B8 F9	A4 B9	A4 EB	A4 C8	0A	| Original Japanese Hex
+ #  き	 #  っ	 #  と	 #  、	 #  大	 #  成	 #  功	 #  す	 #  る	 #  と	LF	| Original Japanese Text
+ s  u	 r  e	    t	 h  a	 t LF  	 y  o	 u   	 w  i	 l  l	    h	 a	| New English Text
+73 75	72 65	20 74	68 61	74 0A	79 6F	75 20	77 69	6C 6C	20 68	61	| New English Hex
+わたしは信じておりますぞ。
+have great success. 
+$119E9AE (Line 3)
+A4 EF	A4 BF	A4 B7	A4 CF	BF AE	A4 B8	A4 C6	A4 AA	A4 EA	A4 DE	A4 B9	A4 BE	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  わ	 #  た	 #  し	 #  は	 #  信	 #  じ	 #  て	 #  お	 #  り	 #  ま	 #  す	 #  ぞ	 #  。	 #  #	 #  #	| Original Japanese Text
+ v  e	    g	 r  e	 a  t	    s	 u  c	 c  e	 s  s	 .  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+76 65	0A 67	72 65	61 74	20 73	75 63	63 65	73 73	2E 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+さて、＊＊＊＊＊＊＊＊市長が
+Well, Mayor ＊＊＊＊＊＊＊＊
+$119E9CC (Line 1)
+A4 B5	A4 C6	A1 A2	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	BB D4	C4 B9	A4 AC	0A	| Original Japanese Hex
+ #  さ	 #  て	 #  、	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  市	 #  長	 #  が	LF	| Original Japanese Text
+ W  e	 l  l	 , LF	 M  a	 y  o	 r   	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	LF	| New English Text
+57 65	6C 6C	2C 0A	4D 61	79 6F	72 20	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	0A	| New English Hex
+市長経験者ならば、早速仕事を
+if you are experienced, 
+$119E9E9 (Line 2)
+BB D4	C4 B9	B7 D0	B8 B3	BC D4	A4 CA	A4 E9	A4 D0	A1 A2	C1 E1	C2 AE	BB C5	BB F6	A4 F2	0A	| Original Japanese Hex
+ #  市	 #  長	 #  経	 #  験	 #  者	 #  な	 #  ら	 #  ば	 #  、	 #  早	 #  速	 #  仕	 #  事	 #  を	LF	| Original Japanese Text
+ i  f	    y	 o  u	    a	 r  e	LF  e	 x  p	 e  r	 i  e	 n  c	 e  d	 ,   	 w  e	LF  c	 a	| New English Text
+69 66	20 79	6F 75	20 61	72 65	0A 65	78 70	65 72	69 65	6E 63	65 64	2C 20	77 65	0A 63	61	| New English Hex
+始めていただきますが……。
+we can start right away, but...
+$119EA06 (Line 3)
+BB CF	A4 E1	A4 C6	A4 A4	A4 BF	A4 C0	A4 AD	A4 DE	A4 B9	A4 AC	A1 C4	A1 C4	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  始	 #  め	 #  て	 #  い	 #  た	 #  だ	 #  き	 #  ま	 #  す	 #  が	 #  …	 #  …	 #  。	 #  #	 #  #	| Original Japanese Text
+ n   	 s  t	 a  r	 t   	 r  i	 g  h	 t   	 a  w	 a  y	 ,   	 b  u	 t  .	 .  .	 #  #	 #  #	| New English Text
+6E 20	73 74	61 72	74 20	72 69	67 68	74 0A	61 77	61 79	2C 20	62 75	74 2E	2E 2E	00 00	00 00	| New English Hex
+
+市長経験はありますか？
+Do you have experience as Mayor?
+$119EA24 (Line 1)
+BB D4	C4 B9	B7 D0	B8 B3	A4 CF	A4 A2	A4 EA	A4 DE	A4 B9	A4 AB	A1 A9	0A	| Original Japanese Hex
+ #  市	 #  長	 #  経	 #  験	 #  は	 #  あ	 #  り	 #  ま	 #  す	 #  か	 #  ？	LF	| Original Japanese Text
+ A  n	 y   	 e  x	 p  e	 r  i	 e  n	 c  e	 ? LF	     	 S  o	 m  e	  	| New English Text
+41 6E	79 20	65 78	70 65	72 69	65 6E	63 65	3F 0A	20 20	53 6F	6D 65	20	| New English Hex
+  経験ある
+  Some experience
+$119EA3B (Line 2)
+A1 A1	A1 A1	B7 D0	B8 B3	A4 A2	A4 EB	0A	| Original Japanese Hex
+ #   	 #   	 #  経	 #  験	 #  あ	 #  る	LF	| Original Japanese Text
+ a  s	    M	 a  y	 o  r	LF   	    N	 o	| New English Text
+61 73	20 4D	61 79	6F 72	0A 20	20 4E	6F	| New English Hex
+  初めて
+For the first time
+$119EA48 (Line 3)
+A1 A1	A1 A1	BD E9	A4 E1	A4 C6	00 00	| Original Japanese Hex
+ #   	 #   	 #  初	 #  め	 #  て	 #  #	| Original Japanese Text
+ n  e	    a	 s   	 M  a	 y  o	 r  #	| New English Text
+6E 65	20 61	73 20	4D 61	79 6F	72 00	| New English Hex
+
+それでは、最初の目標は
+So, the 1st goal
+$119EA54 (Line 1)
+A4 BD	A4 EC	A4 C7	A4 CF	A1 A2	BA C7	BD E9	A4 CE	CC DC	C9 B8	A4 CF	0A	| Original Japanese Hex
+ #  そ	 #  れ	 #  で	 #  は	 #  、	 #  最	 #  初	 #  の	 #  目	 #  標	 #  は	LF	| Original Japanese Text
+ S  o	 ,   	 t  h	 e   	 1  s	 t   	 g  o	 a  l	LF  i	 s   	 t  o	  	| New English Text
+53 6F	2C 20	74 68	65 20	31 73	74 20	67 6F	61 6C	0A 69	73 20	74 6F	20	| New English Hex
+１０年の間に
+is to get to 2000 population
+$119EA6B (Line 2)
+A3 B1	A3 B0	C7 AF	A4 CE	B4 D6	A4 CB	0A	| Original Japanese Hex
+ #  １	 #  ０	 #  年	 #  の	 #  間	 #  に	LF	| Original Japanese Text
+ g  e	 t   	 t  o	LF  2	 0  0	 0   	 p	| New English Text
+67 65	74 20	74 6F	0A 32	30 30	30 20	70	| New English Hex
+人口を２千人にすることです。
+within 10 years.
+$119EA78 (Line 3)
+BF CD	B8 FD	A4 F2	A3 B2	C0 E9	BF CD	A4 CB	A4 B9	A4 EB	A4 B3	A4 C8	A4 C7	A4 B9	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  人	 #  口	 #  を	 #  ２	 #  千	 #  人	 #  に	 #  す	 #  る	 #  こ	 #  と	 #  で	 #  す	 #  。	 #  #	 #  #	| Original Japanese Text
+ o  p	 u  l	 a  t	 i  o	 n LF	 w  i	 t  h	 i  n	    1	 0   	 y  e	 a  r	 s  .	 #  #	 #  #	 #  #	| New English Text
+6F 70	75 6C	61 74	69 6F	6E 0A	77 69	74 68	69 6E	20 31	30 20	79 65	61 72	73 2E	00 00	00 00	00 00	| New English Hex
+
+分らないことがありましたら、
+If you get stuck,
+$119EA98 (Line 1)
+CA AC	A4 E9	A4 CA	A4 A4	A4 B3	A4 C8	A4 AC	A4 A2	A4 EA	A4 DE	A4 B7	A4 BF	A4 E9	A1 A2	0A	| Original Japanese Hex
+ #  分	 #  ら	 #  な	 #  い	 #  こ	 #  と	 #  が	 #  あ	 #  り	 #  ま	 #  し	 #  た	 #  ら	 #  、	LF	| Original Japanese Text
+ I  f	    y	 o  u	    g	 e  t	    s	 t  u	 c  k	LF  P	 l  e	 a  s	 e   	 v  i	 e  w	  	| New English Text
+49 66	20 79	6F 75	20 67	65 74	20 73	74 75	63 6B	0A 70	6C 65	61 73	65 20	76 69	65 77	20	| New English Hex
+Ｒトリガー＋Ｃボタン∩を押して
+please view the help
+$119EAB5 (Line 2)
+A3 D2	A5 C8	A5 EA	A5 AC	A1 BC	A1 DC	A3 C3	A5 DC	A5 BF	A5 F3	A2 C1	A4 F2	B2 A1	A4 B7	A4 C6	0A	| Original Japanese Hex
+ #  Ｒ	 #  ト	 #  リ	 #  ガ	 #  ー	 #  ＋	 #  Ｃ	 #  ボ	 #  タ	 #  ン	 #  ∩	 #  を	 #  押	 #  し	 #  て	LF	| Original Japanese Text
+ t  h	 e LF 	 h  e	 l  p	    b	 y   	 p  r	 e  s	 s  i	 n  g	LF  R	    t	 r  i	 g  g	 e  r	  	| New English Text
+74 68	65 0A	68 65	6C 70	20 62	79 20	70 72	65 73	73 69	6E 67	0A 52	20 74	72 69	67 67	65 72	20	| New English Hex
+ヘルプを表示してください。
+by pressing R trigger + C button ∩.
+$119EAD4 (Line 3)
+A5 D8	A5 EB	A5 D7	A4 F2	C9 BD	BC A8	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00 00	| Original Japanese Hex
+ #  ヘ	 #  ル	 #  プ	 #  を	 #  表	 #  示	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #  #	| Original Japanese Text
+ +   	 C   	 b  u	 t  t	 o  n	    #	 ∩  .	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+2B 0A	43 20	62 75	74 74	6F 6E	20 A2	C1 2E	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+かしこまりました。
+Certainly.
+$119EAF0 (Line 1)
+A4 AB	A4 B7	A4 B3	A4 DE	A4 EA	A4 DE	A4 B7	A4 BF	A1 A3	0A	| Original Japanese Hex
+ #  か	 #  し	 #  こ	 #  ま	 #  り	 #  ま	 #  し	 #  た	 #  。	LF	| Original Japanese Text
+ C  e	 r  t	 a  i	 n  l	 y  .	LF  R	 i  g	 h  t	 ,   	 a	| New English Text
+43 65	72 74	61 69	6E 6C	79 2E	0A 52	69 67	68 74	2C 20	61	| New English Hex
+ええ、コホン。
+Right, ahem.
+$119EB03 (Line 2)
+A4 A8	A4 A8	A1 A2	A5 B3	A5 DB	A5 F3	A1 A3	00 00	00	| Original Japanese Hex
+ #  え	 #  え	 #  、	 #  コ	 #  ホ	 #  ン	 #  。	 #  #	 #	| Original Japanese Text
+ h  e	 m  .	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+68 65	6D 2E	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+
+少々長い話になりますので、
+It will take a little explaining,
+$119EB14 (Line 1)
+BE AF	A1 B9	C4 B9	A4 A4	CF C3	A4 CB	A4 CA	A4 EA	A4 DE	A4 B9	A4 CE	A4 C7	A1 A2	0A	| Original Japanese Hex
+ #  少	 #  々	 #  長	 #  い	 #  話	 #  に	 #  な	 #  り	 #  ま	 #  す	 #  の	 #  で	 #  、	LF	| Original Japanese Text
+ I  t	    w	 i  l	 l   	 t  a	 k e  	    a  	LF  l	 i  t	 t  l	 e LF	 e  x	 p  l	 a	| New English Text
+49 74	20 77	69 6C	6C 20	74 61	6B 65	20 61	0A 6C	69 74	74 6C	65 0A	65 78	70 6C	61	| New English Hex
+メモの用意をお願いします。
+please prepare notes.
+$119EB2F (Line 2)
+A5 E1	A5 E2	A4 CE	CD D1	B0 D5	A4 F2	A4 AA	B4 EA	A4 A4	A4 B7	A4 DE	A4 B9	A1 A3	00 00	00	| Original Japanese Hex
+ #  メ	 #  モ	 #  の	 #  用	 #  意	 #  を	 #  お	 #  願	 #  い	 #  し	 #  ま	 #  す	 #  。	 #  #	 #	| Original Japanese Text
+ i  n	 i  n	 g  ,	LF  p	 l  e	 a  s	 e   	 p  r	 e  p	 a  r	 e LF	 n  o	 t  e	 s  .	 #	| New English Text
+69 6E	69 6E	67 2C	0A 70	6C 65	61 73	65 20	70 72	65 70	61 72	65 0A	6E 6F	74 65	73 2E	00	| New English Hex
+
+ここまでよろしいですか？
+Are you sure you want to here?
+$119EB4C (Line 1)
+A4 B3	A4 B3	A4 DE	A4 C7	A4 E8	A4 ED	A4 B7	A4 A4	A4 C7	A4 B9	A4 AB	A1 A9	0A	| Original Japanese Hex
+ #  こ	 #  こ	 #  ま	 #  で	 #  よ	 #  ろ	 #  し	 #  い	 #  で	 #  す	 #  か	 #  ？	LF	| Original Japanese Text
+ D  i	 d   	 y  o	 u   	 g  e	 t   	 t  h	 a  t	 ? LF	     	 Y  e	 s LF	  	| New English Text
+44 69	64 20	79 6F	75 20	67 65	74 20	74 68	61 74	3F 0A	20 20	59 65	73 0A	20	| New English Hex
+　　はい
+  Yes
+$119EB65 (Line 2)
+A1 A1	A1 A1	A4 CF	A4 A4	0A	| Original Japanese Hex
+ #   	 #   	 #  は	 #  い	LF	| Original Japanese Text
+    N	 o  #	 #  #	 #  #	 #	| New English Text
+20 4E	6F 00	00 00	00 00	00	| New English Hex
+　　いいえ
+  No
+$119EB6E (Line 3)
+A1 A1	A1 A1	A4 A4	A4 A4	A4 A8	00 00	00 00	| Original Japanese Hex
+ #   	 #   	 #  い	 #  い	 #  え	 #  #	 #  #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+しかし、いつも街作りが
+However, city making does not
+$119EB7C (Line 1)
+A4 B7	A4 AB	A4 B7	A1 A2	A4 A4	A4 C4	A4 E2	B3 B9	BA EE	A4 EA	A4 AC	0A	| Original Japanese Hex
+ #  し	 #  か	 #  し	 #  、	 #  い	 #  つ	 #  も	 #  街	 #  作	 #  り	 #  が	LF	| Original Japanese Text
+ B  u	 t  ,	    c	 i  t	 y   	 m  a	 k  i	 n  g	LF  d	 o  e	 s   	 n	| New English Text
+42 75	74 2C	20 63	69 74	79 20	6D 61	6B 69	6E 67	0A 64	6F 65	73 20	6E	| New English Hex
+順調にいくとは限りません。
+always go smoothly.
+$119EB93 (Line 2)
+BD E7	C4 B4	A4 CB	A4 A4	A4 AF	A4 C8	A4 CF	B8 C2	A4 EA	A4 DE	A4 BB	A4 F3	A1 A3	0A	| Original Japanese Hex
+ #  順	 #  調	 #  に	 #  い	 #  く	 #  と	 #  は	 #  限	 #  り	 #  ま	 #  せ	 #  ん	 #  。	LF	| Original Japanese Text
+ o  t	    a	 l  w	 a  y	 s LF	 g  o	    s	 m  o	 o  t	 h  l	 y  .	LF  T	 r  o	 u	| New English Text
+6F 74	20 61	6C 77	61 79	73 0A	67 6F	20 73	6D 6F	6F 74	68 6C	79 2E	0A 54	72 6F	75	| New English Hex
+街の発展には厄介な出来事が
+Troubling events are inherent in
+$119EBAE (Line 3)
+B3 B9	A4 CE	C8 AF	C5 B8	A4 CB	A4 CF	CC F1	B2 F0	A4 CA	BD D0	CD E8	BB F6	A4 AC	0A	| Original Japanese Hex
+ #  街	 #  の	 #  発	 #  展	 #  に	 #  は	 #  厄	 #  介	 #  な	 #  出	 #  来	 #  事	 #  が	LF	| Original Japanese Text
+ b  l	 i  n	 g   	 e  v	 e  n	 t  s	LF  a	 r  e	    i	 n  h	 e  r	 e  n	 t LF	 i	| New English Text
+62 6C	69 6E	67 20	65 76	65 6E	74 73	0A 61	72 65	20 69	6E 68	65 72	65 6E	74 0A	69	| New English Hex
+つきものです。
+city development.
+$119EBC9 (Line 4)
+A4 C4	A4 AD	A4 E2	A4 CE	A4 C7	A4 B9	A1 A3	00	| Original Japanese Hex
+ #  つ	 #  き	 #  も	 #  の	 #  で	 #  す	 #  。	 #	| Original Japanese Text
+ n   	 d  e	 v  e	 l  o	 p  m	 e  n	 t  .	 #	| New English Text
+6E 20	64 65	76 65	6C 6F	70 6D	65 6E	74 2E	00	| New English Hex
+
+もし、困ったことがあったら、
+If you have any trouble,
+$119EBD8 (Line 1)
+A4 E2	A4 B7	A1 A2	BA A4	A4 C3	A4 BF	A4 B3	A4 C8	A4 AC	A4 A2	A4 C3	A4 BF	A4 E9	A1 A2	0A	| Original Japanese Hex
+ #  も	 #  し	 #  、	 #  困	 #  っ	 #  た	 #  こ	 #  と	 #  が	 #  あ	 #  っ	 #  た	 #  ら	 #  、	LF	| Original Japanese Text
+ I  f	    y	 o  u	    h	 a  v	 e   	 a  n	 y LF	 t  r	 o  u	 b  l	 e  ,	    p	 l  e	 a	| New English Text
+49 66	20 79	6F 75	20 68	61 76	65 20	61 6E	79 0A	74 72	6F 75	62 6C	65 2C	20 70	6C 65	61	| New English Hex
+Dr.ライトアイコンのアドバイスで
+please call me for advice,
+$119EBF5 (Line 2)
+A2 E9	A2 EA	A5 E9	A5 A4	A5 C8	A5 A2	A5 A4	A5 B3	A5 F3	A4 CE	A5 A2	A5 C9	A5 D0	A5 A4	A5 B9	A4 C7	0A	| Original Japanese Hex
+ D  r	 #  .	 #  ラ	 #  イ	 #  ト	 #  ア	 #  イ	 #  コ	 #  ン	 #  の	 #  ア	 #  ド	 #  バ	 #  イ	 #  ス	 #  で	LF	| Original Japanese Text
+ s  e	LF  c	 a  l	 l   	 m  e	    f	 o  r	LF  a	 d  v	 i  c	 e   	 u  s	 i  n	 g   	 t  h	 e LF	 D	| New English Text
+73 65	0A 63	61 6C	6C 20	6D 65	20 66	6F 72	0A 61	64 76	69 63	65 20	75 73	69 6E	67 20	74 68	65 0A	A2	| New English Hex
+わたしを呼び出してください。
+using the Dr. Wright icon.
+$119EC16 (Line 3)
+A4 EF	A4 BF	A4 B7	A4 F2	B8 C6	A4 D3	BD D0	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	0A	| Original Japanese Hex
+ #  わ	 #  た	 #  し	 #  を	 #  呼	 #  び	 #  出	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	LF	| Original Japanese Text
+ r  #	 .   	 W  r	 i  g	 h  t	    i	 c  o	 n  .	LF  I	 t   	 w  i	 l  l	    a	 l  s	 o	| New English Text
+E9 A2	EA 20	57 72	69 67	68 74	20 69	63 6F	6E 2E	0A 49	74 20	77 69	6C 6C	20 61	6C 73	6F	| New English Hex
+街作りに関するどんな質問でも
+It will also let me answer any questions
+$119EC33 (Line 4)
+B3 B9	BA EE	A4 EA	A4 CB	B4 D8	A4 B9	A4 EB	A4 C9	A4 F3	A4 CA	BC C1	CC E4	A4 C7	A4 E2	0A	| Original Japanese Hex
+ #  街	 #  作	 #  り	 #  に	 #  関	 #  す	 #  る	 #  ど	 #  ん	 #  な	 #  質	 #  問	 #  で	 #  も	LF	| Original Japanese Text
+    l	 e  t	LF  m	 e   	 a  n	 s  w	 e  r	    a	 n  y	LF  q	 u  e	 s  t	 i  o	 n  s	  	| New English Text
+20 6C	65 74	0A 6D	65 20	61 6E	73 77	65 72	20 61	6E 79	0A 71	75 65	73 74	69 6F	6E 73	20	| New English Hex
+答えさせていただきます。
+about the city making.
+$119EC50 (Line 5)
+C5 FA	A4 A8	A4 B5	A4 BB	A4 C6	A4 A4	A4 BF	A4 C0	A4 AD	A4 DE	A4 B9	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  答	 #  え	 #  さ	 #  せ	 #  て	 #  い	 #  た	 #  だ	 #  き	 #  ま	 #  す	 #  。	 #  #	 #  #	| Original Japanese Text
+ a  b	 o  u	 t LF	 c  i	 t  y	    m	 a  k	 i  n	 g  .	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+61 62	6F 75	74 0A	63 69	74 79	20 6D	61 6B	69 6E	67 2E	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+街作りを進めていくと、
+As you proceed through the city making,
+$119EC6C (Line 1)
+B3 B9	BA EE	A4 EA	A4 F2	BF CA	A4 E1	A4 C6	A4 A4	A4 AF	A4 C8	A1 A2	0A	| Original Japanese Hex
+ #  街	 #  作	 #  り	 #  を	 #  進	 #  め	 #  て	 #  い	 #  く	 #  と	 #  、	LF	| Original Japanese Text
+ A  s	    y	 o  u	    p	 r  o	 c  e	 e  d	LF  t	 h  r	 o  u	 g  h	  	| New English Text
+41 73	20 79	6F 75	20 70	72 6F	63 65	65 64	0A 74	68 72	6F 75	67 68	20	| New English Hex
+市民の要求やパラメータの悪化が
+demands & parameters of citizens
+$119EC83 (Line 2)
+BB D4	CC B1	A4 CE	CD D7	B5 E1	A4 E4	A5 D1	A5 E9	A5 E1	A1 BC	A5 BF	A4 CE	B0 AD	B2 BD	A4 AC	0A	| Original Japanese Hex
+ #  市	 #  民	 #  の	 #  要	 #  求	 #  や	 #  パ	 #  ラ	 #  メ	 #  ー	 #  タ	 #  の	 #  悪	 #  化	 #  が	LF	| Original Japanese Text
+ t  h	 e   	 c  i	 t  y	LF  m	 a  k	 i  n	 g  ,	    d	 e  m	 a  n	 d  s	LF  &	    p	 a  r	 a	| New English Text
+74 68	65 20	63 69	74 79	0A 6D	61 6B	69 6E	67 2C	20 64	65 6D	61 6E	64 73	0A 26	20 70	61 72	61	| New English Hex
+アラートウィンドウや一行アラート
+are displayed in the alert window
+$119ECA2 (Line 3)
+A5 A2	A5 E9	A1 BC	A5 C8	A5 A6	A5 A3	A5 F3	A5 C9	A5 A6	A4 E4	B0 EC	B9 D4	A5 A2	A5 E9	A1 BC	A5 C8	0A	| Original Japanese Hex
+ #  ア	 #  ラ	 #  ー	 #  ト	 #  ウ	 #  ィ	 #  ン	 #  ド	 #  ウ	 #  や	 #  一	 #  行	 #  ア	 #  ラ	 #  ー	 #  ト	LF	| Original Japanese Text
+ m  e	 t  e	 r  s	    o	 f LF	 c  i	 t  i	 z  e	 n  s	    a	 r  e	LF  d	 i  s	 p  l	 a  y	 e  d	  	| New English Text
+6D 65	74 65	72 73	20 6F	66 0A	63 69	74 69	7A 65	6E 73	20 61	72 65	0A 64	69 73	70 6C	61 79	65 64	20	| New English Hex
+で表示されることがあります。
+& line alert.
+$119ECC3 (Line 4)
+A4 C7	C9 BD	BC A8	A4 B5	A4 EC	A4 EB	A4 B3	A4 C8	A4 AC	A4 A2	A4 EA	A4 DE	A4 B9	A1 A3	00	| Original Japanese Hex
+ #  で	 #  表	 #  示	 #  さ	 #  れ	 #  る	 #  こ	 #  と	 #  が	 #  あ	 #  り	 #  ま	 #  す	 #  。	 #	| Original Japanese Text
+ i  n	    t	 h  e	LF  a	 l  e	 r  t	    w	 i  n	 d  o	 w   	 & LF	 b  a	 r  s	 .  #	 #	| New English Text
+69 6E	20 74	68 65	0A 61	6C 65	72 74	20 77	69 6E	64 6F	77 20	26 0A	62 61	72 73	2E 00	00	| New English Hex
+
+これらの内容が分らないときや
+Please display the help by pressing the
+$119ECE0 (Line 1)
+A4 B3	A4 EC	A4 E9	A4 CE	C6 E2	CD C6	A4 AC	CA AC	A4 E9	A4 CA	A4 A4	A4 C8	A4 AD	A4 E4	0A	| Original Japanese Hex
+ #  こ	 #  れ	 #  ら	 #  の	 #  内	 #  容	 #  が	 #  分	 #  ら	 #  な	 #  い	 #  と	 #  き	 #  や	 #	| Original Japanese Text
+ P  l	 e  a	 s  e	    d	 i  s	 p  l	 a  y	LF  h	 e  l	 p   	 b  y	    p	 r  e	 s  s	 i	| New English Text
+50 6C	65 61	73 65	20 64	69 73	70 6C	61 79	0A 68	65 6C	70 20	62 79	20 70	72 65	73 73	69	| New English Hex
+より詳しい説明が必要なときは
+R trigger + C button ∩ if you
+$119ECFD (Line 2)
+A4 E8	A4 EA	BE DC	A4 B7	A4 A4	C0 E2	CC C0	A4 AC	C9 AC	CD D7	A4 CA	A4 C8	A4 AD	A4 CF	0A	| Original Japanese Hex
+ #  よ	 #  り	 #  詳	 #  し	 #  い	 #  説	 #  明	 #  が	 #  必	 #  要	 #  な	 #  と	 #  き	 #  は	LF	| Original Japanese Text
+ n  g	LF  t	 h  e	    R	    t	 r  i	 g  g	 e  r	    +	LF  C	    b	 u  t	 t  o	 n   	 #	| New English Text
+6E 67	0A 74	68 65	20 52	20 74	72 69	67 67	65 72	20 2B	0A 43	20 62	75 74	74 6F	6E 20	A2	| New English Hex
+Ｒトリガー＋Ｃボタン∩を押して
+need a more detailed description,
+$119ED1A (Line 3)
+A3 D2	A5 C8	A5 EA	A5 AC	A1 BC	A1 DC	A3 C3	A5 DC	A5 BF	A5 F3	A2 C1	A4 F2	B2 A1	A4 B7	A4 C6	0A	| Original Japanese Hex
+ #  Ｒ	 #  ト	 #  リ	 #  ガ	 #  ー	 #  ＋	 #  Ｃ	 #  ボ	 #  タ	 #  ン	 #  ∩	 #  を	 #  押	 #  し	 #  て	LF	| Original Japanese Text
+ ∩ LF	 i  f	    y	 o  u	    n	 e  e	 d   	 a LF	 m  o	 r  e	    d	 e  t	 a  i	 l  e	 d LF	 d	| New English Text
+C1 0A	69 66	20 79	6F 75	20 6E	65 65	64 20	61 0A	6D 6F	72 65	20 64	65 74	61 69	6C 65	64 0A	64	| New English Hex
+ヘルプを表示してください。
+or when you do not know about an item.
+$119ED39 (Line 4)
+A5 D8	A5 EB	A5 D7	A4 F2	C9 BD	BC A8	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00	| Original Japanese Hex
+ #  ヘ	 #  ル	 #  プ	 #  を	 #  表	 #  示	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #	| Original Japanese Text
+ e  s	 c  r	 i  p	 t  i	 o  n	    o	 f LF	 a  n	    i	 t  e	 m  .	 #  #	 #  #	 #	| New English Text
+65 73	63 72	69 70	74 69	6F 6E	20 6F	66 0A	61 6E	20 69	74 65	6D 2E	00 00	00 00	00	| New English Hex
+
+わたしがその状況に相応しい
+I will give the appropriate description
+$119ED54 (Line 1)
+A4 EF	A4 BF	A4 B7	A4 AC	A4 BD	A4 CE	BE F5	B6 B7	A4 CB	C1 EA	B1 FE	A4 B7	A4 A4	0A	| Original Japanese Hex
+ #  わ	 #  た	 #  し	 #  が	 #  そ	 #  の	 #  状	 #  況	 #  に	 #  相	 #  応	 #  し	 #  い	LF	| Original Japanese Text
+ I  '	 l  l	    g	 i  v	 e   	 t  h	 e LF	 a  p	 p  r	 o  p	 r  i	 a  t	 e LF	 d	| New English Text
+49 27	6C 6C	20 67	69 76	65 20	74 68	65 0A	61 70	70 72	6F 70	72 69	61 74	65 0A	64	| New English Hex
+説明をさせていただきます。
+ of the situation.
+$119ED6F (Line 2)
+C0 E2	CC C0	A4 F2	A4 B5	A4 BB	A4 C6	A4 A4	A4 BF	A4 C0	A4 AD	A4 DE	A4 B9	A1 A3	00 00	00	| Original Japanese Hex
+ #  説	 #  明	 #  を	 #  さ	 #  せ	 #  て	 #  い	 #  た	 #  だ	 #  き	 #  ま	 #  す	 #  。	 #  #	 #	| Original Japanese Text
+ e  s	 c  r	 i  p	 t  i	 o  n	    o	 f LF	 t  h	 e   	 s  i	 t  u	 a  t	 i  o	 n  .	 #	| New English Text
+65 73	63 72	69 70	74 69	6F 6E	20 6F	66 0A	74 68	65 20	73 69	74 75	61 74	69 6F	6E 2E	00	| New English Hex
+
+『困ったときは
+"Use the help from
+$119ED8C (Line 1)
+A1 D8	BA A4	A4 C3	A4 BF	A4 C8	A4 AD	A4 CF	0A	| Original Japanese Hex
+ #  『	 #  困	 #  っ	 #  た	 #  と	 #  き	 #  は	LF	| Original Japanese Text
+ "  U	 s  e	    t	 h  e	    h	 e  l	 p LF	   	| New English Text
+22 55	73 65	20 74	68 65	20 68	65 6C	70 0A	20	| New English Hex
+　Ｒトリガー＋Ｃボタン∩で
+ R trigger +
+$119ED9B (Line 2)
+A1 A1	A3 D2	A5 C8	A5 EA	A5 AC	A1 BC	A1 DC	A3 C3	A5 DC	A5 BF	A5 F3	A2 C1	A4 C7	0A	| Original Japanese Hex
+ #   	 #  Ｒ	 #  ト	 #  リ	 #  ガ	 #  ー	 #  ＋	 #  Ｃ	 #  ボ	 #  タ	 #  ン	 #  ∩	 #  で	LF	| Original Japanese Text
+ f  r	 o  m	    R	    t	 r  i	 g  g	 e  r	LF   	 +   	 C   	 b  u	 t  t	 o  n	  	| New English Text
+66 72	6F 6D	20 52	20 74	72 69	67 67	65 72	0A 20	2B 20	43 20	62 75	74 74	6F 6E	20	| New English Hex
+　ヘルプ！』
+ C button ∩!"
+$119EDB6 (Line 3)
+A1 A1	A5 D8	A5 EB	A5 D7	A1 AA	A1 D9	0A	| Original Japanese Hex
+ #   	 #  ヘ	 #  ル	 #  プ	 #  ！	 #  』	LF	| Original Japanese Text
+ #  ∩	 !  "	LF  P	 l  e	 a  s	 e   	 d	| New English Text
+A2 C1	21 22	0A 50	6C 65	61 73	65 20	64	| New English Hex
+これだけは忘れないでください。
+Please do not forget this.
+$119EDC3 (Line 4)
+A4 B3	A4 EC	A4 C0	A4 B1	A4 CF	CB BA	A4 EC	A4 CA	A4 A4	A4 C7	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00 00	00	| Original Japanese Hex
+ #  こ	 #  れ	 #  だ	 #  け	 #  は	 #  忘	 #  れ	 #  な	 #  い	 #  で	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #  #	 #	| Original Japanese Text
+ o   	 n  o	 t LF	 f  o	 r  g	 e  t	    t	 h  i 	 s  .	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+6F 20	6E 6F	74 0A	66 6F	72 67	65 74	20 74	68 69	73 2E	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+
+ここまでよろしいですか？
+Are you sure you want to here?
+$119EDE4 (Line 1)
+A4 B3	A4 B3	A4 DE	A4 C7	A4 E8	A4 ED	A4 B7	A4 A4	A4 C7	A4 B9	A4 AB	A1 A9	0A	| Original Japanese Hex
+ #  こ	 #  こ	 #  ま	 #  で	 #  よ	 #  ろ	 #  し	 #  い	 #  で	 #  す	 #  か	 #  ？	LF	| Original Japanese Text
+ D  i	 d   	 y  o	 u   	 g  e	 t   	 t  h	 a  t	 ? LF	     	 Y  e	 s LF	  	| New English Text
+44 69	64 20	79 6F	75 20	67 65	74 20	74 68	61 74	3F 0A	20 20	59 65	73 0A	20	| New English Hex
+　　はい
+  Yes
+$119EDFD (Line 2)
+A1 A1	A1 A1	A4 CF	A4 A4	0A	| Original Japanese Hex
+ #   	 #   	 #  は	 #  い	LF	| Original Japanese Text
+    N	 o  #	 #  #	 #  #	 #	| New English Text
+20 4E	6F 00	00 00	00 00	00	| New English Hex
+　　いいえ
+  No
+$119EE06 (Line 3)
+A1 A1	A1 A1	A4 A4	A4 A4	A4 A8	00 00	00 00	| Original Japanese Hex
+ #   	 #   	 #  い	 #  い	 #  え	 #  #	 #  #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+
+区画の指定さえ出来れば
+It is easy to achieve the goal
+$119EE14 (Line 1)
+B6 E8	B2 E8	A4 CE	BB D8	C4 EA	A4 B5	A4 A8	BD D0	CD E8	A4 EC	A4 D0	0A	| Original Japanese Hex
+ #  区	 #  画	 #  の	 #  指	 #  定	 #  さ	 #  え	 #  出	 #  来	 #  れ	 #  ば	LF	| Original Japanese Text
+ I  t	    i	 s   	 e  a	 s  y	    t	 o   	 a  c	 h  i	 e  v	 e   	 t	| New English Text
+49 74	20 69	73 20	65 61	73 79	20 74	6F 0A	61 63	68 69	65 76	65 20	74	| New English Hex
+簡単に達成出来る目標です。
+sooner than the target time.
+$119EE2B (Line 2)
+B4 CA	C3 B1	A4 CB	C3 A3	C0 AE	BD D0	CD E8	A4 EB	CC DC	C9 B8	A4 C7	A4 B9	A1 A3	0A	| Original Japanese Hex
+ #  簡	 #  単	 #  に	 #  達	 #  成	 #  出	 #  来	 #  る	 #  目	 #  標	 #  で	 #  す	 #  。	LF	| Original Japanese Text
+ h  e	    g	 o  a	 l LF  	 s  o	 o  n	 e  r	    t	 h  a	 n   	 t  h	 e LF  	 t  a	 r	| New English Text
+68 65	20 67	6F 61	6C 0A	73 6F	6F 6E	65 72	20 74	68 61	6E 20	74 68	65 0A	74 61	72	| New English Hex
+分らないときはDr.ライトアイコン
+Please view the advice of
+$119EE46 (Line 3)
+CA AC	A4 E9	A4 CA	A4 A4	A4 C8	A4 AD	A4 CF	A2 E9	A2 EA	A5 E9	A5 A4	A5 C8	A5 A2	A5 A4	A5 B3	A5 F3	0A	| Original Japanese Hex
+ #  分	 #  ら	 #  な	 #  い	 #  と	 #  き	 #  は	 D  r	 #  .	 #  ラ	 #  イ	 #  ト	 #  ア	 #  イ	 #  コ	 #  ン	LF	| Original Japanese Text
+ g  e	 t   	 t  i	 m  e	 . LF	 P  l	 e  a	 s  e	    v	 i  e	 w   	 t  h	 e LF	 D  r	 #  .	    W	 r	| New English Text
+67 65	74 20	74 69	6D 65	2E 0A	50 6C	65 61	73 65	20 76	69 65	77 20	74 68	65 0A	A2 E9	A2 EA	20 57	72	| New English Hex
+のアドバイスを表示してください。
+Dr. Wright if you're unsure.
+$119EE67 (Line 4)
+A4 CE	A5 A2	A5 C9	A5 D0	A5 A4	A5 B9	A4 F2	C9 BD	BC A8	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00	| Original Japanese Hex
+ #  の	 #  ア	 #  ド	 #  バ	 #  イ	 #  ス	 #  を	 #  表	 #  示	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #	| Original Japanese Text
+ i  g	 h  t	    I	 c  o	 n LF	 i  f	    y	 o  u	 '  r	 e   	 u  n	 s  u	 r  e	 #  #	 #  #	 #  #	 #	| New English Text
+69 67	68 74	20 49	63 6F	6E 0A	69 66	20 79	6F 75	27 72	65 20	75 6E	73 75	72 65	00 00	00 00	00 00	00	| New English Hex
+
+それでは、ビギナーズモード
+Now, beginner mode
+$119EE88 (Line 1)
+A4 BD	A4 EC	A4 C7	A4 CF	A1 A2	A5 D3	A5 AE	A5 CA	A1 BC	A5 BA	A5 E2	A1 BC	A5 C9	0A	| Original Japanese Hex
+ #  そ	 #  れ	 #  で	 #  は	 #  、	 #  ビ	 #  ギ	 #  ナ	 #  ー	 #  ズ	 #  モ	 #  ー	 #  ド	LF	| Original Japanese Text
+ N  o	 w ,  	LF  b	 e  g	 i  n	 n  e	 r   	 m  o	 d  e	LF  s	 t  e	 p   	 1 LF 	i	| New English Text
+4E 6F	77 2C	0A 62	65 67	69 6E	6E 65	72 20	6D 6F	64 65	0A 73	74 65	70 20	31 0A	69	| New English Hex
+ステップ１スタートです！
+step 1 is starting!
+$119EEA3 (Line 2)
+A5 B9	A5 C6	A5 C3	A5 D7	A3 B1	A5 B9	A5 BF	A1 BC	A5 C8	A4 C7	A4 B9	A1 AA	00	| Original Japanese Hex
+ #  ス	 #  テ	 #  ッ	 #  プ	 #  １	 #  ス	 #  タ	 #  ー	 #  ト	 #  で	 #  す	 #  ！	 #	| Original Japanese Text
+ s   	 s  t	 a  r	 t  i	 n  g	 !  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+73 20	73 74	61 72	74 69	6E 67	21 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+
+
+
+
+名前は、？？？？？？？？の
+Name, ？？？？？？？？
+$119EFE4 (Line 1)
+CC BE	C1 B0	A4 CF	A1 A2	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A4 CE	0A	| Original Japanese Hex
+ #  名	 #  前	 #  は	 #  、	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  の	LF	| Original Japanese Text
+ C  i	 t  y	 ,   	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	LF  M	 a  y	 o	| New English Text
+43 69	74 79	2C 20	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	0A 4D	61 79	6F	| New English Hex
+＊＊＊＊＊＊＊＊市長で
+Mayor ＊＊＊＊＊＊＊＊
+$119EFFF (Line 2)
+A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	BB D4	C4 B9	A4 C7	0A	| Original Japanese Hex
+ #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  市	 #  長	 #  で	 #	| Original Japanese Text
+ r   	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	LF  I 	 s   	 t	| New English Text
+72 20	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	0A 49	73 20	74	| New English Hex
+よろしいですか？
+Is this correct?
+$119F016 (Line 3)
+A4 E8	A4 ED	A4 B7	A4 A4	A4 C7	A4 B9	A4 AB	A1 A9	0A	| Original Japanese Hex
+ #  よ	 #  ろ	 #  し	 #  い	 #  で	 #  す	 #  か	 #  ？	LF	| Original Japanese Text
+ h  i	 s   	c  o	 r  r	 e  c	 t  ?	     	    Y	 e	| New English Text
+68 69	73 20	63 6F	72 72	65 63	74 3F	0A 20	20 59	65	| New English Hex
+  はい
+  Yes
+$119F027 (Line 4)
+A1 A1	A1 A1	A4 CF	A4 A4	0A	| Original Japanese Hex
+ #   	 #   	 #  は	 #  い	LF	| Original Japanese Text
+ s LF	     	 N  o	 #  #	 #	| New English Text
+73 0A	20 20	4E 6F	00 00	00	| New English Hex
+  いいえ
+  No
+$119F030 (Line 5)
+A1 A1	A1 A1	A4 A4	A4 A4	A4 A8	00 00	| Original Japanese Hex
+ #   	 #   	 #  い	 #  い	 #  え	 #  #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	|New English Hex
+
+では、この書類に名前と都市名を
+Please fill in your name
+$119F03C (Line 1)
+A4 C7	A4 CF	A1 A2	A4 B3	A4 CE	BD F1	CE E0	A4 CB	CC BE	C1 B0	A4 C8	C5 D4	BB D4	CC BE	A4 F2	0A	| Original Japanese Hex
+ #  で	 #  は	 #  、	 #  こ	 #  の	 #  書	 #  類	 #  に	 #  名	 #  前	 #  と	 #  都	 #  市	 #  名	 #  を	LF	| Original Japanese Text
+ P  l	 e  a	 s  e	    f	 i  l	 l   	 i  n	LF  y	 o  u	 r   	 n  a	 m  e	    &	    t	 h  e	LF	| New English Text
+50 6C	65 61	73 65	20 66	69 6C	6C 20	69 6E	0A 79	6F 75	72 20	6E 61	6D 65	20 26	20 74	68 65	0A	| New English Hex
+記入してください。
+& the name of the city.
+$119F05B (Line 2)
+B5 AD	C6 FE	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00 00	00	| Original Japanese Hex
+ #  記	 #  入	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #  #	 #	| Original Japanese Text
+ n  a	 m  e	    o	 f   	 t  h	 e   	 c  i	 t  y	 .  #	 #  #	 #	| New English Text
+6E 61	6D 65	20 6F	66 20	74 68	65 20	63 69	74 79	2E 00	00 00	00	| New English Hex
+
+さてさて、やっていただきたい仕事
+Well, there is plenty of work
+$119F070 (Line 1)
+A4 B5	A4 C6	A4 B5	A4 C6	A1 A2	A4 E4	A4 C3	A4 C6	A4 A4	A4 BF	A4 C0	A4 AD	A4 BF	A4 A4	BB C5	BB F6	0A	| Original Japanese Hex
+ #  さ	 #  て	 #  さ	 #  て	 #  、	 #  や	 #  っ	 #  て	 #  い	 #  た	 #  だ	 #  き	 #  た	 #  い	 #  仕	 #  事	LF	| Original Japanese Text
+ W  e	 l  l	 ,   	 t  h	 e  r	 e   	 i  s	LF  p	 l  e	 n  t	 y   	 o  f	    w	 o  r	 k LF	 I  '	 d	| New English Text
+57 65	6C 6C	2C 20	74 68	65 72	65 20	69 73	0A 70	6C 65	6E 74	79 20	6F 66	20 77	6F 72	6B 0A	49 27	64	| New English Hex
+は山ほどありますが、
+that I would like you to do.
+$119F091 (Line 2)
+A4 CF	BB B3	A4 DB	A4 C9	A4 A2	A4 EA	A4 DE	A4 B9	A4 AC	A1 A2	0A	| Original Japanese Hex
+ #  は	 #  山	 #  ほ	 #  ど	 #  あ	 #  り	 #  ま	 #  す	 #  が	 #  、	LF	| Original Japanese Text
+    l	 i  k	 e   	 y  o	 u   	 t  o	LF  d	 o  .	LF LF	 F  i	 r	| New English Text
+20 6C	69 6B	65 20	79 6F	75 20	74 6F	0A 64	6F 2E	0A 0A	46 69	72	| New English Hex
+まずは、この書類に名前と都市名を
+First, please fill in your name
+$119F0A6 (Line 3)
+A4 DE	A4 BA	A4 CF	A1 A2	A4 B3	A4 CE	BD F1	CE E0	A4 CB	CC BE	C1 B0	A4 C8	C5 D4	BB D4	CC BE	A4 F2	0A	| Original Japanese Hex
+ #  ま	 #  ず	 #  は	 #  、	 #  こ	 #  の	 #  書	 #  類	 #  に	 #  名	 #  前	 #  と	 #  都	 #  市	 #  名	 #  を	LF	| Original Japanese Text
+ s  t	 ,   	 p  l	 e  a	 s  e	LF  f	 i  l	 l   	 i  n	    y	 o  u	 r LF	 n  a	 m  e	    &	    t	 h	| New English Text
+73 74	2C 20	70 6C	65 61	73 65	0A 66	69 6C	6C 20	69 6E	20 79	6F 75	72 0A	6E 61	6D 65	20 26	20 74	68	| New English Hex
+記入してください。
+& the name of the city.
+$119F0C7 (Line 4)
+B5 AD	C6 FE	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00 00	00	| Original Japanese Hex
+ #  記	 #  入	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #  #	 #	| Original Japanese Text
+ e   	 n  a	 m  e	LF  o	 f   	 t  h	 e   	 c  i	 t  y	 .  #	 #	| New English Text
+65 20	6E 61	6D 65	0A 6F	66 20	74 68	65 20	63 69	74 79	2E 00	00	| New English Hex

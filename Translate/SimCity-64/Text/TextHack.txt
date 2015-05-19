@@ -1,0 +1,23 @@
+﻿あと？？？年
+??? Year
+$11C74F4
+A4 A2	A4 C8	A1 A9	A1 A9	A1 A9	C7 AF	00 00	00 00	| Original Japanese Hex
+ #  あ	 #  と	 #  ？	 #  ？	 #  ？	 #  年	 #  #	 #  #	| Original Japanese Text
+ #   	 #   	 #  ？	 #  ？	 #  ？	 Y  r	 #  #	 #  #	| New English Text
+A1 A1	A1 A1	A1 A9	A1 A9	A1 A9	59 72	00 00	00 00	| New English Hex
+
+あと？？年
+?? Year
+$11C7504
+A4 A2	A4 C8	A1 A9	A1 A9	C7 AF	00 00	| Original Japanese Hex
+ #  あ	 #  と	 #  ？	 #  ？	 #  年	 #  #	| Original Japanese Text
+ #   	 #   	 #  ？	 #  ？	 Y  r	 #  #	| New English Text
+A1 A1	A1 A1	A1 A9	A1 A9	59 72	00 00	| New English Hex
+
+＆＆＆＆年
+&&&& Year
+$11C7524
+A1 F5	A1 F5	A1 F5	A1 F5	C7 AF	00 00	| Original Japanese Hex
+ #  ＆	 #  ＆	 #  ＆	 #  ＆	 #  年	 #  #	| Original Japanese Text
+ #  ＆	 #  ＆	 #  ＆	 #  ＆	 #  #	 #  #	| New English Text
+A1 F5	A1 F5	A1 F5	A1 F5	00 00	00 00	| New English Hex
