@@ -46,16 +46,16 @@ TextStyle1($0E1E20, "Yes"); db $00
 TextStyle1($0E1E27, "No"); db $00
 TextStyle1($165094, "Want To Exit Menu?"); db $00
 TextStyle1($165148, "Please Insert A")
-                 db " Controller PAK", $0A,$0A
-                 db "  Make Sure Of", $0A
+                 db " Controller PAK\n\n"
+                 db "  Make Sure Of\n"
                  db " Re-Connection", $00
 TextStyle1($16545C, "Saving Requires A")
-                 db "  Controller PAK", $0A
+                 db "  Controller PAK\n"
                  db "Please Insert Now"
                  db " Save Is Disabled"
                  db "If You Start Game", $00
 TextStyle1($1654DC, "Start Anyway?"); db $00
-TextStyle1($1654F0, " Ready To Insert"); db $0A
+TextStyle1($1654F0, " Ready To Insert\n")
                  db " A Controller PAK", $00
 TextStyle1($165528, "Controller PAK Menu"); db $00
 TextStyle1($165548, "Starting"); db $00
@@ -64,7 +64,7 @@ TextStyle1($165634, " "); db $00
 TextStyle1($165638, "  Is Disabled"); db $00
 
 // Load Screen
-TextStyle1($164DB8, " The PAK"); db $0A
+TextStyle1($164DB8, " The PAK\n")
                  db " Press Button A", $7F, $00
 TextStyle1($164E18, "Load"); db $7F, $00
 TextStyle1($165652, " When Connected"); db $7F, $00
@@ -76,13 +76,13 @@ TextStyle1($165800, "If Using A SaveGame")
 TextStyle1($13A818, "How many Players")
                  db "will be Competing"
                  db "Today?", $00
-TextStyle1($13A848, "Do You Want any"); db $0A
+TextStyle1($13A848, "Do You Want any\n")
                  db "Computer Players"
                  db "Today?", $00
-TextStyle1($13A878, "Now I need You"); db $0A
-                 db "to Select Your", $0A
+TextStyle1($13A878, "Now I need You\n")
+                 db "to Select Your\n"
                  db "Controller!", $00
-TextStyle1($13A8A8, "Choose the Type"); db $0A
+TextStyle1($13A8A8, "Choose the Type\n")
                  db "of Case to Solve?", $00
 TextStyle1($13A8D8, "How Big a Mansion")
                  db "Would You Like?", $00
@@ -410,3 +410,95 @@ TextStyle1($ADA078, "Cosmic Dust"); db $00
 TextStyle1($ADA086, "Cosmic Dust"); db $00
 TextStyle1($ADA094, "Cosmic Dust"); db $00
 TextStyle1($ADA0A2, "Cosmic Dust"); db $00
+
+// Item Names
+TextStyle1($ADA0B0, "Dummy"); db $00
+TextStyle1($ADA0C8, "Teddy Bear"); db $00
+TextStyle1($ADA0E0, "Game Machine"); db $00
+TextStyle1($ADA0F8, "Car Toys"); db $00
+TextStyle1($ADA110, "Plastic Tree"); db $00
+TextStyle1($ADA128, "Doll"); db $00
+TextStyle1($ADA140, "Piggy Bank"); db $00
+TextStyle1($ADA158, "Jewel"); db $00
+TextStyle1($ADA170, "Coin"); db $00
+TextStyle1($ADA188, "Ring"); db $00
+TextStyle1($ADA1A0, "Necklace"); db $00
+TextStyle1($ADA1B8, "Wad of Money"); db $00
+TextStyle1($ADA1D0, "Wallet"); db $00
+TextStyle1($ADA1E8, "Cassette Tape"); db $00
+TextStyle1($ADA200, "Videotape"); db $00
+TextStyle1($ADA218, "Reel-to-Reel"); db $00
+TextStyle1($ADA230, "Floppy Disk"); db $00
+TextStyle1($ADA248, "MO Disk"); db $00
+TextStyle1($ADA260, "CD"); db $00
+TextStyle1($ADA278, "Rope"); db $00
+TextStyle1($ADA290, "Piano Wire"); db $00
+TextStyle1($ADA2A8, "Electrical Cord"); db $00
+TextStyle1($ADA2C0, "Coat"); db $00
+TextStyle1($ADA2D8, "T-shirt"); db $00
+TextStyle1($ADA2F0, "Jacket"); db $00
+TextStyle1($ADA308, "Sweatshirt"); db $00
+TextStyle1($ADA320, "Suit"); db $00
+TextStyle1($ADA338, "Jeans"); db $00
+TextStyle1($ADA350, "Skirt"); db $00
+TextStyle1($ADA368, "Ashtray"); db $00
+TextStyle1($ADA380, "Tobacco"); db $00
+TextStyle1($ADA398, "Lighter"); db $00
+TextStyle1($ADA3B0, "Wrist Watch"); db $00
+TextStyle1($ADA3C8, "Pen"); db $00
+TextStyle1($ADA3E0, "Wastepaper Basket"); db $00
+TextStyle1($ADA3F8, "Credit Card"); db $00
+TextStyle1($ADA410, "Iron Dumbbell"); db $00
+TextStyle1($ADA428, "Tennis Ball"); db $00
+TextStyle1($ADA440, "Soccer Ball"); db $00
+TextStyle1($ADA458, "Tennis Racket"); db $00
+TextStyle1($ADA470, "Card Key"); db $00
+TextStyle1($ADA488, "Gold Key"); db $00
+TextStyle1($ADA4A0, "Silver Key"); db $00
+TextStyle1($ADA4B8, "Dishes"); db $00
+TextStyle1($ADA4D0, "Coffee Cup"); db $00
+TextStyle1($ADA4E8, "Soup Mug"); db $00
+TextStyle1($ADA500, "Mug"); db $00
+TextStyle1($ADA518, "Frying Pan"); db $00
+TextStyle1($ADA530, "Spoon"); db $00
+TextStyle1($ADA548, "Fork"); db $00
+TextStyle1($ADA560, "Pan"); db $00
+TextStyle1($ADA578, "Glass"); db $00
+TextStyle1($ADA590, "Bait"); db $00
+TextStyle1($ADA5A8, "Gum"); db $00
+TextStyle1($ADA5C0, "Candy"); db $00
+TextStyle1($ADA5D8, "Fruit"); db $00
+TextStyle1($ADA5F0, "Knife"); db $00
+TextStyle1($ADA608, "Kitchen Knife"); db $00
+TextStyle1($ADA620, "Cutter"); db $00
+TextStyle1($ADA638, "Scissors"); db $00
+TextStyle1($ADA650, "Ice Pick"); db $00
+TextStyle1($ADA668, "Butterfly Catcher"); db $00
+TextStyle1($ADA680, "Small Insect Catcher"); db $00
+TextStyle1($ADA698, "Fine Insect Catcher"); db $00
+TextStyle1($ADA6B0, "Bomb"); db $00
+TextStyle1($ADA6C8, "Time Bomb"); db $00
+TextStyle1($ADA6E0, "Dynamite EX"); db $00
+TextStyle1($ADA6F8, "Photo"); db $00
+TextStyle1($ADA710, "Picture Frame"); db $00
+TextStyle1($ADA728, "Sculpture"); db $00
+TextStyle1($ADA740, "Figurine"); db $00
+TextStyle1($ADA758, "Liquor Bottle"); db $00
+TextStyle1($ADA770, "Juice Bottle"); db $00
+TextStyle1($ADA788, "Pistol"); db $00
+TextStyle1($ADA7A0, "Powerful Pistol"); db $00
+TextStyle1($ADA7B8, "Small Pistol"); db $00
+TextStyle1($ADA7D0, "Machine Gun"); db $00
+TextStyle1($ADA7E8, "Rifle"); db $00
+TextStyle1($ADA800, "Powerful Rifle"); db $00
+TextStyle1($ADA818, "Bullet Gun"); db $00
+TextStyle1($ADA830, "Powerful Bullet Gun"); db $00
+TextStyle1($ADA848, "Bat"); db $00
+TextStyle1($ADA860, "Pipe"); db $00
+TextStyle1($ADA878, "Club"); db $00
+TextStyle1($ADA890, "Hammer"); db $00
+TextStyle1($ADA8A8, "Spanner"); db $00
+TextStyle1($ADA8C0, "Notepad"); db $00
+TextStyle1($ADA8D8, "Book"); db $00
+TextStyle1($ADA8F0, "Written Notes"); db $00
+TextStyle1($ADA908, "Memo"); db $00

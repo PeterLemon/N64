@@ -1,0 +1,727 @@
+﻿ダミー
+Dummy
+$ADA0B0
+A5 C0	A5 DF	A1 BC	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ダ	 #  ミ	 #  ー	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  D	 u  m	 m  y	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 44	75 6D	6D 79	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+クマのぬいぐるみ
+Teddy Bear
+$ADA0C8
+A5 AF	A5 DE	A4 CE	A4 CC	A4 A4	A4 B0	A4 EB	A4 DF	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ク	 #  マ	 #  の	 #  ぬ	 #  い	 #  ぐ	 #  る	 #  み	 #	 #	 #	 #	| Original Japanese Text
+ #  T	 e  d	 d  y	    B	 e  a	 r  #	 #  る	 #  み	 #	 #	 #	 #	| New English Text
+7F 54	65 64	64 79	20 42	65 61	72 00	A4 EB	A4 DF	00 00	00 00	00 00	00 00	| New English Hex
+
+ゲームマシン
+Game Machine
+$ADA0E0
+A5 B2	A1 BC	A5 E0	A5 DE	A5 B7	A5 F3	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ゲ	 #  ー	 #  ム	 #  マ	 #  シ	 #  ン	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  G	 a  m	 e   	 M  a	 c  h	 i  n	 e  #	 #	 #	 #	 #	 #	| New English Text
+7F 47	61 6D	65 20	4D 61	63 68	69 6E	65 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+クルマのおもちゃ
+Car Toys
+$ADA0F8
+A5 AF	A5 EB	A5 DE	A4 CE	A4 AA	A4 E2	A4 C1	A4 E3	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ク	 #  ル	 #  マ	 #  の	 #  お	 #  も	 #  ち	 #  ゃ	 #	 #	 #	 #	| Original Japanese Text
+ #  C	 a  r	    T	 o  y	 s  #	 #  も	 #  ち	 #  ゃ	 #	 #	 #	 #	| New English Text
+7F 43	61 72	20 54	6F 79	73 00	A4 E2	A4 C1	A4 E3	00 00	00 00	00 00	00 00	| New English Hex
+
+つみ木
+Plastic Tree
+$ADA110
+A4 C4	A4 DF	CC DA	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  つ	 #  み	 #  木	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  P	 l  a	 s  t	 i  c	   T	 r  e	 e  #	 #	 #	 #	 #	 #	| New English Text
+7F 50	6C 61	73 74	69 63	20 54	72 65	65 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+人形
+Doll
+$ADA128
+BF CD	B7 C1	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  人	 #  形	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  D	 o  l	 l  #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 44	6F 6C	6C 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+貯金箱
+Piggy Bank
+$ADA140
+C3 F9	B6 E2	C8 A2	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  貯	 #  金	 #  箱	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  P	 i  g	 g  y	    B	 a  n	 k  #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 50	69 67	67 79	20 42	61 6E	6B 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ホウセキ
+Jewel
+$ADA158
+A5 DB	A5 A6	A5 BB	A5 AD	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ホ	 #  ウ	 #  セ	 #  キ	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  J	 e  w	 e  l	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 4A	65 77	65 6C	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+コイン
+Coin
+$ADA170
+A5 B3	A5 A4	A5 F3	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  コ	 #  イ	 #  ン	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  C	 o  i	 n  #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 43	6F 69	6E 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+リング
+Ring
+$ADA188
+A5 EA	A5 F3	A5 B0	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  リ	 #  ン	 #  グ	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  R	 i  n	 g  #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 52	69 6E	67 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ネックレス
+Necklace
+$ADA1A0
+A5 CD	A5 C3	A5 AF	A5 EC	A5 B9	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ネ	 #  ッ	 #  ク	 #  レ	 #  ス	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  N	 e  c	 k  l	 a  c	 e  #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 4E	65 63	6B 6C	61 63	65 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ネックレス
+Necklace
+$ADA1A0
+A5 CD	A5 C3	A5 AF	A5 EC	A5 B9	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ネ	 #  ッ	 #  ク	 #  レ	 #  ス	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  N	 e  c	 k  l	 a  c	 e  #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 4E	65 63	6B 6C	61 63	65 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+さつたば
+Wad of Money
+$ADA1B8
+A4 B5	A4 C4	A4 BF	A4 D0	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  さ	 #  つ	 #  た	 #  ば	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  W	 a  d	    o	 f   	 M  o	 n  e	 y  #	 #	 #	 #	 #	 #	| New English Text
+7F 57	61 64	20 6F	66 20	4D 6F	6E 65	79 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+サイフ
+Wallet / Purse
+$ADA1D0
+A5 B5	A5 A4	A5 D5	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  サ	 #  イ	 #  フ	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  W	 a  l	 l  e	 t  #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 57	61 6C	6C 65	74 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+カセットテープ
+Cassette Tape
+$ADA1E8
+A5 AB	A5 BB	A5 C3	A5 C8	A5 C6	A1 BC	A5 D7	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  カ	 #  セ	 #  ッ	 #  ト	 #  テ	 #  ー	 #  プ	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  C	 a  s	 s  e	 t  t	 e   	 T  a	 p  e	 #	 #	 #	 #	 #	| New English Text
+7F 43	61 73	73 65	74 74	65 20	54 61	70 65	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ビデオテープ
+Videotape
+$ADA200
+A5 D3	A5 C7	A5 AA	A5 C6	A1 BC	A5 D7	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ビ	 #  デ	 #  オ	 #  テ	 #  ー	 #  プ	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  V	 i  d	 e  o	 t  a	 p  e	 #  プ	 #	 #	 #	 #	 #	 #	| New English Text
+7F 56	69 64	65 6F	74 61	70 65	00 D7	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+オープンリール
+Reel-to-Reel
+$ADA218
+A5 AA	A1 BC	A5 D7	A5 F3	A5 EA	A1 BC	A5 EB	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  オ	 #  ー	 #  プ	 #  ン	 #  リ	 #  ー	 #  ル	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  R	 e  e	 l  -	 t  o	 -  R	 e  e	 l  #	 #	 #	 #	 #	 #	| New English Text
+7F 52	65 65	6C 2D	74 6F	2D 52	65 65	6C 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+フロッピーディスク
+Floppy Disk
+$ADA230
+A5 D5	A5 ED	A5 C3	A5 D4	A1 BC	A5 C7	A5 A3	A5 B9	A5 AF	00 00	00 00	00 00	| Original Japanese Hex
+ #  フ	 #  ロ	 #  ッ	 #  ピ	 #  ー	 #  デ	 #  ィ	 #  ス	 #  ク	 #	 #	 #	| Original Japanese Text
+ #  F	 l  o	 p  p	 y   	 D  i	 s  k	 #  ィ	 #  ス	 #  ク	 #	 #	 #	| New English Text
+7F 46	6C 6F	70 70	79 20	44 69	73 6B	00 A3	A5 B9	A5 AF	00 00	00 00	00 00	| New English Hex
+
+MOディスク
+MO (Magneto-Optical) Disk
+$ADA248
+A3 CD	A3 CF	A5 C7	A5 A3	A5 B9	A5 AF	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  M	 #  O	 #  デ	 #  ィ	 #  ス	 #  ク	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  M	 O   	 D  i	 s  k	 #  ス	 #  ク	 #	 #	 #	 #	 #	 #	| New English Text
+7F 4D	4F 20	44 69	73 6B	00 B9	A5 AF	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+CD
+CD
+$ADA260
+A3 C3	A3 C4	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  C	 #  D	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  C	 D  #	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 43	44 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ロープ
+Rope
+$ADA278
+A5 ED	A1 BC	A5 D7	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ロ	 #  ー	 #  プ	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  R	 o  p	 e  #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 52	6F 70	65 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ピアノ線
+Piano Wire
+$ADA290
+A5 D4	A5 A2	A5 CE	C0 FE	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ピ	 #  ア	 #  ノ	 #  線	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  P	 i  a	 n  o	    W	 i  r	 e  #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 50	69 61	6E 6F	20 57	69 72	65 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+電気コード
+Electrical Cord
+$ADA2A8
+C5 C5	B5 A4	A5 B3	A1 BC	A5 C9	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  電	 #  気	 #  コ	 #  ー	 #  ド	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  E	 l  e	 c  t	 r  i	 c  a	 l   	 C  o	 o  r	 d  #	 #	 #	 #	| New English Text
+7F 45	6C 65	63 74	72 69	63 61	6C 20	43 6F	6F 72	64 00	00 00	00 00	00 00	| New English Hex
+
+コート
+Coat
+$ADA2C0
+A5 B3	A1 BC	A5 C8	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  コ	 #  ー	 #  ト	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  C	 o  a	 t  #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 43	6F 61	74 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+Tシャツ
+T-shirt
+$ADA2D8
+A3 D4	A5 B7	A5 E3	A5 C4	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  T	 #  シ	 #  ャ	 #  ツ	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  T	 -  s	 h  i	 r  t	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 54	2D 73	68 69	72 74	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ジャケット
+Jacket
+$ADA2F0
+A5 B8	A5 E3	A5 B1	A5 C3	A5 C8	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ジ	 #  ャ	 #  ケ	 #  ッ	 #  ト	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  J	 a  c	 k  e	 t  #	 #  ト	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 4A	61 63	6B 65	74 00	A5 C8	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+トレーナー
+Sweatshirt
+$ADA308
+A5 C8	A5 EC	A1 BC	A5 CA	A1 BC	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ト	 #  レ	 #  ー	 #  ナ	 #  ー	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 w  e	 a  t	 s  h	 i  r	 t  #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 53	77 65	61 74	73 68	69 72	74 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+スーツ
+Suit
+$ADA320
+A5 B9	A1 BC	A5 C4	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ス	 #  ー	 #  ツ	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 u  i	 t  #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 53	75 69	74 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ジーパン
+Jeans
+$ADA338
+A5 B8	A1 BC	A5 D1	A5 F3	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ジ	 #  ー	 #  パ	 #  ン	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  J	 e  a	 n  s	 #  ン	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 4A	65 61	6E 73	00 F3	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+スカート
+Skirt
+$ADA350
+A5 B9	A5 AB	A1 BC	A5 C8	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ス	 #  カ	 #  ー	 #  ト	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 k  i	 r  t	 #  ト	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 53	6B 69	72 74	00 C8	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+灰皿
+Ashtray
+$ADA368
+B3 A5	BB AE	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  灰	 #  皿	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  A	 s  h	 t  r	 a  y	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 41	73 68	74 72	61 79	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+タバコ
+Tobacco
+$ADA380
+A5 BF	A5 D0	A5 B3	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  タ	 #  バ	 #  コ	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  T	 o  b	 a  c	 c  o	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 54	6F 62	61 63	63 6F	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ライター
+Lighter
+$ADA398
+A5 E9	A5 A4	A5 BF	A1 BC	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ラ	 #  イ	 #  タ	 #  ー	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  L	 i  g	 h  t	 e  r	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 4C	69 67	68 74	65 72	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+腕時計
+Wrist Watch
+$ADA3B0
+CF D3	BB FE	B7 D7	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  腕	 #  時	 #  計	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  W	 r  i	 s  t	    W	 a  t	 c  h	 #	 #	 #	 #	 #	 #	| New English Text
+7F 57	72 69	73 74	20 57	61 74	63 68	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ペン
+Pen
+$ADA3C8
+A5 DA	A5 F3	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ペ	 #  ン	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  P	 e  n	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 50	65 6E	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+かみクズ
+Wastepaper Basket
+$ADA3E0
+A4 AB	A4 DF	A5 AF	A5 BA	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  か	 #  み	 #  ク	 #  ズ	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  W	 a  s	 t  e	 p  a	 p  e	 r   	 B  a	 s  k	 e  t	 #	 #	 #	| New English Text
+7F 57	61 73	74 65	70 61	70 65	72 20	42 61	73 6B	65 74	00 00	00 00	00 00	| New English Hex
+
+クレジットカード
+Credit Card
+$ADA3F8
+A5 AF	A5 EC	A5 B8	A5 C3	A5 C8	A5 AB	A1 BC	A5 C9	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ク	 #  レ	 #  ジ	 #  ッ	 #  ト	 #  カ	 #  ー	 #  ド	 #	 #	 #	 #	| Original Japanese Text
+ #  C	 r  e	 d  i	 t   	 C  a	 r  d	 #  ー	 #  ド	 #	 #	 #	 #	| New English Text
+7F 43	72 65	64 69	74 20	43 61	72 64	00 BC	A5 C9	00 00	00 00	00 00	00 00	| New English Hex
+
+鉄アレイ
+Iron Dumbbell
+$ADA410
+C5 B4	A5 A2	A5 EC	A5 A4	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  鉄	 #  ア	 #  レ	 #  イ	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  I	 r  o	 n   	 D  u	 m  b	 b  e	 l  l	 #	 #	 #	 #	 #	| New English Text
+7F 49	72 6F	6E 20	44 75	6D 62	62 65	6C 6C	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+テニスボール
+Tennis Ball
+$ADA428
+A5 C6	A5 CB	A5 B9	A5 DC	A1 BC	A5 EB	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  テ	 #  ニ	 #  ス	 #  ボ	 #  ー	 #  ル	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  T	 e  n	 n  i	 s   	 B  a	 l  l	 #	 #	 #	 #	 #	 #	| New English Text
+7F 54	65 6E	6E 69	73 20	42 61	6C 6C	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+サッカーボール
+Soccer Ball
+$ADA440
+A5 B5	A5 C3	A5 AB	A1 BC	A5 DC	A1 BC	A5 EB	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  サ	 #  ッ	 #  カ	 #  ー	 #  ボ	 #  ー	 #  ル	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 o  c	 c  e	 r   	 B  a	 l  l	 #  ル	 #	 #	 #	 #	 #	| New English Text
+7F 53	6F 63	63 65	72 20	42 61	6C 6C	00 EB	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+テニスラケット
+Tennis Racket
+$ADA458
+A5 C6	A5 CB	A5 B9	A5 E9	A5 B1	A5 C3	A5 C8	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  テ	 #  ニ	 #  ス	 #  ラ	 #  ケ	 #  ッ	 #  ト	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  T	 e  n	 n  i	 s   	 R  a	 c  k	 e  t	 #	 #	 #	 #	 #	| New English Text
+7F 54	65 6E	6E 69	73 20	52 61	63 6B	65 74	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+カードキー
+Card Key
+$ADA470
+A5 AB	A1 BC	A5 C9	A5 AD	A1 BC	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  カ	 #  ー	 #  ド	 #  キ	 #  ー	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  C	 a  r	 d  	 K  e	 y  #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 43	61 72	64 20	4B 65	79 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+金色のカギ
+Gold Key
+$ADA488
+B6 E2	BF A7	A4 CE	A5 AB	A5 AE	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  金	 #  色	 #  の	 #  カ	 #  ギ	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  G	 o  l	 d   	 K  e	 y  #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 47	6F 6C	64 20	4B 65	79 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+銀色のカギ
+Silver Key
+$ADA4A0
+B6 E4	BF A7	A4 CE	A5 AB	A5 AE	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  銀	 #  色	 #  の	 #  カ	 #  ギ	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 i  l	 v  e	 r   	 K  e	 y  #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 53	69 6C	76 65	72 20	4B 65	79 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+お皿
+Dishes
+$ADA4B8
+A4 AA	BB AE	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  お	 #  皿	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  D	 i  s	 h  e	 s  #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 44	69 73	68 65	73 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+コーヒーカップ
+Coffee Cup
+$ADA4D0
+A5 B3	A1 BC	A5 D2	A1 BC	A5 AB	A5 C3	A5 D7	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  コ	 #  ー	 #  ヒ	 #  ー	 #  カ	 #  ッ	 #  プ	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  C	 o  f	 f  e	 e   	 C  u	 p  #	 #  プ	 #	 #	 #	 #	 #	| New English Text
+7F 43	6F 66	66 65	65 20	43 75	70 00	A5 D7	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+スープカップ
+Soup Mug
+$ADA4E8
+A5 B9	A1 BC	A5 D7	A5 AB	A5 C3	A5 D7	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ス	 #  ー	 #  プ	 #  カ	 #  ッ	 #  プ	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 o  u	 p   	 M  u	 g  #	 #  プ	 #	 #	 #	 #	 #	 #	| New English Text
+7F 53	6F 75	70 20	4D 75	67 00	A5 D7	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+マグカップ
+Mug
+$ADA500
+A5 DE	A5 B0	A5 AB	A5 C3	A5 D7	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  マ	 #  グ	 #  カ	 #  ッ	 #  プ	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  M	 u  g	 #  カ	 #  ッ	 #  プ	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 4D	75 67	00 AB	A5 C3	A5 D7	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+フライパン
+Frying Pan
+$ADA518
+A5 D5	A5 E9	A5 A4	A5 D1	A5 F3	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  フ	 #  ラ	 #  イ	 #  パ	 #  ン	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  F	 r  y	 i  n	 g   	 P  a	 n  #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 46	72 79	69 6E	67 20	50 61	6E 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+スプーン
+Spoon
+$ADA530
+A5 B9	A5 D7	A1 BC	A5 F3	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ス	 #  プ	 #  ー	 #  ン	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 p  o	 o  n	 #  ン	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 53	70 6F	6F 6E	00 F3	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+フォーク
+Fork
+$ADA548
+A5 D5	A5 A9	A1 BC	A5 AF	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  フ	 #  ォ	 #  ー	 #  ク	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  F	 o  r	 k  #	 #  ク	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 46	6F 72	6B 00	A5 AF	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ナベ
+Pan
+$ADA560
+A5 CA	A5 D9	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ナ	 #  ベ	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  P	 a  n	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 50	61 6E	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+コップ
+Glass
+$ADA578
+A5 B3	A5 C3	A5 D7	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  コ	 #  ッ	 #  プ	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  G	 l  a	 s  s	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 47	6C 61	73 73	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+エサ
+Bait
+$ADA590
+A5 A8	A5 B5	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  サ	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  B	 a  i	 t  #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 42	61 69	74 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ガム
+Gum
+$ADA5A8
+A5 AC	A5 E0	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ガ	 #  ム	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  G	 u  m	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 47	75 6D	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+キャンディー
+Candy
+$ADA5C0
+A5 AD	A5 E3	A5 F3	A5 C7	A5 A3	A1 BC	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  キ	 #  ャ	 #  ン	 #  デ	 #  ィ	 #  ー	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  C	 a  n	 d  y	 #  デ	 #  ィ	 #  ー	 #	 #	 #	 #	 #	 #	| New English Text
+7F 43	61 6E	64 79	00 C7	A5 A3	A1 BC	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+果物
+Fruit
+$ADA5D8
+B2 CC	CA AA	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  果	 #  物	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  F	 r  u	 i  t	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 46	72 75	69 74	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ナイフ
+Knife
+$ADA5F0
+A5 CA	A5 A4	A5 D5	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ナ	 #  イ	 #  フ	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  K	 n  i	 f  e	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 4B	6E 69	66 65	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ほうちょう
+Kitchen Knife
+$ADA608
+A4 DB	A4 A6	A4 C1	A4 E7	A4 A6	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ほ	 #  う	 #  ち	 #  ょ	 #  う	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  K	 i  t	 c  h	 e  n	    K	 n  i	 f  e	 #	 #	 #	 #	 #	| New English Text
+7F 4B	69 74	63 68	65 6E	20 4B	6E 69	66 65	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+カッター
+Cutter
+$ADA620
+A5 AB	A5 C3	A5 BF	A1 BC	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  カ	 #  ッ	 #  タ	 #  ー	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  C	 u  t	 t  e	 r  #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 43	75 74	74 65	72 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+はさみ
+Scissors
+$ADA638
+A4 CF	A4 B5	A4 DF	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  は	 #  さ	 #  み	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 c  i	 s  s	 o  r	 s  #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 53	63 69	73 73	6F 72	73 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+アイスピック
+Ice Pick
+$ADA650
+A5 A2	A5 A4	A5 B9	A5 D4	A5 C3	A5 AF	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ア	 #  イ	 #  ス	 #  ピ	 #  ッ	 #  ク	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  I	 c  e	    P	 i  c	 k  #	 #  ク	 #	 #	 #	 #	 #	 #	| New English Text
+7F 49	63 65	20 50	69 63	6B 00	A5 AF	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ムシ型盗ちょう器
+Insects type theft butterfly device
+$ADA668
+A5 E0	A5 B7	B7 BF	C5 F0	A4 C1	A4 E7	A4 A6	B4 EF	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ム	 #  シ	 #  型	 #  盗	 #  ち	 #  ょ	 #  う	 #  器	 #	 #	 #	 #	| Original Japanese Text
+ #  B	 u  t	 t  e	 r  f	 l  y	    C	 a  t	 c  h	 e  r	 #	 #	 #	| New English Text
+7F 42	75 74	74 65	72 66	6C 79	20 43	61 74	63 68	65 72	00 00	00 00	00 00	| New English Hex
+
+小型盗ちょう器
+Small theft butterfly device
+$ADA680
+BE AE	B7 BF	C5 F0	A4 C1	A4 E7	A4 A6	B4 EF	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  小	 #  型	 #  盗	 #  ち	 #  ょ	 #  う	 #  器	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 m  a	 l  l	    I	 n  s	 e  c	 t   	 C  a	 t  c	 h  e	 r  #	 #	| New English Text
+7F 53	6D 61	6C 6C	20 49	6E 73	65 63	74 20	43 61	74 63	68 65	72 00	00 00	| New English Hex
+
+せいみつ盗ちょう器
+Fine theft butterfly device
+$ADA698
+A4 BB	A4 A4	A4 DF	A4 C4	C5 F0	A4 C1	A4 E7	A4 A6	B4 EF	00 00	00 00	00 00	| Original Japanese Hex
+ #  せ	 #  い	 #  み	 #  つ	 #  盗	 #  ち	 #  ょ	 #  う	 #  器	 #	 #	 #	| Original Japanese Text
+ #  F	 i  n	 e   	 I  n	 s  e	 c  t	    C	 a  t	 c  h	 e  r	 #	 #	| New English Text
+7F 46	69 6E	65 20	49 6E	73 65	63 74	20 43	61 74	63 68	65 72	00 00	00 00	| New English Hex
+
+爆弾
+Bomb
+$ADA6B0
+C7 FA	C3 C6	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  爆	 #  弾	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  B	 o  m	 b  #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 42	6F 6D	62 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+タイマーボム
+Time bomb
+$ADA6C8
+A5 BF	A5 A4	A5 DE	A1 BC	A5 DC	A5 E0	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  タ	 #  イ	 #  マ	 #  ー	 #  ボ	 #  ム	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  T	 i  m	 e   	 B  o	 m  b	 #  ム	 #	 #	 #	 #	 #	 #	| New English Text
+7F 54	69 6D	65 20	42 6F	6D 62	00 E0	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ダイナマイトEX
+Dynamite EX
+$ADA6E0
+A5 C0	A5 A4	A5 CA	A5 DE	A5 A4	A5 C8	A3 C5	A3 D8	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ダ	 #  イ	 #  ナ	 #  マ	 #  イ	 #  ト	 #  E	 #  X	 #	 #	 #	 #	| Original Japanese Text
+ #  D	 y  n	 a  m	 i  t	 e   	 E  X	 #  E	 #  X	 #	 #	 #	 #	| New English Text
+7F 44	79 6E	61 6D	69 74	65 20	45 58	00 C5	A3 D8	00 00	00 00	00 00	00 00	| New English Hex
+
+写真
+Photo
+$ADA6F8
+BC CC	BF BF	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  写	 #  真	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  P	 h  o	 t  o	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 50	68 6F	74 6F	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+写真立て
+Picture Frame
+$ADA710
+BC CC	BF BF	CE A9	A4 C6	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  写	 #  真	 #  立	 #  て	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  P	 i  c	 t  u	 r  e	    F	 r  a	 m  e	 #	 #	 #	 #	 #	| New English Text
+7F 50	69 63	74 75	72 65	20 46	72 61	6D 65	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ちょうこく
+Sculpture
+$ADA728
+A4 C1	A4 E7	A4 A6	A4 B3	A4 AF	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ち	 #  ょ	 #  う	 #  こ	 #  く	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 c  u	 l  p	 t  u	 r  e	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 53	63 75	6C 70	74 75	72 65	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+置物
+Figurine
+$ADA740
+C3 D6	CA AA	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  置	 #  物	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  F	 i  g	 u  r	 i  n	 e  #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 46	69 67	75 72	69 6E	65 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+お酒のビン
+Liquor Bottle
+$ADA758
+A4 AA	BC F2	A4 CE	A5 D3	A5 F3	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  お	 #  酒	 #  の	 #  ビ	 #  ン	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  L	 i  q	 u  o	 r   	 B  o	 t  t	 l  e	 #	 #	 #	 #	 #	| New English Text
+7F 4C	69 71	75 6F	72 20	42 6F	74 74	6C 65	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ジュースのビン
+Juice Bottle
+$ADA770
+A5 B8	A5 E5	A1 BC	A5 B9	A4 CE	A5 D3	A5 F3	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ジ	 #  ュ	 #  ー	 #  ス	 #  の	 #  ビ	 #  ン	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  J	 u  i	 c  e	    B	 o  t	 t  l	 e  s	 #	 #	 #	 #	 #	| New English Text
+7F 4A	75 69	63 65	20 42	6F 74	74 6C	65 73	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ピストル
+Pistol
+$ADA788
+A5 D4	A5 B9	A5 C8	A5 EB	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ピ	 #  ス	 #  ト	 #  ル	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  P	 i  s	 t  o	 l  #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 50	69 73	74 6F	6C 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+きょう力なピストル
+Powerful Pistol
+$ADA7A0
+A4 AD	A4 E7	A4 A6	CE CF	A4 CA	A5 D4	A5 B9	A5 C8	A5 EB	00 00	00 00	00 00	| Original Japanese Hex
+ #  き	 #  ょ	 #  う	 #  力	 #  な	 #  ピ	 #  ス	 #  ト	 #  ル	 #	 #	 #	| Original Japanese Text
+ #  P	 o  w	 e  r	 f  u	 l   	 P  i	 s  t	 o  l	 #  ル	 #	 #	 #	| New English Text
+7F 50	6F 77	65 72	66 75	6C 20	50 69	73 74	6F 6C	00 EB	00 00	00 00	00 00	| New English Hex
+
+小型のピストル
+Small Pistol
+$ADA7B8
+BE AE	B7 BF	A4 CE	A5 D4	A5 B9	A5 C8	A5 EB	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  小	 #  型	 #  の	 #  ピ	 #  ス	 #  ト	 #  ル	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 m  a	 l  l	    P	 i  s	 t  o	 l  #	 #	 #	 #	 #	 #	| New English Text
+7F 53	6D 61	6C 6C	20 50	69 73	74 6F	6C 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+マシンガン
+Machine Gun
+$ADA7D0
+A5 DE	A5 B7	A5 F3	A5 AC	A5 F3	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  マ	 #  シ	 #  ン	 #  ガ	 #  ン	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  M	 a  c	 h  i	 n  e	    G	 u  n	 #	 #	 #	 #	 #	 #	| New English Text
+7F 4D	61 63	68 69	6E 65	20 47	75 6E	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ライフル
+Rifle
+$ADA7E8
+A5 E9	A5 A4	A5 D5	A5 EB	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ラ	 #  イ	 #  フ	 #  ル	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  R	 i  f	 l  e	 #  ル	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 52	69 66	6C 65	00 EB	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+きょう力なライフル
+Powerful Rifle
+$ADA800
+A4 AD	A4 E7	A4 A6	CE CF	A4 CA	A5 E9	A5 A4	A5 D5	A5 EB	00 00	00 00	00 00	| Original Japanese Hex
+ #  き	 #  ょ	 #  う	 #  力	 #  な	 #  ラ	 #  イ	 #  フ	 #  ル	 #	 #	 #	| Original Japanese Text
+ #  P	 o  w	 e  r	 f  u	 l   	 R  i	 f  l	 e  #	 #  ル	 #	 #	 #	| New English Text
+7F 50	6F 77	65 72	66 75	6C 20	52 69	66 6C	65 00	A5 EB	00 00	00 00	00 00	| New English Hex
+
+弾ガン
+Bullet Gun
+$ADA818
+C3 C6	A5 AC	A5 F3	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  弾	 #  ガ	 #  ン	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  B	 u  l	 l  e	 t   	 G  u	 n  #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 42	75 6C	6C 65	74 20	47 75	6E 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+きょう力な弾ガン
+Powerful Bullet Gun
+$ADA830
+A4 AD	A4 E7	A4 A6	CE CF	A4 CA	C3 C6	A5 AC	A5 F3	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  き	 #  ょ	 #  う	 #  力	 #  な	 #  弾	 #  ガ	 #  ン	 #	 #	 #	 #	| Original Japanese Text
+ #  P	 o  w	 e  r	 f  u	 l   	 B  u	 l  l	 e  t	    G	 u  n	 #  ?	 #	| New English Text
+7F 50	6F 77	65 72	66 75	6C 20	42 75	6C 6C	65 74	20 47	75 6E	00 00	00 00	| New English Hex
+
+バット
+Bat
+$ADA848
+A5 D0	A5 C3	A5 C8	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  バ	 #  ッ	 #  ト	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  B	 a  t	 #  ト	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 42	61 74	00 C8	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+パイプ
+Pipe
+$ADA860
+A5 D1	A5 A4	A5 D7	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  パ	 #  イ	 #  プ	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  P	 i  p	 e  #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 50	69 70	65 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+こんぼう
+Club
+$ADA878
+A4 B3	A4 F3	A4 DC	A4 A6	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  こ	 #  ん	 #  ぼ	 #  う	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  C	 l  u	 b  #	 #  う	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 43	6C 75	62 00	A4 A6	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+トンカチ
+Hammer
+$ADA890
+A5 C8	A5 F3	A5 AB	A5 C1	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00 	| Original Japanese Hex
+ #  ト	 #  ン	 #  カ	 #  チ	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  H	 a  m	 m  e	 r  #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 48	61 6D	6D 65	72 C1	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+スパナ
+Spanner
+$ADA8A8
+A5 B9	A5 D1	A5 CA	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00 	| Original Japanese Hex
+ #  ス	 #  パ	 #  ナ	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  S	 p  a	 n  n	 e  r	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 53	70 61	6E 6E	65 72	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+メモ帳
+Notepad
+$ADA8C0
+A5 E1	A5 E2	C4 A2	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00 	| Original Japanese Hex
+ #  メ	 #  モ	 #  帳	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  N	 o  t	 e  p	 a  d	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 4E	6F 74	65 70	61 64	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+本
+Book
+$ADA8D8
+CB DC	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00 	| Original Japanese Hex
+ #  本	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  B	 o  o	 k  #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 42	6F 6F	6B 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+書るい
+Written Notes
+$ADA8F0
+BD F1	A4 EB	A4 A4	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00 	| Original Japanese Hex
+ #  書	 #  る	 #  い	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  W	 r  i	 t  t	 e  n	    N	 o  t	 e  s	 #	 #	 #	 #	 #	| New English Text
+7F 57	72 69	74 74	65 6E	20 4E	6F 74	65 73	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+メモ
+Memo
+$ADA908
+A5 E1	A5 E2	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00 	| Original Japanese Hex
+ #  メ	 #  モ	 #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| Original Japanese Text
+ #  M	 e  m	 o  #	 #	 #	 #	 #	 #	 #	 #	 #	 #	| New English Text
+7F 4D	65 6D	6F 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
