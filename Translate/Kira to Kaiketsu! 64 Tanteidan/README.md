@@ -3,8 +3,9 @@ N64 Japanese To English Translation
 <br />
 Translation by krom (Peter Lemon).<br />
 <br />
-All code compiles out of box with the bass assembler:<br />
-http://byuu.org/programming/bass/<br />
+All code compiles out of box with the bass assembler by byuu.<br />
+I use a special version of bass by ARM9 which has been updated with SuperFX/GSU Risc output:<br />
+https://github.com/ARM9/bass<br />
 I have also included an IPS file of the translation as a patch.<br />
 <br />
 Special thanks to Zoinkity, who inspired me to get into N64 translating =D<br />
