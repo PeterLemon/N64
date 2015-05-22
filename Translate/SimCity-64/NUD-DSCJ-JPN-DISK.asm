@@ -9,6 +9,37 @@ macro TextStyle1(OFFSET, TEXT) {
   db {TEXT} // ASCII Text To Print
 }
 
+// Scenario
+TextStyle1($0F1ACB0, "Raspberry mining\n")
+                  db "town, is a small\n"
+                  db "town suffering from\n"
+                  db "depopulation. Please\n"
+                  db "revitalize the town.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0F1AD1C, "Maypole's in a great\n")
+                  db "depression & severe\n"
+                  db "recession. Perform\n"
+                  db "economic rebuild, &\n"
+                  db "activate industry.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0F1ADA4, "Large fire, ancient\n")
+                  db "capitol Sanrufuna.\n"
+                  db "Put out the fire, &\n"
+                  db "reconstruct the\n"
+                  db "damaged city.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0F1AE4C, "Create a new town on\n")
+                  db "reclaimed land.\n"
+                  db "Landfill the Lipton\n"
+                  db "Bay area, & grow it\n"
+                  db "into a modern city.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0F1AF00, "Due to corruption,\n")
+                  db "citizens distrustful\n"
+                  db "Build up a welfare\n"
+                  db "policy & regain the\n"
+                  db "trust of citizens.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
 // Tutorial
 TextStyle1($1047F10, "City making in Sim\n")
                   db "City-64, is choosing\n"
@@ -138,7 +169,7 @@ TextStyle1($119DE30, "Step1:Get larger city!"); db $00, $00, $00, $00, $00, $00,
                   db " Time:", $A1, $A1, $A1, $A1, $A1, $A9, $A1, $A9, "Yr Upto ", $A1, $F5, $A1, $F5, $A1, $F5, $A1, $F5, "\n"
                   db " Need:Population 2000", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 
-// Intro
+// Beginner Mode
 TextStyle1($119E6F0, "Congratulations.\n")
                   db "I am serving as\n"
                   db "the deputy Mayor\n"
@@ -306,6 +337,58 @@ TextStyle1($119F070, "Well, there is\n")
                   db "fill in your\n"
                   db "name & the name\n"
                   db "of the city.", $00, $00
+
+// Scenario Mode
+TextStyle1($11A7C90, "Congratulations.\n")
+                  db "I am serving as\n"
+                  db "the deputy Mayor\n"
+                  db "& my name is\n"
+                  db $A2, $E9, $A2, $EA, " Wright.", $00
+
+TextStyle1($11A7CE0, "In this scenario\n")
+                  db "mode, solve\n"
+                  db "various city\n"
+                  db "problems within\n"
+                  db "a time limit,\n"
+                  db "it has levels\n"
+                  db "for intermediate\n"
+                  db "& advanced.", $00, $00
+
+TextStyle1($11A7D54, "If you don't\n")
+                  db "achieve the\n"
+                  db "target in time,\n"
+                  db "you'll be\n"
+                  db "dismissed as\n"
+                  db "the city Mayor.", $00
+
+TextStyle1($11A7DA4, "Also, when the\n")
+                  db "power supply or\n"
+                  db "debt is\n"
+                  db "insufficient,\n"
+                  db "you will not be\n"
+                  db "able to achieve\n"
+                  db "the target.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($11A7E14, "So,\n")
+                  db "Mayor ", $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, ". \n"
+                  db "Please choose\n"
+                  db "the scenario.", $00, $00, $00, $00
+
+TextStyle1($11A7E50, "Mayor "); db $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, "\n"
+                  db "Is this correct?\n"
+                  db "  Yes\n"
+                  db "  No", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($11A7E94, "Well, there is\n")
+                  db "plenty of work\n"
+                  db "I'd like you to\n"
+                  db "do.\n\n"
+                  db "First, please\n"
+                  db "fill in your\n"
+                  db "name.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($11A7EF8, "Please fill in\n")
+                  db "your name.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 
 // Text Hack
 origin $11C74F4; db $A1, $A1, $A1, $A1, $A1, $A9, $A1, $A9, $A1, $A9, "Yr", $00, $00, $00, $00
