@@ -1,0 +1,50 @@
+﻿就任おめでとうございます。
+Congratulations.
+$0E273C0 (Line 1)
+BD A2	C7 A4	A4 AA	A4 E1	A4 C7	A4 C8	A4 A6	A4 B4	A4 B6	A4 A4	A4 DE	A4 B9	A1 A3	0A	| Original Japanese Hex
+ #  就	 #  任	 #  お	 #  め	 #  で	 #  と	 #  う	 #  ご	 #  ざ	 #  い	 #  ま	 #  す	 #  。	LF	| Original Japanese Text
+ C  o	 n  g	 r  a	 t  u	 l  a	 t  i	 o  n	 s  .	    I	    a	 m LF	 s  e	 r  v	 i	| New English Text
+43 6F	6E 67	72 61	74 75	6C 61	74 69	6F 6E	73 2E	20 49	20 61	6D 0A	73 65	72 76	69	| New English Hex
+助役を勤めさせていただくDr.ライトです。
+I am serving as the deputy Mayor & my name is Dr. Wright.
+$0E273DB (Line 2)
+BD F5	CC F2	A4 F2	B6 D0	A4 E1	A4 B5	A4 BB	A4 C6	A4 A4	A4 BF	A4 C0	A4 AF	A2 E9	A2 EA	A5 E9	A5 A4	A5 C8	A4 C7	A4 B9	A1 A3	0A 0A	| Original Japanese Hex
+ #  助	 #  役	 #  を	 #  勤	 #  め	 #  さ	 #  せ	 #  て	 #  い	 #  た	 #  だ	 #  く	 D  r	 #  .	 #  ラ	 #  イ	 #  ト	 #  で	 #  す	 #  。	LF LF	| Original Japanese Text
+ n  g	    a	 s   	 t  h	e    	 d  e	 p  u	 t  y	LF  M	 a  y	 o  r	    &	    m	 y   	 n  a	 m  e	    i	 s   	 D  r	 #  .	LF  W	| New English Text
+6E 67	20 61	73 20	74 68	65 20	64 65	70 75	74 79	0A 4D	61 79	6F 72	20 26	20 6D	79 20 	6E 61	6D 65	20 69	73 20	A2 E9	A2 EA	0A 57	| New English Hex
+街の作り方の説明やトラブル発生時の
+We will carry out, such as the city of how to make the
+$0E27405 (Line 3)
+B3 B9	A4 CE	BA EE	A4 EA	CA FD	A4 CE	C0 E2	CC C0	A4 E4	A5 C8	A5 E9	A5 D6	A5 EB	C8 AF	C0 B8	BB FE	A4 CE	0A	| Original Japanese Hex
+ #  街	 #  の	 #  作	 #  り	 #  方	 #  の	 #  説	 #  明	 #  や	 #  ト	 #  ラ	 #  ブ	 #  ル	 #  発	 #  生	 #  時	 #  の	LF	| Original Japanese Text
+ r  i	 g  h	 t  .	    I  	    w	 i  l	 l   	 g  i	 v  e	LF  y	 o  u	    h	 e  l	 p  f	 u  l	    a	 d  v	 i	| New English Text
+72 69	67 68	74 2E	20 49	20 77	69 6C	6C 20	67 69	76 65	0A 79	6F 75	20 68	65 6C	70 66	75 6C	20 61	64 76	69	| New English Hex
+助言などをさせていただきます。
+description and trouble occurrence of advice.
+$0E27428 (Line 4)
+BD F5	B8 C0	A4 CA	A4 C9	A4 F2	A4 B5	A4 BB	A4 C6	A4 A4	A4 BF	A4 C0	A4 AD	A4 DE	A4 B9	A1 A3	00 00	| Original Japanese Hex
+ #  助	 #  言	 #  な	 #  ど	 #  を	 #  さ	 #  せ	 #  て	 #  い	 #  た	 #  だ	 #  き	 #  ま	 #  す	 #  。	 #  #	| Original Japanese Text
+ c  e	 .  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+63 65	2E 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+では市長、
+Mayor,
+$0E27448 (Line 1)
+A4 C7	A4 CF	BB D4	C4 B9	A1 A2	0A	| Original Japanese Hex
+ #  で	 #  は	 #  市	 #  長	 #  、	LF	| Original Japanese Text
+ M  a	 y  o	 r  ,	LF  r	 i  g	 h	| New English Text
+4D 61	79 6F	72 2C	0A 72	69 67	68	| New English Hex
+早速ですが、これから運営する
+Although it is immediately,
+$0E27453 (Line 2)
+C1 E1	C2 AE	A4 C7	A4 B9	A4 AC	A1 A2	A4 B3	A4 EC	A4 AB	A4 E9	B1 BF	B1 C4	A4 B9	A4 EB	0A	| Original Japanese Hex
+ #  早	 #  速	 #  で	 #  す	 #  が	 #  、	 #  こ	 #  れ	 #  か	 #  ら	 #  運	 #  営	 #  す	 #  る	LF	| Original Japanese Text
+ t   	 n  o	 w  ,	    p	 l  e	 a  s	 e LF	 c  h	 o  o	 s  e	    a	    m	 a  p	    o	 f	| New English Text
+74 20	6E 6F	77 2C	20 70	6C 65	61 73	65 0A	63 68	6F 6F	73 65	20 61	20 6D	61 70	20 6F	66	| New English Hex
+都市のマップを選んでください。
+please choose a map of the city that you will operate.
+$0E27470 (Line 3)
+C5 D4	BB D4	A4 CE	A5 DE	A5 C3	A5 D7	A4 F2	C1 AA	A4 F3	A4 C7	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00 00	| Original Japanese Hex
+ #  都	 #  市	 #  の	 #  マ	 #  ッ	 #  プ	 #  を	 #  選	 #  ん	 #  で	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #  #	| Original Japanese Text
+    a	 LF c	 i  t	 y   	 t  h	 a  t	    y	 o  u	    w	 a  n	 t LF	 t  o	    m	 a  n	 a  g	 e  #	| New English Text
+20 61	0A 63	69 74	79 20	74 68	61 74	20 79	6F 75	20 77	61 6E	74 0A	74 6F	20 6D	61 6E	61 67	65 00	| New English Hex

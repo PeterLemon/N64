@@ -9,6 +9,19 @@ macro TextStyle1(OFFSET, TEXT) {
   db {TEXT} // ASCII Text To Print
 }
 
+// Free Mode
+TextStyle1($0E273C0, "Congratulations. I am\n")
+                  db "serving as the deputy\n"
+                  db "Mayor & my name is ", $A2, $E9, $A2, $EA, "\n"
+                  db "Wright. I will give\n"
+                  db "you helpful advice.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E27448, "Mayor,\n")
+                  db "right now, please\n"
+                  db "choose a map of a\n"
+                  db "city that you want\n"
+                  db "to manage", $00
+
 // Scenario
 TextStyle1($0F1ACB0, "Raspberry mining\n")
                   db "town, is a small\n"
@@ -394,6 +407,10 @@ TextStyle1($11A7EF8, "Please fill in\n")
 origin $11C74F4; db $A1, $A1, $A1, $A1, $A1, $A9, $A1, $A9, $A1, $A9, "Yr", $00, $00, $00, $00
 origin $11C7504; db $A1, $A1, $A1, $A1, $A1, $A9, $A1, $A9, "Yr", $00, $00
 origin $11C7524; db $A1, $F5, $A1, $F5, $A1, $F5, $A1, $F5, $00, $00, $00, $00
+
+// Name Select Font Swap
+origin $1227AD4; insert "FontSwapCHR.bin" // Include Swapped Font Character Data (3 * 124 Bytes)
+origin $1227CC8; insert "FontSwapGFX.bin" // Include Swapped Font Character Data (3 * 240 Bytes)
 
 // Name Select
 TextStyle1($1227C54, "Please type in your name"); db $00, $00, $00, $00
