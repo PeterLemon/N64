@@ -538,7 +538,6 @@ A1 A1	A1 A1	A4 A4	A4 A4	A4 A8	00 00	00 00	| Original Japanese Hex
  #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
 00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
 
-
 区画の指定さえ出来れば
 It is easy to achieve the goal
 $119EE14 (Line 1)
