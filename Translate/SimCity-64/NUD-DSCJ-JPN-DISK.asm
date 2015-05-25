@@ -22,6 +22,62 @@ TextStyle1($0E27448, "Mayor,\n")
                   db "city that you want\n"
                   db "to manage", $00
 
+TextStyle1($0E27490, "Yes Sir,\n\n")
+                  db "Please fill in your\n"
+                  db "name inside this\n"
+                  db "document.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E274D8, "Now please decide\n")
+                  db "the name of the city.\n"
+                  db "Please choose a\n"
+                  db "respectable name,\n"
+                  db "for the citizens.", $00
+
+TextStyle1($0E27534, "How much start money?"); db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E27558, "Enable the disasters?\n")
+                  db "Easier if not chosen.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E275AC, "Decide year to start."); db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E275D8, "Yes sir.\n")
+                  db "Well, Mayor ", $01, "\n"
+                  db "I wonder if you have\n"
+                  db "any experience?", $00
+
+TextStyle1($0E27614, "If you're experienced\n")
+                  db "we can start now...", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E27650, "So detailed tutorial\n")
+                  db "has been ommitted,\n"
+                  db "we will start the\n"
+                  db "game now.", $00
+
+
+TextStyle1($0E27EE8, "$999999 (Easy)"); db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E27F04, "$20000 (Easy)"); db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E27F1C, "$10000 (Normal)"); db $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E27F34, "$10000 Debt (Hard)"); db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E27F50, "Disasters"); db $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E27F60, "No Disasters"); db $00, $00, $00, $00
+
+TextStyle1($0E27F70, "1900"); db $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E27F7C, "1950"); db $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E27F88, "2000"); db $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E27F94, "2050"); db $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0E27FA0, "Some..."); db $00, $00, $00, $00, $00
+
+TextStyle1($0E27FAC, "None..."); db $00
+
 // Scenario
 TextStyle1($0F1ACB0, "Raspberry mining\n")
                   db "town, is a small\n"
