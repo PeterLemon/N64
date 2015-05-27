@@ -53,6 +53,65 @@ TextStyle1($0DB4E78, "So detailed tutorial\n")
                   db "we will start the\n"
                   db "game now.", $00
 
+TextStyle1($0DB4EBC, "So I will briefly\n")
+                  db "describe, your job\n"
+                  db "as Mayor.", $00, $00, $00, $00, $00, $00
+
+TextStyle1($0DB4EF0, "First, we need to\n")
+                  db "specify the combined\n"
+                  db "residential,\n"
+                  db "commercial &\n"
+                  db "industrial districts.", $00, $00
+
+TextStyle1($0DB4F48, "Specify each section,\n")
+                  db "then surround &\n"
+                  db "connect them with\n"
+                  db "roads.", $00, $00
+
+TextStyle1($0DB4F88, "Install a power plant\n")
+                  db "to provide power, &\n"
+                  db "place power lines\n"
+                  db "connecting the\n"
+                  db "sections", $00
+
+TextStyle1($0DB4FDC, "Once these levels\n")
+                  db "rise, you'll see\n"
+                  db "population rise.", $00
+
+TextStyle1($0DB5010, "When the population\n")
+                  db "has increased, & we\n"
+                  db "increase the sections\n"
+                  db "& roads, the city\n"
+                  db "will steadily develop", $00, $00, $00
+
+TextStyle1($0DB5078, "However, the town's\n")
+                  db "development, will\n"
+                  db "need luck facing\n"
+                  db "trouble.", $00
+
+TextStyle1($0DB50B8, "If there is trouble,\n")
+                  db "use the advice of the\n"
+                  db $A2, $E9, $A2, $EA, " Wright icon. I'll\n"
+                  db "answer any questions,\n"
+                  db "about city building.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0DB5138, "If you don't know the\n")
+                  db "meaning of any icons\n"
+                  db "or various tools, you\n"
+                  db "can view help using R\n"
+                  db "trigger + C button ", $A2, $C1, ".", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0DB51B4, "\dWhen you do not\n")
+                  db " know, use help with\n"
+                  db " R trigger +\n"
+                  db " C button ", $A2, $C1, "!\d\n"
+                  db "Please remember this.", $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0DB5214, "Should I repeat that?"); db $00, $00, $00
+
+TextStyle1($0DB522C, "So, Mayor "); db $01, "\n"
+                  db "the game is starting.", $00, $00, $00
+
 
 TextStyle1($0DB5710, "$999999 (Easy)"); db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 
@@ -77,6 +136,10 @@ TextStyle1($0DB57BC, "2050"); db $00, $00, $00, $00, $00, $00, $00, $00
 TextStyle1($0DB57C8, "Some..."); db $00, $00, $00, $00, $00
 
 TextStyle1($0DB57D4, "None..."); db $00
+
+TextStyle1($0DB57DC, "Yes"); db $00, $00, $00, $00, $00
+
+TextStyle1($0DB57E4, "No"); db $00, $00, $00, $00, $00, $00
 
 // Scenario
 TextStyle1($0EA84D8, "Raspberry mining\n")
