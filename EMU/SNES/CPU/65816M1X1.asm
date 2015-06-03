@@ -833,19 +833,49 @@
   addiu v0,3             ; Cycles += 3 (Delay Slot)
 
   align 256
-  ; $8C ???   ???               ?????
+  ; $8C STY   nnnn              Store Index Register Y To Memory Absolute
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; DB_REG:MEM: Set To Index Register Y (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  sb s2,0(a2)
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
-  ; $8D ???   ???               ?????
+  ; $8D STA   nnnn              Store Accumulator To Memory Absolute
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; DB_REG:MEM: Set To Accumulator (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  sb s0,0(a2)
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
-  ; $8E ???   ???               ?????
+  ; $8E STX   nnnn              Store Index Register X To Memory Absolute
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; DB_REG:MEM: Set To Index Register X (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  sb s1,0(a2)
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
   ; $8F ???   ???               ?????
@@ -930,9 +960,19 @@
   addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
-  ; $9C ???   ???               ?????
+  ; $9C STZ   nnnn              Store Zero To Memory Absolute
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; DB_REG:MEM: Set To Zero (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  sb r0,0(a2)
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
   ; $9D ???   ???               ?????

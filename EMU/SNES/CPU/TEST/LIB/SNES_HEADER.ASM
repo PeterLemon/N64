@@ -3,7 +3,7 @@
 //=============
 seek($FFC0)
 // PROGRAM TITLE (21 Byte ASCII String, Use Spaces For Unused Bytes)
-db "GREEN SPACE DEMO     "
+db "SNES EMU TEST ROM    "
 // "123456789012345678901"
 
 // ROM MODE/SPEED (Bits 7-4 = Speed, Bits 3-0 = Map Mode)
