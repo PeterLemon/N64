@@ -36,7 +36,7 @@ Start:
   and s1,r0 ; S1 = 8/16-Bit Register X  (Index Register)
   and s2,r0 ; S2 = 8/16-Bit Register Y  (Index Register)
   and s3,r0 ; S3 =   16-Bit Register PC (Program Counter)
-  and s4,r0 ; S4 =   16-Bit Register S  (Stack Pointer)
+  and s4,r0 ; S4 = 8/16-Bit Register S  (Stack Pointer)
   and s5,r0 ; S5 =    8-Bit Register P  (Processor Status Register)
   and s6,r0 ; S6 =   16-Bit Register D  (Zeropage Offset: Expands 8-Bit [nn] To 16-Bit [00:nn+D])
   and s7,r0 ; S7 =    8-Bit Register DB (Data Bank: Expands 16-Bit [nnnn] To 24-Bit [DB:nnnn])
