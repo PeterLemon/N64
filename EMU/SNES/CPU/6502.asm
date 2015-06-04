@@ -378,9 +378,9 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $42 ???   ???               ?????
+  ; $42 UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $43 ???   ???               ?????
@@ -594,7 +594,7 @@
   lbu s0,0(a2)
   andi t0,s0,$80         ; Test Negative MSB
   andi s5,~N_FLAG        ; P_REG: N Flag Reset
-  or s5,t0               ; P_REG: N Flag = Result MSB 
+  or s5,t0               ; P_REG: N Flag = Result MSB
   beqz s0,PLA6502        ; IF (Result == 0) Z Flag Set
   ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
@@ -772,7 +772,7 @@
   andi s2,$FF
   andi t0,s2,$80         ; Test Negative MSB
   andi s5,~N_FLAG        ; P_REG: N Flag Reset
-  or s5,t0               ; P_REG: N Flag = Result MSB 
+  or s5,t0               ; P_REG: N Flag = Result MSB
   beqz s2,DEY6502        ; IF (Result == 0) Z Flag Set
   ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
@@ -790,7 +790,7 @@
   andi s0,s1,$FF         ; A_REG: Set To Index Register X (8-Bit)
   andi t0,s0,$80         ; Test Negative MSB
   andi s5,~N_FLAG        ; P_REG: N Flag Reset
-  or s5,t0               ; P_REG: N Flag = Result MSB 
+  or s5,t0               ; P_REG: N Flag = Result MSB
   beqz s0,TXA6502        ; IF (Result == 0) Z Flag Set
   ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
@@ -906,7 +906,7 @@
   andi s0,s2,$FF         ; A_REG: Set To Index Register Y (8-Bit)
   andi t0,s0,$80         ; Test Negative MSB
   andi s5,~N_FLAG        ; P_REG: N Flag Reset
-  or s5,t0               ; P_REG: N Flag = Result MSB 
+  or s5,t0               ; P_REG: N Flag = Result MSB
   beqz s0,TYA6502        ; IF (Result == 0) Z Flag Set
   ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
@@ -956,7 +956,7 @@
   lbu s2,0(a2)
   andi t0,s2,$80         ; Test Negative MSB
   andi s5,~N_FLAG        ; P_REG: N Flag Reset
-  or s5,t0               ; P_REG: N Flag = Result MSB 
+  or s5,t0               ; P_REG: N Flag = Result MSB
   beqz s2,LDYABS6502     ; IF (Result == 0) Z Flag Set
   ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
@@ -976,7 +976,7 @@
   lbu s1,0(a2)
   andi t0,s1,$80         ; Test Negative MSB
   andi s5,~N_FLAG        ; P_REG: N Flag Reset
-  or s5,t0               ; P_REG: N Flag = Result MSB 
+  or s5,t0               ; P_REG: N Flag = Result MSB
   beqz s1,LDXABS6502     ; IF (Result == 0) Z Flag Set
   ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
@@ -1015,7 +1015,7 @@
   andi s2,s0,$FF         ; Y_REG: Set To Accumulator (8-Bit)
   andi t0,s2,$80         ; Test Negative MSB
   andi s5,~N_FLAG        ; P_REG: N Flag Reset
-  or s5,t0               ; P_REG: N Flag = Result MSB 
+  or s5,t0               ; P_REG: N Flag = Result MSB
   beqz s2,TAY6502        ; IF (Result == 0) Z Flag Set
   ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
@@ -1029,7 +1029,7 @@
   lbu s0,0(a2)
   andi t0,s0,$80         ; Test Negative MSB
   andi s5,~N_FLAG        ; P_REG: N Flag Reset
-  or s5,t0               ; P_REG: N Flag = Result MSB 
+  or s5,t0               ; P_REG: N Flag = Result MSB
   beqz s0,LDAABS6502     ; IF (Result == 0) Z Flag Set
   ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
@@ -1043,7 +1043,7 @@
   andi s1,s0,$FF         ; X_REG: Set To Accumulator (8-Bit)
   andi t0,s1,$80         ; Test Negative MSB
   andi s5,~N_FLAG        ; P_REG: N Flag Reset
-  or s5,t0               ; P_REG: N Flag = Result MSB 
+  or s5,t0               ; P_REG: N Flag = Result MSB
   beqz s1,TAX6502        ; IF (Result == 0) Z Flag Set
   ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
@@ -1140,7 +1140,7 @@
   andi s1,s4,$FF         ; X_REG: Set To Stack Pointer (8-Bit)
   andi t0,s1,$80         ; Test Negative MSB
   andi s5,~N_FLAG        ; P_REG: N Flag Reset
-  or s5,t0               ; P_REG: N Flag = Result MSB 
+  or s5,t0               ; P_REG: N Flag = Result MSB
   beqz s1,TSX6502        ; IF (Result == 0) Z Flag Set
   ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
@@ -1236,7 +1236,7 @@
   andi s1,$FF
   andi t0,s1,$80         ; Test Negative MSB
   andi s5,~N_FLAG        ; P_REG: N Flag Reset
-  or s5,t0               ; P_REG: N Flag = Result MSB 
+  or s5,t0               ; P_REG: N Flag = Result MSB
   beqz s1,DEX6502        ; IF (Result == 0) Z Flag Set
   ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
@@ -1419,9 +1419,9 @@
   addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
-  ; $EB ???   ???               ?????
+  ; $EB UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $EC ???   ???               ?????
