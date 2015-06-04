@@ -103,9 +103,17 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $10 ???   ???               ?????
+  ; $10 BPL   nn                Branch IF Plus
+  andi t0,s5,N_FLAG      ; P_REG: Test N Flag
+  bnez t0,BPL6502        ; IF (N Flag != 0) Minus
+  addiu s3,1             ; PC_REG++ (Increment Program Counter) (Delay Slot)
+  addu a2,a0,s3          ; Load Signed 8-Bit Relative Address
+  lb t0,-1(a2)
+  add s3,t0              ; PC_REG: Set To 8-Bit Relative Address
+  addiu v0,1             ; Cycles++
+  BPL6502:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $11 ???   ???               ?????
@@ -271,9 +279,17 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $30 ???   ???               ?????
+  ; $30 BMI   nn                Branch IF Minus
+  andi t0,s5,N_FLAG      ; P_REG: Test N Flag
+  beqz t0,BMI6502        ; IF (N Flag == 0) Plus
+  addiu s3,1             ; PC_REG++ (Increment Program Counter) (Delay Slot)
+  addu a2,a0,s3          ; Load Signed 8-Bit Relative Address
+  lb t0,-1(a2)
+  add s3,t0              ; PC_REG: Set To 8-Bit Relative Address
+  addiu v0,1             ; Cycles++
+  BMI6502:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $31 ???   ???               ?????
@@ -322,9 +338,9 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $3A ???   ???               ?????
+  ; $3A UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $3B UNUSED OPCODE           No Operation
@@ -442,9 +458,17 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $50 ???   ???               ?????
+  ; $50 BVC   nn                Branch IF Overflow Clear
+  andi t0,s5,V_FLAG      ; P_REG: Test V Flag
+  bnez t0,BVC6502        ; IF (V Flag != 0) Overflow Set
+  addiu s3,1             ; PC_REG++ (Increment Program Counter) (Delay Slot)
+  addu a2,a0,s3          ; Load Signed 8-Bit Relative Address
+  lb t0,-1(a2)
+  add s3,t0              ; PC_REG: Set To 8-Bit Relative Address
+  addiu v0,1             ; Cycles++
+  BVC6502:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $51 ???   ???               ?????
@@ -614,9 +638,17 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $70 ???   ???               ?????
+  ; $70 BVS   nn                Branch IF Overflow Set
+  andi t0,s5,V_FLAG      ; P_REG: Test V Flag
+  beqz t0,BVS6502        ; IF (V Flag == 0) Overflow Clear
+  addiu s3,1             ; PC_REG++ (Increment Program Counter) (Delay Slot)
+  addu a2,a0,s3          ; Load Signed 8-Bit Relative Address
+  lb t0,-1(a2)
+  add s3,t0              ; PC_REG: Set To 8-Bit Relative Address
+  addiu v0,1             ; Cycles++
+  BVS6502:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $71 ???   ???               ?????
@@ -735,9 +767,18 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $88 ???   ???               ?????
+  ; $88 DEY                     Decrement Index Register Y
+  subiu s2,1             ; Y_REG: Set To Index Register Y-- (8-Bit)
+  andi s2,$FF
+  andi t0,s2,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB 
+  beqz s2,DEY6502        ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  DEY6502:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $89 ???   ???               ?????
@@ -813,9 +854,17 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $90 ???   ???               ?????
+  ; $90 BCC   nn                Branch IF Carry Clear
+  andi t0,s5,C_FLAG      ; P_REG: Test C Flag
+  bnez t0,BCC6502        ; IF (C Flag != 0) Carry Set
+  addiu s3,1             ; PC_REG++ (Increment Program Counter) (Delay Slot)
+  addu a2,a0,s3          ; Load Signed 8-Bit Relative Address
+  lb t0,-1(a2)
+  add s3,t0              ; PC_REG: Set To 8-Bit Relative Address
+  addiu v0,1             ; Cycles++
+  BCC6502:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $91 ???   ???               ?????
@@ -1028,9 +1077,17 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $B0 ???   ???               ?????
+  ; $B0 BCS   nn                Branch IF Carry Set
+  andi t0,s5,C_FLAG      ; P_REG: Test C Flag
+  beqz t0,BCS6502        ; IF (C Flag == 0) Carry Clear
+  addiu s3,1             ; PC_REG++ (Increment Program Counter) (Delay Slot)
+  addu a2,a0,s3          ; Load Signed 8-Bit Relative Address
+  lb t0,-1(a2)
+  add s3,t0              ; PC_REG: Set To 8-Bit Relative Address
+  addiu v0,1             ; Cycles++
+  BCS6502:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $B1 ???   ???               ?????
@@ -1174,9 +1231,18 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $CA ???   ???               ?????
+  ; $CA DEX                     Decrement Index Register X
+  subiu s1,1             ; X_REG: Set To Index Register X-- (8-Bit)
+  andi s1,$FF
+  andi t0,s1,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB 
+  beqz s1,DEX6502        ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  DEX6502:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $CB ???   ???               ?????
@@ -1204,9 +1270,17 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $D0 ???   ???               ?????
+  ; $D0 BNE   nn                Branch IF Not Equal
+  andi t0,s5,Z_FLAG      ; P_REG: Test Z Flag
+  bnez t0,BNE6502        ; IF (Z Flag != 0) Equal
+  addiu s3,1             ; PC_REG++ (Increment Program Counter) (Delay Slot)
+  addu a2,a0,s3          ; Load Signed 8-Bit Relative Address
+  lb t0,-1(a2)
+  add s3,t0              ; PC_REG: Set To 8-Bit Relative Address
+  addiu v0,1             ; Cycles++
+  BNE6502:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $D1 ???   ???               ?????
@@ -1370,9 +1444,17 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $F0 ???   ???               ?????
+  ; $F0 BEQ   nn                Branch IF Equal
+  andi t0,s5,Z_FLAG      ; P_REG: Test Z Flag
+  beqz t0,BEQ6502        ; IF (Z Flag == 0) Not Equal
+  addiu s3,1             ; PC_REG++ (Increment Program Counter) (Delay Slot)
+  addu a2,a0,s3          ; Load Signed 8-Bit Relative Address
+  lb t0,-1(a2)
+  add s3,t0              ; PC_REG: Set To 8-Bit Relative Address
+  addiu v0,1             ; Cycles++
+  BEQ6502:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $F1 ???   ???               ?????

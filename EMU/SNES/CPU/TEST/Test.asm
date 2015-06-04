@@ -121,8 +121,22 @@ seek($8000); Start:
     sta.w REG_OAMDATA // OAM Data Write 2nd Write = $E0 (Upper 8-Bit) ($2104)
     stz.w REG_OAMDATA // OAM Data Write 1st Write = 0 (Lower 8-Bit) ($2104)
     stz.w REG_OAMDATA // OAM Data Write 2nd Write = 0 (Upper 8-Bit) ($2104)
-    //dex
-    //bne -
+    dex
+    bne -
+
+  ldx.w #$0020
+  -
+    stz.w REG_OAMDATA // OAM Data Write 1st/2nd Write = 0 (Lower/Upper 8-Bit) ($2104)
+    dex
+    bne -
+
+  // Clear WRAM
+  ldy.w #$0000
+  sty.w REG_WMADDL // WRAM Address (Lower  8-Bit): Transfer To $7E:0000 ($2181)
+  stz.w REG_WMADDH // WRAM Address (Upper  1-Bit): Select 1st WRAM Bank = $7E ($2183)
+
+  ldx.w #$8008    // Fixed Source Byte Write To REG_WMDATA: WRAM Data Read/Write ($2180)
+  stx.w REG_DMAP0 // DMA0 DMA/HDMA Parameters ($4300)
 
 Loop:
   jmp Loop
