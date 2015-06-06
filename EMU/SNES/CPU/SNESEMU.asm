@@ -99,7 +99,7 @@ SPC_ROM: ; SPC Sound ROM (64 Bytes BIOS Boot ROM)
   incbin spc700.rom ; Include 64 Bytes SPC Sound ROM
 
 ; Memory
-RAM: ; RAM 64K Words (128KB)
+WRAM: ; Work RAM (128KB)
   dcb $20000,$00 ; Generates $20000 Bytes Containing $00
 
 MEM_MAP: ; Memory Map = $10000 Bytes
