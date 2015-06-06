@@ -1149,10 +1149,10 @@
   andi t0,s2,$80         ; Test Negative MSB
   andi s5,~N_FLAG        ; P_REG: N Flag Reset
   or s5,t0               ; P_REG: N Flag = Result MSB
-  beqz s2,LDYABSM1X1     ; IF (Result == 0) Z Flag Set
+  beqz s2,LDYIMMM1X1     ; IF (Result == 0) Z Flag Set
   ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
-  LDYABSM1X1:
+  LDYIMMM1X1:
   addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
   addiu v0,2             ; Cycles += 2 (Delay Slot)
@@ -1183,19 +1183,58 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $A4 ???   ???               ?????
+  ; $A4 LDY   nn                Load Index Register Y From Memory Direct Page
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; Y_REG: Set To D_REG+MEM (8-Bit)
+  addu a2,s6
+  lbu s2,0(a2)
+  andi t0,s2,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s2,LDYDPM1X1      ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  LDYDPM1X1:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,3             ; Cycles += 3 (Delay Slot)
 
   align 256
-  ; $A5 ???   ???               ?????
+  ; $A5 LDA   nn                Load Accumulator From Memory Direct Page
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; A_REG: Set To D_REG+MEM (8-Bit)
+  addu a2,s6
+  lbu s0,0(a2)
+  andi t0,s0,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,LDADPM1X1      ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  LDADPM1X1:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,3             ; Cycles += 3 (Delay Slot)
 
   align 256
-  ; $A6 ???   ???               ?????
+  ; $A6 LDX   nn                Load Index Register X From Memory Direct Page
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; X_REG: Set To D_REG+MEM (8-Bit)
+  addu a2,s6
+  lbu s1,0(a2)
+  andi t0,s1,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s1,LDXDPM1X1      ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  LDXDPM1X1:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,3             ; Cycles += 3 (Delay Slot)
 
   align 256
   ; $A7 ???   ???               ?????
@@ -1222,10 +1261,10 @@
   andi t0,s0,$80         ; Test Negative MSB
   andi s5,~N_FLAG        ; P_REG: N Flag Reset
   or s5,t0               ; P_REG: N Flag = Result MSB
-  beqz s0,LDAABSM1X1     ; IF (Result == 0) Z Flag Set
+  beqz s0,LDAIMMM1X1     ; IF (Result == 0) Z Flag Set
   ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
-  LDAABSM1X1:
+  LDAIMMM1X1:
   addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
   addiu v0,2             ; Cycles += 2 (Delay Slot)
@@ -1260,19 +1299,70 @@
   addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
-  ; $AC ???   ???               ?????
+  ; $AC LDY   nnnn              Load Index Register Y From Memory Absolute
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; Y_REG: Set To DB_REG:MEM (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  lbu s2,0(a2)
+  andi t0,s2,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s2,LDYABSM1X1     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  LDYABSM1X1:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
-  ; $AD ???   ???               ?????
+  ; $AD LDA   nnnn              Load Accumulator From Memory Absolute
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; A_REG: Set To DB_REG:MEM (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  lbu s0,0(a2)
+  andi t0,s0,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,LDAABSM1X1     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  LDAABSM1X1:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
-  ; $AE ???   ???               ?????
+  ; $AE LDX   nnnn              Load Index Register X From Memory Absolute
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; X_REG: Set To DB_REG:MEM (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  lbu s1,0(a2)
+  andi t0,s1,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s1,LDXIMMM1X1     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  LDXIMMM1X1:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
   ; $AF ???   ???               ?????
@@ -1308,19 +1398,61 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $B4 ???   ???               ?????
+  ; $B4 LDY   nn,X              Load Index Register Y From Memory Direct Page Indexed, X
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; Y_REG: Set To D_REG+MEM+X_REG (8-Bit)
+  addu a2,s6
+  addu a2,s1
+  lbu s2,0(a2)
+  andi t0,s2,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s2,LDYDPXM1X1     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  LDYDPXM1X1:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
-  ; $B5 ???   ???               ?????
+  ; $B5 LDA   nn,X              Load Accumulator From Memory Direct Page Indexed, X
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; A_REG: Set To D_REG+MEM+X_REG (8-Bit)
+  addu a2,s6
+  addu a2,s1
+  lbu s0,0(a2)
+  andi t0,s0,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,LDADPXM1X1     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  LDADPXM1X1:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
-  ; $B6 ???   ???               ?????
+  ; $B6 LDX   nn,Y              Load Index Register X From Memory Direct Page Indexed, Y
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; X_REG: Set To D_REG+MEM+Y_REG (8-Bit)
+  addu a2,s6
+  addu a2,s2
+  lbu s1,0(a2)
+  andi t0,s1,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s1,LDXDPYM1X1     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  LDXDPYM1X1:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
   ; $B7 ???   ???               ?????
@@ -1334,9 +1466,27 @@
   addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
-  ; $B9 ???   ???               ?????
+  ; $B9 LDA   nnnn,Y            Load Accumulator From Memory Absolute Indexed, Y
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; A_REG: Set To DB_REG:MEM+Y_REG (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s2
+  lbu s0,0(a2)
+  andi t0,s0,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,LDAABSYM1X1    ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  LDAABSYM1X1:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
   ; $BA TSX                     Transfer Stack Pointer To Index Register X
@@ -1365,19 +1515,73 @@
   addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
-  ; $BC ???   ???               ?????
+  ; $BC LDY   nnnn,X            Load Index Register Y From Memory Absolute Indexed, X
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; Y_REG: Set To DB_REG:MEM+X_REG (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s1
+  lbu s2,0(a2)
+  andi t0,s2,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s2,LDYABSXM1X1    ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  LDYABSXM1X1:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
-  ; $BD ???   ???               ?????
+  ; $BD LDA   nnnn,X            Load Accumulator From Memory Absolute Indexed, X
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; A_REG: Set To DB_REG:MEM+X_REG (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s1
+  lbu s0,0(a2)
+  andi t0,s0,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,LDAABSXM1X1    ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  LDAABSXM1X1:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
-  ; $BE ???   ???               ?????
+  ; $BE LDX   nnnn,Y            Load Index Register X From Memory Absolute Indexed, Y
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; X_REG: Set To DB_REG:MEM+Y_REG (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s2
+  lbu s1,0(a2)
+  andi t0,s1,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s1,LDXABSYM1X1    ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  LDXABSYM1X1:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
   ; $BF ???   ???               ?????
