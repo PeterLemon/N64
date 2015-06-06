@@ -638,9 +638,16 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $64 ???   ???               ?????
+  ; $64 STZ   nn                Store Zero To Memory Direct Page
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; D_REG+MEM: Set To Zero (16-Bit)
+  addu a2,s6
+  sb r0,0(a2)
+  sb r0,1(a2)
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
   ; $65 ???   ???               ?????
@@ -741,9 +748,17 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $74 ???   ???               ?????
+  ; $74 STZ   nn,X              Store Zero To Memory Direct Page Indexed, X
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; D_REG+MEM+X_REG: Set To Zero (16-Bit)
+  addu a2,s6
+  addu a2,s1
+  sb r0,0(a2)
+  sb r0,1(a2)
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,5             ; Cycles += 5 (Delay Slot)
 
   align 256
   ; $75 ???   ???               ?????
@@ -846,19 +861,43 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $84 ???   ???               ?????
+  ; $84 STY   nn                Store Index Register Y To Memory Direct Page
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; D_REG+MEM: Set To Index Register Y (16-Bit)
+  addu a2,s6
+  sb s2,0(a2)
+  srl t0,s2,8
+  sb t0,1(a2)
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
-  ; $85 ???   ???               ?????
+  ; $85 STA   nn                Store Accumulator To Memory Direct Page
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; D_REG+MEM: Set To Accumulator (16-Bit)
+  addu a2,s6
+  sb s0,0(a2)
+  srl t0,s0,8
+  sb t0,1(a2)
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
-  ; $86 ???   ???               ?????
+  ; $86 STX   nn                Store Index Register X To Memory Direct Page
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; D_REG+MEM: Set To Index Register X (16-Bit)
+  addu a2,s6
+  sb s1,0(a2)
+  srl t0,s1,8
+  sb t0,1(a2)
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
   ; $87 ???   ???               ?????
@@ -993,19 +1032,46 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $94 ???   ???               ?????
+  ; $94 STY   nn,X              Store Index Register Y To Memory Direct Page Indexed, X
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; D_REG+MEM+X_REG: Set To Index Register Y (16-Bit)
+  addu a2,s6
+  addu a2,s1
+  sb s2,0(a2)
+  srl t0,s2,8
+  sb t0,1(a2)
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,5             ; Cycles += 5 (Delay Slot)
 
   align 256
-  ; $95 ???   ???               ?????
+  ; $95 STA   nn,X              Store Accumulator To Memory Direct Page Indexed, X
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; D_REG+MEM+X_REG: Set To Accumulator (16-Bit)
+  addu a2,s6
+  addu a2,s1
+  sb s0,0(a2)
+  srl t0,s0,8
+  sb t0,1(a2)
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,5             ; Cycles += 5 (Delay Slot)
 
   align 256
-  ; $96 ???   ???               ?????
+  ; $96 STX   nn,Y              Store Index Register X To Memory Direct Page Indexed, Y
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; D_REG+MEM+Y_REG: Set To Index Register X (16-Bit)
+  addu a2,s6
+  addu a2,s2
+  sb s1,0(a2)
+  srl t0,s1,8
+  sb t0,1(a2)
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,5             ; Cycles += 5 (Delay Slot)
 
   align 256
   ; $97 ???   ???               ?????
@@ -1027,9 +1093,22 @@
   addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
-  ; $99 ???   ???               ?????
+  ; $99 STA   nnnn,Y            Store Accumulator To Memory Absolute Indexed, Y
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; DB_REG:MEM+Y_REG: Set To Accumulator (16-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s2
+  sb s0,0(a2)
+  srl t0,s0,8
+  sb t0,1(a2)
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,6             ; Cycles += 6 (Delay Slot)
 
   align 256
   ; $9A TXS                     Transfer Index Register X To Stack Pointer
@@ -1068,14 +1147,39 @@
   addiu v0,5             ; Cycles += 5 (Delay Slot)
 
   align 256
-  ; $9D ???   ???               ?????
+  ; $9D STA   nnnn,X            Store Accumulator To Memory Absolute Indexed, X
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; DB_REG:MEM+X_REG: Set To Accumulator (16-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s1
+  sb s0,0(a2)
+  srl t0,s0,8
+  sb t0,1(a2)
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,6             ; Cycles += 6 (Delay Slot)
 
   align 256
-  ; $9E ???   ???               ?????
+  ; $9E STZ   nnnn,X            Store Zero To Memory Absolute Indexed, X
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; DB_REG:MEM+X_REG: Set To Zero (16-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s1
+  sb r0,0(a2)
+  sb r0,1(a2)
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,6             ; Cycles += 6 (Delay Slot)
 
   align 256
   ; $9F ???   ???               ?????
