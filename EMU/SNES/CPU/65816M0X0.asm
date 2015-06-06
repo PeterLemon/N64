@@ -170,9 +170,19 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $1A ???   ???               ?????
+  ; $1A INA                     Increment Accumulator
+  addiu s0,1             ; A_REG: Set To Accumulator++ (16-Bit)
+  andi s0,$FFFF
+  andi t0,s0,$8000       ; Test Negative MSB
+  srl t0,8
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,INAM0X0        ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  INAM0X0:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $1B TCS                     Transfer Accumulator To Stack Pointer
@@ -1377,9 +1387,19 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $C8 ???   ???               ?????
+  ; $C8 INY                     Increment Index Register Y
+  addiu s2,1             ; Y_REG: Set To Index Register Y++ (16-Bit)
+  andi s2,$FFFF
+  andi t0,s2,$8000       ; Test Negative MSB
+  srl t0,8
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s2,INYM0X0        ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  INYM0X0:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $C9 ???   ???               ?????
@@ -1566,9 +1586,19 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $E8 ???   ???               ?????
+  ; $E8 INX                     Increment Index Register X
+  addiu s1,1             ; X_REG: Set To Index Register X++ (16-Bit)
+  andi s1,$FFFF
+  andi t0,s1,$8000       ; Test Negative MSB
+  srl t0,8
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s1,INXM0X0        ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  INXM0X0:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $E9 ???   ???               ?????
