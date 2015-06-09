@@ -213,9 +213,23 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $24 ???   ???               ?????
+  ; $24 BIT   nn                Load Accumulator From Memory Direct Page
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; Load D_REG+MEM (8-Bit)
+  addu a2,s6
+  lbu t0,0(a2)
+  andi t1,t0,$C0         ; Test Negative MSB / Overflow MSB-1
+  andi s5,~(N_FLAG+V_FLAG) ; P_REG: N/V Flag Reset
+  or s5,t1               ; P_REG: N/V Flag = Result MSB/MSB-1
+  and t0,s0              ; Result AND Accumulator
+  beqz t0,BITDP6502      ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  BITDP6502:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,3             ; Cycles += 3 (Delay Slot)
 
   align 256
   ; $25 ???   ???               ?????
@@ -259,9 +273,27 @@
   addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
-  ; $2C ???   ???               ?????
+  ; $2C BIT   nnnn              Test Memory Bits Against Accumulator Absolute
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; Load DB_REG:MEM (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  lbu t0,0(a2)
+  andi t1,t0,$C0         ; Test Negative MSB / Overflow MSB-1
+  andi s5,~(N_FLAG+V_FLAG) ; P_REG: N/V Flag Reset
+  or s5,t1               ; P_REG: N/V Flag = Result MSB/MSB-1
+  and t0,s0              ; Result AND Accumulator
+  beqz t0,BITABS6502     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  BITABS6502:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
   ; $2D ???   ???               ?????
@@ -307,9 +339,9 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $34 ???   ???               ?????
+  ; $34 UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $35 ???   ???               ?????
@@ -348,9 +380,9 @@
   addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
-  ; $3C ???   ???               ?????
+  ; $3C UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $3D ???   ???               ?????
@@ -799,9 +831,9 @@
   addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
-  ; $89 ???   ???               ?????
+  ; $89 UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $8A TXA                     Transfer Index Register X To Accumulator
