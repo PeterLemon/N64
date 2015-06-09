@@ -41,9 +41,22 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $04 ???   ???               ?????
+  ; $04 TSB   nn                Test & Set Memory Bits Against Accumulator Direct Page
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; Load D_REG+MEM (8-Bit)
+  addu a2,s6
+  lbu t0,0(a2)
+  or t1,t0,s0            ; Set & Store Bits (8-Bit)
+  sb t1,1(a2)
+  and t0,s0              ; Result AND Accumulator
+  beqz t0,TSBDPM1X0      ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  TSBDPM1X0:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,5             ; Cycles += 5 (Delay Slot)
 
   align 256
   ; $05 ???   ???               ?????
@@ -91,9 +104,26 @@
   addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
-  ; $0C ???   ???               ?????
+  ; $0C TSB   nnnn              Test & Set Memory Bits Against Accumulator Absolute
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; Load DB_REG:MEM (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  lbu t0,0(a2)
+  or t1,t0,s0            ; Set & Store Bits (8-Bit)
+  sb t1,0(a2)
+  and t0,s0              ; Result AND Accumulator
+  beqz t0,TSBABSM1X0     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  TSBABSM1X0:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,6             ; Cycles += 6 (Delay Slot)
 
   align 256
   ; $0D ???   ???               ?????
@@ -139,9 +169,23 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $14 ???   ???               ?????
+  ; $14 TRB   nn                Test & Reset Memory Bits Against Accumulator Direct Page
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; Load D_REG+MEM (8-Bit)
+  addu a2,s6
+  lbu t0,0(a2)
+  xori t1,s0,$FFFF       ; Reset & Store Bits (8-Bit)
+  and t1,t0
+  sb t1,0(a2)
+  and t0,s0              ; Result AND Accumulator
+  beqz t0,TRBDPM1X0      ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  TRBDPM1X0:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,5             ; Cycles += 5 (Delay Slot)
 
   align 256
   ; $15 ???   ???               ?????
@@ -190,9 +234,27 @@
   addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
-  ; $1C ???   ???               ?????
+  ; $1C TRB   nnnn              Test & Reset Memory Bits Against Accumulator Absolute
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; Load DB_REG:MEM (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  lbu t0,0(a2)
+  xori t1,s0,$FF         ; Reset & Store Bits (8-Bit)
+  and t1,t0
+  sb t1,0(a2)
+  and t0,s0              ; Result AND Accumulator
+  beqz t0,TRBABSM1X0     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  TRBABSM1X0:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,6             ; Cycles += 6 (Delay Slot)
 
   align 256
   ; $1D ???   ???               ?????
@@ -230,7 +292,7 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $24 BIT   nn                Load Accumulator From Memory Direct Page
+  ; $24 BIT   nn                Test Memory Bits Against Accumulator Direct Page
   addu a2,a0,s3          ; Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          ; Load D_REG+MEM (8-Bit)
@@ -369,7 +431,7 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $34 BIT   nn,X              Load Accumulator From Memory Direct Page Indexed, X
+  ; $34 BIT   nn,X              Test Memory Bits Against Accumulator Direct Page Indexed, X
   addu a2,a0,s3          ; Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          ; Load D_REG+MEM+X_REG (8-Bit)
