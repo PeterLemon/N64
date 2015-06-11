@@ -48,9 +48,27 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $06 ???   ???               ?????
+  ; $06 ASL   nn                Shift Memory Left Direct Page
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; Load D_REG+MEM (8-Bit)
+  addu a2,s6
+  lbu t0,0(a2)
+  sll t0,1               ; D_REG+MEM: << 1 & Store Bits (8-Bit)
+  sb t0,0(a2)
+  andi t1,t0,$80         ; Test Negative MSB / Carry
+  srl t2,t0,8
+  or t1,t2
+  andi s5,~(N_FLAG+C_FLAG) ; P_REG: N/C Flag Reset
+  or s5,t1               ; P_REG: N/C Flag = Result MSB / Carry
+  andi t0,$FF
+  beqz t0,ASLDP6502      ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  ASLDP6502:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,5             ; Cycles += 5 (Delay Slot)
 
   align 256
   ; $07 ???   ???               ?????
@@ -73,9 +91,20 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $0A ???   ???               ?????
+  ; $0A ASL A                   Shift Accumulator Left
+  sll s0,1               ; A_REG: << 1 (8-Bit)
+  andi t0,s0,$80         ; Test Negative MSB / Carry
+  srl t1,s0,8
+  or t0,t1
+  andi s5,~(N_FLAG+C_FLAG) ; P_REG: N/C Flag Reset
+  or s5,t0               ; P_REG: N/C Flag = Result MSB / Carry
+  andi s0,$FF
+  beqz s0,ASLA6502       ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  ASLA6502:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $0B UNUSED OPCODE           No Operation
@@ -93,9 +122,31 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $0E ???   ???               ?????
+  ; $0E ASL   nnnn              Shift Memory Left Absolute
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; Load DB_REG:MEM (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  lbu t0,0(a2)
+  sll t0,1               ; DB_REG:MEM: << 1 & Store Bits (8-Bit)
+  sb t0,0(a2)
+  andi t1,t0,$80         ; Test Negative MSB / Carry
+  srl t2,t0,8
+  or t1,t2
+  andi s5,~(N_FLAG+C_FLAG) ; P_REG: N/C Flag Reset
+  or s5,t1               ; P_REG: N/C Flag = Result MSB / Carry
+  andi t0,$FF
+  beqz t0,ASLABS6502     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  ASLABS6502:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,6             ; Cycles += 6 (Delay Slot)
 
   align 256
   ; $0F ???   ???               ?????
@@ -141,9 +192,28 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $16 ???   ???               ?????
+  ; $16 ASL   nn,X              Shift Memory Left Direct Page Indexed, X
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; Load D_REG+MEM+X_REG (8-Bit)
+  addu a2,s6
+  addu a2,s1
+  lbu t0,0(a2)
+  sll t0,1               ; D_REG+MEM+X_REG: << 1 & Store Bits (8-Bit)
+  sb t0,0(a2)
+  andi t1,t0,$80         ; Test Negative MSB / Carry
+  srl t2,t0,8
+  or t1,t2
+  andi s5,~(N_FLAG+C_FLAG) ; P_REG: N/C Flag Reset
+  or s5,t1               ; P_REG: N/C Flag = Result MSB / Carry
+  andi t0,$FF
+  beqz t0,ASLDPX6502     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  ASLDPX6502:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,6             ; Cycles += 6 (Delay Slot)
 
   align 256
   ; $17 ???   ???               ?????
@@ -183,9 +253,32 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $1E ???   ???               ?????
+  ; $1E ASL   nnnn,X            Shift Memory Left Absolute Indexed, X
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; Load DB_REG:MEM+X_REG (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s1
+  lbu t0,0(a2)
+  sll t0,1               ; DB_REG:MEM+X_REG: << 1 & Store Bits (8-Bit)
+  sb t0,0(a2)
+  andi t1,t0,$80         ; Test Negative MSB / Carry
+  srl t2,t0,8
+  or t1,t2
+  andi s5,~(N_FLAG+C_FLAG) ; P_REG: N/C Flag Reset
+  or s5,t1               ; P_REG: N/C Flag = Result MSB / Carry
+  andi t0,$FF
+  beqz t0,ASLABSX6502    ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  ASLABSX6502:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,7             ; Cycles += 7 (Delay Slot)
 
   align 256
   ; $1F ???   ???               ?????
