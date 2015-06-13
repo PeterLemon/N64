@@ -1163,9 +1163,34 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $66 ???   ???               ?????
+  ; $66 ROR   nn                Rotate Memory Right Direct Page
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; Load D_REG+MEM (16-Bit)
+  addu a2,s6
+  lbu t1,1(a2)
+  sll t1,8
+  lbu t0,0(a2)
+  or t0,t1
+  andi t1,t0,1           ; Test Negative MSB / Carry
+  andi t2,s5,C_FLAG
+  sll t2,7
+  or t1,t2
+  andi s5,~(N_FLAG+C_FLAG) ; P_REG: N/C Flag Reset
+  or s5,t1               ; P_REG: N/C Flag = Result MSB / Carry
+  srl t0,1               ; D_REG+MEM: Rotate Right & Store Bits (16-Bit)
+  sll t2,8
+  or t0,t2
+  sb t0,0(a2)
+  srl t1,t0,8
+  sb t1,1(a2)
+  beqz t0,RORDPM0X0      ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  RORDPM0X0:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,7             ; Cycles += 7 (Delay Slot)
 
   align 256
   ; $67 ???   ???               ?????
@@ -1198,9 +1223,22 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $6A ???   ???               ?????
+  ; $6A ROR A                   Rotate Accumulator Right
+  andi t0,s0,1           ; Test Negative MSB / Carry
+  andi t1,s5,C_FLAG
+  sll t1,7
+  or t0,t1
+  andi s5,~(N_FLAG+C_FLAG) ; P_REG: N/C Flag Reset
+  or s5,t0               ; P_REG: N/C Flag = Result MSB / Carry
+  srl s0,1               ; A_REG: Rotate Right (16-Bit)
+  sll t1,8
+  or s0,t1
+  beqz s0,RORAM0X0       ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  RORAM0X0:
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $6B ???   ???               ?????
@@ -1218,9 +1256,38 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $6E ???   ???               ?????
+  ; $6E ROR   nnnn              Rotate Memory Right Absolute
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; Load DB_REG:MEM (16-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  lbu t1,1(a2)
+  sll t1,8
+  lbu t0,0(a2)
+  or t0,t1
+  andi t1,t0,1           ; Test Negative MSB / Carry
+  andi t2,s5,C_FLAG
+  sll t2,7
+  or t1,t2
+  andi s5,~(N_FLAG+C_FLAG) ; P_REG: N/C Flag Reset
+  or s5,t1               ; P_REG: N/C Flag = Result MSB / Carry
+  srl t0,1               ; DB_REG:MEM: Rotate Right & Store Bits (16-Bit)
+  sll t2,8
+  or t0,t2
+  sb t0,0(a2)
+  srl t1,t0,8
+  sb t1,1(a2)
+  beqz t0,RORABSM0X0     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  RORABSM0X0:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,8             ; Cycles += 8 (Delay Slot)
 
   align 256
   ; $6F ???   ???               ?????
@@ -1274,9 +1341,35 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $76 ???   ???               ?????
+  ; $76 ROR   nn,X              Rotate Memory Right Direct Page Indexed, X
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; Load D_REG+MEM+X_REG (16-Bit)
+  addu a2,s6
+  addu a2,s1
+  lbu t1,1(a2)
+  sll t1,8
+  lbu t0,0(a2)
+  or t0,t1
+  andi t1,t0,1           ; Test Negative MSB / Carry
+  andi t2,s5,C_FLAG
+  sll t2,7
+  or t1,t2
+  andi s5,~(N_FLAG+C_FLAG) ; P_REG: N/C Flag Reset
+  or s5,t1               ; P_REG: N/C Flag = Result MSB / Carry
+  srl t0,1               ; D_REG+MEM+X_REG: Rotate Right & Store Bits (16-Bit)
+  sll t2,8
+  or t0,t2
+  sb t0,0(a2)
+  srl t1,t0,8
+  sb t1,1(a2)
+  beqz t0,RORDPXM0X0     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  RORDPXM0X0:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,8             ; Cycles += 8 (Delay Slot)
 
   align 256
   ; $77 ???   ???               ?????
@@ -1339,9 +1432,39 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $7E ???   ???               ?????
+  ; $7E ROR   nnnn,X            Rotate Memory Right Absolute Indexed, X
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; Load DB_REG:MEM+X_REG (16-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s1
+  lbu t1,1(a2)
+  sll t1,8
+  lbu t0,0(a2)
+  or t0,t1
+  andi t1,t0,1           ; Test Negative MSB / Carry
+  andi t2,s5,C_FLAG
+  sll t2,7
+  or t1,t2
+  andi s5,~(N_FLAG+C_FLAG) ; P_REG: N/C Flag Reset
+  or s5,t1               ; P_REG: N/C Flag = Result MSB / Carry
+  srl t0,1               ; DB_REG:MEM+X_REG: Rotate Right & Store Bits (16-Bit)
+  sll t2,8
+  or t0,t2
+  sb t0,0(a2)
+  srl t1,t0,8
+  sb t1,1(a2)
+  beqz t0,RORABSXM0X0    ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  RORABSXM0X0:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,9             ; Cycles += 9 (Delay Slot)
 
   align 256
   ; $7F ???   ???               ?????
