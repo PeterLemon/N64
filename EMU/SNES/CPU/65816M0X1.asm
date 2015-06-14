@@ -64,9 +64,27 @@
   addiu v0,7             ; Cycles += 7 (Delay Slot)
 
   align 256
-  ; $05 ???   ???               ?????
+  ; $05 ORA   nn                OR Accumulator With Memory Direct Page
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; A_REG: OR With D_REG+MEM (16-Bit)
+  addu a2,s6
+  lbu t1,1(a2)
+  sll t1,8
+  lbu t0,0(a2)
+  or t0,t1
+  or s0,t0
+  andi t0,s0,$8000       ; Test Negative MSB
+  srl t0,8
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,ORADPM0X1      ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  ORADPM0X1:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
   ; $06 ASL   nn                Shift Memory Left Direct Page
@@ -112,9 +130,24 @@
   addiu v0,3             ; Cycles += 3 (Delay Slot)
 
   align 256
-  ; $09 ???   ???               ?????
+  ; $09 ORA   #nnnn             OR Accumulator With Memory Immediate
+  addu a2,a0,s3          ; A_REG: OR With 16-Bit Immediate
+  lbu t1,1(a2)
+  sll t1,8
+  lbu t0,0(a2)
+  or t0,t1
+  or s0,t0
+  andi t0,s0,$8000       ; Test Negative MSB
+  srl t0,8
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,ORAIMMM0X1     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  ORAIMMM0X1:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,3             ; Cycles += 3 (Delay Slot)
 
   align 256
   ; $0A ASL A                   Shift Accumulator Left
@@ -172,9 +205,31 @@
   addiu v0,8             ; Cycles += 8 (Delay Slot)
 
   align 256
-  ; $0D ???   ???               ?????
+  ; $0D ORA   nnnn              OR Accumulator With Memory Absolute
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; A_REG: OR With DB_REG:MEM (16-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  lbu t1,1(a2)
+  sll t1,8
+  lbu t0,0(a2)
+  or t0,t1
+  or s0,t0
+  andi t0,s0,$8000       ; Test Negative MSB
+  srl t0,8
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,ORAABSM0X1     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  ORAABSM0X1:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,5             ; Cycles += 5 (Delay Slot)
 
   align 256
   ; $0E ASL   nnnn              Shift Memory Left Absolute
@@ -267,9 +322,28 @@
   addiu v0,7             ; Cycles += 7 (Delay Slot)
 
   align 256
-  ; $15 ???   ???               ?????
+  ; $15 ORA   nn,X              OR Accumulator With Memory Direct Page Indexed, X
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; A_REG: Set To D_REG+MEM+X_REG (16-Bit)
+  addu a2,s6
+  addu a2,s1
+  lbu t1,1(a2)
+  sll t1,8
+  lbu t0,0(a2)
+  or t0,t1
+  or s0,t0
+  andi t0,s0,$8000       ; Test Negative MSB
+  srl t0,8
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,ORADPXM0X1     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  ORADPXM0X1:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,5             ; Cycles += 5 (Delay Slot)
 
   align 256
   ; $16 ASL   nn,X              Shift Memory Left Direct Page Indexed, X
@@ -313,9 +387,32 @@
   addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
-  ; $19 ???   ???               ?????
+  ; $19 ORA   nnnn,Y            OR Accumulator With Memory Absolute Indexed, Y
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; A_REG: OR With DB_REG:MEM+Y_REG (16-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s2
+  lbu t1,1(a2)
+  sll t1,8
+  lbu t0,0(a2)
+  or t0,t1
+  or s0,t0
+  andi t0,s0,$8000       ; Test Negative MSB
+  srl t0,8
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,ORAABSYM0X1    ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  ORAABSYM0X1:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,5             ; Cycles += 5 (Delay Slot)
 
   align 256
   ; $1A INA                     Increment Accumulator
@@ -367,9 +464,32 @@
   addiu v0,8             ; Cycles += 8 (Delay Slot)
 
   align 256
-  ; $1D ???   ???               ?????
+  ; $1D ORA   nnnn,X            OR Accumulator With Memory Absolute Indexed, X
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; A_REG: OR With DB_REG:MEM+X_REG (16-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s1
+  lbu t1,1(a2)
+  sll t1,8
+  lbu t0,0(a2)
+  or t0,t1
+  or s0,t0
+  andi t0,s0,$8000       ; Test Negative MSB
+  srl t0,8
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,ORAABSXM0X1    ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  ORAABSXM0X1:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,5             ; Cycles += 5 (Delay Slot)
 
   align 256
   ; $1E ASL   nnnn,X            Shift Memory Left Absolute Indexed, X
