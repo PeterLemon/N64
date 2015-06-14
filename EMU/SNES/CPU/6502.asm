@@ -813,9 +813,23 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $45 ???   ???               ?????
+  ; $45 EOR   nn                Exclusive-OR Accumulator With Memory Direct Page
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; A_REG: Exclusive-OR With D_REG+MEM (8-Bit)
+  addu a2,s6
+  lbu t0,0(a2)
+  xor s0,t0
+  andi t0,s0,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,EORDP6502      ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  EORDP6502:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,3             ; Cycles += 3 (Delay Slot)
 
   align 256
   ; $46 LSR   nn                Logical Shift Memory Right Direct Page
@@ -853,9 +867,20 @@
   addiu v0,3             ; Cycles += 3 (Delay Slot)
 
   align 256
-  ; $49 ???   ???               ?????
+  ; $49 EOR   #nn               Exclusive-OR Accumulator With Memory Immediate
+  addu a2,a0,s3          ; A_REG: Exclusive-OR With 8-Bit Immediate
+  lbu t0,0(a2)
+  xor s0,t0
+  andi t0,s0,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,EORIMM6502     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  EORIMM6502:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
   ; $4A LSR A                   Logical Shift Accumulator Right
@@ -886,9 +911,27 @@
   addiu v0,3             ; Cycles += 3 (Delay Slot)
 
   align 256
-  ; $4D ???   ???               ?????
+  ; $4D EOR   nnnn              Exclusive-OR Accumulator With Memory Absolute
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; A_REG: Exclusive-OR With DB_REG:MEM (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  lbu t0,0(a2)
+  xor s0,t0
+  andi t0,s0,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,EORABS6502     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  EORABS6502:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
   ; $4E LSR   nnnn              Logical Shift Memory Right Absolute
@@ -953,9 +996,24 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $55 ???   ???               ?????
+  ; $55 EOR   nn,X              Exclusive-OR Accumulator With Memory Direct Page Indexed, X
+  addu a2,a0,s3          ; Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          ; A_REG: Exclusive-OR With D_REG+MEM+X_REG (8-Bit)
+  addu a2,s6
+  addu a2,s1
+  lbu t0,0(a2)
+  xor s0,t0
+  andi t0,s0,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,EORDPX6502     ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  EORDPX6502:
+  addiu s3,1             ; PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
   ; $56 LSR   nn,X              Logical Shift Memory Right Direct Page Indexed, X
@@ -990,9 +1048,28 @@
   addiu v0,2             ; Cycles += 2 (Delay Slot)
 
   align 256
-  ; $59 ???   ???               ?????
+  ; $59 EOR   nnnn,Y            Exclusive-OR Accumulator With Memory Absolute Indexed, Y
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; A_REG: Exclusive-OR With DB_REG:MEM+Y_REG (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s2
+  lbu t0,0(a2)
+  xor s0,t0
+  andi t0,s0,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,EORABSY6502    ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  EORABSY6502:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
   ; $5A UNUSED OPCODE           No Operation
@@ -1010,9 +1087,28 @@
   addiu v0,1             ; Cycles += 1 (Delay Slot)
 
   align 256
-  ; $5D ???   ???               ?????
+  ; $5D EOR   nnnn,X            Exclusive-OR Accumulator With Memory Absolute Indexed, X
+  addu a2,a0,s3          ; Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          ; A_REG: Exclusive-OR With DB_REG:MEM+X_REG (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s1
+  lbu t0,0(a2)
+  xor s0,t0
+  andi t0,s0,$80         ; Test Negative MSB
+  andi s5,~N_FLAG        ; P_REG: N Flag Reset
+  or s5,t0               ; P_REG: N Flag = Result MSB
+  beqz s0,EORABSX6502    ; IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          ; P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        ; P_REG: Z Flag Reset
+  EORABSX6502:
+  addiu s3,2             ; PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             ; Cycles += 1 (Delay Slot)
+  addiu v0,4             ; Cycles += 4 (Delay Slot)
 
   align 256
   ; $5E LSR   nnnn,X            Logical Shift Memory Right Absolute Indexed, X
