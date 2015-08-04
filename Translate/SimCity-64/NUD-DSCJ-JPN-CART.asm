@@ -295,11 +295,11 @@ TextStyle1($0FD5E18, "Basically repeating\n")
                   db "the basis of\n"
                   db "city building.", $00, $00
 
-// Steps
-TextStyle1($112B658, "Step1:Get larger city!"); db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-                  db " Goal:Enlarge the city\n"
-                  db " Time:", $A1, $A1, $A1, $A1, $A1, $A9, $A1, $A9, "Yr Upto ", $A1, $F5, $A1, $F5, $A1, $F5, $A1, $F5, "\n"
-                  db " Need:Population 2000", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+// Beginner Table
+TextStyle1($112B658, "Step"); db $A3, $B1, ":Get Larger City!", $00, $00, $00, $00, $00, $00, $00, $00, $00
+                  db " Goal:Enlarge The City\n"
+                  db " Time:", $A1, $A9, $A1, $A9, "Yr Upto ", $A1, $F5, $A1, $F5, $A1, $F5, $A1, $F5, "\n"
+                  db " Need:Population ", $A3, $B2, $A3, $B0, $A3, $B0, $A3, $B0, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 
 // Beginner Mode
 TextStyle1($112BF18, "Congratulations.\n")
@@ -470,6 +470,271 @@ TextStyle1($112C898, "Well, there is\n")
                   db "name & the name\n"
                   db "of the city.", $00, $00
 
+// Scenario Text
+TextStyle1($112FD48, "From an era\n")
+                  db "before\n"
+                  db "electricity,\n"
+                  db "here lies\n"
+                  db "Raspberry,\n"
+                  db "a big city\n"
+                  db "crowded with\n"
+                  db "mines.", $00
+
+TextStyle1($112FD9C, "Demand for coal\n")
+                  db "is down from\n"
+                  db "the discovery\n"
+                  db "of oil", $A1, $C4, " Each\n"
+                  db "mine closed,\n"
+                  db "a small district\n"
+                  db "suffering\n"
+                  db "depopulation.", $00, $00
+
+TextStyle1($112FE0C, "You'll work as\n")
+                  db "Mayor, Raspberry\n"
+                  db "needs 10005\n"
+                  db "inhabitants\n"
+                  db "please develop\n"
+                  db "it into a lively\n"
+                  db "town, invest\n"
+                  db "$5000 funds for\n"
+                  db "the future of\n"
+                  db "the city.", $00, $00, $00, $00
+
+TextStyle1($112FE9C, "If Raspberry\n")
+                  db "ends as a small\n"
+                  db "town of\n"
+                  db "depopulation,\n"
+                  db "will be down to\n"
+                  db "you,\n"
+                  db "Mayor ", $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, ". \n"
+                  db "Citizens expect\n"
+                  db "you to succeed\n\n"
+                  db "please do your\n"
+                  db "best.", $00, $00, $00
+
+TextStyle1($1130060, "The 10 year time\n")
+                  db "limit will go\n"
+                  db "quickly. You can\n"
+                  db "slow down the\n"
+                  db "time, to aid in\n"
+                  db "the building of\n"
+                  db "the town.", $00
+
+TextStyle1($11300C8, "Now,\n")
+                  db "scenario 1 is\n"
+                  db "starting!", $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($1130188, "May 1970...Share\n")
+                  db "prices plunge,\n"
+                  db "the world is hit\n"
+                  db "by a great\n"
+                  db "depression.", $00, $00, $00, $00, $00
+
+TextStyle1($11301D4, "Effects brought\n")
+                  db "by the\n"
+                  db "depression are\n"
+                  db "enormous, in\n"
+                  db "this industrial\n"
+                  db "city severe\n"
+                  db "recession has\n"
+                  db "followed.", $00, $00
+
+TextStyle1($113023C, "Your work this\n")
+                  db "time Mayor, will\n"
+                  db "be to rebuild\n"
+                  db "the economy &\n"
+                  db "increase\n"
+                  db "the industrial\n"
+                  db "district by\n"
+                  db "20000 people.", $00, $00, $00
+
+TextStyle1($11302AC, "Industrial\n")
+                  db "district\n"
+                  db "population can\n"
+                  db "be viewed using\n"
+                  db "the city graph\n"
+                  db "urban details\n"
+                  db "icon. You can\n"
+                  db "beat the great\n"
+                  db "depression!\n"
+                  db "Good luck.", $00, $00, $00, $00, $00
+
+TextStyle1($113043C, "Industry will\n")
+                  db "not increase\n"
+                  db "unless you make\n"
+                  db "a well-balanced\n"
+                  db "city. Specify\n"
+                  db "Residential &\n"
+                  db "Commercial\n"
+                  db "districts", $00
+
+TextStyle1($11304A8, "Now,\n")
+                  db "scenario 2 is\n"
+                  db "starting!", $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($1130568, "August 1968, the\n")
+                  db "ancient capitol\n"
+                  db "Sanrufuna was\n"
+                  db "attacked by a\n"
+                  db "large-scale\n"
+                  db "urban fire.", $00, $00, $00, $00
+
+TextStyle1($11305C0, "Sanrufuna is a\n")
+                  db "famous city with\n"
+                  db "many historic\n"
+                  db "buildings.\n"
+                  db "Precious\n"
+                  db "cultural\n"
+                  db "heritage will be\n"
+                  db "lost.", $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($1130628, "Your work this\n")
+                  db "time Mayor, is\n"
+                  db "to quickly put\n"
+                  db "out fires, & to\n"
+                  db "revive the city\n"
+                  db "upto 60005\n"
+                  db "people.", $00
+
+TextStyle1($1130688, "No time to lose.\n")
+                  db "In order to\n"
+                  db "protect the\n"
+                  db "citizens &\n"
+                  db "heritage please\n"
+                  db "start fire\n"
+                  db "fighting ASAP.", $00, $00, $00
+
+TextStyle1($11307D8, "Using R button +\n")
+                  db "C ", $A2, $C0, " it's easy to\n"
+                  db "check the fire,\n"
+                  db "it displays fire\n"
+                  db "force range on\n"
+                  db "the map.", $00
+
+TextStyle1($1130834, "Now,\n")
+                  db "scenario 3 is\n"
+                  db "starting!", $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($11308E8, "Recently, due to\n")
+                  db "overpopulation,\n"
+                  db "housing\n"
+                  db "shortages &\n"
+                  db "overcrowding is\n"
+                  db "a problem.", $00
+
+TextStyle1($1130938, "The governments\n")
+                  db "response to this\n"
+                  db "problem, is to\n"
+                  db "landfill the\n"
+                  db "Lipton Bay, &\n"
+                  db "develop a modern\n"
+                  db "city.", $00, $00, $00
+
+TextStyle1($113099C, "Your work this\n")
+                  db "time, is to\n"
+                  db "landfill Lipton\n"
+                  db "Bay, Lavender is\n"
+                  db "the new modern\n"
+                  db "city with 30000\n"
+                  db "people equipped\n"
+                  db "with air &\n"
+                  db "seaports.", $00
+
+TextStyle1($1130A1C, "National\n")
+                  db "prestige is\n"
+                  db "hanging on this\n"
+                  db "plan!\n"
+                  db "Good luck.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($1130B74, "Landfill can be\n")
+                  db "done using land\n"
+                  db "flattening /\n"
+                  db "terrain icon.\n"
+                  db "Flattening from\n"
+                  db "the direction of\n"
+                  db "shallow land is\n"
+                  db "free, it's good\n"
+                  db "to reclaim from\n"
+                  db "coastline.", $00, $00
+
+TextStyle1($1130C0C, "Now,\n")
+                  db "scenario 4 is\n"
+                  db "starting!", $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($1130CC8, "Mayor "); db $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $F6, $A1, $C4, "\n"
+                  db "Here's\n"
+                  db "Eucalyptus Hill\n"
+                  db "due to\n"
+                  db "corruption of\n"
+                  db "the former\n"
+                  db "Mayor, citizens\n"
+                  db "have a strong\n"
+                  db "distrust.", $00
+
+TextStyle1($1130D40, "Your work this\n")
+                  db "time Mayor, get\n"
+                  db "the welfare\n"
+                  db "level upto 180\n"
+                  db "in order to\n"
+                  db "regain the\n"
+                  db "citizens trust,\n"
+                  db "& ensure funding\n"
+                  db "of $7000 for\n"
+                  db "compensation.", $00, $00, $00, $00
+
+TextStyle1($1130DD0, "Continue making\n")
+                  db "a lively city,\n"
+                  db "transmit your\n"
+                  db "sincerity to the\n"
+                  db "citizens please\n"
+                  db "do your best to\n"
+                  db "regain trust.", $00
+
+TextStyle1($1130F14, "Welfare policy\n")
+                  db "will be\n"
+                  db "successful, if\n"
+                  db "you enhance\n"
+                  db "medical care &\n"
+                  db "education. It\n"
+                  db "takes time to\n"
+                  db "take root.", $00
+
+TextStyle1($1130F7C, "Now,\n")
+                  db "scenario 5 is\n"
+                  db "starting!", $00, $00, $00, $00, $00, $00, $00, $00
+
+// Scenario Table
+TextStyle1($1133D58, "Scene"); db $A3, $B1, ":Revitalize City!", $00, $00, $00, $00, $00, $00, $00, $00
+                  db " Time:", $A1, $A9, $A1, $A9, "Yr Upto ", $A3, $B1, $A3, $B9, $A3, $B2, $A3, $B0, "/", $A3, $B6, "\n"
+                  db " Need:Population ", $A3, $B1, $A3, $B0, $A3, $B0,	$A3, $B0, $A3, $B5, "\n"
+                  db "  Secure ", $A1, $F0, $A3, $B5, $A3, $B0, $A3, $B0, $A3, $B0, " Funding\n\n"
+                  db "Power:", $A1, $F3, $A1, $F3, "Debt:", $A1, $F0, $A1, $DE, $A1, $DE, $A1, $DE, $A1, $DE, $A1, $DE, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($1133E18, "Scene"); db $A3, $B2, ":Great Depression", $00, $00, $00, $00, $00, $00, $00, $00
+                  db " Time:", $A1, $A9, $A1, $A9, "Yr Upto ", $A3, $B1, $A3, $B9, $A3, $B8, $A3, $B5, "/", $A3, $B8, "\n"
+                  db " Need:Population ", $A3, $B6, $A3, $B0, $A3, $B0, $A3, $B0, $A3, $B0, "\n"
+                  db "      Industrial ", $A3, $B2, $A3, $B0, $A3, $B0, $A3, $B0, $A3, $B0, "\n"
+                  db "      (Currently ", $A1, $A9, $A1, $A9, $A1, $A9, $A1, $A9, $A1, $A9, ")\n"
+                  db "Power:", $A1, $F3, $A1, $F3, "Debt:", $A1, $F0, $A1, $DE, $A1, $DE, $A1, $DE, $A1, $DE, $A1, $DE, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($1133EDC, "Scene"); db $A3, $B3, ":Sanrufuna Fire", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+                  db " Time:", $A1, $A9, $A1, $A9, "Yr Upto ", $A3, $B1, $A3, $B9, $A3, $B7, $A3, $B8, "/", $A3, $B8, "\n"
+                  db " Need:Population ", $A3, $B6, $A3, $B0, $A3, $B0, $A3, $B0, $A3, $B5, "\n\n\n"
+                  db "Power:", $A1, $F3, $A1, $F3, "Debt:", $A1, $F0, $A1, $DE, $A1, $DE, $A1, $DE, $A1, $DE, $A1, $DE, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($1133F74, "Scene"); db $A3, $B4, ":Bay City", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+                  db " Time:", $A1, $A9, $A1, $A9, "Yr Upto ", $A3, $B2, $A3, $B0, $A3, $B1, $A3, $B1, "/", $A3, $B6, "\n"
+                  db " Need:Population ", $A3, $B3, $A3, $B0, $A3, $B0, $A3, $B0, $A3, $B0, "\n"
+                  db "      Specify Seaport ", $A1, $F7, "\n"
+                  db "      Specify Airport ", $A1, $F4, "\n"
+                  db "Power:", $A1, $F3, $A1, $F3, "Debt:", $A1, $F0, $A1, $DE, $A1, $DE, $A1, $DE, $A1, $DE, $A1, $DE, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($1134034, "Scene"); db $A3, $B5, ":Trust Again", $00, $00, $00, $00, $00, $00, $00, $00, $00
+                  db " Time:", $A1, $A9, $A1, $A9, "Yr Upto ", $A3, $B1, $A3, $B9, $A3, $B9, $A3, $B5, "/", $A3, $B2, "\n"
+                  db " Need:Welfare", $A3, $B1, $A3, $B8, $A3, $B0, " On:", $A1, $A9, $A1, $A9, $A1, $A9, "\n"
+                  db "  Secure ", $A1, $F0, $A3, $B7, $A3, $B0, $A3, $B0, $A3, $B0, " Funding\n\n"
+                  db "Power:", $A1, $F3, $A1, $F3, "Debt:", $A1, $F0, $A1, $DE, $A1, $DE, $A1, $DE, $A1, $DE, $A1, $DE, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
 // Scenario Mode
 TextStyle1($11354B8, "Congratulations.\n")
                   db "I am serving as\n"
@@ -523,9 +788,15 @@ TextStyle1($1135720, "Please fill in\n")
                   db "your name.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 
 // Text Hack
-origin $1154D1C; db $A1, $A1, $A1, $A1, $A1, $A9, $A1, $A9, $A1, $A9, "Yr", $00, $00, $00, $00
-origin $1154D2C; db $A1, $A1, $A1, $A1, $A1, $A9, $A1, $A9, "Yr", $00, $00
+origin $1154D1C; db "ime:", $A1, $A9, $A1, $A9, $A1, $A9, "Yr", $00, $00, $00, $00
+origin $1154D2C; db "ime:", $A1, $A9, $A1, $A9, "Yr", $00, $00
 origin $1154D4C; db $A1, $F5, $A1, $F5, $A1, $F5, $A1, $F5, $00, $00, $00, $00
+
+origin $1172704; db "ime:", $A1, $A9, $A1, $A9, $A1, $A9, "Yr", $00, $00, $00, $00
+origin $1172714; db "ime:", $A1, $A9, $A1, $A9, "Yr", $00, $00
+origin $1172754; db "ently ", $A1, $A9, $A1, $A9, $A1, $A9, $A1, $A9, $A1, $A9, ")", $00, $00, $00, $00, $00, $00, $00
+origin $1172774; db "O.K "
+origin $117277C; db "None"
 
 // Name Select Font Swap
 origin $11B52FC; insert "FontSwapCHR.bin" // Include Swapped Font Character Data (3 * 124 Bytes)

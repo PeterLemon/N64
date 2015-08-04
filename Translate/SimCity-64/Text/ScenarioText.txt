@@ -1,0 +1,795 @@
+﻿まだ電気が普及していない時代、
+From an era before the use of electricity,
+$11A2520 (Line 1)
+A4 DE	A4 C0	C5 C5	B5 A4	A4 AC	C9 E1	B5 DA	A4 B7	A4 C6	A4 A4	A4 CA	A4 A4	BB FE	C2 E5	A1 A2	0A	| Original Japanese Hex
+ #  ま	 #  だ	 #  電	 #  気	 #  が	 #  普	 #  及	 #  し	 #  て	 #  い	 #  な	 #  い	 #  時	 #  代	 #  、	LF	| Original Japanese Text
+ F  r	 o  m	    a	 n   	 e  r	 a LF	 b  e	 f  o	 r  e	LF  e	 l  e	 c  t	 r  i	 c  i	 t  y	 ,	| New English Text
+46 72	6F 6D	20 61	6E 20	65 72	61 0A	62 65	66 6F	72 65	0A 65	6C 65	63 74	72 69	63 69	74 79	2C	| New English Hex
+ここフランボワーズは、
+here lies Raspberry,
+$11A253F (Line 2)
+A4 B3	A4 B3	A5 D5	A5 E9	A5 F3	A5 DC	A5 EF	A1 BC	A5 BA	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  こ	 #  こ	 #  フ	 #  ラ	 #  ン	 #  ボ	 #  ワ	 #  ー	 #  ズ	 #  は	 #  、	LF	| Original Japanese Text
+LF  h	 e  r	 e   	 l  i	 e  s	LF  R	 a  s	 p  b	 e  r	 r  y	 , LF	 a	| New English Text
+0A 68	65 72	65 20	6C 69	65 73	0A 52	61 73	70 62	65 72	72 79	2C 0A	61	| New English Hex
+炭坑で賑わう大都市でした。
+a big city that is crowded with coal mines.
+$11A2556 (Line 3)
+C3 BA	B9 A3	A4 C7	C6 F8	A4 EF	A4 A6	C2 E7	C5 D4	BB D4	A4 C7	A4 B7	A4 BF	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  炭	 #  坑	 #  で	 #  賑	 #  わ	 #  う	 #  大	 #  都	 #  市	 #  で	 #  し	 #  た	 #  。	 #  #	 #  #	| Original Japanese Text
+    b	 i  g	    c	 i  t	 y LF	 c  r	 o  w	 d  e	 d   	 w  i	 t  h	LF  m	 i  n	 e  s	 .  #	| New English Text
+20 62	69 67	20 63	69 74	79 0A	63 72	6F 77	64 65	64 20	77 69	74 68	0A 6D	69 6E	65 73	2E 00	| New English Hex
+
+しかし、石油の発見により
+However, the demand for coal is depleted
+$11A2574 (Line 1)
+A4 B7	A4 AB	A4 B7	A1 A2	C0 D0	CC FD	A4 CE	C8 AF	B8 AB	A4 CB	A4 E8	A4 EA	0A	| Original Japanese Hex
+ #  し	 #  か	 #  し	 #  、	 #  石	 #  油	 #  の	 #  発	 #  見	 #  に	 #  よ	 #  り	LF	| Original Japanese Text
+ D  e	 m  a	 n  d	    f	 o  r	    c	 o  a	 l LF	 i  s	    d	 o  w	 n   	 f	| New English Text
+44 65	6D 61	6E 64	20 66	6F 72	20 63	6F 61	6C 0A	69 73	20 64	6F 77	6E 20	66	| New English Hex
+石炭の需要は激減……。
+by the discovery of oil…….
+$11A258D (Line 2)
+C0 D0	C3 BA	A4 CE	BC FB	CD D7	A4 CF	B7 E3	B8 BA	A1 C4	A1 C4	A1 A3	0A	| Original Japanese Hex
+ #  石	 #  炭	 #  の	 #  需	 #  要	 #  は	 #  激	 #  減	 #  …	 #  …	 #  。	LF	| Original Japanese Text
+ r  o	 m LF	 t  h	 e   	 d  i	 s  c	 o  v	 e  r	 y LF	 o  f	    o	 i	| New English Text
+72 6F	6D 0A	74 68	65 20	64 69	73 63	6F 76	65 72	79 0A	6F 66	20 6F	69	| New English Hex
+炭坑は次々と閉鎖され、
+One Mine after another closed,
+$11A25A4 (Line 3)
+C3 BA	B9 A3	A4 CF	BC A1	A1 B9	A4 C8	CA C4	BA BF	A4 B5	A4 EC	A1 A2	0A	| Original Japanese Hex
+ #  炭	 #  坑	 #  は	 #  次	 #  々	 #  と	 #  閉	 #  鎖	 #  さ	 #  れ	 #  、	LF	| Original Japanese Text
+ l  #	 …   	 E  a	 c  h	LF  m	 i  n	 e   	 c  l	 o  s	 e  d	 , LF	 a	| New English Text
+6C A1	C4 20	45 61	63 68	0A 6D	69 6E	65 20	63 6C	6F 73	65 64	2C 0A	61	| New English Hex
+現在では過疎化に悩む
+now a small rural district
+$11A25BB (Line 4)
+B8 BD	BA DF	A4 C7	A4 CF	B2 E1	C1 C2	B2 BD	A4 CB	C7 BA	A4 E0	0A	| Original Japanese Hex
+ #  現	 #  在	 #  で	 #  は	 #  過	 #  疎	 #  化	 #  に	 #  悩	 #  む	LF	| Original Japanese Text
+    s	 m  a	 l  l	    d	 i  s	 t  r	 i  c	 t LF	 s  u	 f  f	 e	| New English Text
+20 73	6D 61	6C 6C	20 64	69 73	74 72	69 63	74 0A	73 75	66 66	65	| New English Hex
+小さな田舎街です。
+suffering from depopulation.
+$11A25D0 (Line 5)
+BE AE	A4 B5	A4 CA	C5 C4	BC CB	B3 B9	A4 C7	A4 B9	A1 A3	00 00	| Original Japanese Hex
+ #  小	 #  さ	 #  な	 #  田	 #  舎	 #  街	 #  で	 #  す	 #  。	 #  #	| Original Japanese Text
+ r  i	 n  g	LF  d	 e  p	 o  p	 u  l	 a  t	 i  o	 n  .	 #  #	| New English Text
+72 69	6E 67	0A 64	65 70	6F 70	75 6C	61 74	69 6F	6E 2E	00 00	| New English Hex
+
+この度の市長の仕事は、
+You'll work as Mayor,
+$11A25E4 (Line 1)
+A4 B3	A4 CE	C5 D9	A4 CE	BB D4	C4 B9	A4 CE	BB C5	BB F6	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  こ	 #  の	 #  度	 #  の	 #  市	 #  長	 #  の	 #  仕	 #  事	 #  は	 #  、	LF	| Original Japanese Text
+ Y  o	 u  '	 l  l	    w	 o  r	 k   	 a  s	LF  M	 a  y	 o  r	 ,  	 R	| New English Text
+59 6F	75 27	6C 6C	20 77	6F 72	6B 20	61 73	0A 4D	61 79	6F 72	2C 20	52	| New English Hex
+フランボワーズを人口１万５千人の
+Raspberry needs 10005 inhabitants
+$11A25FB (Line 2)
+A5 D5	A5 E9	A5 F3	A5 DC	A5 EF	A1 BC	A5 BA	A4 F2	BF CD	B8 FD	A3 B1	CB FC	A3 B5	C0 E9	BF CD	A4 CE	0A	| Original Japanese Hex
+ #  フ	 #  ラ	 #  ン	 #  ボ	 #  ワ	 #  ー	 #  ズ	 #  を	 #  人	 #  口	 #  １	 #  万	 #  ５	 #  千	 #  人	 #  の	LF	| Original Japanese Text
+ a  s	 p  b	 e  r	 r  y	LF  n	 e  e	 d  s	    1	 0  0	 0  5	LF  i	 n  h	 a  b	 i  t	 a  n	 t  s	LF	| New English Text
+61 73	70 62	65 72	72 79	0A 6E	65 65	64 73	20 31	30 30	30 35	0A 69	6E 68	61 62	69 74	61 6E	74 73	0A	| New English Hex
+活気ある街に発展させることと、
+please develop it into a lively town,
+$11A261C (Line 3)
+B3 E8	B5 A4	A4 A2	A4 EB	B3 B9	A4 CB	C8 AF	C5 B8	A4 B5	A4 BB	A4 EB	A4 B3	A4 C8	A4 C8	A1 A2	0A	| Original Japanese Hex
+ #  活	 #  気	 #  あ	 #  る	 #  街	 #  に	 #  発	 #  展	 #  さ	 #  せ	 #  る	 #  こ	 #  と	 #  と	 #  、	LF	| Original Japanese Text
+ p  l	 e  a	 s  e	    d	 e  v	 e  l	 o  p	LF  i	 t   	 i  n	 t  o	    a	    l	 i  v	 e  l	 y	| New English Text
+70 6C	65 61	73 65	20 64	65 76	65 6C	6F 70	0A 69	74 20	69 6E	74 6F	20 61	20 6C	69 76	65 6C	79	| New English Hex
+街の将来のために＄５０００の
+invest $5000 funds for the
+$11A263B (Line 4)
+B3 B9	A4 CE	BE AD	CD E8	A4 CE	A4 BF	A4 E1	A4 CB	A1 F0	A3 B5	A3 B0	A3 B0	A3 B0	A4 CE	0A	| Original Japanese Hex
+ #  街	 #  の	 #  将	 #  来	 #  の	 #  た	 #  め	 #  に	 #  ＄	 #  ５	 #  ０	 #  ０	 #  ０	 #  の	LF	| Original Japanese Text
+LF  t	 o  w	 n  ,	    i	 n  v	 e  s	 t LF	 $  5	 0  0	 0   	 f  u	 n  d	 s   	 f  o	 r	| New English Text
+0A 74	6F 77	6E 2C	20 69	6E 76	65 73	74 0A	24 35	30 30	30 20	66 75	6E 64	73 20	66 6F	72	| New English Hex
+資金を確保することです。
+future of the city.
+$11A2658 (Line 5)
+BB F1	B6 E2	A4 F2	B3 CE	CA DD	A4 B9	A4 EB	A4 B3	A4 C8	A4 C7	A4 B9	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  資	 #  金	 #  を	 #  確	 #  保	 #  す	 #  る	 #  こ	 #  と	 #  で	 #  す	 #  。	 #  #	 #  #	| Original Japanese Text
+LF  t	 h  e	    f	 u  t	 u  r	 e   	 o  f	LF  t	 h  e	    c	 i  t	 y  .	 #  #	 #  #	| New English Text
+0A 74	68 65	20 66	75 74	75 72	65 20	6F 66	0A 74	68 65	20 63	69 74	79 2E	00 00	00 00	| New English Hex
+
+フランボワーズが過疎の小さな街で
+If Raspberry ends as a small town of
+$11A2674 (Line 1)
+A5 D5	A5 E9	A5 F3	A5 DC	A5 EF	A1 BC	A5 BA	A4 AC	B2 E1	C1 C2	A4 CE	BE AE	A4 B5	A4 CA	B3 B9	A4 C7	0A	| Original Japanese Hex
+ #  フ	 #  ラ	 #  ン	 #  ボ	 #  ワ	 #  ー	 #  ズ	 #  が	 #  過	 #  疎	 #  の	 #  小	 #  さ	 #  な	 #  街	 #  で	LF	| Original Japanese Text
+ I  f	    R	 a  s	 p  b	 e  r	 r  y	LF  e	 n  d	 s   	 a  s	    a	    s	 m  a	 l  l	LF  t	 o  w	 n	| New English Text
+49 66	20 52	61 73	70 62	65 72	72 79	0A 65	6E 64	73 20	61 73	20 61	20 73	6D 61	6C 6C	0A 74	6F 77	6E	| New English Hex
+終わるか、再び繁栄の道を歩むかは
+depopulation, or again follow the path of prosperity
+$11A2695 (Line 2)
+BD AA	A4 EF	A4 EB	A4 AB	A1 A2	BA C6	A4 D3	C8 CB	B1 C9	A4 CE	C6 BB	A4 F2	CA E2	A4 E0	A4 AB	A4 CF	0A	| Original Japanese Hex
+ #  終	 #  わ	 #  る	 #  か	 #  、	 #  再	 #  び	 #  繁	 #  栄	 #  の	 #  道	 #  を	 #  歩	 #  む	 #  か	 #  は	LF	| Original Japanese Text
+    o	 f LF	 d  e	 p  o	 p  u	 l  a	 t  i	 o  n	 , LF	 w  i	 l  l	    b	 e   	 d  o	 w  n	    t	 o	| New English Text
+20 6F	66 0A	64 65	70 6F	70 75	6C 61	74 69	6F 6E	2C 0A	77 69	6C 6C	20 62	65 20	64 6F	77 6E	20 74	6F	| New English Hex
+＊＊＊＊＊＊＊＊市長の腕次第。
+will be down to you Mayor ********.
+$11A26B6 (Line 3)
+A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	BB D4	C4 B9	A4 CE	CF D3	BC A1	C2 E8	A1 A3	0A	| Original Japanese Hex
+ #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  市	 #  長	 #  の	 #  腕	 #  次	 #  第	 #  。	LF	| Original Japanese Text
+LF  y	 o  u	 , LF	 M  a	 y  o	 r       #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 .   	LF	| New English Text
+0A 79	6F 75	2C 0A	4D 61	79 6F	72 20	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	2E 20	0A	| New English Hex
+市民は市長の活躍を期待しています
+Citizens expect the success of the Mayor
+$11A26D5 (Line 4)
+BB D4	CC B1	A4 CF	BB D4	C4 B9	A4 CE	B3 E8	CC F6	A4 F2	B4 FC	C2 D4	A4 B7	A4 C6	A4 A4	A4 DE	A4 B9	0A	| Original Japanese Hex
+ #  市	 #  民	 #  は	 #  市	 #  長	 #  の	 #  活	 #  躍	 #  を	 #  期	 #  待	 #  し	 #  て	 #  い	 #  ま	 #  す	LF	| Original Japanese Text
+ C  i	 t  i	 z  e	 n  s	    e	 x  p	 e  c	 t LF	 y  o	 u   	 t  o	    s	 u  c	 c  e	 e  d	LF LF    p	| New English Text
+43 69	74 69	7A 65	6E 73	20 65	78 70	65 63	74 0A	79 6F	75 20	74 6F	20 73	75 63	63 65	65 64	0A 0A	70	| New English Hex
+頑張ってください。
+please do your best.
+$11A26F6 (Line 5)
+B4 E8	C4 A5	A4 C3	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  頑	 #  張	 #  っ	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #  #	 #  #	| Original Japanese Text
+ l  e	 a  s	 e   	 d  o	    y	 o  u	 r LF	 b  e	 s  t	 .  #	 #  #	| New English Text
+6C 65	61 73	65 20	64 6F	20 79	6F 75	72 0A	62 65	73 74	2E 00	00 00	| New English Hex
+
+
+制限時間１０年はあっという間に
+The 10 year time limit
+$11A2838 (Line 1)
+C0 A9	B8 C2	BB FE	B4 D6	A3 B1	A3 B0	C7 AF	A4 CF	A4 A2	A4 C3	A4 C8	A4 A4	A4 A6	B4 D6	A4 CB	0A	| Original Japanese Hex
+ #  制	 #  限	 #  時	 #  間	 #  １	 #  ０	 #  年	 #  は	 #  あ	 #  っ	 #  と	 #  い	 #  う	 #  間	 #  に	LF	| Original Japanese Text
+ T  h	 e   	 1  0	    y	 e  a	 r   	 t  i	 m  e	LF  l	 i  m	 i  t	    w	 i  l	 l   	 g  o	LF	| New English Text
+54 68	65 20	31 30	20 79	65 61	72 20	74 69	6D 65	0A 6C	69 6D	69 74	20 77	69 6C	6C 20	67 6F	0A	| New English Hex
+すぎてしまいます。
+will go quickly.
+$11A2857 (Line 2)
+A4 B9	A4 AE	A4 C6	A4 B7	A4 DE	A4 A4	A4 DE	A4 B9	A1 A3	0A	| Original Japanese Hex
+ #  す	 #  ぎ	 #  て	 #  し	 #  ま	 #  い	 #  ま	 #  す	 #  。	LF	| Original Japanese Text
+ q  u	 i  c	 k  l	 y  .	    Y	 o  u	    c	 a  n	LF  s	 l	| New English Text
+71 75	69 63	6B 6C	79 2E	20 59	6F 75	20 63	61 6E	0A 73	6C	| New English Hex
+時間を停止させてから、
+You can slow down the time,
+$11A286A (Line 3)
+BB FE	B4 D6	A4 F2	C4 E4	BB DF	A4 B5	A4 BB	A4 C6	A4 AB	A4 E9	A1 A2	0A	| Original Japanese Hex
+ #  時	 #  間	 #  を	 #  停	 #  止	 #  さ	 #  せ	 #  て	 #  か	 #  ら	 #  、	LF	| Original Japanese Text
+ o  w	    d	 o  w	 n   	 t  h	 e LF	 t  i	 m  e	 ,   	 t  o	    a	 i	| New English Text
+6F 77	20 64	6F 77	6E 20	74 68	65 0A	74 69	6D 65	2C 20	74 6F	20 61	69	| New English Hex
+街作りをした方がよいですぞ。
+to aid in the building of the town.
+$11A2881 (Line 4)
+B3 B9	BA EE	A4 EA	A4 F2	A4 B7	A4 BF	CA FD	A4 AC	A4 E8	A4 A4	A4 C7	A4 B9	A4 BE	A1 A3	00 00	00	| Original Japanese Hex
+ #  街	 #  作	 #  り	 #  を	 #  し	 #  た	 #  方	 #  が	 #  よ	 #  い	 #  で	 #  す	 #  ぞ	 #  。	 #  #	 #	| Original Japanese Text
+ d   	 i  n	LF  t	 h  e	    b	 u  i	 l  d	 i  n	 g   	 o  f	LF  t	 h  e	    t	 o  w	 n  .	 #	| New English Text
+64 20	69 6E	0A 74	68 65	20 62	75 69	6C 64	69 6E	67 20	6F 66	0A 74	68 65	20 74	6F 77	6E 2E	00	| New English Hex
+
+それでは、
+Now,
+$11A28A0 (Line 1)
+A4 BD	A4 EC	A4 C7	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  そ	 #  れ	 #  で	 #  は	 #  、	LF	| Original Japanese Text
+ N  o	 w  ,	LF  s	 c  e	 n  a	 r	| New English Text
+4E 6F	77 2C	0A 73	63 65	6E 61	72	| New English Hex
+シナリオ１スタートです！
+scenario 1 is starting!
+$11A28AB (Line 2)
+A5 B7	A5 CA	A5 EA	A5 AA	A3 B1	A5 B9	A5 BF	A1 BC	A5 C8	A4 C7	A4 B9	A1 AA	00	| Original Japanese Hex
+ #  シ	 #  ナ	 #  リ	 #  オ	 #  １	 #  ス	 #  タ	 #  ー	 #  ト	 #  で	 #  す	 #  ！	 #	| Original Japanese Text
+ i  o	    1	    i	 s LF	 s  t	 a  r	 t  i	 n  g	 !  #	 #  #	 #  #	 #  #	 #	| New English Text
+69 6F	20 31	20 69	73 0A	73 74	61 72	74 69	6E 67	21 00	00 00	00 00	00 00	00	| New English Hex
+
+１９７０年５月……。
+May 1970...
+$11A2960 (Line 1)
+A3 B1	A3 B9	A3 B7	A3 B0	C7 AF	A3 B5	B7 EE	A1 C4	A1 C4	A1 A3	0A	| Original Japanese Hex
+ #  １	 #  ９	 #  ７	 #  ０	 #  年	 #  ５	 #  月	 #  …	 #  …	 #  。	LF	| Original Japanese Text
+ M  a	 y   	 1  9	 7  0	 .  .	 .  S	 h  a	 r  e	LF  p	 r  i	 c	| New English Text
+4D 61	79 20	31 39	37 30	2E 2E	2E 53	68 61	72 65	0A 70	72 69	63	| New English Hex
+急激に株価が暴落し、
+Share prices rapidly plunged,
+$11A2975 (Line 2)
+B5 DE	B7 E3	A4 CB	B3 F4	B2 C1	A4 AC	CB BD	CD EE	A4 B7	A1 A2	0A	| Original Japanese Hex
+ #  急	 #  激	 #  に	 #  株	 #  価	 #  が	 #  暴	 #  落	 #  し	 #  、	LF	| Original Japanese Text
+ e  s	    p	 l  u	 n  g	 e  ,	LF  t	 h  e	    w	 o  r	 l  d	  	| New English Text
+65 73	20 70	6C 75	6E 67	65 2C	0A 74	68 65	20 77	6F 72	6C 64	20	| New English Hex
+世界は大恐慌に見舞われました。
+the world has been hit by a great depression.
+$11A298A (Line 3)
+C0 A4	B3 A6	A4 CF	C2 E7	B6 B2	B9 B2	A4 CB	B8 AB	C9 F1	A4 EF	A4 EC	A4 DE	A4 B7	A4 BF	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  世	 #  界	 #  は	 #  大	 #  恐	 #  慌	 #  に	 #  見	 #  舞	 #  わ	 #  れ	 #  ま	 #  し	 #  た	 #  。	 #  #	 #  #	| Original Japanese Text
+ i  s	    h	 i  t	LF  b	 y   	 a   	 g  r	 e  a	 t LF	 d  e	 p  r	 e  s	 s  i	 o  n	 .  #	 #  #	 #  #	| New English Text
+69 73	20 68	69 74	0A 62	79 20	61 20	67 72	65 61	74 0A	64 65	70 72	65 73	73 69	6F 6E	2E 00	00 00	00 00	| New English Hex
+
+大恐慌のもたらした影響は甚大で、
+Effects brought by the great depression are enormous,
+$11A29AC (Line 1)
+C2 E7	B6 B2	B9 B2	A4 CE	A4 E2	A4 BF	A4 E9	A4 B7	A4 BF	B1 C6	B6 C1	A4 CF	BF D3	C2 E7	A4 C7	A1 A2	0A	| Original Japanese Hex
+ #  大	 #  恐	 #  慌	 #  の	 #  も	 #  た	 #  ら	 #  し	 #  た	 #  影	 #  響	 #  は	 #  甚	 #  大	 #  で	 #  、	LF	| Original Japanese Text
+ E  f	 f  e	 c  t	 s   	 b  r	 o  u	 g  h	 t LF	 b  y	    t	 h  e	LF  d	 e  p	 r  e	 s  s	 i  o	 n	| New English Text
+45 66	66 65	63 74	73 20	62 72	6F 75	67 68	74 0A	62 79	20 74	68 65	0A 64	65 70	72 65	73 73	69 6F	6E	| New English Hex
+ここ工業都市アッサムシティーでも
+Here in the industrial Assam City
+$11A29CD (Line 2)
+A4 B3	A4 B3	B9 A9	B6 C8	C5 D4	BB D4	A5 A2	A5 C3	A5 B5	A5 E0	A5 B7	A5 C6	A5 A3	A1 BC	A4 C7	A4 E2	0A	| Original Japanese Hex
+ #  こ	 #  こ	 #  工	 #  業	 #  都	 #  市	 #  ア	 #  ッ	 #  サ	 #  ム	 #  シ	 #  テ	 #  ィ	 #  ー	 #  で	 #  も	LF	| Original Japanese Text
+    a	 r  e	LF  e	 n  o	 r  m	 o  u	 s  ,	    i	 n LF	 t  h	 i  s	    i	 n  d	 u  s	 t  r	 i  a	 l	| New English Text
+20 61	72 65	0A 65	6E 6F	72 6D	6F 75	73 2C	20 69	6E 0A	74 68	69 73	20 69	6E 64	75 73	74 72	69 61	6C	| New English Hex
+酷い不景気が
+severe recession has
+$11A29EE (Line 3)
+B9 F3	A4 A4	C9 D4	B7 CA	B5 A4	A4 AC	0A	| Original Japanese Hex
+ #  酷	 #  い	 #  不	 #  景	 #  気	 #  が	LF	| Original Japanese Text
+LF  c	 i  t	 y   	 s  e	 v  e	 r  e	LF	| New English Text
+0A 63	69 74	79 20	73 65	76 65	72 65	0A	| New English Hex
+何年も続いております。
+followed for years.
+$11A29FB (Line 4)
+B2 BF	C7 AF	A4 E2	C2 B3	A4 A4	A4 C6	A4 AA	A4 EA	A4 DE	A4 B9	A1 A3	00 00	00	| Original Japanese Hex
+ #  何	 #  年	 #  も	 #  続	 #  い	 #  て	 #  お	 #  り	 #  ま	 #  す	 #  。	 #  #	 #	| Original Japanese Text
+ r  e	 c  e	 s  s	 i  o	 n   	 h  a	 s LF	 f  o	 l  l	 o  w	 e  d	 .  #	 #	| New English Text
+72 65	63 65	73 73	69 6F	6E 20	68 61	73 0A	66 6F	6C 6C	6F 77	65 64	2E 00	00	| New English Hex
+
+この度の市長の仕事は、
+Your work this time Mayor,
+$11A2A14 (Line 1)
+A4 B3	A4 CE	C5 D9	A4 CE	BB D4	C4 B9	A4 CE	BB C5	BB F6	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  こ	 #  の	 #  度	 #  の	 #  市	 #  長	 #  の	 #  仕	 #  事	 #  は	 #  、	LF	| Original Japanese Text
+ Y  o	 u  r	    w	 o  r	 k   	 t  h	 i  s	LF  t	 i  m	 e   	 M  a	 y	| New English Text
+59 6F	75 72	20 77	6F 72	6B 20	74 68	69 73	0A 74	69 6D	65 20	4D 61	79	| New English Hex
+アッサムシティーの景気を立て直し
+will be rebuilding the economy of Assam City
+$11A2A2B (Line 2)
+A5 A2	A5 C3	A5 B5	A5 E0	A5 B7	A5 C6	A5 A3	A1 BC	A4 CE	B7 CA	B5 A4	A4 F2	CE A9	A4 C6	C4 BE	A4 B7	0A	| Original Japanese Hex
+ #  ア	 #  ッ	 #  サ	 #  ム	 #  シ	 #  テ	 #  ィ	 #  ー	 #  の	 #  景	 #  気	 #  を	 #  立	 #  て	 #  直	 #  し	LF	| Original Japanese Text
+ o  r	 ,   	 w  i	 l  l	LF  b	 e   	 t  o	    r	 e  b	 u  i	 l  d	LF  t	 h  e	    e	 c  o	 n  o	m	| New English Text
+6F 72	2C 20	77 69	6C 6C	0A 62	65 20	74 6F	20 72	65 62	75 69	6C 64	0A 74	68 65	20 65	63 6F	6E 6F	6D	| New English Hex
+工業地区の人口を２万人、
+increase industrial district population by 20000,
+$11A2A4C (Line 3)
+B9 A9	B6 C8	C3 CF	B6 E8	A4 CE	BF CD	B8 FD	A4 F2	A3 B2	CB FC	BF CD	A1 A2	0A	| Original Japanese Hex
+ #  工	 #  業	 #  地	 #  区	 #  の	 #  人	 #  口	 #  を	 #  ２	 #  万	 #  人	 #  、	LF	| Original Japanese Text
+ y   	 & LF	 i  n	 c  r	 e  a	 s  e	LF  t	 h  e	    i	 n  d	 u  s	 t  r	 i	| New English Text
+79 20	26 0A	69 6E	63 72	65 61	73 65	0A 74	68 65	20 69	6E 64	75 73	74 72	69	| New English Hex
+人口を６万人に増やすことです。
+to 60000.
+$11A2A65 (Line 4)
+BF CD	B8 FD	A4 F2	A3 B6	CB FC	BF CD	A4 CB	C1 FD	A4 E4	A4 B9	A4 B3	A4 C8	A4 C7	A4 B9	A1 A3	00	| Original Japanese Hex
+ #  人	 #  口	 #  を	 #  ６	 #  万	 #  人	 #  に	 #  増	 #  や	 #  す	 #  こ	 #  と	 #  で	 #  す	 #  。	 #	| Original Japanese Text
+ a  l	LF  d	 i  s	 t  r	 i  c	 t   	 b  y	LF  2	 0  0	 0  0	    p	 e  o	 p  l	 e  .	 #  #	 #	| New English Text
+61 6C	0A 64	69 73	74 72	69 63	74 20	62 79	0A 32	30 30	30 30	20 70	65 6F	70 6C	65 2E	00 00	00	| New English Hex
+
+工業地区の人口は、
+Industrial district population,
+$11A2A84 (Line 1)
+B9 A9	B6 C8	C3 CF	B6 E8	A4 CE	BF CD	B8 FD	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  工	 #  業	 #  地	 #  区	 #  の	 #  人	 #  口	 #  は	 #  、	LF	| Original Japanese Text
+ I  n	 d  u	 s  t	 r  i	 a  l	LF  d	 i  s	 t  r	 i  c	 t	| New English Text
+49 6E	64 75	73 74	72 69	61 6C	0A 64	69 73	74 72	69 63	74	| New English Hex
+都市の詳細アイコンの都市グラフで
+can be viewed using the
+$11A2A97 (Line 2)
+C5 D4	BB D4	A4 CE	BE DC	BA D9	A5 A2	A5 A4	A5 B3	A5 F3	A4 CE	C5 D4	BB D4	A5 B0	A5 E9	A5 D5	A4 C7	0A	| Original Japanese Hex
+ #  都	 #  市	 #  の	 #  詳	 #  細	 #  ア	 #  イ	 #  コ	 #  ン	 #  の	 #  都	 #  市	 #  グ	 #  ラ	 #  フ	 #  で	LF	| Original Japanese Text
+ LF p	 o  p	 u  l	 a  t	 i  o	 n   	 c  a	 n LF	 b  e	    v	 i  e	 w  e	 d   	 u  s	 i  n	 g LF	 t	| New English Text
+0A 70	6F 70	75 6C	61 74	69 6F	6E 20	63 61	6E 0A	62 65	20 76	69 65	77 65	64 20	75 73	69 6E	67 0A	74	| New English Hex
+確認することが出来ますぞ。
+city graph / urban details icon.
+$11A2AB8 (Line 3)
+B3 CE	C7 A7	A4 B9	A4 EB	A4 B3	A4 C8	A4 AC	BD D0	CD E8	A4 DE	A4 B9	A4 BE	A1 A3	0A	| Original Japanese Hex
+ #  確	 #  認	 #  す	 #  る	 #  こ	 #  と	 #  が	 #  出	 #  来	 #  ま	 #  す	 #  ぞ	 #  。	LF	| Original Japanese Text
+ h  e	    c	 i  t	 y   	 g  r	 a  p	 h LF	 u  r	 b  a	 n   	 d  e	 t  a	 i  l	 s	| New English Text
+68 65	20 63	69 74	79 20	67 72	61 70	68 0A	75 72	62 61	6E 20	64 65	74 61	69 6C	73	| New English Hex
+大恐慌になど負けていられません！
+You can beat the great depression!
+$11A2AD3 (Line 4)
+C2 E7	B6 B2	B9 B2	A4 CB	A4 CA	A4 C9	C9 E9	A4 B1	A4 C6	A4 A4	A4 E9	A4 EC	A4 DE	A4 BB	A4 F3	A1 AA	0A	| Original Japanese Hex
+ #  大	 #  恐	 #  慌	 #  に	 #  な	 #  ど	 #  負	 #  け	 #  て	 #  い	 #  ら	 #  れ	 #  ま	 #  せ	 #  ん	 #  ！	LF	| Original Japanese Text
+ LF i	 c  o	 n  .	    Y	 o  u	    c	 a  n	LF  b	 e  a	 t   	 t  h	 e   	 g  r	 e  a	 t LF	 d  e	 p	| New English Text
+0A 69	63 6F	6E 2E	20 59	6F 75	20 63	61 6E	0A 62	65 61	74 20	74 68	65 20	67 72	65 61	74 0A	64 65	70	| New English Hex
+がんばってください。
+Good luck.
+$11A2AF4 (Line 5)
+A4 AC	A4 F3	A4 D0	A4 C3	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  が	 #  ん	 #  ば	 #  っ	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #  #	 #  #	| Original Japanese Text
+ r  e	 s  s	 i  o	 n  !	LF  G	 o  o	 d   	 l  u	 c  k	 .  #	 #  #	 #  #	| New English Text
+72 65	73 73	69 6F	6E 21	0A 47	6F 6F	64 20	6C 75	63 6B	2E 00	00 00	00 00	| New English Hex
+
+工業地区の人口は、バランスよく
+Industrial district population will not increase
+$11A2C10 (Line 1)
+B9 A9	B6 C8	C3 CF	B6 E8	A4 CE	BF CD	B8 FD	A4 CF	A1 A2	A5 D0	A5 E9	A5 F3	A5 B9	A4 E8	A4 AF	0A	| Original Japanese Hex
+ #  工	 #  業	 #  地	 #  区	 #  の	 #  人	 #  口	 #  は	 #  、	 #  バ	 #  ラ	 #  ン	 #  ス	 #  よ	 #  く	LF	| Original Japanese Text
+ I  n	 d  u	 s  t	 r  y	    w	 i  l	 l LF	 n  o	 t   	 i  n	 c  r	 e  a	 s  e	LF  u	 n  l	 e	| New English Text
+49 6E	64 75	73 74	72 79	20 77	69 6C	6C 0A	6E 6F	74 20	69 6E	63 72	65 61	73 65	0A 75	6E 6C	65	| New English Hex
+街を作らなければ増えません。
+unless you make a well-balanced city.
+$11A2C33 (Line 2)
+B3 B9	A4 F2	BA EE	A4 E9	A4 CA	A4 B1	A4 EC	A4 D0	C1 FD	A4 A8	A4 DE	A4 BB	A4 F3	A1 A3	0A	| Original Japanese Hex
+ #  街	 #  を	 #  作	 #  ら	 #  な	 #  け	 #  れ	 #  ば	 #  増	 #  え	 #  ま	 #  せ	 #  ん	 #  。	LF	| Original Japanese Text
+ s  s	    y	 o  u	    m	 a  k	 e LF	 a   	 w  e	 l  l	 -  b	 a  l	 a  n	 c  e	 d LF	 c	| New English Text
+73 73	20 79	6F 75	20 6D	61 6B	65 0A	61 20	77 65	6C 6C	2D 62	61 6C	61 6E	63 65	64 0A	63	| New English Hex
+住宅・商業地区の指定も
+Do not forget to also specify a residential
+$11A2C50 (Line 3)
+BD BB	C2 F0	A1 A6	BE A6	B6 C8	C3 CF	B6 E8	A4 CE	BB D8	C4 EA	A4 E2	0A	| Original Japanese Hex
+ #  住	 #  宅	 #  ・	 #  商	 #  業	 #  地	 #  区	 #  の	 #  指	 #  定	 #  も	LF	| Original Japanese Text
+ i  t	 y  .	   S	 p  e	 c  i	 f  y	LF  R	 e  s	 i  d	 e  n	 t  i	 a	| New English Text
+69 74	79 2E	20 53	70 65	63 69	66 79	0A 52	65 73	69 64	65 6E	74 69	61	| New English Hex
+忘れてはなりませんぞ。
+& commercial district.
+$11A2C67 (Line 4)
+CB BA	A4 EC	A4 C6	A4 CF	A4 CA	A4 EA	A4 DE	A4 BB	A4 F3	A4 BE	A1 A3	00 00	00	| Original Japanese Hex
+ #  忘	 #  れ	 #  て	 #  は	 #  な	 #  り	 #  ま	 #  せ	 #  ん	 #  ぞ	 #  。	 #  #	 #	| Original Japanese Text
+ l   	 & LF	 C  o	 m  m	 e  r	 c  i	 a  l	LF  d	 i  s	 t  r	 i  c	 t  s	 #	| New English Text
+6C 20	26 0A	43 6F	6D 6D	65 72	63 69	61 6C	0A 64	69 73	74 72	69 63	74 73	00	| New English Hex
+
+それでは、
+Now,
+$11A2C80 (Line 1)
+A4 BD	A4 EC	A4 C7	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  そ	 #  れ	 #  で	 #  は	 #  、	LF	| Original Japanese Text
+ N  o	 w  ,	LF  s	 c  e	 n  a	 r	| New English Text
+4E 6F	77 2C	0A 73	63 65	6E 61	72	| New English Hex
+シナリオ２スタートです！
+scenario 2 is starting!
+$11A2C8B (Line 2)
+A5 B7	A5 CA	A5 EA	A5 AA	A3 B2	A5 B9	A5 BF	A1 BC	A5 C8	A4 C7	A4 B9	A1 AA	00	| Original Japanese Hex
+ #  シ	 #  ナ	 #  リ	 #  オ	 #  ２	 #  ス	 #  タ	 #  ー	 #  ト	 #  で	 #  す	 #  ！	 #	| Original Japanese Text
+ i  o	    2	    i	 s LF	 s  t	 a  r	 t  i	 n  g	 !  #	 #  #	 #  #	 #  #	 #	| New English Text
+69 6F	20 32	20 69	73 0A	73 74	61 72	74 69	6E 67	21 00	00 00	00 00	00 00	00	| New English Hex
+
+
+１９６８年８月、古都サンルフナは
+August 1968, the ancient capital Sanrufuna
+$11A2D40 (Line 1)
+A3 B1	A3 B9	A3 B6	A3 B8	C7 AF	A3 B8	B7 EE	A1 A2	B8 C5	C5 D4	A5 B5	A5 F3	A5 EB	A5 D5	A5 CA	A4 CF	0A	| Original Japanese Hex
+ #  １	 #  ９	 #  ６	 #  ８	 #  年	 #  ８	 #  月	 #  、	 #  古	 #  都	 #  サ	 #  ン	 #  ル	 #  フ	 #  ナ	 #  は	LF	| Original Japanese Text
+ A  u	 g  u	 s  t	    1	 9  6	 8  ,	    t	 h  e	LF  a	 n  c	 i  e	 n  t	    c	 a  p	 i  t	 o  l	LF	| New English Text
+41 75	67 75	73 74	20 31	39 36	38 2C	20 74	68 65	0A 61	6E 63	69 65	6E 74	20 63	61 70	69 74	6F 6C	0A	| New English Hex
+史上最悪といわれる大規模な
+was attacked by a large-scale urban fire
+$11A2D61 (Line 2)
+BB CB	BE E5	BA C7	B0 AD	A4 C8	A4 A4	A4 EF	A4 EC	A4 EB	C2 E7	B5 AC	CC CF	A4 CA	0A	| Original Japanese Hex
+ #  史	 #  上	 #  最	 #  悪	 #  と	 #  い	 #  わ	 #  れ	 #  る	 #  大	 #  規	 #  模	 #  な	LF	| Original Japanese Text
+ S  a	 n  r	 u  f	 u  n	 a   	 w  a	 s LF	 a  t	 t  a	 c  k	 e  d	    b	 y   	 a	| New English Text
+53 61	6E 72	75 66	75 6E	61 20	77 61	73 0A	61 74	74 61	63 6B	65 64	20 62	79 20	61	| New English Hex
+都市火災に襲われました。
+which is said to be the worst.
+$11A2D7C (Line 3)
+C5 D4	BB D4	B2 D0	BA D2	A4 CB	BD B1	A4 EF	A4 EC	A4 DE	A4 B7	A4 BF	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  都	 #  市	 #  火	 #  災	 #  に	 #  襲	 #  わ	 #  れ	 #  ま	 #  し	 #  た	 #  。	 #  #	 #  #	| Original Japanese Text
+LF  l	 a  r	 g  e	 -  s	 c  a	 l  e	LF  u	 r  b	 a  n	    f	 i  r	 e  .	 #  #	 #  #	| New English Text
+0A 6C	61 72	67 65	2D 73	63 61	6C 65	0A 75	72 62	61 6E	20 66	69 72	65 2E	00 00	00 00	| New English Hex
+
+サンルフナは歴史的建築物が
+Sanrufuna is a famous city
+$11A2D98 (Line 1)
+A5 B5	A5 F3	A5 EB	A5 D5	A5 CA	A4 CF	CE F2	BB CB	C5 AA	B7 FA	C3 DB	CA AA	A4 AC	0A	| Original Japanese Hex
+ #  サ	 #  ン	 #  ル	 #  フ	 #  ナ	 #  は	 #  歴	 #  史	 #  的	 #  建	 #  築	 #  物	 #  が	LF	| Original Japanese Text
+ S  a	 n  r	 u  f	 u  n	 a   	 i  s	    a	LF  f	 a  m	 o  u	 s   	 c  i	 t  y	  	| New English Text
+53 61	6E 72	75 66	75 6E	61 20	69 73	20 61	0A 66	61 6D	6F 75	73 20	63 69	74 79	20	| New English Hex
+多くあることで有名な街。
+with many historic buildings.
+$11A2DB3 (Line 2)
+C2 BF	A4 AF	A4 A2	A4 EB	A4 B3	A4 C8	A4 C7	CD AD	CC BE	A4 CA	B3 B9	A1 A3	0A	| Original Japanese Hex
+ #  多	 #  く	 #  あ	 #  る	 #  こ	 #  と	 #  で	 #  有	 #  名	 #  な	 #  街	 #  。	LF	| Original Japanese Text
+ w  i	 t  h	LF  m	 a  n	 y   	 h  i	 s  t	 o  r	 i  c	LF  b	 u  i	 l  d	 i	| New English Text
+77 69	74 68	0A 6D	61 6E	79 20	68 69	73 74	6F 72	69 63	0A 62	75 69	6C 64	69	| New English Hex
+このままでは貴重な文化遺産が
+Precious cultural heritage
+$11A2DCC (Line 3)
+A4 B3	A4 CE	A4 DE	A4 DE	A4 C7	A4 CF	B5 AE	BD C5	A4 CA	CA B8	B2 BD	B0 E4	BB BA	A4 AC	0A	| Original Japanese Hex
+ #  こ	 #  の	 #  ま	 #  ま	 #  で	 #  は	 #  貴	 #  重	 #  な	 #  文	 #  化	 #  遺	 #  産	 #  が	LF	| Original Japanese Text
+ n  g	 s  .	LF  P	 r  e	 c  i	 o  u	 s LF	 c  u	 l  t	 u  r	 a  l	LF  h	 e  r	 i  t	 a	| New English Text
+6E 67	73 2E	0A 50	72 65	63 69	6F 75	73 0A	63 75	6C 74	75 72	61 6C	0A 68	65 72	69 74	61	| New English Hex
+失われてしまいます。
+in this fire will be lost.
+$11A2DE9 (Line 4)
+BC BA	A4 EF	A4 EC	A4 C6	A4 B7	A4 DE	A4 A4	A4 DE	A4 B9	A1 A3	00 00	00	| Original Japanese Hex
+ #  失	 #  わ	 #  れ	 #  て	 #  し	 #  ま	 #  い	 #  ま	 #  す	 #  。	 #  #	 #	| Original Japanese Text
+ g  e	    w	 i  l	 l   	 b  e	LF  l	 o  s	 t  .	 #  #	 #  #	 #  #	 #	| New English Text
+67 65	20 77	69 6C	6C 20	62 65	0A 6C	6F 73	74 2E	00 00	00 00	00 00	00	| New English Hex
+
+この度の市長の仕事は、
+Your work this time Mayor,
+$11A2E00 (Line 1)
+A4 B3	A4 CE	C5 D9	A4 CE	BB D4	C4 B9	A4 CE	BB C5	BB F6	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  こ	 #  の	 #  度	 #  の	 #  市	 #  長	 #  の	 #  仕	 #  事	 #  は	 #  、	LF	| Original Japanese Text
+ Y  o	 u  r	    w	 o  r	 k   	 t  h	 i  s	LF  t	 i  m	 e   	 M  a	 y	| New English Text
+59 6F	75 72	20 77	6F 72	6B 20	74 68	69 73	0A 74	69 6D	65 20	4D 61	79	| New English Hex
+いち早く火災を消し止め、
+is to quickly put out the fire,
+$11A2E17 (Line 2)
+A4 A4	A4 C1	C1 E1	A4 AF	B2 D0	BA D2	A4 F2	BE C3	A4 B7	BB DF	A4 E1	A1 A2	0A	| Original Japanese Hex
+ #  い	 #  ち	 #  早	 #  く	 #  火	 #  災	 #  を	 #  消	 #  し	 #  止	 #  め	 #  、	LF	| Original Japanese Text
+ o  r	 ,   	 i  s	LF  t	 o   	 q  u	 i  c	 k  l	 y   	 p  u	 t LF	 o  u	 t	| New English Text
+6F 72	2C 20	69 73	0A 74	6F 20	71 75	69 63	6B 6C	79 20	70 75	74 0A	6F 75	74	| New English Hex
+街を人口６万５千人にまで
+& to revive the city
+$11A2E30 (Line 3)
+B3 B9	A4 F2	BF CD	B8 FD	A3 B6	CB FC	A3 B5	C0 E9	BF CD	A4 CB	A4 DE	A4 C7	0A	| Original Japanese Hex
+ #  街	 #  を	 #  人	 #  口	 #  ６	 #  万	 #  ５	 #  千	 #  人	 #  に	 #  ま	 #  で	LF	| Original Japanese Text
+    f	 i  r	 e  s	 ,   	 &   	 t  o	LF  r	 e  v	 i  v	 e   	 t  h	 e   	 c	| New English Text
+20 66	69 72	65 73	2C 20	26 20	74 6F	0A 72	65 76	69 76	65 20	74 68	65 20	63	| New English Hex
+復興させることです。
+upto 60005 inhabitants.
+$11A2E49 (Line 4)
+C9 FC	B6 BD	A4 B5	A4 BB	A4 EB	A4 B3	A4 C8	A4 C7	A4 B9	A1 A3	00 00	00	| Original Japanese Hex
+ #  復	 #  興	 #  さ	 #  せ	 #  る	 #  こ	 #  と	 #  で	 #  す	 #  。	 #  #	 #	| Original Japanese Text
+ i  t	 y LF	 u  p	 t  o	    6	 0  0	 0  5	LF  p	 e  o	 p  l	 e  .	 #	| New English Text
+69 74	79 0A	75 70	74 6F	20 36	30 30	30 35	0A 70	65 6F	70 6C	65 2E	00	| New English Hex
+
+さあ、一刻の猶予もありません。
+Now, there's no time to lose.
+$11A2E60 (Line 1)
+A4 B5	A4 A2	A1 A2	B0 EC	B9 EF	A4 CE	CD B1	CD BD	A4 E2	A4 A2	A4 EA	A4 DE	A4 BB	A4 F3	A1 A3	0A	| Original Japanese Hex
+ #  さ	 #  あ	 #  、	 #  一	 #  刻	 #  の	 #  猶	 #  予	 #  も	 #  あ	 #  り	 #  ま	 #  せ	 #  ん	 #  。	LF	| Original Japanese Text
+ N  o	    t	 i  m	 e   	 t  o	    l	 o  s	 e  .	LF  I	 n   	 o  r	 d  e	 r   	 t  o	LF  p	 r	| New English Text
+4E 6F	20 74	69 6D	65 20	74 6F	20 6C	6F 73	65 2E	0A 49	6E 20	6F 72	64 65	72 20	74 6F	0A 70	72	| New English Hex
+市民と文化遺産を守るために
+In order to protect the citizens
+$11A2E7F (Line 2)
+BB D4	CC B1	A4 C8	CA B8	B2 BD	B0 E4	BB BA	A4 F2	BC E9	A4 EB	A4 BF	A4 E1	A4 CB	0A	| Original Japanese Hex
+ #  市	 #  民	 #  と	 #  文	 #  化	 #  遺	 #  産	 #  を	 #  守	 #  る	 #  た	 #  め	 #  に	LF	| Original Japanese Text
+ o  t	 e  c	 t   	 t  h	 e LF	 c  i	 t  i	 z  e	 n  s	    &	LF  h	 e  r	 i  t	 a	| New English Text
+6F 74	65 63	74 20	74 68	65 0A	63 69	74 69	7A 65	6E 73	20 26	0A 68	65 72	69 74	61	| New English Hex
+至急、消火活動を
+& cultural heritage, please start the fire fighting
+$11A2E9A (Line 3)
+BB EA	B5 DE	A1 A2	BE C3	B2 D0	B3 E8	C6 B0	A4 F2	0A	| Original Japanese Hex
+ #  至	 #  急	 #  、	 #  消	 #  火	 #  活	 #  動	 #  を	LF	| Original Japanese Text
+ g  e	    p	 l  e	 a  s	 e LF	 s  t	 a  r	 t   	 f	| New English Text
+67 65	20 70	6C 65	61 73	65 0A	73 74	61 72	74 20	66	| New English Hex
+開始してください。
+as soon as possible.
+$11A2EAB (Line 4)
+B3 AB	BB CF	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00 00	00	| Original Japanese Hex
+ #  開	 #  始	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #  #	 #	| Original Japanese Text
+ i  r	 e LF	 f  i	 g  h	 t  i	 n  g	    A	 S  A	 P  .	 #  #	 #	| New English Text
+69 72	65 0A	66 69	67 68	74 69	6E 67	20 41	53 41	50 2E	00 00	00	| New English Hex
+
+火災はＲボタン＋Ｃボタン∪で
+Using R button + C button ∪
+$11A2FB0 (Line 1)
+B2 D0	BA D2	A4 CF	A3 D2	A5 DC	A5 BF	A5 F3	A1 DC	A3 C3	A5 DC	A5 BF	A5 F3	A2 C0	A4 C7	0A	| Original Japanese Hex
+ #  火	 #  災	 #  は	 #  Ｒ	 #  ボ	 #  タ	 #  ン	 #  ＋	 #  Ｃ	 #  ボ	 #  タ	 #  ン	 #  ∪	 #  で	LF	| Original Japanese Text
+ U  s	 i  n	 g   	 R   	 b  u	 t  t	 o  n	    +	LF  C	    #	 ∪   	 i  t	 '  s	    e	 a	| New English Text
+55 73	69 6E	67 20	52 20	62 75	74 74	6F 6E	20 2B	0A 43	20 A2	C0 20	69 74	27 73	 20 65	61	| New English Hex
+表示されるマップの
+it is easy to check the fire,
+$11A2FCD (Line 2)
+C9 BD	BC A8	A4 B5	A4 EC	A4 EB	A5 DE	A5 C3	A5 D7	A4 CE	0A	| Original Japanese Hex
+ #  表	 #  示	 #  さ	 #  れ	 #  る	 #  マ	 #  ッ	 #  プ	 #  の	LF	| Original Japanese Text
+ s  y	    t	 o LF	 c  h	 e  c	 k   	 t  h	 e   	 f  i	 r	| New English Text
+73 79	20 74	6F 0A	63 68	65 63	6B 20	74 68	65 20	66 69	72	| New English Hex
+消防力範囲を使うと、
+it displays fire force range
+$11A2FE0 (Line 3)
+BE C3	CB C9	CE CF	C8 CF	B0 CF	A4 F2	BB C8	A4 A6	A4 C8	A1 A2	0A	| Original Japanese Hex
+ #  消	 #  防	 #  力	 #  範	 #  囲	 #  を	 #  使	 #  う	 #  と	 #  、	LF	| Original Japanese Text
+ e  ,	LF  i	 t   	 d  i	 s  p	 l  a	 y  s	    f	 i  r	 e LF	 f 	| New English Text
+65 2C	0A 69	74 20	64 69	73 70	6C 61	79 73	20 66	69 72	65 0A	66	| New English Hex
+確認しやすいですぞ。
+on the map.
+$11A2FF5 (Line 4)
+B3 CE	C7 A7	A4 B7	A4 E4	A4 B9	A4 A4	A4 C7	A4 B9	A4 BE	A1 A3	00 00	00	| Original Japanese Hex
+ #  確	 #  認	 #  し	 #  や	 #  す	 #  い	 #  で	 #  す	 #  ぞ	 #  。	 #  #	 #	| Original Japanese Text
+ o  r	 c  e	    r	 a  n	 g  e	    o	 n LF	 t  h	 e   	 m  a	 p  .	 #	| New English Text
+6F 72	63 65	20 72	61 6E	67 65	20 6F	6E 0A	74 68	65 20	6D 61	70 2E	00	| New English Hex
+
+それでは、
+Now,
+$11A300C (Line 1)
+A4 BD	A4 EC	A4 C7	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  そ	 #  れ	 #  で	 #  は	 #  、	LF	| Original Japanese Text
+ N  o	 w  ,	LF  s	 c  e	 n  a	 r	| New English Text
+4E 6F	77 2C	0A 73	63 65	6E 61	72	| New English Hex
+シナリオ３スタートです！
+scenario 3 is starting!
+$11A3017 (Line 2)
+A5 B7	A5 CA	A5 EA	A5 AA	A3 B3	A5 B9	A5 BF	A1 BC	A5 C8	A4 C7	A4 B9	A1 AA	00	| Original Japanese Hex
+ #  シ	 #  ナ	 #  リ	 #  オ	 #  ３	 #  ス	 #  タ	 #  ー	 #  ト	 #  で	 #  す	 #  ！	 #	| Original Japanese Text
+ i  o	    3	    i	 s LF	 s  t	 a  r	 t  i	 n  g	 !  #	 #  #	 #  #	 #  #	 #	| New English Text
+69 6F	20 33	20 69	73 0A	73 74	61 72	74 69	6E 67	21 00	00 00	00 00	00 00	00	| New English Hex
+
+
+昨今、世間では人口の増加による
+In recent years, due to world population growth
+$11A30C0 (Line 1)
+BA F2	BA A3	A1 A2	C0 A4	B4 D6	A4 C7	A4 CF	BF CD	B8 FD	A4 CE	C1 FD	B2 C3	A4 CB	A4 E8	A4 EB	0A	| Original Japanese Hex
+ #  昨	 #  今	 #  、	 #  世	 #  間	 #  で	 #  は	 #  人	 #  口	 #  の	 #  増	 #  加	 #  に	 #  よ	 #  る	LF	| Original Japanese Text
+ R  e	 c  e	 n  t	 l  y	 ,   	 d  u	 e   	 t  o	LF  o	 v  e	 r  p	 o  p	 u  l	 a  t	 i  o	 n	| New English Text
+52 65	63 65	6E 74	6C 79	2C 20	64 75	65 20	74 6F	0A 6F	76 65	72 70	6F 70	75 6C	61 74	69 6F	6E	| New English Hex
+住宅不足や都市の過密化が
+housing shortages & overcrowding of the city
+$11A30DF (Line 2)
+BD BB	C2 F0	C9 D4	C2 AD	A4 E4	C5 D4	BB D4	A4 CE	B2 E1	CC A9	B2 BD	A4 AC	0A	| Original Japanese Hex
+ #  住	 #  宅	 #  不	 #  足	 #  や	 #  都	 #  市	 #  の	 #  過	 #  密	 #  化	 #  が	LF	| Original Japanese Text
+ , LF	 h  o	 u  s	 i  n	 g LF	 s  h	 o  r	 t  a	 g  e	 s   	 & LF	 o  v	 e	| New English Text
+2C 0A	68 6F	75 73	69 6E	67 0A	73 68	6F 72	74 61	67 65	73 20	26 0A	6F 76	65	| New English Hex
+問題視されています。
+has been a problem.
+$11A30F8 (Line 3)
+CC E4	C2 EA	BB EB	A4 B5	A4 EC	A4 C6	A4 A4	A4 DE	A4 B9	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  問	 #  題	 #  視	 #  さ	 #  れ	 #  て	 #  い	 #  ま	 #  す	 #  。	 #  #	 #  #	| Original Japanese Text
+ r  c	 r  o	 w  d	 i  n	 g   	 i  s	LF  a	    p	 r  o	 b  l	 e  m	 .  #	| New English Text
+72 63	72 6F	77 64	69 6E	67 20	69 73	0A 61	20 70	72 6F	62 6C	65 6D	2E 00	| New English Hex
+
+この問題に対し政府は、
+The governments response to this problem,
+$11A3110 (Line 1)
+A4 B3	A4 CE	CC E4	C2 EA	A4 CB	C2 D0	A4 B7	C0 AF	C9 DC	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  こ	 #  の	 #  問	 #  題	 #  に	 #  対	 #  し	 #  政	 #  府	 #  は	 #  、	LF	| Original Japanese Text
+ T  h	 e   	 g  o	 v  e	 r  n	 m  e	 n  t	 s LF	 r  e	 s  p	 o  n	 s	| New English Text
+54 68	65 20	67 6F	76 65	72 6E	6D 65	6E 74	73 0A	72 65	73 70	6F 6E	73	| New English Hex
+リプトン湾を埋め立て、
+it showed a policy to landfill the Lipton Bay,
+$11A3127 (Line 2)
+A5 EA	A5 D7	A5 C8	A5 F3	CF D1	A4 F2	CB E4	A4 E1	CE A9	A4 C6	A1 A2	0A	| Original Japanese Hex
+ #  リ	 #  プ	 #  ト	 #  ン	 #  湾	 #  を	 #  埋	 #  め	 #  立	 #  て	 #  、	LF	| Original Japanese Text
+ e   	 t  o	    t	 h  i	 s LF	 p  r	 o  b	 l  e	 m  ,	    i	 s   	 t	| New English Text
+65 20	74 6F	20 74	68 69	73 0A	70 72	6F 62	6C 65	6D 2C	20 69	73 20	74	| New English Hex
+近代都市を開発し解決していく
+& resolve to develop
+$11A313E (Line 3)
+B6 E1	C2 E5	C5 D4	BB D4	A4 F2	B3 AB	C8 AF	A4 B7	B2 F2	B7 E8	A4 B7	A4 C6	A4 A4	A4 AF	0A	| Original Japanese Hex
+ #  近	 #  代	 #  都	 #  市	 #  を	 #  開	 #  発	 #  し	 #  解	 #  決	 #  し	 #  て	 #  い	 #  く	LF	| Original Japanese Text
+ o LF	 l  a	 n  d	 f  i	 l  l	    t	 h  e	LF  L	 i  p	 t  o	 n   	 B  a	 y  ,	    &	LF	| New English Text
+6F 0A	6C 61	6E 64	66 69	6C 6C	20 74	68 65	0A 4C	69 70	74 6F	6E 20	42 61	79 2C	20 26	0A	| New English Hex
+という方針を示しました。
+a modern city.
+$11A315B (Line 4)
+A4 C8	A4 A4	A4 A6	CA FD	BF CB	A4 F2	BC A8	A4 B7	A4 DE	A4 B7	A4 BF	A1 A3	00	| Original Japanese Hex
+ #  と	 #  い	 #  う	 #  方	 #  針	 #  を	 #  示	 #  し	 #  ま	 #  し	 #  た	 #  。	 #	| Original Japanese Text
+ d  e	 v  e	 l  o	 p   	 a   	 m  o	 d  e	 r  n	LF  c	 i  t	 y  .	 #  #	 #	| New English Text
+64 65	76 65	6C 6F	70 20	61 20	6D 6F	64 65	72 6E	0A 63	69 74	79 2E	00 00	00	| New English Hex
+
+この度の市長の仕事は、
+Your work this time Mayor,
+$11A3174 (Line 1)
+A4 B3	A4 CE	C5 D9	A4 CE	BB D4	C4 B9	A4 CE	BB C5	BB F6	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  こ	 #  の	 #  度	 #  の	 #  市	 #  長	 #  の	 #  仕	 #  事	 #  は	 #  、	LF	| Original Japanese Text
+ Y  o	 u  r	    w	 o  r	 k   	 t  h	 i  s	LF  t	 i  m	 e  ,	    i	 s	| New English Text
+59 6F	75 72	20 77	6F 72	6B 20	74 68	69 73	0A 74	69 6D	65 2C	20 69	73	| New English Hex
+リプトン湾に埋立地を作り、
+make a landfill in Lipton Bay,
+$11A318B (Line 2)
+A5 EA	A5 D7	A5 C8	A5 F3	CF D1	A4 CB	CB E4	CE A9	C3 CF	A4 F2	BA EE	A4 EA	A1 A2	0A	| Original Japanese Hex
+ #  リ	 #  プ	 #  ト	 #  ン	 #  湾	 #  に	 #  埋	 #  立	 #  地	 #  を	 #  作	 #  り	 #  、	LF	| Original Japanese Text
+    t	 o LF	 l  a	 n  d	 f  i	 l  l	    L	 i  p	 t  o	 n LF	 B  a	 y  ,	    L	 a	| New English Text
+20 74	6F 0A	6C 61	6E 64	66 69	6C 6C	20 4C	69 70	74 6F	6E 0A	42 61	79 2C	20 4C	61	| New English Hex
+ニューラベンダーを空港と海港の
+Lavender is to be a new modern city with
+$11A31A6 (Line 3)
+A5 CB	A5 E5	A1 BC	A5 E9	A5 D9	A5 F3	A5 C0	A1 BC	A4 F2	B6 F5	B9 C1	A4 C8	B3 A4	B9 C1	A4 CE	0A	| Original Japanese Hex
+ #  ニ	 #  ュ	 #  ー	 #  ラ	 #  ベ	 #  ン	 #  ダ	 #  ー	 #  を	 #  空	 #  港	 #  と	 #  海	 #  港	 #  の	LF	| Original Japanese Text
+ v  e	 n  d	 e  r	    i	 s LF	 t  h	 e   	 n  e	 w   	 m  o	 d  e	 r  n	LF  c	 i  t	 y   	 w	| New English Text
+76 65	6E 64	65 72	20 69	73 0A	74 68	65 20	6E 65	77 20	6D 6F	64 65	72 6E	0A 63	69 74	79 20	77	| New English Hex
+備わった人口３万人の近代都市に
+a population of 30000 people,
+$11A31C5 (Line 4)
+C8 F7	A4 EF	A4 C3	A4 BF	BF CD	B8 FD	A3 B3	CB FC	BF CD	A4 CE	B6 E1	C2 E5	C5 D4	BB D4	A4 CB	0A	| Original Japanese Hex
+ #  備	 #  わ	 #  っ	 #  た	 #  人	 #  口	 #  ３	 #  万	 #  人	 #  の	 #  近	 #  代	 #  都	 #  市	 #  に	LF	| Original Japanese Text
+ i  t	 h   	 3  0	 0  0	 0 LF	 p  e	 o  p	 l  e	    e	 q  u	 i  p	 p  e	 d LF	 w  i	 t  h	  	| New English Text
+69 74	68 20	33 30	30 30	30 0A	70 65	6F 70	6C 65	20 65	71 75	69 70	70 65	64 0A	77 69	74 68	20	| New English Hex
+することです。
+equipped with an airport & seaport.
+$11A31E4 (Line 5)
+A4 B9	A4 EB	A4 B3	A4 C8	A4 C7	A4 B9	A1 A3	00 00	| Original Japanese Hex
+ #  す	 #  る	 #  こ	 #  と	 #  で	 #  す	 #  。	 #  #	| Original Japanese Text
+ a  i	 r   	 & LF	 s  e	 a  p	 o  r	 t  s	 .  #	| New English Text
+61 69	72 20	26 0A	73 65	61 70	6F 72	74 73	2E 00	| New English Hex
+
+この計画には国家の威信が
+National prestige is
+$11A31F4 (Line 1)
+A4 B3	A4 CE	B7 D7	B2 E8	A4 CB	A4 CF	B9 F1	B2 C8	A4 CE	B0 D2	BF AE	A4 AC	0A	| Original Japanese Hex
+ #  こ	 #  の	 #  計	 #  画	 #  に	 #  は	 #  国	 #  家	 #  の	 #  威	 #  信	 #  が	LF	| Original Japanese Text
+ N  a	 t  i	 o  n	 a  l	LF  p	 r  e	 s  t	 i  g	 e   	 i  s	LF  h	 a  n	 g	| New English Text
+4E 61	74 69	6F 6E	61 6C	0A 70	72 65	73 74	69 67	65 20	69 73	0A 68	61 6E	67	| New English Hex
+かかっておりますぞ！
+hanging on this plan!
+$11A320D (Line 2)
+A4 AB	A4 AB	A4 C3	A4 C6	A4 AA	A4 EA	A4 DE	A4 B9	A4 BE	A1 AA	0A	| Original Japanese Hex
+ #  か	 #  か	 #  っ	 #  て	 #  お	 #  り	 #  ま	 #  す	 #  ぞ	 #  ！	LF	| Original Japanese Text
+ i  n	 g   	 o  n	    t	 h  i	 s LF	 p  l	 a  n	 ! LF	 G  o	 o	| New English Text
+69 6E	67 20	6F 6E	20 74	68 69	73 0A	70 6C	61 6E	21 0A	47 6F	6F	| New English Hex
+がんばってください。
+Good luck.
+$11A3222 (Line 3)
+A4 AC	A4 F3	A4 D0	A4 C3	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00 00	| Original Japanese Hex
+ #  が	 #  ん	 #  ば	 #  っ	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #  #	| Original Japanese Text
+ d   	 l  u	 c  k	 .  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+64 20	6C 75	63 6B	2E 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+整地アイコンの土地平坦化を使えば
+Landfill can be done easily using the
+$11A334C (Line 1)
+C0 B0	C3 CF	A5 A2	A5 A4	A5 B3	A5 F3	A4 CE	C5 DA	C3 CF	CA BF	C3 B3	B2 BD	A4 F2	BB C8	A4 A8	A4 D0	0A	| Original Japanese Hex
+ #  整	 #  地	 #  ア	 #  イ	 #  コ	 #  ン	 #  の	 #  土	 #  地	 #  平	 #  坦	 #  化	 #  を	 #  使	 #  え	 #  ば	LF	| Original Japanese Text
+ L  a	 n  d	 f  i	 l  l	    c	 a  n	    b	 e LF	 d  o	 n  e	    u	 s  i	 n  g	    l	 a  n	 d LF    f	| New English Text
+4C 61	6E 64	66 69	6C 6C	20 63	61 6E	20 62	65 0A	64 6F	6E 65	20 75	73 69	6E 67	20 6C	61 6E	64 0A	66	| New English Hex
+埋め立ては簡単に実行出来ます。
+land flattening from the terrain icon.
+$11A336D (Line 2)
+CB E4	A4 E1	CE A9	A4 C6	A4 CF	B4 CA	C3 B1	A4 CB	BC C2	B9 D4	BD D0	CD E8	A4 DE	A4 B9	A1 A3	0A	| Original Japanese Hex
+ #  埋	 #  め	 #  立	 #  て	 #  は	 #  簡	 #  単	 #  に	 #  実	 #  行	 #  出	 #  来	 #  ま	 #  す	 #  。	LF	| Original Japanese Text
+ l  a	 t  t	 e  n	 i  n	 g   	 / LF	 t  e	 r  r	 a  i	 n   	 i  c	 o  n	 . LF	 F  l	 a  t	 t	| New English Text
+6C 61	74 74	65 6E	69 6E	67 20	2F 0A	74 65	72 72	61 69	6E 20	69 63	6F 6E	2E 0A	46 6C	61 74	74	| New English Hex
+平坦化は浅い場所の方が予算が
+Since flattening from the direction of a shallow location
+$11A338C (Line 3)
+CA BF	C3 B3	B2 BD	A4 CF	C0 F5	A4 A4	BE EC	BD EA	A4 CE	CA FD	A4 AC	CD BD	BB BB	A4 AC	0A	| Original Japanese Hex
+ #  平	 #  坦	 #  化	 #  は	 #  浅	 #  い	 #  場	 #  所	 #  の	 #  方	 #  が	 #  予	 #  算	 #  が	LF	| Original Japanese Text
+ e  n	 i  n	 g   	 f  r	 o  m	LF  t	 h  e	    d	 i  r	 e  c	 t  i	 o  n	    o	 f LF    s	| New English Text
+65 6E	69 6E	67 20	66 72	6F 6D	0A 74	68 65	20 64	69 72	65 63	74 69	6F 6E	20 6F	66 0A	73	| New English Hex
+かからないので、海岸線から
+is not applied to the budget, it is good to
+$11A33A9 (Line 4)
+A4 AB	A4 AB	A4 E9	A4 CA	A4 A4	A4 CE	A4 C7	A1 A2	B3 A4	B4 DF	C0 FE	A4 AB	A4 E9	0A	| Original Japanese Hex
+ #  か	 #  か	 #  ら	 #  な	 #  い	 #  の	 #  で	 #  、	 #  海	 #  岸	 #  線	 #  か	 #  ら	LF	| Original Japanese Text
+ h  a	 l  l	 o  w	    l	 a  n	 d   	 i  s	LF  f	 r  e	 e  ,	    i	 t  '	 s   	 g	| New English Text
+68 61	6C 6C	6F 77	20 6C	61 6E	64 20	69 73	0A 66	72 65	65 2C	20 69	74 27	73 20	67	| New English Hex
+埋め立てていくとよいですぞ。
+reclaim from the coastline.
+$11A33C4 (Line 5)
+CB E4	A4 E1	CE A9	A4 C6	A4 C6	A4 A4	A4 AF	A4 C8	A4 E8	A4 A4	A4 C7	A4 B9	A4 BE	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  埋	 #  め	 #  立	 #  て	 #  て	 #  い	 #  く	 #  と	 #  よ	 #  い	 #  で	 #  す	 #  ぞ	 #  。	 #  #	 #  #	| Original Japanese Text
+ o  o	 d LF	 t  o	    r	 e  c	 l  a	 i  m	    f	 r  o	 m LF	 c  o	 a  s	 t  l	 i  n	 e  .	 #  #	| New English Text
+6F 6F	64 0A	74 6F	20 72	65 63	6C 61	69 6D	20 66	72 6F	6D 0A	63 6F	61 73	74 6C	69 6E	65 2E	00 00	| New English Hex
+
+それでは、
+Now,
+$11A33E4 (Line 1)
+A4 BD	A4 EC	A4 C7	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  そ	 #  れ	 #  で	 #  は	 #  、	LF	| Original Japanese Text
+ N  o	 w  ,	LF  s	 c  e	 n  a	 r	| New English Text
+4E 6F	77 2C	0A 73	63 65	6E 61	72	| New English Hex
+シナリオ４スタートです！
+scenario 4 is starting!
+$11A33EF (Line 2)
+A5 B7	A5 CA	A5 EA	A5 AA	A3 B4	A5 B9	A5 BF	A1 BC	A5 C8	A4 C7	A4 B9	A1 AA	00	| Original Japanese Hex
+ #  シ	 #  ナ	 #  リ	 #  オ	 #  ４	 #  ス	 #  タ	 #  ー	 #  ト	 #  で	 #  す	 #  ！	 #	| Original Japanese Text
+ i  o	    4	    i	 s LF	 s  t	 a  r	 t  i	 n  g	 !  #	 #  #	 #  #	 #  #	 #	| New English Text
+69 6F	20 34	20 69	73 0A	73 74	61 72	74 69	6E 67	21 00	00 00	00 00	00 00	00	| New English Hex
+
+
+＊＊＊＊＊＊＊＊市長……。
+Mayor ********...
+$11A34A0 (Line 1)
+A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	BB D4	C4 B9	A1 C4	A1 C4	A1 A3	0A	| Original Japanese Hex
+ #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  市	 #  長	 #  …	 #  …	 #  。	LF	| Original Japanese Text
+ M  a	 y  o	 r   	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  ＊	 #  …	LF  H	 e	| New English Text
+4D 61	79 6F	72 20	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 F6	A1 C4	0A 48	65	| New English Hex
+ここユーカリヒルでは
+Here is Eucalyptus Hill
+$11A34BB (Line 2)
+A4 B3	A4 B3	A5 E6	A1 BC	A5 AB	A5 EA	A5 D2	A5 EB	A4 C7	A4 CF	0A	| Original Japanese Hex
+ #  こ	 #  こ	 #  ユ	 #  ー	 #  カ	 #  リ	 #  ヒ	 #  ル	 #  で	 #  は	LF	| Original Japanese Text
+ r  e	 '  s	LF  E	 u  c	 a  l	 y  p	 t  u	 s   	 H  i	 l  l	LF	| New English Text
+72 65	27 73	0A 45	75 63	61 6C	79 70	74 75	73 20	48 69	6C 6C	0A	| New English Hex
+前市長の汚職事件のせいで、
+due to the corruption case of the former Mayor,
+$11A34D0 (Line 3)
+C1 B0	BB D4	C4 B9	A4 CE	B1 F8	BF A6	BB F6	B7 EF	A4 CE	A4 BB	A4 A4	A4 C7	A1 A2	0A	| Original Japanese Hex
+ #  前	 #  市	 #  長	 #  の	 #  汚	 #  職	 #  事	 #  件	 #  の	 #  せ	 #  い	 #  で	 #  、	LF	| Original Japanese Text
+ d  u	 e   	 t  o	LF  c	 o  r	 r  u	 p  t	 i  o	 n   	 o  f	LF  t	 h  e	    f	 o 	| New English Text
+64 75	65 20	74 6F	0A 63	6F 72	72 75	70 74	69 6F	6E 20	6F 66	0A 74	68 65	20 66	6F	| New English Hex
+市民は市政に対して強い不信を
+citizens have a strong distrust for
+$11A34EB (Line 4)
+BB D4	CC B1	A4 CF	BB D4	C0 AF	A4 CB	C2 D0	A4 B7	A4 C6	B6 AF	A4 A4	C9 D4	BF AE	A4 F2	0A	| Original Japanese Hex
+ #  市	 #  民	 #  は	 #  市	 #  政	 #  に	 #  対	 #  し	 #  て	 #  強	 #  い	 #  不	 #  信	 #  を	LF	| Original Japanese Text
+ r  m	 e  r	LF  M	 a  y	 o  r	 ,   	 c  i	 t  i	 z  e	 n  s	LF  h	 a  v	 e   	 a   	 s	| New English Text
+72 6D	65 72	0A 4D	61 79	6F 72	2C 20	63 69	74 69	7A 65	6E 73	0A 68	61 76	65 20	61 20	73	| New English Hex
+抱いています。
+the city administration.
+$11A3508 (Line 5)
+CA FA	A4 A4	A4 C6	A4 A4	A4 DE	A4 B9	A1 A3	00 00	| Original Japanese Hex
+ #  抱	 #  い	 #  て	 #  い	 #  ま	 #  す	 #  。	 #  #	| Original Japanese Text
+ t  r	 o  n	 g LF	 d  i	 s  t	 r  u	 s  t	 .  #	| New English Text
+74 72	6F 6E	67 0A	64 69	73 74	72 75	73 74	2E 00	| New English Hex
+
+この度の市長の仕事は、
+Your work this time Mayor,
+$11A3518 (Line 1)
+A4 B3	A4 CE	C5 D9	A4 CE	BB D4	C4 B9	A4 CE	BB C5	BB F6	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  こ	 #  の	 #  度	 #  の	 #  市	 #  長	 #  の	 #  仕	 #  事	 #  は	 #  、	LF	| Original Japanese Text
+ Y  o	 u  r	    w	 o  r	 k   	 t  h	 i  s	LF  t	 i  m	 e   	 M  a	 y	| New English Text
+59 6F	75 72	20 77	6F 72	6B 20	74 68	69 73	0A 74	69 6D	65 20	4D 61	79	| New English Hex
+前市長の汚職の賠償のために
+the welfare level needs to 180 in order
+$11A352F (Line 2)
+C1 B0	BB D4	C4 B9	A4 CE	B1 F8	BF A6	A4 CE	C7 E5	BD FE	A4 CE	A4 BF	A4 E1	A4 CB	0A	| Original Japanese Hex
+ #  前	 #  市	 #  長	 #  の	 #  汚	 #  職	 #  の	 #  賠	 #  償	 #  の	 #  た	 #  め	 #  に	LF	| Original Japanese Text
+ o  r	 ,   	 g  e	 t LF	 t  h	 e   	 w  e	 l  f	 a  r	 e LF	 l  e	 v  e	 l   	 u	| New English Text
+6F 72	2C 20	67 65	74 0A	74 68	65 20	77 65	6C 66	61 72	65 0A	6C 65	76 65	6C 20	75	| New English Hex
+＄７０００の資金を確保することと
+to regain the trust of the citizens,
+$11A354A (Line 3)
+A1 F0	A3 B7	A3 B0	A3 B0	A3 B0	A4 CE	BB F1	B6 E2	A4 F2	B3 CE	CA DD	A4 B9	A4 EB	A4 B3	A4 C8	A4 C8	0A	| Original Japanese Hex
+ #  ＄	 #  ７	 #  ０	 #  ０	 #  ０	 #  の	 #  資	 #  金	 #  を	 #  確	 #  保	 #  す	 #  る	 #  こ	 #  と	 #  と	LF	| Original Japanese Text
+ p  t	 o   	 1  8	 0 LF  	 i  n	    o	 r  d	 e  r	    t	 o LF	 r  e	 g  a	 i  n	    t	 h  e	LF  c	 i	| New English Text
+70 74	6F 20	31 38	30 0A	69 6E	20 6F	72 64	65 72	20 74	6F 0A	72 65	67 61	69 6E	20 74	68 65	0A 63	69	| New English Hex
+市民の信頼を取り戻すために
+& ensure funding of $7000 in compensation
+$11A356B (Line 4)
+BB D4	CC B1	A4 CE	BF AE	CD EA	A4 F2	BC E8	A4 EA	CC E1	A4 B9	A4 BF	A4 E1	A4 CB	0A	| Original Japanese Hex
+ #  市	 #  民	 #  の	 #  信	 #  頼	 #  を	 #  取	 #  り	 #  戻	 #  す	 #  た	 #  め	 #  に	LF	| Original Japanese Text
+ t  i	 z  e	 n  s	    t	 r  u	 s  t	 , LF	 &   	 e  n	 s  u	 r  e	    f	 u  n	 d	| New English Text
+74 69	7A 65	6E 73	20 74	72 75	73 74	2C 0A	26 20	65 6E	73 75	72 65	20 66	75 6E	64	| New English Hex
+福祉度を１８０にすることです。
+for the corruption of former Mayor.
+$11A3586 (Line 5)
+CA A1	BB E3	C5 D9	A4 F2	A3 B1	A3 B8	A3 B0	A4 CB	A4 B9	A4 EB	A4 B3	A4 C8	A4 C7	A4 B9	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  福	 #  祉	 #  度	 #  を	 #  １	 #  ８	 #  ０	 #  に	 #  す	 #  る	 #  こ	 #  と	 #  で	 #  す	 #  。	 #  #	 #  #	| Original Japanese Text
+ i  n	 g LF	 o  f	    $	 7  0	 0  0	    f	 o  r	LF  c	 o  m	 p  e	 n  s	 a  t	 i  o	 n  .	 #  #	 #  #	| New English Text
+69 6E	67 0A	6F 66	20 24	37 30	30 30	20 66	6F 72	0A 63	6F 6D	70 65	6E 73	61 74	69 6F	6E 2E	00 00	00 00	| New English Hex
+
+住みよい街作りを続ければ、
+Continue making a lively city,
+$11A35A8 (Line 1)
+BD BB	A4 DF	A4 E8	A4 A4	B3 B9	BA EE	A4 EA	A4 F2	C2 B3	A4 B1	A4 EC	A4 D0	A1 A2	0A	| Original Japanese Hex
+ #  住	 #  み	 #  よ	 #  い	 #  街	 #  作	 #  り	 #  を	 #  続	 #  け	 #  れ	 #  ば	 #  、	LF	| Original Japanese Text
+ C  o	 n  t	 i  n	 u  e	    m	 a  k	 i  n	 g LF	 a   	 l  i	 v  e	 l  y	    c	 i	| New English Text
+43 6F	6E 74	69 6E	75 65	20 6D	61 6B	69 6E	67 0A	61 20	6C 69	76 65	6C 79	20 63	69	| New English Hex
+市長の誠意は市民に伝わるはずです
+sincerity of the Mayor should be transmitted to the citizens
+$11A35C3 (Line 2)
+BB D4	C4 B9	A4 CE	C0 BF	B0 D5	A4 CF	BB D4	CC B1	A4 CB	C5 C1	A4 EF	A4 EB	A4 CF	A4 BA	A4 C7	A4 B9	0A	| Original Japanese Hex
+ #  市	 #  長	 #  の	 #  誠	 #  意	 #  は	 #  市	 #  民	 #  に	 #  伝	 #  わ	 #  る	 #  は	 #  ず	 #  で	 #  す	LF	| Original Japanese Text
+ t  y	 , LF	 t  r	 a  n	 s  m	 i  t	    y	 o  u	 r LF	 s  i	 n  c	 e  r	 i  t	 y   	 t  o	    t	 h	| New English Text
+74 79	2C 0A	74 72	61 6E	73 6D	69 74	20 79	6F 75	72 0A	73 69	6E 63	65 72	69 74	79 20	74 6F	20 74	68	| New English Hex
+市民の信頼を取り戻すために
+please do your best in order to
+$11A35E4 (Line 3)
+BB D4	CC B1	A4 CE	BF AE	CD EA	A4 F2	BC E8	A4 EA	CC E1	A4 B9	A4 BF	A4 E1	A4 CB	0A	| Original Japanese Hex
+ #  市	 #  民	 #  の	 #  信	 #  頼	 #  を	 #  取	 #  り	 #  戻	 #  す	 #  た	 #  め	 #  に	LF	| Original Japanese Text
+ e LF	 c  i	 t  i	 z  e	 n  s	    p	 l  e	 a  s	 e LF	 d  o	    y	 o  u	 r   	 b	| New English Text
+65 0A	63 69	74 69	7A 65	6E 73	20 70	6C 65	61 73	65 0A	64 6F	20 79	6F 75	72 20	62	| New English Hex
+がんばってください。
+regain the trust of citizens.
+$11A35FF (Line 4)
+A4 AC	A4 F3	A4 D0	A4 C3	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00	| Original Japanese Hex
+ #  が	 #  ん	 #  ば	 #  っ	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #	| Original Japanese Text
+ e  s	 t   	 t  o	LF  r	 e  g	 a  i	 n   	 t  r	 u  s	 t  .	 #	| New English Text
+65 73	74 20	74 6F	0A 72	65 67	61 69	6E 20	74 72	75 73	74 2E	00	| New English Hex
+
+医療と教育を充実させれば、
+Welfare policy should be successful,
+$11A36EC (Line 1)
+B0 E5	CE C5	A4 C8	B6 B5	B0 E9	A4 F2	BD BC	BC C2	A4 B5	A4 BB	A4 EC	A4 D0	A1 A2	0A	| Original Japanese Hex
+ #  医	 #  療	 #  と	 #  教	 #  育	 #  を	 #  充	 #  実	 #  さ	 #  せ	 #  れ	 #  ば	 #  、	LF	| Original Japanese Text
+ W  e	 l  f	 a  r	 e   	 p  o	 l  i	 c  y	LF  w	 i  l	 l   	 b  e	LF  s	 u  c	 c	| New English Text
+57 65	6C 66	61 72	65 20	70 6F	6C 69	63 79	0A 77	69 6C	6C 20	62 65	0A 73	75 63	63	| New English Hex
+福祉政策は成功するはずです。
+if you enhance medical care & education.
+$11A3707 (Line 2)
+CA A1	BB E3	C0 AF	BA F6	A4 CF	C0 AE	B8 F9	A4 B9	A4 EB	A4 CF	A4 BA	A4 C7	A4 B9	A1 A3	0A	| Original Japanese Hex
+ #  福	 #  祉	 #  政	 #  策	 #  は	 #  成	 #  功	 #  す	 #  る	 #  は	 #  ず	 #  で	 #  す	 #  。	LF	| Original Japanese Text
+ e  s	 s  f	 u  l	 ,   	 i  f	LF  y	 o  u	    e	 n  h	 a  n	 c  e	LF  m	 e  d	 i  c	 a	| New English Text
+65 73	73 66	75 6C	2C 20	69 66	0A 79	6F 75	20 65	6E 68	61 6E	63 65	0A 6D	65 64	69 63	61	| New English Hex
+医療と教育が根付くには、
+It takes a little time,
+$11A3724 (Line 3)
+B0 E5	CE C5	A4 C8	B6 B5	B0 E9	A4 AC	BA AC	C9 D5	A4 AF	A4 CB	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  医	 #  療	 #  と	 #  教	 #  育	 #  が	 #  根	 #  付	 #  く	 #  に	 #  は	 #  、	LF	| Original Japanese Text
+ l   	 c  a	 r  e	    &	LF  e	 d  u	 c  a	 t  i	 o  n	 .   	 I  t	LF  t	 a	| New English Text
+6C 20	63 61	72 65	20 26	0A 65	64 75	63 61	74 69	6F 6E	2E 20	49 74	0A 74	61	| New English Hex
+少々時間が必要ですぞ。
+for the medical care & education to take root.
+$11A373D (Line 4)
+BE AF	A1 B9	BB FE	B4 D6	A4 AC	C9 AC	CD D7	A4 C7	A4 B9	A4 BE	A1 A3	00	| Original Japanese Hex
+ #  少	 #  々	 #  時	 #  間	 #  が	 #  必	 #  要	 #  で	 #  す	 #  ぞ	 #  。	 #	| Original Japanese Text
+ k  e	 s   	 t  i	 m  e	    t	 o LF	 t  a	 k  e	    r	 o  o	 t  .	 #	| New English Text
+6B 65	73 20	74 69	6D 65	20 74	6F 0A	74 61	6B 65	20 72	6F 6F	74 2E	00	| New English Hex
+
+それでは、
+Now,
+$11A3754 (Line 1)
+A4 BD	A4 EC	A4 C7	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  そ	 #  れ	 #  で	 #  は	 #  、	LF	| Original Japanese Text
+ N  o	 w  ,	LF  s	 c  e	 n  a	 r	| New English Text
+4E 6F	77 2C	0A 73	63 65	6E 61	72	| New English Hex
+シナリオ５スタートです！
+scenario 5 is starting!
+$11A375F (Line 2)
+A5 B7	A5 CA	A5 EA	A5 AA	A3 B5	A5 B9	A5 BF	A1 BC	A5 C8	A4 C7	A4 B9	A1 AA	00	| Original Japanese Hex
+ #  シ	 #  ナ	 #  リ	 #  オ	 #  ５	 #  ス	 #  タ	 #  ー	 #  ト	 #  で	 #  す	 #  ！	 #	| Original Japanese Text
+ i  o	    5	    i	 s LF	 s  t	 a  r	 t  i	 n  g	 !  #	 #  #	 #  #	 #  #	 #	| New English Text
+69 6F	20 35	20 69	73 0A	73 74	61 72	74 69	6E 67	21 00	00 00	00 00	00 00	00	| New English Hex

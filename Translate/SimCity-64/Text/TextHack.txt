@@ -3,16 +3,16 @@
 $11C74F4
 A4 A2	A4 C8	A1 A9	A1 A9	A1 A9	C7 AF	00 00	00 00	| Original Japanese Hex
  #  あ	 #  と	 #  ？	 #  ？	 #  ？	 #  年	 #  #	 #  #	| Original Japanese Text
- #   	 #   	 #  ？	 #  ？	 #  ？	 Y  r	 #  #	 #  #	| New English Text
-A1 A1	A1 A1	A1 A9	A1 A9	A1 A9	59 72	00 00	00 00	| New English Hex
+ i  m	 e  :	 #  ？	 #  ？	 #  ？	 Y  r	 #  #	 #  #	| New English Text
+69 6D	65 3A	A1 A9	A1 A9	A1 A9	59 72	00 00	00 00	| New English Hex
 
 あと？？年
 ?? Year
 $11C7504
 A4 A2	A4 C8	A1 A9	A1 A9	C7 AF	00 00	| Original Japanese Hex
  #  あ	 #  と	 #  ？	 #  ？	 #  年	 #  #	| Original Japanese Text
- #   	 #   	 #  ？	 #  ？	 Y  r	 #  #	| New English Text
-A1 A1	A1 A1	A1 A9	A1 A9	59 72	00 00	| New English Hex
+ i  m	 e  :	 #  ？	 #  ？	 Y  r	 #  #	| New English Text
+69 6D	65 3A	A1 A9	A1 A9	59 72	00 00	| New English Hex
 
 ＆＆＆＆年
 &&&& Year
@@ -21,3 +21,44 @@ A1 F5	A1 F5	A1 F5	A1 F5	C7 AF	00 00	| Original Japanese Hex
  #  ＆	 #  ＆	 #  ＆	 #  ＆	 #  年	 #  #	| Original Japanese Text
  #  ＆	 #  ＆	 #  ＆	 #  ＆	 #  #	 #  #	| New English Text
 A1 F5	A1 F5	A1 F5	A1 F5	00 00	00 00	| New English Hex
+
+
+あと？？？年
+??? Year
+$11E4EDC
+A4 A2	A4 C8	A1 A9	A1 A9	A1 A9	C7 AF	00 00	00 00	| Original Japanese Hex
+ #  あ	 #  と	 #  ？	 #  ？	 #  ？	 #  年	 #  #	 #  #	| Original Japanese Text
+ i  m	 e  :	 #  ？	 #  ？	 #  ？	 Y  r	 #  #	 #  #	| New English Text
+69 6D	65 3A	A1 A9	A1 A9	A1 A9	59 72	00 00	00 00	| New English Hex
+
+あと？？年
+?? Year
+$11E4EEC
+A4 A2	A4 C8	A1 A9	A1 A9	C7 AF	00 00	| Original Japanese Hex
+ #  あ	 #  と	 #  ？	 #  ？	 #  年	 #  #	| Original Japanese Text
+ i  m	 e  :	 #  ？	 #  ？	 Y  r	 #  #	| New English Text
+69 6D	65 3A	A1 A9	A1 A9	59 72	00 00	| New English Hex
+
+（現在？？？？？人）
+(Currently ????? People)
+$11E4F2C
+A1 CA	B8 BD	BA DF	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	BF CD	A1 CB	00 00	00 00	| Original Japanese Hex
+ #  （	 #  現	 #  在	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 #  人	 #  ）	 #  #	 #  #	| Original Japanese Text
+ e  n	 t  l	 y   	 #  ？	 #  ？	 #  ？	 #  ？	 #  ？	 )  #	 #  #	 #  #	 #  #	| New English Text
+65 6E	74 6C	79 20	A1 A9	A1 A9	A1 A9	A1 A9	A1 A9	29 00	00 00	00 00	00 00	| New English Hex
+
+充分
+Good
+$11E4F4C
+BD BC	CA AC	| Original Japanese Hex
+ #  充	 #  分	| Original Japanese Text
+ O  .	 K   	| New English Text
+4F 2E	4B 20	| New English Hex
+
+なし
+None
+$11E4F54
+A4 CA	A4 B7	| Original Japanese Hex
+ #  な	 #  し	| Original Japanese Text
+ N  o	 n  e	| New English Text
+4E 6F	6E 65	| New English Hex
