@@ -3,8 +3,9 @@ N64
 <br />
 N64 Bare Metal Code by krom (Peter Lemon).<br />
 <br />
-All code compiles out of box with the official Psy-Q N64 MIPS assembler:<br />
-ASMN64<br />
+All code compiles out of box with the bass assembler by byuu.<br />
+I use a special version of bass by ARM9 which has been updated with N64 MIPS/RSP/RDP output:<br />
+https://github.com/ARM9/bass<br />
 I have included binaries of all the demos.<br />
 <br />
 Special thanks to gbaguy/n64guy/asmguy, who with his tutorials, helped me get into N64 Coding =D<br />
