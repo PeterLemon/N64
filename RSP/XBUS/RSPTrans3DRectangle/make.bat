@@ -1,2 +1,2 @@
-asmn6432 /p RSPTrans3DRectangle.ASM,RSPTrans3DRectangle.N64
+bass RSPTrans3DRectangle.asm
 chksum64 RSPTrans3DRectangle.N64

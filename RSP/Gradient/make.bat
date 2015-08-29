@@ -1,2 +1,2 @@
-asmn6432 /p RSPGradient.ASM,RSPGradient.N64
+bass RSPGradient.asm
 chksum64 RSPGradient.N64
