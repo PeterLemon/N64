@@ -15,7 +15,7 @@ Also I'd like to thank marshallh, who designed the 64drive, the best development
 <br />
 Howto Compile:<br />
 All the code compiles into a single binary (ROMNAME.N64) file.<br />
-Using ASMN64 Run: make.bat<br />
+Using bass Run: make.bat<br />
 <br />
 Howto Run:<br />
 I only test with a real N64 using a 64drive Cartridge by marshallh from Retroactive:<br />
