@@ -1,2 +1,2 @@
-asmn6432 /p Cycle1FillZBufferRectangle16BPP320X240.ASM,Cycle1FillZBufferRectangle16BPP320X240.N64
+bass Cycle1FillZBufferRectangle16BPP320X240.asm
 chksum64 Cycle1FillZBufferRectangle16BPP320X240.N64

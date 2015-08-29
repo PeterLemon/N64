@@ -1,2 +1,2 @@
-asmn6432 /p RotateLeftMajorTriangle16BPP320X240.ASM,RotateLeftMajorTriangle16BPP320X240.N64
+bass RotateLeftMajorTriangle16BPP320X240.asm
 chksum64 RotateLeftMajorTriangle16BPP320X240.N64

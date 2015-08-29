@@ -1,2 +1,2 @@
-asmn6432 /p LeftMajorTriangle16BPP320X240.ASM,LeftMajorTriangle16BPP320X240.N64
+bass LeftMajorTriangle16BPP320X240.asm
 chksum64 LeftMajorTriangle16BPP320X240.N64

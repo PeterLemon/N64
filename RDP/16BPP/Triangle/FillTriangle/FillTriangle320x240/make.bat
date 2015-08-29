@@ -1,2 +1,2 @@
-asmn6432 /p FillTriangle16BPP320X240.ASM,FillTriangle16BPP320X240.N64
+bass FillTriangle16BPP320X240.asm
 chksum64 FillTriangle16BPP320X240.N64

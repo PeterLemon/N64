@@ -1,2 +1,2 @@
-asmn6432 /p RDPModeInput.ASM,RDPModeInput.N64
+bass RDPModeInput.asm
 chksum64 RDPModeInput.N64

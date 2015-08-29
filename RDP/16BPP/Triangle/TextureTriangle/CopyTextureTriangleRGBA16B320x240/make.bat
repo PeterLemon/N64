@@ -1,2 +1,2 @@
-asmn6432 /p CopyTextureTriangle16BPPRGBA16B320X240.ASM,CopyTextureTriangle16BPPRGBA16B320X240.N64
+bass CopyTextureTriangle16BPPRGBA16B320X240.asm
 chksum64 CopyTextureTriangle16BPPRGBA16B320X240.N64

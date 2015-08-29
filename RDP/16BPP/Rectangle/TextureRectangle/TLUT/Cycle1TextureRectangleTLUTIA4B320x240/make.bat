@@ -1,2 +1,2 @@
-asmn6432 /p Cycle1TextureRectangle16BPPTLUTIA4B320X240.ASM,Cycle1TextureRectangle16BPPTLUTIA4B320X240.N64
+bass Cycle1TextureRectangle16BPPTLUTIA4B320X240.asm
 chksum64 Cycle1TextureRectangle16BPPTLUTIA4B320X240.N64

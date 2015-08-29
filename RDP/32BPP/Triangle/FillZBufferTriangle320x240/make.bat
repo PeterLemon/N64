@@ -1,2 +1,2 @@
-asmn6432 /p Cycle1FillZBufferTriangle32BPP320X240.ASM,Cycle1FillZBufferTriangle32BPP320X240.N64
+bass Cycle1FillZBufferTriangle32BPP320X240.asm
 chksum64 Cycle1FillZBufferTriangle32BPP320X240.N64

@@ -1,2 +1,2 @@
-asmn6432 /p Cycle1TextureTriangle16BPPI8B320X240.ASM,Cycle1TextureTriangle16BPPI8B320X240.N64
+bass Cycle1TextureTriangle16BPPI8B320X240.asm
 chksum64 Cycle1TextureTriangle16BPPI8B320X240.N64
