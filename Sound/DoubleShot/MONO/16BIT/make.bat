@@ -1,2 +1,2 @@
-asmn6432 /p DoubleShotMONO16BIT.ASM,DoubleShotMONO16BIT.N64
+bass DoubleShotMONO16BIT.asm
 chksum64 DoubleShotMONO16BIT.N64

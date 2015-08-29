@@ -1,2 +1,2 @@
-asmn6432 /p DoubleShotSTEREO8BIT.ASM,DoubleShotSTEREO8BIT.N64
+bass DoubleShotSTEREO8BIT.asm
 chksum64 DoubleShotSTEREO8BIT.N64
