@@ -1,2 +1,2 @@
-asmn6432 /p SetScreenPAL.ASM,SetScreenPAL.N64
+bass SetScreenPAL.asm
 chksum64 SetScreenPAL.N64

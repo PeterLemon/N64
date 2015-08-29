@@ -1,2 +1,2 @@
-asmn6432 /p SetScreenNTSC.ASM,SetScreenNTSC.N64
+bass SetScreenNTSC.asm
 chksum64 SetScreenNTSC.N64
