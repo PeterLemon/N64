@@ -1,2 +1,2 @@
-asmn6432 /p PPU8BPPTile8x8.ASM,PPU8BPPTile8x8.N64
+bass PPU8BPPTile8x8.asm
 chksum64 PPU8BPPTile8x8.N64
