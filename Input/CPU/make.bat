@@ -1,2 +1,2 @@
-asmn6432 /p InputCPU.ASM,InputCPU.N64
+bass InputCPU.asm
 chksum64 InputCPU.N64

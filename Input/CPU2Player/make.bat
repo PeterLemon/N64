@@ -1,2 +1,2 @@
-asmn6432 /p InputCPU2Player.ASM,InputCPU2Player.N64
+bass InputCPU2Player.asm
 chksum64 InputCPU2Player.N64

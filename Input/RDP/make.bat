@@ -1,2 +1,2 @@
-asmn6432 /p InputRDP.ASM,InputRDP.N64
+bass InputRDP.asm
 chksum64 InputRDP.N64
