@@ -1,2 +1,2 @@
-asmn6432 /p RDPGRBDecode.ASM,RDPGRBDecode.N64
+bass RDPGRBDecode.asm
 chksum64 RDPGRBDecode.N64

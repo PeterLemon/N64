@@ -1,2 +1,2 @@
-asmn6432 /p GRBLZVideo.ASM,GRBLZVideo.N64
+bass GRBLZVideo.asm
 chksum64 GRBLZVideo.N64

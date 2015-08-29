@@ -1,2 +1,2 @@
-asmn6432 /p CPUGRBDecode.ASM,CPUGRBDecode.N64
+bass CPUGRBDecode.asm
 chksum64 CPUGRBDecode.N64
