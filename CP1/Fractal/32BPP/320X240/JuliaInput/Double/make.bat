@@ -1,2 +1,2 @@
-asmn6432 /p JuliaInput32BPP320X240.ASM,JuliaInput32BPP320X240.N64
+bass JuliaInput32BPP320X240.asm
 chksum64 JuliaInput32BPP320X240.N64

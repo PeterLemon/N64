@@ -1,2 +1,2 @@
-asmn6432 /p Mandelbrot32BPP640X480.ASM,Mandelbrot32BPP640X480.N64
+bass Mandelbrot32BPP640X480.asm
 chksum64 Mandelbrot32BPP640X480.N64
