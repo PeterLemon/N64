@@ -1,2 +1,2 @@
-asmn6432 /p CP1CEQ.ASM,CP1CEQ.N64
+bass CP1CEQ.asm
 chksum64 CP1CEQ.N64

@@ -1,2 +1,2 @@
-asmn6432 /p CP1CSF.ASM,CP1CSF.N64
+bass CP1CSF.asm
 chksum64 CP1CSF.N64
