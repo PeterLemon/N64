@@ -1,2 +1,2 @@
-asmn6432 /p CPUSRA.ASM,CPUSRA.N64
+bass CPUSRA.asm
 chksum64 CPUSRA.N64

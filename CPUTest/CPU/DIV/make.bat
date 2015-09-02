@@ -1,2 +1,2 @@
-asmn6432 /p CPUDIV.ASM,CPUDIV.N64
+bass CPUDIV.asm
 chksum64 CPUDIV.N64

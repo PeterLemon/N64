@@ -1,2 +1,2 @@
-asmn6432 /p CPUNOR.ASM,CPUNOR.N64
+bass CPUNOR.asm
 chksum64 CPUNOR.N64

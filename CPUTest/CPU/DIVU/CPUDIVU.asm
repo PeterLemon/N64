@@ -1,533 +1,584 @@
-; N64 'Bare Metal' CPU Unsigned Word Division Test Demo by krom (Peter Lemon):
-  include LIB\N64.INC ; Include N64 Definitions
-  dcb 1052672,$00 ; Set ROM Size
-  org $80000000 ; Entry Point Of Code
-  include LIB\N64_HEADER.ASM  ; Include 64 Byte Header & Vector Table
-  incbin LIB\N64_BOOTCODE.BIN ; Include 4032 Byte Boot Code
+// N64 'Bare Metal' CPU Unsigned Word Division Test Demo by krom (Peter Lemon):
+arch n64.cpu
+endian msb
+output "CPUDIVU.N64", create
+fill 1052672 // Set ROM Size
 
-PrintString: macro vram, xpos, ypos, fontfile, string, length ; Print Text String To VRAM Using Font At X,Y Position
-  lui a0,vram ; A0 = Frame Buffer Pointer
-  addi a0,((xpos*4)+((640*ypos)*4)) ; Place text at XY Position
-  la a1,fontfile ; A1 = Characters
-  la a2,string ; A2 = Text Offset
-  li t0,length ; T0 = Number of Text Characters to Print
-  DrawChars\@:
-    li t1,7 ; T1 = Character X Pixel Counter
-    li t2,7 ; T2 = Character Y Pixel Counter
+// Setup Frame Buffer
+constant SCREEN_X(640)
+constant SCREEN_Y(480)
+constant BYTES_PER_PIXEL(4)
 
-    lb t3,0(a2) ; T3 = Next Text Character
+// Setup Characters
+constant CHAR_X(8)
+constant CHAR_Y(8)
+
+origin $00000000
+base $80000000 // Entry Point Of Code
+include "LIB\N64.INC" // Include N64 Definitions
+include "LIB\N64_HEADER.ASM" // Include 64 Byte Header & Vector Table
+insert "LIB\N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
+
+macro PrintString(vram, xpos, ypos, fontfile, string, length) { // Print Text String To VRAM Using Font At X,Y Position
+  li a0,{vram}+({xpos}*BYTES_PER_PIXEL)+(SCREEN_X*BYTES_PER_PIXEL*{ypos}) // A0 = Frame Buffer Pointer (Place text at XY Position)
+  la a1,{fontfile} // A1 = Characters
+  la a2,{string} // A2 = Text Offset
+  lli t0,{length} // T0 = Number of Text Characters to Print
+  {#}DrawChars:
+    lli t1,CHAR_X-1 // T1 = Character X Pixel Counter
+    lli t2,CHAR_Y-1 // T2 = Character Y Pixel Counter
+
+    lb t3,0(a2) // T3 = Next Text Character
     addi a2,1
 
-    sll t3,8 ; Add Shift to Correct Position in Font (* 256)
+    sll t3,8 // Add Shift to Correct Position in Font (*256: CHAR_X*CHAR_Y*BYTES_PER_PIXEL)
     add t3,a1
 
-    DrawCharX\@:
-      lw t4,0(t3) ; Load Font Text Character Pixel
-      addi t3,4
-      sw t4,0(a0) ; Store Font Text Character Pixel into Frame Buffer
-      addi a0,4
+    {#}DrawCharX:
+      lw t4,0(t3) // Load Font Text Character Pixel
+      addi t3,BYTES_PER_PIXEL
+      sw t4,0(a0) // Store Font Text Character Pixel into Frame Buffer
+      addi a0,BYTES_PER_PIXEL
 
-      bnez t1,DrawCharX\@ ; IF Character X Pixel Counter != 0 GOTO DrawCharX
-      subi t1,1 ; Decrement Character X Pixel Counter
+      bnez t1,{#}DrawCharX // IF (Character X Pixel Counter != 0) DrawCharX
+      subi t1,1 // Decrement Character X Pixel Counter
 
-      addi a0,$9E0 ; Jump down 1 Scanline, Jump back 1 Char ((SCREEN_X * 4) - (CHAR_X * 4))
-      li t1,7 ; Reset Character X Pixel Counter
-      bnez t2,DrawCharX\@ ; IF Character Y Pixel Counter != 0 GOTO DrawCharX
-      subi t2,1 ; Decrement Character Y Pixel Counter
+      addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump Down 1 Scanline, Jump Back 1 Char
+      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      bnez t2,{#}DrawCharX // IF (Character Y Pixel Counter != 0) DrawCharX
+      subi t2,1 // Decrement Character Y Pixel Counter
 
-    subi a0,$4FE0 ; ((SCREEN_X * 4) * CHAR_Y) - CHAR_X * 4
-    bnez t0,DrawChars\@ ; Continue to Print Characters
-    subi t0,1 ; Subtract Number of Text Characters to Print
-    endm
+    subi a0,((SCREEN_X*BYTES_PER_PIXEL)*CHAR_Y)-CHAR_X*BYTES_PER_PIXEL // Jump To Start Of Next Char
+    bnez t0,{#}DrawChars // Continue to Print Characters
+    subi t0,1 // Subtract Number of Text Characters to Print
+}
 
-PrintValue: macro vram, xpos, ypos, fontfile, value, length ; Print HEX Chars To VRAM Using Font At X,Y Position
-  lui a0,vram ; A0 = Frame Buffer Pointer
-  addi a0,((xpos*4)+((640*ypos)*4)) ; Place text at XY Position
-  la a1,fontfile ; A1 = Characters
-  la a2,value ; A2 = Value Offset
-  li t0,length ; T0 = Number of HEX Chars to Print
-  DrawHEXChars\@:
-    li t1,7 ; T1 = Character X Pixel Counter
-    li t2,7 ; T2 = Character Y Pixel Counter
+macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars To VRAM Using Font At X,Y Position
+  li a0,{vram}+({xpos}*BYTES_PER_PIXEL)+(SCREEN_X*BYTES_PER_PIXEL*{ypos}) // A0 = Frame Buffer Pointer (Place text at XY Position)
+  la a1,{fontfile} // A1 = Characters
+  la a2,{value} // A2 = Value Offset
+  li t0,{length} // T0 = Number of HEX Chars to Print
+  {#}DrawHEXChars:
+    lli t1,CHAR_X-1 // T1 = Character X Pixel Counter
+    lli t2,CHAR_Y-1 // T2 = Character Y Pixel Counter
 
-    lb t3,0(a2) ; T3 = Next 2 HEX Chars
+    lb t3,0(a2) // T3 = Next 2 HEX Chars
     addi a2,1
 
-    srl t4,t3,4 ; T4 = 2nd Nibble
+    srl t4,t3,4 // T4 = 2nd Nibble
     andi t4,$F
     subi t5,t4,9
-    bgtz t5,HEXLetters\@
-    addi t4,$30 ; Delay Slot
-    j HEXEnd\@
-    nop ; Delay Slot
+    bgtz t5,{#}HEXLetters
+    addi t4,$30 // Delay Slot
+    j {#}HEXEnd
+    nop // Delay Slot
 
-    HEXLetters\@:
+    {#}HEXLetters:
     addi t4,7
-    HEXEnd\@:
+    {#}HEXEnd:
 
-    sll t4,8 ; Add Shift to Correct Position in Font (* 256)
+    sll t4,8 // Add Shift to Correct Position in Font (*256: CHAR_X*CHAR_Y*BYTES_PER_PIXEL)
     add t4,a1
 
-    DrawHEXCharX\@:
-      lw t5,0(t4) ; Load Font Text Character Pixel
+    {#}DrawHEXCharX:
+      lw t5,0(t4) // Load Font Text Character Pixel
       addi t4,4
-      sw t5,0(a0) ; Store Font Text Character Pixel into Frame Buffer
+      sw t5,0(a0) // Store Font Text Character Pixel into Frame Buffer
       addi a0,4
 
-      bnez t1,DrawHEXCharX\@ ; IF Character X Pixel Counter != 0 GOTO DrawCharX
-      subi t1,1 ; Decrement Character X Pixel Counter
+      bnez t1,{#}DrawHEXCharX // IF (Character X Pixel Counter != 0) DrawCharX
+      subi t1,1 // Decrement Character X Pixel Counter
 
-      addi a0,$9E0 ; Jump down 1 Scanline, Jump back 1 Char ((SCREEN_X * 4) - (CHAR_X * 4))
-      li t1,7 ; Reset Character X Pixel Counter
-      bnez t2,DrawHEXCharX\@ ; IF Character Y Pixel Counter != 0 GOTO DrawCharX
-      subi t2,1 ; Decrement Character Y Pixel Counter
+      addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump down 1 Scanline, Jump back 1 Char
+      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      bnez t2,{#}DrawHEXCharX // IF (Character Y Pixel Counter != 0) DrawCharX
+      subi t2,1 // Decrement Character Y Pixel Counter
 
-    subi a0,$4FE0 ; ((SCREEN_X * 4) * CHAR_Y) - CHAR_X * 4
+    subi a0,((SCREEN_X*BYTES_PER_PIXEL)*CHAR_Y)-CHAR_X*BYTES_PER_PIXEL // Jump To Start Of Next Char
 
-    li t2,7 ; Reset Character Y Pixel Counter
+    lli t2,CHAR_Y-1 // Reset Character Y Pixel Counter
 
-    andi t4,t3,$F ; T4 = 1st Nibble
+    andi t4,t3,$F // T4 = 1st Nibble
     subi t5,t4,9
-    bgtz t5,HEXLettersB\@
-    addi t4,$30 ; Delay Slot
-    j HEXEndB\@
-    nop ; Delay Slot
+    bgtz t5,{#}HEXLettersB
+    addi t4,$30 // Delay Slot
+    j {#}HEXEndB
+    nop // Delay Slot
 
-    HEXLettersB\@:
+    {#}HEXLettersB:
     addi t4,7
-    HEXEndB\@:
+    {#}HEXEndB:
 
-    sll t4,8 ; Add Shift to Correct Position in Font (* 256)
+    sll t4,8 // Add Shift to Correct Position in Font (*256: CHAR_X*CHAR_Y*BYTES_PER_PIXEL)
     add t4,a1
 
-    DrawHEXCharXB\@:
-      lw t5,0(t4) ; Load Font Text Character Pixel
+    {#}DrawHEXCharXB:
+      lw t5,0(t4) // Load Font Text Character Pixel
       addi t4,4
-      sw t5,0(a0) ; Store Font Text Character Pixel into Frame Buffer
+      sw t5,0(a0) // Store Font Text Character Pixel into Frame Buffer
       addi a0,4
 
-      bnez t1,DrawHEXCharXB\@ ; IF Character X Pixel Counter != 0 GOTO DrawCharX
-      subi t1,1 ; Decrement Character X Pixel Counter
+      bnez t1,{#}DrawHEXCharXB // IF (Character X Pixel Counter != 0) DrawCharX
+      subi t1,1 // Decrement Character X Pixel Counter
 
-      addi a0,$9E0 ; Jump down 1 Scanline, Jump back 1 Char ((SCREEN_X * 4) - (CHAR_X * 4))
-      li t1,7 ; Reset Character X Pixel Counter
-      bnez t2,DrawHEXCharXB\@ ; IF Character Y Pixel Counter != 0 GOTO DrawCharX
-      subi t2,1 ; Decrement Character Y Pixel Counter
+      addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump down 1 Scanline, Jump back 1 Char
+      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      bnez t2,{#}DrawHEXCharXB // IF (Character Y Pixel Counter != 0) DrawCharX
+      subi t2,1 // Decrement Character Y Pixel Counter
 
-    subi a0,$4FE0 ; ((SCREEN_X * 4) * CHAR_Y) - CHAR_X * 4
+    subi a0,((SCREEN_X*BYTES_PER_PIXEL)*CHAR_Y)-CHAR_X*BYTES_PER_PIXEL // Jump To Start Of Next Char
 
-    bnez t0,DrawHEXChars\@ ; Continue to Print Characters
-    subi t0,1 ; Subtract Number of Text Characters to Print
-    endm
+    bnez t0,{#}DrawHEXChars // Continue to Print Characters
+    subi t0,1 // Subtract Number of Text Characters to Print
+}
 
 Start:
-  include LIB\N64_GFX.INC ; Include Graphics Macros
-  N64_INIT ; Run N64 Initialisation Routine
+  include "LIB\N64_GFX.INC" // Include Graphics Macros
+  N64_INIT() // Run N64 Initialisation Routine
 
-  ScreenNTSC 640, 480, BPP32|INTERLACE|AA_MODE_2, $A0100000 ; Screen NTSC: 640x480, 32BPP, Interlace, Resample Only, DRAM Origin = $A0100000
+  ScreenNTSC(640, 480, BPP32|INTERLACE|AA_MODE_2, $A0100000) // Screen NTSC: 640x480, 32BPP, Interlace, Resample Only, DRAM Origin = $A0100000
 
-  lui a0,$A010 ; A0 = VRAM Start Offset
-  addi a1,a0,((640*480*4)-4) ; A1 = VRAM End Offset
-  li t0,$000000FF ; T0 = Black
+  lui a0,$A010 // A0 = VRAM Start Offset
+  la a1,$A0100000+((SCREEN_X*SCREEN_Y*BYTES_PER_PIXEL)-BYTES_PER_PIXEL) // A1 = VRAM End Offset
+  lli t0,$000000FF // T0 = Black
 ClearScreen:
   sw t0,0(a0)
   bne a0,a1,ClearScreen
-  addi a0,4 ; Delay Slot
+  addi a0,4 // Delay Slot
 
 
-  PrintString $A010,88,8,FontRed,RSRTHEX,10 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,232,8,FontRed,RSRTDEC,14 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,384,8,FontRed,LOHIHEX,10 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,528,8,FontRed,TEST,10 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,88,8,FontRed,RSRTHEX,10) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,232,8,FontRed,RSRTDEC,14) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,384,8,FontRed,LOHIHEX,10) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,8,FontRed,TEST,10) // Print Text String To VRAM Using Font At X,Y Position
 
 
-  PrintString $A010,0,16,FontBlack,PAGEBREAK,79 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,0,16,FontBlack,PAGEBREAK,79) // Print Text String To VRAM Using Font At X,Y Position
 
 
-  PrintString $A010,8,24,FontRed,DIVU,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,VALUEWORDA ; A0 = Word Data Offset
-  lw t0,0(a0)      ; T0 = Word Data
-  la a0,VALUEWORDB ; A0 = Word Data Offset
-  lw t1,0(a0)      ; T1 = Word Data
-  divu t0,t1 ; HI/LO = Test Word Data
-  mflo t0 ; T0 = LO
-  la a0,LOWORD ; A0 = LOWORD Offset
-  sw t0,0(a0)  ; LOWORD = Word Data
-  mfhi t0 ; T0 = HI
-  la a0,HIWORD ; A0 = HIWORD Offset
-  sw t0,0(a0)  ; HIWORD = Word Data
-  PrintString $A010,144,24,FontBlack,DOLLAR,0     ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,152,24,FontBlack,VALUEWORDA,3 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString $A010,360,24,FontBlack,TEXTWORDA,0  ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,440,24,FontBlack,DOLLAR,0 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,448,24,FontBlack,LOWORD,3 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,144,32,FontBlack,DOLLAR,0     ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,152,32,FontBlack,VALUEWORDB,3 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString $A010,296,32,FontBlack,TEXTWORDB,8  ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,440,32,FontBlack,DOLLAR,0 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,448,32,FontBlack,HIWORD,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,LOWORD       ; A0 = Word Data Offset
-  lw t0,0(a0)        ; T0 = Word Data
-  la a0,DIVULOCHECKA ; A0 = Word Check Data Offset
-  lw t1,0(a0)        ; T1 = Word Check Data
-  beq t0,t1,DIVULOPASSA ; Compare Result Equality With Check Data
-  nop ; Delay Slot
-  PrintString $A010,528,24,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,8,24,FontRed,DIVU,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,VALUEWORDA // A0 = Word Data Offset
+  lw t0,0(a0)      // T0 = Word Data
+  la a0,VALUEWORDB // A0 = Word Data Offset
+  lw t1,0(a0)      // T1 = Word Data
+  divu t0,t1 // HI/LO = Test Word Data
+  mflo t0 // T0 = LO
+  la a0,LOWORD // A0 = LOWORD Offset
+  sw t0,0(a0)  // LOWORD = Word Data
+  mfhi t0 // T0 = HI
+  la a0,HIWORD // A0 = HIWORD Offset
+  sw t0,0(a0)  // HIWORD = Word Data
+  PrintString($A0100000,144,24,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,24,FontBlack,VALUEWORDA,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,360,24,FontBlack,TEXTWORDA,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,24,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,24,FontBlack,LOWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,32,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,32,FontBlack,VALUEWORDB,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,296,32,FontBlack,TEXTWORDB,8) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,32,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,32,FontBlack,HIWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,LOWORD       // A0 = Word Data Offset
+  lw t0,0(a0)        // T0 = Word Data
+  la a0,DIVULOCHECKA // A0 = Word Check Data Offset
+  lw t1,0(a0)        // T1 = Word Check Data
+  beq t0,t1,DIVULOPASSA // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,24,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j DIVUENDA
-  nop ; Delay Slot
+  nop // Delay Slot
   DIVULOPASSA:
-  PrintString $A010,528,24,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,HIWORD       ; A0 = Word Data Offset
-  lw t0,0(a0)        ; T0 = Word Data
-  la a0,DIVUHICHECKA ; A0 = Word Check Data Offset
-  lw t1,0(a0)        ; T1 = Word Check Data
-  beq t0,t1,DIVUHIPASSA ; Compare Result Equality With Check Data
-  nop ; Delay Slot
-  PrintString $A010,528,32,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,24,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,HIWORD       // A0 = Word Data Offset
+  lw t0,0(a0)        // T0 = Word Data
+  la a0,DIVUHICHECKA // A0 = Word Check Data Offset
+  lw t1,0(a0)        // T1 = Word Check Data
+  beq t0,t1,DIVUHIPASSA // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,32,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j DIVUENDA
-  nop ; Delay Slot
+  nop // Delay Slot
   DIVUHIPASSA:
-  PrintString $A010,528,32,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,32,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   DIVUENDA:
 
-  la a0,VALUEWORDB ; A0 = Word Data Offset
-  lw t0,0(a0)      ; T0 = Word Data
-  la a0,VALUEWORDC ; A0 = Word Data Offset
-  lw t1,0(a0)      ; T1 = Word Data
-  divu t0,t1 ; HI/LO = Test Word Data
-  mflo t0 ; T0 = LO
-  la a0,LOWORD ; A0 = LOWORD Offset
-  sw t0,0(a0)  ; LOWORD = Word Data
-  mfhi t0 ; T0 = HI
-  la a0,HIWORD ; A0 = HIWORD Offset
-  sw t0,0(a0)  ; HIWORD = Word Data
-  PrintString $A010,144,48,FontBlack,DOLLAR,0     ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,152,48,FontBlack,VALUEWORDB,3 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString $A010,296,48,FontBlack,TEXTWORDB,8  ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,440,48,FontBlack,DOLLAR,0 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,448,48,FontBlack,LOWORD,3 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,144,56,FontBlack,DOLLAR,0     ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,152,56,FontBlack,VALUEWORDC,3 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString $A010,320,56,FontBlack,TEXTWORDC,5  ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,440,56,FontBlack,DOLLAR,0 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,448,56,FontBlack,HIWORD,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,LOWORD       ; A0 = Word Data Offset
-  lw t0,0(a0)        ; T0 = Word Data
-  la a0,DIVULOCHECKB ; A0 = Word Check Data Offset
-  lw t1,0(a0)        ; T1 = Word Check Data
-  beq t0,t1,DIVULOPASSB ; Compare Result Equality With Check Data
-  nop ; Delay Slot
-  PrintString $A010,528,48,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
+  la a0,VALUEWORDB // A0 = Word Data Offset
+  lw t0,0(a0)      // T0 = Word Data
+  la a0,VALUEWORDC // A0 = Word Data Offset
+  lw t1,0(a0)      // T1 = Word Data
+  divu t0,t1 // HI/LO = Test Word Data
+  mflo t0 // T0 = LO
+  la a0,LOWORD // A0 = LOWORD Offset
+  sw t0,0(a0)  // LOWORD = Word Data
+  mfhi t0 // T0 = HI
+  la a0,HIWORD // A0 = HIWORD Offset
+  sw t0,0(a0)  // HIWORD = Word Data
+  PrintString($A0100000,144,48,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,48,FontBlack,VALUEWORDB,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,296,48,FontBlack,TEXTWORDB,8) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,48,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,48,FontBlack,LOWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,56,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,56,FontBlack,VALUEWORDC,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,320,56,FontBlack,TEXTWORDC,5) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,56,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,56,FontBlack,HIWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,LOWORD       // A0 = Word Data Offset
+  lw t0,0(a0)        // T0 = Word Data
+  la a0,DIVULOCHECKB // A0 = Word Check Data Offset
+  lw t1,0(a0)        // T1 = Word Check Data
+  beq t0,t1,DIVULOPASSB // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,48,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j DIVUENDB
-  nop ; Delay Slot
+  nop // Delay Slot
   DIVULOPASSB:
-  PrintString $A010,528,48,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,HIWORD       ; A0 = Word Data Offset
-  lw t0,0(a0)        ; T0 = Word Data
-  la a0,DIVUHICHECKB ; A0 = Word Check Data Offset
-  lw t1,0(a0)        ; T1 = Word Check Data
-  beq t0,t1,DIVUHIPASSB ; Compare Result Equality With Check Data
-  nop ; Delay Slot
-  PrintString $A010,528,56,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,48,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,HIWORD       // A0 = Word Data Offset
+  lw t0,0(a0)        // T0 = Word Data
+  la a0,DIVUHICHECKB // A0 = Word Check Data Offset
+  lw t1,0(a0)        // T1 = Word Check Data
+  beq t0,t1,DIVUHIPASSB // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,56,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j DIVUENDB
-  nop ; Delay Slot
+  nop // Delay Slot
   DIVUHIPASSB:
-  PrintString $A010,528,56,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,56,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   DIVUENDB:
 
-  la a0,VALUEWORDC ; A0 = Word Data Offset
-  lw t0,0(a0)      ; T0 = Word Data
-  la a0,VALUEWORDD ; A0 = Word Data Offset
-  lw t1,0(a0)      ; T1 = Word Data
-  divu t0,t1 ; HI/LO = Test Word Data
-  mflo t0 ; T0 = LO
-  la a0,LOWORD ; A0 = LOWORD Offset
-  sw t0,0(a0)  ; LOWORD = Word Data
-  mfhi t0 ; T0 = HI
-  la a0,HIWORD ; A0 = HIWORD Offset
-  sw t0,0(a0)  ; HIWORD = Word Data
-  PrintString $A010,144,72,FontBlack,DOLLAR,0     ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,152,72,FontBlack,VALUEWORDC,3 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString $A010,320,72,FontBlack,TEXTWORDC,5  ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,440,72,FontBlack,DOLLAR,0 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,448,72,FontBlack,LOWORD,3 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,144,80,FontBlack,DOLLAR,0     ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,152,80,FontBlack,VALUEWORDD,3 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString $A010,296,80,FontBlack,TEXTWORDD,8  ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,440,80,FontBlack,DOLLAR,0 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,448,80,FontBlack,HIWORD,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,LOWORD       ; A0 = Word Data Offset
-  lw t0,0(a0)        ; T0 = Word Data
-  la a0,DIVULOCHECKC ; A0 = Word Check Data Offset
-  lw t1,0(a0)        ; T1 = Word Check Data
-  beq t0,t1,DIVULOPASSC ; Compare Result Equality With Check Data
-  nop ; Delay Slot
-  PrintString $A010,528,72,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
+  la a0,VALUEWORDC // A0 = Word Data Offset
+  lw t0,0(a0)      // T0 = Word Data
+  la a0,VALUEWORDD // A0 = Word Data Offset
+  lw t1,0(a0)      // T1 = Word Data
+  divu t0,t1 // HI/LO = Test Word Data
+  mflo t0 // T0 = LO
+  la a0,LOWORD // A0 = LOWORD Offset
+  sw t0,0(a0)  // LOWORD = Word Data
+  mfhi t0 // T0 = HI
+  la a0,HIWORD // A0 = HIWORD Offset
+  sw t0,0(a0)  // HIWORD = Word Data
+  PrintString($A0100000,144,72,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,72,FontBlack,VALUEWORDC,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,320,72,FontBlack,TEXTWORDC,5) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,72,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,72,FontBlack,LOWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,80,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,80,FontBlack,VALUEWORDD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,296,80,FontBlack,TEXTWORDD,8) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,80,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,80,FontBlack,HIWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,LOWORD       // A0 = Word Data Offset
+  lw t0,0(a0)        // T0 = Word Data
+  la a0,DIVULOCHECKC // A0 = Word Check Data Offset
+  lw t1,0(a0)        // T1 = Word Check Data
+  beq t0,t1,DIVULOPASSC // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,72,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j DIVUENDC
-  nop ; Delay Slot
+  nop // Delay Slot
   DIVULOPASSC:
-  PrintString $A010,528,72,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,HIWORD       ; A0 = Word Data Offset
-  lw t0,0(a0)        ; T0 = Word Data
-  la a0,DIVUHICHECKC ; A0 = Word Check Data Offset
-  lw t1,0(a0)        ; T1 = Word Check Data
-  beq t0,t1,DIVUHIPASSC ; Compare Result Equality With Check Data
-  nop ; Delay Slot
-  PrintString $A010,528,80,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,72,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,HIWORD       // A0 = Word Data Offset
+  lw t0,0(a0)        // T0 = Word Data
+  la a0,DIVUHICHECKC // A0 = Word Check Data Offset
+  lw t1,0(a0)        // T1 = Word Check Data
+  beq t0,t1,DIVUHIPASSC // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,80,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j DIVUENDC
-  nop ; Delay Slot
+  nop // Delay Slot
   DIVUHIPASSC:
-  PrintString $A010,528,80,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,80,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   DIVUENDC:
 
-  la a0,VALUEWORDD ; A0 = Word Data Offset
-  lw t0,0(a0)      ; T0 = Word Data
-  la a0,VALUEWORDE ; A0 = Word Data Offset
-  lw t1,0(a0)      ; T1 = Word Data
-  divu t0,t1 ; HI/LO = Test Word Data
-  mflo t0 ; T0 = LO
-  la a0,LOWORD ; A0 = LOWORD Offset
-  sw t0,0(a0)  ; LOWORD = Word Data
-  mfhi t0 ; T0 = HI
-  la a0,HIWORD ; A0 = HIWORD Offset
-  sw t0,0(a0)  ; HIWORD = Word Data
-  PrintString $A010,144,96,FontBlack,DOLLAR,0      ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,152,96,FontBlack,VALUEWORDD,3  ; Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString $A010,296,96,FontBlack,TEXTWORDD,8   ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,440,96,FontBlack,DOLLAR,0 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,448,96,FontBlack,LOWORD,3 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,144,104,FontBlack,DOLLAR,0     ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,152,104,FontBlack,VALUEWORDE,3 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString $A010,288,104,FontBlack,TEXTWORDE,9  ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,440,104,FontBlack,DOLLAR,0 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,448,104,FontBlack,HIWORD,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,LOWORD       ; A0 = Word Data Offset
-  lw t0,0(a0)        ; T0 = Word Data
-  la a0,DIVULOCHECKD ; A0 = Word Check Data Offset
-  lw t1,0(a0)        ; T1 = Word Check Data
-  beq t0,t1,DIVULOPASSD ; Compare Result Equality With Check Data
-  nop ; Delay Slot
-  PrintString $A010,528,96,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
+  la a0,VALUEWORDD // A0 = Word Data Offset
+  lw t0,0(a0)      // T0 = Word Data
+  la a0,VALUEWORDE // A0 = Word Data Offset
+  lw t1,0(a0)      // T1 = Word Data
+  divu t0,t1 // HI/LO = Test Word Data
+  mflo t0 // T0 = LO
+  la a0,LOWORD // A0 = LOWORD Offset
+  sw t0,0(a0)  // LOWORD = Word Data
+  mfhi t0 // T0 = HI
+  la a0,HIWORD // A0 = HIWORD Offset
+  sw t0,0(a0)  // HIWORD = Word Data
+  PrintString($A0100000,144,96,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,96,FontBlack,VALUEWORDD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,296,96,FontBlack,TEXTWORDD,8) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,96,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,96,FontBlack,LOWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,104,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,104,FontBlack,VALUEWORDE,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,288,104,FontBlack,TEXTWORDE,9) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,104,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,104,FontBlack,HIWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,LOWORD       // A0 = Word Data Offset
+  lw t0,0(a0)        // T0 = Word Data
+  la a0,DIVULOCHECKD // A0 = Word Check Data Offset
+  lw t1,0(a0)        // T1 = Word Check Data
+  beq t0,t1,DIVULOPASSD // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,96,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j DIVUENDD
-  nop ; Delay Slot
+  nop // Delay Slot
   DIVULOPASSD:
-  PrintString $A010,528,96,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,HIWORD       ; A0 = Word Data Offset
-  lw t0,0(a0)        ; T0 = Word Data
-  la a0,DIVUHICHECKD ; A0 = Word Check Data Offset
-  lw t1,0(a0)        ; T1 = Word Check Data
-  beq t0,t1,DIVUHIPASSD ; Compare Result Equality With Check Data
-  nop ; Delay Slot
-  PrintString $A010,528,104,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,96,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,HIWORD       // A0 = Word Data Offset
+  lw t0,0(a0)        // T0 = Word Data
+  la a0,DIVUHICHECKD // A0 = Word Check Data Offset
+  lw t1,0(a0)        // T1 = Word Check Data
+  beq t0,t1,DIVUHIPASSD // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,104,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j DIVUENDD
-  nop ; Delay Slot
+  nop // Delay Slot
   DIVUHIPASSD:
-  PrintString $A010,528,104,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,104,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   DIVUENDD:
 
-  la a0,VALUEWORDE ; A0 = Word Data Offset
-  lw t0,0(a0)      ; T0 = Word Data
-  la a0,VALUEWORDF ; A0 = Word Data Offset
-  lw t1,0(a0)      ; T1 = Word Data
-  divu t0,t1 ; HI/LO = Test Word Data
-  mflo t0 ; T0 = LO
-  la a0,LOWORD ; A0 = LOWORD Offset
-  sw t0,0(a0)  ; LOWORD = Word Data
-  mfhi t0 ; T0 = HI
-  la a0,HIWORD ; A0 = HIWORD Offset
-  sw t0,0(a0)  ; HIWORD = Word Data
-  PrintString $A010,144,120,FontBlack,DOLLAR,0     ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,152,120,FontBlack,VALUEWORDE,3 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString $A010,288,120,FontBlack,TEXTWORDE,9  ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,440,120,FontBlack,DOLLAR,0 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,448,120,FontBlack,LOWORD,3 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,144,128,FontBlack,DOLLAR,0     ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,152,128,FontBlack,VALUEWORDF,3 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString $A010,312,128,FontBlack,TEXTWORDF,6  ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,440,128,FontBlack,DOLLAR,0 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,448,128,FontBlack,HIWORD,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,LOWORD       ; A0 = Word Data Offset
-  lw t0,0(a0)        ; T0 = Word Data
-  la a0,DIVULOCHECKE ; A0 = Word Check Data Offset
-  lw t1,0(a0)        ; T1 = Word Check Data
-  beq t0,t1,DIVULOPASSE ; Compare Result Equality With Check Data
-  nop ; Delay Slot
-  PrintString $A010,528,120,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
+  la a0,VALUEWORDE // A0 = Word Data Offset
+  lw t0,0(a0)      // T0 = Word Data
+  la a0,VALUEWORDF // A0 = Word Data Offset
+  lw t1,0(a0)      // T1 = Word Data
+  divu t0,t1 // HI/LO = Test Word Data
+  mflo t0 // T0 = LO
+  la a0,LOWORD // A0 = LOWORD Offset
+  sw t0,0(a0)  // LOWORD = Word Data
+  mfhi t0 // T0 = HI
+  la a0,HIWORD // A0 = HIWORD Offset
+  sw t0,0(a0)  // HIWORD = Word Data
+  PrintString($A0100000,144,120,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,120,FontBlack,VALUEWORDE,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,288,120,FontBlack,TEXTWORDE,9) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,120,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,120,FontBlack,LOWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,128,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,128,FontBlack,VALUEWORDF,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,312,128,FontBlack,TEXTWORDF,6) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,128,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,128,FontBlack,HIWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,LOWORD       // A0 = Word Data Offset
+  lw t0,0(a0)        // T0 = Word Data
+  la a0,DIVULOCHECKE // A0 = Word Check Data Offset
+  lw t1,0(a0)        // T1 = Word Check Data
+  beq t0,t1,DIVULOPASSE // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,120,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j DIVUENDE
-  nop ; Delay Slot
+  nop // Delay Slot
   DIVULOPASSE:
-  PrintString $A010,528,120,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,HIWORD       ; A0 = Word Data Offset
-  lw t0,0(a0)        ; T0 = Word Data
-  la a0,DIVUHICHECKE ; A0 = Word Check Data Offset
-  lw t1,0(a0)        ; T1 = Word Check Data
-  beq t0,t1,DIVUHIPASSE ; Compare Result Equality With Check Data
-  nop ; Delay Slot
-  PrintString $A010,528,128,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,120,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,HIWORD       // A0 = Word Data Offset
+  lw t0,0(a0)        // T0 = Word Data
+  la a0,DIVUHICHECKE // A0 = Word Check Data Offset
+  lw t1,0(a0)        // T1 = Word Check Data
+  beq t0,t1,DIVUHIPASSE // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,128,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j DIVUENDE
-  nop ; Delay Slot
+  nop // Delay Slot
   DIVUHIPASSE:
-  PrintString $A010,528,128,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,128,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   DIVUENDE:
 
-  la a0,VALUEWORDF ; A0 = Word Data Offset
-  lw t0,0(a0)      ; T0 = Word Data
-  la a0,VALUEWORDG ; A0 = Word Data Offset
-  lw t1,0(a0)      ; T1 = Word Data
-  divu t0,t1 ; HI/LO = Test Word Data
-  mflo t0 ; T0 = LO
-  la a0,LOWORD ; A0 = LOWORD Offset
-  sw t0,0(a0)  ; LOWORD = Word Data
-  mfhi t0 ; T0 = HI
-  la a0,HIWORD ; A0 = HIWORD Offset
-  sw t0,0(a0)  ; HIWORD = Word Data
-  PrintString $A010,144,144,FontBlack,DOLLAR,0     ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,152,144,FontBlack,VALUEWORDF,3 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString $A010,312,144,FontBlack,TEXTWORDF,6  ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,440,144,FontBlack,DOLLAR,0 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,448,144,FontBlack,LOWORD,3 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,144,152,FontBlack,DOLLAR,0     ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,152,152,FontBlack,VALUEWORDG,3 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString $A010,288,152,FontBlack,TEXTWORDG,9  ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,440,152,FontBlack,DOLLAR,0 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,448,152,FontBlack,HIWORD,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,LOWORD       ; A0 = Word Data Offset
-  lw t0,0(a0)        ; T0 = Word Data
-  la a0,DIVULOCHECKF ; A0 = Word Check Data Offset
-  lw t1,0(a0)        ; T1 = Word Check Data
-  beq t0,t1,DIVULOPASSF ; Compare Result Equality With Check Data
-  nop ; Delay Slot
-  PrintString $A010,528,144,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
+  la a0,VALUEWORDF // A0 = Word Data Offset
+  lw t0,0(a0)      // T0 = Word Data
+  la a0,VALUEWORDG // A0 = Word Data Offset
+  lw t1,0(a0)      // T1 = Word Data
+  divu t0,t1 // HI/LO = Test Word Data
+  mflo t0 // T0 = LO
+  la a0,LOWORD // A0 = LOWORD Offset
+  sw t0,0(a0)  // LOWORD = Word Data
+  mfhi t0 // T0 = HI
+  la a0,HIWORD // A0 = HIWORD Offset
+  sw t0,0(a0)  // HIWORD = Word Data
+  PrintString($A0100000,144,144,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,144,FontBlack,VALUEWORDF,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,312,144,FontBlack,TEXTWORDF,6) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,144,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,144,FontBlack,LOWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,152,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,152,FontBlack,VALUEWORDG,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,288,152,FontBlack,TEXTWORDG,9) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,152,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,152,FontBlack,HIWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,LOWORD       // A0 = Word Data Offset
+  lw t0,0(a0)        // T0 = Word Data
+  la a0,DIVULOCHECKF // A0 = Word Check Data Offset
+  lw t1,0(a0)        // T1 = Word Check Data
+  beq t0,t1,DIVULOPASSF // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,144,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j DIVUENDF
-  nop ; Delay Slot
+  nop // Delay Slot
   DIVULOPASSF:
-  PrintString $A010,528,144,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,HIWORD       ; A0 = Word Data Offset
-  lw t0,0(a0)        ; T0 = Word Data
-  la a0,DIVUHICHECKF ; A0 = Word Check Data Offset
-  lw t1,0(a0)        ; T1 = Word Check Data
-  beq t0,t1,DIVUHIPASSF ; Compare Result Equality With Check Data
-  nop ; Delay Slot
-  PrintString $A010,528,152,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,144,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,HIWORD       // A0 = Word Data Offset
+  lw t0,0(a0)        // T0 = Word Data
+  la a0,DIVUHICHECKF // A0 = Word Check Data Offset
+  lw t1,0(a0)        // T1 = Word Check Data
+  beq t0,t1,DIVUHIPASSF // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,152,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j DIVUENDF
-  nop ; Delay Slot
+  nop // Delay Slot
   DIVUHIPASSF:
-  PrintString $A010,528,152,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,152,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   DIVUENDF:
 
-  la a0,VALUEWORDA ; A0 = Word Data Offset
-  lw t0,0(a0)      ; T0 = Word Data
-  la a0,VALUEWORDG ; A0 = Word Data Offset
-  lw t1,0(a0)      ; T1 = Word Data
-  divu t0,t1 ; HI/LO = Test Word Data
-  mflo t0 ; T0 = LO
-  la a0,LOWORD ; A0 = LOWORD Offset
-  sw t0,0(a0)  ; LOWORD = Word Data
-  mfhi t0 ; T0 = HI
-  la a0,HIWORD ; A0 = HIWORD Offset
-  sw t0,0(a0)  ; HIWORD = Word Data
-  PrintString $A010,144,168,FontBlack,DOLLAR,0     ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,152,168,FontBlack,VALUEWORDA,3 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString $A010,360,168,FontBlack,TEXTWORDA,0  ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,440,168,FontBlack,DOLLAR,0 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,448,168,FontBlack,LOWORD,3 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,144,176,FontBlack,DOLLAR,0     ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,152,176,FontBlack,VALUEWORDG,3 ; Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString $A010,288,176,FontBlack,TEXTWORDG,9  ; Print Text String To VRAM Using Font At X,Y Position
-  PrintString $A010,440,176,FontBlack,DOLLAR,0 ; Print Text String To VRAM Using Font At X,Y Position
-  PrintValue  $A010,448,176,FontBlack,HIWORD,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,LOWORD       ; A0 = Word Data Offset
-  lw t0,0(a0)        ; T0 = Word Data
-  la a0,DIVULOCHECKG ; A0 = Word Check Data Offset
-  lw t1,0(a0)        ; T1 = Word Check Data
-  beq t0,t1,DIVULOPASSG ; Compare Result Equality With Check Data
-  nop ; Delay Slot
-  PrintString $A010,528,168,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
+  la a0,VALUEWORDA // A0 = Word Data Offset
+  lw t0,0(a0)      // T0 = Word Data
+  la a0,VALUEWORDG // A0 = Word Data Offset
+  lw t1,0(a0)      // T1 = Word Data
+  divu t0,t1 // HI/LO = Test Word Data
+  mflo t0 // T0 = LO
+  la a0,LOWORD // A0 = LOWORD Offset
+  sw t0,0(a0)  // LOWORD = Word Data
+  mfhi t0 // T0 = HI
+  la a0,HIWORD // A0 = HIWORD Offset
+  sw t0,0(a0)  // HIWORD = Word Data
+  PrintString($A0100000,144,168,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,168,FontBlack,VALUEWORDA,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,360,168,FontBlack,TEXTWORDA,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,168,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,168,FontBlack,LOWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,176,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,176,FontBlack,VALUEWORDG,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,288,176,FontBlack,TEXTWORDG,9) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,176,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,176,FontBlack,HIWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,LOWORD       // A0 = Word Data Offset
+  lw t0,0(a0)        // T0 = Word Data
+  la a0,DIVULOCHECKG // A0 = Word Check Data Offset
+  lw t1,0(a0)        // T1 = Word Check Data
+  beq t0,t1,DIVULOPASSG // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,168,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j DIVUENDG
-  nop ; Delay Slot
+  nop // Delay Slot
   DIVULOPASSG:
-  PrintString $A010,528,168,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
-  la a0,HIWORD       ; A0 = Word Data Offset
-  lw t0,0(a0)        ; T0 = Word Data
-  la a0,DIVUHICHECKG ; A0 = Word Check Data Offset
-  lw t1,0(a0)        ; T1 = Word Check Data
-  beq t0,t1,DIVUHIPASSG ; Compare Result Equality With Check Data
-  nop ; Delay Slot
-  PrintString $A010,528,176,FontRed,FAIL,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,168,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,HIWORD       // A0 = Word Data Offset
+  lw t0,0(a0)        // T0 = Word Data
+  la a0,DIVUHICHECKG // A0 = Word Check Data Offset
+  lw t1,0(a0)        // T1 = Word Check Data
+  beq t0,t1,DIVUHIPASSG // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,176,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j DIVUENDG
-  nop ; Delay Slot
+  nop // Delay Slot
   DIVUHIPASSG:
-  PrintString $A010,528,176,FontGreen,PASS,3 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,176,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   DIVUENDG:
 
 
-  PrintString $A010,0,184,FontBlack,PAGEBREAK,79 ; Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,0,184,FontBlack,PAGEBREAK,79) // Print Text String To VRAM Using Font At X,Y Position
 
 
 Loop:
-  WaitScanline $1E0 ; Wait For Scanline To Reach Vertical Blank
-  WaitScanline $1E2
+  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
+  WaitScanline($1E2)
 
-  li t0,$00000800 ; Even Field
+  lli t0,$00000800 // Even Field
   sw t0,VI_Y_SCALE(a0)
 
-  WaitScanline $1E0 ; Wait For Scanline To Reach Vertical Blank
-  WaitScanline $1E2
+  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
+  WaitScanline($1E2)
 
-  li t0,$02000800 ; Odd Field
+  li t0,$02000800 // Odd Field
   sw t0,VI_Y_SCALE(a0)
 
   j Loop
-  nop ; Delay Slot
+  nop // Delay Slot
 
-DIVU: db "DIVU"
+DIVU:
+  db "DIVU"
 
-LOHIHEX: db "LO/HI (Hex)"
-RSRTHEX: db "RS/RT (Hex)"
-RSRTDEC: db "RS/RT (Decimal)"
-TEST: db "Test Result"
-FAIL: db "FAIL"
-PASS: db "PASS"
+LOHIHEX:
+  db "LO/HI (Hex)"
+RSRTHEX:
+  db "RS/RT (Hex)"
+RSRTDEC:
+  db "RS/RT (Decimal)"
+TEST:
+  db "Test Result"
+FAIL:
+  db "FAIL"
+PASS:
+  db "PASS"
 
-DOLLAR: db "$"
+DOLLAR:
+  db "$"
 
-TEXTWORDA: db "0"
-TEXTWORDB: db "123456789"
-TEXTWORDC: db "123456"
-TEXTWORDD: db "123451234"
-TEXTWORDE: db "1234512345"
-TEXTWORDF: db "1234567"
-TEXTWORDG: db "1234567897"
+TEXTWORDA:
+  db "0"
+TEXTWORDB:
+  db "123456789"
+TEXTWORDC:
+  db "123456"
+TEXTWORDD:
+  db "123451234"
+TEXTWORDE:
+  db "1234512345"
+TEXTWORDF:
+  db "1234567"
+TEXTWORDG:
+  db "1234567897"
 
-PAGEBREAK: db "--------------------------------------------------------------------------------"
+PAGEBREAK:
+  db "--------------------------------------------------------------------------------"
 
-  align 8 ; Align 64-Bit
-VALUEWORDA: dw 0
-VALUEWORDB: dw 123456789
-VALUEWORDC: dw 123456
-VALUEWORDD: dw 123451234
-VALUEWORDE: dw 1234512345
-VALUEWORDF: dw 1234567
-VALUEWORDG: dw 1234567891
+align(8) // Align 64-Bit
+VALUEWORDA:
+  dd 0
+VALUEWORDB:
+  dd 123456789
+VALUEWORDC:
+  dd 123456
+VALUEWORDD:
+  dd 123451234
+VALUEWORDE:
+  dd 1234512345
+VALUEWORDF:
+  dd 1234567
+VALUEWORDG:
+  dd 1234567891
 
-DIVULOCHECKA: dw $00000000
-DIVUHICHECKA: dw $00000000
-DIVULOCHECKB: dw $000003E8
-DIVUHICHECKB: dw $00000315
-DIVULOCHECKC: dw $00000000
-DIVUHICHECKC: dw $0001E240
-DIVULOCHECKD: dw $00000000
-DIVUHICHECKD: dw $075BB762
-DIVULOCHECKE: dw $000003E7
-DIVUHICHECKE: dw $00120108
-DIVULOCHECKF: dw $00000000
-DIVUHICHECKF: dw $0012D687
-DIVULOCHECKG: dw $00000000
-DIVUHICHECKG: dw $00000000
+DIVULOCHECKA:
+  dd $00000000
+DIVUHICHECKA:
+  dd $00000000
+DIVULOCHECKB:
+  dd $000003E8
+DIVUHICHECKB:
+  dd $00000315
+DIVULOCHECKC:
+  dd $00000000
+DIVUHICHECKC:
+  dd $0001E240
+DIVULOCHECKD:
+  dd $00000000
+DIVUHICHECKD:
+  dd $075BB762
+DIVULOCHECKE:
+  dd $000003E7
+DIVUHICHECKE:
+  dd $00120108
+DIVULOCHECKF:
+  dd $00000000
+DIVUHICHECKF:
+  dd $0012D687
+DIVULOCHECKG:
+  dd $00000000
+DIVUHICHECKG:
+  dd $00000000
 
-LOWORD: dw 0
-HIWORD: dw 0
+LOWORD:
+  dd 0
+HIWORD:
+  dd 0
 
-FontBlack: incbin FontBlack8x8.bin
-FontGreen: incbin FontGreen8x8.bin
-FontRed: incbin FontRed8x8.bin
+insert FontBlack, "FontBlack8x8.bin"
+insert FontGreen, "FontGreen8x8.bin"
+insert FontRed, "FontRed8x8.bin"

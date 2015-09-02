@@ -1,2 +1,2 @@
-asmn6432 /p CPUADD.ASM,CPUADD.N64
+bass CPUADD.asm
 chksum64 CPUADD.N64
