@@ -1,0 +1,2 @@
+bass SingleShotSTEREOALAWCPU.asm
+chksum64 SingleShotSTEREOALAWCPU.N64

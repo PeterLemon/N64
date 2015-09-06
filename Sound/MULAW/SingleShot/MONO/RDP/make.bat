@@ -1,0 +1,2 @@
+bass SingleShotMONOMULAWRDP.asm
+chksum64 SingleShotMONOMULAWRDP.N64

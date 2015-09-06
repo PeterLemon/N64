@@ -1,0 +1,2 @@
+bass SingleShotMONOMULAWCPU.asm
+chksum64 SingleShotMONOMULAWCPU.N64

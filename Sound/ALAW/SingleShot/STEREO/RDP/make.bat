@@ -1,0 +1,2 @@
+bass SingleShotSTEREOALAWRDP.asm
+chksum64 SingleShotSTEREOALAWRDP.N64
