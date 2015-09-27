@@ -39,6 +39,10 @@ Start:
   and s4,r0 // S4 =  8-Bit Register SP  (Stack Pointer)
   and s5,r0 // S5 =  8-Bit Register PSW (Processor Status Register)
   // 16-bit Register YA (MSB=Y, LSB=A)
+
+  and s6,r0 // S6 = Timer 0 Cycles
+  and s7,r0 // S7 = Timer 1 Cycles
+  and s8,r0 // S8 = Timer 2 Cycles
   
   // Setup SPC Initial Values (From SPC File)
   la a2,SPC_FILE // A2 = SPC_FILE
@@ -63,6 +67,7 @@ Start:
 
 Refresh:
   and v0,r0 // V0 = Cycles Counter (Reset To Zero)
+  and k0,r0 // K0 = Old Cycles Counter (Reset To Zero)
   CPU_EMU:
     addu a2,a0,s3 // A2 = MEM_MAP + PC
     lbu t0,0(a2)  // T0 = CPU Instruction
@@ -70,6 +75,8 @@ Refresh:
     addu t0,a1 // T0 = CPU Instruction Table Opcode Offset
     jalr t0    // Run CPU Instruction
     addiu s3,1 // PC_REG++ (Delay Slot)
+
+    include "IOPORT.asm" // Run IO Port
 
     blt v0,v1,CPU_EMU // Compare Cycles Counter To Refresh Cycles
     nop // Delay Slot
