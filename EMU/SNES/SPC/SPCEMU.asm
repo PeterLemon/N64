@@ -106,5 +106,3 @@ DSP_MAP: // SPC-700 DSP Map = $80 Bytes
 
 insert SPC_ROM, "spc700.rom" // SPC IPL ROM (64 Bytes BIOS Boot ROM)
 insert SPC_FILE, "Twinkle.spc" // Include SPC File
-//insert SPC_FILE, "ItaloTest.spc" // Include SPC File
-//insert SPC_FILE, "test.spc" // Include SPC File
