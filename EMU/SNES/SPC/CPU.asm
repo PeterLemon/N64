@@ -6,6 +6,7 @@ align(256)
 align(256)
   // $01 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -251,6 +252,7 @@ align(256)
   addiu a2,$100                 // A2 = STACK
   sb s5,0(a2)                   // STACK = PSW_REG
   subiu s4,1                    // SP_REG--
+  andi s4,$FF
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -312,6 +314,7 @@ align(256)
 align(256)
   // $11 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -638,6 +641,7 @@ align(256)
 align(256)
   // $21 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -888,6 +892,7 @@ align(256)
   addiu a2,$100                 // A2 = STACK
   sb s0,0(a2)                   // STACK = A_REG
   subiu s4,1                    // SP_REG--
+  andi s4,$FF
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -931,6 +936,7 @@ align(256)
 align(256)
   // $31 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -1240,6 +1246,7 @@ align(256)
 align(256)
   // $3F CALL  !abs             CALL Push PC Onto Stack Then Jump To Absolute Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a3,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a3,$100                 // A3 = STACK
   addiu s3,2                    // PC_REG += 2
@@ -1262,6 +1269,7 @@ align(256)
 align(256)
   // $41 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -1506,6 +1514,7 @@ align(256)
   addiu a2,$100                 // A2 = STACK
   sb s1,0(a2)                   // STACK = X_REG
   subiu s4,1                    // SP_REG--
+  andi s4,$FF
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -1536,6 +1545,7 @@ align(256)
 align(256)
   // $4F PCALL upage            UPage CALL Push PC Onto Stack Then Jump To UPage
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a3,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a3,$100                 // A3 = STACK
   addiu s3,1                    // PC_REG++
@@ -1562,6 +1572,7 @@ align(256)
 align(256)
   // $51 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -1883,6 +1894,7 @@ align(256)
 align(256)
   // $61 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -2218,6 +2230,7 @@ align(256)
   addiu a2,$100                 // A2 = STACK
   sb s2,0(a2)                   // STACK = Y_REG
   subiu s4,1                    // SP_REG--
+  andi s4,$FF
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -2250,6 +2263,7 @@ align(256)
   sll t0,8
   or s3,t0
   addiu s4,2                    // SP_REG += 2 (Increment Stack)
+  andi s4,$FF
   jr ra
   addiu v0,5                    // Cycles += 5 (Delay Slot)
 
@@ -2268,6 +2282,7 @@ align(256)
 align(256)
   // $71 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -2690,6 +2705,7 @@ align(256)
   sll t0,8
   or s3,t0
   addiu s4,3                    // SP_REG += 3 (Increment Stack)
+  andi s4,$FF
   jr ra
   addiu v0,5                    // Cycles += 5 (Delay Slot)
 
@@ -2702,6 +2718,7 @@ align(256)
 align(256)
   // $81 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -3091,6 +3108,7 @@ align(256)
 align(256)
   // $8E POP   PSW              POP Byte Off Stack Into Register PSW
   addiu s4,1                    // SP_REG += 1 (Increment Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   lbu s5,0(a2)                  // PSW_REG = STACK
@@ -3125,6 +3143,7 @@ align(256)
 align(256)
   // $91 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -3602,6 +3621,7 @@ align(256)
 align(256)
   // $A1 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -4005,6 +4025,7 @@ align(256)
 align(256)
   // $AE POP   A                POP Byte Off Stack Into Register A
   addiu s4,1                    // SP_REG += 1 (Increment Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   lbu s0,0(a2)                  // A_REG = STACK
@@ -4038,6 +4059,7 @@ align(256)
 align(256)
   // $B1 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -4487,6 +4509,7 @@ align(256)
 align(256)
   // $C1 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -4690,6 +4713,7 @@ align(256)
 align(256)
   // $CE POP   X                POP Byte Off Stack Into Register X
   addiu s4,1                    // SP_REG += 1 (Increment Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   lbu s1,0(a2)                  // X_REG = STACK
@@ -4728,6 +4752,7 @@ align(256)
 align(256)
   // $D1 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -4974,6 +4999,7 @@ align(256)
 align(256)
   // $E1 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG
@@ -5207,6 +5233,7 @@ align(256)
 align(256)
   // $EE POP   Y                POP Byte Off Stack Into Register Y
   addiu s4,1                    // SP_REG += 1 (Increment Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   lbu s2,0(a2)                  // Y_REG = STACK
@@ -5235,6 +5262,7 @@ align(256)
 align(256)
   // $F1 TCALL n                Table CALL Push PC Onto Stack Then Jump To Table Address
   subiu s4,2                    // SP_REG -= 2 (Decrement Stack)
+  andi s4,$FF
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   sb s3,1(a2)                   // STACK = PC_REG

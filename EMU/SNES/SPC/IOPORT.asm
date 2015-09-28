@@ -37,9 +37,10 @@ sb r0,REG_T2OUT(a0) // REG_T2OUT = 0
 IORWEND:
 
 // DSP Register Read / Write
-la a3,DSP_MAP // A3 = DSP_MAP
+la a2,DSP_MAP // A2 = DSP_MAP
 lbu t0,REG_DSPADDR(a0) // T0 = DSP Address
-addu t0,a3 // T0 = DSP_MAP + DSP Address
+andi t0,$7F // DSP Address &= $7F (DSP Read Only Mirror Access)
+addu t0,a2 // T0 = DSP_MAP + DSP Address
 lbu t1,REG_DSPDATA(a0) // T1 = DSP Data
 sb t1,0(t0) // Store DSP Data to DSP Address
 
