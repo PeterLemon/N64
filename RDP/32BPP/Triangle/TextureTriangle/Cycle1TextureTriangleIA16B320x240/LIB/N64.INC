@@ -249,7 +249,7 @@ macro N64_INIT() { // Initialise N64 (Stop N64 From Crashing 5 Seconds After Boo
 macro DMA(start, end, dest) { // DMA Data Copy Cart->DRAM: Start Cart Address, End Cart Address, Destination DRAM Address
   lui a0,PI_BASE // A0 = PI Base Register ($A4600000)
   -
-    lb t0,PI_STATUS(a0) // T0 = Byte From PI Status Register ($A4600010)
+    lw t0,PI_STATUS(a0) // T0 = Word From PI Status Register ($A4600010)
     andi t0,3 // AND PI Status With 3
     bnez t0,- // IF TRUE DMA Is Busy
     nop // Delay Slot
