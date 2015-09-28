@@ -73,7 +73,7 @@ ClearScreen:
   la t0,$1007F // T0 = Length Of DMA Transfer In Bytes - 1
   sw t0,PI_WR_LEN(a2) // Store DMA Length To PI Write Length Register ($A460000C)
   DMABusy:
-    lb t0,PI_STATUS(a2) // T0 = Byte From PI Status Register ($A4600010)
+    lw t0,PI_STATUS(a2) // T0 = Word From PI Status Register ($A4600010)
     andi t0,3 // AND PI Status With 3
     bnez t0,DMABusy // IF TRUE DMA Is Busy
     nop // Delay Slot
