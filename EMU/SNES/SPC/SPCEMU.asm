@@ -64,6 +64,11 @@ Start:
   sw a3,PI_CART_ADDR(a2) // Store ROM Offset To PI Cart Address Register ($A4600004)
   la t0,$1007F // T0 = Length Of DMA Transfer In Bytes - 1
   sw t0,PI_WR_LEN(a2) // Store DMA Length To PI Write Length Register ($A460000C)
+  DMABusy:
+    lb t0,PI_STATUS(a2) // T0 = Byte From PI Status Register ($A4600010)
+    andi t0,3 // AND PI Status With 3
+    bnez t0,DMABusy // IF TRUE DMA Is Busy
+    nop // Delay Slot
 
 Refresh:
   and v0,r0 // V0 = Cycles Counter (Reset To Zero)
