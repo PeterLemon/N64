@@ -1,29 +1,47 @@
-la a3,DSP_MAP // A3 = DSP_MAP
-
 // I/O Register Read / Write
+T0OUTREADA:
+addiu t0,a0,REG_T0OUT // T0 = MEM_MAP + REG_T0OUT
+bne a2,t0,T1OUTREADA // IF (MEMAddressA == REG_T0OUT)
+nop // Delay Slot
+sb r0,REG_T0OUT(a0) // REG_T0OUT = 0
+
+T1OUTREADA:
+addiu t0,a0,REG_T1OUT // T0 = MEM_MAP + REG_T1OUT
+bne a2,t0,T2OUTREADA // IF (MEMAddressA == REG_T1OUT)
+nop // Delay Slot
+sb r0,REG_T1OUT(a0) // REG_T1OUT = 0
+
+T2OUTREADA:
+addiu t0,a0,REG_T2OUT // T0 = MEM_MAP + REG_T2OUT
+bne a2,t0,T0OUTREADB // IF (MEMAddressA == REG_T2OUT)
+nop // Delay Slot
+sb r0,REG_T2OUT(a0) // REG_T2OUT = 0
+
+T0OUTREADB:
+addiu t0,a0,REG_T0OUT // T0 = MEM_MAP + REG_T0OUT
+bne a3,t0,T1OUTREADB // IF (MEMAddressB == REG_T0OUT)
+nop // Delay Slot
+sb r0,REG_T0OUT(a0) // REG_T0OUT = 0
+
+T1OUTREADB:
+addiu t0,a0,REG_T1OUT // T0 = MEM_MAP + REG_T1OUT
+bne a3,t0,T2OUTREADB // IF (MEMAddressB == REG_T1OUT)
+nop // Delay Slot
+sb r0,REG_T1OUT(a0) // REG_T1OUT = 0
+
+T2OUTREADB:
+addiu t0,a0,REG_T2OUT // T0 = MEM_MAP + REG_T2OUT
+bne a3,t0,IORWEND // IF (MEMAddressB == REG_T2OUT)
+nop // Delay Slot
+sb r0,REG_T2OUT(a0) // REG_T2OUT = 0
+IORWEND:
+
+// DSP Register Read / Write
+la a3,DSP_MAP // A3 = DSP_MAP
 lbu t0,REG_DSPADDR(a0) // T0 = DSP Address
 addu t0,a3 // T0 = DSP_MAP + DSP Address
 lbu t1,REG_DSPDATA(a0) // T1 = DSP Data
 sb t1,0(t0) // Store DSP Data to DSP Address
-
-T0OUTREAD:
-addiu t0,a0,REG_T0OUT // T0 = MEM_MAP + REG_T0OUT
-bne a2,t0,T1OUTREAD // IF (MEMAddress == REG_T0OUT)
-nop // Delay Slot
-sb r0,REG_T0OUT(a0) // REG_T0OUT = 0
-
-T1OUTREAD:
-addiu t0,a0,REG_T1OUT // T0 = MEM_MAP + REG_T1OUT
-bne a2,t0,T2OUTREAD // IF (MEMAddress == REG_T1OUT)
-nop // Delay Slot
-sb r0,REG_T1OUT(a0) // REG_T1OUT = 0
-
-T2OUTREAD:
-addiu t0,a0,REG_T2OUT // T0 = MEM_MAP + REG_T2OUT
-bne a2,t0,IORWEND // IF (MEMAddress == REG_T2OUT)
-nop // Delay Slot
-sb r0,REG_T2OUT(a0) // REG_T2OUT = 0
-IORWEND:
 
 // Instruction Cycles
 subu k1,v0,k0 // k1 = InstCycles: Cycles - OldCycles (Get Last Instruction Cycle Count)

@@ -3090,7 +3090,7 @@ align(256)
 
 align(256)
   // $8E POP   PSW              POP Byte Off Stack Into Register PSW
-  addiu s4,3                    // SP_REG += 1 (Increment Stack)
+  addiu s4,1                    // SP_REG += 1 (Increment Stack)
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   lbu s5,0(a2)                  // PSW_REG = STACK
@@ -3513,11 +3513,11 @@ align(256)
 align(256)
   // $9C DEC   A                DECrement Register A
   subiu s0,1                    // A_REG--
-  andi s1,$FF
-  andi t0,s1,$80                // Test Negative MSB
+  andi s0,$FF
+  andi t0,s0,$80                // Test Negative MSB
   andi s5,~N_FLAG               // PSW_REG: N Flag Reset
   or s5,t0                      // PSW_REG: N Flag = Result MSB
-  beqz s1,DECASPC               // IF (Result == 0) Z Flag Set
+  beqz s0,DECASPC               // IF (Result == 0) Z Flag Set
   ori s5,Z_FLAG                 // PSW_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG               // PSW_REG: Z Flag Reset
   DECASPC:
@@ -4004,7 +4004,7 @@ align(256)
 
 align(256)
   // $AE POP   A                POP Byte Off Stack Into Register A
-  addiu s4,3                    // SP_REG += 1 (Increment Stack)
+  addiu s4,1                    // SP_REG += 1 (Increment Stack)
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   lbu s0,0(a2)                  // A_REG = STACK
@@ -4689,7 +4689,7 @@ align(256)
 
 align(256)
   // $CE POP   X                POP Byte Off Stack Into Register X
-  addiu s4,3                    // SP_REG += 1 (Increment Stack)
+  addiu s4,1                    // SP_REG += 1 (Increment Stack)
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   lbu s1,0(a2)                  // X_REG = STACK
@@ -5206,7 +5206,7 @@ align(256)
 
 align(256)
   // $EE POP   Y                POP Byte Off Stack Into Register Y
-  addiu s4,3                    // SP_REG += 1 (Increment Stack)
+  addiu s4,1                    // SP_REG += 1 (Increment Stack)
   addu a2,a0,s4                 // STACK = MEM_MAP[$100 + SP_REG]
   addiu a2,$100                 // A2 = STACK
   lbu s2,0(a2)                  // Y_REG = STACK
