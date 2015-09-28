@@ -27,6 +27,14 @@ Start:
   N64_INIT() // Run N64 Initialisation Routine
   ScreenNTSC(320, 240, BPP32, $A0100000) // Screen NTSC: 320x240, 32BPP, DRAM Origin $A0100000
 
+  lui a0,$A010 // A0 = VRAM Start Offset
+  la a1,$A0100000+((320*240*4)-4) // A1 = VRAM End Offset
+  lli t0,$000000FF // T0 = Black
+ClearScreen:
+  sw t0,0(a0)
+  bne a0,a1,ClearScreen
+  addi a0,4 // Delay Slot
+
   la a0,MEM_MAP // A0 = MEM_MAP
   la a1,CPU_INST // A1 = CPU Instruction Table
   lli v1,$42AA // V1 = Refresh Cycles 1.024MHz (1024000Hz / 60Hz = 17066 CPU Cycles)
