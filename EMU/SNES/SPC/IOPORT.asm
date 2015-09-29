@@ -1,4 +1,26 @@
 // I/O Register Read / Write
+CONTROLWRITEA:
+addiu t0,a0,REG_CONTROL // T0 = MEM_MAP + REG_CONTROL
+bne a2,t0,CONTROLWRITEB // IF (MEMAddressA == REG_CONTROL)
+nop // Delay Slot
+sb r0,REG_T0OUT(a0) // REG_T0OUT = 0
+sb r0,REG_T1OUT(a0) // REG_T1OUT = 0
+sb r0,REG_T2OUT(a0) // REG_T2OUT = 0
+and s6,r0 // S6 = Timer 0 Cycles Reset
+and s7,r0 // S7 = Timer 1 Cycles Reset
+and s8,r0 // S8 = Timer 2 Cycles Reset
+
+CONTROLWRITEB:
+addiu t0,a0,REG_CONTROL // T0 = MEM_MAP + REG_CONTROL
+bne a3,t0,T0OUTREADA // IF (MEMAddressB == REG_CONTROL)
+nop // Delay Slot
+sb r0,REG_T0OUT(a0) // REG_T0OUT = 0
+sb r0,REG_T1OUT(a0) // REG_T1OUT = 0
+sb r0,REG_T2OUT(a0) // REG_T2OUT = 0
+and s6,r0 // S6 = Timer 0 Cycles Reset
+and s7,r0 // S7 = Timer 1 Cycles Reset
+and s8,r0 // S8 = Timer 2 Cycles Reset
+
 T0OUTREADA:
 addiu t0,a0,REG_T0OUT // T0 = MEM_MAP + REG_T0OUT
 bne a2,t0,T1OUTREADA // IF (MEMAddressA == REG_T0OUT)
@@ -65,16 +87,18 @@ nop // Delay Slot
 
 T0_8KHz:
   andi t1,t0,1 // IF (REG_CONTROL & 1) Timer 0 Clock Frequency = 8KHz
-  beqz t1,T1_8KHz
+  bnez t1,T0_8KHzTime
   nop // Delay Slot
+  sb r0,REG_T0OUT(a0) // REG_T0OUT = 0
+  j T1_8KHz
+  and s6,r0 // S6 = Timer 0 Cycles Reset (Delay Slot)
+T0_8KHzTime:
   addu s6,k1 // Timer0Cycles += InstCycles
-
   la a2,T8KHzDIVCycleTable // A2 = Timer 8KHz DIV Cycle Table
   lbu t1,REG_T0DIV(a0) // T1 = Timer 0 Divider
   sll t1,1 // T1 = Table Position (*2)
   addu a2,t1 // A2 = Table + Table Position
   lhu t1,0(a2) // T1 = Timer0DIVCycleCount
-
   blt s6,t1,T1_8KHz // IF (Timer0Cycles < Timer0DIVCycleCount) Skip
   nop // Delay Slot
   subu s6,t1 // Timer0Cycles -= Timer0DIVCycleCount
@@ -84,16 +108,18 @@ T0_8KHz:
 
 T1_8KHz:
   andi t1,t0,2 // IF (REG_CONTROL & 2) Timer 1 Clock Frequency = 8KHz
-  beqz t1,T2_64KHz
+  bnez t1,T1_8KHzTime
   nop // Delay Slot
+  sb r0,REG_T1OUT(a0) // REG_T1OUT = 0
+  j T2_64KHz
+  and s7,r0 // S7 = Timer 0 Cycles Reset (Delay Slot)
+T1_8KHzTime:
   addu s7,k1 // Timer1Cycles += InstCycles
-
   la a2,T8KHzDIVCycleTable // A2 = Timer 8KHz DIV Cycle Table
   lbu t1,REG_T1DIV(a0) // T1 = Timer 1 Divider
   sll t1,1 // T1 = Table Position (*2)
   addu a2,t1 // A2 = Table + Table Position
   lhu t1,0(a2) // T1 = Timer1DIVCycleCount
-
   blt s7,t1,T2_64KHz // IF (Timer1Cycles < Timer1DIVCycleCount) Skip
   nop // Delay Slot
   subu s7,t1 // Timer1Cycles -= Timer1DIVCycleCount
@@ -103,16 +129,18 @@ T1_8KHz:
 
 T2_64KHz:
   andi t1,t0,4 // IF (REG_CONTROL & 4) Timer 2 Clock Frequency = 64KHz
-  beqz t1,TIMER_END
+  bnez t1,T2_64KHzTime
   nop // Delay Slot
+  sb r0,REG_T2OUT(a0) // REG_T2OUT = 0
+  j TIMER_END
+  and s8,r0 // S8 = Timer 2 Cycles Reset (Delay Slot)
+T2_64KHzTime:
   addu s8,k1 // Timer2Cycles += InstCycles
-
   la a2,T64KHzDIVCycleTable // A2 = Timer 64KHz DIV Cycle Table
   lbu t1,REG_T2DIV(a0) // T1 = Timer 2 Divider
   sll t1,1 // T1 = Table Position (*2)
   addu a2,t1 // A2 = Table + Table Position
   lhu t1,0(a2) // T1 = Timer2DIVCycleCount
-
   blt s8,t1,TIMER_END // IF (Timer1Cycles < Timer1DIVCycleCount) Skip
   nop // Delay Slot
   subu s8,t1 // Timer2Cycles -= Timer2DIVCycleCount
