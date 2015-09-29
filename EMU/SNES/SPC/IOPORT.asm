@@ -104,6 +104,7 @@ T0_8KHzTime:
   subu s6,t1 // Timer0Cycles -= Timer0DIVCycleCount
   lbu t1,REG_T0OUT(a0) // ELSE REG_T0OUT++
   addiu t1,1
+  andi t1,$F // REG_T0OUT &= $F
   sb t1,REG_T0OUT(a0)
 
 T1_8KHz:
@@ -125,6 +126,7 @@ T1_8KHzTime:
   subu s7,t1 // Timer1Cycles -= Timer1DIVCycleCount
   lbu t1,REG_T1OUT(a0) // ELSE REG_T1OUT++
   addiu t1,1
+  andi t1,$F // REG_T1OUT &= $F
   sb t1,REG_T1OUT(a0)
 
 T2_64KHz:
@@ -146,6 +148,7 @@ T2_64KHzTime:
   subu s8,t1 // Timer2Cycles -= Timer2DIVCycleCount
   lbu t1,REG_T2OUT(a0) // ELSE REG_T2OUT++
   addiu t1,1
+  andi t1,$F // REG_T2OUT &= $F
   sb t1,REG_T2OUT(a0)
 
   j TIMER_END
