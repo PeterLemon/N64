@@ -10,7 +10,7 @@ include "LIB\N64.INC" // Include N64 Definitions
 include "LIB\N64_HEADER.ASM" // Include 64 Byte Header & Vector Table
 insert "LIB\N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
 
-include "MEM.INC" // Include SNES Memory Map
+include "MEM.INC" // Include SPC-700 Memory Map
 
 // PSW Register (Program Status Word Register Flags)
 constant C_FLAG($1)   // PSW Register Bit 0 Carry Flag (0=No Carry, 1=Carry)
