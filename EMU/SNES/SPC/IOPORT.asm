@@ -1,25 +1,40 @@
-// I/O Register Read/Write
-CONTROLWRITEA:
-addiu t0,a0,REG_CONTROL // T0 = MEM_MAP + REG_CONTROL
-bne a2,t0,CONTROLWRITEB // IF (MEMAddressA == REG_CONTROL)
-nop // Delay Slot
-sb r0,REG_T0OUT(a0) // REG_T0OUT = 0
-sb r0,REG_T1OUT(a0) // REG_T1OUT = 0
-sb r0,REG_T2OUT(a0) // REG_T2OUT = 0
-and s6,r0 // S6 = Timer 0 Cycles Reset
-and s7,r0 // S7 = Timer 1 Cycles Reset
-and s8,r0 // S8 = Timer 2 Cycles Reset
+// I/O Read/Write Type
+la t0,IORWTable // T0 = I/O Read/Write Instruction Table
+addu t0,gp // T0 = I/O Read/Write Instruction Table + CPU Instruction
+lbu t0,0(t0) // T0 = I/O Read/Write Type
 
-CONTROLWRITEB:
-addiu t0,a0,REG_CONTROL // T0 = MEM_MAP + REG_CONTROL
-bne a3,t0,T0OUTREADA // IF (MEMAddressB == REG_CONTROL)
+// I/O Register Read/Write
+beqz t0,IORW_END // IF (I/O Read/Write Type == 0) Skip Register Read/Write
 nop // Delay Slot
+lli t1,$72 // T1 = Read 8-Bit ByteCode
+beq t0,t1,CONTROLEND // IF (I/O Read/Write Type == Read 8-Bit) Skip CONTROL
+nop // Delay Slot
+lli t1,$52 // T1 = Read 16-Bit ByteCode
+beq t0,t1,CONTROLEND // IF (I/O Read/Write Type == Read 16-Bit) Skip CONTROL
+nop // Delay Slot
+lli t1,$44 // T1 = Read/Read 8-Bit ByteCode
+beq t0,t1,CONTROLEND // IF (I/O Read/Write Type == Read/Read 8-Bit) Skip CONTROL
+nop // Delay Slot
+
+addiu t1,a0,REG_CONTROL // T1 = MEM_MAP + REG_CONTROL
+subiu t2,t1,1           // T2 = MEM_MAP + REG_CONTROL - 1
+beq a2,t1,CONTROLWRITE // IF (MEMAddressA == REG_CONTROL) Control Write
+nop // Delay Slot
+
+lli t3,$64 // T3 = DP Read/Write 8-Bit ByteCode
+bne t0,t3,CONTROLEND // IF (I/O Read/Write Type != Read/Write 8-Bit) Skip CONTROL
+nop // Delay Slot
+bne a2,t2,CONTROLEND // IF (MEMAddressA != REG_CONTROL - 1) Skip CONTROL
+nop // Delay Slot
+
+CONTROLWRITE:
 sb r0,REG_T0OUT(a0) // REG_T0OUT = 0
 sb r0,REG_T1OUT(a0) // REG_T1OUT = 0
 sb r0,REG_T2OUT(a0) // REG_T2OUT = 0
 and s6,r0 // S6 = Timer 0 Cycles Reset
 and s7,r0 // S7 = Timer 1 Cycles Reset
 and s8,r0 // S8 = Timer 2 Cycles Reset
+CONTROLEND:
 
 T0OUTREADA:
 addiu t0,a0,REG_T0OUT // T0 = MEM_MAP + REG_T0OUT
@@ -60,7 +75,7 @@ sb r0,REG_T2OUT(a0) // REG_T2OUT = 0
 j IORW_END
 nop // Delay Slot
 
-IORWTable:
+IORWTable: // I/O Read/Write Instruction Table
   db $00, $00, "w", "r", "r", "r", "r", "r", $00, "d", "r", "w", "w", $00, "w", $00
   db $00, $00, "w", "r", "r", "r", "r", "r", "w", "d", "W", "w", $00, $00, "r", $00
   db $00, $00, "w", "r", "r", "r", "r", "r", $00, "d", "r", "w", "w", $00, "r", $00

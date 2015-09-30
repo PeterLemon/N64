@@ -2244,7 +2244,7 @@ align(256)
   subiu t0,1                    // DP--
   andi t0,$FF
   sb t0,0(a2)                   // Store DP
-  bnez t0,DBNZDPSPC             // IF (A_REG != DP) PC_REG += Relative
+  beqz t0,DBNZDPSPC             // IF (DP != 0) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
   add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
@@ -5500,7 +5500,7 @@ align(256)
   // $FE DBNZ  Y, rel           Decrement Register Y & Branch To Relative Address IF Not Zero
   subiu s2,1                    // Y_REG--
   andi s2,$FF
-  bnez s2,DBNZYSPC              // IF (A_REG != DP) PC_REG += Relative
+  beqz s2,DBNZYSPC              // IF (Y_REG != 0) PC_REG += Relative
   addiu s3,1                    // PC_REG++ (Delay Slot)
   lb t0,1(a2)                   // T0 = Relative
   add s3,t0                     // PC_REG += Relative
