@@ -336,7 +336,7 @@ align(256)
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
   addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
   lbu t0,0(a2)                  // T0 = DP
-  andi t0,$FE                   // DP &= ^BIT
+  andi t0,$FE                   // DP &= ~BIT
   sb t0,0(a2)                   // Store DP
   addiu s3,1                    // PC_REG++
   jr ra
@@ -957,7 +957,7 @@ align(256)
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
   addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
   lbu t0,0(a2)                  // T0 = DP
-  andi t0,$FD                   // DP &= ^BIT
+  andi t0,$FD                   // DP &= ~BIT
   sb t0,0(a2)                   // Store DP
   addiu s3,1                    // PC_REG++
   jr ra
@@ -1592,7 +1592,7 @@ align(256)
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
   addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
   lbu t0,0(a2)                  // T0 = DP
-  andi t0,$FB                   // DP &= ^BIT
+  andi t0,$FB                   // DP &= ~BIT
   sb t0,0(a2)                   // Store DP
   addiu s3,1                    // PC_REG++
   jr ra
@@ -2302,7 +2302,7 @@ align(256)
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
   addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
   lbu t0,0(a2)                  // T0 = DP
-  andi t0,$F7                   // DP &= ^BIT
+  andi t0,$F7                   // DP &= ~BIT
   sb t0,0(a2)                   // Store DP
   addiu s3,1                    // PC_REG++
   jr ra
@@ -3163,7 +3163,7 @@ align(256)
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
   addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
   lbu t0,0(a2)                  // T0 = DP
-  andi t0,$EF                   // DP &= ^BIT
+  andi t0,$EF                   // DP &= ~BIT
   sb t0,0(a2)                   // Store DP
   addiu s3,1                    // PC_REG++
   jr ra
@@ -4079,7 +4079,7 @@ align(256)
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
   addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
   lbu t0,0(a2)                  // T0 = DP
-  andi t0,$DF                   // DP &= ^BIT
+  andi t0,$DF                   // DP &= ~BIT
   sb t0,0(a2)                   // Store DP
   addiu s3,1                    // PC_REG++
   jr ra
@@ -4772,7 +4772,7 @@ align(256)
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
   addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
   lbu t0,0(a2)                  // T0 = DP
-  andi t0,$BF                   // DP &= ^BIT
+  andi t0,$BF                   // DP &= ~BIT
   sb t0,0(a2)                   // Store DP
   addiu s3,1                    // PC_REG++
   jr ra
@@ -5282,7 +5282,7 @@ align(256)
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
   addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
   lbu t0,0(a2)                  // T0 = DP
-  andi t0,$7F                   // DP &= ^BIT
+  andi t0,$7F                   // DP &= ~BIT
   sb t0,0(a2)                   // Store DP
   addiu s3,1                    // PC_REG++
   jr ra
