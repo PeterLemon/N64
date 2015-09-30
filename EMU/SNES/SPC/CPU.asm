@@ -4555,11 +4555,11 @@ align(256)
 
 align(256)
   // $C4 MOV   dp, A            MOVe Value A Into Direct Page Offset
-  andi t0,s5,P_FLAG             // DP = MEM_MAP[DirectPage | (P_FLAG << 3)]
+  andi t0,s5,P_FLAG             // DP = MEM_MAP[Immediate | (P_FLAG << 3)]
   sll t0,3                      // T0 = P_FLAG << 3
-  lbu t1,2(a2)                  // T1 = DirectPage
-  or t0,t1                      // T0 = DirectPage | (P_FLAG << 3)
-  addu a2,a0,t0                 // A2 = MEM_MAP + (DirectPage | (P_FLAG << 3))
+  lbu t1,1(a2)                  // T1 = Immediate
+  or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
   sb s0,0(a2)                   // DP = A_REG
   addiu s3,1                    // PC_REG++
   jr ra
@@ -4672,11 +4672,11 @@ align(256)
 
 align(256)
   // $CB MOV   dp, Y            MOVe Value Y Into Direct Page Offset
-  andi t0,s5,P_FLAG             // DP = MEM_MAP[DirectPage | (P_FLAG << 3)]
+  andi t0,s5,P_FLAG             // DP = MEM_MAP[Immediate | (P_FLAG << 3)]
   sll t0,3                      // T0 = P_FLAG << 3
-  lbu t1,2(a2)                  // T1 = DirectPage
-  or t0,t1                      // T0 = DirectPage | (P_FLAG << 3)
-  addu a2,a0,t0                 // A2 = MEM_MAP + (DirectPage | (P_FLAG << 3))
+  lbu t1,1(a2)                  // T1 = Immediate
+  or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
   sb s2,0(a2)                   // DP = Y_REG
   addiu s3,1                    // PC_REG++
   jr ra
@@ -4856,11 +4856,11 @@ align(256)
 
 align(256)
   // $D8 MOV   dp, X            MOVe Value X Into Direct Page Offset
-  andi t0,s5,P_FLAG             // DP = MEM_MAP[DirectPage | (P_FLAG << 3)]
+  andi t0,s5,P_FLAG             // DP = MEM_MAP[Immediate | (P_FLAG << 3)]
   sll t0,3                      // T0 = P_FLAG << 3
-  lbu t1,2(a2)                  // T1 = DirectPage
-  or t0,t1                      // T0 = DirectPage | (P_FLAG << 3)
-  addu a2,a0,t0                 // A2 = MEM_MAP + (DirectPage | (P_FLAG << 3))
+  lbu t1,1(a2)                  // T1 = Immediate
+  or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
   sb s1,0(a2)                   // DP = X_REG
   addiu s3,1                    // PC_REG++
   jr ra
@@ -5045,11 +5045,11 @@ align(256)
 
 align(256)
   // $E4 MOV   A, dp            MOVe Value In Direct Page Offset Into A
-  andi t0,s5,P_FLAG             // DP = MEM_MAP[DirectPage | (P_FLAG << 3)]
+  andi t0,s5,P_FLAG             // DP = MEM_MAP[Immediate | (P_FLAG << 3)]
   sll t0,3                      // T0 = P_FLAG << 3
-  lbu t1,2(a2)                  // T1 = DirectPage
-  or t0,t1                      // T0 = DirectPage | (P_FLAG << 3)
-  addu a2,a0,t0                 // A2 = MEM_MAP + (DirectPage | (P_FLAG << 3))
+  lbu t1,1(a2)                  // T1 = Immediate
+  or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
   lbu s0,0(a2)                  // A_REG = DP
   andi t0,s0,$80                // Test Negative MSB
   andi s5,~N_FLAG               // PSW_REG: N Flag Reset
@@ -5182,11 +5182,11 @@ align(256)
 
 align(256)
   // $EB MOV   Y, dp            MOVe Value In Direct Page Offset Into Y
-  andi t0,s5,P_FLAG             // DP = MEM_MAP[DirectPage | (P_FLAG << 3)]
+  andi t0,s5,P_FLAG             // DP = MEM_MAP[Immediate | (P_FLAG << 3)]
   sll t0,3                      // T0 = P_FLAG << 3
-  lbu t1,2(a2)                  // T1 = DirectPage
-  or t0,t1                      // T0 = DirectPage | (P_FLAG << 3)
-  addu a2,a0,t0                 // A2 = MEM_MAP + (DirectPage | (P_FLAG << 3))
+  lbu t1,1(a2)                  // T1 = Immediate
+  or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
   lbu s2,0(a2)                  // Y_REG = DP
   andi t0,s2,$80                // Test Negative MSB
   andi s5,~N_FLAG               // PSW_REG: N Flag Reset
@@ -5394,11 +5394,11 @@ align(256)
 
 align(256)
   // $F8 MOV   X, dp            MOVe Value In Direct Page Offset Into X
-  andi t0,s5,P_FLAG             // DP = MEM_MAP[DirectPage | (P_FLAG << 3)]
+  andi t0,s5,P_FLAG             // DP = MEM_MAP[Immediate | (P_FLAG << 3)]
   sll t0,3                      // T0 = P_FLAG << 3
-  lbu t1,2(a2)                  // T1 = DirectPage
-  or t0,t1                      // T0 = DirectPage | (P_FLAG << 3)
-  addu a2,a0,t0                 // A2 = MEM_MAP + (DirectPage | (P_FLAG << 3))
+  lbu t1,1(a2)                  // T1 = Immediate
+  or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
   lbu s1,0(a2)                  // X_REG = DP
   andi t0,s1,$80                // Test Negative MSB
   andi s5,~N_FLAG               // PSW_REG: N Flag Reset
