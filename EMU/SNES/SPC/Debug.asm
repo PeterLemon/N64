@@ -122,6 +122,12 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
 
 la a3,TEMPVALUE // A3 = TEMPVALUE RAM Offset
 
+// CPU Instruction:
+PrintString($A0100000,152,8,FontRed,CPUINSTRUCTION,15) // Print Text String To VRAM Using Font At X,Y Position
+PrintString($A0100000,280,8,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+sb gp,0(a3) // TEMPVALUE = CPU Instruction
+PrintValue($A0100000,288,8,FontBlack,TEMPVALUE,0) // Print HEX Chars To VRAM Using Font At X,Y Position
+
 // CPU Registers:
 PrintString($A0100000,8,8,FontRed,CPUREGISTERS,13) // Print Text String To VRAM Using Font At X,Y Position
 
@@ -677,6 +683,9 @@ insert FontRed, "FontRed8x8.bin"
 
 DOLLAR:
   db "$"
+
+CPUINSTRUCTION:
+  db "CPU INSTRUCTION:"
 
 CPUREGISTERS:
   db "CPU REGISTERS:"

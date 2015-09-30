@@ -30,7 +30,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   ori t0,1                      // DP |= BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -40,13 +40,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,1                     // DP &= BIT
   beqz t0,BBS0SPC               // IF (DP & BIT) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBS0SPC:
   jr ra
@@ -338,7 +338,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   andi t0,$FE                   // DP &= ^BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -348,13 +348,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,1                     // DP &= BIT
   bnez t0,BBC0SPC               // IF (! (DP & BIT)) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBC0SPC:
   jr ra
@@ -456,11 +456,11 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,2(a2)                  // T1 = DirectPage
   or t0,t1                      // T0 = DirectPage | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (DirectPage | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
   lbu t1,1(a2)                  // T1 = Immediate
+  addu a2,a0,t0                 // A2 = MEM_MAP + (DirectPage | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   or t0,t1                      // DP |= Immediate
-  sb t0,0(a3)                   // Store DP
+  sb t0,0(a2)                   // Store DP
   andi t1,t0,$80                // Test Negative MSB
   andi s5,~N_FLAG               // PSW_REG: N Flag Reset
   or s5,t1                      // PSW_REG: N Flag = Result MSB
@@ -477,8 +477,8 @@ align(256)
   andi t0,s5,P_FLAG             // (Y) = MEM_MAP[Y_REG | (P_FLAG << 3)]
   sll t0,3                      // T0 = P_FLAG << 3
   or t1,t0,s2                   // T1 = Y_REG | (P_FLAG << 3)
-  addu a2,a0,t1                 // A2 = MEM_MAP + (Y_REG | (P_FLAG << 3))
-  lbu t1,0(a2)                  // T1 = (Y)
+  addu a3,a0,t1                 // A3 = MEM_MAP + (Y_REG | (P_FLAG << 3))
+  lbu t1,0(a3)                  // T1 = (Y)
   or t0,s1                      // (X) = MEM_MAP[X_REG | (P_FLAG << 3)]
   addu a2,a0,t0                 // A2 = MEM_MAP + (X_REG | (P_FLAG << 3))
   lbu t0,0(a2)                  // T0 = (X)
@@ -510,8 +510,7 @@ align(256)
   sb t0,0(a2)                   // Store DPW
   srl t1,t0,8
   sb t1,1(a2)
-  andi t1,t0,$8000              // Test Negative MSB
-  srl t1,8
+  andi t1,$80                   // Test Negative MSB
   andi s5,~N_FLAG               // PSW_REG: N Flag Reset
   or s5,t1                      // PSW_REG: N Flag = Result MSB
   beqz t0,DECWDPSPC             // IF (Result == 0) Z Flag Set
@@ -665,7 +664,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   ori t0,2                      // DP |= BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -675,13 +674,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,2                     // DP &= BIT
   beqz t0,BBS1SPC               // IF (DP & BIT) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBS1SPC:
   jr ra
@@ -902,12 +901,12 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   beq s0,t0,CBNEDPSPC           // IF (A_REG != DP) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   CBNEDPSPC:
   jr ra
@@ -960,7 +959,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   andi t0,$FD                   // DP &= ^BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -970,13 +969,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,2                     // DP &= BIT
   bnez t0,BBC1SPC               // IF (! (DP & BIT)) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBC1SPC:
   jr ra
@@ -1078,11 +1077,11 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,2(a2)                  // T1 = DirectPage
   or t0,t1                      // T0 = DirectPage | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (DirectPage | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
   lbu t1,1(a2)                  // T1 = Immediate
+  addu a2,a0,t0                 // A2 = MEM_MAP + (DirectPage | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   and t0,t1                     // DP &= Immediate
-  sb t0,0(a3)                   // Store DP
+  sb t0,0(a2)                   // Store DP
   andi t1,t0,$80                // Test Negative MSB
   andi s5,~N_FLAG               // PSW_REG: N Flag Reset
   or s5,t1                      // PSW_REG: N Flag = Result MSB
@@ -1099,8 +1098,8 @@ align(256)
   andi t0,s5,P_FLAG             // (Y) = MEM_MAP[Y_REG | (P_FLAG << 3)]
   sll t0,3                      // T0 = P_FLAG << 3
   or t1,t0,s2                   // T1 = Y_REG | (P_FLAG << 3)
-  addu a2,a0,t1                 // A2 = MEM_MAP + (Y_REG | (P_FLAG << 3))
-  lbu t1,0(a2)                  // T1 = (Y)
+  addu a3,a0,t1                 // A3 = MEM_MAP + (Y_REG | (P_FLAG << 3))
+  lbu t1,0(a3)                  // T1 = (Y)
   or t0,s1                      // (X) = MEM_MAP[X_REG | (P_FLAG << 3)]
   addu a2,a0,t0                 // A2 = MEM_MAP + (X_REG | (P_FLAG << 3))
   lbu t0,0(a2)                  // T0 = (X)
@@ -1132,8 +1131,7 @@ align(256)
   sb t0,0(a2)                   // Store DPW
   srl t1,t0,8
   sb t1,1(a2)
-  andi t1,t0,$8000              // Test Negative MSB
-  srl t1,8
+  andi t1,$80                   // Test Negative MSB
   andi s5,~N_FLAG               // PSW_REG: N Flag Reset
   or s5,t1                      // PSW_REG: N Flag = Result MSB
   beqz t0,INCWDPSPC             // IF (Result == 0) Z Flag Set
@@ -1293,7 +1291,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   ori t0,4                      // DP |= BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -1303,13 +1301,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,4                     // DP &= BIT
   beqz t0,BBS2SPC               // IF (DP & BIT) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBS2SPC:
   jr ra
@@ -1596,7 +1594,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   andi t0,$FB                   // DP &= ^BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -1606,13 +1604,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,4                     // DP &= BIT
   bnez t0,BBC2SPC               // IF (! (DP & BIT)) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBC2SPC:
   jr ra
@@ -1714,11 +1712,11 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,2(a2)                  // T1 = DirectPage
   or t0,t1                      // T0 = DirectPage | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (DirectPage | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
   lbu t1,1(a2)                  // T1 = Immediate
+  addu a2,a0,t0                 // A2 = MEM_MAP + (DirectPage | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   xor t0,t1                     // DP ^= Immediate
-  sb t0,0(a3)                   // Store DP
+  sb t0,0(a2)                   // Store DP
   andi t1,t0,$80                // Test Negative MSB
   andi s5,~N_FLAG               // PSW_REG: N Flag Reset
   or s5,t1                      // PSW_REG: N Flag = Result MSB
@@ -1735,8 +1733,8 @@ align(256)
   andi t0,s5,P_FLAG             // (Y) = MEM_MAP[Y_REG | (P_FLAG << 3)]
   sll t0,3                      // T0 = P_FLAG << 3
   or t1,t0,s2                   // T1 = Y_REG | (P_FLAG << 3)
-  addu a2,a0,t1                 // A2 = MEM_MAP + (Y_REG | (P_FLAG << 3))
-  lbu t1,0(a2)                  // T1 = (Y)
+  addu a3,a0,t1                 // A3 = MEM_MAP + (Y_REG | (P_FLAG << 3))
+  lbu t1,0(a3)                  // T1 = (Y)
   or t0,s1                      // (X) = MEM_MAP[X_REG | (P_FLAG << 3)]
   addu a2,a0,t0                 // A2 = MEM_MAP + (X_REG | (P_FLAG << 3))
   lbu t0,0(a2)                  // T0 = (X)
@@ -1918,7 +1916,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   ori t0,8                      // DP |= BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -1928,13 +1926,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,8                     // DP &= BIT
   beqz t0,BBS3SPC               // IF (DP & BIT) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBS3SPC:
   jr ra
@@ -2240,15 +2238,15 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   subiu t0,1                    // DP--
   andi t0,$FF
-  sb t0,0(a3)                   // Store DP
+  sb t0,0(a2)                   // Store DP
   bnez t0,DBNZDPSPC             // IF (A_REG != DP) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   DBNZDPSPC:
   jr ra
@@ -2306,7 +2304,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   andi t0,$F7                   // DP &= ^BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -2316,13 +2314,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,8                     // DP &= BIT
   bnez t0,BBC3SPC               // IF (! (DP & BIT)) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBC3SPC:
   jr ra
@@ -2484,9 +2482,9 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,2(a2)                  // T1 = DirectPage
   or t0,t1                      // T0 = DirectPage | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (DirectPage | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
   lbu t1,1(a2)                  // T1 = Immediate
+  addu a2,a0,t0                 // A2 = MEM_MAP + (DirectPage | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   subu t2,t0,t1                 // T2 = DP - Immediate
   andi t2,$FF
   andi t3,t2,$80                // Test Negative MSB
@@ -2519,8 +2517,8 @@ align(256)
   andi t0,s5,P_FLAG             // (Y) = MEM_MAP[Y_REG | (P_FLAG << 3)]
   sll t0,3                      // T0 = P_FLAG << 3
   or t1,t0,s2                   // T1 = Y_REG | (P_FLAG << 3)
-  addu a2,a0,t1                 // A2 = MEM_MAP + (Y_REG | (P_FLAG << 3))
-  lbu t1,0(a2)                  // T1 = (Y)
+  addu a3,a0,t1                 // A3 = MEM_MAP + (Y_REG | (P_FLAG << 3))
+  lbu t1,0(a3)                  // T1 = (Y)
   or t0,s1                      // (X) = MEM_MAP[X_REG | (P_FLAG << 3)]
   addu a2,a0,t0                 // A2 = MEM_MAP + (X_REG | (P_FLAG << 3))
   lbu t0,0(a2)                  // T0 = (X)
@@ -2707,7 +2705,7 @@ align(256)
   addiu s4,3                    // SP_REG += 3 (Increment Stack)
   andi s4,$FF
   jr ra
-  addiu v0,5                    // Cycles += 5 (Delay Slot)
+  addiu v0,6                    // Cycles += 6 (Delay Slot)
 
 align(256)
   // $80 SETC                   SET Carry Flag
@@ -2742,7 +2740,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   ori t0,$10                    // DP |= BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -2752,13 +2750,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,$10                   // DP &= BIT
   beqz t0,BBS4SPC               // IF (DP & BIT) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBS4SPC:
   jr ra
@@ -3121,9 +3119,9 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,2(a2)                  // T1 = DirectPage
   or t0,t1                      // T0 = DirectPage | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (DirectPage | (P_FLAG << 3))
-  lbu t0,1(a2)                  // T0 = Immediate
-  sb t0,0(a3)                   // DP = Immediate
+  lbu t1,1(a2)                  // T1 = Immediate
+  addu a2,a0,t0                 // A2 = MEM_MAP + (DirectPage | (P_FLAG << 3))
+  sb t1,0(a2)                   // DP = Immediate
   addiu s3,2                    // PC_REG += 2
   jr ra
   addiu v0,5                    // Cycles += 5 (Delay Slot)
@@ -3167,7 +3165,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   andi t0,$EF                   // DP &= ^BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -3177,13 +3175,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,$10                   // DP &= BIT
   bnez t0,BBC4SPC               // IF (! (DP & BIT)) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBC4SPC:
   jr ra
@@ -3371,9 +3369,9 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,2(a2)                  // T1 = DirectPage
   or t0,t1                      // T0 = DirectPage | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (DirectPage | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
   lbu t1,1(a2)                  // T1 = Immediate
+  addu a2,a0,t0                 // A2 = MEM_MAP + (DirectPage | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t2,s5,C_FLAG             // T2 = C_FLAG
   andi t3,t0,$80                // T3 = DP & 0x80
   addu t0,t1                    // DP += Immediate
@@ -3415,8 +3413,8 @@ align(256)
   andi t0,s5,P_FLAG             // (Y) = MEM_MAP[Y_REG | (P_FLAG << 3)]
   sll t0,3                      // T0 = P_FLAG << 3
   or t1,t0,s2                   // T1 = Y_REG | (P_FLAG << 3)
-  addu a2,a0,t1                 // A2 = MEM_MAP + (Y_REG | (P_FLAG << 3))
-  lbu t1,0(a2)                  // T1 = (Y)
+  addu a3,a0,t1                 // A3 = MEM_MAP + (Y_REG | (P_FLAG << 3))
+  lbu t1,0(a3)                  // T1 = (Y)
   or t0,s1                      // (X) = MEM_MAP[X_REG | (P_FLAG << 3)]
   addu a2,a0,t0                 // A2 = MEM_MAP + (X_REG | (P_FLAG << 3))
   lbu t0,0(a2)                  // T0 = (X)
@@ -3645,7 +3643,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   ori t0,$20                    // DP |= BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -3655,13 +3653,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,$20                   // DP &= BIT
   beqz t0,BBS5SPC               // IF (DP & BIT) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBS5SPC:
   jr ra
@@ -4083,7 +4081,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   andi t0,$DF                   // DP &= ^BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -4093,13 +4091,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,$20                   // DP &= BIT
   bnez t0,BBC5SPC               // IF (! (DP & BIT)) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBC5SPC:
   jr ra
@@ -4287,9 +4285,9 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,2(a2)                  // T1 = DirectPage
   or t0,t1                      // T0 = DirectPage | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (DirectPage | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
   lbu t1,1(a2)                  // T1 = Immediate
+  addu a2,a0,t0                 // A2 = MEM_MAP + (DirectPage | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t2,s5,C_FLAG             // T2 = C_FLAG
   andi t3,t0,$80                // T3 = DP & 0x80
   subu t0,t1                    // DP -= Immediate
@@ -4331,8 +4329,8 @@ align(256)
   andi t0,s5,P_FLAG             // (Y) = MEM_MAP[Y_REG | (P_FLAG << 3)]
   sll t0,3                      // T0 = P_FLAG << 3
   or t1,t0,s2                   // T1 = Y_REG | (P_FLAG << 3)
-  addu a2,a0,t1                 // A2 = MEM_MAP + (Y_REG | (P_FLAG << 3))
-  lbu t1,0(a2)                  // T1 = (Y)
+  addu a3,a0,t1                 // A3 = MEM_MAP + (Y_REG | (P_FLAG << 3))
+  lbu t1,0(a3)                  // T1 = (Y)
   or t0,s1                      // (X) = MEM_MAP[X_REG | (P_FLAG << 3)]
   addu a2,a0,t0                 // A2 = MEM_MAP + (X_REG | (P_FLAG << 3))
   lbu t0,0(a2)                  // T0 = (X)
@@ -4533,7 +4531,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   ori t0,$40                    // DP |= BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -4543,13 +4541,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,$40                   // DP &= BIT
   beqz t0,BBS6SPC               // IF (DP & BIT) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBS6SPC:
   jr ra
@@ -4776,7 +4774,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   andi t0,$BF                   // DP &= ^BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -4786,13 +4784,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,$40                   // DP &= BIT
   bnez t0,BBC6SPC               // IF (! (DP & BIT)) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBC6SPC:
   jr ra
@@ -4893,7 +4891,7 @@ align(256)
   sb s2,1(a2)
   addiu s3,1                    // PC_REG++
   jr ra
-  addiu v0,4                    // Cycles += 4 (Delay Slot)
+  addiu v0,5                    // Cycles += 5 (Delay Slot)
 
 align(256)
   // $DB MOV   dp+X, Y          MOVe Value Y Into Direct Page Offset Added With Value X
@@ -4944,12 +4942,12 @@ align(256)
   addu t1,s1                    // T1 = Immediate + X_REG
   andi t1,$FF                   // T1 = (Immediate + X_REG) & $FF
   or t0,t1                      // T0 = ((Immediate + X_REG) & $FF) | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + ((Immediate + X_REG) & $FF) | (P_FLAG << 3)
-  lbu t0,0(a3)                  // T0 = DPX
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + ((Immediate + X_REG) & $FF) | (P_FLAG << 3)
+  lbu t0,0(a2)                  // T0 = DPX
   beq s0,t0,CBNEDPXSPC          // IF (A_REG != DPX) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   CBNEDPXSPC:
   jr ra
@@ -5023,7 +5021,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   ori t0,$80                    // DP |= BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -5033,13 +5031,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,$80                   // DP &= BIT
   beqz t0,BBS7SPC               // IF (DP & BIT) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBS7SPC:
   jr ra
@@ -5286,7 +5284,7 @@ align(256)
   lbu t0,0(a2)                  // T0 = DP
   andi t0,$7F                   // DP &= ^BIT
   sb t0,0(a2)                   // Store DP
-  addiu s3,1                    // PC_REG++ (Increment Program Counter)
+  addiu s3,1                    // PC_REG++
   jr ra
   addiu v0,4                    // Cycles += 4 (Delay Slot)
 
@@ -5296,13 +5294,13 @@ align(256)
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
-  addu a3,a0,t0                 // A3 = MEM_MAP + (Immediate | (P_FLAG << 3))
-  lbu t0,0(a3)                  // T0 = DP
+  lb t1,2(a2)                   // T1 = Relative
+  addu a2,a0,t0                 // A2 = MEM_MAP + (Immediate | (P_FLAG << 3))
+  lbu t0,0(a2)                  // T0 = DP
   andi t0,$80                   // DP &= BIT
   bnez t0,BBC7SPC               // IF (! (DP & BIT)) PC_REG += Relative
   addiu s3,2                    // PC_REG += 2 (Delay Slot)
-  lb t0,2(a2)                   // T0 = Relative
-  add s3,t0                     // PC_REG += Relative
+  add s3,t1                     // PC_REG += Relative
   addiu v0,2                    // Cycles += 2
   BBC7SPC:
   jr ra

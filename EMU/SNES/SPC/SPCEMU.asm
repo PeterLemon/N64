@@ -43,7 +43,7 @@ ClearScreen:
   and s0,r0 // S0 =  8-Bit Register A   (Accumulator Register)
   and s1,r0 // S1 =  8-Bit Register X   (Index Register)
   and s2,r0 // S2 =  8-Bit Register Y   (Index Register)
-  and s3,r0 // S3 = 16-Bit Register PC (Program Counter)
+  and s3,r0 // S3 = 16-Bit Register PC  (Program Counter)
   and s4,r0 // S4 =  8-Bit Register SP  (Stack Pointer)
   and s5,r0 // S5 =  8-Bit Register PSW (Processor Status Register)
   // 16-bit Register YA (MSB=Y, LSB=A)
@@ -83,8 +83,8 @@ Refresh:
   and k0,r0 // K0 = Old Cycles Counter (Reset To Zero)
   CPU_EMU:
     addu a2,a0,s3 // A2 = MEM_MAP + PC
-    lbu t0,0(a2)  // T0 = CPU Instruction
-    sll t0,8 // T0 = CPU Instruction * 256
+    lbu gp,0(a2)  // GP = CPU Instruction
+    sll t0,gp,8 // T0 = CPU Instruction * 256
     addu t0,a1 // T0 = CPU Instruction Table Opcode Offset
     jalr t0    // Run CPU Instruction
     addiu s3,1 // PC_REG++ (Delay Slot)
@@ -96,10 +96,10 @@ Refresh:
 
 include "Debug.asm" // Show Debug
 
-  lui a3,VI_BASE // A0 = VI Base Register ($A4400000)
+  lui a2,VI_BASE // A2 = VI Base Register ($A4400000)
   lli t0,$1E0 // T0 = Scan Line
   WaitScanline:
-    lw t1,VI_V_CURRENT_LINE(a3) // T1 = Current Scan Line
+    lw t1,VI_V_CURRENT_LINE(a2) // T1 = Current Scan Line
     bne t1,t0,WaitScanline // IF (Current Scan Line != Scan Line) Wait
     nop // ELSE Continue (Delay Slot)
 
