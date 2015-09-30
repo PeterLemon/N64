@@ -4,24 +4,27 @@ addu t0,gp // T0 = I/O Read/Write Instruction Table + CPU Instruction
 lbu t0,0(t0) // T0 = I/O Read/Write Type
 
 // I/O Register Read/Write
-beqz t0,IORW_END // IF (I/O Read/Write Type == 0) Skip Register Read/Write
+beqz t0,IORW_END // IF (I/O Read/Write Type == 0) Skip I/O Register Read/Write
 nop // Delay Slot
+
+
+// CONTROL Register Write
 lli t1,$72 // T1 = Read 8-Bit ByteCode
-beq t0,t1,CONTROLEND // IF (I/O Read/Write Type == Read 8-Bit) Skip CONTROL
+beq t0,t1,CONTROLEND // IF (I/O Read/Write Type == Read 8-Bit "r") Skip CONTROL
 nop // Delay Slot
 lli t1,$52 // T1 = Read 16-Bit ByteCode
-beq t0,t1,CONTROLEND // IF (I/O Read/Write Type == Read 16-Bit) Skip CONTROL
+beq t0,t1,CONTROLEND // IF (I/O Read/Write Type == Read 16-Bit "R") Skip CONTROL
 nop // Delay Slot
 lli t1,$44 // T1 = Read/Read 8-Bit ByteCode
-beq t0,t1,CONTROLEND // IF (I/O Read/Write Type == Read/Read 8-Bit) Skip CONTROL
+beq t0,t1,CONTROLEND // IF (I/O Read/Write Type == Read/Read 8-Bit "D") Skip CONTROL
 nop // Delay Slot
 
 addiu t1,a0,REG_CONTROL // T1 = MEM_MAP + REG_CONTROL
 subiu t2,t1,1           // T2 = MEM_MAP + REG_CONTROL - 1
-beq a2,t1,CONTROLWRITE // IF (MEMAddressA == REG_CONTROL) Control Write
+beq a2,t1,CONTROLWRITE  // IF (MEMAddressA == REG_CONTROL) Control Write
 nop // Delay Slot
 
-lli t3,$64 // T3 = DP Read/Write 8-Bit ByteCode
+lli t3,$57 // T3 = DP Write 16-Bit ByteCode
 bne t0,t3,CONTROLEND // IF (I/O Read/Write Type != Read/Write 8-Bit) Skip CONTROL
 nop // Delay Slot
 bne a2,t2,CONTROLEND // IF (MEMAddressA != REG_CONTROL - 1) Skip CONTROL
@@ -36,6 +39,65 @@ and s7,r0 // S7 = Timer 1 Cycles Reset
 and s8,r0 // S8 = Timer 2 Cycles Reset
 CONTROLEND:
 
+
+// DSP DATA Read/Write
+la t1,DSP_MAP // T1 = DSP_MAP
+
+lli t2,$77 // T2 = Write 8-Bit ByteCode
+beq t0,t2,DSPDATAWRITE // IF (I/O Read/Write Type == Write 8-Bit "w") Skip DSP Data Register
+nop // Delay Slot
+lli t2,$57 // T2 = Write 16-Bit ByteCode
+beq t0,t2,DSPDATAWRITE // IF (I/O Read/Write Type == Write 16-Bit "W") Skip DSP Data Register
+nop // Delay Slot
+lli t2,$64 // T2 = Read/Write 8-Bit ByteCode
+beq t0,t2,DSPDATAWRITE // IF (I/O Read/Write Type == Read/Write 8-Bit "d") Skip DSP Data Register
+nop // Delay Slot
+
+addiu t2,a0,REG_DSPDATA // T2 = MEM_MAP + REG_DSPDATA
+subiu t3,t2,1           // T3 = MEM_MAP + REG_DSPDATA - 1
+beq a2,t2,DSPDATAREAD   // IF (MEMAddressA == REG_DSPDATA) DSP Data Read
+nop // Delay Slot
+beq a3,t2,DSPDATAREAD   // IF (MEMAddressB == REG_DSPDATA) DSP Data Read
+nop // Delay Slot
+
+lli t4,$52 // T4 = Read 16-Bit ByteCode
+bne t0,t4,DSPDATAEND // IF (I/O Read/Write Type != Read 16-Bit) Skip DSP Data Register
+nop // Delay Slot
+bne a2,t3,DSPDATAEND // IF (MEMAddressA != REG_DSPDATA - 1) Skip DSP Data Register
+nop // Delay Slot
+bne a3,t3,DSPDATAEND // IF (MEMAddressB != REG_DSPDATA - 1) Skip DSP Data Register
+nop // Delay Slot
+
+DSPDATAREAD: // DSP Data Register Read
+lbu t2,REG_DSPADDR(a0) // T0 = DSP Address
+andi t2,$7F // DSP Address &= $7F (DSP Read Only Mirror Access)
+addu t2,t1 // T2 = DSP_MAP + DSP Address
+lbu t2,0(t2) // Load DSP Data From DSP Address
+sb t2,REG_DSPDATA(a0) // Store DSP Data
+j DSPDATAEND
+nop // Delay Slot
+
+addiu t2,a0,REG_DSPDATA // T2 = MEM_MAP + REG_DSPDATA
+subiu t3,t2,1           // T3 = MEM_MAP + REG_DSPDATA - 1
+beq a2,t2,DSPDATAWRITE  // IF (MEMAddressA == REG_DSPDATA) DSP Data Write
+nop // Delay Slot
+
+lli t4,$57 // T4 = Write 16-Bit ByteCode
+bne t0,t4,DSPDATAEND // IF (I/O Read/Write Type != Read 16-Bit) Skip DSP Data Register
+nop // Delay Slot
+bne a2,t3,DSPDATAEND // IF (MEMAddressA != REG_DSPDATA - 1) Skip DSP Data Register
+nop // Delay Slot
+
+DSPDATAWRITE: // DSP Data Register Write
+lbu t2,REG_DSPADDR(a0) // T2 = DSP Address
+andi t2,$7F // DSP Address &= $7F (DSP Read Only Mirror Access)
+addu t2,t1 // T2 = DSP_MAP + DSP Address
+lbu t3,REG_DSPDATA(a0) // T3 = DSP Data
+sb t3,0(t2) // Store DSP Data to DSP Address
+DSPDATAEND:
+
+
+// Timer OUT Register Read
 T0OUTREADA:
 addiu t0,a0,REG_T0OUT // T0 = MEM_MAP + REG_T0OUT
 bne a2,t0,T1OUTREADA // IF (MEMAddressA == REG_T0OUT)
@@ -94,14 +156,6 @@ IORWTable: // I/O Read/Write Instruction Table
   db $00, $00, "w", "r", "r", "r", "r", "r", "r", "r", "d", "r", $00, $00, $00, $00
 
 IORW_END:
-
-// DSP Register Read/Write
-la a2,DSP_MAP // A2 = DSP_MAP
-lbu t0,REG_DSPADDR(a0) // T0 = DSP Address
-andi t0,$7F // DSP Address &= $7F (DSP Read Only Mirror Access)
-addu t0,a2 // T0 = DSP_MAP + DSP Address
-lbu t1,REG_DSPDATA(a0) // T1 = DSP Data
-sb t1,0(t0) // Store DSP Data to DSP Address
 
 // Instruction Cycles
 subu k1,v0,k0 // K1 = InstCycles: Cycles - OldCycles (Get Last Instruction Cycle Count)
