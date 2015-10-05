@@ -44,8 +44,22 @@ Start:
       Sample2Signed:
 
       // Shift Samples
+      lli t8,12 // T8 = 12
+      ble t4,t8,SampleShift // IF (Shift Amount <= 12) Apply Shift Amount To Samples
+      nop // Delay Slot
+      // ELSE Use Default Shift For Reserved Shift Amount (13..15)
+      sll t6,12 // Sample 1 SHL 12
+      sra t6,3 // Sample 1 SAR 3
+      sll t7,12 // Sample 2 SHL 12
+      sra t7,3 // Sample 2 SAR 3
+      j ShiftEnd
+      nop // Delay Slot
+      SampleShift:
       sllv t6,t4 // Sample 1 SHL Shift Amount
+      sra t6,1 // Sample 1 SAR 1
       sllv t7,t4 // Sample 2 SHL Shift Amount
+      sra t7,1 // Sample 2 SAR 1
+      ShiftEnd:
 
       // Filter Samples
       move t0,t6 // Filter 0: New Sample = Sample 1

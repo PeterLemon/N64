@@ -10,8 +10,8 @@ while i < len(brrfile):
     # Decode 9 Byte Block, Byte 0 = Block Header
     blockheader = struct.unpack("@B", brrfile[i:i+1])
     loopendflags = blockheader[0] & 0x3 # Loop/End Flags (Bits 0..1)
-    filternumber = (blockheader[0] >> 2) & 0x3 # Filter Number (Bits 2..3)
-    shiftamount = (blockheader[0] >> 4) & 0xF # Shift Amount (Bits 4..7)
+    filternumber = (blockheader[0] >> 2) & 0x3 # Filter Number (Bits 0..1)
+    shiftamount = (blockheader[0] >> 4) & 0xF # Shift Amount
 
     s = 0 # Sample Byte Counter
     while s < 8:
@@ -24,8 +24,16 @@ while i < len(brrfile):
         if sample2 > 7: sample2 -= 16 # Convert Sample 2 To Signed Nibble
 
         # Shift Samples
-        sample1 <<= shiftamount # Sample 1 SHL Shift Amount
-        sample2 <<= shiftamount # Sample 2 SHL Shift Amount
+        if shiftamount < 13:
+            sample1 <<= shiftamount # Sample 1 SHL Shift Amount
+            sample1 >>= 1 # Sample 1 SAR 1
+            sample2 <<= shiftamount # Sample 2 SHL Shift Amount
+            sample2 >>= 1 # Sample 2 SAR 1
+        else:
+            sample1 <<= 12 # Sample 1 SHL 12
+            sample1 >>= 3  # Sample 1 SAR 3
+            sample2 <<= 12 # Sample 2 SHL 12
+            sample2 >>= 3  # Sample 2 SAR 3
 
         # Filter Samples
         new = sample1 # Filter 0
