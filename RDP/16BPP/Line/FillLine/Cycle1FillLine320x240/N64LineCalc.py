@@ -1,4 +1,4 @@
-# Sort Triangle By Y Coordinates (Highest To Lowest)
+# Sort Line By Y Coordinates (Highest To Lowest)
 # IF Coordinate 0 & 1 Share Same Y: Sort By X Coordinates (Lowest To Highest)
 
 line = (25.0, 100.0), (75.0, 50.0) # Y Sorted Line
