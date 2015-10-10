@@ -1,0 +1,2 @@
+bass PlotFillLine16BPP320X240.asm
+chksum64 PlotFillLine16BPP320X240.N64
