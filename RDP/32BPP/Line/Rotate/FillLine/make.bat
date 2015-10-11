@@ -1,0 +1,2 @@
+bass RotateFillLine32BPP320X240.asm
+chksum64 RotateFillLine32BPP320X240.N64
