@@ -96,28 +96,29 @@ align(8) // Align 64-Bit
 RSPPALData:
 base $0000 // Set Base Of RSP Data Object To Zero
 
-ANDByteLo:
-  dw $00FF, $00FF, $00FF, $00FF, $00FF, $00FF, $00FF, $00FF // 8 * $00FF (AND Lo Byte)
-ANDByteHi:
-  dw $FF00, $FF00, $FF00, $FF00, $FF00, $FF00, $FF00, $FF00 // 8 * $FF00 (AND Hi Byte)
-ANDRed:
-  dw $001F, $001F, $001F, $001F, $001F, $001F, $001F, $001F // 8 * $001F (AND Red   5 Bits)
-ANDGreen:
-  dw $03E0, $03E0, $03E0, $03E0, $03E0, $03E0, $03E0, $03E0 // 8 * $03E0 (AND Green 5 Bits)
-ANDBlue:
-  dw $7C00, $7C00, $7C00, $7C00, $7C00, $7C00, $7C00, $7C00 // 8 * $7C00 (AND Blue  5 Bits)
+// Uses Whole Vector For 1st 8 Colors To Preserve SNES Palette Color 0 Alpha
+// Uses Element 9 To OR Vector By Scalar $0001 For Other Colors
+AlphaOR:
+  dw $0000, $0001, $0001, $0001, $0001, $0001, $0001, $0001
+  // 1 * $0000, 7 * $0001 (OR Alpha 1 Bit) (1st 8 Colors)
+  // $0001 (OR Alpha 1 Bit) (Other Colors) (e9)
+
+// Uses Elements 8..12 To AND Vector By Scalar
+ANDByte:
+  dw $00FF, $FF00, $001F, $03E0, $7C00, $0000, $0000, $0000
+  // $00FF (AND Lo Byte) (e8)
+  // $FF00 (AND Hi Byte) (e9)
+  // $001F (AND Red   5 Bits) (e10)
+  // $03E0 (AND Green 5 Bits) (e11)
+  // $7C00 (AND Blue  5 Bits) (e12)
+
+// Uses Elements 8..11 To Multiply Vector By Scalar For Pseudo Vector Shifts
 PALShift:
-  dw $0100, $0100, $0100, $0100, $0100, $0100, $0100, $0100 // 8 * $0100 (Left  Shift Using Multiply: << 8), (Right Shift Using Multiply: >> 8)
-RedShiftLeft:
-  dw $0800, $0800, $0800, $0800, $0800, $0800, $0800, $0800 // 8 * $0800 (Left  Shift Using Multiply: << 11) (Red)
-GreenShiftLeft:
-  dw $0002, $0002, $0002, $0002, $0002, $0002, $0002, $0002 // 8 * $0002 (Left  Shift Using Multiply: << 1)  (Green)
-BlueShiftRight:
-  dw $0080, $0080, $0080, $0080, $0080, $0080, $0080, $0080 // 8 * $0080 (Right Shift Using Multiply: >> 9)  (Blue)
-Alpha7OR:
-  dw $0000, $0001, $0001, $0001, $0001, $0001, $0001, $0001 // 1 * $0000, 7 * $0001 (OR Alpha 1 Bit) (1st 8 Colors)
-Alpha8OR:
-  dw $0001, $0001, $0001, $0001, $0001, $0001, $0001, $0001 // 8 * $0001 (OR Alpha 1 Bit) (Other Colors)
+  dw $0100, $0800, $0002, $0080
+  // $0100 (Left Shift Using Multiply: << 8), (Right Shift Using Multiply: >> 8) (Big-Endian Convert) (e8)
+  // $0800 (Left Shift Using Multiply: << 11) (Red) (e9)
+  // $0002 (Left Shift Using Multiply: << 1)  (Green) (e10)
+  // $0080 (Right Shift Using Multiply: >> 9) (Blue) (e11)
 
 align(8) // Align 64-Bit
 base RSPPALData+pc() // Set End Of RSP Data Object
@@ -128,42 +129,33 @@ align(8) // Align 64-Bit
 RSPSHIFTData:
 base $0000 // Set Base Of RSP Data Object To Zero
 
-ShiftLeft0Right16:
-  dw $0001, $0001, $0001, $0001, $0001, $0001, $0001, $0001 // 8 * $0001 (Left Shift Using Multiply: << 0),  (Right Shift Using Multiply: >> 16)
-ShiftLeft1Right15:
-  dw $0002, $0002, $0002, $0002, $0002, $0002, $0002, $0002 // 8 * $0002 (Left Shift Using Multiply: << 1),  (Right Shift Using Multiply: >> 15)
-ShiftLeft2Right14:
-  dw $0004, $0004, $0004, $0004, $0004, $0004, $0004, $0004 // 8 * $0004 (Left Shift Using Multiply: << 2),  (Right Shift Using Multiply: >> 14)
-ShiftLeft3Right13:
-  dw $0008, $0008, $0008, $0008, $0008, $0008, $0008, $0008 // 8 * $0008 (Left Shift Using Multiply: << 3),  (Right Shift Using Multiply: >> 13)
-ShiftLeft4Right12:
-  dw $0010, $0010, $0010, $0010, $0010, $0010, $0010, $0010 // 8 * $0010 (Left Shift Using Multiply: << 4),  (Right Shift Using Multiply: >> 12)
-ShiftLeft5Right11:
-  dw $0020, $0020, $0020, $0020, $0020, $0020, $0020, $0020 // 8 * $0020 (Left Shift Using Multiply: << 5),  (Right Shift Using Multiply: >> 11)
-ShiftLeft6Right10:
-  dw $0040, $0040, $0040, $0040, $0040, $0040, $0040, $0040 // 8 * $0040 (Left Shift Using Multiply: << 6),  (Right Shift Using Multiply: >> 10)
-ShiftLeft7Right9:
-  dw $0080, $0080, $0080, $0080, $0080, $0080, $0080, $0080 // 8 * $0080 (Left Shift Using Multiply: << 7),  (Right Shift Using Multiply: >> 9)
-ShiftLeft8Right8:
-  dw $0100, $0100, $0100, $0100, $0100, $0100, $0100, $0100 // 8 * $0100 (Left Shift Using Multiply: << 8),  (Right Shift Using Multiply: >> 8)
-ShiftLeft9Right7:
-  dw $0200, $0200, $0200, $0200, $0200, $0200, $0200, $0200 // 8 * $0200 (Left Shift Using Multiply: << 9),  (Right Shift Using Multiply: >> 7)
-ShiftLeft10Right6:
-  dw $0400, $0400, $0400, $0400, $0400, $0400, $0400, $0400 // 8 * $0400 (Left Shift Using Multiply: << 10), (Right Shift Using Multiply: >> 6)
-ShiftLeft11Right5:
-  dw $0800, $0800, $0800, $0800, $0800, $0800, $0800, $0800 // 8 * $0800 (Left Shift Using Multiply: << 11), (Right Shift Using Multiply: >> 5)
-ShiftLeft12Right4:
-  dw $1000, $1000, $1000, $1000, $1000, $1000, $1000, $1000 // 8 * $1000 (Left Shift Using Multiply: << 12), (Right Shift Using Multiply: >> 4)
-ShiftLeft13Right3:
-  dw $2000, $2000, $2000, $2000, $2000, $2000, $2000, $2000 // 8 * $2000 (Left Shift Using Multiply: << 13), (Right Shift Using Multiply: >> 3)
-ShiftLeft14Right2:
-  dw $4000, $4000, $4000, $4000, $4000, $4000, $4000, $4000 // 8 * $4000 (Left Shift Using Multiply: << 14), (Right Shift Using Multiply: >> 2)
-ShiftLeft15Right1:
-  dw $8000, $8000, $8000, $8000, $8000, $8000, $8000, $8000 // 8 * $8000 (Left Shift Using Multiply: << 15), (Right Shift Using Multiply: >> 1)
-ANDNibbleLo:
-  dw $000F, $000F, $000F, $000F, $000F, $000F, $000F, $000F // 8 * $000F (AND Lo Nibble)
-ANDNibbleHi:
-  dw $0F00, $0F00, $0F00, $0F00, $0F00, $0F00, $0F00, $0F00 // 8 * $0F00 (AND Hi Nibble)
+// Uses Elements 8..15 To Multiply Vector By Scalar For Pseudo Vector Shifts
+ShiftLeftRightA:
+  dw $0001, $0002, $0004, $0008, $0010, $0020, $0040, $0080
+  // $0001 (Left Shift Using Multiply: << 0),  (Right Shift Using Multiply: >> 16) (e8)
+  // $0002 (Left Shift Using Multiply: << 1),  (Right Shift Using Multiply: >> 15) (e9)
+  // $0004 (Left Shift Using Multiply: << 2),  (Right Shift Using Multiply: >> 14) (e10)
+  // $0008 (Left Shift Using Multiply: << 3),  (Right Shift Using Multiply: >> 13) (e11)
+  // $0010 (Left Shift Using Multiply: << 4),  (Right Shift Using Multiply: >> 12) (e12)
+  // $0020 (Left Shift Using Multiply: << 5),  (Right Shift Using Multiply: >> 11) (e13)
+  // $0040 (Left Shift Using Multiply: << 6),  (Right Shift Using Multiply: >> 10) (e14)
+  // $0080 (Left Shift Using Multiply: << 7),  (Right Shift Using Multiply: >> 9)  (e15)
+ShiftLeftRightB:
+  dw $0100, $0200, $0400, $0800, $1000, $2000, $4000, $8000
+  // $0100 (Left Shift Using Multiply: << 8),  (Right Shift Using Multiply: >> 8) (e8)
+  // $0200 (Left Shift Using Multiply: << 9),  (Right Shift Using Multiply: >> 7) (e9)
+  // $0400 (Left Shift Using Multiply: << 10), (Right Shift Using Multiply: >> 6) (e10)
+  // $0800 (Left Shift Using Multiply: << 11), (Right Shift Using Multiply: >> 5) (e11)
+  // $1000 (Left Shift Using Multiply: << 12), (Right Shift Using Multiply: >> 4) (e12)
+  // $2000 (Left Shift Using Multiply: << 13), (Right Shift Using Multiply: >> 3) (e13)
+  // $4000 (Left Shift Using Multiply: << 14), (Right Shift Using Multiply: >> 2) (e14)
+  // $8000 (Left Shift Using Multiply: << 15), (Right Shift Using Multiply: >> 1) (e15)
+
+// Uses Elements 8..9 To AND Lo/Hi Nibbles
+ANDNibble:
+  dw $000F, $0F00
+  // $000F (AND Lo Nibble) (e8)
+  // $0F00 (AND Hi Nibble) (e9)
 
 align(8) // Align 64-Bit
 base RSPSHIFTData+pc() // Set End Of RSP Data Object
@@ -191,17 +183,9 @@ RSPPALStart:
     bnez t0,PALDATADMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
-  lqv v0[e0],ANDByteLo>>4(r0) //  V0 = 8 * $00FF (AND Lo Byte)
-  lqv v1[e0],ANDByteHi>>4(r0) //  V1 = 8 * $FF00 (AND Hi Byte)
-  lqv v2[e0],ANDRed>>4(r0)   //  V2 = 8 * $001F (AND Red   5 Bits)
-  lqv v3[e0],ANDGreen>>4(r0) //  V3 = 8 * $03E0 (AND Green 5 Bits)
-  lqv v4[e0],ANDBlue>>4(r0)  //  V4 = 8 * $7C00 (AND Blue  5 Bits)
-  lqv v5[e0],PALShift>>4(r0) //  V5 = 8 * $0100 (Left  Shift Using Multiply: << 8), (Right Shift Using Multiply: >> 8)
-  lqv v6[e0],RedShiftLeft>>4(r0)   //  V6 = 8 * $0800 (Left  Shift Using Multiply: << 11) (Red)
-  lqv v7[e0],GreenShiftLeft>>4(r0) //  V7 = 8 * $0002 (Left  Shift Using Multiply: << 1)  (Green)
-  lqv v8[e0],BlueShiftRight>>4(r0) //  V8 = 8 * $0080 (Right Shift Using Multiply: >> 9)  (Blue)
-  lqv v9[e0],Alpha7OR>>4(r0)  // V09 = 1 * $0000, 7 * $0001 (OR Alpha 1 Bit) (1st 8 Colors)
-  lqv v10[e0],Alpha8OR>>4(r0) // V10 = 8 * $0001 (OR Alpha 1 Bit) (Other Colors)
+  lqv v0[e0],AlphaOR>>4(r0)  // V0 = 1 * $0000, 7 * $0001 (OR Alpha 1 Bit) (128-Bit Quad)
+  lqv v1[e0],ANDByte>>4(r0)  // V1 = AND Lo/Hi/Red/Green/Blue Bytes (128-Bit Quad)
+  ldv v2[e0],PALShift>>3(r0) // V2 = Shift Using Multiply: Red/Green/Blue (64-Bit Double)
 
 // Decode Colors
   lli a0,0 // A0 = Palette Start Offset
@@ -222,55 +206,55 @@ RSPPALStart:
     nop // Delay Slot
 
 // Vector Grab 1st 8 Colors:
-  lqv v11[e0],0(a0) // V11 = Palette Colors 0..7
+  lqv v3[e0],0(a0) // V3 = Palette Colors 0..7
 
-  vand v12,v0,v11[e0]  // V12 = Lo Byte Color 0..7 (& $00FF)
-  vand v13,v1,v11[e0]  // V13 = Hi Byte Color 0..7 (& $FF00)
-  vmudn v12,v5,v12[e0] // V12 = Lo Byte Color 0..7 << 8
-  vmudl v13,v5,v13[e0] // V13 = Hi Byte Color 0..7 >> 8
-  vor v12,v13[e0]      // V12 = Color 0..7 Big-Endian
+  vand v4,v3,v1[e8] // V4 = Lo Byte Color 0..7 (& $00FF)
+  vand v5,v3,v1[e9] // V5 = Hi Byte Color 0..7 (& $FF00)
+  vmudn v4,v2[e8]   // V4 = Lo Byte Color 0..7 << 8
+  vmudl v5,v2[e8]   // V5 = Hi Byte Color 0..7 >> 8
+  vor v4,v5[e0]     // V4 = Color 0..7 Big-Endian
 
-  vand v13,v2,v12[e0]  // V13 = RED 5 Bits, Color 0..7 (& $001F)
-  vmudn v13,v6,v13[e0] // V13 = RED 5 Bits, Color 0..7 << 11
+  vand v5,v4,v1[e10] // V5 = RED 5 Bits, Color 0..7 (& $001F)
+  vmudn v5,v2[e9]    // V5 = RED 5 Bits, Color 0..7 << 11
 
-  vand v14,v3,v12[e0]  // V14 = GREEN 5 Bits, Color 0..7 (& $03E0)
-  vmudn v14,v7,v14[e0] // V14 = GREEN 5 Bits, Color 0..7 << 1
-  vor v13,v14[e0]      // V13 = RED,GREEN 10 Bits, Color 0..7
+  vand v6,v4,v1[e11] // V6 = GREEN 5 Bits, Color 0..7 (& $03E0)
+  vmudn v6,v2[e10]   // V6 = GREEN 5 Bits, Color 0..7 << 1
+  vor v5,v6[e0]      // V5 = RED,GREEN 10 Bits, Color 0..7
 
-  vand v14,v4,v12[e0]  // V14 = BLUE 5 Bits, Color 0..7 (& $7C00)
-  vmudl v14,v8,v14[e0] // V14 = BLUE 5 Bits, Color 0..7 >> 9
-  vor v13,v14[e0]      // V13 = RED,GREEN,BLUE 15 Bits, Color 0..7
-  vor v13,v9[e0]       // V13 = RED,GREEN,BLUE,ALPHA 16 Bits, Color 0..7
+  vand v6,v4,v1[e12] // V6 = BLUE 5 Bits, Color 0..7 (& $7C00)
+  vmudl v6,v2[e11]   // V6 = BLUE 5 Bits, Color 0..7 >> 9
+  vor v5,v6[e0]      // V5 = RED,GREEN,BLUE 15 Bits, Color 0..7
+  vor v5,v0[e0]      // V5 = RED,GREEN,BLUE,ALPHA 16 Bits, Color 0..7
 
 // Store Colors 0..7:
-  sqv v13[e0],0(a0) // Palette Colors 0..8 = V13 Quad
+  sqv v5[e0],0(a0) // Palette Colors 0..8 = V5 Quad
 
 
 LoopColors:
 // Vector Grab Next 8 Colors:
   addi a0,16
-  lqv v11[e0],0(a0) // V11 = Palette Colors 0..7
+  lqv v3[e0],0(a0) // V3 = Palette Colors 0..7
 
-  vand v12,v0,v11[e0]  // V12 = Lo Byte Color 0..7 (& $00FF)
-  vand v13,v1,v11[e0]  // V13 = Hi Byte Color 0..7 (& $FF00)
-  vmudn v12,v5,v12[e0] // V12 = Lo Byte Color 0..7 << 8
-  vmudl v13,v5,v13[e0] // V13 = Hi Byte Color 0..7 >> 8
-  vor v12,v13[e0]      // V12 = Color 0..7 Big-Endian
+  vand v4,v3,v1[e8] // V4 = Lo Byte Color 0..7 (& $00FF)
+  vand v5,v3,v1[e9] // V5 = Hi Byte Color 0..7 (& $FF00)
+  vmudn v4,v2[e8]   // V4 = Lo Byte Color 0..7 << 8
+  vmudl v5,v2[e8]   // V5 = Hi Byte Color 0..7 >> 8
+  vor v4,v5[e0]     // V4 = Color 0..7 Big-Endian
 
-  vand v13,v2,v12[e0]  // V13 = RED 5 Bits, Color 0..7 (& $001F)
-  vmudn v13,v6,v13[e0] // V13 = RED 5 Bits, Color 0..7 << 11
+  vand v5,v4,v1[e10] // V5 = RED 5 Bits, Color 0..7 (& $001F)
+  vmudn v5,v2[e9]    // V5 = RED 5 Bits, Color 0..7 << 11
 
-  vand v14,v3,v12[e0]  // V14 = GREEN 5 Bits, Color 0..7 (& $03E0)
-  vmudn v14,v7,v14[e0] // V14 = GREEN 5 Bits, Color 0..7 << 1
-  vor v13,v14[e0]      // V13 = RED,GREEN 10 Bits, Color 0..7
+  vand v6,v4,v1[e11] // V6 = GREEN 5 Bits, Color 0..7 (& $03E0)
+  vmudn v6,v2[e10]   // V6 = GREEN 5 Bits, Color 0..7 << 1
+  vor v5,v6[e0]      // V5 = RED,GREEN 10 Bits, Color 0..7
 
-  vand v14,v4,v12[e0]  // V14 = BLUE 5 Bits, Color 0..7 (& $7C00)
-  vmudl v14,v8,v14[e0] // V14 = BLUE 5 Bits, Color 0..7 >> 9
-  vor v13,v14[e0]      // V13 = RED,GREEN,BLUE 15 Bits, Color 0..7
-  vor v13,v10[e0]      // V13 = RED,GREEN,BLUE,ALPHA 16 Bits, Color 0..7
+  vand v6,v4,v1[e12] // V6 = BLUE 5 Bits, Color 0..7 (& $7C00)
+  vmudl v6,v2[e11]   // V6 = BLUE 5 Bits, Color 0..7 >> 9
+  vor v5,v6[e0]      // V5 = RED,GREEN,BLUE 15 Bits, Color 0..7
+  vor v5,v0[e9]      // V5 = RED,GREEN,BLUE,ALPHA 16 Bits, Color 0..7
 
 // Store Colors 0..7:
-  sqv v13[e0],0(a0) // Palette Colors 0..8 = V13 Quad
+  sqv v5[e0],0(a0) // Palette Colors 0..8 = V5 Quad
 
   bnez t1,LoopColors // IF (Tile Counter != 0) Loop Colors
   subi t1,1 // Decrement Color Counter (Delay Slot)
@@ -317,24 +301,9 @@ RSPTILEStart:
     bnez t0,SHIFTDMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
-  lqv v0[e0],ShiftLeft0Right16>>4(r0)  //  V0 = 8 * $0001 (Left Shift Using Multiply: << 0),  (Right Shift Using Multiply: >> 16)
-  lqv v1[e0],ShiftLeft1Right15>>4(r0)  //  V1 = 8 * $0002 (Left Shift Using Multiply: << 1),  (Right Shift Using Multiply: >> 15)
-  lqv v2[e0],ShiftLeft2Right14>>4(r0)  //  V2 = 8 * $0004 (Left Shift Using Multiply: << 2),  (Right Shift Using Multiply: >> 14)
-  lqv v3[e0],ShiftLeft3Right13>>4(r0)  //  V3 = 8 * $0008 (Left Shift Using Multiply: << 3),  (Right Shift Using Multiply: >> 13)
-  lqv v4[e0],ShiftLeft4Right12>>4(r0)  //  V4 = 8 * $0010 (Left Shift Using Multiply: << 4),  (Right Shift Using Multiply: >> 12)
-  lqv v5[e0],ShiftLeft5Right11>>4(r0)  //  V5 = 8 * $0020 (Left Shift Using Multiply: << 5),  (Right Shift Using Multiply: >> 11)
-  lqv v6[e0],ShiftLeft6Right10>>4(r0)  //  V6 = 8 * $0040 (Left Shift Using Multiply: << 6),  (Right Shift Using Multiply: >> 10)
-  lqv v7[e0],ShiftLeft7Right9>>4(r0)   //  V7 = 8 * $0080 (Left Shift Using Multiply: << 7),  (Right Shift Using Multiply: >> 9)
-  lqv v8[e0],ShiftLeft8Right8>>4(r0)   //  V8 = 8 * $0100 (Left Shift Using Multiply: << 8),  (Right Shift Using Multiply: >> 8)
-  lqv v9[e0],ShiftLeft9Right7>>4(r0)   //  V9 = 8 * $0200 (Left Shift Using Multiply: << 9),  (Right Shift Using Multiply: >> 7)
-  lqv v10[e0],ShiftLeft10Right6>>4(r0) // V10 = 8 * $0400 (Left Shift Using Multiply: << 10), (Right Shift Using Multiply: >> 6)
-  lqv v11[e0],ShiftLeft11Right5>>4(r0) // V11 = 8 * $0800 (Left Shift Using Multiply: << 11), (Right Shift Using Multiply: >> 5)
-  lqv v12[e0],ShiftLeft12Right4>>4(r0) // V12 = 8 * $1000 (Left Shift Using Multiply: << 12), (Right Shift Using Multiply: >> 4)
-  lqv v13[e0],ShiftLeft13Right3>>4(r0) // V13 = 8 * $2000 (Left Shift Using Multiply: << 13), (Right Shift Using Multiply: >> 3)
-  lqv v14[e0],ShiftLeft14Right2>>4(r0) // V14 = 8 * $4000 (Left Shift Using Multiply: << 14), (Right Shift Using Multiply: >> 2)
-  lqv v15[e0],ShiftLeft15Right1>>4(r0) // V15 = 8 * $8000 (Left Shift Using Multiply: << 15), (Right Shift Using Multiply: >> 1)
-  lqv v16[e0],ANDNibbleLo>>4(r0) // V16 = 8 * $000F (AND Lo Nibble)
-  lqv v17[e0],ANDNibbleHi>>4(r0) // V17 = 8 * $0F00 (AND Hi Nibble)
+  lqv v0[e0],ShiftLeftRightA>>4(r0) // V0 = Left Shift Using Multiply: << 0..7,  Right Shift Using Multiply: >> 16..9 (128-Bit Quad)
+  lqv v1[e0],ShiftLeftRightB>>4(r0) // V1 = Left Shift Using Multiply: << 8..15, Right Shift Using Multiply: >> 8..1  (128-Bit Quad)
+  llv v2[e0],ANDNibble>>2(r0) // V2 = $000F (AND Lo Nibble), $0F00 (AND Hi Nibble) (32-Bit Long)
 
 // Decode Tiles
   lli t2,15 // T2 = Tile Block Counter
@@ -357,199 +326,200 @@ LoopTileBlocks:
     nop // Delay Slot
 
 LoopTiles:
-  lqv v18[e0],0(a0) // V18 = Tile BitPlane 0,1 Row 0..7
-  lqv v19[e0],1(a0) // V19 = Tile BitPlane 2,3 Row 0..7
+  lqv v3[e0],0(a0) // V3 = Tile BitPlane 0,1 Row 0..7
+  lqv v4[e0],1(a0) // V4 = Tile BitPlane 2,3 Row 0..7
 
 // Vector Grab Column 0:
-  vand v20,v8,v18[e0]   // V20 = bp0 Of r0..r7 (& $0100)
-  vand v21,v0,v18[e0]   // V21 = bp1 Of r0..r7 (& $0001)
-  vmudl v20,v15,v20[e0] // V20 = bp0 Of r0..r7 >> 1
-  vmudn v21,v8,v21[e0]  // V21 = bp1 Of r0..r7 << 8
-  vor v22,v20,v21[e0]   // V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
+  vand v5,v3,v1[e8] // V5 = bp0 Of r0..r7 (& $0100)
+  vand v6,v3,v0[e8] // V6 = bp1 Of r0..r7 (& $0001)
+  vmudl v5,v1[e15]  // V5 = bp0 Of r0..r7 >> 1
+  vmudn v6,v1[e8]   // V6 = bp1 Of r0..r7 << 8
+  vor v7,v5,v6[e0]  // V7 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
-  vand v20,v8,v19[e0]   // V20 = bp2 Of r0..r7 (& $0100)
-  vand v21,v0,v19[e0]   // V21 = bp3 Of r0..r7 (& $0001)
-  vmudn v20,v1,v20[e0]  // V20 = bp2 Of r0..r7 << 1
-  vmudn v21,v10,v21[e0] // V21 = bp3 Of r0..r7 << 10
-  vor v22,v20[e0]       // V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
-  vor v22,v21[e0]       // V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
+  vand v5,v4,v1[e8] // V5 = bp2 Of r0..r7 (& $0100)
+  vand v6,v4,v0[e8] // V6 = bp3 Of r0..r7 (& $0001)
+  vmudn v5,v0[e9]   // V5 = bp2 Of r0..r7 << 1
+  vmudn v6,v1[e10]  // V6 = bp3 Of r0..r7 << 10
+  vor v7,v5[e0]     // V7 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
+  vor v7,v6[e0]     // V7 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
 // Store Column 0:
-  suv v22[e0],0(a0) // Tile Row 0 = V22 Unsigned Bytes
+  suv v7[e0],0(a0) // Tile Row 0 = V7 Unsigned Bytes
 
 
 // Vector Grab Column 1:
-  vand v20,v9,v18[e0]   // V20 = bp0 Of r0..r7 (& $0200)
-  vand v21,v1,v18[e0]   // V21 = bp1 Of r0..r7 (& $0002)
-  vmudl v20,v14,v20[e0] // V20 = bp0 Of r0..r7 >> 2
-  vmudn v21,v7,v21[e0]  // V21 = bp1 Of r0..r7 << 7
-  vor v22,v20,v21[e0]   // V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
+  vand v5,v3,v1[e9] // V5 = bp0 Of r0..r7 (& $0200)
+  vand v6,v3,v0[e9] // V6 = bp1 Of r0..r7 (& $0002)
+  vmudl v5,v1[e14]  // V5 = bp0 Of r0..r7 >> 2
+  vmudn v6,v0[e15]  // V6 = bp1 Of r0..r7 << 7
+  vor v7,v5,v6[e0]  // V7 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
-  vand v20,v9,v19[e0]  // V20 = bp2 Of r0..r7 (& $0200)
-  vand v21,v1,v19[e0]  // V21 = bp3 Of r0..r7 (& $0002)
-  vmudn v21,v9,v21[e0] // V21 = bp3 Of r0..r7 << 9
-  vor v22,v20[e0]      // V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
-  vor v22,v21[e0]      // V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
+  vand v5,v4,v1[e9] // V5 = bp2 Of r0..r7 (& $0200)
+  vand v6,v4,v0[e9] // V6 = bp3 Of r0..r7 (& $0002)
+  vmudn v6,v1[e9]   // V6 = bp3 Of r0..r7 << 9
+  vor v7,v5[e0]     // V7 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
+  vor v7,v6[e0]     // V7 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
 // Store Column 1:
   addi a0,8
-  suv v22[e0],0(a0) // Tile Row 1 = V22 Unsigned Bytes
+  suv v7[e0],0(a0) // Tile Row 1 = V7 Unsigned Bytes
 
 // Pack Column 0,1 Nibbles:
   subi a0,8
-  lqv v20[e0],0(a0) // V20 = Column 0,1
-  vand v21,v17,v20[e0] // V21 = Nibble Of Column 0 (& $0F00)
-  vand v22,v16,v20[e0] // V22 = Nibble Of Column 1 (& $000F)
-  vmudn v21,v3,v21[e0] // V21 = Nibble Of Column 0 << 3
-  vmudn v22,v7,v22[e0] // V22 = Nibble Of Column 1 << 7
-  vor v23,v21,v22[e0]  // V23 = Packed Column 0,1 Byte
+  lqv v5[e0],0(a0)  // V5 = Column 0,1
+  vand v6,v5,v2[e9] // V6 = Nibble Of Column 0 (& $0F00)
+  vand v7,v5,v2[e8] // V7 = Nibble Of Column 1 (& $000F)
+  vmudn v6,v0[e11]  // V6 = Nibble Of Column 0 << 3
+  vmudn v7,v0[e15]  // V7 = Nibble Of Column 1 << 7
+  vor v8,v6,v7[e0]  // V8 = Packed Column 0,1 Byte
 
 
 // Vector Grab Column 2:
-  vand v20,v10,v18[e0]  // V20 = bp0 Of r0..r7 (& $0400)
-  vand v21,v2,v18[e0]   // V21 = bp1 Of r0..r7 (& $0004)
-  vmudl v20,v13,v20[e0] // V20 = bp0 Of r0..r7 >> 3
-  vmudn v21,v6,v21[e0]  // V21 = bp1 Of r0..r7 << 6
-  vor v22,v20,v21[e0]   // V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
+  vand v5,v3,v1[e10] // V5 = bp0 Of r0..r7 (& $0400)
+  vand v6,v3,v0[e10] // V6 = bp1 Of r0..r7 (& $0004)
+  vmudl v5,v1[e13]   // V5 = bp0 Of r0..r7 >> 3
+  vmudn v6,v0[e14]   // V6 = bp1 Of r0..r7 << 6
+  vor v7,v5,v6[e0]   // V7 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
-  vand v20,v10,v19[e0]  // V20 = bp2 Of r0..r7 (& $0400)
-  vand v21,v2,v19[e0]   // V21 = bp3 Of r0..r7 (& $0004)
-  vmudl v20,v15,v20[e0] // V20 = bp2 Of r0..r7 >> 1
-  vmudn v21,v8,v21[e0]  // V21 = bp3 Of r0..r7 << 8
-  vor v22,v20[e0]       // V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
-  vor v22,v21[e0]       // V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
+  vand v5,v4,v1[e10] // V5 = bp2 Of r0..r7 (& $0400)
+  vand v6,v4,v0[e10] // V6 = bp3 Of r0..r7 (& $0004)
+  vmudl v5,v1[e15]   // V5 = bp2 Of r0..r7 >> 1
+  vmudn v6,v1[e8]    // V6 = bp3 Of r0..r7 << 8
+  vor v7,v5[e0]      // V7 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
+  vor v7,v6[e0]      // V7 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
 // Store Column 2:
-  suv v22[e0],0(a0) // Tile Row 2 = V22 Unsigned Bytes
+  suv v7[e0],0(a0) // Tile Row 2 = V7 Unsigned Bytes
 
 
 // Vector Grab Column 3:
-  vand v20,v11,v18[e0]  // V20 = bp0 Of r0..r7 (& $0800)
-  vand v21,v3,v18[e0]   // V21 = bp1 Of r0..r7 (& $0008)
-  vmudl v20,v12,v20[e0] // V20 = bp0 Of r0..r7 >> 4
-  vmudn v21,v5,v21[e0]  // V21 = bp1 Of r0..r7 << 5
-  vor v22,v20,v21[e0]   // V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
+  vand v5,v3,v1[e11] // V5 = bp0 Of r0..r7 (& $0800)
+  vand v6,v3,v0[e11] // V6 = bp1 Of r0..r7 (& $0008)
+  vmudl v5,v1[e12]   // V5 = bp0 Of r0..r7 >> 4
+  vmudn v6,v0[e13]   // V6 = bp1 Of r0..r7 << 5
+  vor v7,v5,v6[e0]   // V7 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
-  vand v20,v11,v19[e0]  // V20 = bp2 Of r0..r7 (& $0800)
-  vand v21,v3,v19[e0]   // V21 = bp3 Of r0..r7 (& $0008)
-  vmudl v20,v14,v20[e0] // V20 = bp2 Of r0..r7 >> 2
-  vmudn v21,v7,v21[e0]  // V21 = bp3 Of r0..r7 << 7
-  vor v22,v20[e0]       // V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
-  vor v22,v21[e0]       // V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
+  vand v5,v4,v1[e11] // V5 = bp2 Of r0..r7 (& $0800)
+  vand v6,v4,v0[e11] // V6 = bp3 Of r0..r7 (& $0008)
+  vmudl v5,v1[e14]   // V5 = bp2 Of r0..r7 >> 2
+  vmudn v6,v0[e15]   // V6 = bp3 Of r0..r7 << 7
+  vor v7,v5[e0]      // V7 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
+  vor v7,v6[e0]      // V7 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
 // Store Column 3:
   addi a0,8
-  suv v22[e0],0(a0) // Tile Row 3 = V22 Unsigned Bytes
+  suv v7[e0],0(a0) // Tile Row 3 = V7 Unsigned Bytes
 
 // Pack Column 2,3 Nibbles:
   subi a0,8
-  lqv v20[e0],0(a0)    // V20 = Column 2,3
-  vand v21,v17,v20[e0] // V21 = Nibble Of Column 2 (& $0F00)
-  vand v22,v16,v20[e0] // V22 = Nibble Of Column 3 (& $000F)
-  vmudn v21,v3,v21[e0] // V21 = Nibble Of Column 2 << 3
-  vmudn v22,v7,v22[e0] // V22 = Nibble Of Column 3 << 7
-  vor v24,v21,v22[e0]  // V24 = Packed Column 2,3 Byte
+  lqv v5[e0],0(a0)  // V5 = Column 2,3
+  vand v6,v5,v2[e9] // V6 = Nibble Of Column 0 (& $0F00)
+  vand v7,v5,v2[e8] // V7 = Nibble Of Column 1 (& $000F)
+  vmudn v6,v0[e11]  // V6 = Nibble Of Column 2 << 3
+  vmudn v7,v0[e15]  // V7 = Nibble Of Column 3 << 7
+  vor v9,v6,v7[e0]  // V9 = Packed Column 2,3 Byte
 
 
 // Vector Grab Column 4:
-  vand v20,v12,v18[e0]  // V20 = bp0 Of r0..r7 (& $1000)
-  vand v21,v4,v18[e0]   // V21 = bp1 Of r0..r7 (& $0010)
-  vmudl v20,v11,v20[e0] // V20 = bp0 Of r0..r7 >> 5
-  vmudn v21,v4,v21[e0]  // V21 = bp1 Of r0..r7 << 4
-  vor v22,v20,v21[e0]   // V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
+  vand v5,v3,v1[e12] // V5 = bp0 Of r0..r7 (& $1000)
+  vand v6,v3,v0[e12] // V6 = bp1 Of r0..r7 (& $0010)
+  vmudl v5,v1[e11]   // V5 = bp0 Of r0..r7 >> 5
+  vmudn v6,v0[e12]   // V6 = bp1 Of r0..r7 << 4
+  vor v7,v5,v6[e0]   // V7 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
-  vand v20,v12,v19[e0]  // V20 = bp2 Of r0..r7 (& $1000)
-  vand v21,v4,v19[e0]   // V21 = bp3 Of r0..r7 (& $0010)
-  vmudl v20,v13,v20[e0] // V20 = bp2 Of r0..r7 >> 3
-  vmudn v21,v6,v21[e0]  // V21 = bp3 Of r0..r7 << 6
-  vor v22,v20[e0]       // V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
-  vor v22,v21[e0]       // V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
+  vand v5,v4,v1[e12] // V5 = bp2 Of r0..r7 (& $1000)
+  vand v6,v4,v0[e12] // V6 = bp3 Of r0..r7 (& $0010)
+  vmudl v5,v1[e13]   // V5 = bp2 Of r0..r7 >> 3
+  vmudn v6,v0[e14]   // V6 = bp3 Of r0..r7 << 6
+  vor v7,v5[e0]      // V7 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
+  vor v7,v6[e0]      // V7 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
 // Store Column 4:
-  suv v22[e0],0(a0) // Tile Row 4 = V22 Unsigned Bytes
+  suv v7[e0],0(a0) // Tile Row 4 = V7 Unsigned Bytes
 
 
 // Vector Grab Column 5:
-  vand v20,v13,v18[e0]  // V20 = bp0 Of r0..r7 (& $2000)
-  vand v21,v5,v18[e0]   // V21 = bp1 Of r0..r7 (& $0020)
-  vmudl v20,v10,v20[e0] // V20 = bp0 Of r0..r7 >> 6
-  vmudn v21,v3,v21[e0]  // V21 = bp1 Of r0..r7 << 3
-  vor v22,v20,v21[e0]   // V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
+  vand v5,v3,v1[e13] // V5 = bp0 Of r0..r7 (& $2000)
+  vand v6,v3,v0[e13] // V6 = bp1 Of r0..r7 (& $0020)
+  vmudl v5,v1[e10]   // V5 = bp0 Of r0..r7 >> 6
+  vmudn v6,v0[e11]   // V6 = bp1 Of r0..r7 << 3
+  vor v7,v5,v6[e0]   // V7 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
-  vand v20,v13,v19[e0]  // V20 = bp2 Of r0..r7 (& $2000)
-  vand v21,v5,v19[e0]   // V21 = bp3 Of r0..r7 (& $0020)
-  vmudl v20,v12,v20[e0] // V20 = bp2 Of r0..r7 >> 4
-  vmudn v21,v5,v21[e0]  // V21 = bp3 Of r0..r7 << 5
-  vor v22,v20[e0]       // V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
-  vor v22,v21[e0]       // V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
+  vand v5,v4,v1[e13] // V5 = bp2 Of r0..r7 (& $2000)
+  vand v6,v4,v0[e13] // V6 = bp3 Of r0..r7 (& $0020)
+  vmudl v5,v1[e12]   // V5 = bp2 Of r0..r7 >> 4
+  vmudn v6,v0[e13]   // V6 = bp3 Of r0..r7 << 5
+  vor v7,v5[e0]      // V7 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
+  vor v7,v6[e0]      // V7 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
 // Store Column 5:
   addi a0,8
-  suv v22[e0],0(a0) // Tile Row 5 = V22 Unsigned Bytes
+  suv v7[e0],0(a0) // Tile Row 5 = V7 Unsigned Bytes
 
 // Pack Column 4,5 Nibbles:
   subi a0,8
-  lqv v20[e0],0(a0) // V20 = Column 4,5
-  vand v21,v17,v20[e0] // V21 = Nibble Of Column 4 (& $0F00)
-  vand v22,v16,v20[e0] // V22 = Nibble Of Column 5 (& $000F)
-  vmudn v21,v3,v21[e0] // V21 = Nibble Of Column 4 << 3
-  vmudn v22,v7,v22[e0] // V22 = Nibble Of Column 5 << 7
-  vor v25,v21,v22[e0]  // V25 = Packed Column 4,5 Byte
+  lqv v5[e0],0(a0)  // V5 = Column 4,5
+  vand v6,v5,v2[e9] // V6 = Nibble Of Column 0 (& $0F00)
+  vand v7,v5,v2[e8] // V7 = Nibble Of Column 1 (& $000F)
+  vmudn v6,v0[e11]  // V6 = Nibble Of Column 4 << 3
+  vmudn v7,v0[e15]  // V7 = Nibble Of Column 5 << 7
+  vor v10,v6,v7[e0] // V10 = Packed Column 4,5 Byte
 
 
 // Vector Grab Column 6:
-  vand v20,v14,v18[e0] // V20 = bp0 Of r0..r7 (& $4000)
-  vand v21,v6,v18[e0]  // V21 = bp1 Of r0..r7 (& $0040)
-  vmudl v20,v9,v20[e0] // V20 = bp0 Of r0..r7 >> 7
-  vmudn v21,v2,v21[e0] // V21 = bp1 Of r0..r7 << 2
-  vor v22,v20,v21[e0]  // V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
+  vand v5,v3,v1[e14] // V5 = bp0 Of r0..r7 (& $4000)
+  vand v6,v3,v0[e14] // V6 = bp1 Of r0..r7 (& $0040)
+  vmudl v5,v1[e9]    // V5 = bp0 Of r0..r7 >> 7
+  vmudn v6,v0[e10]   // V6 = bp1 Of r0..r7 << 2
+  vor v7,v5,v6[e0]   // V7 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
-  vand v20,v14,v19[e0]  // V20 = bp2 Of r0..r7 (& $4000)
-  vand v21,v6,v19[e0]   // V21 = bp3 Of r0..r7 (& $0040)
-  vmudl v20,v11,v20[e0] // V20 = bp2 Of r0..r7 >> 5
-  vmudn v21,v4,v21[e0]  // V21 = bp3 Of r0..r7 << 4
-  vor v22,v20[e0]       // V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
-  vor v22,v21[e0]       // V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
+  vand v5,v4,v1[e14] // V5 = bp2 Of r0..r7 (& $4000)
+  vand v6,v4,v0[e14] // V6 = bp3 Of r0..r7 (& $0040)
+  vmudl v5,v1[e11]   // V5 = bp2 Of r0..r7 >> 5
+  vmudn v6,v0[e12]   // V6 = bp3 Of r0..r7 << 4
+  vor v7,v5[e0]      // V7 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
+  vor v7,v6[e0]      // V7 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
 // Store Column 6:
-  suv v22[e0],0(a0) // Tile Row 6 = V22 Unsigned Bytes
+  suv v7[e0],0(a0) // Tile Row 6 = V7 Unsigned Bytes
 
 
 // Vector Grab Column 7:
-  vand v20,v15,v18[e0] // V20 = bp0 Of r0..r7 (& $8000)
-  vand v21,v7,v18[e0]  // V21 = bp1 Of r0..r7 (& $0080)
-  vmudl v20,v8,v20[e0] // V20 = bp0 Of r0..r7 >> 8
-  vmudn v21,v1,v21[e0] // V21 = bp1 Of r0..r7 << 1
-  vor v22,v20,v21[e0]  // V22 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
+  vand v5,v3,v1[e15] // V5 = bp0 Of r0..r7 (& $8000)
+  vand v6,v3,v0[e15] // V6 = bp1 Of r0..r7 (& $0080)
+  vmudl v5,v1[e8]    // V5 = bp0 Of r0..r7 >> 8
+  vmudn v6,v0[e9]    // V6 = bp1 Of r0..r7 << 1
+  vor v7,v5,v6[e0]   // V7 = bp0/bp1 Of r0..r7 In Unsigned Byte (%00000011)
 
-  vand v20,v15,v19[e0]  // V20 = bp2 Of r0..r7 (& $8000)
-  vand v21,v7,v19[e0]   // V21 = bp3 Of r0..r7 (& $0080)
-  vmudl v20,v10,v20[e0] // V20 = bp2 Of r0..r7 >> 6
-  vmudn v21,v3,v21[e0]  // V21 = bp3 Of r0..r7 << 3
-  vor v22,v20[e0]       // V22 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
-  vor v22,v21[e0]       // V22 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
+  vand v5,v4,v1[e15] // V5 = bp2 Of r0..r7 (& $8000)
+  vand v6,v4,v0[e15] // V6 = bp3 Of r0..r7 (& $0080)
+  vmudl v5,v1[e10]   // V5 = bp2 Of r0..r7 >> 6
+  vmudn v6,v0[e11]   // V6 = bp3 Of r0..r7 << 3
+  vor v7,v5[e0]      // V7 = bp0/bp1/bp2 Of r0..r7 In Unsigned Byte
+  vor v7,v6[e0]      // V7 = bp0/bp1/bp2/bp3 Of r0..r7 In Unsigned Byte (%00001111)
 
 // Store Column 7:
   addi a0,8
-  suv v22[e0],0(a0) // Tile Row 7 = V22 Unsigned Bytes
+  suv v7[e0],0(a0) // Tile Row 7 = V7 Unsigned Bytes
 
 // Pack Column 6,7 Nibbles:
   subi a0,8
-  lqv v20[e0],0(a0) // V20 = Column 6,7
-  vand v21,v17,v20[e0] // V21 = Nibble Of Column 6 (& $0F00)
-  vand v22,v16,v20[e0] // V22 = Nibble Of Column 7 (& $000F)
-  vmudn v21,v3,v21[e0] // V21 = Nibble Of Column 6 << 3
-  vmudn v22,v7,v22[e0] // V22 = Nibble Of Column 7 << 7
-  vor v26,v21,v22[e0]  // V26 = Packed Column 6,7 Byte
+  lqv v5[e0],0(a0)  // V5 = Column 6,7
+  vand v6,v5,v2[e9] // V6 = Nibble Of Column 0 (& $0F00)
+  vand v7,v5,v2[e8] // V7 = Nibble Of Column 1 (& $000F)
+  vmudn v6,v0[e11]  // V6 = Nibble Of Column 6 << 3
+  vmudn v7,v0[e15]  // V7 = Nibble Of Column 7 << 7
+  vor v11,v6,v7[e0] // V11 = Packed Column 6,7 Byte
+
 
 // Store Tile:
-  suv v23[e0],0(a0) //  Tile Row 0,1 = V23 Unsigned Bytes
+  suv v8[e0],0(a0)  // Tile Row 0,1 = V8 Unsigned Bytes
   addi a0,8
-  suv v24[e0],0(a0) //  Tile Row 2,3 = V24 Unsigned Bytes
+  suv v9[e0],0(a0)  // Tile Row 2,3 = V9 Unsigned Bytes
   addi a0,8
-  suv v25[e0],0(a0) //  Tile Row 4,5 = V25 Unsigned Bytes
+  suv v10[e0],0(a0) // Tile Row 4,5 = V10 Unsigned Bytes
   addi a0,8
-  suv v26[e0],0(a0) //  Tile Row 6,7 = V26 Unsigned Bytes
+  suv v11[e0],0(a0) // Tile Row 6,7 = V11 Unsigned Bytes
 
   addi a0,8 // A0 = Next SNES Tile Offset
 
