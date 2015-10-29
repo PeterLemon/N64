@@ -2076,7 +2076,7 @@ RSPVNOPCode:
 base $0000 // Set Base Of RSP Code Object To Zero
   lqv v0[e0],$00(r0) // V0 = 128-Bit DMEM $000(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   lqv v1[e0],$01(r0) // V1 = 128-Bit DMEM $010(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
-  vnop v0,v1[e0] // V0 = V0 VNOP V1[0], Vector Null Instruction: VNOP VD,VS,VT[ELEMENT]
+  vnop // V0 = V0 VNOP V1[0], Vector Null Instruction: VNOP
   sqv v0[e0],$00(r0) // 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   vsar v0,v0[e8] // V0 = Vector Accumulator HI, Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT]
   sqv v0[e0],$01(r0) // 128-Bit DMEM $010(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
@@ -2100,7 +2100,7 @@ RSPVNULLCode:
 base $0000 // Set Base Of RSP Code Object To Zero
   lqv v0[e0],$00(r0) // V0 = 128-Bit DMEM $000(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   lqv v1[e0],$01(r0) // V1 = 128-Bit DMEM $010(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
-  vnull v0,v1[e0] // V0 = V0 VNULL V1[0], Vector Null Instruction: VNULL VD,VS,VT[ELEMENT]
+  vnull // V0 = V0 VNULL V1[0], Vector Null Instruction: VNULL
   sqv v0[e0],$00(r0) // 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   vsar v0,v0[e8] // V0 = Vector Accumulator HI, Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT]
   sqv v0[e0],$01(r0) // 128-Bit DMEM $010(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
