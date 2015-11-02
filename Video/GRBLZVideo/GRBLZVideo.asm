@@ -620,4 +620,4 @@ TLUTB: // 32x16B = 64 Bytes
   dw $003F
 
 insert Sample, "Sample.bin" // 16-Bit 44100Hz Signed Big-Endian Stereo Sound Sample
-insert LZVideo, "Video.lz" // 1295 320x240 LZ Compressed GRB Frames 
+insert LZVideo, "Video.lz" // 1295 320x240 LZ Compressed GRB Frames
