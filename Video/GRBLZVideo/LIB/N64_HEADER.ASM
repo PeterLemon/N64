@@ -21,7 +21,7 @@
   dq 0 // UNUSED
 
 // PROGRAM TITLE (27 Byte ASCII String, Use Spaces For Unused Bytes)
-  db "RDP I4 DECODE FRAME        "
+  db "GRB LZ VIDEO DECODE 20FPS  "
 //   "123456789012345678901234567"
 
 // DEVELOPER ID CODE 

@@ -2,9 +2,9 @@
 arch n64.cpu
 endian msb
 output "GRBLZVideo.N64", create
-fill 27262976 // Set ROM Size
+fill 40894464 // Set ROM Size
 
-constant GRB($A0300000) // GRB Frame DRAM Offset
+constant GRB($80300000) // GRB Frame DRAM Offset
 
 origin $00000000
 base $80000000 // Entry Point Of Code
@@ -31,19 +31,19 @@ LoopVideo:
   la t7,$10000000|(Sample&$3FFFFFF) // T7 = Sample Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
 
   lui t8,$A010 // T8 = Double Buffer Frame Offset = Frame A
-  lli t9,520-1 // T9 = Frame Count - 1
-  la a3,$10000000|(LZVideo&$3FFFFFF) // A0 = Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
+  lli t9,866-1 // T9 = Frame Count - 1
+  la a3,$10000000|(LZVideo&$3FFFFFF) // A3 = Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
   
   LoopFrames:
     lui a0,PI_BASE // A0 = PI Base Register ($A4600000)
     la t0,LZVideo&$7FFFFF // T0 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
     sw t0,PI_DRAM_ADDR(a0) // Store RAM Offset To PI DRAM Address Register ($A4600000)
     sw a3,PI_CART_ADDR(a0) // Store ROM Offset To PI Cart Address Register ($A4600004)
-    lli t0,57035 // T0 = Length Of DMA Transfer In Bytes - 1
+    lli t0,57140-1 // T0 = Length Of DMA Transfer In Bytes - 1
     sw t0,PI_WR_LEN(a0) // Store DMA Length To PI Write Length Register ($A460000C)
 
-    WaitScanline($0) // Wait For Scanline To Reach Vertical Start
-    WaitScanline($200) // Wait For Scanline To Reach Vertical Blank
+    WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
+    WaitScanline($1E2) // Wait For Scanline To Reach Vertical Blank
 
     // Double Buffer Screen
     lui a0,VI_BASE // A0 = VI Base Register ($A4400000)
@@ -76,7 +76,7 @@ LoopVideo:
     AIBusy:
 
     la a0,LZVideo // A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
-    lui a1,$A030 // A1 = Destination Address (DRAM Start Offset)
+    lui a1,$8030 // A1 = Destination Address (DRAM Start Offset)
     li t0,GRB+100800 // T0 = Destination End Offset (DRAM End Offset)
     addiu a0,4 // Add 4 To LZ Offset
 
@@ -205,6 +205,9 @@ LoopVideo:
   sw a2,DPC_START(a1) // Store DPC Command Start Address To DP Start Register ($A4100000)
   addi a2,RDPBufferEnd-RDPBuffer // A2 = DPC Command End Address
   sw a2,DPC_END(a1) // Store DPC Command End Address To DP End Register ($A4100004)
+
+  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
+  WaitScanline($1E2) // Wait For Scanline To Reach Vertical Blank
 
   bnez t9,LoopFrames
   subiu t9,1 // Frame Count -- (Delay Slot)
@@ -616,5 +619,5 @@ TLUTB: // 32x16B = 64 Bytes
   dw $003D
   dw $003F
 
-insert LZVideo, "Video.lz"
 insert Sample, "Sample.bin" // 16-Bit 44100Hz Signed Big-Endian Stereo Sound Sample
+insert LZVideo, "Video.lz" // 1295 320x240 LZ Compressed GRB Frames 
