@@ -4,7 +4,7 @@ endian msb
 output "GRB12LZVideo.N64", create
 fill 28311552 // Set ROM Size
 
-constant GRB($80300000) // GRB Frame DRAM Offset
+constant GRB($801E0000) // GRB Frame DRAM Offset
 
 origin $00000000
 base $80000000 // Entry Point Of Code
@@ -75,10 +75,9 @@ LoopVideo:
     add t7,t0 // Sample ROM Offset += $1FFFF
     AIBusy:
 
-    la a0,LZVideo // A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
-    lui a1,$8030 // A1 = Destination Address (DRAM Start Offset)
+    la a0,LZVideo+4 // A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
+    lui a1,GRB>>16 // A1 = Destination Address (DRAM Start Offset)
     li t0,GRB+50400 // T0 = Destination End Offset (DRAM End Offset)
-    addiu a0,4 // Add 4 To LZ Offset
 
   LZLoop:
     lbu t1,0(a0) // T1 = Flag Data For Next 8 Blocks (0 = Uncompressed Byte, 1 = Compressed Bytes)
