@@ -4,7 +4,7 @@ endian msb
 output "I4RLEVideo.N64", create
 fill 23068672 // Set ROM Size
 
-constant I4($80300000) // I4 Frame DRAM Offset
+constant I4($801E0000) // I4 Frame DRAM Offset
 
 origin $00000000
 base $80000000 // Entry Point Of Code
@@ -46,10 +46,9 @@ LoopVideo:
     la a0,$A0000000|(DoubleBuffer&$3FFFFF)
     sw t8,4(a0)
 
-    la a0,RLEVideo // A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
-    lui a1,$8030 // A1 = Destination Address (DRAM Start Offset)
+    la a0,RLEVideo+4 // A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
+    lui a1,I4>>16 // A1 = Destination Address (DRAM Start Offset)
     li t0,I4+38400 // T0 = Destination End Offset (DRAM End Offset)
-    addiu a0,4 // Add 4 To RLE Offset
 
   RLELoop:
     beq a1,t0,RLEEnd // IF (Destination Address == Destination End Offset) RLEEnd
