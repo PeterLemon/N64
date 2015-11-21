@@ -21,4 +21,4 @@ Howto Run:<br />
 I only test with a real N64 using a 64drive Cartridge by marshallh from Retroactive:<br />
 http://64drive.retroactive.be<br />
 <br />
-You can also use N64 emulators like cen64 & the MESS N64 Driver.
+You can also use N64 emulators like cen64 & the MAME N64 Driver.
