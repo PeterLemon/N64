@@ -1,0 +1,605 @@
+﻿始めての街作り
+About 1st Time City Planning
+$0FE92A0 (Line 1)
+BB CF	A4 E1	A4 C6	A4 CE	B3 B9	BA EE	A4 EA	0A	| Original Japanese Hex
+ #  始	 #  め	 #  て	 #  の	 #  街	 #  作	 #  り	LF  	| Original Japanese Text
+ C  i	t  y	   P	 l  a	 n LF	     	S   e	 c	| New English Text
+43 69	74 79	20 50	6C 61	6E 0A	20 20	53 65	63	| New English Hex
+区画と整地について
+About Leveling Sections
+$0FE92AF (Line 2)
+A1 A1	A1 A1	B6 E8	B2 E8	A4 C8	C0 B0	C3 CF	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  区	 #  画	 #  と	 #  整	 #  地	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+t   i	 o  n	 s LF	     	 T  r	 a  n	 s  p	 o  r	 t LF	     	 P  o	 w	| New English Text
+74 69	6F 6E	73 0A	20 20	54 72	61 6E	73 70	6F 72	74 0A	20 20	50 6F	77	| New English Hex
+交通について
+About Transportation
+$0FE92C6 (Line 3)
+A1 A1	A1 A1	B8 F2	C4 CC	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  交	 #  通	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ e  r	    P	 l  a	 n  t	LF   	    P	 u  b	 l  i	 c	| New English Text
+65 72	20 50	6C 61	6E 74	0A 20	20 50	75 62	6C 69	63	| New English Hex
+発電所について
+About Power Plants
+$0FE92D7 (Line 4)
+A1 A1	A1 A1	C8 AF	C5 C5	BD EA	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  発	 #  電	 #  所	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+LF   	    E	 d  u	 c  a	 t  i	 o  n	 a  l	LF   	    C	 i	| New English Text
+0A 20	20 45	64 75	63 61	74 69	6F 6E	61 6C	0A 20	20 43	69	| New English Hex
+公共・特別施設について
+About Public & Special Facilities
+$0FE92EA (Line 5)
+A1 A1	A1 A1	B8 F8	B6 A6	A1 A6	C6 C3	CA CC	BB DC	C0 DF	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  公	 #  共	 #  ・	 #  特	 #  別	 #  施	 #  設	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ t  y	    G	 r  a	 p  h	 s LF	     	 C  i	 t  y	    S	 O  S	LF   	    D	 i  s	 a	| New English Text
+74 79	20 47	72 61	70 68	73 0A	20 20	43 69	74 79	20 53	4F 53	0A 20	20 44	69 73	61	| New English Hex
+教育・娯楽施設について
+About Educational & Recreational Facilities
+$0FE9305 (Line 6)
+A1 A1	A1 A1	B6 B5	B0 E9	A1 A6	B8 E4	B3 DA	BB DC	C0 DF	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  教	 #  育	 #  ・	 #  娯	 #  楽	 #  施	 #  設	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ s  t	 e  r	 s LF	     	 O  p	 e  r	 a  t	 i  o	 n  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+73 74	65 72	73 0A	20 20	4F 70	65 72	61 74	69 6F	6E 00	00 00	00 00	00 00	00 00	00	| New English Hex
+都市運営とグラフ
+About Urban Management & Graphs
+$0FE9320 (Line 7)
+A1 A1	A1 A1	C5 D4	BB D4	B1 BF	B1 C4	A4 C8	A5 B0	A5 E9	A5 D5	0A	| Original Japanese Hex
+ #   	 #   	 #  都	 #  市	 #  運	 #  営	 #  と	 #  グ	 #  ラ	 #  フ	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+街のＳＯＳ
+About Town SOS (Emergency)
+$0FE9335 (Line 8)
+A1 A1	A1 A1	B3 B9	A4 CE	A3 D3	A3 CF	A3 D3	0A	| Original Japanese Hex
+ #   	 #   	 #  街	 #  の	 #  Ｓ	 #  Ｏ	 #  Ｓ	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+災害について
+About Disasters
+$0FE9344 (Line 9)
+A1 A1	A1 A1	BA D2	B3 B2	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  災	 #  害	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+操作と街中について
+About City Operation
+$0FE9355 (Line 10)
+A1 A1	A1 A1	C1 E0	BA EE	A4 C8	B3 B9	C3 E6	A4 CB	A4 C4	A4 A4	A4 C6	00	| Original Japanese Hex
+ #   	 #   	 #  操	 #  作	 #  と	 #  街	 #  中	 #  に	 #  つ	 #  い	 #  て	 #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+
+工業地区の指定
+Specifying The Industrial District
+$0FE936C (Line 1)
+B9 A9	B6 C8	C3 CF	B6 E8	A4 CE	BB D8	C4 EA	0A	| Original Japanese Hex
+ #  工	 #  業	 #  地	 #  区	 #  の	 #  指	 #  定	LF	| Original Japanese Text
+ I  n	 d  u	 s  t	 r  i	 a  l	LF   	    R	 e	| New English Text
+49 6E	64 75	73 74	72 69	61 6C	0A 20	20 52	65	| New English Hex
+住宅地区の指定
+Designation Of Residential District
+$0FE937B (Line 2)
+A1 A1	A1 A1	BD BB	C2 F0	C3 CF	B6 E8	A4 CE	BB D8	C4 EA	0A	| Original Japanese Hex
+ #   	 #   	 #  住	 #  宅	 #  地	 #  区	 #  の	 #  指	 #  定	LF	| Original Japanese Text
+ s  i	 d  e	 n  t	 i  a	 l LF	     	 T  r	 a  n	 s  p	 o	| New English Text
+73 69	64 65	6E 74	69 61	6C 0A	20 20	54 72	61 6E	73 70	6F	| New English Hex
+道路の設置
+Installation Of Road
+$0FE938E (Line 3)
+A1 A1	A1 A1	C6 BB	CF A9	A4 CE	C0 DF	C3 D6	0A	| Original Japanese Hex
+ #   	 #   	 #  道	 #  路	 #  の	 #  設	 #  置	LF	| Original Japanese Text
+ r  t	LF   	    P	 o  w	 e  r	    P	 l  a	 n	| New English Text
+72 74	0A 20	20 50	6F 77	65 72	20 50	6C 61	6E	| New English Hex
+発電所の設置
+Installation Of Power Plant
+$0FE939D (Line 4)
+A1 A1	A1 A1	C8 AF	C5 C5	BD EA	A4 CE	C0 DF	C3 D6	0A	| Original Japanese Hex
+ #   	 #   	 #  発	 #  電	 #  所	 #  の	 #  設	 #  置	LF	| Original Japanese Text
+ t LF	     	 P  o	 w  e	 r   	 L  i	 n  e	 s LF	  	| New English Text
+74 0A	20 20	50 6F	77 65	72 20	4C 69	6E 65	73 0A	20	| New English Hex
+送電線の設置
+Installation Of Power Lines
+$0FE93AE (Line 5)
+A1 A1	A1 A1	C1 F7	C5 C5	C0 FE	A4 CE	C0 DF	C3 D6	0A	| Original Japanese Hex
+ #   	 #   	 #  送	 #  電	 #  線	 #  の	 #  設	 #  置	LF 	| Original Japanese Text
+    C	 i  t	 y   	 G  r	 o  w	 t  h	LF   	    S	 e	| New English Text
+20 43	69 74	79 20	47 72	6F 77	74 68	0A 20	20 53	65	| New English Hex
+商業地区と街の成長
+Growth Of The Commercial District & The City
+$0FE93BF (Line 6)
+A1 A1	A1 A1	BE A6	B6 C8	C3 CF	B6 E8	A4 C8	B3 B9	A4 CE	C0 AE	C4 B9	0A	| Original Japanese Hex
+ #   	 #   	 #  商	 #  業	 #  地	 #  区	 #  と	 #  街	 #  の	 #  成	 #  長	LF	| Original Japanese Text
+ c  t	 i  o	 n  s	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+63 74	69 6F	6E 73	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+区画の追加
+Additional Sections
+$0FE93D6 (Line 7)
+A1 A1	A1 A1	B6 E8	B2 E8	A4 CE	C4 C9	B2 C3	00 00	00 00	| Original Japanese Hex
+ #   	 #   	 #  区	 #  画	 #  の	 #  追	 #  加	 #  #	 #  #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+区画ってなに？
+What Are Sections?
+$0FE93E8 (Line 1)
+B6 E8	B2 E8	A4 C3	A4 C6	A4 CA	A4 CB	A1 A9	0A	| Original Japanese Hex
+ #  区	 #  画	 #  っ	 #  て	 #  な	 #  に	 #  ？	LF	| Original Japanese Text
+ E  x	 p  l	 a  i	 n  ?	LF   	    H	 o  w	  	| New English Text
+45 78	70 6C	61 69	6E 3F	0A 20	20 48	6F 77	20	| New English Hex
+どれだけ区画が必要か？
+How Many Sections Are Needed?
+$0FE93F7 (Line 2)
+A1 A1	A1 A1	A4 C9	A4 EC	A4 C0	A4 B1	B6 E8	B2 E8	A4 AC	C9 AC	CD D7	A4 AB	A1 A9	0A	| Original Japanese Hex
+ #   	 #   	 #  ど	 #  れ	 #  だ	 #  け	 #  区	 #  画	 #  が	 #  必	 #  要	 #  か	 #  ？	LF	| Original Japanese Text
+ M  a	 n  y	 ? LF	     	 L  a	 n  d	    P	 r  i	 c  e	 ? LF	     	 M  i	 s  t	 a	| New English Text
+4D 61	6E 79	3F 0A	20 20	4C 61	6E 64	20 50	72 69	63 65	3F 0A	20 20	4D 69	73 74	61	| New English Hex
+地価ってなに？
+What Are Land Prices?
+$0FE9412 (Line 3)
+A1 A1	A1 A1	C3 CF	B2 C1	A4 C3	A4 C6	A4 CA	A4 CB	A1 A9	0A	| Original Japanese Hex
+ #   	 #   	 #  地	 #  価	 #  っ	 #  て	 #  な	 #  に	 #  ？	LF	| Original Japanese Text
+ k  e	 s LF	     	 H  a	 r  b	 o  r	 s LF	     	 T  e	 r	| New English Text
+6B 65	73 0A	20 20	48 61	72 62	6F 72	73 0A	20 20	54 65	72	| New English Hex
+区画を作り間違えたら
+If You Make A Mistake Making Sections
+$0FE9425 (Line 4)
+A1 A1	A1 A1	B6 E8	B2 E8	A4 F2	BA EE	A4 EA	B4 D6	B0 E3	A4 A8	A4 BF	A4 E9	0A	| Original Japanese Hex
+ #   	 #   	 #  区	 #  画	 #  を	 #  作	 #  り	 #  間	 #  違	 #  え	 #  た	 #  ら	LF	| Original Japanese Text
+ r  a	 i  n	 s LF	     	 W  o	 o  d	 s  /	 W  a	 t  e	 r LF	     	 R  a	 i	| New English Text
+72 61	69 6E	73 0A	20 20	57 6F	6F 64	73 2F	57 61	74 65	72 0A	20 20	52 61	69	| New English Hex
+港湾地区について
+About Harbor District
+$0FE943E (Line 5)
+A1 A1	A1 A1	B9 C1	CF D1	C3 CF	B6 E8	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  港	 #  湾	 #  地	 #  区	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ s  e	 /  L	 o  w	 e  r	LF   	    F	 l  a	 t  t	 e  n	 i  n	 g	| New English Text
+73 65	2F 4C	6F 77	65 72	0A 20	20 46	6C 61	74 74	65 6E	69 6E	67	| New English Hex
+整地について
+About Terrain
+$0FE9453 (Line 6)
+A1 A1	A1 A1	C0 B0	C3 CF	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  整	 #  地	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+LF   	    D	 e  m	 o  l	 i  t	 i  o	 n  #	 #  #	 #	| New English Text
+0A 20	20 44	65 6D	6F 6C	69 74	69 6F	6E 00	00 00	00	| New English Hex
+木タイルと水場タイル
+Wood & Water Field Tiles
+$0FE9464 (Line 7)
+A1 A1	A1 A1	CC DA	A5 BF	A5 A4	A5 EB	A4 C8	BF E5	BE EC	A5 BF	A5 A4	A5 EB	0A	| Original Japanese Hex
+ #   	 #   	 #  木	 #  タ	 #  イ	 #  ル	 #  と	 #  水	 #  場	 #  タ	 #  イ	 #  ル	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+土地の上げ下げ
+Raising & Lowering Of The Land
+$0FE947D (Line 8)
+A1 A1	A1 A1	C5 DA	C3 CF	A4 CE	BE E5	A4 B2	B2 BC	A4 B2	0A	| Original Japanese Hex
+ #   	 #   	 #  土	 #  地	 #  の	 #  上	 #  げ	 #  下	 #  げ	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+土地平坦化について
+About Land Flattening
+$0FE9490 (Line 9)
+A1 A1	A1 A1	C5 DA	C3 CF	CA BF	C3 B3	B2 BD	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  土	 #  地	 #  平	 #  坦	 #  化	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+取り壊しについて
+About demolition
+$0FE94A7 (Line 10)
+A1 A1	A1 A1	BC E8	A4 EA	B2 F5	A4 B7	A4 CB	A4 C4	A4 A4	A4 C6	00	| Original Japanese Hex
+ #   	 #   	 #  取	 #  り	 #  壊	 #  し	 #  に	 #  つ	 #  い	 #  て	 #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+
+交通はなぜ必要？
+Why Is Transportation Necessary?
+$0FE94BC (Line 1)
+B8 F2	C4 CC	A4 CF	A4 CA	A4 BC	C9 AC	CD D7	A1 A9	0A	| Original Japanese Hex
+ #  交	 #  通	 #  は	 #  な	 #  ぜ	 #  必	 #  要	 #  ？	LF	| Original Japanese Text
+ W  h	 y   	 N  e	 e  d	 e  d	 ? LF	     	 H  i	 g	| New English Text
+57 68	79 20	4E 65	65 64	65 64	3F 0A	20 20	48 69	67	| New English Hex
+高速道路を作ろう！
+Make A Highway!
+$0FE94CD (Line 2)
+A1 A1	A1 A1	B9 E2	C2 AE	C6 BB	CF A9	A4 F2	BA EE	A4 ED	A4 A6	A1 AA	0A	| Original Japanese Hex
+ #   	 #   	 #  高	 #  速	 #  道	 #  路	 #  を	 #  作	 #  ろ	 #  う	 #  ！	LF	| Original Japanese Text
+ h  w	 a  y	 s  !	LF   	    T	 r  a	 i  n	    L	 i  n	 e  !	LF   	  	| New English Text
+68 77	61 79	73 21	0A 20	20 54	72 61	69 6E	20 4C	69 6E	65 21	0A 20	20	| New English Hex
+線路を作ろう！
+Let's Make A Track!
+$0FE94E4 (Line 3)
+A1 A1	A1 A1	C0 FE	CF A9	A4 F2	BA EE	A4 ED	A4 A6	A1 AA	0A	| Original Japanese Hex
+ #   	 #   	 #  線	 #  路	 #  を	 #  作	 #  ろ	 #  う	 #  ！	LF	| Original Japanese Text
+ B  u	 s   	 S  t	 o  p	 ! LF	     	 D  i	 g   	 T  u	 n	| New English Text
+42 75	73 20	53 74	6F 70	21 0A	20 20	44 69	67 20	54 75	6E	| New English Hex
+バス停を作ろう！
+Let's Make A Bus Stop!
+$0FE94F7 (Line 4)
+A1 A1	A1 A1	A5 D0	A5 B9	C4 E4	A4 F2	BA EE	A4 ED	A4 A6	A1 AA	0A	| Original Japanese Hex
+ #   	 #   	 #  バ	 #  ス	 #  停	 #  を	 #  作	 #  ろ	 #  う	 #  ！	LF	| Original Japanese Text
+ n  e	 l  !	LF   	    B	 r  i	 d  g	 e  s	 ! LF	     	 T  o	  	| New English Text
+6E 65	6C 21	0A 20	20 42	72 69	64 67	65 73	21 0A	20 20	54 6F	20	| New English Hex
+トンネルを通そう！
+Let's Dig A Tunnel!
+$0FE950C (Line 5)
+A1 A1	A1 A1	A5 C8	A5 F3	A5 CD	A5 EB	A4 F2	C4 CC	A4 BD	A4 A6	A1 AA	0A	| Original Japanese Hex
+ #   	 #   	 #  ト	 #  ン	 #  ネ	 #  ル	 #  を	 #  通	 #  そ	 #  う	 #  ！	LF	| Original Japanese Text
+ C  i	 t  i	 e  s	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+43 69	74 69	65 73	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+橋を架けよう！
+We Will Place A Bridge!
+$0FE9523 (Line 6)
+A1 A1	A1 A1	B6 B6	A4 F2	B2 CD	A4 B1	A4 E8	A4 A6	A1 AA	0A	| Original Japanese Hex
+ #   	 #   	 #  橋	 #  を	 #  架	 #  け	 #  よ	 #  う	 #  ！	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+隣の街につながる道
+The Road Leading To The Next Town
+$0FE9536 (Line 7)
+A1 A1	A1 A1	CE D9	A4 CE	B3 B9	A4 CB	A4 C4	A4 CA	A4 AC	A4 EB	C6 BB	00 00	00 00	| Original Japanese Hex
+ #   	 #   	 #  隣	 #  の	 #  街	 #  に	 #  つ	 #  な	 #  が	 #  る	 #  道	 #  #	 #  #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+発電所はなぜ必要？
+Why Is Power Plant Necessary?
+$0FE9550 (Line 1)
+C8 AF	C5 C5	BD EA	A4 CF	A4 CA	A4 BC	C9 AC	CD D7	A1 A9	0A	| Original Japanese Hex
+ #  発	 #  電	 #  所	 #  は	 #  な	 #  ぜ	 #  必	 #  要	 #  ？	LF	| Original Japanese Text
+ W  h	 y   	 N  e	 e  d	 e  d	 ? LF	     	 P  o	w  e	 r	| New English Text
+57 68	79 20	4E 65	65 64	65 64	3F 0A	20 20	50 6F	77 65	72	| New English Hex
+点滅する建物と停電
+Flashing Buildings With Power Failure
+$0FE9563 (Line 2)
+A1 A1	A1 A1	C5 C0	CC C7	A4 B9	A4 EB	B7 FA	CA AA	A4 C8	C4 E4	C5 C5	0A	| Original Japanese Hex
+ #   	 #   	 #  点	 #  滅	 #  す	 #  る	 #  建	 #  物	 #  と	 #  停	 #  電	LF	| Original Japanese Text
+    C	 u  t	 s LF	     	 M  a	 k  e	    P	 o  w	 e  r	 ! LF	     	 R	| New English Text
+20 43	75 74	73 0A	20 20	4D 61	6B 65	20 50	6F 77	65 72	21 0A	20 20	52	| New English Hex
+発電所を作ろう！
+Let's Make A Power Plant!
+$0FE957A (Line 3)
+A1 A1	A1 A1	C8 AF	C5 C5	BD EA	A4 F2	BA EE	A4 ED	A4 A6	A1 AA	0A	| Original Japanese Hex
+ #   	 #   	 #  発	 #  電	 #  所	 #  を	 #  作	 #  ろ	 #  う	 #  ！	LF	| Original Japanese Text
+ e  b	 u  i	 l  d	 i  n	 g LF	     	 F  r	 e  e	    E	 n  e	 r	| New English Text
+65 62	75 69	6C 64	69 6E	67 0A	20 20	46 72	65 65	20 45	6E 65	72	| New English Hex
+発電所の建て直し
+The Restructuring/Rebuilding Of A Power Plant
+$0FE958F (Line 4)
+A1 A1	A1 A1	C8 AF	C5 C5	BD EA	A4 CE	B7 FA	A4 C6	C4 BE	A4 B7	0A	| Original Japanese Hex
+ #   	 #   	 #  発	 #  電	 #  所	 #  の	 #  建	 #  て	 #  直	 #  し	LF	| Original Japanese Text
+ g  y	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+67 79	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+自然発電所ってなに？
+What's A Natural Power Plant?
+$0FE95A4 (Line 5)
+A1 A1	A1 A1	BC AB	C1 B3	C8 AF	C5 C5	BD EA	A4 C3	A4 C6	A4 CA	A4 CB	A1 A9	00 00	00 00	| Original Japanese Hex
+ #   	 #   	 #  自	 #  然	 #  発	 #  電	 #  所	 #  っ	 #  て	 #  な	 #  に	 #  ？	 #  #	 #  #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+公共施設ってなに？
+What's A Public Facility?
+$0FE95C0 (Line 1)
+B8 F8	B6 A6	BB DC	C0 DF	A4 C3	A4 C6	A4 CA	A4 CB	A1 A9	0A	| Original Japanese Hex
+ #  公	 #  共	 #  施	 #  設	 #  っ	 #  て	 #  な	 #  に	 #  ？	LF	| Original Japanese Text
+ E  x	 p  l	 a  i	 n  ?	LF   	    P	 o  l	 i  c	 e   	 S	| New English Text
+45 78	70 6C	61 69	6E 3F	0A 20	20 50	6F 6C	69 63	65 20	53	| New English Hex
+警察署はなぜ必要？
+Why Is Police Station Necessary?
+$0FE95D3 (Line 2)
+A1 A1	A1 A1	B7 D9	BB A1	BD F0	A4 CF	A4 CA	A4 BC	C9 AC	CD D7	A1 A9	0A	| Original Japanese Hex
+ #   	 #   	 #  警	 #  察	 #  署	 #  は	 #  な	 #  ぜ	 #  必	 #  要	 #  ？	LF	| Original Japanese Text
+ t  .	 ? LF	     	 F  i	 r  e	    D	 e  p	 t  .	 ? LF	     	 H  o	 s	| New English Text
+74 2E	3F 0A	20 20	46 69	72 65	20 44	65 70	74 2E	3F 0A	20 20	48 6F	73	| New English Hex
+消防署はなぜ必要？
+Why Is Fire Department Necessary?
+$0FE95EA (Line 3)
+A1 A1	A1 A1	BE C3	CB C9	BD F0	A4 CF	A4 CA	A4 BC	C9 AC	CD D7	A1 A9	0A	| Original Japanese Hex
+ #   	 #   	 #  消	 #  防	 #  署	 #  は	 #  な	 #  ぜ	 #  必	 #  要	 #  ？	LF	| Original Japanese Text
+ p  i	 t  a	 l  ?	LF   	    P	 r  i	 s  o	 n  s	LF   	    S	 p  e	 c	| New English Text
+70 69	74 61	6C 3F	0A 20	20 50	72 69	73 6F	6E 73	0A 20	20 53	70 65	63	| New English Hex
+病院はなぜ必要？
+Why Is A Hospital Necessary?
+$0FE9601 (Line 4)
+A1 A1	A1 A1	C9 C2	B1 A1	A4 CF	A4 CA	A4 BC	C9 AC	CD D7	A1 A9	0A	| Original Japanese Hex
+ #   	 #   	 #  病	 #  院	 #  は	 #  な	 #  ぜ	 #  必	 #  要	 #  ？	LF	| Original Japanese Text
+ i  a	 l  ?	LF   	    F	 u  n	    G	 i  f	 t  s	LF   	    B	 o	| New English Text
+69 61	6C 3F	0A 20	20 46	75 6E	20 47	69 66	74 73	0A 20	20 42	6F	| New English Hex
+刑務所について
+About Prisons
+$0FE9616 (Line 5)
+A1 A1	A1 A1	B7 BA	CC B3	BD EA	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  刑	 #  務	 #  所	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ n  u	 s  e	 s LF	     	 A  r	 c  o	 l  o	 g  y	 #  #	 #	| New English Text
+6E 75	73 65	73 0A	20 20	41 72	63 6F	6C 6F	67 79	00 00	00	| New English Hex
+特別建物ってなに？
+What Is A Special Building?
+$0FE9629 (Line 6)
+A1 A1	A1 A1	C6 C3	CA CC	B7 FA	CA AA	A4 C3	A4 C6	A4 CA	A4 CB	A1 A9	0A	| Original Japanese Hex
+ #   	 #   	 #  特	 #  別	 #  建	 #  物	 #  っ	 #  て	 #  な	 #  に	 #  ？	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+楽しいプレゼント
+Fun Gifts
+$0FE9640 (Line 7)
+A1 A1	A1 A1	B3 DA	A4 B7	A4 A4	A5 D7	A5 EC	A5 BC	A5 F3	A5 C8	0A	| Original Japanese Hex
+ #   	 #   	 #  楽	 #  し	 #  い	 #  プ	 #  レ	 #  ゼ	 #  ン	 #  ト	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+ボーナスビルについて
+About Bonus Buildings
+$0FE9655 (Line 8)
+A1 A1	A1 A1	A5 DC	A1 BC	A5 CA	A5 B9	A5 D3	A5 EB	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  ボ	 #  ー	 #  ナ	 #  ス	 #  ビ	 #  ル	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+アルコロジーについて
+About Arcology
+$0FE966E (Line 9)
+A1 A1	A1 A1	A5 A2	A5 EB	A5 B3	A5 ED	A5 B8	A1 BC	A4 CB	A4 C4	A4 A4	A4 C6	00 00	| Original Japanese Hex
+ #   	 #   	 #  ア	 #  ル	 #  コ	 #  ロ	 #  ジ	 #  ー	 #  に	 #  つ	 #  い	 #  て	 #  #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+教育施設ってなに？
+What Are Educational Facilities?
+$0FE9688 (Line 1)
+B6 B5	B0 E9	BB DC	C0 DF	A4 C3	A4 C6	A4 CA	A4 CB	A1 A9	0A	| Original Japanese Hex
+ #  教	 #  育	 #  施	 #  設	 #  っ	 #  て	 #  な	 #  に	 #  ？	LF	| Original Japanese Text
+ E  x	 p  l	 a  i	 n  ?	LF   	    S	 c  h	 o  o	 l  s	 !	| New English Text
+45 78	70 6C	61 69	6E 3F	0A 20	20 53	63 68	6F 6F	6C 73	21	| New English Hex
+学校を作ろう！
+Let's Make A School!
+$0FE969B (Line 2)
+A1 A1	A1 A1	B3 D8	B9 BB	A4 F2	BA EE	A4 ED	A4 A6	A1 AA	0A	| Original Japanese Hex
+ #   	 #   	 #  学	 #  校	 #  を	 #  作	 #  ろ	 #  う	 #  ！	LF	| Original Japanese Text
+LF   	    U	 n  i	 v  e	 r  s	 i  t	 y  !	LF   	    M	 u	| New English Text
+0A 20	20 55	6E 69	76 65	72 73	69 74	79 21	0A 20	20 4D	75	| New English Hex
+大学を作ろう！
+Let's Make A University!
+$0FE96B2 (Line 3)
+A1 A1	A1 A1	C2 E7	B3 D8	A4 F2	BA EE	A4 ED	A4 A6	A1 AA	0A	| Original Japanese Hex
+ #   	 #   	 #  大	 #  学	 #  を	 #  作	 #  ろ	 #  う	 #  ！	LF	| Original Japanese Text
+ s  e	 u  m	 s LF	     	 R  e	 c  r	 e  a	 t  i	 o  n	 ?	| New English Text
+73 65	75 6D	73 0A	20 20	52 65	63 72	65 61	74 69	6F 6E	3F	| New English Hex
+博物館と図書館
+Museum & Library
+$0FE96C1 (Line 4)
+A1 A1	A1 A1	C7 EE	CA AA	B4 DB	A4 C8	BF DE	BD F1	B4 DB	0A	| Original Japanese Hex
+ #   	 #   	 #  博	 #  物	 #  館	 #  と	 #  図	 #  書	 #  館	LF	| Original Japanese Text
+LF  	    P	 a  r	 k  s	 ! LF	     	 M  a	 k  e	    a	  	| New English Text
+0A 20	20 50	61 72	6B 73	21 0A	20 20	4D 61	6B 65	20 61	20	| New English Hex
+娯楽施設ってなに？
+What Are Recreational Facilities?
+$0FE96D4 (Line 5)
+A1 A1	A1 A1	B8 E4	B3 DA	BB DC	C0 DF	A4 C3	A4 C6	A4 CA	A4 CB	A1 A9	0A	| Original Japanese Hex
+ #   	 #   	 #  娯	 #  楽	 #  施	 #  設	 #  っ	 #  て	 #  な	 #  に	 #  ？	LF	| Original Japanese Text
+ Z  o	 o  !	LF   	    S	 t  a	 d  i	 u  m	 s  !	LF   	    M	 a  r	 i	| New English Text
+5A 6F	6F 21	0A 20	20 53	74 61	64 69	75 6D	73 21	0A 20	20 4D	61 72	69	| New English Hex
+公園を作ろう！
+Let's Make A Park!
+$0FE96EB (Line 6)
+A1 A1	A1 A1	B8 F8	B1 E0	A4 F2	BA EE	A4 ED	A4 A6	A1 AA	0A	| Original Japanese Hex
+ #   	 #   	 #  公	 #  園	 #  を	 #  作	 #  ろ	 #  う	 #  ！	LF	| Original Japanese Text
+ n  a	 s  !	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+6E 61	73 21	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+動物園を作ろう！
+Let's Make A Zoo!
+$0FE96FE (Line 7)
+A1 A1	A1 A1	C6 B0	CA AA	B1 E0	A4 F2	BA EE	A4 ED	A4 A6	A1 AA	0A	| Original Japanese Hex
+ #   	 #   	 #  動	 #  物	 #  園	 #  を	 #  作	 #  ろ	 #  う	 #  ！	 #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+スタジアムを作ろう！
+Let's Make A Stadium!
+$0FE9713 (Line 8)
+A1 A1	A1 A1	A5 B9	A5 BF	A5 B8	A5 A2	A5 E0	A4 F2	BA EE	A4 ED	A4 A6	A1 AA	0A	| Original Japanese Hex
+ #   	 #   	 #  ス	 #  タ	 #  ジ	 #  ア	 #  ム	 #  を	 #  作	 #  ろ	 #  う	 #  ！	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+マリーナを作ろう！
+Let's Make A Marina!
+$0FE972C (Line 9)
+A1 A1	A1 A1	A5 DE	A5 EA	A1 BC	A5 CA	A4 F2	BA EE	A4 ED	A4 A6	A1 AA	00 00	| Original Japanese Hex
+ #   	 #   	 #  マ	 #  リ	 #  ー	 #  ナ	 #  を	 #  作	 #  ろ	 #  う	 #  ！	 #  #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+予算ってなに？
+What's A Budget?
+$0FE9744 (Line 1)
+CD BD	BB BB	A4 C3	A4 C6	A4 CA	A4 CB	A1 A9	0A	| Original Japanese Hex
+ #  予	 #  算	 #  っ	 #  て	 #  な	 #  に	 #  ？	LF	| Original Japanese Text
+ B  u	 d  g	 e  t	 ? LF	     	 A  b	 o  u	 t	| New English Text
+42 75	64 67	65 74	3F 0A	20 20	41 62	6F 75	74	| New English Hex
+税金について
+About Tax
+$0FE9753 (Line 2)
+A1 A1	A1 A1	C0 C7	B6 E2	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  税	 #  金	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+    T	 a  x	LF   	    A	 b  o	 u  t	    D	 e  b	 t	| New English Text
+20 54	61 78	0A 20	20 41	62 6F	75 74	20 44	65 62	74	| New English Hex
+借金について
+About Debt
+$0FE9764 (Line 3)
+A1 A1	A1 A1	BC DA	B6 E2	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  借	 #  金	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+LF   	    R	 e  g	 u  l	 a  t	 i  o	 n LF	     	 M	| New English Text
+0A 20	20 52	65 67	75 6C	61 74	69 6F	6E 0A	20 20	4D	| New English Hex
+都市条例について
+About City Regulation
+$0FE9775 (Line 4)
+A1 A1	A1 A1	C5 D4	BB D4	BE F2	CE E3	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  都	 #  市	 #  条	 #  例	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ a  i	 n  t	 e  n	 a  n	 c  e	LF   	    T	 h  e	    G	 r  a	 p	| New English Text
+61 69	6E 74	65 6E	61 6E	63 65	0A 20	20 54	68 65	20 47	72 61	70	| New English Hex
+維持費について
+About Maintenance Costs
+$0FE978A (Line 5)
+A1 A1	A1 A1	B0 DD	BB FD	C8 F1	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  維	 #  持	 #  費	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ h  ?	LF   	    E	 v  a	 l  u	 a  t	 i  o	 n LF	     	 A	| New English Text
+68 3F	0A 20	20 45	76 61	6C 75	61 74	69 6F	6E 0A	20 20	41	| New English Hex
+グラフの使い方は？
+How To Use The Graph?
+$0FE979D (Line 6)
+A1 A1	A1 A1	A5 B0	A5 E9	A5 D5	A4 CE	BB C8	A4 A4	CA FD	A4 CF	A1 A9	0A	| Original Japanese Hex
+ #   	 #   	 #  グ	 #  ラ	 #  フ	 #  の	 #  使	 #  い	 #  方	 #  は	 #  ？	LF	| Original Japanese Text
+ b  o	 u  t	    M	 a  p	 s LF	     	 C  i	 t  i	 z  e	 n  s	LF   	  	| New English Text
+62 6F	75 74	20 4D	61 70	73 0A	20 20	43 69	74 69	7A 65	6E 73	0A 20	20	| New English Hex
+街の評価について
+Evaluation Of The City
+$0FE97B4 (Line 7)
+A1 A1	A1 A1	B3 B9	A4 CE	C9 BE	B2 C1	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  街	 #  の	 #  評	 #  価	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ C  i	 t  y	    G	 r  a	 p  h	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+43 69	74 79	20 47	72 61	70 68	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+マップについて
+About The Map
+$0FE97CD (Line 8)
+A1 A1	A1 A1	A5 DE	A5 C3	A5 D7	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  マ	 #  ッ	 #  プ	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+市民グラフについて
+About Citizens Graph
+$0FE97DC (Line 9)
+A1 A1	A1 A1	BB D4	CC B1	A5 B0	A5 E9	A5 D5	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #   	 #   	 #  市	 #  民	 #  グ	 #  ラ	 #  フ	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+都市グラフについて
+About The City Graph
+$0FE97F3 (Line 10)
+A1 A1	A1 A1	C5 D4	BB D4	A5 B0	A5 E9	A5 D5	A4 CB	A4 C4	A4 A4	A4 C6	00 00	00	| Original Japanese Hex
+ #   	 #   	 #  都	 #  市	 #  グ	 #  ラ	 #  フ	 #  に	 #  つ	 #  い	 #  て	 #  #	 #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+
+街のＳＯＳ！？
+City SOS!?
+$0FE980C (Line 1)
+B3 B9	A4 CE	A3 D3	A3 CF	A3 D3	A1 AA	A1 A9	0A	| Original Japanese Hex
+ #  街	 #  の	 #  Ｓ	 #  Ｏ	 #  Ｓ	 #  ！	 #  ？	LF	| Original Japanese Text
+ C  i	 t  y	    S	 O  S	 !  ?	LF   	    H	 i	| New English Text
+43 69	74 79	20 53	4F 53	21 3F	0A 20	20 48	69	| New English Hex
+犯罪率が高くなったら
+When The Crime Rate Is Higher
+$0FE981B (Line 2)
+A1 A1	A1 A1	C8 C8	BA E1	CE A8	A4 AC	B9 E2	A4 AF	A4 CA	A4 C3	A4 BF	A4 E9	0A	| Original Japanese Hex
+ #   	 #   	 #  犯	 #  罪	 #  率	 #  が	 #  高	 #  く	 #  な	 #  っ	 #  た	 #  ら	LF	| Original Japanese Text
+ g  h	    C	 r  i	 m  e	LF	    C	 o  n	 g  e	 s  t	 i  o	 n LF	     	 P	| New English Text
+67 68	20 43	72 69	6D 65	0A 20	20 43	6F 6E	67 65	73 74	69 6F	6E 0A	20 20	50	| New English Hex
+交通渋滞が起こったら
+Solving Traffic Congestion
+$0FE9834 (Line 3)
+A1 A1	A1 A1	B8 F2	C4 CC	BD C2	C2 DA	A4 AC	B5 AF	A4 B3	A4 C3	A4 BF	A4 E9	0A	| Original Japanese Hex
+ #   	 #   	 #  交	 #  通	 #  渋	 #  滞	 #  が	 #  起	 #  こ	 #  っ	 #  た	 #  ら	 #	| Original Japanese Text
+ o  l	 l  u	 t  i	 o  n	LF   	    E	 d  u	 c  a	 t  i	 o  n	LF   	    P	 o	| New English Text
+6F 6C	6C 75	74 69	6F 6E	0A 20	20 45	64 75	63 61	74 69	6F 6E	0A 20	20 50	6F	| New English Hex
+公害が酷くなったら
+When Pollution Is Getting Worse
+$0FE984D (Line 4)
+A1 A1	A1 A1	B8 F8	B3 B2	A4 AC	B9 F3	A4 AF	A4 CA	A4 C3	A4 BF	A4 E9	0A	| Original Japanese Hex
+ #   	 #   	 #  公	 #  害	 #  が	 #  酷	 #  く	 #  な	 #  っ	 #  た	 #  ら	LF	| Original Japanese Text
+ o  r	    H	 e  a	 l  t	 h LF	     	 O  u	 t   	 o  f	    W	 o  r	 k	| New English Text
+6F 72	20 48	65 61	6C 74	68 0A	20 20	4F 75	74 20	6F 66	20 57	6F 72	6B	| New English Hex
+教育度が低くなったら
+When Education Is Declining
+$0FE9864 (Line 5)
+A1 A1	A1 A1	B6 B5	B0 E9	C5 D9	A4 AC	C4 E3	A4 AF	A4 CA	A4 C3	A4 BF	A4 E9	0A	| Original Japanese Hex
+ #   	 #   	 #  教	 #  育	 #  度	 #  が	 #  低	 #  く	 #  な	 #  っ	 #  た	 #  ら	LF	| Original Japanese Text
+LF   	    B	 a  n	 k  r	 u  p	 t  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+0A 20	20 42	61 6E	6B 72	75 70	74 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+健康度が低くなったら
+When Overall Health Is Low
+$0FE987D (Line 6)
+A1 A1	A1 A1	B7 F2	B9 AF	C5 D9	A4 AC	C4 E3	A4 AF	A4 CA	A4 C3	A4 BF	A4 E9	0A	| Original Japanese Hex
+ #   	 #   	 #  健	 #  康	 #  度	 #  が	 #  低	 #  く	 #  な	 #  っ	 #  た	 #  ら	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+失業者が増えたら
+When Unemployment Increases
+$0FE9896 (Line 7)
+A1 A1	A1 A1	BC BA	B6 C8	BC D4	A4 AC	C1 FD	A4 A8	A4 BF	A4 E9	0A	| Original Japanese Hex
+ #   	 #   	 #  失	 #  業	 #  者	 #  が	 #  増	 #  え	 #  た	 #  ら	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+経済が破綻したら
+When The Economy Is Bankrupt
+$0FE98AB (Line 8)
+A1 A1	A1 A1	B7 D0	BA D1	A4 AC	C7 CB	C3 BE	A4 B7	A4 BF	A4 E9	00	| Original Japanese Hex
+ #   	 #   	 #  経	 #  済	 #  が	 #  破	 #  綻	 #  し	 #  た	 #  ら	 #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+
+災害ってなに？
+What's A Disaster?
+$0FE98C0 (Line 1)
+BA D2	B3 B2	A4 C3	A4 C6	A4 CA	A4 CB	A1 A9	0A	| Original Japanese Hex
+ #  災	 #  害	 #  っ	 #  て	 #  な	 #  に	 #  ？	LF	| Original Japanese Text
+ D  i	 s  a	 s  t	 e  r	 s  ?	LF   	    S	 e	| New English Text
+44 69	73 61	73 74	65 72	73 3F	0A 20	20 53	65	| New English Hex
+火災が起こったら
+After Going On Fire
+$0FE98D3 (Line 2)
+A1 A1	A1 A1	B2 D0	BA D2	A4 AC	B5 AF	A4 B3	A4 C3	A4 BF	A4 E9	0A	| Original Japanese Hex
+ #   	 #   	 #  火	 #  災	 #  が	 #  起	 #  こ	 #  っ	 #  た	 #  ら	LF	| Original Japanese Text
+ t   	 O  n	    F	 i  r	 e LF	     	 E  a	 r  t	 h  q	 u  a	 k	| New English Text
+74 20	4F 6E	20 46	69 72	65 0A	20 20	45 61	72 74	68 71	75 61	6B	| New English Hex
+地震が起こったら
+Once An Earthquake Has Happened 
+$0FE98D3 (Line 3)
+A1 A1	A1 A1	C3 CF	BF CC	A4 AC	B5 AF	A4 B3	A4 C3	A4 BF	A4 E9	0A	| Original Japanese Hex
+ #   	 #   	 #  地	 #  震	 #  が	 #  起	 #  こ	 #  っ	 #  た	 #  ら	LF	| Original Japanese Text
+ e  s	LF   	    E	 r  u	 p  t	 i  o	 n  s	LF   	    R	 o  c	 k	| New English Text
+65 73	0A 20	20 45	72 75	70 74	69 6F	6E 73	0A 20	20 52	6F 63	6B	| New English Hex
+噴火が起こったら
+Once An Eruption Has Happened
+$0FE98F9 (Line 4)
+A1 A1	A1 A1	CA AE	B2 D0	A4 AC	B5 AF	A4 B3	A4 C3	A4 BF	A4 E9	0A	| Original Japanese Hex
+ #   	 #   	 #  噴	 #  火	 #  が	 #  起	 #  こ	 #  っ	 #  た	 #  ら	LF	| Original Japanese Text
+    F	 a  l	 l  !	 ! LF	     	 M  e	 l  t	 d  o	 w  n	 !  !	 #	| New English Text
+20 46	61 6C	6C 21	21 0A	20 20	4D 65	6C 74	64 6F	77 6E	21 21	00	| New English Hex
+?石落下！！
+Rock Fall!!
+$0FE990E (Line 5)
+A1 A1	A1 A1	A2 E8	C0 D0	CD EE	B2 BC	A1 AA	A1 AA	0A	| Original Japanese Hex
+ #   	 #   	 #  ?	 #  石	 #  落	 #  下	 #  ！	 #  ！	LF	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+メルトダウン！！
+Meltdown!!
+$0FE991F (Line 6)
+A1 A1	A1 A1	A5 E1	A5 EB	A5 C8	A5 C0	A5 A6	A5 F3	A1 AA	A1 AA	00	| Original Japanese Hex
+ #   	 #   	 #  メ	 #  ル	 #  ト	 #  ダ	 #  ウ	 #  ン	 #  ！	 #  ！	 #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+
+時間の流れについて
+The Flow Of Time
+$0FE9934 (Line 1)
+BB FE	B4 D6	A4 CE	CE AE	A4 EC	A4 CB	A4 C4	A4 A4	A4 C6	0A	| Original Japanese Hex
+ #  時	 #  間	 #  の	 #  流	 #  れ	 #  に	 #  つ	 #  い	 #  て	LF	| Original Japanese Text
+ T  i	 m  e	    F	 l  o	 w LF	     	 R  	 T  r	 i  g	 g	| New English Text
+54 69	6D 65	20 46	6C 6F	77 0A	20 20	52 20	54 72	69 67	67	| New English Hex
+Ｒトリガーの便利操作
+Convenient Operation Of The R Trigger
+$0FE9947 (Line 2)
+A1 A1	A1 A1	A3 D2	A5 C8	A5 EA	A5 AC	A1 BC	A4 CE	CA D8	CD F8	C1 E0	BA EE	0A	| Original Japanese Hex
+ #   	 #   	 #  Ｒ	 #  ト	 #  リ	 #  ガ	 #  ー	 #  の	 #  便	 #  利	 #  操	 #  作	LF	| Original Japanese Text
+ e  r	LF   	    O	 p  e	 r  a	 t  i	 o  n	LF   	    N	 P  C	    E	 v  e	 n	| New English Text
+65 72	0A 20	20 4F	70 65	72 61	74 69	6F 6E	0A 20	20 4E	50 43	20 45	76 65	6E	| New English Hex
+街中での操作
+Operation Of The City
+$0FE9960 (Line 3)
+A1 A1	A1 A1	B3 B9	C3 E6	A4 C7	A4 CE	C1 E0	BA EE	0A	| Original Japanese Hex
+ #   	 #   	 #  街	 #  中	 #  で	 #  の	 #  操	 #  作	LF	| Original Japanese Text
+ t  s	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+74 73	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+人探しイベント
+People Looking For Events
+$0FE9971 (Line 4)
+A1 A1	A1 A1	BF CD	C3 B5	A4 B7	A5 A4	A5 D9	A5 F3	A5 C8	00	| Original Japanese Hex
+ #   	 #   	 #  人	 #  探	 #  し	 #  イ	 #  ベ	 #  ン	 #  ト	 #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
