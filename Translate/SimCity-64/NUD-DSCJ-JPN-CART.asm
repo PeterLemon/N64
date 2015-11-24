@@ -261,7 +261,7 @@ TextStyle1($0F770E8, "Disasters?\n")
                   db "  Set On Fire\n"
                   db "  Earthquakes\n"
                   db "  Eruptions\n"
-                  db "  Rock Fall!!\n"
+                  db "  Meteorite!!\n"
                   db "  Meltdown!!", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 
 TextStyle1($0F7715C, "Time Flow\n")

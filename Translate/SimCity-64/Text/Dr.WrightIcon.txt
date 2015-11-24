@@ -551,20 +551,20 @@ Once An Earthquake Has Happened
 $0FE98D3 (Line 3)
 A1 A1	A1 A1	C3 CF	BF CC	A4 AC	B5 AF	A4 B3	A4 C3	A4 BF	A4 E9	0A	| Original Japanese Hex
  #   	 #   	 #  地	 #  震	 #  が	 #  起	 #  こ	 #  っ	 #  た	 #  ら	LF	| Original Japanese Text
- e  s	LF   	    E	 r  u	 p  t	 i  o	 n  s	LF   	    R	 o  c	 k	| New English Text
-65 73	0A 20	20 45	72 75	70 74	69 6F	6E 73	0A 20	20 52	6F 63	6B	| New English Hex
+ e  s	LF   	    E	 r  u	 p  t	 i  o	 n  s	LF   	    M	 e  t	 e	| New English Text
+65 73	0A 20	20 45	72 75	70 74	69 6F	6E 73	0A 20	20 4D	65 74	65	| New English Hex
 噴火が起こったら
 Once An Eruption Has Happened
 $0FE98F9 (Line 4)
 A1 A1	A1 A1	CA AE	B2 D0	A4 AC	B5 AF	A4 B3	A4 C3	A4 BF	A4 E9	0A	| Original Japanese Hex
  #   	 #   	 #  噴	 #  火	 #  が	 #  起	 #  こ	 #  っ	 #  た	 #  ら	LF	| Original Japanese Text
-    F	 a  l	 l  !	 ! LF	     	 M  e	 l  t	 d  o	 w  n	 !  !	 #	| New English Text
-20 46	61 6C	6C 21	21 0A	20 20	4D 65	6C 74	64 6F	77 6E	21 21	00	| New English Hex
-?石落下！！
-Rock Fall!!
+ o  r	 i  t	 e  !	 ! LF	     	 M  e	 l  t	 d  o	 w  n	 !  !	 #	| New English Text
+6F 72	69 74	65 21	21 0A	20 20	4D 65	6C 74	64 6F	77 6E	21 21	00	| New English Hex
+隕石落下！！
+Meteorite Fall!!
 $0FE990E (Line 5)
 A1 A1	A1 A1	A2 E8	C0 D0	CD EE	B2 BC	A1 AA	A1 AA	0A	| Original Japanese Hex
- #   	 #   	 #  ?	 #  石	 #  落	 #  下	 #  ！	 #  ！	LF	| Original Japanese Text
+ #   	 #   	 #  隕	 #  石	 #  落	 #  下	 #  ！	 #  ！	LF	| Original Japanese Text
  #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
 00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
 メルトダウン！！
