@@ -49,62 +49,103 @@ base $0000 // Set Base Of RSP Code Object To Zero
 
 RSPStart:
 // Load Point X,Y,Z
-  lqv v0[e0],PointX>>4(r0) // V0 = Point X ($000)
-  lqv v1[e0],PointY>>4(r0) // V1 = Point Y ($010)
-  lqv v2[e0],PointZ>>4(r0) // V2 = Point Z ($020)
+  lqv v0[e0],PointXI>>4(r0) // V0 = Point X Integer ($000)
+  lqv v1[e0],PointXF>>4(r0) // V1 = Point X Fraction ($010)
+  lqv v2[e0],PointYI>>4(r0) // V2 = Point Y Integer ($020)
+  lqv v3[e0],PointYF>>4(r0) // V3 = Point Y Fraction ($030)
+  lqv v4[e0],PointZI>>4(r0) // V4 = Point Z Integer ($040)
+  lqv v5[e0],PointZF>>4(r0) // V5 = Point Z Fraction ($050)
 
 // Load Camera
-  lqv v3[e0],HALF_SCREEN_XY_FOV>>4(r0) // V3 = Screen X / 2, Screen Y / 2, FOV ($030)
-
-// Load Matrix
-  lqv v4[e0],MatrixRow01XYZT>>4(r0) // V4 = Row 0,1 XYZT ($040)
-  lqv v5[e0],MatrixRow23XYZT>>4(r0) // V5 = Row 2,3 XYZT ($050)
+  lqv v6[e0],HALF_SCREEN_XY_FOV>>4(r0) // V6 = Screen X / 2 Integer, Screen Y / 2 Integer, FOV Integer ($060)
 
 // Calculate X,Y,Z 3D
-  vmudh v6,v0,v4[e8] // X = (Matrix[0] * X) + (Matrix[1] * Y) + (Matrix[2] * Z) + Matrix[3]
-  vmadh v6,v1,v4[e9]
-  vmadh v6,v2,v4[e10]
-  vadd v6,v4[e11]
+  lqv v7[e0],MatrixRow0XYZTIF>>4(r0) // V7 = Row 0 XYZT Integer/Fraction ($070)
+  lqv v8[e0],MatrixRow1XYZTIF>>4(r0) // V8 = Row 1 XYZT Integer/Fraction ($080)
+  lqv v9[e0],MatrixRow2XYZTIF>>4(r0) // V9 = Row 2 XYZT Integer/Fraction ($090)
 
-  vmudh v7,v0,v4[e12] // Y = (Matrix[4] * X) + (Matrix[5] * Y) + (Matrix[6] * Z) + Matrix[7]
-  vmadh v7,v1,v4[e13]
-  vmadh v7,v2,v4[e14]
-  vadd v7,v4[e15]
+  vmudl v10,v1,v7[e9] // X = (Matrix[0] * X) + (Matrix[1] * Y) + (Matrix[2] * Z) + Matrix[3]
+  vmadm v10,v0,v7[e9]
+  vmadn v10,v1,v7[e8]
+  vmadh v10,v0,v7[e8]
 
-  vmudh v8,v0,v5[e8] // Z = (Matrix[8] * X) + (Matrix[9] * Y) + (Matrix[10] * Z) + Matrix[11]
-  vmadh v8,v1,v5[e9]
-  vmadh v8,v2,v5[e10]
-  vadd v8,v5[e11]
+  vmadl v10,v3,v7[e11]
+  vmadm v10,v2,v7[e11]
+  vmadn v10,v3,v7[e10]
+  vmadh v10,v2,v7[e10]
+
+  vmadl v10,v5,v7[e13]
+  vmadm v10,v4,v7[e13]
+  vmadn v10,v5,v7[e12]
+  vmadh v10,v4,v7[e12]
+
+  vadd v10,v7[e14]
+
+  vmudl v11,v1,v8[e9] // Y = (Matrix[4] * X) + (Matrix[5] * Y) + (Matrix[6] * Z) + Matrix[7]
+  vmadm v11,v0,v8[e9]
+  vmadn v11,v1,v8[e8]
+  vmadh v11,v0,v8[e8]
+
+  vmadl v11,v3,v8[e11]
+  vmadm v11,v2,v8[e11]
+  vmadn v11,v3,v8[e10]
+  vmadh v11,v2,v8[e10]
+
+  vmadl v11,v5,v8[e13]
+  vmadm v11,v4,v8[e13]
+  vmadn v11,v5,v8[e12]
+  vmadh v11,v4,v8[e12]
+
+  vadd v11,v8[e14]
+
+  vmudl v12,v1,v9[e9] // Z = (Matrix[8] * X) + (Matrix[9] * Y) + (Matrix[10] * Z) + Matrix[11]
+  vmadm v12,v0,v9[e9]
+  vmadn v12,v1,v9[e8]
+  vmadh v12,v0,v9[e8]
+
+  vmadl v12,v3,v9[e11]
+  vmadm v12,v2,v9[e11]
+  vmadn v12,v3,v9[e10]
+  vmadh v12,v2,v9[e10]
+
+  vmadl v12,v5,v9[e13]
+  vmadm v12,v4,v9[e13]
+  vmadn v12,v5,v9[e12]
+  vmadh v12,v4,v9[e12]
+
+  vadd v12,v9[e14]
 
 // Store Rectangle Z Coords To DMEM
-  vsub v9,v8,v8[e0] // V9 = Negative Z
-  vsub v9,v8[e0]
-  sqv v9[e0],PointZ>>4(r0) // DMEM $020 = Point Z
+  vsub v13,v12,v12[e0] // V13 = Negative Z
+  vsub v13,v12[e0]
+  sqv v13[e0],$02(r0) // DMEM $020 = Point Z
 
 // Calculate X,Y 2D
-  vmudh v8,v3[e10] // V8 = Z / FOV
+  vmudh v12,v6[e10] // V12 = Z / FOV
 
-  vmulf v6,v8[e0] // X = X / Z + (ScreenX / 2)
-  vadd v6,v3[e8]
+  vmulf v10,v12[e0] // X = X / Z + (ScreenX / 2)
+  vadd v10,v6[e8]
 
-  vmulf v7,v8[e0] // Y = Y / Z + (ScreenY / 2)
-  vadd v7,v3[e9]
+  vmulf v11,v12[e0] // Y = Y / Z + (ScreenY / 2)
+  vadd v11,v6[e9]
 
 // Store Rectangle X,Y Coords To DMEM
-  sqv v6[e0],PointX>>4(r0) // DMEM $000 = Point X
-  sqv v7[e0],PointY>>4(r0) // DMEM $010 = Point Y
+  sqv v10[e0],$00(r0) // DMEM $000 = Point X
+  sqv v11[e0],$01(r0) // DMEM $010 = Point Y
 
 
-  lli a0,PointX // A0 = X Vector DMEM Offset
+  lli a0,PointXI // A0 = X Vector DMEM Offset
   lli a1,RectangleZ // A1 = RDP Rectangle XY DMEM Offset
   lli t4,7 // T4 = Point Count
 
 LoopPoint:
-  lhu t0,PointX(a0) // T0 = Point X
+  lhu t0,$0000(a0) // T0 = Point X
   sll t0,2 // Convert To Rectangle Fixed Point 10.2 Format
-  lhu t1,PointY(a0) // T1 = Point Y
+  andi t0,$FFF
+  lhu t1,$0010(a0) // T1 = Point Y
   sll t1,2 // Convert To Rectangle Fixed Point 10.2 Format
-  lhu t2,PointZ(a0) // T2 = Point Z
+  andi t1,$FFF
+  lhu t2,$0020(a0) // T2 = Point Z
 
   sh t2,$0004(a1) // Store Primitive Z Depth
 
@@ -137,20 +178,76 @@ align(8) // Align 64-Bit
 RSPData:
 base $0000 // Set Base Of RSP Data Object To Zero
 
-PointX:
+PointXI:
   dw -20, 20, -20,  20, -20,  20, -20,  20 // 8 * Point X (S15) (Signed Integer)
-PointY:
+PointXF:
+  dw   0,  0,   0,   0,   0,   0,   0,   0 // 8 * Point X (S.15) (Signed Fraction)
+PointYI:
   dw  20, 20, -20, -20,  20,  20, -20, -20 // 8 * Point Y (S15) (Signed Integer)
-PointZ:
+PointYF:
+  dw   0,  0,   0,   0,   0,   0,   0,   0 // 8 * Point Y (S.15) (Signed Fraction)
+PointZI:
   dw  20, 20,  20,  20, -20, -20, -20, -20 // 8 * Point Z (S15) (Signed Integer)
+PointZF:
+  dw   0,  0,   0,   0,   0,   0,   0,   0 // 8 * Point Z (S.15) (Signed Fraction)
 
 HALF_SCREEN_XY_FOV:
-  dw 160, 120, 160, 0, 0, 0, 0, 0 // Screen X / 2 (S15) (Signed Integer), Screen Y / 2 (S15) (Signed Integer), FOV (Signed Fraction)
+  dw 160, 120, 160, 0, 0, 0, 0, 0 // Screen X / 2 (S15) (Signed Integer), Screen Y / 2 (S15) (Signed Integer), FOV (S15) (Signed Integer)
 
-MatrixRow01XYZT:
-  dw 1,0,0,0, 0,1,0,0 // Row 0 X,Y,Z,T (S15) (Signed Integer) (X), Row 1 X,Y,Z,T (S15) (Signed Integer) (Y)
-MatrixRow23XYZT:
-  dw 0,0,1,200, 0,0,0,1 // Row 2 X,Y,Z,T (S15) (Signed Integer) (Z), Row 3 X,Y,Z,T (S15) (Signed Integer) (T)
+//MatrixRow0XYZTIF:
+//  dw 1, 0, 0, 0, 0, 0, 0, 0 // Row 0 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (X)
+//MatrixRow1XYZTIF:
+//  dw 0, 0, 1, 0, 0, 0, 0, 0 // Row 1 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (Y)
+//MatrixRow2XYZTIF:
+//  dw 0, 0, 0, 0, 1, 0, 200, 0 // Row 2 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (Z)
+
+// Test X +90 Degrees
+//MatrixRow0XYZTIF:
+//  dw 1, 0, 0, 0, 0, 0, 0, 0 // Row 0 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (X)
+//MatrixRow1XYZTIF:
+//  dw 0, 0, 0, 0, -1, 0, 0, 0 // Row 1 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (Y)
+//MatrixRow2XYZTIF:
+//  dw 0, 0, 1, 0, 0, 0, 200, 0 // Row 2 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (Z)
+
+// Test Y +90 Degrees
+//MatrixRow0XYZTIF:
+//  dw 0, 0, 0, 0, 1, 0, 0, 0 // Row 0 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (X)
+//MatrixRow1XYZTIF:
+//  dw 0, 0, 1, 0, 0, 0, 0, 0 // Row 1 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (Y)
+//MatrixRow2XYZTIF:
+//  dw -1, 0, 0, 0, 0, 0, 200, 0 // Row 2 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (Z)
+
+// Test Z +90 Degrees
+//MatrixRow0XYZTIF:
+//  dw 0, 0, -1, 0, 0, 0, 0, 0 // Row 0 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (X)
+//MatrixRow1XYZTIF:
+//  dw 1, 0, 0, 0, 0, 0, 0, 0 // Row 1 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (Y)
+//MatrixRow2XYZTIF:
+//  dw 0, 0, 0, 0, 1, 0, 200, 0 // Row 2 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (Z)
+
+// Test X +45 Degrees (0.707 = Fraction 46334)
+//MatrixRow0XYZTIF:
+//  dw 1, 0, 0, 0, 0, 0, 0, 0 // Row 0 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (X)
+//MatrixRow1XYZTIF:
+//  dw 0, 0, 0, 46334, 0, 46334, 0, 0 // Row 1 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (Y)
+//MatrixRow2XYZTIF:
+//  dw 0, 0, -1, 19202, 0, 46334, 200, 0 // Row 2 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (Z)
+
+// Test Y +45 Degrees (0.707 = Fraction 46334)
+//MatrixRow0XYZTIF:
+//  dw 0, 46334, 0, 0, -1, 19202, 0, 0 // Row 0 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (X)
+//MatrixRow1XYZTIF:
+//  dw 0, 0, 1, 0, 0, 0, 0, 0 // Row 1 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (Y)
+//MatrixRow2XYZTIF:
+//  dw 0, 46334, 0, 0, 0, 46334, 200, 0 // Row 2 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (Z)
+
+// Test Z +45 Degrees (0.707 = Fraction 46334)
+MatrixRow0XYZTIF:
+  dw 0, 46334, 0, 46334, 0, 0, 0, 0 // Row 0 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (X)
+MatrixRow1XYZTIF:
+  dw -1, 19202, 0, 46334, 0, 0, 0, 0 // Row 1 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (Y)
+MatrixRow2XYZTIF:
+  dw 0, 0, 0, 0, 1, 0, 200, 0 // Row 2 X,Y,Z,T (S15) (Signed Integer) / (S.15) (Signed Fraction) (Z)
 
 align(8) // Align 64-Bit
 RDPBuffer:
@@ -176,31 +273,31 @@ RectangleZ:
 RectangleXY:
   Fill_Rectangle 0,0, 0,0 // Fill Rectangle: XL,YL, XH,YH
 
-  Set_Blend_Color $00FF00FF // Set Blend Color: R 0,G 255,B 0,A 255
+  Set_Blend_Color $00FF00FF // Set Blend Color: R 0, G 255, B 0, A 255
   Set_Prim_Depth 0,0 // Set Primitive Depth: PRIMITIVE Z,PRIMITIVE DELTA Z
   Fill_Rectangle 0,0, 0,0 // Fill Rectangle: XL,YL, XH,YH
 
-  Set_Blend_Color $0000FFFF // Set Blend Color: R 0,G 0,B 255,A 255
+  Set_Blend_Color $0000FFFF // Set Blend Color: R 0, G 0, B 255, A 255
   Set_Prim_Depth 0,0 // Set Primitive Depth: PRIMITIVE Z,PRIMITIVE DELTA Z
   Fill_Rectangle 0,0, 0,0 // Fill Rectangle: XL,YL, XH,YH
 
-  Set_Blend_Color $FFFFFFFF // Set Blend Color: R 255,G 255,B 255,A 255
+  Set_Blend_Color $FFFFFFFF // Set Blend Color: R 255, G 255, B 255, A 255
   Set_Prim_Depth 0,0 // Set Primitive Depth: PRIMITIVE Z,PRIMITIVE DELTA Z
   Fill_Rectangle 0,0, 0,0 // Fill Rectangle: XL,YL, XH,YH
 
-  Set_Blend_Color $800000FF // Set Blend Color: R 128,G 0,B 0,A 255
+  Set_Blend_Color $800000FF // Set Blend Color: R 128, G 0, B 0, A 255
   Set_Prim_Depth 0,0 // Set Primitive Depth: PRIMITIVE Z,PRIMITIVE DELTA Z
   Fill_Rectangle 0,0, 0,0 // Fill Rectangle: XL,YL, XH,YH
 
-  Set_Blend_Color $008000FF // Set Blend Color: R 0,G 128,B 0,A 255
+  Set_Blend_Color $008000FF // Set Blend Color: R 0, G 128, B 0, A 255
   Set_Prim_Depth 0,0 // Set Primitive Depth: PRIMITIVE Z,PRIMITIVE DELTA Z
   Fill_Rectangle 0,0, 0,0 // Fill Rectangle: XL,YL, XH,YH
 
-  Set_Blend_Color $000080FF // Set Blend Color: R 0,G 0,B 128,A 255
+  Set_Blend_Color $000080FF // Set Blend Color: R 0, G 0, B 128, A 255
   Set_Prim_Depth 0,0 // Set Primitive Depth: PRIMITIVE Z,PRIMITIVE DELTA Z
   Fill_Rectangle 0,0, 0,0 // Fill Rectangle: XL,YL, XH,YH
 
-  Set_Blend_Color $808080FF // Set Blend Color: R 128,G 128,B 128,A 255
+  Set_Blend_Color $808080FF // Set Blend Color: R 128, G 128, B 128, A 255
   Set_Prim_Depth 0,0 // Set Primitive Depth: PRIMITIVE Z,PRIMITIVE DELTA Z
   Fill_Rectangle 0,0, 0,0 // Fill Rectangle: XL,YL, XH,YH
 

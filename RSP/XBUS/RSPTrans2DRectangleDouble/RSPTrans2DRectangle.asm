@@ -49,27 +49,33 @@ base $0000 // Set Base Of RSP Code Object To Zero
 
 RSPStart:
 // Load Point X,Y
-  lqv v0[e0],PointX>>4(r0) // V0 = Point X ($000)
-  lqv v1[e0],PointY>>4(r0) // V1 = Point Y ($010)
+  lqv v0[e0],PointXI>>4(r0) // V0 = Point X Integer ($000)
+  lqv v1[e0],PointXF>>4(r0) // V1 = Point X Fraction ($010)
+  lqv v2[e0],PointYI>>4(r0) // V2 = Point Y Integer ($020)
+  lqv v3[e0],PointYF>>4(r0) // V3 = Point Y Fraction ($030)
 
 // Calculate X,Y 2D
-  lqv v2[e0],HALF_SCREEN_XY>>4(r0) // V2 = Screen X / 2, Screen Y / 2 ($020)
+  lqv v4[e0],HALF_SCREEN_XYIF>>4(r0) // V4 = Screen X / 2 Integer, Screen X / 2 Fraction, Screen Y / 2 Integer, Screen Y / 2 Fraction ($040)
  
-  vadd v0,v2[e8] // X = X + (ScreenX / 2)
-  vadd v1,v2[e9] // Y = Y + (ScreenY / 2)
+  vaddc v1,v4[e9] // X = X + (ScreenX / 2)
+  vadd v0,v4[e8]
+  vaddc v3,v4[e11] // Y = Y + (ScreenY / 2)
+  vadd v2,v4[e10]
 
 // Store Rectangle Coords To DMEM
-  sqv v0[e0],PointX>>4(r0) // DMEM $000 = Point X
-  sqv v1[e0],PointY>>4(r0) // DMEM $010 = Point Y
+  sqv v0[e0],PointXI>>4(r0) // DMEM $000 = Point XI
+  sqv v2[e0],PointYI>>4(r0) // DMEM $020 = Point YI
 
 
-  lli a0,PointX // A0 = X Vector DMEM Offset
+  lli a0,PointXI // A0 = X Vector DMEM Offset
   lli a1,RectangleXY // A1 = RDP Rectangle XY DMEM Offset
   lli t4,7 // T4 = Point Count
 
 LoopPoint:
-  lhu t0,PointX(a0) // T0 = Point X
-  lhu t1,PointY(a0) // T1 = Point Y
+  lhu t0,PointXI(a0) // T0 = Point X
+  sll t0,2 // Convert To Rectangle Fixed Point 10.2 Format
+  lhu t1,PointYI(a0) // T1 = Point Y
+  sll t1,2 // Convert To Rectangle Fixed Point 10.2 Format
 
   sll t2,t0,12
   add t2,t1 // T2 = XL,YL
@@ -100,13 +106,17 @@ align(8) // Align 64-Bit
 RSPData:
 base $0000 // Set Base Of RSP Data Object To Zero
 
-PointX:
-  dw -10<<2, 10<<2, -10<<2,  10<<2, -20<<2,  20<<2, -20<<2,  20<<2 // 8 * Point X (10.2)
-PointY:
-  dw  10<<2, 10<<2, -10<<2, -10<<2,  20<<2,  20<<2, -20<<2, -20<<2 // 8 * Point Y (10.2)
+PointXI:
+  dw -10, 10, -10,  10, -20,  20, -20,  20 // 8 * Point X (S15) (Signed Integer)
+PointXF:
+  dw  32768, 0, 0,   0,   0,   0,   0,   0 // 8 * Point X (S0.15) (Signed Fraction)
+PointYI:
+  dw  10, 10, -10, -10,  20,  20, -20, -20 // 8 * Point Y (S15) (Signed Integer)
+PointYF:
+  dw   0,  0,   0,   0,   0,   0,   0,   0 // 8 * Point Y (S0.15) (Signed Fraction)
 
-HALF_SCREEN_XY:
-  dw 160<<2, 120<<2, 0, 0, 0, 0, 0, 0 // Screen X / 2 (10.2), Screen Y / 2 (10.2)
+HALF_SCREEN_XYIF:
+  dw 160, 0, 120, 0, 0, 0, 0, 0 // Screen X / 2 (S15) (Signed Integer), Screen X / 2 (S0.15) (Signed Fraction), Screen Y / 2 (S15) (Signed Integer), Screen Y / 2 (S0.15) (Signed Fraction)
 
 align(8) // Align 64-Bit
 RDPBuffer:
@@ -124,7 +134,7 @@ arch n64.rdp
   Fill_Rectangle 319<<2,239<<2, 0<<2,0<<2 // Fill Rectangle: XL 319.0,YL 239.0, XH 0.0,YH 0.0
 
   Set_Other_Modes SAMPLE_TYPE|BI_LERP_0|ALPHA_DITHER_SEL_NO_DITHER|B_M1A_0_2|IMAGE_READ_EN|Z_SOURCE_SEL|Z_COMPARE_EN|Z_UPDATE_EN // Set Other Modes
-  Set_Combine_Mode $0,$00, 0,0, $1,$01, $0,$F, 1,0, 0,0,0, 7,7,7 // Set Combine Mode: SubA RGB0,MulRGB0, SubA Alpha0,MulAlpha0, SubA RGB1,MulRGB1, SubB RGB0,SubB RGB1, SubA Alpha1,MulAlpha1, AddRGB0,SubB Alpha0,AddAlpha0, AddRGB1,SubB Alpha1,AddAlpha1
+  Set_Combine_Mode $0,$00, 0,0, $1,$01, $0,$F, 1,0, 0,0,0, 7,7,7 // Set Combine Mode: SubA RGB0,MulRGB0, SubA Alpha0,MulAlpha0, SubA RGB1,MulRGB1, SubB RGB0,SubB RGB1, SubA Alpha1, MulAlpha1, AddRGB0,SubB Alpha0,AddAlpha0, AddRGB1,SubB Alpha1,AddAlpha1
 
   Set_Blend_Color $FFFFFFFF // Set Blend Color: R 255,G 255,B 255,A 255
 
