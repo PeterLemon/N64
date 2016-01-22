@@ -2076,7 +2076,7 @@ RSPVRCPCode:
 base $0000 // Set Base Of RSP Code Object To Zero
   lqv v0[e0],$00(r0) // V0 = 128-Bit DMEM $000(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   lqv v1[e0],$01(r0) // V1 = 128-Bit DMEM $010(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
-  vrcp v0,v1[e0] // V0 = V0 / V1[0], Vector Element Scalar Reciprocal (Single Precision): VRCP VD,VS,VT[ELEMENT]
+  vrcp v0[e0],v1[e0] // V0 = V0 / V1[0], Vector Element Scalar Reciprocal (Single Precision): VRCP VD[ELEMENT],VT[ELEMENT]
   sqv v0[e0],$00(r0) // 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   vsar v0,v0[e8] // V0 = Vector Accumulator HI, Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT]
   sqv v0[e0],$01(r0) // 128-Bit DMEM $010(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
@@ -2100,7 +2100,7 @@ RSPVRSQCode:
 base $0000 // Set Base Of RSP Code Object To Zero
   lqv v0[e0],$00(r0) // V0 = 128-Bit DMEM $000(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   lqv v1[e0],$01(r0) // V1 = 128-Bit DMEM $010(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
-  vrsq v0,v1[e0] // V0 = V0 SQRT V1[0], Vector Element Scalar SQRT Reciprocal (Single Precision): VRSQ VD,VS,VT[ELEMENT]
+  vrsq v0[e0],v1[e0] // V0 = V0 SQRT V1[0], Vector Element Scalar SQRT Reciprocal (Single Precision): VRSQ VD[ELEMENT],VT[ELEMENT]
   sqv v0[e0],$00(r0) // 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   vsar v0,v0[e8] // V0 = Vector Accumulator HI, Vector Accumulator Read: VSAR VD,VS,VT[ELEMENT]
   sqv v0[e0],$01(r0) // 128-Bit DMEM $010(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
