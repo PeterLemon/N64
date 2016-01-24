@@ -172,7 +172,7 @@ RSPPALStart:
   mtc0 t0,c2 // Store DMA Length To SP Read Length Register ($A4040008)
 
   PALDATADMAREADBusy:
-    mfc0 t0,c4 // T2 = RSP Status Register ($A4040010)
+    mfc0 t0,c4 // T0 = RSP Status Register ($A4040010)
     andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,PALDATADMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
@@ -194,7 +194,7 @@ RSPPALStart:
   mtc0 t0,c2 // Store DMA Length To SP Read Length Register ($A4040008)
 
   PALDMAREADBusy:
-    mfc0 t0,c4 // T2 = RSP Status Register ($A4040010)
+    mfc0 t0,c4 // T0 = RSP Status Register ($A4040010)
     andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,PALDMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
@@ -262,7 +262,7 @@ LoopColors:
   mtc0 t0,c3 // Store DMA Length To SP Write Length Register ($A404000C)
 
   PALDMAWRITEBusy:
-    mfc0 t0,c4 // T2 = RSP Status Register ($A4040010)
+    mfc0 t0,c4 // T0 = RSP Status Register ($A4040010)
     andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,PALDMAWRITEBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
@@ -290,7 +290,7 @@ RSPTILEStart:
   mtc0 t0,c2 // Store DMA Length To SP Read Length Register ($A4040008)
 
   SHIFTDMAREADBusy:
-    mfc0 t0,c4 // T2 = RSP Status Register ($A4040010)
+    mfc0 t0,c4 // T0 = RSP Status Register ($A4040010)
     andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,SHIFTDMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
@@ -313,7 +313,7 @@ LoopTileBlocks:
   mtc0 t0,c2 // Store DMA Length To SP Read Length Register ($A4040008)
 
   TILEDMAREADBusy:
-    mfc0 t0,c4 // T2 = RSP Status Register ($A4040010)
+    mfc0 t0,c4 // T0 = RSP Status Register ($A4040010)
     andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,TILEDMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
@@ -598,7 +598,7 @@ LoopTiles:
   mtc0 t0,c3 // Store DMA Length To SP Write Length Register ($A404000C)
 
   TILEDMAWRITEBusy:
-    mfc0 t0,c4 // T2 = RSP Status Register ($A4040010)
+    mfc0 t0,c4 // T0 = RSP Status Register ($A4040010)
     andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,TILEDMAWRITEBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
