@@ -173,7 +173,7 @@ RSPPALStart:
 
   PALDATADMAREADBusy:
     mfc0 t0,c4 // T2 = RSP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
+    andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,PALDATADMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
@@ -195,7 +195,7 @@ RSPPALStart:
 
   PALDMAREADBusy:
     mfc0 t0,c4 // T2 = RSP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
+    andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,PALDMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
@@ -263,7 +263,7 @@ LoopColors:
 
   PALDMAWRITEBusy:
     mfc0 t0,c4 // T2 = RSP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
+    andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,PALDMAWRITEBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
@@ -291,7 +291,7 @@ RSPTILEStart:
 
   SHIFTDMAREADBusy:
     mfc0 t0,c4 // T2 = RSP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
+    andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,SHIFTDMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
@@ -314,7 +314,7 @@ LoopTileBlocks:
 
   TILEDMAREADBusy:
     mfc0 t0,c4 // T2 = RSP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
+    andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,TILEDMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
@@ -599,7 +599,7 @@ LoopTiles:
 
   TILEDMAWRITEBusy:
     mfc0 t0,c4 // T2 = RSP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
+    andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,TILEDMAWRITEBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
