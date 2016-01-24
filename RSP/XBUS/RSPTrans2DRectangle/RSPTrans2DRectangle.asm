@@ -19,7 +19,7 @@ Start:
 
   // Switch to RSP DMEM for RDP Commands
   lui a0,DPC_BASE // A0 = Reality Display Processer Control Interface Base Register ($A4100000)
-  lli t0,$00000002 // T0 = DP Status To Use RSP DMEM (Set XBUS DMEM DMA)
+  lli t0,SET_XBS // T0 = DP Status To Use RSP DMEM (Set XBUS DMEM DMA)
   sw t0,DPC_STATUS(a0) // Store DP Status To DP Status Register ($A410000C)
 
   // Load RSP Code To IMEM
