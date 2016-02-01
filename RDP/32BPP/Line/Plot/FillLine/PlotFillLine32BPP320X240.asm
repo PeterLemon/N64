@@ -66,8 +66,18 @@ Loop:
   lwc1 f5,4(a0)  // F5 = Line Y0 (YL)
   lwc1 f6,8(a0)  // F6 = Line X1 (XH)
   lwc1 f7,12(a0) // F7 = Line Y1 (YH)
-  mov.s f8,f0 // F8 = 0.0 (DxDy)
 
+  // Convert To Int then Back To Float (Round Numbers)
+  round.w.s f4
+  round.w.s f5
+  round.w.s f6
+  round.w.s f7
+  cvt.s.w f4
+  cvt.s.w f5
+  cvt.s.w f6
+  cvt.s.w f7
+
+  mov.s f8,f0 // F8 = 0.0 (DxDy)
 
   la a0,$A0000000|(FillLine&$3FFFFF) // A0 = Fill Line RAM Offset
 
@@ -134,7 +144,7 @@ Loop:
   mul.s f9,f6,f2 // Convert To S.15.16
   cvt.w.s f9 // F9 = XH
   mfc1 t0,f9 // T0 = XH
-  sw t0,16(a0) // Store RDP Command (WORD 2 HI) 
+  sw t0,16(a0) // Store RDP Command (WORD 2 HI)
 
   j Loop
   nop // Delay Slot

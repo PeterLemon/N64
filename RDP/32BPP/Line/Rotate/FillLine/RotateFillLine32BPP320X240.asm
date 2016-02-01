@@ -320,6 +320,17 @@ Loop:
   lwc1 f17,4(a0)  // F17 = Line Y0 (YL)
   lwc1 f18,8(a0)  // F18 = Line X1 (XH)
   lwc1 f19,12(a0) // F19 = Line Y1 (YH)
+
+  // Convert To Int then Back To Float (Round Numbers)
+  round.w.s f16
+  round.w.s f17
+  round.w.s f18
+  round.w.s f19
+  cvt.s.w f16
+  cvt.s.w f17
+  cvt.s.w f18
+  cvt.s.w f19
+
   mov.s f20,f0 // F20 = 0.0 (DxDy)
 
   la a0,$A0000000|(FillLine&$3FFFFF) // A0 = RDP Fill Line RAM Offset
