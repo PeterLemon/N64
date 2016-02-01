@@ -48,6 +48,12 @@ macro Calc2D() { // Calculate X,Y 2D
   div.s f19,f21 // Y = (ScreenY / 2) - Y / Z 
   sub.s f19,f16,f19
 
+  // Convert To Int then Back To Float (Round Numbers)
+  round.w.s f18
+  round.w.s f19
+  cvt.s.w f18
+  cvt.s.w f19
+
   swc1 f18,0(a3)
   addi a3,4
   swc1 f19,0(a3)
