@@ -128,6 +128,20 @@ Loop:
   lwc1 f7,16(a0) // F7 = Triangle X2 (XH/XM)
   lwc1 f8,20(a0) // F8 = Triangle Y2 (YH)
 
+  // Convert To Int then Back To Float (Round Numbers)
+  round.w.s f3
+  round.w.s f4
+  round.w.s f5
+  round.w.s f6
+  round.w.s f7
+  round.w.s f8
+  cvt.s.w f3
+  cvt.s.w f4
+  cvt.s.w f5
+  cvt.s.w f6
+  cvt.s.w f7
+  cvt.s.w f8
+
   la a0,$A0000000|(FillTri&$3FFFFF) // A0 = Fill Triangle RAM Offset
 
 
