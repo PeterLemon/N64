@@ -1,4 +1,4 @@
-// N64 "Mario Kart 64" Hack by krom (Peter Lemon):
+// N64 "Mario Kart 64" 1500cc Hack by krom (Peter Lemon):
 
 endian msb // N64 MIPS requires Big-Endian Encoding (Most Significant Bit)
 output "Mario Kart 64 1500cc.z64", create
