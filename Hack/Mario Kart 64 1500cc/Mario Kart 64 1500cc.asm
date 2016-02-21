@@ -10,6 +10,191 @@ db "MARIOKART641500CC          " // $00000020 - PROGRAM TITLE (27 Byte ASCII Str
 //-----------------
 // Kart Properties
 //-----------------
+origin $000E2F40
+             // ROM       RAM         Kart *Unknown*
+dd $0F12D430 // $000E2F40 $800E2340 - Mario  (4 Bytes) ($0F12D430)
+dd $0F09ABFC // $000E2F44 $800E2344 - Luigi  (4 Bytes) ($0F09ABFC)
+dd $0F1C4958 // $000E2F48 $800E2348 - Peach  (4 Bytes) ($0F1C4958)
+dd $0F386858 // $000E2F4C $800E234C - Toad   (4 Bytes) ($0F386858)
+dd $0F438874 // $000E2F50 $800E2350 - Yoshi  (4 Bytes) ($0F438874)
+dd $0F2F5DEC // $000E2F54 $800E2354 - D.K.   (4 Bytes) ($0F2F5DEC)
+dd $0F258AC8 // $000E2F58 $800E2358 - Wario  (4 Bytes) ($0F258AC8)
+dd $0F4F8C88 // $000E2F5C $800E235C - Bowser (4 Bytes) ($0F4F8C88)
+
+origin $000E2F60
+             // ROM       RAM         Kart *Unknown*
+dd $C1200000 // $000E2F60 $800E2360 - Mario  (4 Bytes) ($C1200000)
+dd $C1200000 // $000E2F64 $800E2364 - Luigi  (4 Bytes) ($C1200000)
+dd $C1200000 // $000E2F68 $800E2368 - Peach  (4 Bytes) ($C1200000)
+dd $C1200000 // $000E2F6C $800E236C - Toad   (4 Bytes) ($C1200000)
+dd $C1200000 // $000E2F70 $800E2370 - Yoshi  (4 Bytes) ($C1200000)
+dd $C1200000 // $000E2F74 $800E2374 - D.K.   (4 Bytes) ($C1200000)
+dd $C1200000 // $000E2F78 $800E2378 - Wario  (4 Bytes) ($C1200000)
+dd $C1200000 // $000E2F7C $800E237C - Bowser (4 Bytes) ($C1200000)
+
+origin $000E2F80
+             // ROM       RAM         Kart *Unknown*
+dd $C1700000 // $000E2F80 $800E2380 - Mario  (4 Bytes) ($C1700000)
+dd $C1700000 // $000E2F84 $800E2384 - Luigi  (4 Bytes) ($C1700000)
+dd $C1700000 // $000E2F88 $800E2388 - Peach  (4 Bytes) ($C1700000)
+dd $C1700000 // $000E2F8C $800E238C - Toad   (4 Bytes) ($C1700000)
+dd $C1700000 // $000E2F90 $800E2390 - Yoshi  (4 Bytes) ($C1700000)
+dd $C1700000 // $000E2F94 $800E2394 - D.K.   (4 Bytes) ($C1700000)
+dd $C1700000 // $000E2F98 $800E2398 - Wario  (4 Bytes) ($C1700000)
+dd $C1700000 // $000E2F9C $800E239C - Bowser (4 Bytes) ($C1700000)
+
+origin $000E2FA0
+             // ROM       RAM         Kart *Unknown*
+dd $C1A00000 // $000E2FA0 $800E23A0 - Mario  (4 Bytes) ($C1A00000)
+dd $C1A00000 // $000E2FA4 $800E23A4 - Luigi  (4 Bytes) ($C1A00000)
+dd $C1A00000 // $000E2FA8 $800E23A8 - Peach  (4 Bytes) ($C1A00000)
+dd $C1A00000 // $000E2FAC $800E23AC - Toad   (4 Bytes) ($C1A00000)
+dd $C1A00000 // $000E2FB0 $800E23B0 - Yoshi  (4 Bytes) ($C1A00000)
+dd $C1A00000 // $000E2FB4 $800E23B4 - D.K.   (4 Bytes) ($C1A00000)
+dd $C1A00000 // $000E2FB8 $800E23B8 - Wario  (4 Bytes) ($C1A00000)
+dd $C1A00000 // $000E2FBC $800E23BC - Bowser (4 Bytes) ($C1A00000)
+
+origin $000E2FC0
+             // ROM       RAM         Kart *Unknown*
+dd $C1700000 // $000E2FC0 $800E23C0 - Mario  (4 Bytes) ($C1700000)
+dd $C1700000 // $000E2FC4 $800E23C4 - Luigi  (4 Bytes) ($C1700000)
+dd $C1700000 // $000E2FC8 $800E23C8 - Peach  (4 Bytes) ($C1700000)
+dd $C1700000 // $000E2FCC $800E23CC - Toad   (4 Bytes) ($C1700000)
+dd $C1700000 // $000E2FD0 $800E23D0 - Yoshi  (4 Bytes) ($C1700000)
+dd $C1700000 // $000E2FD4 $800E23D4 - D.K.   (4 Bytes) ($C1700000)
+dd $C1700000 // $000E2FD8 $800E23D8 - Wario  (4 Bytes) ($C1700000)
+dd $C1700000 // $000E2FDC $800E23DC - Bowser (4 Bytes) ($C1700000)
+
+origin $000E2FE0
+             // ROM       RAM         Kart *Unknown*
+dd $C1F00000 // $000E2FE0 $800E23E0 - Mario  (4 Bytes) ($C1F00000)
+dd $C1F00000 // $000E2FE4 $800E23E4 - Luigi  (4 Bytes) ($C1F00000)
+dd $C1F00000 // $000E2FE8 $800E23E8 - Peach  (4 Bytes) ($C1F00000)
+dd $C1F00000 // $000E2FEC $800E23EC - Toad   (4 Bytes) ($C1F00000)
+dd $C1F00000 // $000E2FF0 $800E23F0 - Yoshi  (4 Bytes) ($C1F00000)
+dd $C1F00000 // $000E2FF4 $800E23F4 - D.K.   (4 Bytes) ($C1F00000)
+dd $C1F00000 // $000E2FF8 $800E23F8 - Wario  (4 Bytes) ($C1F00000)
+dd $C1F00000 // $000E2FFC $800E23FC - Bowser (4 Bytes) ($C1F00000)
+
+
+
+
+origin $000E3014
+             // ROM       RAM         Kart *Unknown*
+dd $41E00000 // $000E3014 $800E2414 - Mario  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3018 $800E2418 - Luigi  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E301C $800E241C - Peach  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3020 $800E2420 - Toad   (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3024 $800E2424 - Yoshi  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3028 $800E2428 - D.K.   (4 Bytes) ($41E00000)
+dd $41E00000 // $000E302C $800E242C - Wario  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3030 $800E2430 - Bowser (4 Bytes) ($41E00000)
+
+origin $000E3034
+             // ROM       RAM         Kart *Unknown*
+dd $41E00000 // $000E3034 $800E2434 - Mario  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3038 $800E2438 - Luigi  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E303C $800E243C - Peach  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3040 $800E2440 - Toad   (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3044 $800E2444 - Yoshi  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3048 $800E2448 - D.K.   (4 Bytes) ($41E00000)
+dd $41E00000 // $000E304C $800E244C - Wario  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3050 $800E2450 - Bowser (4 Bytes) ($41E00000)
+
+origin $000E3054
+             // ROM       RAM         Kart *Unknown*
+dd $420C0000 // $000E3054 $800E2454 - Mario  (4 Bytes) ($420C0000)
+dd $420C0000 // $000E3058 $800E2458 - Luigi  (4 Bytes) ($420C0000)
+dd $420C0000 // $000E305C $800E245C - Peach  (4 Bytes) ($420C0000)
+dd $420C0000 // $000E3060 $800E2460 - Toad   (4 Bytes) ($420C0000)
+dd $420C0000 // $000E3064 $800E2464 - Yoshi  (4 Bytes) ($420C0000)
+dd $420C0000 // $000E3068 $800E2468 - D.K.   (4 Bytes) ($420C0000)
+dd $420C0000 // $000E306C $800E246C - Wario  (4 Bytes) ($420C0000)
+dd $420C0000 // $000E3070 $800E2470 - Bowser (4 Bytes) ($420C0000)
+
+origin $000E3074
+             // ROM       RAM         Kart *Unknown*
+dd $41E00000 // $000E3074 $800E2474 - Mario  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3078 $800E2478 - Luigi  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E307C $800E247C - Peach  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3080 $800E2480 - Toad   (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3084 $800E2484 - Yoshi  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3088 $800E2488 - D.K.   (4 Bytes) ($41E00000)
+dd $41E00000 // $000E308C $800E248C - Wario  (4 Bytes) ($41E00000)
+dd $41E00000 // $000E3090 $800E2490 - Bowser (4 Bytes) ($41E00000)
+
+origin $000E3094
+             // ROM       RAM         Kart *Unknown*
+dd $42400000 // $000E3094 $800E2494 - Mario  (4 Bytes) ($42400000)
+dd $42400000 // $000E3098 $800E2498 - Luigi  (4 Bytes) ($42400000)
+dd $42400000 // $000E309C $800E249C - Peach  (4 Bytes) ($42400000)
+dd $42400000 // $000E30A0 $800E24A0 - Toad   (4 Bytes) ($42400000)
+dd $42400000 // $000E30A4 $800E24A4 - Yoshi  (4 Bytes) ($42400000)
+dd $42400000 // $000E30A8 $800E24A8 - D.K.   (4 Bytes) ($42400000)
+dd $42400000 // $000E30AC $800E24AC - Wario  (4 Bytes) ($42400000)
+dd $42400000 // $000E30B0 $800E24B0 - Bowser (4 Bytes) ($42400000)
+
+
+
+
+origin $000E30C8
+             // ROM       RAM         Kart *Unknown*
+dd $45524000 // $000E30C8 $800E24C8 - Mario  (4 Bytes) ($45524000)
+dd $45524000 // $000E30CC $800E24CC - Luigi  (4 Bytes) ($45524000)
+dd $45581000 // $000E30D0 $800E24D0 - Peach  (4 Bytes) ($45581000)
+dd $45581000 // $000E30D4 $800E24D4 - Toad   (4 Bytes) ($45581000)
+dd $45524000 // $000E30D8 $800E24D8 - Yoshi  (4 Bytes) ($45524000)
+dd $45524000 // $000E30DC $800E24DC - D.K.   (4 Bytes) ($45524000)
+dd $45581000 // $000E30E0 $800E24E0 - Wario  (4 Bytes) ($45581000)
+dd $45524000 // $000E30E4 $800E24E4 - Bowser (4 Bytes) ($45524000)
+
+origin $000E30E8
+             // ROM       RAM         Kart *Unknown*
+dd $45704000 // $000E30E8 $800E24E8 - Mario  (4 Bytes) ($45704000)
+dd $45704000 // $000E30EC $800E24EC - Luigi  (4 Bytes) ($45704000)
+dd $45767000 // $000E30F0 $800E24F0 - Peach  (4 Bytes) ($45767000)
+dd $45767000 // $000E30F4 $800E24F4 - Toad   (4 Bytes) ($45767000)
+dd $45704000 // $000E30F8 $800E24F8 - Yoshi  (4 Bytes) ($45704000)
+dd $45704000 // $000E30FC $800E24FC - D.K.   (4 Bytes) ($45704000)
+dd $45767000 // $000E3100 $800E2500 - Wario  (4 Bytes) ($45767000)
+dd $45704000 // $000E3104 $800E2504 - Bowser (4 Bytes) ($45704000)
+
+origin $000E3108
+             // ROM       RAM         Kart *Unknown*
+dd $45800000 // $000E3108 $800E2508 - Mario  (4 Bytes) ($45800000)
+dd $45800000 // $000E310C $800E250C - Luigi  (4 Bytes) ($45800000)
+dd $45833800 // $000E3110 $800E2510 - Peach  (4 Bytes) ($45833800)
+dd $45833800 // $000E3114 $800E2514 - Toad   (4 Bytes) ($45833800)
+dd $45800000 // $000E3118 $800E2518 - Yoshi  (4 Bytes) ($45800000)
+dd $45800000 // $000E311C $800E251C - D.K.   (4 Bytes) ($45800000)
+dd $45833800 // $000E3120 $800E2520 - Wario  (4 Bytes) ($45833800)
+dd $45800000 // $000E3124 $800E2524 - Bowser (4 Bytes) ($45800000)
+
+origin $000E3128
+             // ROM       RAM         Kart *Unknown*
+dd $45704000 // $000E3128 $800E2528 - Mario  (4 Bytes) ($45704000)
+dd $45704000 // $000E312C $800E252C - Luigi  (4 Bytes) ($45704000)
+dd $45767000 // $000E3130 $800E2530 - Peach  (4 Bytes) ($45767000)
+dd $45767000 // $000E3134 $800E2534 - Toad   (4 Bytes) ($45767000)
+dd $45704000 // $000E3138 $800E2538 - Yoshi  (4 Bytes) ($45704000)
+dd $45704000 // $000E313C $800E253C - D.K.   (4 Bytes) ($45704000)
+dd $45767000 // $000E3140 $800E2540 - Wario  (4 Bytes) ($45767000)
+dd $45704000 // $000E3144 $800E2544 - Bowser (4 Bytes) ($45704000)
+
+origin $000E3148
+             // ROM       RAM         Kart *Unknown*
+dd $45161000 // $000E3128 $800E2528 - Mario  (4 Bytes) ($45161000)
+dd $45161000 // $000E312C $800E252C - Luigi  (4 Bytes) ($45161000)
+dd $45161000 // $000E3130 $800E2530 - Peach  (4 Bytes) ($45161000)
+dd $45161000 // $000E3134 $800E2534 - Toad   (4 Bytes) ($45161000)
+dd $45161000 // $000E3138 $800E2538 - Yoshi  (4 Bytes) ($45161000)
+dd $45161000 // $000E313C $800E253C - D.K.   (4 Bytes) ($45161000)
+dd $45161000 // $000E3140 $800E2540 - Wario  (4 Bytes) ($45161000)
+dd $45161000 // $000E3144 $800E2544 - Bowser (4 Bytes) ($45161000)
+
+
+
+
 origin $000E317C
              // ROM       RAM         50cc Kart Speed
 dd $43F10000 // $000E317C $800E257C - Mario  (4 Bytes) ($43910000)
