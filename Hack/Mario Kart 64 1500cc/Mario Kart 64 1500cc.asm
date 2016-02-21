@@ -4,10 +4,12 @@ endian msb // N64 MIPS requires Big-Endian Encoding (Most Significant Bit)
 output "Mario Kart 64 1500cc.z64", create
 origin $0000000; insert "Mario Kart 64 (U) [!].z64" // Include USA Mario Kart 64 N64 ROM
 
+origin $00000020
+db "MARIOKART641500CC          " // $00000020 - PROGRAM TITLE (27 Byte ASCII String, Use Spaces For Unused Bytes)
+
 //-----------------
 // Kart Properties
 //-----------------
-
 origin $000E317C
              // ROM       RAM         50cc Kart Speed
 dd $43F10000 // $000E317C $800E257C - Mario  (4 Bytes) ($43910000)
