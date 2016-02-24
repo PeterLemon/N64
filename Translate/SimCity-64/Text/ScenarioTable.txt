@@ -1,4 +1,9 @@
-﻿シナリオ１：街おこし大作戦！
+﻿EUC-JP
+
+----------------
+Scenario Table:
+----------------
+シナリオ１：街おこし大作戦！
 Scenario 1: City Revitalization Battle!
 $11A6530 (Line 1)
 A5 B7	A5 CA	A5 EA	A5 AA	A3 B1	A1 A7	B3 B9	A4 AA	A4 B3	A4 B7	C2 E7	BA EE	C0 EF	A1 AA	00 00	00 00	| Original Japanese Hex

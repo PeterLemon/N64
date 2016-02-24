@@ -1,4 +1,9 @@
-﻿始めての街作り
+﻿EUC-JP
+
+-----------------
+Dr. Wright Icon:
+-----------------
+始めての街作り
 About 1st Time City Planning
 $0FE92A0 (Line 1)
 BB CF	A4 E1	A4 C6	A4 CE	B3 B9	BA EE	A4 EA	0A	| Original Japanese Hex
@@ -603,3 +608,200 @@ A1 A1	A1 A1	BF CD	C3 B5	A4 B7	A5 A4	A5 D9	A5 F3	A5 C8	00	| Original Japanese Hex
  #   	 #   	 #  人	 #  探	 #  し	 #  イ	 #  ベ	 #  ン	 #  ト	 #	| Original Japanese Text
  #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
 00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+
+
+-----------------------------------------
+Dr. Wright Icon / City Plan / Industrial
+-----------------------------------------
+市民が街で生活を営むためには、
+In order to citizens engaged in life in the city it is,
+$1033BF0 (Line 1)
+BB D4	CC B1	A4 AC	B3 B9	A4 C7	C0 B8	B3 E8	A4 F2	B1 C4	A4 E0	A4 BF	A4 E1	A4 CB	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  市	 #  民	 #  が	 #  街	 #  で	 #  生	 #  活	 #  を	 #  営	 #  む	 #  た	 #  め	 #  に	 #  は	 #  、	LF	| Original Japanese Text
+ F  o	 r   	 c  i	 t  i	 z  e	 n  s	    t	 o LF	 e  n	 g  a	 g  e	    i	 n   	 c  i	 t  y	  	| New English Text
+46 6F	72 20	63 69	74 69	7A 65	6E 73	20 74	6F 0A	65 6E	67 61	67 65	20 69	6E 20	63 69	74 79	20	| New English Hex
+食料や衣服、日用雑貨などといった
+Food and clothing, such as a grocery, such as
+$1033C0F (Line 2)
+BF A9	CE C1	A4 E4	B0 E1	C9 FE	A1 A2	C6 FC	CD D1	BB A8	B2 DF	A4 CA	A4 C9	A4 C8	A4 A4	A4 C3	A4 BF	0A	| Original Japanese Hex
+ #  食	 #  料	 #  や	 #  衣	 #  服	 #  、	 #  日	 #  用	 #  雑	 #  貨	 #  な	 #  ど	 #  と	 #  い	 #  っ	 #  た	LF	| Original Japanese Text
+ l  i	 f  e	LF  a	    w	 i  d	 e   	 v  a	 r  i	 e  t	 y   	 o  f	LF  p	 r  o	 d  u	 c  t	 s  	 a	| New English Text
+6C 69	66 65	0A 61	20 77	69 64	65 20	76 61	72 69	65 74	79 20	6F 66	0A 70	72 6F	64 75	63 74	73 20	61	| New English Hex
+実に様々な製品が必要です。
+It requires a wide variety of products.
+$1033C30 (Line 3)
+BC C2	A4 CB	CD CD	A1 B9	A4 CA	C0 BD	C9 CA	A4 AC	C9 AC	CD D7	A4 C7	A4 B9	A1 A3	0A 0A	| Original Japanese Hex
+ #  実	 #  に	 #  様	 #  々	 #  な	 #  製	 #  品	 #  が	 #  必	 #  要	 #  で	 #  す	 #  。	LF LF	| Original Japanese Text
+ r  e	LF  r	 e  q	 u  i	 r  e	 d   	 s  u	 c  h	    a	 s LF	 f  o	 o  d	    &	    c	| New English Text
+72 65	0A 72	65 71	75 69	72 65	64 20	73 75	63 68	20 61	73 0A	66 6F	6F 64	20 26	20 63	| New English Hex
+まずは、製品を生産する工場が建ち並ぶ、
+First of all, we lined factory to produce the product,
+$1033C4C (Line 4)
+A4 DE	A4 BA	A4 CF	A1 A2	C0 BD	C9 CA	A4 F2	C0 B8	BB BA	A4 B9	A4 EB	B9 A9	BE EC	A4 AC	B7 FA	A4 C1	CA C2	A4 D6	A1 A2	0A	| Original Japanese Hex
+ #  ま	 #  ず	 #  は	 #  、	 #  製	 #  品	 #  を	 #  生	 #  産	 #  す	 #  る	 #  工	 #  場	 #  が	 #  建	 #  ち	 #  並	 #  ぶ	 #  、	LF	| Original Japanese Text
+ l  o	 t  h	 i  n	 g  .	LF LF	 L  e	 t  '	 s   	 s  p	 e  c	 i  f	 y   	 a  n	LF  I	 n  d	 u  s	 t  r	 i  a	 l   	 d	| New English Text
+6C 6F	74 68	69 6E	67 2E	0A 0A	4C 65	74 27	73 20	73 70	65 63	69 66	79 20	61 6E	0A 49	6E 64	75 73	74 72	69 61	6C 20	64	| New English Hex
+工業地区を指定しましょう。
+Let's specify the industrial district.
+$1033C73 (Line 5)
+B9 A9	B6 C8	C3 CF	B6 E8	A4 F2	BB D8	C4 EA	A4 B7	A4 DE	A4 B7	A4 E7	A4 A6	A1 A3	00 00	00	| Original Japanese Hex
+ #  工	 #  業	 #  地	 #  区	 #  を	 #  指	 #  定	 #  し	 #  ま	 #  し	 #  ょ	 #  う	 #  。	 #  #	 #	| Original Japanese Text
+ i  s	 t  r	 i  c	 t LF	 w  i	 t  h	    F	 a  c	 t  o	 r  i	 e  s	 .  #	 #  #	 #  #	 #	| New English Text
+69 73	74 72	69 63	74 0A	77 69	74 68	20 46	61 63	74 6F	72 69	65 73	2E 00	00 00	00 00	00	| New English Hex
+
+工業地区を指定するには、
+To specify the industrial district,
+$1033C90 (Line 1)
+B9 A9	B6 C8	C3 CF	B6 E8	A4 F2	BB D8	C4 EA	A4 B9	A4 EB	A4 CB	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  工	 #  業	 #  地	 #  区	 #  を	 #  指	 #  定	 #  す	 #  る	 #  に	 #  は	 #  、	LF	| Original Japanese Text
+ T  o	    s	 p  e	 c  i	 f  y	    t	 h  e	LF  i	 n  d	 u  s	 t  r	 i  a	 l	| New English Text
+54 6F	20 73	70 65	63 69	66 79	20 74	68 65	0A 69	6E 64	75 73	74 72	69 61	6C	| New English Hex
+メインメニューからツールを
+you must select the tool
+$1033CA9 (Line 2)
+A5 E1	A5 A4	A5 F3	A5 E1	A5 CB	A5 E5	A1 BC	A4 AB	A4 E9	A5 C4	A1 BC	A5 EB	A4 F2	0A	| Original Japanese Hex
+ #  メ	 #  イ	 #  ン	 #  メ	 #  ニ	 #  ュ	 #  ー	 #  か	 #  ら	 #  ツ	 #  ー	 #  ル	 #  を	LF	| Original Japanese Text
+    d	 i  s	 t  r	 i  c	 t LF	 y  o	 u   	 m  u	 s  t	    s	 e  l	 e  c	 t   	 t	| New English Text
+20 64	69 73	74 72	69 63	74 0A	79 6F	75 20	6D 75	73 74	20 73	65 6C	65 63	74 20	74	| New English Hex
+選択しなければなりません。
+from the main menu.
+$1033CC4 (Line 3)
+C1 AA	C2 F2	A4 B7	A4 CA	A4 B1	A4 EC	A4 D0	A4 CA	A4 EA	A4 DE	A4 BB	A4 F3	A1 A3	0A 0A	| Original Japanese Hex
+ #  選	 #  択	 #  し	 #  な	 #  け	 #  れ	 #  ば	 #  な	 #  り	 #  ま	 #  せ	 #  ん	 #  。	LF LF	| Original Japanese Text
+ h  e	LF  t	 o  o	 l   	 f  r	 o  m	    t	 h  e	    M	 a  i	 n LF	 M  e	 n  u	 . LF	| New English Text
+68 65	0A 74	6F 6F	6C 20	66 72	6F 6D	20 74	68 65	20 4D	61 69	6E 0A	4D 65	6E 75	2E 0A	| New English Hex
+ＺトリガーかＬトリガーで
+Use the Z-Trigger or L-Trigger
+$1033CE0 (Line 4)
+A3 DA	A5 C8	A5 EA	A5 AC	A1 BC	A4 AB	A3 CC	A5 C8	A5 EA	A5 AC	A1 BC	A4 C7	0A	| Original Japanese Hex
+ #  Ｚ	 #  ト	 #  リ	 #  ガ	 #  ー	 #  か	 #  Ｌ	 #  ト	 #  リ	 #  ガ	 #  ー	 #  で	LF	| Original Japanese Text
+ U  s	 e   	 t  h	 e LF	 Z   	 o  r	    L	    T	 r  i	 g  g	 e  r	    t	 o	| New English Text
+55 73	65 20	74 68	65 0A	5A 20	6F 72	20 4C	20 54	72 69	67 67	65 72	20 74	6F	| New English Hex
+メインメニューを表示し、
+to display the main menu,
+$1033CF9 (Line 5)
+A5 E1	A5 A4	A5 F3	A5 E1	A5 CB	A5 E5	A1 BC	A4 F2	C9 BD	BC A8	A4 B7	A1 A2	0A	| Original Japanese Hex
+ #  メ	 #  イ	 #  ン	 #  メ	 #  ニ	 #  ュ	 #  ー	 #  を	 #  表	 #  示	 #  し	 #  、	LF	| Original Japanese Text
+LF  d	 i  s	 p  l	 a  y	    t	 h  e	    M	 a  i	 n LF	 M  e	 n  u	 ,   	 &	| New English Text
+0A 64	69 73	70 6C	61 79	20 74	68 65	20 4D	61 69	6E 0A	4D 65	6E 75	2C 20	26	| New English Hex
+区画アイコン内の低密度工業地区を
+please select a low-density industrial district
+$1033D12 (Line 6)
+B6 E8	B2 E8	A5 A2	A5 A4	A5 B3	A5 F3	C6 E2	A4 CE	C4 E3	CC A9	C5 D9	B9 A9	B6 C8	C3 CF	B6 E8	A4 F2	0A	| Original Japanese Hex
+ #  区	 #  画	 #  ア	 #  イ	 #  コ	 #  ン	 #  内	 #  の	 #  低	 #  密	 #  度	 #  工	 #  業	 #  地	 #  区	 #  を	LF	| Original Japanese Text
+    s	 e  l	 e  c	 t   	 t  h	 e LF	 C  o	 m  p	 a  r	 t  m	 e  n	 t   	 I  c	 o  n	 .  #	 #  #	 #	| New English Text
+20 73	65 6C	65 63	74 20	74 68	65 0A	43 6F	6D 70	61 72	74 6D	65 6E	74 20	49 63	6F 6E	2E 00	00 00	00	| New English Hex
+選択してください。
+in the compartment icon.
+$1033D33 (Line 7)
+C1 AA	C2 F2	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00 00	00	| Original Japanese Hex
+ #  選	 #  択	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #  #	 #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+
+低密度工業地区を選択したら、
+Once you have selected the low-density industrial district,
+$1033D48 (Line 1)
+C4 E3	CC A9	C5 D9	B9 A9	B6 C8	C3 CF	B6 E8	A4 F2	C1 AA	C2 F2	A4 B7	A4 BF	A4 E9	A1 A2	0A	| Original Japanese Hex
+ #  低	 #  密	 #  度	 #  工	 #  業	 #  地	 #  区	 #  を	 #  選	 #  択	 #  し	 #  た	 #  ら	 #  、	LF	| Original Japanese Text
+ S  e	 l  e	 c  t	    I	 n  d	 u  s	 t  r	 i  a	 l LF	 D  i	 s  t	 r  i	 c  t	 ,   	 M	| New English Text
+53 65	6C 65	63 74	20 49	6E 64	75 73	74 72	69 61	6C 0A	44 69	73 74	72 69	63 74	2C 20	4D	| New English Hex
+平らな地面にカーソルを合わせ
+Move the cursor to the flat ground
+$1033D65 (Line 2)
+CA BF	A4 E9	A4 CA	C3 CF	CC CC	A4 CB	A5 AB	A1 BC	A5 BD	A5 EB	A4 F2	B9 E7	A4 EF	A4 BB	0A	| Original Japanese Hex
+ #  平	 #  ら	 #  な	 #  地	 #  面	 #  に	 #  カ	 #  ー	 #  ソ	 #  ル	 #  を	 #  合	 #  わ	 #  せ	LF	| Original Japanese Text
+ o  v	 e   	 t  h	 e LF	 C  u	 r  s	 o  r	    t	 o   	 s  o	 m  e	    f	 l  a	 t LF	 g	| New English Text
+6F 76	65 20	74 68	65 0A	43 75	72 73	6F 72	20 74	6F 20	73 6F	6D 65	20 66	6C 61	74 0A	67	| New English Hex
+Ａボタンを押します。
+Press the A button.
+$1033D82 (Line 3)
+A3 C1	A5 DC	A5 BF	A5 F3	A4 F2	B2 A1	A4 B7	A4 DE	A4 B9	A1 A3	0A 0A	| Original Japanese Hex
+ #  Ａ	 #  ボ	 #  タ	 #  ン	 #  を	 #  押	 #  し	 #  ま	 #  す	 #  。	LF LF	| Original Japanese Text
+ r  o	 u  n	 d   	 &   	 p  r	 e  s	 s   	 A  .	LF  M	 o  v	 e   	| New English Text
+72 6F	75 6E	64 20	26 20	70 72	65 73	73 20	41 2E	0A 4D	6F 76	65 20	| New English Hex
+Ａボタンを押したままカーソルを移動させ
+Move the cursor while holding down the A button
+$1033D98 (Line 4)
+A3 C1	A5 DC	A5 BF	A5 F3	A4 F2	B2 A1	A4 B7	A4 BF	A4 DE	A4 DE	A5 AB	A1 BC	A5 BD	A5 EB	A4 F2	B0 DC	C6 B0	A4 B5	A4 BB	0A	| Original Japanese Hex
+ #  Ａ	 #  ボ	 #  タ	 #  ン	 #  を	 #  押	 #  し	 #  た	 #  ま	 #  ま	 #  カ	 #  ー	 #  ソ	 #  ル	 #  を	 #  移	 #  動	 #  さ	 #  せ	LF	| Original Japanese Text
+ C  u	 r  s	 o  r	    w	 h  i	 l  e	LF  h	 o  l	 d  i	 n  g	    A	    t	 o   	 s  e	 t   	 a LF	 r  a	 n  g	 e   	 o	| New English Text
+43 75	72 73	6F 72	20 77	68 69	6C 65	0A 68	6F 6C	64 69	6E 67	20 41	20 74	6F 20	73 65	74 20	61 0A	72 61	6E 67	65 20	6F	| New English Hex
+指定範囲が６×６の大きさになったら
+Once the specified range is made to the size of the 6 × 6
+$1033DBF (Line 5)
+BB D8	C4 EA	C8 CF	B0 CF	A4 AC	A3 B6	A1 DF	A3 B6	A4 CE	C2 E7	A4 AD	A4 B5	A4 CB	A4 CA	A4 C3	A4 BF	A4 E9	0A	| Original Japanese Hex
+ #  指	 #  定	 #  範	 #  囲	 #  が	 #  ６	 #  ×	 #  ６	 #  の	 #  大	 #  き	 #  さ	 #  に	 #  な	 #  っ	 #  た	 #  ら	LF	| Original Japanese Text
+ f   	 6  x	 6   	 t  i	 l  e	 s LF	 t  h	 e  n	    r	 e  l	 e  a	 s  e	    A	 . LF	 Y  o	 u   	 s  h	 o	| New English Text
+66 20	36 78	36 20	74 69	6C 65	73 0A	74 68	65 6E	20 72	65 6C	65 61	73 65	20 41	2E 0A	59 6F	75 20	73 68	6F	| New English Hex
+Ａボタンを放します。
+Release the A button.
+$1033DE2 (Line 6)
+A3 C1	A5 DC	A5 BF	A5 F3	A4 F2	CA FC	A4 B7	A4 DE	A4 B9	A1 A3	0A 0A	| Original Japanese Hex
+ #  Ａ	 #  ボ	 #  タ	 #  ン	 #  を	 #  放	 #  し	 #  ま	 #  す	 #  。	LF LF	| Original Japanese Text
+ u  l	 d   	 s  e	 e   	 t  h	 e LF	 r  a	 n  g	 e   	 t  u	 r  n	| New English Text
+75 6C	64 20	73 65	65 20	74 68	65 0A	72 61	6E 67	65 20	74 75	72 6E	| New English Hex
+すると、指定した範囲のタイルが
+You should see the tiles of the
+$1033DF8 (Line 7)
+A4 B9	A4 EB	A4 C8	A1 A2	BB D8	C4 EA	A4 B7	A4 BF	C8 CF	B0 CF	A4 CE	A5 BF	A5 A4	A5 EB	A4 AC	0A	| Original Japanese Hex
+ #  す	 #  る	 #  と	 #  、	 #  指	 #  定	 #  し	 #  た	 #  範	 #  囲	 #  の	 #  タ	 #  イ	 #  ル	 #  が	LF	| Original Japanese Text
+    Y	 e  l	 l  o	 w  .	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+20 59	65 6C	6C 6F	77 2E	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+黄色く変わっているはずです。
+specified range has changed yellow.
+$1033E17 (Line 8)
+B2 AB	BF A7	A4 AF	CA D1	A4 EF	A4 C3	A4 C6	A4 A4	A4 EB	A4 CF	A4 BA	A4 C7	A4 B9	A1 A3	00	| Original Japanese Hex
+ #  黄	 #  色	 #  く	 #  変	 #  わ	 #  っ	 #  て	 #  い	 #  る	 #  は	 #  ず	 #  で	 #  す	 #  。	 #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00	| New English Hex
+
+これで工業地区の指定は完了です。
+This designation of the industrial district is complete.
+$1033E34 (Line 1)
+A4 B3	A4 EC	A4 C7	B9 A9	B6 C8	C3 CF	B6 E8	A4 CE	BB D8	C4 EA	A4 CF	B4 B0	CE BB	A4 C7	A4 B9	A1 A3	0A 0A	| Original Japanese Hex
+ #  こ	 #  れ	 #  で	 #  工	 #  業	 #  地	 #  区	 #  の	 #  指	 #  定	 #  は	 #  完	 #  了	 #  で	 #  す	 #  。	LF LF	| Original Japanese Text
+ T  h	 e   	 d  e	 s  i	 g  n	 a  t	 i  o	 n   	 o  f	LF  I	 n  d	 u  s	 t  r	 i  a	 l   	 D  i	 s  t	| New English Text
+54 68	65 20	64 65	73 69	67 6E	61 74	69 6F	6E 20	6F 66	0A 49	6E 64	75 73	74 72	69 61	6C 20	44 69	73 74	| New English Hex
+もう一度聞きたい場合や
+If you do not know or if still well
+$1033E56 (Line 2)
+A4 E2	A4 A6	B0 EC	C5 D9	CA B9	A4 AD	A4 BF	A4 A4	BE EC	B9 E7	A4 E4	0A	| Original Japanese Hex
+ #  も	 #  う	 #  一	 #  度	 #  聞	 #  き	 #  た	 #  い	 #  場	 #  合	 #  や	LF	| Original Japanese Text
+ r  i	 c  t	 LF i	 s   	 n  o	 w   	 c  o	 m  p	 l  e	 t  e	 . LF	LF	| New English Text
+72 69	63 74	0A 69	73 20	6E 6F	77 20	63 6F	6D 70	6C 65	74 65	2E 0A	0A	| New English Hex
+まだよく分らない場合は、
+you want to hear it again,
+$1033E6D (Line 3)
+A4 DE	A4 C0	A4 E8	A4 AF	CA AC	A4 E9	A4 CA	A4 A4	BE EC	B9 E7	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  ま	 #  だ	 #  よ	 #  く	 #  分	 #  ら	 #  な	 #  い	 #  場	 #  合	 # は	 #  、	LF	| Original Japanese Text
+ I  f	    y	 o  u	    a	 r  e	    u	 n  s	 u  r	 e LF	 o  r	    w	 o  u	 l	| New English Text
+49 66	20 79	6F 75	20 61	72 65	20 75	6E 73	75 72	65 0A	6F 72	20 77	6F 75	6C	| New English Hex
+Ｂボタンで説明を読み返してください。
+Please read over the description in the B button.
+$1033E86 (Line 4)
+A3 C2	A5 DC	A5 BF	A5 F3	A4 C7	C0 E2	CC C0	A4 F2	C6 C9	A4 DF	CA D6	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	0A 0A	| Original Japanese Hex
+ #  Ｂ	 #  ボ	 #  タ	 #  ン	 #  で	 #  説	 #  明	 #  を	 #  読	 #  み	 #  返	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	LF LF	| Original Japanese Text
+ d   	 l  i	 k  e	    t	 o LF	 h  e	 a  r	    t	 h  i	 s   	 a  g	 a  i	 n LF	 p  l	 e  a	 s  e	    p	 r  e	 s  s	| New English Text
+64 20	6C 69	6B 65	20 74	6F 0A	68 65	61 72	20 74	68 69	73 20	61 67	61 69	6E 0A	70 6C	65 61	73 65	20 70	72 65	73 73	| New English Hex
+もう分ったのであれば、
+If you have already found,
+$1033EAC (Line 5)
+A4 E2	A4 A6	CA AC	A4 C3	A4 BF	A4 CE	A4 C7	A4 A2	A4 EC	A4 D0	A1 A2	0A	| Original Japanese Hex
+ #  も	 #  う	 #  分	 #  っ	 #  た	 #  の	 #  で	 #  あ	 #  れ	 #  ば	 #  、	LF	| Original Japanese Text
+    B	    t	 o LF	 g  o	    b	 a  c	 k  .	    O	 t  h	 e  r	 w  i	 s	| New English Text
+20 42	20 74	6F 0A	67 6F	20 62	61 63	6B 2E	20 4F	74 68	65 72	77 69	73	| New English Hex
+アドバイスを終了して、
+Exit the advice,
+$1033EC3 (Line 6)
+A5 A2	A5 C9	A5 D0	A5 A4	A5 B9	A4 F2	BD AA	CE BB	A4 B7	A4 C6	A1 A2	0A	| Original Japanese Hex
+ #  ア	 #  ド	 #  バ	 #  イ	 #  ス	 #  を	 #  終	 #  了	 #  し	 #  て	 #  、	LF	| Original Japanese Text
+ e LF	 e  x	 i  t	    t	 h  i	 s   	 a  d	 v  i	 c  e	 .  #	 #  #	 #	| New English Text
+65 0A	65 78	69 74	20 74	68 69	73 20	61 64	76 69	63 65	2E 00	00 00	00	| New English Hex
+工業地区の指定を開始してください。
+Please start the specified industrial district.
+$1033EDA (Line 7)
+B9 A9	B6 C8	C3 CF	B6 E8	A4 CE	BB D8	C4 EA	A4 F2	B3 AB	BB CF	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  工	 #  業	 #  地	 #  区	 #  の	 #  指	 #  定	 #  を	 #  開	 #  始	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #  #	 #  #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex

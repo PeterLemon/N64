@@ -1,4 +1,9 @@
-﻿あと？？？年
+﻿EUC-JP
+
+-----------
+Text Hack:
+-----------
+あと？？？年
 ??? Year
 $11C74F4
 A4 A2	A4 C8	A1 A9	A1 A9	A1 A9	C7 AF	00 00	00 00	| Original Japanese Hex

@@ -269,6 +269,49 @@ TextStyle1($0F7715C, "Time Flow\n")
                   db "  Operation\n"
                   db "  NPC Events", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 
+// Dr. Wright Icon / City Plan / Industrial
+TextStyle1($0FC1418, "For citizens to\n")
+                  db "engage in city life\n"
+                  db "a wide variety of\n"
+                  db "products are\n"
+                  db "required such as\n"
+                  db "food & clothing.\n\n"
+                  db "Let's specify an\n"
+                  db "Industrial district\n"
+                  db "with Factories.", $00, $00, $00, $00, $00, $00
+
+TextStyle1($0FC14B8, "To specify the\n")
+                  db "industrial district\n"
+                  db "you must select the\n"
+                  db "tool from the Main\n"
+                  db "Menu.\n"
+                  db "Use the\n"
+                  db "Z or L Trigger to\n"
+                  db "display the Main\n"
+                  db "Menu, & select the\n"
+                  db "Compartment Icon.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0FC1570, "Select Industrial\n")
+                  db "District, Move the\n"
+                  db "Cursor to some flat\n"
+                  db "ground & press A.\n"
+                  db "Move Cursor while\n"
+                  db "holding A to set a\n"
+                  db "range of 6x6 tiles\n"
+                  db "then release A.\n"
+                  db "You should see the\n"
+                  db "range turn Yellow.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0FC165C, "The designation of\n")
+                  db "Industrial District\n"
+                  db "is now complete.\n\n"
+                  db "If you are unsure\n"
+                  db "or would like to\n"
+                  db "hear this again\n"
+                  db "please press B to\n"
+                  db "go back. Otherwise\n"
+                  db "exit this advice.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
 // Tutorial
 TextStyle1($0FD5738, "City making in Sim\n")
                   db "City-64, is choosing\n"

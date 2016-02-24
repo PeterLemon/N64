@@ -1,4 +1,9 @@
-﻿炭坑の街フランボワーズは、
+﻿EUC-JP
+
+---------------
+Scenario:
+---------------
+炭坑の街フランボワーズは、
 Raspberry mining town,
 $0F1ACB0 (Line 1)
 C3 BA	B9 A3	A4 CE	B3 B9	A5 D5	A5 E9	A5 F3	A5 DC	A5 EF	A1 BC	A5 BA	A4 CF	A1 A2	0A	| Original Japanese Hex

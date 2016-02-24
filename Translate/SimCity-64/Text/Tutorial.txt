@@ -1,4 +1,9 @@
-﻿シムシティー６４における街作りは、
+﻿EUC-JP
+
+----------
+Tutorial:
+----------
+シムシティー６４における街作りは、
 City making in SimCity-64 is,
 $1047F10 (Line 1)
 A5 B7	A5 E0	A5 B7	A5 C6	A5 A3	A1 BC	A3 B6	A3 B4	A4 CB	A4 AA	A4 B1	A4 EB	B3 B9	BA EE	A4 EA	A4 CF	A1 A2	0A	| Original Japanese Hex

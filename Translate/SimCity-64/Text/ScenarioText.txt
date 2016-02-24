@@ -1,4 +1,9 @@
-﻿まだ電気が普及していない時代、
+﻿EUC-JP
+
+---------------
+Scenario Text:
+---------------
+まだ電気が普及していない時代、
 From an era before the use of electricity,
 $11A2520 (Line 1)
 A4 DE	A4 C0	C5 C5	B5 A4	A4 AC	C9 E1	B5 DA	A4 B7	A4 C6	A4 A4	A4 CA	A4 A4	BB FE	C2 E5	A1 A2	0A	| Original Japanese Hex

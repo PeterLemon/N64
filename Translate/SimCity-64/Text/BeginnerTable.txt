@@ -1,4 +1,9 @@
-﻿ステップ１：街を大きくしよう！
+﻿EUC-JP
+
+----------------
+Beginner Table:
+----------------
+ステップ１：街を大きくしよう！
 Step 1: Get larger city!
 $119DE30 (Line 1)
 A5 B9	A5 C6	A5 C3	A5 D7	A3 B1	A1 A7	B3 B9	A4 F2	C2 E7	A4 AD	A4 AF	A4 B7	A4 E8	A4 A6	A1 AA	00 00	| Original Japanese Hex

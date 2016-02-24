@@ -1,4 +1,9 @@
-﻿就任おめでとうございます。
+﻿EUC-JP
+
+---------------
+Scenario Mode:
+---------------
+就任おめでとうございます。
 Congratulations.
 $11A7C90 (Line 1)
 BD A2	C7 A4	A4 AA	A4 E1	A4 C7	A4 C8	A4 A6	A4 B4	A4 B6	A4 A4	A4 DE	A4 B9	A1 A3	0A	| Original Japanese Hex
