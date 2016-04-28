@@ -161,14 +161,14 @@ Start:
       S2FilterEnd:
       move t2,t1 // Older Sample = Old Sample
       move t1,t0 // Old Sample = New Sample
-      sh t0,2(a2) // Store Decoded Sample 1
+      sh t0,2(a2) // Store Decoded Sample 2
 
       addiu a2,4 // Decode Sample Address += 4
       subiu t5,1 // Sample Counter--
       bnez t5,BRRSampleDecode // IF (Sample Counter != 0) Decode Samples
       addiu a0,1 // Sample Address++ (Delay Slot)
 
-    bne a0,a1,BRRBlockDecode // IF (Sample Address != Sample End Address) A-Law Decode
+    bne a0,a1,BRRBlockDecode // IF (Sample Address != Sample End Address) BRR Block Decode
     nop // Delay Slot
 
   lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
