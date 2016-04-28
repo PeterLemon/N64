@@ -1,5 +1,5 @@
 import struct
-brrfile = open("Piano.brr", "rb").read()
+brrfile = open("Sample.brr", "rb").read()
 decoded = []
 older = 0 # Older Sample (Previous To Last Sample)
 old = 0   # Old Sample (Last Sample)
