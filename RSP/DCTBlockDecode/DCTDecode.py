@@ -8,7 +8,7 @@
 # Therefore They Are Sometimes Referred To As "AC" Values (From "Alternating Current").
 
 DCT = [ # Discrete Cosine Transform (DCT) 8x8 Input Block
-    #700,0,0,0,0,0,0,0, # We Apply The IDCT To A Matrix, Only Containing A DC value of 700.
+    #700,0,0,0,0,0,0,0, # We Apply The IDCT To A Matrix, Only Containing A DC Value Of 700.
     #0,0,0,0,0,0,0,0,   # It Will Produce A Grey Colored Square.
     #0,0,0,0,0,0,0,0,
     #0,0,0,0,0,0,0,0,
