@@ -73,7 +73,12 @@ idct_result_1d = [0,0,0,0,0,0,0,0, # Inverse Discrete Cosine Transform (IDCT) 8x
                   0,0,0,0,0,0,0,0,
                   0,0,0,0,0,0,0,0]
 
-C = [(1/(2*math.sqrt(2))),0.5,0.5,0.5,0.5,0.5,0.5,0.5] # C Look Up Table (/2 Applied for Speed)
+C = [(1/(2*math.sqrt(2))),0.5,0.5,0.5,0.5,0.5,0.5,0.5] # C Look Up Table (/2 Applied)
+
+COS = [] # COS Look Up Table
+for x in range(8):
+    for u in range(8):
+        COS.append(math.cos((2*x + 1) * u * math.pi / 16))
 
 for x in range(8): # IDCT
     for y in range(8):
@@ -83,8 +88,8 @@ for x in range(8): # IDCT
                         dct_result_1d[v*8 + u]
                         * C[u]
                         * C[v]
-                        * math.cos((2*x + 1) * u * math.pi / 16)
-                        * math.cos((2*y + 1) * v * math.pi / 16)
+                        * COS[x*8 + u] # math.cos((2*x + 1) * u * math.pi / 16)
+                        * COS[y*8 + v] # math.cos((2*y + 1) * v * math.pi / 16)
                     )
 
 print ("Discrete Cosine Transform (DCT) 8x8 Result Matrix:") # Print The DCT 8x8 Result Matrix
