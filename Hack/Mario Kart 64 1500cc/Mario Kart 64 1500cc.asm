@@ -251,7 +251,7 @@ float32 510.0 // $000E31D4 $800E25D4 - Peach  (IEEE32) (324.0: $43A20000)
 float32 506.0 // $000E31D8 $800E25D8 - Bowser (IEEE32) (320.0: $43A00000)
 
 KartSpeedExtra:
-             // ROM       RAM         Extra Kart Speed
+              // ROM       RAM         Extra Kart Speed
 float32 502.0 // $000E31DC $800E25DC - Mario  (IEEE32) (310.0: $439B0000)
 float32 502.0 // $000E31E0 $800E25E0 - Luigi  (IEEE32) (310.0: $439B0000)
 float32 506.0 // $000E31E4 $800E25E4 - Yoshi  (IEEE32) (314.0: $439D0000)
