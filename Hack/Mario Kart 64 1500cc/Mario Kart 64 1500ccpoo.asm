@@ -983,17 +983,17 @@ float32 0.6 // $000E3B18 $800E2F18 - Kart Acceleration Luigi (IEEE32) (0.6: $3F1
 float32 0.4 // $000E3B1C $800E2F1C - Kart Acceleration Luigi (IEEE32) (0.4: $3ECCCCCD)
 
 KartAccelerationYoshi:
-            // ROM       RAM         Kart Acceleration Yoshi
-float32 2.0 // $000E3B20 $800E2F20 - Kart Acceleration Yoshi (IEEE32) (2.0: $40000000)
-float32 2.0 // $000E3B24 $800E2F24 - Kart Acceleration Yoshi (IEEE32) (2.0: $40000000)
-float32 2.5 // $000E3B28 $800E2F28 - Kart Acceleration Yoshi (IEEE32) (2.5: $40200000)
-float32 2.6 // $000E3B2C $800E2F2C - Kart Acceleration Yoshi (IEEE32) (2.6: $40266666)
-float32 2.6 // $000E3B30 $800E2F30 - Kart Acceleration Yoshi (IEEE32) (2.6: $40266666)
-float32 2.0 // $000E3B34 $800E2F34 - Kart Acceleration Yoshi (IEEE32) (2.0: $40000000)
-float32 1.5 // $000E3B38 $800E2F38 - Kart Acceleration Yoshi (IEEE32) (1.5: $3FC00000)
-float32 0.8 // $000E3B3C $800E2F3C - Kart Acceleration Yoshi (IEEE32) (0.8: $3F4CCCCD)
-float32 0.8 // $000E3B40 $800E2F40 - Kart Acceleration Yoshi (IEEE32) (0.8: $3F4CCCCD)
-float32 0.8 // $000E3B44 $800E2F44 - Kart Acceleration Yoshi (IEEE32) (0.8: $3F4CCCCD)
+            // ROM       RAM         Kart Acceleration Peach
+float32 2.0 // $000E3B20 $800E2F20 - Kart Acceleration Peach (IEEE32) (2.0: $40000000)
+float32 2.0 // $000E3B24 $800E2F24 - Kart Acceleration Peach (IEEE32) (2.0: $40000000)
+float32 2.5 // $000E3B28 $800E2F28 - Kart Acceleration Peach (IEEE32) (2.5: $40200000)
+float32 2.6 // $000E3B2C $800E2F2C - Kart Acceleration Peach (IEEE32) (2.6: $40266666)
+float32 2.6 // $000E3B30 $800E2F30 - Kart Acceleration Peach (IEEE32) (2.6: $40266666)
+float32 2.0 // $000E3B34 $800E2F34 - Kart Acceleration Peach (IEEE32) (2.0: $40000000)
+float32 1.5 // $000E3B38 $800E2F38 - Kart Acceleration Peach (IEEE32) (1.5: $3FC00000)
+float32 0.8 // $000E3B3C $800E2F3C - Kart Acceleration Peach (IEEE32) (0.8: $3F4CCCCD)
+float32 0.8 // $000E3B40 $800E2F40 - Kart Acceleration Peach (IEEE32) (0.8: $3F4CCCCD)
+float32 0.8 // $000E3B44 $800E2F44 - Kart Acceleration Peach (IEEE32) (0.8: $3F4CCCCD)
 
 KartAccelerationToad:
             // ROM       RAM         Kart Acceleration Toad
@@ -1009,43 +1009,43 @@ float32 0.8 // $000E3B68 $800E2F68 - Kart Acceleration Toad (IEEE32) (0.8: $3F4C
 float32 0.8 // $000E3B6C $800E2F6C - Kart Acceleration Toad (IEEE32) (0.8: $3F4CCCCD)
 
 KartAccelerationDK:
-            // ROM       RAM         Kart Acceleration D.K.
-float32 2.0 // $000E3B70 $800E2F70 - Kart Acceleration D.K. (IEEE32) (2.0: $40000000)
-float32 2.0 // $000E3B74 $800E2F74 - Kart Acceleration D.K. (IEEE32) (2.0: $40000000)
-float32 2.0 // $000E3B78 $800E2F78 - Kart Acceleration D.K. (IEEE32) (2.0: $40000000)
-float32 1.6 // $000E3B7C $800E2F7C - Kart Acceleration D.K. (IEEE32) (1.6: $3FCCCCCD)
-float32 1.0 // $000E3B80 $800E2F80 - Kart Acceleration D.K. (IEEE32) (1.0: $3F800000)
-float32 1.0 // $000E3B84 $800E2F84 - Kart Acceleration D.K. (IEEE32) (1.0: $3F800000)
-float32 1.0 // $000E3B88 $800E2F88 - Kart Acceleration D.K. (IEEE32) (1.0: $3F800000)
-float32 1.8 // $000E3B8C $800E2F8C - Kart Acceleration D.K. (IEEE32) (1.8: $3FE66666)
-float32 1.8 // $000E3B90 $800E2F90 - Kart Acceleration D.K. (IEEE32) (1.8: $3FE66666)
-float32 1.2 // $000E3B94 $800E2F94 - Kart Acceleration D.K. (IEEE32) (1.2: $3F99999A)
+            // ROM       RAM         Kart Acceleration Yoshi
+float32 2.0 // $000E3B70 $800E2F70 - Kart Acceleration Yoshi (IEEE32) (2.0: $40000000)
+float32 2.0 // $000E3B74 $800E2F74 - Kart Acceleration Yoshi (IEEE32) (2.0: $40000000)
+float32 2.0 // $000E3B78 $800E2F78 - Kart Acceleration Yoshi (IEEE32) (2.0: $40000000)
+float32 1.6 // $000E3B7C $800E2F7C - Kart Acceleration Yoshi (IEEE32) (1.6: $3FCCCCCD)
+float32 1.0 // $000E3B80 $800E2F80 - Kart Acceleration Yoshi (IEEE32) (1.0: $3F800000)
+float32 1.0 // $000E3B84 $800E2F84 - Kart Acceleration Yoshi (IEEE32) (1.0: $3F800000)
+float32 1.0 // $000E3B88 $800E2F88 - Kart Acceleration Yoshi (IEEE32) (1.0: $3F800000)
+float32 1.8 // $000E3B8C $800E2F8C - Kart Acceleration Yoshi (IEEE32) (1.8: $3FE66666)
+float32 1.8 // $000E3B90 $800E2F90 - Kart Acceleration Yoshi (IEEE32) (1.8: $3FE66666)
+float32 1.2 // $000E3B94 $800E2F94 - Kart Acceleration Yoshi (IEEE32) (1.2: $3F99999A)
 
 KartAccelerationWario:
-            // ROM       RAM         Kart Acceleration Wario
-float32 2.0 // $000E3B98 $800E2F98 - Kart Acceleration Wario (IEEE32) (2.0: $40000000)
-float32 2.0 // $000E3B9C $800E2F9C - Kart Acceleration Wario (IEEE32) (2.0: $40000000)
-float32 2.0 // $000E3BA0 $800E2FA0 - Kart Acceleration Wario (IEEE32) (2.0: $40000000)
-float32 1.6 // $000E3BA4 $800E2FA4 - Kart Acceleration Wario (IEEE32) (1.6: $3FCCCCCD)
-float32 1.0 // $000E3BA8 $800E2FA8 - Kart Acceleration Wario (IEEE32) (1.0: $3F800000)
-float32 1.0 // $000E3BAC $800E2FAC - Kart Acceleration Wario (IEEE32) (1.0: $3F800000)
-float32 1.0 // $000E3BB0 $800E2FB0 - Kart Acceleration Wario (IEEE32) (1.0: $3F800000)
-float32 1.8 // $000E3BB4 $800E2FB4 - Kart Acceleration Wario (IEEE32) (1.8: $3FE66666)
-float32 1.8 // $000E3BB8 $800E2FB8 - Kart Acceleration Wario (IEEE32) (1.8: $3FE66666)
-float32 1.2 // $000E3BBC $800E2FBC - Kart Acceleration Wario (IEEE32) (1.2: $3F99999A)
+            // ROM       RAM         Kart Acceleration D.K.
+float32 2.0 // $000E3B98 $800E2F98 - Kart Acceleration D.K. (IEEE32) (2.0: $40000000)
+float32 2.0 // $000E3B9C $800E2F9C - Kart Acceleration D.K. (IEEE32) (2.0: $40000000)
+float32 2.0 // $000E3BA0 $800E2FA0 - Kart Acceleration D.K. (IEEE32) (2.0: $40000000)
+float32 1.6 // $000E3BA4 $800E2FA4 - Kart Acceleration D.K. (IEEE32) (1.6: $3FCCCCCD)
+float32 1.0 // $000E3BA8 $800E2FA8 - Kart Acceleration D.K. (IEEE32) (1.0: $3F800000)
+float32 1.0 // $000E3BAC $800E2FAC - Kart Acceleration D.K. (IEEE32) (1.0: $3F800000)
+float32 1.0 // $000E3BB0 $800E2FB0 - Kart Acceleration D.K. (IEEE32) (1.0: $3F800000)
+float32 1.8 // $000E3BB4 $800E2FB4 - Kart Acceleration D.K. (IEEE32) (1.8: $3FE66666)
+float32 1.8 // $000E3BB8 $800E2FB8 - Kart Acceleration D.K. (IEEE32) (1.8: $3FE66666)
+float32 1.2 // $000E3BBC $800E2FBC - Kart Acceleration D.K. (IEEE32) (1.2: $3F99999A)
 
 KartAccelerationPeach:
-            // ROM       RAM         Kart Acceleration Peach
-float32 2.0 // $000E3BC0 $800E2FC0 - Kart Acceleration Peach (IEEE32) (2.0: $40000000)
-float32 2.0 // $000E3BC4 $800E2FC4 - Kart Acceleration Peach (IEEE32) (2.0: $40000000)
-float32 2.5 // $000E3BC8 $800E2FC8 - Kart Acceleration Peach (IEEE32) (2.5: $40200000)
-float32 2.6 // $000E3BCC $800E2FCC - Kart Acceleration Peach (IEEE32) (2.6: $40266666)
-float32 2.6 // $000E3BD0 $800E2FD0 - Kart Acceleration Peach (IEEE32) (2.6: $40266666)
-float32 2.0 // $000E3BD4 $800E2FD4 - Kart Acceleration Peach (IEEE32) (2.0: $40000000)
-float32 1.5 // $000E3BD8 $800E2FD8 - Kart Acceleration Peach (IEEE32) (1.5: $3FC00000)
-float32 0.8 // $000E3BDC $800E2FDC - Kart Acceleration Peach (IEEE32) (0.8: $3F4CCCCD)
-float32 0.8 // $000E3BE0 $800E2FE0 - Kart Acceleration Peach (IEEE32) (0.8: $3F4CCCCD)
-float32 0.8 // $000E3BE4 $800E2FE4 - Kart Acceleration Peach (IEEE32) (0.8: $3F4CCCCD)
+            // ROM       RAM         Kart Acceleration Wario
+float32 2.0 // $000E3BC0 $800E2FC0 - Kart Acceleration Wario (IEEE32) (2.0: $40000000)
+float32 2.0 // $000E3BC4 $800E2FC4 - Kart Acceleration Wario (IEEE32) (2.0: $40000000)
+float32 2.5 // $000E3BC8 $800E2FC8 - Kart Acceleration Wario (IEEE32) (2.5: $40200000)
+float32 2.6 // $000E3BCC $800E2FCC - Kart Acceleration Wario (IEEE32) (2.6: $40266666)
+float32 2.6 // $000E3BD0 $800E2FD0 - Kart Acceleration Wario (IEEE32) (2.6: $40266666)
+float32 2.0 // $000E3BD4 $800E2FD4 - Kart Acceleration Wario (IEEE32) (2.0: $40000000)
+float32 1.5 // $000E3BD8 $800E2FD8 - Kart Acceleration Wario (IEEE32) (1.5: $3FC00000)
+float32 0.8 // $000E3BDC $800E2FDC - Kart Acceleration Wario (IEEE32) (0.8: $3F4CCCCD)
+float32 0.8 // $000E3BE0 $800E2FE0 - Kart Acceleration Wario (IEEE32) (0.8: $3F4CCCCD)
+float32 0.8 // $000E3BE4 $800E2FE4 - Kart Acceleration Wario (IEEE32) (0.8: $3F4CCCCD)
 
 KartAccelerationBowser:
             // ROM       RAM         Kart Acceleration Bowser
