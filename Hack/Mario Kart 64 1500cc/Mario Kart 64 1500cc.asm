@@ -1,14 +1,39 @@
 // N64 "Mario Kart 64" 1500cc Hack by krom (Peter Lemon):
+// Special thanks to queueRAM for the TKMK00 menu & MIO0 logo compressed textures & hacking
 
+arch n64.cpu
 endian msb // N64 MIPS requires Big-Endian Encoding (Most Significant Bit)
 output "Mario Kart 64 1500cc.z64", create
 origin $00000000; insert "Mario Kart 64 (U) [!].z64" // Include USA Mario Kart 64 N64 ROM
 origin $00000020
 db "MARIOKART641500CC          " // $00000020 - PROGRAM TITLE (27 Byte ASCII String, Use Spaces For Unused Bytes)
 
-macro seek(variable offset) { // Seek To RAM Address
+//-----------------
+// Macros
+//-----------------
+
+// Seek To RAM Address
+macro seek(variable offset) {
   origin ((offset & $7FFFFFFF) + $C00)
   base offset
+}
+
+// Align data
+macro align(size) {
+   while (pc() % {size}) {
+      db 0
+   }
+}
+
+// flag: if 1, pass 0xBE through A3 TKMK00 decoder, else pass 0x00
+// seg_addr: segmented address of texture (in 0x0B segment)
+// width: width of texture
+// height: height of texture
+// others unknown
+macro MK_TEXTURE(flag, seg_addr, width, height, h0C, h0E, h10, h12) {
+  dw {flag}, 0
+  dd {seg_addr}
+  dw {width}, {height}, {h0C}, {h0E}, {h10}, {h12}
 }
 
 //-----------------
@@ -1697,3 +1722,68 @@ float32 2.0 // $00121DB0 $802B87A0 - D.K.   (IEEE32) (2.0: $40000000)
 float32 1.8 // $00121DB4 $802B87A4 - Wario  (IEEE32) (1.8: $3FE66666)
 float32 0.9 // $00121DB8 $802B87A8 - Peach  (IEEE32) (0.9: $3F666666)
 float32 2.3 // $00121DBC $802B87AC - Bowser (IEEE32) (2.3: $40133333)
+
+//----------------------
+// TKMK00 menu textures
+//----------------------
+
+// Race type menu textures table
+origin 0x12F3D4
+MK_TEXTURE(1,  menu_50cc,  64,  18,   0,   0, 0x0000, 0x0000) // 50cc
+MK_TEXTURE(0, 0x00000000,   0,   0,   0,   0, 0x0000, 0x0000)
+MK_TEXTURE(1, menu_100cc,  64,  18,   0,   0, 0x0000, 0x0000) // 100cc
+MK_TEXTURE(0, 0x00000000,   0,   0,   0,   0, 0x0000, 0x0000)
+MK_TEXTURE(1, menu_150cc,  64,  18,   0,   0, 0x0000, 0x0000) // 150cc
+MK_TEXTURE(0, 0x00000000,   0,   0,   0,   0, 0x0000, 0x0000)
+MK_TEXTURE(1, menu_extra,  64,  18,   0,   0, 0x0000, 0x0000) // Extra
+MK_TEXTURE(0, 0x00000000,   0,   0,   0,   0, 0x0000, 0x0000)
+
+// assign segment 0B base for use with TKMK00 textures
+origin 0x7FA3C0
+base 0x0B000000
+
+// put new TKMK00 textures at end of ROM
+origin 0xBEA000
+menu_50cc:
+insert "textures/menu_50cc.tkmk00"
+align(0x10)
+menu_100cc:
+insert "textures/menu_100cc.tkmk00"
+align(0x10)
+menu_150cc:
+insert "textures/menu_150cc.tkmk00"
+align(0x10)
+menu_extra:
+insert "textures/menu_extra.tkmk00"
+align(0x10)
+
+//----------------------
+// MIO0 logo texture
+//----------------------
+
+// assign segment 0F base
+// Stock title logo: 719480/0F0D7510
+origin 0x641F70
+base 0x0F000000
+
+// MIO0 textures after TKMK00
+// this origin just needs to be after the last TKMK00 texture above
+origin 0xBEB000
+title_logo:
+insert "textures/title_logo.mio0"
+align(0x4)
+title_logo.end:
+
+// TODO: include N64.INC?
+constant r0(0)
+constant a0(4)
+constant a1(5)
+constant a2(6)
+
+// update asm pointer to title logo (was 0F0D7510)
+origin 0x06FA4C // 8006EE4C
+lui   a0, (title_logo >> 16)
+lui   a1, 0x8019
+lw    a1, -0x2650(a1)
+ori   a0, a0, (title_logo & 0xFFFF)
+addiu a2, r0, title_logo.end - title_logo
