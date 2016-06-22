@@ -36,6 +36,41 @@ macro MK_TEXTURE(flag, seg_addr, width, height, h0C, h0E, h10, h12) {
   dw {width}, {height}, {h0C}, {h0E}, {h10}, {h12}
 }
 
+
+//----------------
+// String updates
+//----------------
+
+// relocate 50cc string pointers since only 4 bytes allocated for them
+seek(0x800E76CC)
+dd results_50cc
+seek(0x800E76DC)
+dd awards_50cc
+
+// update strings
+seek(0x800EFE16) // start 2 bytes lower to allow for longer string
+results_50cc:
+db "500(", 0
+align(0x4)
+results_100cc:
+db "1000(", 0
+align(0x4)
+results_150cc:
+db "1500(", 0
+align(0x4)
+// skip the "extra"
+seek(0x800EFE32) // start 2 bytes lower to allow for longer string
+awards_50cc:
+db "500(", 0
+align(0x4)
+awards_100cc:
+db "1000(", 0
+align(0x4)
+awards_150cc:
+db "1500(", 0
+align(0x4)
+
+
 //-----------------
 // Kart Properties
 //-----------------
@@ -1735,8 +1770,6 @@ MK_TEXTURE(1, menu_100cc,  64,  18,   0,   0, 0x0000, 0x0000) // 100cc
 MK_TEXTURE(0, 0x00000000,   0,   0,   0,   0, 0x0000, 0x0000)
 MK_TEXTURE(1, menu_150cc,  64,  18,   0,   0, 0x0000, 0x0000) // 150cc
 MK_TEXTURE(0, 0x00000000,   0,   0,   0,   0, 0x0000, 0x0000)
-MK_TEXTURE(1, menu_extra,  64,  18,   0,   0, 0x0000, 0x0000) // Extra
-MK_TEXTURE(0, 0x00000000,   0,   0,   0,   0, 0x0000, 0x0000)
 
 // assign segment 0B base for use with TKMK00 textures
 origin 0x7FA3C0
@@ -1752,9 +1785,6 @@ insert "textures/menu_100cc.tkmk00"
 align(0x10)
 menu_150cc:
 insert "textures/menu_150cc.tkmk00"
-align(0x10)
-menu_extra:
-insert "textures/menu_extra.tkmk00"
 align(0x10)
 
 //----------------------
