@@ -3036,7 +3036,7 @@ align(256)
   sll t1,8
   addu t0,t1                    // CPU CB Instruction Table Opcode
   jr t0
-  add s4,1                      // PC_REG++ (Delay Slot)
+  addiu s4,1                    // PC_REG++ (Delay Slot)
 
 align(256)
   // $CC CALL  Z, imm           IF Z Flag Set, Push Address Of Next Instruction To Stack & Jump To 16-Bit Immediate Address
