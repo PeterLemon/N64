@@ -139,7 +139,7 @@ align(256)
 
 align(256)
   // $0B DEC   BC               Decrement Register BC
-  sub s1,1                      // BC_REG--
+  subiu s1,1                    // BC_REG--
   andi s1,$FFFF
   jr ra
   addiu v0,2                    // QCycles += 2 (Delay Slot)
@@ -169,7 +169,7 @@ align(256)
   ori s0,H_FLAG                 // F_REG: H Flag Set (No Borrow From Bit 4) (Delay Slot)
   andi s0,~H_FLAG               // F_REG: H Flag Reset (Borrow From Bit 4)
   DECCH:
-  sub s1,1                      // C_REG--
+  subiu s1,1                    // C_REG--
   andi t0,s1,$FF
   beqz t0,DECCZ                 // IF (! C_REG) Z Flag Set (Result Is Zero)
   ori s0,Z_FLAG                 // F_REG: Z Flag Set (Result Is Zero) (Delay Slot)
@@ -350,7 +350,7 @@ align(256)
 
 align(256)
   // $1B DEC   DE               Decrement Register DE
-  sub s2,1                      // DE_REG--
+  subiu s2,1                    // DE_REG--
   andi s2,$FFFF
   jr ra
   addiu v0,2                    // QCycles += 2 (Delay Slot)
@@ -380,7 +380,7 @@ align(256)
   ori s0,H_FLAG                 // F_REG: H Flag Set (No Borrow From Bit 4) (Delay Slot)
   andi s0,~H_FLAG               // F_REG: H Flag Reset (Borrow From Bit 4)
   DECEH:
-  sub s2,1                      // E_REG--
+  subiu s2,1                    // E_REG--
   andi t0,s2,$FF
   beqz t0,DECEZ                 // IF (! E_REG) Z Flag Set (Result Is Zero)
   ori s0,Z_FLAG                 // F_REG: Z Flag Set (Result Is Zero) (Delay Slot)
@@ -637,7 +637,7 @@ align(256)
   ori s0,H_FLAG                 // F_REG: H Flag Set (No Borrow From Bit 4) (Delay Slot)
   andi s0,~H_FLAG               // F_REG: H Flag Reset (Borrow From Bit 4)
   DECLH:
-  sub s3,1                      // L_REG--
+  subiu s3,1                    // L_REG--
   andi t0,s3,$FF
   beqz t0,DECLZ                 // IF (! L_REG) Z Flag Set (Result Is Zero)
   ori s0,Z_FLAG                 // F_REG: Z Flag Set (Result Is Zero) (Delay Slot)
