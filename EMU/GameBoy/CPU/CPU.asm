@@ -2925,7 +2925,7 @@ align(256)
   subiu sp,2                    //   SP_REG -= 2
   addu a3,a0,sp                 //   A3 = MEM_MAP + SP_REG
   sb s4,0(a3)                   //   STACK = PC_REG + 2
-  srl t0,sp,8
+  srl t0,s4,8
   sb t0,1(a3)
   lbu s4,1(a2)                  //   PC_REG = Imm16Bit
   lbu t0,2(a2)
@@ -3032,7 +3032,7 @@ align(256)
 align(256)
   // $CB                        Run Extra CPU Opcodes Jump Table
   la t0,CPU_CB_INST             // CPU CB Instruction Table
-  lb t1,1(a2)                   // CPU CB Instruction
+  lbu t1,1(a2)                  // CPU CB Instruction
   sll t1,8
   addu t0,t1                    // CPU CB Instruction Table Opcode
   jr t0
@@ -3047,7 +3047,7 @@ align(256)
   subiu sp,2                    //   SP_REG -= 2
   addu a3,a0,sp                 //   A3 = MEM_MAP + SP_REG
   sb s4,0(a3)                   //   STACK = PC_REG + 2
-  srl t0,sp,8
+  srl t0,s4,8
   sb t0,1(a3)
   lbu s4,1(a2)                  //   PC_REG = Imm16Bit
   lbu t0,2(a2)
@@ -3064,7 +3064,7 @@ align(256)
   subiu sp,2                    // SP_REG -= 2
   addu a3,a0,sp                 // A3 = MEM_MAP + SP_REG
   sb s4,0(a3)                   // STACK = PC_REG + 2
-  srl t0,sp,8
+  srl t0,s4,8
   sb t0,1(a3)
   lbu s4,1(a2)                  // PC_REG = Imm16Bit
   lbu t0,2(a2)
@@ -3174,7 +3174,7 @@ align(256)
   subiu sp,2                    //   SP_REG -= 2
   addu a3,a0,sp                 //   A3 = MEM_MAP + SP_REG
   sb s4,0(a3)                   //   STACK = PC_REG + 2
-  srl t0,sp,8
+  srl t0,s4,8
   sb t0,1(a3)
   lbu s4,1(a2)                  //   PC_REG = Imm16Bit
   lbu t0,2(a2)
@@ -3291,7 +3291,7 @@ align(256)
   subiu sp,2                    //   SP_REG -= 2
   addu a3,a0,sp                 //   A3 = MEM_MAP + SP_REG
   sb s4,0(a3)                   //   STACK = PC_REG + 2
-  srl t0,sp,8
+  srl t0,s4,8
   sb t0,1(a3)
   lbu s4,1(a2)                  //   PC_REG = Imm16Bit
   lbu t0,2(a2)
