@@ -31,7 +31,7 @@ nop // Delay Slot
 addu s5,t0 // LCDQCycles += InstQCycles
 addiu a2,a0,LY_REG // A2 = MEM_MAP + LY_REG
 lbu t1,0(a2) // T1 = LY_REG
-lli t2,114
+lli t2,114 // T2 = 114
 blt s5,t2,VBLANK // IF (LCDQCycles >= 114){ (Scanline Takes 456 Cycles (114 QCycles))
 nop // Delay Slot
 and s5,r0 // LCDQCycles = 0
@@ -44,7 +44,7 @@ bne t1,t2,NO_VBLANK // IF (LY_REG == 144) IF_REG |= 1 (VBlank Interrupt Flag Set
 nop // Delay Slot
 addiu a2,a0,IF_REG // A2 = MEM_MAP + IF_REG
 lbu t1,0(a2) // T1 = IF_REG
-ori t1,1
+ori t1,1 // IF_REG |= 1
 sb t1,0(a2)
 b END_LY
 nop // Delay Slot
@@ -53,8 +53,7 @@ NO_VBLANK:
 lli t2,153
 ble t1,t2,END_LY // ELSE IF (LY_REG > 153) LY_REG = 0 (Reset LY_REG When Above 153)
 nop // Delay Slot
-and t1,r0
-sb t1,0(a2)
+sb r0,0(a2)
 
 END_LY:
 
