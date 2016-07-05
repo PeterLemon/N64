@@ -20,12 +20,10 @@ Start:
 // DMA Copy GameBoy Background Image To FrameBuffer
   DMA(Image, Image+Image.size, $00100000) // DMA Data Copy Cart->DRAM: Start Cart Address, End Cart Address, Destination DRAM Address
 
-  WaitScanline($200) // Wait For Scanline To Reach Vertical Blank
-
 // Convert GameBoy Palette To N64 TLUT
-la a0,GBPAL
+la a0,GBPAL  // A0 = GameBoy Palette Address
 lbu t0,0(a0) // T0 = GameBoy Palette Byte
-la a0,$A0000000|(N64TLUT&$3FFFFFF)
+la a0,$A0000000|(N64TLUT&$3FFFFFF) // A0 = N64 TLUT Address
 
 andi t1,t0,3 // BGP Color 0 (PAL&3)
 xori t1,3    // Invert Bits
@@ -50,6 +48,21 @@ xor t1,192     // Invert Bits
 sll t1,3       // Shift Color To Green
 ori t1,1       // Add Alpha Bit
 sh t1,6(a0)    // Store Color 3
+
+// Convert GameBoy Tile Map To RDP List
+la a0,GBMAP // A0 = GameBoy Tile Map Address
+la a1,$A0000000|((RDPGBTILE+12)&$3FFFFFF) // A1 = N64 RDP GameBoy Tile Map Address
+la a2,(N64TILE&$3FFFFFF) // A2 = N64 Tile Address
+lli t0,1023 // T0 = Number Of Tiles To Convert
+MAPLoop:
+  lbu t1,0(a0) // T1 = GameBoy Tile Map # Byte
+  addiu a0,1   // A0++
+  sll t1,5     // T1 *= 32
+  addu t1,a2   // T1 += N64 Tile Address
+  sw t1,0(a1)  // Store GameBoy Tile Map # To N64 RDP GameBoy Tile Map
+  addiu a1,40  // A1 += 40
+  bnez t0,MAPLoop // IF (Number Of Tiles To Convert != 0) Map Loop
+  subiu t0,1 // Decrement Number Of Tiles To Convert (Delay Slot)
 
 // Convert GameBoy Tiles To N64 Linear Texture
   // Load RSP Code To IMEM
@@ -77,6 +90,8 @@ DelayTILES:
   bnez t0,DelayTILES
   subi t0,1
 
+WaitScanline($200) // Wait For Scanline To Reach Vertical Blank
+
   DPC(RDPBuffer, RDPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
 
 Loop:
@@ -91,8 +106,10 @@ GBPAL:
 align(8) // Align 64-Bit
 GBTILE:
   include "BG.asm"
-  include "BG.asm"
-  include "BG.asm"
+
+align(8) // Align 64-Bit
+GBMAP:
+  include "BGMAP.asm" // GB 32x32 Background Tile Map (1024 Bytes)
 
 align(8) // Align 64-Bit
 N64TLUT:
@@ -371,6 +388,8 @@ arch n64.rdp
 
 // BG Column 0..31 / Row 0..31 
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_4B,1, $000, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT COLOR INDEX,SIZE 4B,Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
+
+RDPGBTILE:
 
   define y(0)
   while {y} < 32 {

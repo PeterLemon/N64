@@ -1,3 +1,5 @@
+fill 16*$20 // Fill Characters 0 to $1F With Zero Bytes
+
 // $20: Space " "
 db %00000000
 db %00000000
