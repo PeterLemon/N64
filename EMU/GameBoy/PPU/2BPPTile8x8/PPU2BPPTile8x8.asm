@@ -23,8 +23,33 @@ Start:
   WaitScanline($200) // Wait For Scanline To Reach Vertical Blank
 
 // Convert GameBoy Palette To N64 TLUT
+la a0,GBPAL
+lbu t0,0(a0) // T0 = GameBoy Palette Byte
+la a0,$A0000000|(N64TLUT&$3FFFFFF)
 
+andi t1,t0,3 // BGP Color 0 (PAL&3)
+xori t1,3    // Invert Bits
+sll t1,9     // Shift Color To Green
+ori t1,1     // Add Alpha Bit
+sh t1,0(a0)  // Store Color 0
 
+andi t1,t0,12 // BGP Color 1 ((PAL&12)>>2)
+xori t1,12    // Invert Bits
+sll t1,7      // Shift Color To Green
+ori t1,1      // Add Alpha Bit
+sh t1,2(a0)   // Store Color 1
+
+andi t1,t0,48 // BGP Color 2 ((PAL&48)>>4)
+xori t1,48    // Invert Bits
+sll t1,5      // Shift Color To Green
+ori t1,1      // Add Alpha Bit
+sh t1,4(a0)   // Store Color 2
+
+andi t1,t0,192 // BGP Color 3 ((PAL&192)>>6))
+xor t1,192     // Invert Bits
+sll t1,3       // Shift Color To Green
+ori t1,1       // Add Alpha Bit
+sh t1,6(a0)    // Store Color 3
 
 // Convert GameBoy Tiles To N64 Linear Texture
   // Load RSP Code To IMEM
@@ -60,26 +85,22 @@ Loop:
 
 insert Image, "Image.bin" // GameBoy Background Image
 
-align(8) // Align 64-Bit
-N64TLUT:
-  dw $07C1
-  dw $0001
-  dw $FFFF
-  dw $0FFF
-  fill 512 // Generates 512 Bytes Containing $00
-
-align(8) // Align 64-Bit
-N64TILE:
-  fill 65536 // Generates 65536 Bytes Containing $00
-
-align(8) // Align 64-Bit
-insert GBPAL, "BG.pal"
+GBPAL:
+  db %00001100 // BG Palette (White/Black) (BGP_REG BG Palette Data Register $FF47)
 
 align(8) // Align 64-Bit
 GBTILE:
   include "BG.asm"
   include "BG.asm"
   include "BG.asm"
+
+align(8) // Align 64-Bit
+N64TLUT:
+  fill 8 // Generates 8 Bytes Containing $00
+
+align(8) // Align 64-Bit
+N64TILE:
+  fill 65536 // Generates 65536 Bytes Containing $00
 
 align(8) // Align 64-Bit
 RSPSHIFTData:
