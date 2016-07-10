@@ -64,6 +64,8 @@ MAPLoop:
   bnez t0,MAPLoop // IF (Number Of Tiles To Convert != 0) Map Loop
   subiu t0,1 // Decrement Number Of Tiles To Convert (Delay Slot)
 
+WaitScanline($200) // Wait For Scanline To Reach Vertical Blank
+
 // Convert GameBoy Tiles To N64 Linear Texture
   // Load RSP Code To IMEM
   DMASPRD(RSPTILECode, RSPTILECodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
@@ -85,12 +87,10 @@ MAPLoop:
   li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
   sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
 
-  li t0,$22000 // Wait For RSP To Compute
+  li t0,$11000 // Wait For RSP To Compute
 DelayTILES:
   bnez t0,DelayTILES
   subi t0,1
-
-WaitScanline($200) // Wait For Scanline To Reach Vertical Blank
 
   DPC(RDPBuffer, RDPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
 
@@ -189,7 +189,7 @@ RSPTILEStart:
 
 LoopTileBlocks:
   // Uses DMA & Stride To Copy 128 Tiles (2048 Bytes) To DMEM, 16 Bytes Per Tile, Followed by 16 Bytes Stride, For 2BPPGB->4BPPN64
-  li t0,(15 | (127<<12) | (16<<20)) // T0 = Length Of DMA Transfer In Bytes - 1, DMA Line Count - 1, Line Skip/Stride
+  lli t0,4095 // T0 = Length Of DMA Transfer In Bytes - 1
   lli t1,127 // T1 = Tile Counter
 
   mtc0 a0,c0 // Store Memory Offset To SP Memory Address Register ($A4040000)
@@ -349,7 +349,7 @@ LoopTiles:
 
 
   lli a0,0 // A0 = SP Memory Address Offset DMEM ($A4000000..$A4001FFF 8KB)
-  lli t0,4095 // T0 = Length Of DMA Transfer In Bytes - 1
+  li t0,(31 | (127<<12) | (32<<20)) // T0 = Length Of DMA Transfer In Bytes - 1, DMA Line Count - 1, Line Skip/Stride
 
   mtc0 a0,c0 // Store Memory Offset To SP Memory Address Register ($A4040000)
   mtc0 a1,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
@@ -361,8 +361,8 @@ LoopTiles:
     bnez t0,TILEDMAWRITEBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
-  addi a1,4096 // A1 = Next N64  Tile Offset
-  addi a2,2048 // A2 = Next GameBoy Tile Offset
+  addi a1,32 // A1 = Next N64  Tile Offset
+  addi a2,16 // A2 = Next GameBoy Tile Offset
 
   bnez t2,LoopTileBlocks // IF (Tile Block Counter != 0) Loop Tile Blocks
   subi t2,1 // Decrement Tile Block Counter (Delay Slot)
@@ -379,7 +379,7 @@ arch n64.rdp
   Set_Scissor 80<<2,40<<2, 0,0, 240<<2,184<<2 // Set Scissor: XH 80.0,YH 40.0, Scissor Field Enable Off,Field Off, XL 240.0,YL 184.0
   Set_Color_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,320-1, $00100000 // Set Color Image: FORMAT RGBA,SIZE 16B,WIDTH 320, DRAM ADDRESS $00100000
 
-  Set_Other_Modes EN_TLUT|SAMPLE_TYPE|BI_LERP_0|ALPHA_DITHER_SEL_NO_DITHER|B_M2A_0_1|FORCE_BLEND|IMAGE_READ_EN // Set Other Modes
+  Set_Other_Modes EN_TLUT|BI_LERP_0 // Set Other Modes
   Set_Combine_Mode $0,$00, 0,0, $1,$01, $0,$F, 1,0, 0,0,0, 7,7,7 // Set Combine Mode: SubA RGB0,MulRGB0, SubA Alpha0,MulAlpha0, SubA RGB1,MulRGB1, SubB RGB0,SubB RGB1, SubA Alpha1,MulAlpha1, AddRGB0,SubB Alpha0,AddAlpha0, AddRGB1,SubB Alpha1,AddAlpha1
 
   Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,1-1, N64TLUT // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 1, N64TLUT DRAM ADDRESS
