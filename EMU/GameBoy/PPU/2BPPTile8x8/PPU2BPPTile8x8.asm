@@ -20,6 +20,8 @@ Start:
 // DMA Copy GameBoy Background Image To FrameBuffer
   DMA(Image, Image+Image.size, $00100000) // DMA Data Copy Cart->DRAM: Start Cart Address, End Cart Address, Destination DRAM Address
 
+WaitScanline($200) // Wait For Scanline To Reach Vertical Blank
+
 // Convert GameBoy Palette To N64 TLUT
 la a0,GBPAL  // A0 = GameBoy Palette Address
 lbu t0,0(a0) // T0 = GameBoy Palette Byte
@@ -63,8 +65,6 @@ MAPLoop:
   addiu a1,40  // A1 += 40
   bnez t0,MAPLoop // IF (Number Of Tiles To Convert != 0) Map Loop
   subiu t0,1 // Decrement Number Of Tiles To Convert (Delay Slot)
-
-WaitScanline($200) // Wait For Scanline To Reach Vertical Blank
 
 // Convert GameBoy Tiles To N64 Linear Texture
   // Load RSP Code To IMEM
@@ -188,7 +188,7 @@ RSPTILEStart:
   la a2,GBTILE // A2 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
 
 LoopTileBlocks:
-  // Uses DMA & Stride To Copy 128 Tiles (2048 Bytes) To DMEM, 16 Bytes Per Tile, Followed by 16 Bytes Stride, For 2BPPGB->4BPPN64
+  // Uses DMA To Copy 4096 Bytes To DMEM, For 2BPPGB->4BPPN64
   lli t0,4095 // T0 = Length Of DMA Transfer In Bytes - 1
   lli t1,127 // T1 = Tile Counter
 
@@ -349,6 +349,7 @@ LoopTiles:
 
 
   lli a0,0 // A0 = SP Memory Address Offset DMEM ($A4000000..$A4001FFF 8KB)
+  // Uses DMA & Stride To Copy 128 Tiles (4096 Bytes) To RDRAM, 32 Bytes Per Tile, Followed by 32 Bytes Stride, For 2BPPGB->4BPPN64
   li t0,(31 | (127<<12) | (32<<20)) // T0 = Length Of DMA Transfer In Bytes - 1, DMA Line Count - 1, Line Skip/Stride
 
   mtc0 a0,c0 // Store Memory Offset To SP Memory Address Register ($A4040000)
