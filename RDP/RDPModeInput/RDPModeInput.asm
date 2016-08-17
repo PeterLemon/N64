@@ -15,9 +15,9 @@ constant CHAR_Y(8)
 
 origin $00000000
 base $80000000 // Entry Point Of Code
-include "LIB\N64.INC" // Include N64 Definitions
-include "LIB\N64_HEADER.ASM" // Include 64 Byte Header & Vector Table
-insert "LIB\N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
+include "LIB/N64.INC" // Include N64 Definitions
+include "LIB/N64_HEADER.ASM" // Include 64 Byte Header & Vector Table
+insert "LIB/N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
 
 macro PrintString(vram, xpos, ypos, fontfile, string, length) { // Print Text String To VRAM Using Font At X,Y Position
   li a0,{vram}+({xpos}*BYTES_PER_PIXEL)+(SCREEN_X*BYTES_PER_PIXEL*{ypos}) // A0 = Frame Buffer Pointer (Place text at XY Position)
@@ -133,8 +133,8 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
 }
 
 Start:
-  include "LIB\N64_GFX.INC" // Include Graphics Macros
-  include "LIB\N64_INPUT.INC" // Include Input Macros
+  include "LIB/N64_GFX.INC" // Include Graphics Macros
+  include "LIB/N64_INPUT.INC" // Include Input Macros
   N64_INIT() // Run N64 Initialisation Routine
 
   ScreenNTSC(320, 240, BPP32, $A0100000) // Screen NTSC: 320x240, 32BPP, DRAM Origin $A0100000

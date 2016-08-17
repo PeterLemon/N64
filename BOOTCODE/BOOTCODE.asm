@@ -5,7 +5,7 @@ output "BOOTCODE.BIN", create
 
 origin $00000000
 base $A4000040 // Entry Point Of Code
-include "LIB\N64.INC" // Include N64 Definitions
+include "LIB/N64.INC" // Include N64 Definitions
 
 // COP0 registers:
 constant Index($00)

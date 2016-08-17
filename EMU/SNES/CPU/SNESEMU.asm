@@ -6,9 +6,9 @@ fill 1052672 // Set ROM Size
 
 origin $00000000
 base $80000000 // Entry Point Of Code
-include "LIB\N64.INC" // Include N64 Definitions
-include "LIB\N64_HEADER.ASM" // Include 64 Byte Header & Vector Table
-insert "LIB\N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
+include "LIB/N64.INC" // Include N64 Definitions
+include "LIB/N64_HEADER.ASM" // Include 64 Byte Header & Vector Table
+insert "LIB/N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
 
 include "MEM.INC" // Include SNES Memory Map
 
@@ -26,7 +26,7 @@ constant N_FLAG($80)  // P Register Bit 7 Negative/Sign Flag (0=Positive, 1=Nega
 constant E_FLAG($100) // P Register Bit 8 Emulation Flag (Can Be Accessed Only Via XCE Opcode) (0=Native Mode 65816, 1=Emulation Mode 6502)
 
 Start:
-  include "LIB\N64_GFX.INC" // Include Graphics Macros
+  include "LIB/N64_GFX.INC" // Include Graphics Macros
   N64_INIT() // Run N64 Initialisation Routine
   ScreenNTSC(320, 240, BPP16, $A0100000) // Screen NTSC: 320x240, 16BPP, DRAM Origin $A0100000
 

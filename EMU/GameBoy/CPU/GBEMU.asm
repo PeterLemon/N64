@@ -6,9 +6,9 @@ fill 1052672 // Set ROM Size
 
 origin $00000000
 base $80000000 // Entry Point Of Code
-include "LIB\N64.INC" // Include N64 Definitions
-include "LIB\N64_HEADER.ASM" // Include 64 Byte Header & Vector Table
-insert "LIB\N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
+include "LIB/N64.INC" // Include N64 Definitions
+include "LIB/N64_HEADER.ASM" // Include 64 Byte Header & Vector Table
+insert "LIB/N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
 
 include "MEM.INC" // Include GameBoy Memory Map
 
@@ -19,7 +19,7 @@ constant N_FLAG($40) // F Register Bit 6 Negative/Sign Flag (0=Positive, 1=Negat
 constant Z_FLAG($80) // F Register Bit 7 Zero Flag (0=Nonzero, 1=Zero)
 
 Start:
-  include "LIB\N64_GFX.INC" // Include Graphics Macros
+  include "LIB/N64_GFX.INC" // Include Graphics Macros
   N64_INIT() // Run N64 Initialisation Routine
   ScreenNTSC(320, 240, BPP32, $A0100000) // Screen NTSC: 320x240, 32BPP, DRAM Origin $A0100000
 
@@ -107,15 +107,15 @@ MEM_MAP: // SPC-700 Memory Map = $10000 Bytes
 
 insert GB_BIOS, "DMG_ROM.bin" // Include Game Boy DMG BIOS ROM (256 Bytes)
 
-insert GB_CART, "ROMS\01-special.gb" // PASSED
-//insert GB_CART, "ROMS\02-interrupts.gb" // PASSED
-//insert GB_CART, "ROMS\03-op sp,hl.gb" // PASSED
-//insert GB_CART, "ROMS\04-op r,imm.gb" // PASSED
-//insert GB_CART, "ROMS\05-op rp.gb" // PASSED
-//insert GB_CART, "ROMS\06-ld r,r.gb" // PASSED
-//insert GB_CART, "ROMS\07-jr,jp,call,ret,rst.gb" // PASSED
-//insert GB_CART, "ROMS\08-misc instrs.gb" // PASSED
-//insert GB_CART, "ROMS\09-op r,r.gb" // PASSED
-//insert GB_CART, "ROMS\10-bit ops.gb" // PASSED
-//insert GB_CART, "ROMS\11-op a,(hl).gb" // PASSED
-//insert GB_CART, "ROMS\instr_timing.gb" // FAILED #255
+insert GB_CART, "ROMS/01-special.gb" // PASSED
+//insert GB_CART, "ROMS/02-interrupts.gb" // PASSED
+//insert GB_CART, "ROMS/03-op sp,hl.gb" // PASSED
+//insert GB_CART, "ROMS/04-op r,imm.gb" // PASSED
+//insert GB_CART, "ROMS/05-op rp.gb" // PASSED
+//insert GB_CART, "ROMS/06-ld r,r.gb" // PASSED
+//insert GB_CART, "ROMS/07-jr,jp,call,ret,rst.gb" // PASSED
+//insert GB_CART, "ROMS/08-misc instrs.gb" // PASSED
+//insert GB_CART, "ROMS/09-op r,r.gb" // PASSED
+//insert GB_CART, "ROMS/10-bit ops.gb" // PASSED
+//insert GB_CART, "ROMS/11-op a,(hl).gb" // PASSED
+//insert GB_CART, "ROMS/instr_timing.gb" // FAILED #255

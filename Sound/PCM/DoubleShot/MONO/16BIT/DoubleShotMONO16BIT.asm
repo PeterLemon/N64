@@ -6,9 +6,9 @@ fill 1052672 // Set ROM Size
 
 origin $00000000
 base $80000000 // Entry Point Of Code
-include "LIB\N64.INC" // Include N64 Definitions
-include "LIB\N64_HEADER.ASM" // Include 64 Byte Header & Vector Table
-insert "LIB\N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
+include "LIB/N64.INC" // Include N64 Definitions
+include "LIB/N64_HEADER.ASM" // Include 64 Byte Header & Vector Table
+insert "LIB/N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
 
 Start:
   N64_INIT() // Run N64 Initialisation Routine
