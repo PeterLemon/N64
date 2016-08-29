@@ -221,14 +221,14 @@ DATA:
   float64   0.01 // CX/CY ANIM
 
 PIF1:
-  dd $FF010401,0
-  dd 0,0
-  dd 0,0
-  dd 0,0
-  dd $FE000000,0
-  dd 0,0
-  dd 0,0
-  dd 0,1
+  dw $FF010401,0
+  dw 0,0
+  dw 0,0
+  dw 0,0
+  dw $FE000000,0
+  dw 0,0
+  dw 0,0
+  dw 0,1
 
 PIF2:
   fill 64 // Generate 64 Bytes Containing $00
