@@ -31,9 +31,9 @@ macro align(size) {
 // height: height of texture
 // others unknown
 macro MK_TEXTURE(flag, seg_addr, width, height, h0C, h0E, h10, h12) {
-  dw {flag}, 0
-  dd {seg_addr}
-  dw {width}, {height}, {h0C}, {h0E}, {h10}, {h12}
+  dh {flag}, 0
+  dw {seg_addr}
+  dh {width}, {height}, {h0C}, {h0E}, {h10}, {h12}
 }
 
 
@@ -43,9 +43,9 @@ macro MK_TEXTURE(flag, seg_addr, width, height, h0C, h0E, h10, h12) {
 
 // relocate 50cc string pointers since only 4 bytes allocated for them
 seek(0x800E76CC)
-dd results_50cc
+dw results_50cc
 seek(0x800E76DC)
-dd awards_50cc
+dw awards_50cc
 
 // update strings
 seek(0x800EFE16) // start 2 bytes lower to allow for longer string
@@ -79,14 +79,14 @@ seek($800E2340) // Seek To RAM Address
 
 KartUnknown00:
              // ROM       RAM         Kart *Unknown*
-dd $0F12D430 // $000E2F40 $800E2340 - Mario  (4 Bytes) ($0F12D430)
-dd $0F09ABFC // $000E2F44 $800E2344 - Luigi  (4 Bytes) ($0F09ABFC)
-dd $0F1C4958 // $000E2F48 $800E2348 - Yoshi  (4 Bytes) ($0F1C4958)
-dd $0F386858 // $000E2F4C $800E234C - Toad   (4 Bytes) ($0F386858)
-dd $0F438874 // $000E2F50 $800E2350 - D.K.   (4 Bytes) ($0F438874)
-dd $0F2F5DEC // $000E2F54 $800E2354 - Wario  (4 Bytes) ($0F2F5DEC)
-dd $0F258AC8 // $000E2F58 $800E2358 - Peach  (4 Bytes) ($0F258AC8)
-dd $0F4F8C88 // $000E2F5C $800E235C - Bowser (4 Bytes) ($0F4F8C88)
+dw $0F12D430 // $000E2F40 $800E2340 - Mario  (4 Bytes) ($0F12D430)
+dw $0F09ABFC // $000E2F44 $800E2344 - Luigi  (4 Bytes) ($0F09ABFC)
+dw $0F1C4958 // $000E2F48 $800E2348 - Yoshi  (4 Bytes) ($0F1C4958)
+dw $0F386858 // $000E2F4C $800E234C - Toad   (4 Bytes) ($0F386858)
+dw $0F438874 // $000E2F50 $800E2350 - D.K.   (4 Bytes) ($0F438874)
+dw $0F2F5DEC // $000E2F54 $800E2354 - Wario  (4 Bytes) ($0F2F5DEC)
+dw $0F258AC8 // $000E2F58 $800E2358 - Peach  (4 Bytes) ($0F258AC8)
+dw $0F4F8C88 // $000E2F5C $800E235C - Bowser (4 Bytes) ($0F4F8C88)
 
 KartUnknown01:
               // ROM       RAM         Kart *Unknown*
@@ -144,11 +144,11 @@ float32 -30.0 // $000E2FF8 $800E23F8 - Peach  (IEEE32) (-30.0: $C1F00000)
 float32 -30.0 // $000E2FFC $800E23FC - Bowser (IEEE32) (-30.0: $C1F00000)
 
                  // ROM       RAM         Offsets To IEEE32 Tables Above
-dd KartUnknown01 // $000E3000 $800E2400 - Kart *Unknown* (UINT32) ($800E2360)
-dd KartUnknown02 // $000E3004 $800E2404 - Kart *Unknown* (UINT32) ($800E2380)
-dd KartUnknown03 // $000E3008 $800E2408 - Kart *Unknown* (UINT32) ($800E23A0)
-dd KartUnknown04 // $000E300C $800E240C - Kart *Unknown* (UINT32) ($800E23C0)
-dd KartUnknown05 // $000E3010 $800E2410 - Kart *Unknown* (UINT32) ($800E23E0)
+dw KartUnknown01 // $000E3000 $800E2400 - Kart *Unknown* (UINT32) ($800E2360)
+dw KartUnknown02 // $000E3004 $800E2404 - Kart *Unknown* (UINT32) ($800E2380)
+dw KartUnknown03 // $000E3008 $800E2408 - Kart *Unknown* (UINT32) ($800E23A0)
+dw KartUnknown04 // $000E300C $800E240C - Kart *Unknown* (UINT32) ($800E23C0)
+dw KartUnknown05 // $000E3010 $800E2410 - Kart *Unknown* (UINT32) ($800E23E0)
 
 
 KartUnknown06:
@@ -207,11 +207,11 @@ float32 48.0 // $000E30AC $800E24AC - Peach  (IEEE32) (48.0: $42400000)
 float32 48.0 // $000E30B0 $800E24B0 - Bowser (IEEE32) (48.0: $42400000)
 
                  // ROM       RAM         Offsets To IEEE32 Tables Above
-dd KartUnknown06 // $000E30B4 $800E24B4 - Kart *Unknown* (UINT32) ($800E2414)
-dd KartUnknown07 // $000E30B8 $800E24B8 - Kart *Unknown* (UINT32) ($800E2434)
-dd KartUnknown08 // $000E30BC $800E24BC - Kart *Unknown* (UINT32) ($800E2454)
-dd KartUnknown09 // $000E30C0 $800E24C0 - Kart *Unknown* (UINT32) ($800E2474)
-dd KartUnknown10 // $000E30C4 $800E24C4 - Kart *Unknown* (UINT32) ($800E2494)
+dw KartUnknown06 // $000E30B4 $800E24B4 - Kart *Unknown* (UINT32) ($800E2414)
+dw KartUnknown07 // $000E30B8 $800E24B8 - Kart *Unknown* (UINT32) ($800E2434)
+dw KartUnknown08 // $000E30BC $800E24BC - Kart *Unknown* (UINT32) ($800E2454)
+dw KartUnknown09 // $000E30C0 $800E24C0 - Kart *Unknown* (UINT32) ($800E2474)
+dw KartUnknown10 // $000E30C4 $800E24C4 - Kart *Unknown* (UINT32) ($800E2494)
 
 
 KartUnknown11:
@@ -270,11 +270,11 @@ float32 2401.0 // $000E3160 $800E2560 - Peach  (IEEE32) (2401.0: $45161000)
 float32 2401.0 // $000E3164 $800E2564 - Bowser (IEEE32) (2401.0: $45161000)
 
                  // ROM       RAM         Offsets To IEEE32 Tables Above
-dd KartUnknown11 // $000E3168 $800E2568 - Kart *Unknown* (UINT32) ($800E24C8)
-dd KartUnknown12 // $000E316C $800E256C - Kart *Unknown* (UINT32) ($800E24E8)
-dd KartUnknown13 // $000E3170 $800E2570 - Kart *Unknown* (UINT32) ($800E2508)
-dd KartUnknown14 // $000E3174 $800E2574 - Kart *Unknown* (UINT32) ($800E2528)
-dd KartUnknown15 // $000E3178 $800E2578 - Kart *Unknown* (UINT32) ($800E2548)
+dw KartUnknown11 // $000E3168 $800E2568 - Kart *Unknown* (UINT32) ($800E24C8)
+dw KartUnknown12 // $000E316C $800E256C - Kart *Unknown* (UINT32) ($800E24E8)
+dw KartUnknown13 // $000E3170 $800E2570 - Kart *Unknown* (UINT32) ($800E2508)
+dw KartUnknown14 // $000E3174 $800E2574 - Kart *Unknown* (UINT32) ($800E2528)
+dw KartUnknown15 // $000E3178 $800E2578 - Kart *Unknown* (UINT32) ($800E2548)
 
 
 KartSpeed50cc:
@@ -333,11 +333,11 @@ float32 490.0 // $000E3214 $800E2614 - Peach  (IEEE32) (245.0: $43750000)
 float32 490.0 // $000E3218 $800E2618 - Bowser (IEEE32) (245.0: $43750000)
 
                    // ROM       RAM         Offsets To IEEE32 Tables Above
-dd KartSpeed50cc   // $000E321C $800E261C -   50cc Kart Speed (UINT32) ($800E257C)
-dd KartSpeed100cc  // $000E3220 $800E2620 -  100cc Kart Speed (UINT32) ($800E259C)
-dd KartSpeed150cc  // $000E3224 $800E2624 -  150cc Kart Speed (UINT32) ($800E25BC)
-dd KartSpeedExtra  // $000E3228 $800E2628 -  Extra Kart Speed (UINT32) ($800E25DC)
-dd KartSpeedBattle // $000E322C $800E262C - Battle Kart Speed (UINT32) ($800E25FC)
+dw KartSpeed50cc   // $000E321C $800E261C -   50cc Kart Speed (UINT32) ($800E257C)
+dw KartSpeed100cc  // $000E3220 $800E2620 -  100cc Kart Speed (UINT32) ($800E259C)
+dw KartSpeed150cc  // $000E3224 $800E2624 -  150cc Kart Speed (UINT32) ($800E25BC)
+dw KartSpeedExtra  // $000E3228 $800E2628 -  Extra Kart Speed (UINT32) ($800E25DC)
+dw KartSpeedBattle // $000E322C $800E262C - Battle Kart Speed (UINT32) ($800E25FC)
 
 
 KartFriction:
@@ -686,24 +686,24 @@ float32 0.58 // $000E3688 $800E2A88 - Kart *Unknown* (IEEE32) (0.58: $3F147AE1)
 float32 0.0  // $000E368C $800E2A8C - Kart *Unknown* (IEEE32) (0.0:  $00000000)
 
                  // ROM       RAM         Offsets To IEEE32 Tables Above
-dd KartUnknown25 // $000E3690 $800E2A90 - Kart *Unknown* Mario  (UINT32) ($800E28B0)
-dd KartUnknown26 // $000E3694 $800E2A94 - Kart *Unknown* Luigi  (UINT32) ($800E28EC)
-dd KartUnknown27 // $000E3698 $800E2A98 - Kart *Unknown* Yoshi  (UINT32) ($800E2928)
-dd KartUnknown28 // $000E369C $800E2A9C - Kart *Unknown* Toad   (UINT32) ($800E2964)
-dd KartUnknown29 // $000E36A0 $800E2AA0 - Kart *Unknown* D.K.   (UINT32) ($800E29A0)
-dd KartUnknown30 // $000E36A4 $800E2AA4 - Kart *Unknown* Wario  (UINT32) ($800E29DC)
-dd KartUnknown31 // $000E36A8 $800E2AA8 - Kart *Unknown* Peach  (UINT32) ($800E2A18)
-dd KartUnknown32 // $000E36AC $800E2AAC - Kart *Unknown* Bowser (UINT32) ($800E2A54)
+dw KartUnknown25 // $000E3690 $800E2A90 - Kart *Unknown* Mario  (UINT32) ($800E28B0)
+dw KartUnknown26 // $000E3694 $800E2A94 - Kart *Unknown* Luigi  (UINT32) ($800E28EC)
+dw KartUnknown27 // $000E3698 $800E2A98 - Kart *Unknown* Yoshi  (UINT32) ($800E2928)
+dw KartUnknown28 // $000E369C $800E2A9C - Kart *Unknown* Toad   (UINT32) ($800E2964)
+dw KartUnknown29 // $000E36A0 $800E2AA0 - Kart *Unknown* D.K.   (UINT32) ($800E29A0)
+dw KartUnknown30 // $000E36A4 $800E2AA4 - Kart *Unknown* Wario  (UINT32) ($800E29DC)
+dw KartUnknown31 // $000E36A8 $800E2AA8 - Kart *Unknown* Peach  (UINT32) ($800E2A18)
+dw KartUnknown32 // $000E36AC $800E2AAC - Kart *Unknown* Bowser (UINT32) ($800E2A54)
 
                  // ROM       RAM         Offsets To IEEE32 Tables Above
-dd KartUnknown17 // $000E36B0 $800E2AB0 - Kart *Unknown* Mario  (UINT32) ($800E26D0)
-dd KartUnknown18 // $000E36B4 $800E2AB4 - Kart *Unknown* Luigi  (UINT32) ($800E270C)
-dd KartUnknown19 // $000E36B8 $800E2AB8 - Kart *Unknown* Yoshi  (UINT32) ($800E2748)
-dd KartUnknown20 // $000E36BC $800E2ABC - Kart *Unknown* Toad   (UINT32) ($800E2784)
-dd KartUnknown21 // $000E36C0 $800E2AC0 - Kart *Unknown* D.K.   (UINT32) ($800E27C0)
-dd KartUnknown22 // $000E36C4 $800E2AC4 - Kart *Unknown* Wario  (UINT32) ($800E27FC)
-dd KartUnknown23 // $000E36C8 $800E2AC8 - Kart *Unknown* Peach  (UINT32) ($800E2838)
-dd KartUnknown24 // $000E36CC $800E2ACC - Kart *Unknown* Bowser (UINT32) ($800E2874)
+dw KartUnknown17 // $000E36B0 $800E2AB0 - Kart *Unknown* Mario  (UINT32) ($800E26D0)
+dw KartUnknown18 // $000E36B4 $800E2AB4 - Kart *Unknown* Luigi  (UINT32) ($800E270C)
+dw KartUnknown19 // $000E36B8 $800E2AB8 - Kart *Unknown* Yoshi  (UINT32) ($800E2748)
+dw KartUnknown20 // $000E36BC $800E2ABC - Kart *Unknown* Toad   (UINT32) ($800E2784)
+dw KartUnknown21 // $000E36C0 $800E2AC0 - Kart *Unknown* D.K.   (UINT32) ($800E27C0)
+dw KartUnknown22 // $000E36C4 $800E2AC4 - Kart *Unknown* Wario  (UINT32) ($800E27FC)
+dw KartUnknown23 // $000E36C8 $800E2AC8 - Kart *Unknown* Peach  (UINT32) ($800E2838)
+dw KartUnknown24 // $000E36CC $800E2ACC - Kart *Unknown* Bowser (UINT32) ($800E2874)
 
 
 KartUnknown33: // Mario
@@ -996,24 +996,24 @@ float32 0.1  // $000E3A88 $800E2E88 - Kart *Unknown* (IEEE32) (0.1:  $3DCCCCCD)
 float32 0.1  // $000E3A8C $800E2E8C - Kart *Unknown* (IEEE32) (0.1:  $3DCCCCCD)
 
                  // ROM       RAM         Offsets To IEEE32 Tables Above
-dd KartUnknown41 // $000E3A90 $800E2E90 - Kart *Unknown* Mario  (UINT32) ($800E2CB0)
-dd KartUnknown42 // $000E3A94 $800E2E94 - Kart *Unknown* Luigi  (UINT32) ($800E2CEC)
-dd KartUnknown43 // $000E3A98 $800E2E98 - Kart *Unknown* Yoshi  (UINT32) ($800E2D28)
-dd KartUnknown44 // $000E3A9C $800E2E9C - Kart *Unknown* Toad   (UINT32) ($800E2D64)
-dd KartUnknown45 // $000E3AA0 $800E2EA0 - Kart *Unknown* D.K.   (UINT32) ($800E2DA0)
-dd KartUnknown46 // $000E3AA4 $800E2EA4 - Kart *Unknown* Wario  (UINT32) ($800E2DDC)
-dd KartUnknown47 // $000E3AA8 $800E2EA8 - Kart *Unknown* Peach  (UINT32) ($800E2E18)
-dd KartUnknown48 // $000E3AAC $800E2EAC - Kart *Unknown* Bowser (UINT32) ($800E2E54)
+dw KartUnknown41 // $000E3A90 $800E2E90 - Kart *Unknown* Mario  (UINT32) ($800E2CB0)
+dw KartUnknown42 // $000E3A94 $800E2E94 - Kart *Unknown* Luigi  (UINT32) ($800E2CEC)
+dw KartUnknown43 // $000E3A98 $800E2E98 - Kart *Unknown* Yoshi  (UINT32) ($800E2D28)
+dw KartUnknown44 // $000E3A9C $800E2E9C - Kart *Unknown* Toad   (UINT32) ($800E2D64)
+dw KartUnknown45 // $000E3AA0 $800E2EA0 - Kart *Unknown* D.K.   (UINT32) ($800E2DA0)
+dw KartUnknown46 // $000E3AA4 $800E2EA4 - Kart *Unknown* Wario  (UINT32) ($800E2DDC)
+dw KartUnknown47 // $000E3AA8 $800E2EA8 - Kart *Unknown* Peach  (UINT32) ($800E2E18)
+dw KartUnknown48 // $000E3AAC $800E2EAC - Kart *Unknown* Bowser (UINT32) ($800E2E54)
 
                  // ROM       RAM         Offsets To IEEE32 Tables Above
-dd KartUnknown33 // $000E3AB0 $800E2EB0 - Kart *Unknown* Mario  (UINT32) ($800E2AD0)
-dd KartUnknown34 // $000E3AB4 $800E2EB4 - Kart *Unknown* Luigi  (UINT32) ($800E2B0C)
-dd KartUnknown35 // $000E3AB8 $800E2EB8 - Kart *Unknown* Yoshi  (UINT32) ($800E2B48)
-dd KartUnknown36 // $000E3ABC $800E2EBC - Kart *Unknown* Toad   (UINT32) ($800E2B84)
-dd KartUnknown37 // $000E3AC0 $800E2EC0 - Kart *Unknown* D.K.   (UINT32) ($800E2BC0)
-dd KartUnknown38 // $000E3AC4 $800E2EC4 - Kart *Unknown* Wario  (UINT32) ($800E2BFC)
-dd KartUnknown39 // $000E3AC8 $800E2EC8 - Kart *Unknown* Peach  (UINT32) ($800E2C38)
-dd KartUnknown40 // $000E3ACC $800E2ECC - Kart *Unknown* Bowser (UINT32) ($800E2C74)
+dw KartUnknown33 // $000E3AB0 $800E2EB0 - Kart *Unknown* Mario  (UINT32) ($800E2AD0)
+dw KartUnknown34 // $000E3AB4 $800E2EB4 - Kart *Unknown* Luigi  (UINT32) ($800E2B0C)
+dw KartUnknown35 // $000E3AB8 $800E2EB8 - Kart *Unknown* Yoshi  (UINT32) ($800E2B48)
+dw KartUnknown36 // $000E3ABC $800E2EBC - Kart *Unknown* Toad   (UINT32) ($800E2B84)
+dw KartUnknown37 // $000E3AC0 $800E2EC0 - Kart *Unknown* D.K.   (UINT32) ($800E2BC0)
+dw KartUnknown38 // $000E3AC4 $800E2EC4 - Kart *Unknown* Wario  (UINT32) ($800E2BFC)
+dw KartUnknown39 // $000E3AC8 $800E2EC8 - Kart *Unknown* Peach  (UINT32) ($800E2C38)
+dw KartUnknown40 // $000E3ACC $800E2ECC - Kart *Unknown* Bowser (UINT32) ($800E2C74)
 
 
 KartAccelerationMario:
@@ -1121,14 +1121,14 @@ float32 1.8 // $000E3C08 $800E3008 - Kart Acceleration Bowser (IEEE32) (1.8: $3F
 float32 1.2 // $000E3C0C $800E300C - Kart Acceleration Bowser (IEEE32) (1.2: $3F99999A)
 
                           // ROM       RAM         Offsets To IEEE32 Acceleration Tables Above
-dd KartAccelerationMario  // $000E3C10 $800E3010 - Kart Acceleration Mario  (UINT32) ($800E2ED0)
-dd KartAccelerationLuigi  // $000E3C14 $800E3014 - Kart Acceleration Luigi  (UINT32) ($800E2EF8)
-dd KartAccelerationYoshi  // $000E3C18 $800E3018 - Kart Acceleration Yoshi  (UINT32) ($800E2F20)
-dd KartAccelerationToad   // $000E3C1C $800E301C - Kart Acceleration Toad   (UINT32) ($800E2F48)
-dd KartAccelerationDK     // $000E3C20 $800E3020 - Kart Acceleration D.K.   (UINT32) ($800E2F70)
-dd KartAccelerationWario  // $000E3C24 $800E3024 - Kart Acceleration Wario  (UINT32) ($800E2F98)
-dd KartAccelerationPeach  // $000E3C28 $800E3028 - Kart Acceleration Peach  (UINT32) ($800E2FC0)
-dd KartAccelerationBowser // $000E3C2C $800E302C - Kart Acceleration Bowser (UINT32) ($800E2FE8)
+dw KartAccelerationMario  // $000E3C10 $800E3010 - Kart Acceleration Mario  (UINT32) ($800E2ED0)
+dw KartAccelerationLuigi  // $000E3C14 $800E3014 - Kart Acceleration Luigi  (UINT32) ($800E2EF8)
+dw KartAccelerationYoshi  // $000E3C18 $800E3018 - Kart Acceleration Yoshi  (UINT32) ($800E2F20)
+dw KartAccelerationToad   // $000E3C1C $800E301C - Kart Acceleration Toad   (UINT32) ($800E2F48)
+dw KartAccelerationDK     // $000E3C20 $800E3020 - Kart Acceleration D.K.   (UINT32) ($800E2F70)
+dw KartAccelerationWario  // $000E3C24 $800E3024 - Kart Acceleration Wario  (UINT32) ($800E2F98)
+dw KartAccelerationPeach  // $000E3C28 $800E3028 - Kart Acceleration Peach  (UINT32) ($800E2FC0)
+dw KartAccelerationBowser // $000E3C2C $800E302C - Kart Acceleration Bowser (UINT32) ($800E2FE8)
 
 
 KartUnknown49: // Mario
@@ -1276,14 +1276,14 @@ float32 0.0 // $000E3E08 $800E3208 - Kart *Unknown* (IEEE32) (0.0: $00000000)
 float32 0.0 // $000E3E0C $800E320C - Kart *Unknown* (IEEE32) (0.0: $00000000)
 
                  // ROM       RAM         Offsets To IEEE32 Tables Above
-dd KartUnknown49 // $000E3E10 $800E3210 - Kart *Unknown* Mario  (UINT32) ($800E3030)
-dd KartUnknown50 // $000E3E14 $800E3214 - Kart *Unknown* Luigi  (UINT32) ($800E306C)
-dd KartUnknown51 // $000E3E18 $800E3218 - Kart *Unknown* Yoshi  (UINT32) ($800E30A8)
-dd KartUnknown52 // $000E3E1C $800E321C - Kart *Unknown* Toad   (UINT32) ($800E30E4)
-dd KartUnknown53 // $000E3E20 $800E3220 - Kart *Unknown* D.K.   (UINT32) ($800E3120)
-dd KartUnknown54 // $000E3E24 $800E3224 - Kart *Unknown* Wario  (UINT32) ($800E315C)
-dd KartUnknown55 // $000E3E28 $800E3228 - Kart *Unknown* Peach  (UINT32) ($800E3198)
-dd KartUnknown56 // $000E3E2C $800E322C - Kart *Unknown* Bowser (UINT32) ($800E31D4)
+dw KartUnknown49 // $000E3E10 $800E3210 - Kart *Unknown* Mario  (UINT32) ($800E3030)
+dw KartUnknown50 // $000E3E14 $800E3214 - Kart *Unknown* Luigi  (UINT32) ($800E306C)
+dw KartUnknown51 // $000E3E18 $800E3218 - Kart *Unknown* Yoshi  (UINT32) ($800E30A8)
+dw KartUnknown52 // $000E3E1C $800E321C - Kart *Unknown* Toad   (UINT32) ($800E30E4)
+dw KartUnknown53 // $000E3E20 $800E3220 - Kart *Unknown* D.K.   (UINT32) ($800E3120)
+dw KartUnknown54 // $000E3E24 $800E3224 - Kart *Unknown* Wario  (UINT32) ($800E315C)
+dw KartUnknown55 // $000E3E28 $800E3228 - Kart *Unknown* Peach  (UINT32) ($800E3198)
+dw KartUnknown56 // $000E3E2C $800E322C - Kart *Unknown* Bowser (UINT32) ($800E31D4)
 
 
 KartUnknown57: // Mario
@@ -1431,14 +1431,14 @@ float32 0.0 // $000E4008 $800E3408 - Kart *Unknown* (IEEE32) (0.0: $00000000)
 float32 0.0 // $000E400C $800E340C - Kart *Unknown* (IEEE32) (0.0: $00000000)
 
                  // ROM       RAM         Offsets To IEEE32 Tables Above
-dd KartUnknown57 // $000E4010 $800E3410 - Kart *Unknown* Mario  (UINT32) ($800E3230)
-dd KartUnknown58 // $000E4014 $800E3414 - Kart *Unknown* Luigi  (UINT32) ($800E326C)
-dd KartUnknown59 // $000E4018 $800E3418 - Kart *Unknown* Yoshi  (UINT32) ($800E32A8)
-dd KartUnknown60 // $000E401C $800E341C - Kart *Unknown* Toad   (UINT32) ($800E32E4)
-dd KartUnknown61 // $000E4020 $800E3420 - Kart *Unknown* D.K.   (UINT32) ($800E3320)
-dd KartUnknown62 // $000E4024 $800E3424 - Kart *Unknown* Wario  (UINT32) ($800E335C)
-dd KartUnknown63 // $000E4028 $800E3428 - Kart *Unknown* Peach  (UINT32) ($800E3398)
-dd KartUnknown64 // $000E402C $800E342C - Kart *Unknown* Bowser (UINT32) ($800E33D4)
+dw KartUnknown57 // $000E4010 $800E3410 - Kart *Unknown* Mario  (UINT32) ($800E3230)
+dw KartUnknown58 // $000E4014 $800E3414 - Kart *Unknown* Luigi  (UINT32) ($800E326C)
+dw KartUnknown59 // $000E4018 $800E3418 - Kart *Unknown* Yoshi  (UINT32) ($800E32A8)
+dw KartUnknown60 // $000E401C $800E341C - Kart *Unknown* Toad   (UINT32) ($800E32E4)
+dw KartUnknown61 // $000E4020 $800E3420 - Kart *Unknown* D.K.   (UINT32) ($800E3320)
+dw KartUnknown62 // $000E4024 $800E3424 - Kart *Unknown* Wario  (UINT32) ($800E335C)
+dw KartUnknown63 // $000E4028 $800E3428 - Kart *Unknown* Peach  (UINT32) ($800E3398)
+dw KartUnknown64 // $000E402C $800E342C - Kart *Unknown* Bowser (UINT32) ($800E33D4)
 
 
 KartUnknown65: // Mario
@@ -1586,14 +1586,14 @@ float32 0.0 // $000E4208 $800E3608 - Kart *Unknown* (IEEE32) (0.0: $00000000)
 float32 0.0 // $000E420C $800E360C - Kart *Unknown* (IEEE32) (0.0: $00000000)
 
                  // ROM       RAM         Offsets To IEEE32 Tables Above
-dd KartUnknown65 // $000E4210 $800E3610 - Kart *Unknown* Mario  (UINT32) ($800E3230)
-dd KartUnknown66 // $000E4214 $800E3614 - Kart *Unknown* Luigi  (UINT32) ($800E326C)
-dd KartUnknown67 // $000E4218 $800E3618 - Kart *Unknown* Yoshi  (UINT32) ($800E32A8)
-dd KartUnknown68 // $000E421C $800E361C - Kart *Unknown* Toad   (UINT32) ($800E32E4)
-dd KartUnknown69 // $000E4220 $800E3620 - Kart *Unknown* D.K.   (UINT32) ($800E3320)
-dd KartUnknown70 // $000E4224 $800E3624 - Kart *Unknown* Wario  (UINT32) ($800E335C)
-dd KartUnknown71 // $000E4228 $800E3628 - Kart *Unknown* Peach  (UINT32) ($800E3398)
-dd KartUnknown72 // $000E422C $800E362C - Kart *Unknown* Bowser (UINT32) ($800E33D4)
+dw KartUnknown65 // $000E4210 $800E3610 - Kart *Unknown* Mario  (UINT32) ($800E3230)
+dw KartUnknown66 // $000E4214 $800E3614 - Kart *Unknown* Luigi  (UINT32) ($800E326C)
+dw KartUnknown67 // $000E4218 $800E3618 - Kart *Unknown* Yoshi  (UINT32) ($800E32A8)
+dw KartUnknown68 // $000E421C $800E361C - Kart *Unknown* Toad   (UINT32) ($800E32E4)
+dw KartUnknown69 // $000E4220 $800E3620 - Kart *Unknown* D.K.   (UINT32) ($800E3320)
+dw KartUnknown70 // $000E4224 $800E3624 - Kart *Unknown* Wario  (UINT32) ($800E335C)
+dw KartUnknown71 // $000E4228 $800E3628 - Kart *Unknown* Peach  (UINT32) ($800E3398)
+dw KartUnknown72 // $000E422C $800E362C - Kart *Unknown* Bowser (UINT32) ($800E33D4)
 
 
              // ROM       RAM         Kart Handling (Turn Angle)
