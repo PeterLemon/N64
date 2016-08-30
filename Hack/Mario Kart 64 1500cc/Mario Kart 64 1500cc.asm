@@ -70,6 +70,11 @@ awards_150cc:
 db "1500(", 0
 align(0x4)
 
+// NOW-MEET THE COURSE GHOST!!!
+seek(0x800E7780) // start 2 bytes lower to allow for longer string
+db "NOW MEET THE N64DEV GHOST!!!", 0
+align(0x4)
+
 
 //-----------------
 // Kart Properties
@@ -1817,3 +1822,27 @@ lui   a1, 0x8019
 lw    a1, -0x2650(a1)
 ori   a0, a0, (title_logo & 0xFFFF)
 addiu a2, r0, title_logo.end - title_logo
+
+//----------------------
+// Staff Ghosts
+//----------------------
+origin 0x63E280
+insert "ghosts/mario_raceway_1500cc.bin"
+dw 0x00000000
+if origin() > 0x63F11C {
+   error "Mario Raceway ghost too large"
+}
+
+origin 0x63F11C
+insert "ghosts/luigi_raceway_1500cc.bin"
+dw 0x00000000
+if origin() > 0x640174 {
+   error "Luigi Raceway ghost too large"
+}
+
+origin 0x640174
+insert "ghosts/royal_raceway_1500cc.bin"
+dw 0x00000000
+if origin() > 0x641F40 { // TODO: not entirely sure where this data ends
+   error "Royal Raceway ghost too large"
+}
