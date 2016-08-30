@@ -446,7 +446,7 @@ j DebugEnd
 nop // Delay Slot
 
 TEMPVALUE:
-  dd 0
+  dw 0
 
 DebugEnd:
 la a0,MEM_MAP // A0 = MEM_MAP

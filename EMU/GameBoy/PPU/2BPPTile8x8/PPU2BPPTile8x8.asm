@@ -125,7 +125,7 @@ base $0000 // Set Base Of RSP Data Object To Zero
 
 // Uses Elements 8..15 To Multiply Vector By Scalar For Pseudo Vector Shifts
 ShiftLeftRightA:
-  dw $0001, $0002, $0004, $0008, $0010, $0020, $0040, $0080
+  dh $0001, $0002, $0004, $0008, $0010, $0020, $0040, $0080
   // $0001 (Left Shift Using Multiply: << 0),  (Right Shift Using Multiply: >> 16) (e8)
   // $0002 (Left Shift Using Multiply: << 1),  (Right Shift Using Multiply: >> 15) (e9)
   // $0004 (Left Shift Using Multiply: << 2),  (Right Shift Using Multiply: >> 14) (e10)
@@ -135,7 +135,7 @@ ShiftLeftRightA:
   // $0040 (Left Shift Using Multiply: << 6),  (Right Shift Using Multiply: >> 10) (e14)
   // $0080 (Left Shift Using Multiply: << 7),  (Right Shift Using Multiply: >> 9)  (e15)
 ShiftLeftRightB:
-  dw $0100, $0200, $0400, $0800, $1000, $2000, $4000, $8000
+  dh $0100, $0200, $0400, $0800, $1000, $2000, $4000, $8000
   // $0100 (Left Shift Using Multiply: << 8),  (Right Shift Using Multiply: >> 8) (e8)
   // $0200 (Left Shift Using Multiply: << 9),  (Right Shift Using Multiply: >> 7) (e9)
   // $0400 (Left Shift Using Multiply: << 10), (Right Shift Using Multiply: >> 6) (e10)
@@ -147,7 +147,7 @@ ShiftLeftRightB:
 
 // Uses Elements 8..9 To AND Lo/Hi Nibbles
 ANDNibble:
-  dw $000F, $0F00
+  dh $000F, $0F00
   // $000F (AND Lo Nibble) (e8)
   // $0F00 (AND Hi Nibble) (e9)
 

@@ -99,13 +99,13 @@ base $0000 // Set Base Of RSP Data Object To Zero
 // Uses Whole Vector For 1st 8 Colors To Preserve SNES Palette Color 0 Alpha
 // Uses Element 9 To OR Vector By Scalar $0001 For Other Colors
 AlphaOR:
-  dw $0000, $0001, $0001, $0001, $0001, $0001, $0001, $0001
+  dh $0000, $0001, $0001, $0001, $0001, $0001, $0001, $0001
   // 1 * $0000, 7 * $0001 (OR Alpha 1 Bit) (1st 8 Colors)
   // $0001 (OR Alpha 1 Bit) (Other Colors) (e9)
 
 // Uses Elements 8..12 To AND Vector By Scalar
 ANDByte:
-  dw $00FF, $FF00, $001F, $03E0, $7C00, $0000, $0000, $0000
+  dh $00FF, $FF00, $001F, $03E0, $7C00, $0000, $0000, $0000
   // $00FF (AND Lo Byte) (e8)
   // $FF00 (AND Hi Byte) (e9)
   // $001F (AND Red   5 Bits) (e10)
@@ -114,7 +114,7 @@ ANDByte:
 
 // Uses Elements 8..11 To Multiply Vector By Scalar For Pseudo Vector Shifts
 PALShift:
-  dw $0100, $0800, $0002, $0080
+  dh $0100, $0800, $0002, $0080
   // $0100 (Left Shift Using Multiply: << 8), (Right Shift Using Multiply: >> 8) (Big-Endian Convert) (e8)
   // $0800 (Left Shift Using Multiply: << 11) (Red) (e9)
   // $0002 (Left Shift Using Multiply: << 1)  (Green) (e10)
@@ -131,7 +131,7 @@ base $0000 // Set Base Of RSP Data Object To Zero
 
 // Uses Elements 8..15 To Multiply Vector By Scalar For Pseudo Vector Shifts
 ShiftLeftRightA:
-  dw $0001, $0002, $0004, $0008, $0010, $0020, $0040, $0080
+  dh $0001, $0002, $0004, $0008, $0010, $0020, $0040, $0080
   // $0001 (Left Shift Using Multiply: << 0),  (Right Shift Using Multiply: >> 16) (e8)
   // $0002 (Left Shift Using Multiply: << 1),  (Right Shift Using Multiply: >> 15) (e9)
   // $0004 (Left Shift Using Multiply: << 2),  (Right Shift Using Multiply: >> 14) (e10)
@@ -141,7 +141,7 @@ ShiftLeftRightA:
   // $0040 (Left Shift Using Multiply: << 6),  (Right Shift Using Multiply: >> 10) (e14)
   // $0080 (Left Shift Using Multiply: << 7),  (Right Shift Using Multiply: >> 9)  (e15)
 ShiftLeftRightB:
-  dw $0100, $0200, $0400, $0800, $1000, $2000, $4000, $8000
+  dh $0100, $0200, $0400, $0800, $1000, $2000, $4000, $8000
   // $0100 (Left Shift Using Multiply: << 8),  (Right Shift Using Multiply: >> 8) (e8)
   // $0200 (Left Shift Using Multiply: << 9),  (Right Shift Using Multiply: >> 7) (e9)
   // $0400 (Left Shift Using Multiply: << 10), (Right Shift Using Multiply: >> 6) (e10)
@@ -153,7 +153,7 @@ ShiftLeftRightB:
 
 // Uses Elements 8..9 To AND Lo/Hi Nibbles
 ANDNibble:
-  dw $000F, $0F00
+  dh $000F, $0F00
   // $000F (AND Lo Nibble) (e8)
   // $0F00 (AND Hi Nibble) (e9)
 
