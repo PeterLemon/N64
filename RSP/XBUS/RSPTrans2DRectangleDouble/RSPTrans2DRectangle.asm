@@ -107,16 +107,16 @@ RSPData:
 base $0000 // Set Base Of RSP Data Object To Zero
 
 PointXI:
-  dw -10, 10, -10,  10, -20,  20, -20,  20 // 8 * Point X (S15) (Signed Integer)
+  dh -10, 10, -10,  10, -20,  20, -20,  20 // 8 * Point X (S15) (Signed Integer)
 PointXF:
-  dw  32768, 0, 0,   0,   0,   0,   0,   0 // 8 * Point X (S0.15) (Signed Fraction)
+  dh  32768, 0, 0,   0,   0,   0,   0,   0 // 8 * Point X (S0.15) (Signed Fraction)
 PointYI:
-  dw  10, 10, -10, -10,  20,  20, -20, -20 // 8 * Point Y (S15) (Signed Integer)
+  dh  10, 10, -10, -10,  20,  20, -20, -20 // 8 * Point Y (S15) (Signed Integer)
 PointYF:
-  dw   0,  0,   0,   0,   0,   0,   0,   0 // 8 * Point Y (S0.15) (Signed Fraction)
+  dh   0,  0,   0,   0,   0,   0,   0,   0 // 8 * Point Y (S0.15) (Signed Fraction)
 
 HALF_SCREEN_XYIF:
-  dw 160, 0, 120, 0, 0, 0, 0, 0 // Screen X / 2 (S15) (Signed Integer), Screen X / 2 (S0.15) (Signed Fraction), Screen Y / 2 (S15) (Signed Integer), Screen Y / 2 (S0.15) (Signed Fraction)
+  dh 160, 0, 120, 0, 0, 0, 0, 0 // Screen X / 2 (S15) (Signed Integer), Screen X / 2 (S0.15) (Signed Fraction), Screen Y / 2 (S15) (Signed Integer), Screen Y / 2 (S0.15) (Signed Fraction)
 
 align(8) // Align 64-Bit
 RDPBuffer:

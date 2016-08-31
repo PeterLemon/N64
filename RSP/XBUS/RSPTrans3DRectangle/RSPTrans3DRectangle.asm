@@ -138,19 +138,19 @@ RSPData:
 base $0000 // Set Base Of RSP Data Object To Zero
 
 PointX:
-  dw -20, 20, -20,  20, -20,  20, -20,  20 // 8 * Point X (S15) (Signed Integer)
+  dh -20, 20, -20,  20, -20,  20, -20,  20 // 8 * Point X (S15) (Signed Integer)
 PointY:
-  dw  20, 20, -20, -20,  20,  20, -20, -20 // 8 * Point Y (S15) (Signed Integer)
+  dh  20, 20, -20, -20,  20,  20, -20, -20 // 8 * Point Y (S15) (Signed Integer)
 PointZ:
-  dw  20, 20,  20,  20, -20, -20, -20, -20 // 8 * Point Z (S15) (Signed Integer)
+  dh  20, 20,  20,  20, -20, -20, -20, -20 // 8 * Point Z (S15) (Signed Integer)
 
 HALF_SCREEN_XY_FOV:
-  dw 160, 120, 160, 0, 0, 0, 0, 0 // Screen X / 2 (S15) (Signed Integer), Screen Y / 2 (S15) (Signed Integer), FOV (Signed Fraction)
+  dh 160, 120, 160, 0, 0, 0, 0, 0 // Screen X / 2 (S15) (Signed Integer), Screen Y / 2 (S15) (Signed Integer), FOV (Signed Fraction)
 
 MatrixRow01XYZT:
-  dw 1,0,0,0, 0,1,0,0 // Row 0 X,Y,Z,T (S15) (Signed Integer) (X), Row 1 X,Y,Z,T (S15) (Signed Integer) (Y)
+  dh 1,0,0,0, 0,1,0,0 // Row 0 X,Y,Z,T (S15) (Signed Integer) (X), Row 1 X,Y,Z,T (S15) (Signed Integer) (Y)
 MatrixRow23XYZT:
-  dw 0,0,1,200, 0,0,0,1 // Row 2 X,Y,Z,T (S15) (Signed Integer) (Z), Row 3 X,Y,Z,T (S15) (Signed Integer) (T)
+  dh 0,0,1,200, 0,0,0,1 // Row 2 X,Y,Z,T (S15) (Signed Integer) (Z), Row 3 X,Y,Z,T (S15) (Signed Integer) (T)
 
 align(8) // Align 64-Bit
 RDPBuffer:
