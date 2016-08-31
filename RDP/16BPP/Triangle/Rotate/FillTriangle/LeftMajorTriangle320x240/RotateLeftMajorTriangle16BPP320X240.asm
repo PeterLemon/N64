@@ -527,11 +527,11 @@ Matrix3D: // Float Matrix 3D Data
   float32 0.0, 0.0, 1.0, 15.0 // Z
 
 XRot:
-  dd 120 // X Rotation Value (0..1023)
+  dw 120 // X Rotation Value (0..1023)
 YRot:
-  dd 360 // Y Rotation Value (0..1023)
+  dw 360 // Y Rotation Value (0..1023)
 ZRot:
-  dd 200 // Z Rotation Value (0..1023)
+  dw 200 // Z Rotation Value (0..1023)
 
 // Setup 3D
 HALF_SCREEN_X:
