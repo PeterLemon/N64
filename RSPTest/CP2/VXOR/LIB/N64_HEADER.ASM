@@ -8,17 +8,17 @@
   db $40 // Initial PI_BSB_DOM1_PGS_REG Value
 
 // CLOCK RATE
-  dd $000F // Initial Clock Rate
+  dw $000F // Initial Clock Rate
 
 // VECTOR
-  dd Start // Boot Address Offset
-  dd $1444 // Release Offset
+  dw Start // Boot Address Offset
+  dw $1444 // Release Offset
 
 // COMPLEMENT CHECK & CHECKSUM
   db "CRC1" // CRC1: COMPLEMENT CHECK
   db "CRC2" // CRC2: CHECKSUM
 
-  dq 0 // UNUSED
+  dd 0 // UNUSED
 
 // PROGRAM TITLE (27 Byte ASCII String, Use Spaces For Unused Bytes)
   db "RSP TEST CP2 VXOR VNXOR    "
