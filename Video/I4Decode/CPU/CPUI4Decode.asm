@@ -22,14 +22,22 @@ addiu a2,a1,$9600 // A2 = I4 End Offset
 DecodeI4:
   lbu t0,0(a1) // T0 = I4 Frame Byte
   addiu a1,1 // I4 Offset++
-  sll t1,t0,4 // T1 = I4 2nd Pixel
-  andi t0,$F0 // T0 = I4 1st Pixel
-  sb t0,0(a0) // Store 1st Pixel R
-  sb t0,1(a0) // Store 1st Pixel G
-  sb t0,2(a0) // Store 1st Pixel B
-  sb t1,4(a0) // Store 2nd Pixel R
-  sb t1,5(a0) // Store 2nd Pixel G
-  sb t1,6(a0) // Store 2nd Pixel B
+
+  sll t1,t0,12 // T1 = I4 2nd Pixel
+  andi t1,$F000
+  sll t2,t1,8
+  or t1,t2
+  sll t2,8
+  or t1,t2
+  sll t0,8 // T0 = I4 1st Pixel
+  andi t0,$F000
+  sll t2,t0,8
+  or t0,t2
+  sll t2,8
+  or t0,t2
+  sw t0,0(a0) // Store 1st Pixel
+  sw t1,4(a0) // Store 2nd Pixel
+  
   bne a1,a2,DecodeI4 // IF (I4 Offset != I4 End Offset) DecodeI4
   addiu a0,8 // VI Frame Buffer DRAM Origin += 8 (Delay Slot)
 
