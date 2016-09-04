@@ -160,4 +160,4 @@ LoopVideo:
   nop // Delay Slot
 
 insert RLEVideo, "Video.rle" // 6572 320x240 RLE Compressed I4 Frames
-insert Sample, "Sample.bin" // 16-Bit 16000Hz Signed Big-Endian Stereo Sound Sample
+insert Sample, "Sample.bin" // 16-Bit 44100Hz Signed Big-Endian Stereo Sound Sample
