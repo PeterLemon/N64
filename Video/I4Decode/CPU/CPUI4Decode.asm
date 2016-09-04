@@ -16,7 +16,7 @@ Start:
 
   ScreenNTSC(320, 240, BPP32, $A0100000) // Screen NTSC: 320x240, 32BPP, DRAM Origin $A0100000
 
-lui a0,$A010 // A0 = VI Frame Buffer DRAM Origin
+lui a0,$8010 // A0 = VI Frame Buffer DRAM Origin
 la a1,I4 // A1 = I4 Offset
 addiu a2,a1,$9600 // A2 = I4 End Offset
 DecodeI4:
