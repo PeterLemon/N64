@@ -20,7 +20,7 @@ Start:
   lli t5,160 // T5 = X Position (1/2 Screen X)
   lli t6,120 // T6 = Y Position (1/2 Screen Y)
 
-  la a3,$A0000000+(FillRect&$3FFFFF) // A0 = Fill Rect RAM Offset
+  la a3,$A0000000+(FillRect&$3FFFFF) // A3 = Fill Rect RAM Offset
 
   InitController(PIF1) // Initialize Controller
 
