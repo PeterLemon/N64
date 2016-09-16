@@ -32,7 +32,7 @@ Loop:
   ReadController(PIF2) // T0 = Controller Buttons, T1 = Analog X, T2 = Analog Y
 
   lli t3,8
-  beq t6,t3,Down // IF (Y = 0) Down (Screen Edge Collision)
+  beq t6,t3,Down // IF (Y = 8) Down (Screen Edge Collision)
   andi t3,t0,JOY_UP // Test JOY UP
   beqz t3,Down
   nop // Delay Slot
