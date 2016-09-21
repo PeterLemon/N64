@@ -466,4 +466,4 @@ TLUT: // 16x16Bx3 = 96 Bytes
   dh $0003, $0007, $000B, $000F, $0013, $0017, $001B, $001F, $0023, $0027, $002B, $002F, $0033, $0037, $003B, $003F // 16x16B = 32 Bytes
 
 insert Sample, "Sample.bin" // 16-Bit 44100Hz Signed Big-Endian Stereo Sound Sample
-insert LZVideo, "Video.lz" // 1295 320x240 LZ Compressed GRB Frames
+insert LZVideo, "Video.lz" // 866 320x240 LZ Compressed GRB Frames
