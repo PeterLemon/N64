@@ -58,22 +58,22 @@ LoopVideo:
 
     // Buffer Sound
     lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
-    lb t0,AI_STATUS(a0) // T0 = AI Status Register Byte ($A450000C)
-    andi t0,$40 // AND AI Status With AI Status DMA Busy Bit ($40XXXXXX)
-    bnez t0,AIBusy // IF TRUE AI DMA Is Busy
-    nop // Delay Slot
+    AIBusy:
+      lb t0,AI_STATUS(a0) // T0 = AI Status Register Byte ($A450000C)
+      andi t0,$40 // AND AI Status With AI Status DMA Busy Bit ($40XXXXXX)
+      bnez t0,AIBusy // IF TRUE AI DMA Is Busy
+      nop // Delay Slot
 
     lui a0,PI_BASE // A0 = PI Base Register ($A4600000)
     sw t6,PI_DRAM_ADDR(a0) // Store RAM Offset To PI DRAM Address Register ($A4600000)
     sw t7,PI_CART_ADDR(a0) // Store ROM Offset To PI Cart Address Register ($A4600004)
-    li t0,$1FFFF // T0 = Length Of DMA Transfer In Bytes - 1
+    li t0,$2270 // T0 = Length Of DMA Transfer In Bytes - 1
     sw t0,PI_WR_LEN(a0) // Store DMA Length To PI Write Length Register ($A460000C)
 
     lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
     sw t6,AI_DRAM_ADDR(a0) // Store Sample DRAM Offset To AI DRAM Address Register ($A4500000)
     sw t0,AI_LEN(a0) // Store Length Of Sample Buffer To AI Length Register ($A4500004)
-    add t7,t0 // Sample ROM Offset += $1FFFF
-    AIBusy:
+    add t7,t0 // Sample ROM Offset += $2270
 
     la a0,LZVideo+4 // A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
     lui a1,GRB>>16 // A1 = Destination Address (DRAM Start Offset)
@@ -207,9 +207,6 @@ LoopVideo:
   sw a2,DPC_START(a1) // Store DPC Command Start Address To DP Start Register ($A4100000)
   addi a2,RDPBufferEnd-RDPBuffer // A2 = DPC Command End Address
   sw a2,DPC_END(a1) // Store DPC Command End Address To DP End Register ($A4100004)
-
-  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
-  WaitScanline($1E2) // Wait For Scanline To Reach Vertical Blank
 
   bnez t9,LoopFrames
   subiu t9,1 // Frame Count -- (Delay Slot)
@@ -465,5 +462,5 @@ TLUT: // 16x16Bx3 = 96 Bytes
   // Blue Channel Palette 5
   dh $0003, $0007, $000B, $000F, $0013, $0017, $001B, $001F, $0023, $0027, $002B, $002F, $0033, $0037, $003B, $003F // 16x16B = 32 Bytes
 
-insert Sample, "Sample.bin" // 16-Bit 44100Hz Signed Big-Endian Stereo Sound Sample
 insert LZVideo, "Video.lz" // 866 320x240 LZ Compressed GRB Frames
+insert Sample, "Sample.bin" // 16-Bit 44100Hz Signed Big-Endian Stereo Sound Sample
