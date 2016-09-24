@@ -49,8 +49,13 @@ LoopVideo:
     lli t0,22384-1 // T0 = Length Of DMA Transfer In Bytes - 1
     sw t0,PI_WR_LEN(a0) // Store DMA Length To PI Write Length Register ($A460000C)
 
-    WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
-    WaitScanline($1E2) // Wait For Scanline To Reach Vertical Blank
+    // Wait For RDP
+    lui a0,DPC_BASE // A0 = AI Base Register ($A4100000)
+    RDPBusy:
+      lw t0,DPC_STATUS(a0) // T0 = DPC CMD Status Register Word ($A410000C)
+      andi t0,$20 // AND DPC CMD Status With DPC CMD Status RDP Pipeline Busy Bit ($XXXXXX20)
+      bnez t0,RDPBusy // IF TRUE RDP Buffer Is Busy
+      nop // Delay Slot
 
     // Double Buffer Screen
     lui a0,VI_BASE // A0 = VI Base Register ($A4400000)
@@ -204,9 +209,6 @@ LoopVideo:
     la a1,LZVideo
     subu a0,a1
     addu a3,a0 // A3 += LZ End Offset 
-
-  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
-  WaitScanline($1E2) // Wait For Scanline To Reach Vertical Blank
 
   // Decode GRB Frame Using RDP
   lui a1,DPC_BASE // A1 = Reality Display Processer Control Interface Base Register ($A4100000)
