@@ -53,7 +53,7 @@ LoopVideo:
     lui a0,DPC_BASE // A0 = AI Base Register ($A4100000)
     RDPBusy:
       lw t0,DPC_STATUS(a0) // T0 = DPC CMD Status Register Word ($A410000C)
-      andi t0,$20 // AND DPC CMD Status With DPC CMD Status RDP Pipeline Busy Bit ($XXXXXX20)
+      andi t0,$70 // AND DPC CMD Status With DPC CMD Status RDP Command/Pipeline/TMEM Busy Bits ($XXXXXX70)
       bnez t0,RDPBusy // IF TRUE RDP Buffer Is Busy
       nop // Delay Slot
 
@@ -70,6 +70,7 @@ LoopVideo:
 
     // Buffer Sound
     lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
+    la a1,RDPBufferEnd
     AIBusy:
       lb t0,AI_STATUS(a0) // T0 = AI Status Register Byte ($A450000C)
       andi t0,$40 // AND AI Status With AI Status DMA Busy Bit ($40XXXXXX)
@@ -110,89 +111,25 @@ LoopVideo:
       addiu a1,1 // Add 1 To DRAM Offset
       j LZBlockLoop
       nop // Delay Slot
+
       LZDecode:
-        andi t3,a0,1
-        bnez t3,LZDecodeByte
-        nop // Delay Slot
-
-        lhu t3,0(a0) // T3 = Number Of Bytes To Copy & Disp MSB's & Disp LSB's
-        addiu a0,2 // Add 2 To LZ Offset
-        andi t4,t3,$FFF // T4 = Disp
-        addiu t4,1    // T4 = Disp + 1
-        subu t4,a1,t4 // T4 = Destination - Disp - 1
-        srl t3,12  // T3 = Number Of Bytes To Copy (Minus 3)
-        addiu t3,3 // T3 = Number Of Bytes To Copy
-        j LZCopy
-        nop // Delay Slot
-
-        LZDecodeByte:
         lbu t3,0(a0) // T3 = Number Of Bytes To Copy & Disp MSB's
-        addiu a0,1 // Add 1 To LZ Offset
+        addi a0,1 // Add 1 To LZ Offset
         lbu t4,0(a0) // T4 = Disp LSB's
-        addiu a0,1 // Add 1 To LZ Offset
+        addi a0,1 // Add 1 To LZ Offset
         sll t5,t3,8 // T5 = Disp MSB's
         or t4,t5
         andi t4,$FFF // T4 = Disp
-        addiu t4,1    // T4 = Disp + 1
-        subu t4,a1,t4 // T4 = Destination - Disp - 1
+        addi t4,1    // T4 = Disp + 1
+        sub t4,a1,t4 // T4 = Destination - Disp - 1
         srl t3,4  // T3 = Number Of Bytes To Copy (Minus 3)
-        addiu t3,3 // T3 = Number Of Bytes To Copy
-
+        addi t3,3 // T3 = Number Of Bytes To Copy
         LZCopy:
-          lli t5,1
-          beq t3,t5,LZCompByte
-          nop // Delay Slot
-
-          lli t5,2
-          beq t3,t5,LZCompShort
-          nop // Delay Slot
-
-          lli t5,4
-          blt t3,t5,LZCompShort // in old version blt == slt at,t3,t5, bne at,r0,LZCompShort, in new version: slt at,t5,t7!
-          nop // Delay Slot
-
-          andi t5,t4,3
-          bnez t5,LZCompShort
-          nop // Delay Slot
-
-          andi t5,a1,3
-          bnez t5,LZCompShort
-          nop // Delay Slot
-
-          lwu t5,0(t4) // T5 = Word To Copy
-          addiu t4,4 // Add 4 To T4 Offset
-          sw t5,0(a1) // Store Word To DRAM
-          addiu a1,4 // Add 4 To DRAM Offset
-          subiu t3,4 // Number Of Bytes To Copy -= 4
-          j LZCompEnd
-          nop // Delay Slot
-
-          LZCompShort:
-
-          andi t5,t4,1
-          bnez t5,LZCompByte
-          nop // Delay Slot
-
-          andi t5,a1,1
-          bnez t5,LZCompByte
-          nop // Delay Slot
-
-          lhu t5,0(t4) // T5 = Short To Copy
-          addiu t4,2 // Add 2 To T4 Offset
-          sh t5,0(a1) // Store Short To DRAM
-          addiu a1,2 // Add 2 To DRAM Offset
-          subiu t3,2 // Number Of Bytes To Copy -= 2
-          j LZCompEnd
-          nop // Delay Slot
-
-          LZCompByte:
           lbu t5,0(t4) // T5 = Byte To Copy
-          addiu t4,1 // Add 1 To T4 Offset
+          addi t4,1 // Add 1 To T4 Offset
           sb t5,0(a1) // Store Byte To DRAM
-          addiu a1,1 // Add 1 To DRAM Offset
-          subiu t3,1 // Number Of Bytes To Copy -= 1
-
-          LZCompEnd:
+          addi a1,1 // Add 1 To DRAM Offset
+          subi t3,1 // Number Of Bytes To Copy -= 1
           bnez t3,LZCopy // IF (Number Of Bytes To Copy != 0) LZCopy Bytes
           nop // Delay Slot
           j LZBlockLoop
