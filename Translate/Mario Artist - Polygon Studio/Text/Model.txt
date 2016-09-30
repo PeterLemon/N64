@@ -1,0 +1,856 @@
+﻿------
+Model:
+------
+カメラリセット
+Camera Reset
+$01BA5BC
+00 CA	01 01	01 09	01 0A	00 DA	00 E2	00 E7	00 00	| Original Japanese Hex
+ #  カ	 #  メ	 #  ラ	 #  リ	 #  セ	 #  ッ	 #  ト	 #  #	| Original Japanese Text
+ #  R	 #  e	 #  s	 #  e	 #  t	 #  #	 #  #	 #  #	| New English Text
+00 32	00 45	00 53	00 45	00 54	00 00	00 00	00 00	| New English Hex
+
+カメラきりかえ
+Camera Switch / Change
+$01BA5CC
+00 CA	01 01	01 09	00 6B	00 A8	00 69	00 66	00 00	| Original Japanese Hex
+ #  カ	 #  メ	 #  ラ	 #  き	 #  り	 #  か	 #  え	 #  #	| Original Japanese Text
+ #  S	 #  w	 #  i	 #  t	 #  c	 #  h	 #  #	 #  #	| New English Text
+00 33	00 57	00 49	00 54	00 43	00 48	00 00	00 00	| New English Hex
+
+カメラちゅうもく
+Camera Focus / Center
+$01BA5DC
+00 CA	01 01	01 09	00 7F	00 A3	00 64	00 A0	00 6D	00 00	00 00	| Original Japanese Hex
+ #  カ	 #  メ	 #  ラ	 #  ち	 #  ゅ	 #  う	 #  も	 #  く	 #  #	 #  #	| Original Japanese Text
+ #  C	 #  e	 #  n	 #  t	 #  e	 #  r	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 23	00 45	00 4E	00 54	00 45	00 52	00 00	00 00	00 00	00 00	| New English Hex
+
+
+でる
+Out/End
+$01BA60C
+00 85	00 A9	00 00	00 00	| Original Japanese Hex
+ #  で	 #  る	 #  #	 #  #	| Original Japanese Text
+ #  O	 #  u	 #  t	 #  #	| New English Text
+00 2F	00 55	00 54	00 00	| New English Hex
+
+やりなおし
+Undo
+$01BA614
+00 A2	00 A8	00 88	00 68	00 75	00 00	| Original Japanese Hex
+ #  や	 #  り	 #  な	 #  お	 #  し	 #  #	| Original Japanese Text
+ #  U	 #  n	 #  d	 #  o	 #  #	 #  #	| New English Text
+00 55	00 4E	00 44	00 4F	00 00	00 00	| New English Hex
+
+
+ほねぐみひょうじ
+Skeleton Display / Wire Frame
+$07FBC94
+00 99	00 8B	00 6E	00 9D	00 90	00 A5	00 64	00 76	00 00	00 00	| Original Japanese Hex
+ #  ほ	 #  ね	 #  ぐ	 #  み	 #  ひ	 #  ょ	 #  う	 #  じ	 #  #	 #  #	| Original Japanese Text
+ #  S	 #  k	 #  e	 #  l	 #  e	 #  t	 #  o	 #  n	 #  #	 #  #	| New English Text
+00 33	00 4B	00 45	00 4C	00 45	00 54	00 4F	00 4E	00 00	00 00	| New English Hex
+
+
+------------
+Basic Model:
+------------
+さんかくすい
+Triangular Pyramid
+$0896200 // RDRAM Pointer $8060EE40 (Moved Back 8 Bytes To: $8060EE38)
+
+りっぽうたい
+Cube
+$0896210
+
+ちょくほうたい
+Cuboid / Rectangular Solid
+$0896220
+
+8めんたい
+8 Face / Side / Octahedron
+$0896230
+
+12めんたい
+12 Face / Side
+$089623C
+
+20めんたい
+20 Face / Side
+$089624C
+
+だえんきゅう
+Spheroid / Ellipsoid / Oval Sphere / Egg
+$089625C
+
+きゅう
+Sphere / Ball
+$089626C
+
+えんすい
+Cone
+$0896274
+
+えんちゅう
+Cylinder / Tube
+$0896280
+
+リング1
+Ring 1
+$089628C
+
+リング2
+Ring 2
+$0896298
+
+トンネル
+Tunnel / Hole
+$08962A4
+
+タイル
+Tile
+$08962B0
+
+----------------
+Character Model:
+----------------
+かおシンプル
+Face Simple
+$08962B8
+
+かおリアル
+Face Complex / Realistic
+$08962C8
+
+ひとシンプル
+Human / Person Simple / Body
+$08962D4
+
+だんせい
+Man / Male / Boy
+$08962E4
+
+じょせい
+Woman / Female / Girl
+$08962F0
+
+エイリアン1
+Alien 1
+$08962FC
+
+エイリアン2
+Alien 2
+$089630C
+
+フラワーマン
+Flower Man
+$089631C
+
+2そくほこうロボ
+Biped / Bipedal Walking Robot
+$089632C
+
+3そくほこうロボ
+Triped / Tripedal Walking Robot
+$0896340
+
+シンプルロボ
+Simple Robo
+$0896354
+
+よろいタイプロボ1
+Armor Type Robo 1
+$0896364
+
+よろいタイプロボ1
+Armor Type Robo 2
+$0896378
+
+よろいタイプロボ1
+Armor Type Robo 3
+$089638C
+
+マリオ
+Mario
+$08963A0
+
+ノコノコ
+Koopa Troopa
+$08963A8
+
+ヨッシー
+Yoshi
+$08963B4
+
+ペンギン
+Penguin
+$08963C0
+
+おばけ
+Boo / Ghost
+$08963CC
+
+おろち
+Hydra / Big Snake / Serpent
+$08963D4
+
+ドラゴン
+Dragon
+$08963DC
+
+-------------
+Animal Model:
+-------------
+ネズミ
+Mouse / Rat
+$08963E8
+
+キリン
+Giraffe
+$08963F0
+
+ウマ
+Horse
+$08963F8
+
+ブタ
+Pig
+$0896400
+
+バッファロー
+Buffalo / Bull / Ox
+$0896408
+
+ゾウ
+Elephant
+$0896418
+
+イヌ
+Dog
+$0896420
+
+カモメ
+Gull
+$0896428
+
+ドードー
+Dodo
+$0896430
+
+カメ
+Turtle / Tortoise
+$089643C
+
+トカゲ
+Lizard / Skink
+$0896444
+
+ヘビ
+Snake
+$089644C
+
+ステゴサウルス
+Stegosaur / Stegosaurus
+$0896454
+
+カタツムリ
+Snail
+$0896464
+
+アリ
+Ant
+$0896470
+
+ムカデ
+Centipede
+$0896478
+
+サソリ
+Scorpion
+$0896480
+
+チョウ
+Butterfly
+$0896488
+
+トンボ
+Dragonfly
+$0896490
+
+クワガタ
+Stag / Stag Beetle
+$0896498
+
+カブトムシ
+Beetle / Rhinoceros Beetle
+$08964A4
+
+キンギョ
+Goldfish
+$08964B0
+
+イカ
+Squid
+$08964BC
+
+サメ
+Shark
+$08964C4
+
+タツノオトシゴ
+Sea Horse
+$08964CC
+
+カジキ
+Marlin / Swordfish / Sailfish
+$08964DC
+
+エビ
+Prawn / Shrimp
+$08964E4
+
+コイ
+Carp
+$08964EC
+
+--------------
+Vehicle Model:
+--------------
+オープンカー
+Open Top / Convertible
+$08964F4
+
+4WD
+4WD
+$0896504
+
+トレーラー
+Trailer / Truck
+$089650C
+
+ピックアップ
+Pickup
+$0896518
+
+セダン
+Sedan
+$0896528
+
+クラシックカー
+Classic Car / Vintage Car
+$0896530
+
+F1カー
+F1 Car
+$0896540
+
+バス
+Bus
+$089654C
+
+ブルドーザー
+Bulldozer
+$0896554
+
+せんしゃ
+Tank
+$0896564
+
+とっきゅうれっしゃ
+Train / Limited Express Train
+$0896570
+
+バギー
+Buggy / Quad
+$0896584
+
+オートバイ
+Moterbike / Motorcycle
+$089658C
+
+じてんしゃ
+Bike / Bicycle
+$0896598
+
+ヨット
+Yacht / Sailboat
+$08965A4
+
+タンカー
+Tanker
+$08965AC
+
+ヘリコプター
+Helicopter / Chopper
+$08965B8
+
+2まいプロペラき
+2 Propeller Plane
+$08965C8
+
+グライダー
+Glider
+$08965DC
+
+ジェットせんとうき
+A Top Jet Plane
+$08965E8
+
+ジャンボジェットき
+Jumbo Jet / Air Bus
+$08965FC
+
+------------
+Other Model:
+------------
+いえ
+House
+$0896610
+
+おやしき
+Mansion
+$0896618
+
+ビル
+Building / Flats
+$0896624
+
+テレビ
+TV Set
+$089662C
+
+ラジカセ
+Boom Box
+$0896634
+
+ケイタイでんわ
+Mobile Phone
+$0896640
+
+64コントローラ
+64 Controller
+$0896650
+
+ほし
+Star
+$0896664
+
+つみきのきしゃ
+Toy Train / Building Blocks
+$089666C
+
+くまのぬいぐるみ
+Teddy Bear
+$089667C
+
+めざましどけい
+Alarm Clock
+$0896690
+
+ランプ
+Lamp
+$08966A0
+
+ひまわり
+Sunflower
+$08966A8
+
+き
+Tree
+$08966B4
+
+ソファー
+Sofa / Couch
+$08966B8
+
+サングラス
+Sunglasses / Shades
+$08966C4
+
+うでどけい
+Watch / Wristwatch
+$08966D0
+
+ヘルメット
+Helmet
+$08966DC
+
+ピストル
+Pistol / Gun
+$08966E8
+
+びん
+Jar / Bottle
+$08966F4
+
+ぎゅうにゅうパック
+Milk Carton
+$08966FC
+
+----------
+Interface:
+----------
+つぎのページ
+Next Page
+$0897510
+00 82	00 6C	00 8C	00 F9	01 1E	00 D7	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  つ	 #  ぎ	 #  の	 #  ペ	 #  ー	 #  ジ	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  N	 #  e	 #  x	 #  t	 #   	 #  P	 #  a	 #  g	 #  e	 #  #	| New English Text
+00 2E	00 45	00 58	00 54	00 40	00 30	00 41	00 47	00 45	00 00	| New English Hex
+
+いちをかえる
+Change Position / Move
+$0897524
+00 62	00 7F	00 B0	00 69	00 66	00 A9	00 00	00 00	| Original Japanese Hex
+ #  い	 #  ち	 #  を	 #  か	 #  え	 #  る	 #  #	 #  #	| Original Japanese Text
+ #  M	 #  o	 #  v	 #  e	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 2D	00 4F	00 56	00 45	00 00	00 00	00 00	00 00	| New English Hex
+
+むきをかえる
+Turn / Rotate
+$0897534
+00 9E	00 6B	00 B0	00 69	00 66	00 A9	00 00	00 00	| Original Japanese Hex
+ #  む	 #  き	 #  を	 #  か	 #  え	 #  る	 #  #	 #  #	| Original Japanese Text
+ #  R	 #  o	 #  t	 #  a	 #  t	 #  e	 #  #	 #  #	| New English Text
+00 52	00 4F	00 54	00 41	00 54	00 45	00 00	00 00	| New English Hex
+
+おおきさをかえる
+Vary the Scale / Size
+$0897544
+00 68	00 68	00 6B	00 73	00 B0	00 69	00 66	00 A9	00 00	00 00	| Original Japanese Hex
+ #  お	 #  お	 #  き	 #  さ	 #  を	 #  か	 #  え	 #  る	 #  #	 #  #	| Original Japanese Text
+ #  S	 #  c	 #  a	 #  l	 #  e	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 33	00 43	00 41	00 4C	00 45	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+てん
+Dot / Point / Vert
+$0897558
+00 84	00 B1	00 00	00 00	| Original Japanese Hex
+ #  て	 #  ん	 #  #	 #  #	| Original Japanese Text
+ #  D	 #  o	 #  t	 #  #	| New English Text
+00 24	00 4F	00 54	00 00	| New English Hex
+
+せん
+Line / Wire / Edge
+$0897560
+00 79	00 B1	00 00	00 00	| Original Japanese Hex
+ #  せ	 #  ん	 #  #	 #  #	| Original Japanese Text
+ #  L	 #  i	 #  n	 #  #	| New English Text
+00 2C	00 49	00 4E	00 00	| New English Hex
+
+めん
+Face / Surface / Side
+$0897568
+00 9F	00 B1	00 00	00 00	| Original Japanese Hex
+ #  め	 #  ん	 #  #	 #  #	| Original Japanese Text
+ #  F	 #  a	 #  c	 #  #	| New English Text
+00 26	00 41	00 43	00 00	| New English Hex
+
+モデル
+Model / Object
+$0897570
+01 02	00 E6	01 0B	00 00	| Original Japanese Hex
+ #  モ	 #  デ	 #  ル	 #  #	| Original Japanese Text
+ #  O	 #  b	 #  j	 #  #	| New English Text
+00 2F	00 42	00 4A	00 00	| New English Hex
+
+きる
+Cut
+$0897578
+00 6B	00 A9	00 00	00 00	| Original Japanese Hex
+ #  き	 #  る	 #  #	 #  #	| Original Japanese Text
+ #  C	 #  u	 #  t	 #  #	| New English Text
+00 23	00 55	00 54	00 00	| New English Hex
+
+つないできる
+Connect Points
+$0897580
+00 82	00 88	00 62	00 85	00 6B	00 A9	00 00	00 00	| Original Japanese Hex
+ #  つ	 #  な	 #  い	 #  で	 #  き	 #  る	 #  #	 #  #	| Original Japanese Text
+ #  C	 #  o	 #  n	 #  n	 #  e	 #  c	 #  t	 #  #	| New English Text
+00 23	00 4F	00 4E	00 4E	00 45	00 43	00 54	00 00	| New English Hex
+
+ひきだす
+Pull Out / Extrude
+$0897590
+00 90	00 6B	00 7E	00 77	00 00	00 00	| Original Japanese Hex
+ #  ひ	 #  き	 #  だ	 #  す	 #  #	 #  #	| Original Japanese Text
+ #  P	 #  u	 #  l	 #  l	 #  #	 #  #	| New English Text
+00 30	00 55	00 5C	00 5C	00 00	00 00	| New English Hex
+
+かどをおとす
+Round Off / Drop excessive / Reduce
+$089759C
+00 69	00 87	00 B0	00 68	00 86	00 77	00 00	00 00	| Original Japanese Hex
+ #  か	 #  ど	 #  を	 #  お	 #  と	 #  す	 #  #	 #  #	| Original Japanese Text
+ #  R	 #  o	 #  u	 #  n	 #  d	 #  e	 #  d	 #  #	| New English Text
+00 32	00 4F	00 55	00 4E	00 44	00 45	00 44	00 00	| New English Hex
+
+はずす
+Remove
+$08975AC
+00 8D	00 78	00 77	00 00	| Original Japanese Hex
+ #  は	 #  ず	 #  す	 #  #	| Original Japanese Text
+ #  R	 #  e	 #  m	 #  #	| New English Text
+00 32	00 45	00 4D	00 00	| New English Hex
+
+けす
+Bin / Delete
+$08975B4
+00 6F	00 77	00 00	00 00	| Original Japanese Hex
+ #  け	 #  す	 #  #	 #  #	| Original Japanese Text
+ #  D	 #  e	 #  l	 #  #	| New English Text
+00 24	00 45	00 5C	00 00	| New English Hex
+
+
+パネルをつくる
+Create a Panel / Copy Face
+$08975D0
+00 F0	00 EC	01 0B	00 B0	00 82	00 6D	00 A9	00 00	| Original Japanese Hex
+ #  パ	 #  ネ	 #  ル	 #  を	 #  つ	 #  く	 #  る	 #  #	| Original Japanese Text
+ #  C	 #  o	 #  p	 #  y	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 23	00 4F	00 50	00 59	00 00	00 00	00 00	00 00	| New English Hex
+
+せんをおさえてひきだす
+Pull Hold the Line
+$08975E0
+00 79	00 B1	00 B0	00 68	00 73	00 66	00 84	00 90	00 6B	00 7E	00 77	00 00	| Original Japanese Hex
+ #  せ	 #  ん	 #  を	 #  お	 #  さ	 #  え	 #  て	 #  ひ	 #  き	 #  だ	 #  す	 #  #	| Original Japanese Text
+ #  P	 #  u	 #  l	 #  l	 #  L	 #  i	 #  n	 #  e	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 30	00 55	00 4C	00 4C	00 2C	00 49	00 4E	00 45	00 00	00 00	00 00	00 00	| New English Hex
+
+とがらせてひきだす
+Pulled out Sharpened / Pointed
+$08975F8
+00 86	00 6A	00 A7	00 79	00 84	00 90	00 6B	00 7E	00 77	00 00	| Original Japanese Hex
+ #  と	 #  が	 #  ら	 #  せ	 #  て	 #  ひ	 #  き	 #  だ	 #  す	 #  #	| Original Japanese Text
+ #  P	 #  u	 #  l	 #  l	 #  P	 #  o	 #  i	 #  n	 #  t	 #  #	| New English Text
+00 30	00 55	00 4C	00 4C	00 30	00 4F	00 49	00 4E	00 54	00 00	| New English Hex
+
+ちいさいめんをつくる
+Make Small Plane / Face / Surface / Side
+$089760C
+00 7F	00 62	00 73	00 62	00 9F	00 B1	00 B0	00 82	00 6D	00 A9	00 00	00 00	| Original Japanese Hex
+ #  ち	 #  い	 #  さ	 #  い	 #  め	 #  ん	 #  を	 #  つ	 #  く	 #  る	 #  #	 #  #	| Original Japanese Text
+ #  S	 #  m	 #  a	 #  l	 #  l	 #  F	 #  a	 #  c	 #  e	 #  #	 #  #	 #  #	| New English Text
+00 33	00 4D	00 41	00 4C	00 4C	00 26	00 41	00 43	00 45	00 00	00 00	00 00	| New English Hex
+
+しつかんをかえる
+Change Texture / Shaded
+$0897624
+00 75	00 82	00 69	00 B1	00 B0	00 69	00 66	00 A9	00 00	00 00	| Original Japanese Hex
+ #  し	 #  つ	 #  か	 #  ん	 #  を	 #  か	 #  え	 #  る	 #  #	 #  #	| Original Japanese Text
+ #  S	 #  h	 #  a	 #  d	 #  e	 #  T	 #  y	 #  p	 #  e	 #  #	| New English Text
+00 33	00 48	00 41	00 44	00 45	00 54	00 59	00 50	00 45	00 00	| New English Hex
+
+なめらかにする
+Smooth / Smoothen
+$0897638
+00 88	00 9F	00 A7	00 69	00 89	00 77	00 A9	00 00	| Original Japanese Hex
+ #  な	 #  め	 #  ら	 #  か	 #  に	 #  す	 #  る	 #  #	| Original Japanese Text
+ #  S	 #  m	 #  o	 #  o	 #  t	 #  h	 #  #	 #  #	| New English Text
+00 33	00 4D	00 4F	00 4F	00 54	00 48	00 00	00 00	| New English Hex
+
+コピー
+Copy / Duplicate
+$0897648
+00 D2	00 F3	01 1E	00 00	| Original Japanese Hex
+ #  コ	 #  ピ	 #  ー	 #  #	| Original Japanese Text
+ #  C	 #  p	 #  y	 #  #	| New English Text
+00 23	00 50	00 59	00 00	| New English Hex
+
+はんてんコピー
+Inverted / Reverse / Mirror Copy
+$$0897650
+00 8D	00 B1	00 84	00 B1	00 D2	00 F3	01 1E	00 00	| Original Japanese Hex
+ #  は	 #  ん	 #  て	 #  ん	 #  コ	 #  ピ	 #  ー	 #  #	| Original Japanese Text
+ #  M	 #  i	 #  r	 #  r	 #  o	 #  r	 #  #	 #  #	| New English Text
+00 2D	00 49	00 52	00 52	00 4F	00 52	00 00	00 00	| New English Hex
+
+
+すべてのほうこう
+All Directions / Axis / Free Move
+$08976C4
+00 77	00 97	00 84	00 8C	00 99	00 64	00 71	00 64	00 00	00 00	| Original Japanese Hex
+ #  す	 #  べ	 #  て	 #  の	 #  ほ	 #  う	 #  こ	 #  う	 #  #	 #  #	| Original Japanese Text
+ #  A	 #  l	 #  l	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	 #  #	| New English Text
+00 21	00 4C	00 4C	00 21	00 58	00 49	00 53	00 00	00 00	00 00	| New English Hex
+
+たいしょうに
+From Target / Normal
+$08976D8
+00 7D	00 62	00 75	00 A5	00 64	00 89	00 00	00 00	| Original Japanese Hex
+ #  た	 #  い	 #  し	 #  ょ	 #  う	 #  に	 #  #	 #  #	| Original Japanese Text
+ #  N	 #  o	 #  r	 #  m	 #  a	 #  l	 #  #	 #  #	| New English Text
+00 2E	00 4F	00 52	00 4D	00 41	00 4C	00 00	00 00	| New English Hex
+
+
+アカじくのほうこう
+The Direction of the Red Axis
+$0897704
+00 C1	00 CA	00 76	00 6D	00 8C	00 99	00 64	00 71	00 64	00 00	| Original Japanese Hex
+ #  ア	 #  カ	 #  じ	 #  く	 #  の	 #  ほ	 #  う	 #  こ	 #  う	 #  #	| Original Japanese Text
+ #  R	 #  e	 #  d	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	 #  #	| New English Text
+00 32	00 45	00 44	00 21	00 58	00 49	00 53	00 00	00 00	00 00	| New English Hex
+
+ミドリじくのほうこう
+The Direction of the Green Axis
+$0897718
+00 FE	00 E8	01 0A	00 76	00 6D	00 8C	00 99	00 64	00 71	00 64	00 00	00 00	| Original Japanese Hex
+ #  ミ	 #  ド	 #  リ	 #  じ	 #  く	 #  の	 #  ほ	 #  う	 #  こ	 #  う	 #  #	 #  #	| Original Japanese Text
+ #  G	 #  r	 #  e	 #  e	 #  n	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	 #  #	| New English Text
+00 27	00 52	00 45	00 45	00 4E	00 21	00 58	00 49	00 53	00 00	00 00	00 00	| New English Hex
+
+アオじくのほうこう
+The Direction of the Blue Axis
+$0897730
+00 C1	00 C9	00 76	00 6D	00 8C	00 99	00 64	00 71	00 64	00 00	| Original Japanese Hex
+ #  ア	 #  オ	 #  じ	 #  く	 #  の	 #  ほ	 #  う	 #  こ	 #  う	 #  #	| Original Japanese Text
+ #  B	 #  l	 #  u	 #  e	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	| New English Text
+00 22	00 4C	00 55	00 45	00 21	00 58	00 49	00 53	00 00	00 00	| New English Hex
+
+アカじくをちゅうしんに
+Around the Red Axis
+$0897744
+00 C1	00 CA	00 76	00 6D	00 B0	00 7F	00 A3	00 64	00 75	00 B1	00 89	00 00	| Original Japanese Hex
+ #  ア	 #  カ	 #  じ	 #  く	 #  を	 #  ち	 #  ゅ	 #  う	 #  し	 #  ん	 #  に	 #  #	| Original Japanese Text
+ #  R	 #  e	 #  d	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 32	00 45	00 44	00 21	00 58	00 49	00 53	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ミドリじくをちゅうしんに
+Around the Green Axis
+$089775C
+00 FE	00 E8	01 0A	00 76	00 6D	00 B0	00 7F	00 A3	00 64	00 75	00 B1	00 89	00 00	00 00	| Original Japanese Hex
+ #  ミ	 #  ド	 #  リ	 #  じ	 #  く	 #  を	 #  ち	 #  ゅ	 #  う	 #  し	 #  ん	 #  に	 #  #	 #  #	| Original Japanese Text
+ #  G	 #  r	 #  e	 #  e	 #  n	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 27	00 52	00 45	00 45	00 4E	00 21	00 58	00 49	00 53	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+アオじくをちゅうしんに
+Around the Blue Axis
+$0897778
+00 C1	00 C9	00 76	00 6D	00 B0	00 7F	00 A3	00 64	00 75	00 B1	00 89	00 00	| Original Japanese Hex
+ #  ア	 #  オ	 #  じ	 #  く	 #  を	 #  ち	 #  ゅ	 #  う	 #  し	 #  ん	 #  に	 #  #	| Original Japanese Text
+ #  B	 #  l	 #  u	 #  e	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 22	00 4C	00 55	00 45	00 21	00 58	00 49	00 53	00 00	00 00	00 00	00 00	| New English Hex
+
+アカじくにそって
+Along the Red Axis
+$0897790
+00 C1	00 CA	00 76	00 6D	00 89	00 7B	00 81	00 84	00 00	00 00	| Original Japanese Hex
+ #  ア	 #  カ	 #  じ	 #  く	 #  に	 #  そ	 #  っ	 #  て	 #  #	 #  #	| Original Japanese Text
+ #  R	 #  e	 #  d	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	 #  #	| New English Text
+00 32	00 45	00 44	00 21	00 58	00 49	00 53	00 00	00 00	00 00	| New English Hex
+
+ミドリじくにそって
+Along the Green Axis
+$08977A4
+00 FE	00 E8	01 0A	00 76	00 6D	00 89	00 7B	00 81	00 84	00 00	| Original Japanese Hex
+ #  ミ	 #  ド	 #  リ	 #  じ	 #  く	 #  に	 #  そ	 #  っ	 #  て	 #  #	| Original Japanese Text
+ #  G	 #  r	 #  e	 #  e	 #  n	 #  A	 #  x	 #  i	 #  s	 #  #	| New English Text
+00 27	00 52	00 45	00 45	00 4E	00 21	00 58	00 49	00 53	00 00	| New English Hex
+
+アオじくにそって
+Along the Blue Axis
+$08977B8
+00 C1	00 C9	00 76	00 6D	00 89	00 7B	00 81	00 84	00 00	00 00	| Original Japanese Hex
+ #  ア	 #  オ	 #  じ	 #  く	 #  に	 #  そ	 #  っ	 #  て	 #  #	 #  #	| Original Japanese Text
+ #  B	 #  l	 #  u	 #  e	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	| New English Text
+00 22	00 4C	00 55	00 45	00 21	00 58	00 49	00 53	00 00	00 00	| New English Hex
+
+2ぶんかつ
+2 Split / Parts / Divisions
+$08977CC
+00 12	00 94	00 B1	00 69	00 82	00 00	| Original Japanese Hex
+ #  2	 #  ぶ	 #  ん	 #  か	 #  つ	 #  #	| Original Japanese Text
+ #  2	 #  P	 #  a	 #  r	 #  t	 #  #	| New English Text
+00 12	00 30	00 61	00 52	00 54	00 00	| New English Hex
+
+3ぶんかつ
+3 Split / Parts / Divisions
+$08977D8
+00 13	00 94	00 B1	00 69	00 82	00 00	| Original Japanese Hex
+ #  3	 #  ぶ	 #  ん	 #  か	 #  つ	 #  #	| Original Japanese Text
+ #  3	 #  P	 #  a	 #  r	 #  t	 #  #	| New English Text
+00 13	00 30	00 61	00 52	00 54	00 00	| New English Hex
+
+4ぶんかつ
+4 Split / Parts / Divisions
+$08977E4
+00 14	00 94	00 B1	00 69	00 82	00 00	| Original Japanese Hex
+ #  4	 #  ぶ	 #  ん	 #  か	 #  つ	 #  #	| Original Japanese Text
+ #  4	 #  P	 #  a	 #  r	 #  t	 #  #	| New English Text
+00 14	00 30	00 61	00 52	00 54	00 00	| New English Hex
+
+5ぶんかつ
+5 Split / Parts / Divisions
+$08977F0
+00 15	00 94	00 B1	00 69	00 82	00 00	| Original Japanese Hex
+ #  5	 #  ぶ	 #  ん	 #  か	 #  つ	 #  #	| Original Japanese Text
+ #  5	 #  P	 #  a	 #  r	 #  t	 #  #	| New English Text
+00 15	00 30	00 61	00 52	00 54	00 00	| New English Hex
+
+
+アカのめんとたいしょうに
+Line Up on the Red Side / Plane / Axis
+$0897838
+00 C1	00 CA	00 8C	00 9F	00 B1	00 86	00 7D	00 62	00 75	00 A5	00 64	00 89	00 00	| Original Japanese Hex
+ #  ア	 #  カ	 #  の	 #  め	 #  ん	 #  と	 #  た	 #  い	 #  し	 #  ょ	 #  う	 #  に	 #  #	| Original Japanese Text
+ #  R	 #  e	 #  d	 #  P	 #  l	 #  a	 #  n	 #  e	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 32	00 45	00 44	00 30	00 4C	00 41	00 4E	00 45	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ミドリのめんとたいしょうに
+Line Up on the Green Side / Plane / Axis
+$0897854
+00 FE	00 E8	01 0A	00 8C	00 9F	00 B1	00 86	00 7D	00 62	00 75	00 A5	00 64	00 89	00 00	| Original Japanese Hex
+ #  ミ	 #  ド	 #  リ	 #  の	 #  め	 #  ん	 #  と	 #  た	 #  い	 #  し	 #  ょ	 #  う	 #  に	 #  #	| Original Japanese Text
+ #  G	 #  r	 #  e	 #  e	 #  n	 #  P	 #  l	 #  a	 #  n	 #  e	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 27	00 52	00 45	00 45	00 4E	00 30	00 4C	00 41	00 4E	00 45	00 00	00 00	00 00	00 00	| New English Hex
+
+アオのめんとたいしょうに
+Line Up on the Blue Side / Plane / Axis
+$0897870
+00 C1	00 C9	00 8C	00 9F	00 B1	00 86	00 7D	00 62	00 75	00 A5	00 64	00 89	00 00	00 00	| Original Japanese Hex
+ #  ア	 #  オ	 #  の	 #  め	 #  ん	 #  と	 #  た	 #  い	 #  し	 #  ょ	 #  う	 #  に	 #  #	 #  #	| Original Japanese Text
+ #  B	 #  l	 #  u	 #  e	 #  P	 #  l	 #  a	 #  n	 #  e	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 22	00 4C	00 55	00 45	00 30	00 4C	00 41	00 4E	00 45	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+
+きほんモデル
+Basic Model
+$089788C
+00 6B	00 99	00 B1	01 02	00 E6	01 0B	00 00	00 00	| Original Japanese Hex
+ #  さ	 #  ほ	 #  ん	 #  モ	 #  デ	 #  ル	 #  #	 #  #	| Original Japanese Text
+ #  B	 #  a	 #  s	 #  i	 #  c	 #  #	 #  #	 #  #	| New English Text
+00 22	00 41	00 53	00 49	00 43	00 00	00 00	00 00	| New English Hex
+
+キャラクターモデル
+Character Model
+$089789C
+00 CC	01 03	01 09	00 CE	00 DE	01 1E	01 02	00 E6	01 0B	00 00	| Original Japanese Hex
+ #  キ	 #  ャ	 #  ラ	 #  ク	 #  タ	 #  ー	 #  モ	 #  デ	 #  ル	 #  #	| Original Japanese Text
+ #  C	 #  h	 #  a	 #  r	 #  a	 #  c	 #  t	 #  e	 #  r	 #  #	| New English Text
+00 23	00 48	00 41	00 52	00 41	00 43	00 54	00 45	00 52	00 00	| New English Hex
+
+どうふつモデル
+Animal Model
+$08978B0
+00 87	00 64	00 94	00 82	01 02	00 E6	01 0B	00 00	| Original Japanese Hex
+ #  ど	 #  う	 #  ふ	 #  つ	 #  モ	 #  デ	 #  ル	 #  #	| Original Japanese Text
+ #  A	 #  n	 #  i	 #  m	 #  a	 #  l	 #  #	 #  #	| New English Text
+00 21	00 4E	00 49	00 4D	00 41	00 4C	00 00	00 00	| New English Hex
+
+のりものモデル
+Vehicle Model
+$08978C0
+00 8C	00 A8	00 A0	00 8C	01 02	00 E6	01 0B	00 00	| Original Japanese Hex
+ #  の	 #  り	 #  も	 #  の	 #  モ	 #  デ	 #  ル	 #  #	| Original Japanese Text
+ #  V	 #  e	 #  h	 #  i	 #  c	 #  l	 #  e	 #  #	| New English Text
+00 36	00 45	00 48	00 49	00 43	00 4C	00 45	00 00	| New English Hex
+
+そのたモデル
+Other Model
+$08978D0
+00 7B	00 8C	00 7D	01 02	00 E6	01 0B	00 00	00 00	| Original Japanese Hex
+ #  そ	 #  の	 #  た	 #  モ	 #  デ	 #  ル	 #  #	 #  #	| Original Japanese Text
+ #  O	 #  t	 #  h	 #  e	 #  r	 #  #	 #  #	 #  #	| New English Text
+00 2F	00 54	00 48	00 45	00 52	00 00	00 00	00 00	| New English Hex
