@@ -1,0 +1,98 @@
+﻿---------------
+Video Tutorial:
+---------------
+いす
+Chair
+$061036C
+00 62	00 77	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  い	 #  す	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  C	 #  h	 #  a	 #  i	 #  r	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 23	00 48	00 41	00 49	00 52	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+トイレ
+Toilet / Lavatory / WC
+$0610380
+00 E7	00 C3	01 0C	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ト	 #  イ	 #  レ	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  T	 #  o	 #  i	 #  l	 #  e	 #  t	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 34	00 4F	00 69	00 4C	00 45	00 54	00 00	00 00	00 00	00 00	| New English Hex
+
+いえ
+House
+$0610394
+00 62	00 66	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  い	 #  え	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  H	 #  o	 #  u	 #  s	 #  e	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 28	00 4F	00 55	00 53	00 45	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+じょうろ
+Watering Can / Sprinkler
+$06103A8
+00 76	00 A5	00 64	00 AB	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  じ	 #  ょ	 #  う	 #  ろ	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  W	 #  a	 #  t	 #  e	 #  r	 #  C	 #  a	 #  n	 #  #	 #  #	| New English Text
+00 37	00 41	00 54	00 45	00 52	00 23	00 41	00 4E	00 00	00 00	| New English Hex
+
+イヌ
+Dog
+$06103BC
+00 C3	00 EB	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  イ	 #  ヌ	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  D	 #  o	 #  g	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 24	00 4F	00 47	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+トリ
+Bird
+$06103D0
+00 E7	01 0A	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ト	 #  リ	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  B	 #  i	 #  r	 #  d	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 21	00 49	00 52	00 44	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+クワガタ
+Stag / Stag Beetle
+$06103E4
+00 CE	01 0F	00 CB	00 DE	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ク	 #  ワ	 #  ガ	 #  タ	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  S	 #  t	 #  a	 #  g	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 33	00 54	00 41	00 47	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ヘルメット
+Helmet
+$06103F8
+00 F7	01 0B	01 01	00 E2	00 E7	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ヘ	 #  ル	 #  メ	 #  ッ	 #  ト	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  H	 #  e	 #  l	 #  m	 #  e	 #  t	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 28	00 45	00 4C	00 4D	00 45	00 54	00 00	00 00	00 00	00 00	| New English Hex
+
+イルカ
+Dolphin
+$061040C
+00 C3	01 0B	00 CA	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  イ	 #  ル	 #  カ	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  D	 #  o	 #  l	 #  p	 #  h	 #  i	 #  n	 #  #	 #  #	 #  #	| New English Text
+00 24	00 4F	00 4C	00 50	00 48	00 49	00 4E	00 00	00 00	00 00	| New English Hex
+
+ふね
+Boat
+$0610420
+00 93	00 8B	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ふ	 #  ね	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  B	 #  o	 #  a	 #  t	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 22	00 4F	00 41	00 54	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+せんすいかん
+Submarine
+$0610434
+00 79	00 B1	00 77	00 62	00 69	00 B1	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  せ	 #  ん	 #  す	 #  い	 #  か	 #  ん	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  S	 #  u	 #  b	 #  m	 #  a	 #  r	 #  i	 #  n	 #  e	 #  #	| New English Text
+00 33	00 55	00 42	00 4D	00 41	00 52	00 49	00 4E	00 45	00 00	| New English Hex
+
+プロペラき
+Propeller Aircraft / Prop Plane
+$0610448
+00 F6	01 0D	00 F9	01 09	00 6B	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  プ	 #  ロ	 #  ペ	 #  ラ	 #  き	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  P	 #  r	 #  o	 #  p	 #  P	 #  l	 #  a	 #  n	 #  e	 #  #	| New English Text
+00 30	00 52	00 4F	00 50	00 30	00 4C	00 41	00 4E	00 45	00 00	| New English Hex

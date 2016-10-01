@@ -24,6 +24,20 @@ TextSmall($01BA5DC, "Center") ; fill 8
 TextSmall($01BA60C, "Out") ; fill 2
 TextSmall($01BA614, "Undo") ; fill 4
 
+// Video Tutorial
+TextSmall($061036C, "Chair") ; fill 10
+TextSmall($0610380, "Toilet") ; fill 8
+TextSmall($0610394, "House") ; fill 10
+TextSmall($06103A8, "WaterCan") ; fill 4
+TextSmall($06103BC, "Dog") ; fill 14
+TextSmall($06103D0, "Bird") ; fill 12
+TextSmall($06103E4, "Stag") ; fill 12
+TextSmall($06103F8, "Helmet") ; fill 8
+TextSmall($061040C, "Dolphin") ; fill 6
+TextSmall($0610420, "Boat") ; fill 12
+TextSmall($0610434, "Submarine") ; fill 2
+TextSmall($0610448, "PropPlane") ; fill 2
+
 TextSmall($07FBC94, "Skeleton") ; fill 4
 
 origin $08961F8 // Origin In ROM
