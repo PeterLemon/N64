@@ -1,0 +1,62 @@
+﻿-----
+Menu:
+-----
+でる
+Out / End / Exit
+$01C2058
+00 85	00 A9	00 00	00 00	| Original Japanese Hex
+ #  で	 #  る	 #  #	 #  #	| Original Japanese Text
+ #  O	 #  u	 #  t	 #  #	| New English Text
+00 2F	00 55	00 54	00 00	| New English Hex
+
+
+[3Dさくひん]のセーブ・ロード
+[3D Work] Save & Load
+$01C20B0
+00 3B	00 13	00 24	00 73	00 6D	00 90	00 B1	00 3D	00 8C	00 DA	01 1E	00 F5	00 B2	01 0D	01 1E	00 E8	00 00	00 00	| Original Japanese Hex
+ #  [	 #  3	 #  D	 #  さ	 #  く	 #  ひ	 #  ん	 #  ]	 #  の	 #  セ	 #  ー	 #  ブ	 #  ・	 #  ロ	 #  ー	 #  ド	 #  #	 #  #	| Original Japanese Text
+ #  [	 #  3	 #  D	 #  W	 #  o	 #  r	 #  k	 #  ]	 #  L	 #  o	 #  a	 #  d	 #  &	 #  S	 #  a	 #  v	 #  e	 #  #	| New English Text
+00 3B	00 13	00 24	00 37	00 4F	00 52	00 4B	00 3D	00 2C	00 4F	00 41	00 44	00 06	00 33	00 41	00 56	00 45	00 00	| New English Hex
+
+きょうはここまで
+Today so far
+$01C20D4
+00 6B	00 A5	00 64	00 8D	00 71	00 71	00 9C	00 85	00 00	00 00	| Original Japanese Hex
+ #  き	 #  ょ	 #  う	 #  は	 #  こ	 #  こ	 #  ま	 #  で	 #  #	 #  #	| Original Japanese Text
+ #  T	 #  o	 #  d	 #  a	 #  y	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 34	00 4F	00 44	00 41	00 59	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+
+ちょっときゅうけい
+A Little Break / Take a Break
+$01C211C
+00 7F	00 A5	00 81	00 86	00 6B	00 A3	00 64	00 6F	00 62	00 00	| Original Japanese Hex
+ #  ち	 #  ょ	 #  っ	 #  と	 #  き	 #  ゅ	 #  う	 #  け	 #  い	 #  #	| Original Japanese Text
+ #  T	 #  a	 #  k	 #  e	 #  B	 #  r	 #  e	 #  a	 #  k	 #  #	| New English Text
+00 34	00 41	00 4B	00 45	00 21	00 52	00 45	00 41	00 4B	00 00	| New English Hex
+
+
+つくる
+To Make / Make
+$01C2150
+00 82	00 6D	00 A9	00 00	| Original Japanese Hex
+ #  つ	 #  く	 #  る	 #  #	| Original Japanese Text
+ #  M	 #  a	 #  k	 #  #	| New English Text
+00 2D	00 41	00 4B	00 00	| New English Hex
+
+ペイントする
+To Paint
+$01C2158
+00 F9	00 C3	01 13	00 E7	00 77	00 A9	00 00	| Original Japanese Hex
+ #  ペ	 #  イ	 #  ン	 #  ト	 #  す	 #  る	 #  #	| Original Japanese Text
+ #  P	 #  a	 #  i	 #  n	 #  t	 #  #	 #  #	| New English Text
+00 30	00 41	00 49	00 4E	00 54	00 00	00 00	| New English Hex
+
+
+BGMきりかえ
+BGM Switch / Change / Alter / Select
+$01C2190
+00 22	00 27	00 2D	00 6B	00 A8	00 69	00 66	00 00	00 00	| Original Japanese Hex
+ #  B	 #  G	 #  M	 #  き	 #  り	 #  か	 #  え	 #  #	 #  #	| Original Japanese Text
+ #  B	 #  G	 #  M	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 22	00 27	00 2D	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex

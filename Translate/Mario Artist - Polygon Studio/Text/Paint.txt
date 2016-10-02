@@ -1,0 +1,134 @@
+﻿------
+Paint:
+------
+えらばれているいろ
+Selected / Chosen Color
+$011F680
+00 66	00 A7	00 8E	00 AA	00 84	00 62	00 A9	00 62	00 AB	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  え	 #  ら	 #  ば	 #  れ	 #  て	 #  い	 #  る	 #  い	 #  ろ	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  S	 #  e	 #  l	 #  e	 #  c	 #  t	 #  e	 #  d	 #   	 #  C	 #  o	 #  l	 #  o	 #  r	 #  #	 #  #	| New English Text
+00 23	00 48	00 4F	00 53	00 45	00 4E	00 23	00 4F	00 4C	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+
+フェルトペン
+Felt Tip Pen
+$0953E18
+00 F4	00 C6	01 0B	00 E7	00 F9	01 13	00 00	00 00	| Original Japanese Hex
+ #  フ	 #  ェ	 #  ル	 #  ト	 #  ペ	 #  ン	 #  #	 #  #	| Original Japanese Text
+ #  F	 #  e	 #  l	 #  t	 #  T	 #  i	 #  p	 #  #	| New English Text
+00 26	00 45	00 4C	00 54	00 34	00 49	00 50	00 00	| New English Hex
+
+スブレー
+Spray
+$0953E28
+00 D8	00 F6	01 0C	01 1E	00 00	00 00	| Original Japanese Hex
+ #  ス	 #  プ	 #  レ	 #  ー	 #  #	 #  #	| Original Japanese Text
+ #  S	 #  p	 #  r	 #  a	 #  y	 #  #	| New English Text
+00 33	00 50	00 52	00 41	00 00	00 00	| New English Hex
+
+すいさいブラシ
+Watercolor Brush
+$0953E34
+00 77	00 62	00 73	00 62	00 F5	01 09	00 D6	00 00	| Original Japanese Hex
+ #  す	 #  い	 #  さ	 #  い	 #  ブ	 #  ラ	 #  シ	 #  #	| Original Japanese Text
+ #  B	 #  r	 #  u	 #  s	 #  h	 #  #	 #  #	 #  #	| New English Text
+00 22	00 52	00 55	00 53	00 48	00 00	00 00	00 00	| New English Hex
+
+めんのめりつぶし
+Face / Suface Fill
+$0953E44
+00 9F	00 B1	00 8C	00 8A	00 A8	00 82	00 94	00 75	00 00	00 00	| Original Japanese Hex
+ #  め	 #  ん	 #  の	 #  め	 #  り	 #  つ	 #  ぶ	 #  し	 #  #	 #  #	| Original Japanese Text
+ #  F	 #  i	 #  l	 #  l	 #  F	 #  a	 #  c	 #  e	 #  #	 #  #	| New English Text
+00 26	00 49	00 4C	00 4C	00 46	00 41	00 43	00 45	00 00	00 00	| New English Hex
+
+いろをたべる
+Eat Color / Paint
+$0953E58
+00 62	00 AB	00 B0	00 7D	00 97	00 A9	00 00	00 00	| Original Japanese Hex
+ #  い	 #  ろ	 #  を	 #  た	 #  べ	 #  る	 #  #	 #  #	| Original Japanese Text
+ #  E	 #  a	 #  t	 #  C	 #  o	 #  l	 #  #	 #  #	| New English Text
+00 25	00 41	00 54	00 23	00 4F	00 4C	00 00	00 00	| New English Hex
+
+ほそい
+Thin / Fine
+$0953E68
+00 99	00 7B	00 62	00 00	| Original Japanese Hex
+ #  ほ	 #  そ	 #  い	 #  #	| Original Japanese Text
+ #  S	 #  m	 #  a	 #  #	| New English Text
+00 33	00 4D	00 41	00 00	| New English Hex
+
+ふつう
+Normal / Ordinary / Medium
+$0953E70
+00 93	00 82	00 64	00 00	| Original Japanese Hex
+ #  ふ	 #  つ	 #  う	 #  #	| Original Japanese Text
+ #  M	 #  e	 #  d	 #  #	| New English Text
+00 2D	00 45	00 44	00 00	| New English Hex
+
+ふとい
+Thick / Big
+$0953E78
+00 93	00 86	00 62	00 00	| Original Japanese Hex
+ #  ふ	 #  と	 #  い	 #  #	| Original Japanese Text
+ #  B	 #  i	 #  g	 #  #	| New English Text
+00 22	00 49	00 47	00 00	| New English Hex
+
+スタンプ
+Stamp
+$0953E80
+00 D8	00 DE	01 13	00 F6	00 00	00 00	| Original Japanese Hex
+ #  ス	 #  タ	 #  ン	 #  プ	 #  #	 #  #	| Original Japanese Text
+ #  S	 #  t	 #  a	 #  m	 #  p	 #  #	| New English Text
+00 33	00 54	00 41	00 4D	00 50	00 00	| New English Hex
+
+
+ぬりつぶし
+Fill
+$0953EA4
+00 8A	00 A8	00 82	00 94	00 75	00 00	| Original Japanese Hex
+ #  ぬ	 #  り	 #  つ	 #  ぶ	 #  し	 #  #	| Original Japanese Text
+ #  F	 #  i	 #  l	 #  l	 #  #	 #  #	| New English Text
+00 26	00 49	00 4C	00 4C	00 00	00 00	| New English Hex
+
+いろをかさねる
+Overlay Color
+$0953EB0
+00 62	00 AB	00 B0	00 69	00 73	00 8B	00 A9	00 00	| Original Japanese Hex
+ #  い	 #  ろ	 #  を	 #  か	 #  さ	 #  ね	 #  る	 #  #	| Original Japanese Text
+ #  O	 #  v	 #  e	 #  r	 #  l	 #  a	 #  y	 #  #	| New English Text
+00 2F	00 56	00 45	00 72	00 4C	00 41	00 59	00 00	| New English Hex
+
+
+けしゴム
+Eraser
+$0953ECC
+00 6F	00 75	00 D3	01 00	00 00	00 00	| Original Japanese Hex
+ #  け	 #  し	 #  ゴ	 #  ム	 #  #	 #  #	| Original Japanese Text
+ #  E	 #  r	 #  a	 #  s	 #  e	 #  #	| New English Text
+00 25	00 52	00 41	00 53	00 45	00 00	| New English Hex
+
+スタンプに[2Dさくひん]のロード
+Load of [2D Work] to Stamp
+$0953ED8
+00 D8	00 DE	01 13	00 F6	00 89	00 3B	00 12	00 24	00 73	00 6D	00 90	00 B1	00 3D	00 8C	01 0D	01 1E	00 E8	00 00	| Original Japanese Hex
+ #  ス	 #  タ	 #  ン	 #  プ	 #  に	 #  [	 #  2	 #  D	 #  さ	 #  く	 #  ひ	 #  ん	 #  ]	 #  の	 #  ロ	 #  ー	 #  ド	 #  #	| Original Japanese Text
+ #  L	 #  o	 #  a	 #  d	 #  [	 #  2	 #  D	 #  W	 #  o	 #  r	 #  k	 #  ]	 #  S	 #  t	 #  a	 #  m	 #  p	 #  #	| New English Text
+00 2C	00 4F	00 41	00 44	00 3B	00 12	00 24	00 37	00 4F	00 52	00 4B	00 3D	00 33	00 54	00 41	00 4D	00 50	00 00	| New English Hex
+
+
+スポイト
+Dropper / Picker
+$0953F48
+00 D8	00 FC	00 C3	00 E7	00 00	00 00	| Original Japanese Hex
+ #  ス	 #  ポ	 #  イ	 #  ト	 #  #	 #  #	| Original Japanese Text
+ #  P	 #  i	 #  c	 #  k	 #  #	 #  #	| New English Text
+00 30	00 49	00 43	00 4B	00 00	00 00	| New English Hex
+
+マスキング
+Masking
+$0953F54
+00 FD	00 D8	00 CC	01 13	00 CF	00 00	| Original Japanese Hex
+ #  マ	 #  ス	 #  キ	 #  ン	 #  グ	 #  #	| Original Japanese Text
+ #  M	 #  a	 #  s	 #  k	 #  #	 #  #	| New English Text
+00 2D	00 41	00 53	00 4B	00 00	00 00	| New English Hex

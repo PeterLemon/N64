@@ -16,6 +16,8 @@ map 'A', $0021, 31 // Map English "Upper Case" Characters & Special Characters
 map ' ', $0040     // Map Space Character
 map 'a', $0041, 30 // Map English "Lower Case" Characters & Special Characters
 
+//TextSmall($00ACEA8, "Selected Color") ; fill 4
+
 // Model
 TextSmall($0147DE4, "Reset") ; fill 6
 TextSmall($0147DF4, "Switch") ; fill 4
@@ -23,6 +25,19 @@ TextSmall($0147E04, "Center") ; fill 8
 
 TextSmall($0147E34, "Out") ; fill 2
 TextSmall($0147E3C, "Undo") ; fill 4
+
+// Menu
+TextSmall($014F880, "Out") ; fill 2
+
+TextSmall($014F8D8, "[3DWork]Load&Save") ; fill 2
+TextSmall($014F8FC, "Today") ; fill 10
+
+TextSmall($014F944, "TakeBreak") ; fill 2
+
+TextSmall($014F978, "Mak") ; fill 2
+TextSmall($014F980, "Paint") ; fill 4
+
+TextSmall($014F9B8, "BGM") ; fill 10
 
 // Video Tutorial
 TextSmall($059DB94, "Chair") ; fill 10
@@ -38,7 +53,9 @@ TextSmall($059DC48, "Boat") ; fill 12
 TextSmall($059DC5C, "Submarine") ; fill 2
 TextSmall($059DC70, "PropPlane") ; fill 2
 
+TextSmall($07894A8, "Tutorials") ; fill 2
 TextSmall($07894BC, "Skeleton") ; fill 4
+TextSmall($07894D0, "Craft") ; fill 10
 
 origin $0823A20 // Origin In ROM
 base $8060EE38  // Base In RDRAM
@@ -339,3 +356,23 @@ TextSmall($08250C4, "Character") ; fill 2
 TextSmall($08250D8, "Animal") ; fill 4
 TextSmall($08250E8, "Vehicle") ; fill 2
 TextSmall($08250F8, "Other") ; fill 6
+
+// Paint
+TextSmall($08E1640, "FeltTip") ; fill 2
+TextSmall($08E1650, "Spray") ; fill 2
+TextSmall($08E165C, "Brush") ; fill 6
+TextSmall($08E166C, "FillFace") ; fill 4
+TextSmall($08E1680, "EatCol") ; fill 4
+TextSmall($08E1690, "Sma") ; fill 2
+TextSmall($08E1698, "Med") ; fill 2
+TextSmall($08E16A0, "Big") ; fill 2
+TextSmall($08E16A8, "Stamp") ; fill 2
+
+TextSmall($08E16CC, "Fill") ; fill 4
+TextSmall($08E16D8, "Overlay") ; fill 2
+
+TextSmall($08E16F4, "Erase") ; fill 2
+TextSmall($08E1700, "Load[2DWork]Stamp") ; fill 2
+
+TextSmall($08E1770, "Pick") ; fill 4
+TextSmall($08E177C, "Mask") ; fill 4

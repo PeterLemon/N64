@@ -27,7 +27,7 @@ $01BA5DC
 
 
 でる
-Out/End
+Out / End / Exit
 $01BA60C
 00 85	00 A9	00 00	00 00	| Original Japanese Hex
  #  で	 #  る	 #  #	 #  #	| Original Japanese Text
@@ -43,6 +43,14 @@ $01BA614
 00 55	00 4E	00 44	00 4F	00 00	00 00	| New English Hex
 
 
+つくりかたムービー
+How To Make / Construction / Tutorial Movies / Films / Videos
+$07FBC80
+00 82	00 6D	00 A8	00 69	00 7D	01 00	01 1E	00 F2	01 1E	00 00	| Original Japanese Hex
+ #  つ	 #  く	 #  り	 #  か	 #  た	 #  ム	 #  ー	 #  ビ	 #  ー	 #  #	| Original Japanese Text
+ #  T	 #  u	 #  t	 #  o	 #  r	 #  i	 #  a	 #  l	 #  s	 #  #	| New English Text
+00 34	00 55	00 54	00 4F	00 52	00 49	00 41	00 4C	00 53	00 00	| New English Hex
+
 ほねぐみひょうじ
 Skeleton Display / Wire Frame
 $07FBC94
@@ -51,6 +59,13 @@ $07FBC94
  #  S	 #  k	 #  e	 #  l	 #  e	 #  t	 #  o	 #  n	 #  #	 #  #	| New English Text
 00 33	00 4B	00 45	00 4C	00 45	00 54	00 4F	00 4E	00 00	00 00	| New English Hex
 
+クラフト
+Craft / Craft Tape
+$07FBCA8
+00 CE	01 09	00 F4	00 E7	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ク	 #  ラ	 #  フ	 #  ト	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  C	 #  r	 #  a	 #  f	 #  t	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 23	00 52	00 41	00 46	00 54	00 00	00 00	00 00	00 00	00 00	| New English Hex
 
 ------------
 Basic Model:
