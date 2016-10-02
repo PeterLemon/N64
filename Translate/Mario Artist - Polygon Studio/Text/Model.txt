@@ -64,8 +64,8 @@ Craft / Craft Tape
 $07FBCA8
 00 CE	01 09	00 F4	00 E7	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
  #  ク	 #  ラ	 #  フ	 #  ト	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
- #  C	 #  r	 #  a	 #  f	 #  t	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
-00 23	00 52	00 41	00 46	00 54	00 00	00 00	00 00	00 00	00 00	| New English Hex
+ #  T	 #  a	 #  p	 #  e	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 34	00 41	00 50	00 45	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
 
 ------------
 Basic Model:

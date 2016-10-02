@@ -34,7 +34,7 @@ TextSmall($014F8FC, "Today") ; fill 10
 
 TextSmall($014F944, "TakeBreak") ; fill 2
 
-TextSmall($014F978, "Mak") ; fill 2
+TextSmall($014F978, "3D") ; fill 4
 TextSmall($014F980, "Paint") ; fill 4
 
 TextSmall($014F9B8, "BGM") ; fill 10
@@ -55,7 +55,7 @@ TextSmall($059DC70, "PropPlane") ; fill 2
 
 TextSmall($07894A8, "Tutorials") ; fill 2
 TextSmall($07894BC, "Skeleton") ; fill 4
-TextSmall($07894D0, "Craft") ; fill 10
+TextSmall($07894D0, "Tape") ; fill 12
 
 origin $0823A20 // Origin In ROM
 base $8060EE38  // Base In RDRAM
@@ -374,5 +374,331 @@ TextSmall($08E16D8, "Overlay") ; fill 2
 TextSmall($08E16F4, "Erase") ; fill 2
 TextSmall($08E1700, "Load[2DWork]Stamp") ; fill 2
 
+TextSmall($08E1738, "WipeAll") ; fill 2
+TextSmall($08E1748, "Flip") ; fill 4
+TextSmall($08E1754, "Angle") ; fill 2
+
 TextSmall($08E1770, "Pick") ; fill 4
 TextSmall($08E177C, "Mask") ; fill 4
+
+origin $08E1788 // Origin In ROM
+base $8049C028  // Base In RDRAM
+// Stamp Text
+Stamp001:
+  dh "EyeRea1" ; fill 2
+Stamp002:
+  dh "EyeRea2" ; fill 2
+Stamp003:
+  dh "EyeRea3" ; fill 2
+Stamp004:
+  dh "EyeRea4" ; fill 2
+Stamp005:
+  dh "EyeRea5" ; fill 2
+Stamp006:
+  dh "EyeRea6" ; fill 2
+Stamp007:
+  dh "EyeRea7" ; fill 2
+Stamp008:
+  dh "EyeCa1" ; fill 2
+Stamp009:
+  dh "EyeCa2" ; fill 2
+Stamp010:
+  dh "EyeCa3" ; fill 2
+Stamp011:
+  dh "EyeCa4" ; fill 2
+Stamp012:
+  dh "EyeCa5" ; fill 2
+Stamp013:
+  dh "EyeCa6" ; fill 2
+Stamp014:
+  dh "EyeCa7" ; fill 2
+Stamp015:
+  dh "EyeCa8" ; fill 2
+Stamp016:
+  dh "EyeCa9" ; fill 2
+Stamp017:
+  dh "EyeCa10" ; fill 2
+Stamp018:
+  dh "EyeCa11" ; fill 2
+Stamp019:
+  dh "EyeCa12" ; fill 2
+Stamp020:
+  dh "EyeCa13" ; fill 2
+Stamp021:
+  dh "EyeCa14" ; fill 2
+Stamp022:
+  dh "EyeCa15" ; fill 2
+Stamp023:
+  dh "EyeCa16" ; fill 2
+Stamp024:
+  dh "EyeCa17" ; fill 2
+Stamp025:
+  dh "EyeCa18" ; fill 2
+Stamp026:
+  dh "EyeCa19" ; fill 2
+Stamp027:
+  dh "EyeCa20" ; fill 2
+Stamp028:
+  dh "EyeCa21" ; fill 2
+Stamp029:
+  dh "EyeCa22" ; fill 2
+Stamp030:
+  dh "EyeCa23" ; fill 2
+Stamp031:
+  dh "EyeCa24" ; fill 2
+Stamp032:
+  dh "EyeCa25" ; fill 2
+Stamp033:
+  dh "EyeCa26" ; fill 2
+Stamp034:
+  dh "EyeCa27" ; fill 2
+Stamp035:
+  dh "EyeCa28" ; fill 2
+Stamp036:
+  dh "MouthR1" ; fill 2
+Stamp037:
+  dh "MouthR2" ; fill 2
+Stamp038:
+  dh "MouthR3" ; fill 2
+Stamp039:
+  dh "MouthR4" ; fill 2
+Stamp040:
+  dh "MouthR5" ; fill 2
+Stamp041:
+  dh "MouthR6" ; fill 2
+Stamp042:
+  dh "MouthR7" ; fill 2
+Stamp043:
+  dh "MouthR8" ; fill 2
+Stamp044:
+  dh "MouthR9" ; fill 2
+Stamp045:
+  dh "MouthR10" ; fill 2
+Stamp046:
+  dh "MouthR11" ; fill 2
+Stamp047:
+  dh "MouthR12" ; fill 2
+Stamp048:
+  dh "MouthR13" ; fill 2
+Stamp049:
+  dh "MouthR14" ; fill 2
+Stamp050:
+  dh "MouthC1" ; fill 2
+Stamp051:
+  dh "MouthC2" ; fill 2
+Stamp052:
+  dh "MouthC3" ; fill 2
+Stamp053:
+  dh "MouthC4" ; fill 2
+Stamp054:
+  dh "MouthC5" ; fill 2
+Stamp055:
+  dh "MouthC6" ; fill 2
+Stamp056:
+  dh "MouthC7" ; fill 2
+Stamp057:
+  dh "Stk1" ; fill 2
+Stamp058:
+  dh "Stk2" ; fill 2
+Stamp059:
+  dh "Stk3" ; fill 2
+Stamp060:
+  dh "Stk4" ; fill 2
+Stamp061:
+  dh "Stk5" ; fill 2
+Stamp062:
+  dh "Stk6" ; fill 2
+Stamp063:
+  dh "Stk7" ; fill 2
+Stamp064:
+  dh "Stk8" ; fill 2
+Stamp065:
+  dh "Stk9" ; fill 2
+Stamp066:
+  dh "Stk10" ; fill 2
+Stamp067:
+  dh "Stk11" ; fill 2
+Stamp068:
+  dh "Stk12" ; fill 2
+Stamp069:
+  dh "Stk13" ; fill 2
+Stamp070:
+  dh "Stk14" ; fill 2
+Stamp071:
+  dh "Stk15" ; fill 2
+Stamp072:
+  dh "Stk16" ; fill 2
+Stamp073:
+  dh "Stk17" ; fill 2
+Stamp074:
+  dh "Stk18" ; fill 2
+Stamp075:
+  dh "Stk19" ; fill 2
+Stamp076:
+  dh "Stk20" ; fill 2
+Stamp077:
+  dh "Stk21" ; fill 2
+Stamp078:
+  dh "Stk22" ; fill 2
+Stamp079:
+  dh "Stk23" ; fill 2
+Stamp080:
+  dh "Stk24" ; fill 2
+Stamp081:
+  dh "Stk25" ; fill 2
+Stamp082:
+  dh "Stk26" ; fill 2
+Stamp083:
+  dh "Stk27" ; fill 2
+Stamp084:
+  dh "Stk28" ; fill 2
+Stamp085:
+  dh "Stk29" ; fill 2
+Stamp086:
+  dh "Stk30" ; fill 2
+Stamp087:
+  dh "Stk31" ; fill 2
+Stamp088:
+  dh "Stk32" ; fill 2
+Stamp089:
+  dh "Stk33" ; fill 2
+Stamp090:
+  dh "Stk34" ; fill 2
+Stamp091:
+  dh "Stk35" ; fill 2
+Stamp092:
+  dh "Stk36" ; fill 2
+Stamp093:
+  dh "Stk37" ; fill 2
+Stamp094:
+  dh "Stk38" ; fill 2
+Stamp095:
+  dh "Stk39" ; fill 2
+Stamp096:
+  dh "Stk40" ; fill 2
+Stamp097:
+  dh "Stk41" ; fill 2
+Stamp098:
+  dh "Stk42" ; fill 2
+Stamp099:
+  dh "Stk43" ; fill 2
+Stamp100:
+  dh "Stk44" ; fill 2
+Stamp101:
+  dh "Stk45" ; fill 2
+Stamp102:
+  dh "Stk46" ; fill 2
+Stamp103:
+  dh "Stk47" ; fill 2
+Stamp104:
+  dh "Stk48" ; fill 2
+Stamp105:
+  dh "Stk49" ; fill 2
+Stamp106:
+  dh "Pat1" ; fill 2
+Stamp107:
+  dh "Pat2" ; fill 2
+Stamp108:
+  dh "Pat3" ; fill 2
+Stamp109:
+  dh "Pat4" ; fill 2
+Stamp110:
+  dh "Pat5" ; fill 2
+Stamp111:
+  dh "Pat6" ; fill 2
+Stamp112:
+  dh "Pat7" ; fill 2
+Stamp113:
+  dh "Pat8" ; fill 2
+Stamp114:
+  dh "Pat9" ; fill 2
+Stamp115:
+  dh "Pat10" ; fill 2
+Stamp116:
+  dh "Pat11" ; fill 2
+Stamp117:
+  dh "Pat12" ; fill 2
+Stamp118:
+  dh "Pat13" ; fill 2
+Stamp119:
+  dh "Pat14" ; fill 2
+Stamp120:
+  dh "Pat15" ; fill 2
+Stamp121:
+  dh "Pat16" ; fill 2
+Stamp122:
+  dh "Pat17" ; fill 2
+Stamp123:
+  dh "Pat18" ; fill 2
+Stamp124:
+  dh "Pat19" ; fill 2
+Stamp125:
+  dh "Pat20" ; fill 2
+Stamp126:
+  dh "Pat21" ; fill 2
+Stamp127:
+  dh "Pat22" ; fill 2
+Stamp128:
+  dh "Pat23" ; fill 2
+Stamp129:
+  dh "Pat24" ; fill 2
+Stamp130:
+  dh "Pat25" ; fill 2
+Stamp131:
+  dh "Pat26" ; fill 2
+Stamp132:
+  dh "Pat27" ; fill 2
+Stamp133:
+  dh "Pat28" ; fill 2
+Stamp134:
+  dh "Pat29" ; fill 2
+Stamp135:
+  dh "Pat30" ; fill 2
+Stamp136:
+  dh "Pat31" ; fill 2
+Stamp137:
+  dh "Pat32" ; fill 2
+Stamp138:
+  dh "Pat33" ; fill 2
+Stamp139:
+  dh "Pat34" ; fill 2
+Stamp140:
+  dh "Pat35" ; fill 2
+Stamp141:
+  dh "Pat36" ; fill 2
+Stamp142:
+  dh "Pat37" ; fill 2
+Stamp143:
+  dh "Pat38" ; fill 2
+Stamp144:
+  dh "Pat39" ; fill 2
+Stamp145:
+  dh "Pat40" ; fill 2
+Stamp146:
+  dh "Pat41" ; fill 2
+Stamp147:
+  dh "Pat42" ; fill 2
+
+origin $08E1F74 // Origin In ROM
+// Stamp Pointer
+dw Stamp001, Stamp002, Stamp003, Stamp004, Stamp005, Stamp006, Stamp007 // Page 1/21
+dw Stamp008, Stamp009, Stamp010, Stamp011, Stamp012, Stamp013, Stamp014 // Page 2/21
+dw Stamp015, Stamp016, Stamp017, Stamp018, Stamp019, Stamp020, Stamp021 // Page 3/21
+dw Stamp022, Stamp023, Stamp024, Stamp025, Stamp026, Stamp027, Stamp028 // Page 4/21
+dw Stamp029, Stamp030, Stamp031, Stamp032, Stamp033, Stamp034, Stamp035 // Page 5/21
+dw Stamp036, Stamp037, Stamp038, Stamp039, Stamp040, Stamp041, Stamp042 // Page 6/21
+dw Stamp043, Stamp044, Stamp045, Stamp046, Stamp047, Stamp048, Stamp049 // Page 7/21
+dw Stamp050, Stamp051, Stamp052, Stamp053, Stamp054, Stamp055, Stamp056 // Page 8/21
+dw Stamp057, Stamp058, Stamp059, Stamp060, Stamp061, Stamp062, Stamp063 // Page 9/21
+dw Stamp064, Stamp065, Stamp066, Stamp067, Stamp068, Stamp069, Stamp070 // Page 10/21
+dw Stamp071, Stamp072, Stamp073, Stamp074, Stamp075, Stamp076, Stamp077 // Page 11/21
+dw Stamp078, Stamp079, Stamp080, Stamp081, Stamp082, Stamp083, Stamp084 // Page 12/21
+dw Stamp085, Stamp086, Stamp087, Stamp088, Stamp089, Stamp090, Stamp091 // Page 13/21
+dw Stamp092, Stamp093, Stamp094, Stamp095, Stamp096, Stamp097, Stamp098 // Page 14/21
+dw Stamp099, Stamp100, Stamp101, Stamp102, Stamp103, Stamp104, Stamp105 // Page 15/21
+dw Stamp106, Stamp107, Stamp108, Stamp109, Stamp110, Stamp111, Stamp112 // Page 16/21
+dw Stamp113, Stamp114, Stamp115, Stamp116, Stamp117, Stamp118, Stamp119 // Page 17/21
+dw Stamp120, Stamp121, Stamp122, Stamp123, Stamp124, Stamp125, Stamp126 // Page 18/21
+dw Stamp127, Stamp128, Stamp129, Stamp130, Stamp131, Stamp132, Stamp133 // Page 19/21
+dw Stamp134, Stamp135, Stamp136, Stamp137, Stamp138, Stamp139, Stamp140 // Page 20/21
+dw Stamp141, Stamp142, Stamp143, Stamp144, Stamp145, Stamp146, Stamp147 // Page 21/21

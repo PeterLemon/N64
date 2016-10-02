@@ -41,8 +41,8 @@ To Make / Make
 $01C2150
 00 82	00 6D	00 A9	00 00	| Original Japanese Hex
  #  つ	 #  く	 #  る	 #  #	| Original Japanese Text
- #  M	 #  a	 #  k	 #  #	| New English Text
-00 2D	00 41	00 4B	00 00	| New English Hex
+ #  3	 #  D	 #   	 #  #	| New English Text
+00 13	00 24	00 00	00 00	| New English Hex
 
 ペイントする
 To Paint

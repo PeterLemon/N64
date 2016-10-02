@@ -117,6 +117,31 @@ $0953ED8
 00 2C	00 4F	00 41	00 44	00 3B	00 12	00 24	00 37	00 4F	00 52	00 4B	00 3D	00 33	00 54	00 41	00 4D	00 50	00 00	| New English Hex
 
 
+ぜんたいをけす
+Erase the Entire / Wipe All
+$0953F10
+00 7A	00 B1	00 7D	00 62	00 B0	00 6F	00 77	00 00	| Original Japanese Hex
+ #  ぜ	 #  ん	 #  た	 #  い	 #  を	 #  け	 #  す	 #  #	| Original Japanese Text
+ #  W	 #  i	 #  p	 #  e	 #  A	 #  l	 #  l	 #  #	| New English Text
+00 37	00 49	00 50	00 45	00 21	00 4C	00 4C	00 00	| New English Hex
+
+はんてん
+Reversal / Reverse / Invert / Flip
+$0953F20
+00 8D	00 B1	00 84	00 B1	00 00	00 00	| Original Japanese Hex
+ #  は	 #  ん	 #  て	 #  ん	 #  #	 #  #	| Original Japanese Text
+ #  F	 #  l	 #  i	 #  p	 #  #	 #  #	| New English Text
+00 26	00 4C	00 49	00 50	00 00	00 00	| New English Hex
+
+かいてん
+Rotation / Rotate / Angle
+$0953F2C
+00 69	00 62	00 84	00 B1	00 00	00 00	| Original Japanese Hex
+ #  か	 #  い	 #  て	 #  ん	 #  #	 #  #	| Original Japanese Text
+ #  A	 #  n	 #  g	 #  l	 #  e	 #  #	| New English Text
+00 21	00 4E	00 47	00 4C	00 45	00 00	| New English Hex
+
+
 スポイト
 Dropper / Picker
 $0953F48
@@ -132,3 +157,592 @@ $0953F54
  #  マ	 #  ス	 #  キ	 #  ン	 #  グ	 #  #	| Original Japanese Text
  #  M	 #  a	 #  s	 #  k	 #  #	 #  #	| New English Text
 00 2D	00 41	00 53	00 4B	00 00	00 00	| New English Hex
+
+// Stamp
+め・リアル1
+Eyes, Realistic 1
+$0953F60 // RDRAM Pointer $8049C028
+
+め・リアル2
+Eyes, Realistic 2
+$0953F70
+
+め・リアル3
+Eyes, Realistic 3
+$0953F80
+
+め・リアル4
+Eyes, Realistic 4
+$0953F90
+
+め・リアル5
+Eyes, Realistic 5
+$0953FA0
+
+め・リアル6
+Eyes, Realistic 6
+$0953FB0
+
+め・リアル7
+Eyes, Realistic 7
+$0953FC0
+
+め・まんが1
+Eyes, Manga / Comic / Cartoon 1
+$0953FD0
+
+め・まんが2
+Eyes, Manga / Comic / Cartoon 2
+$0953FE0
+
+め・まんが3
+Eyes, Manga / Comic / Cartoon 3
+$0953FF0
+
+め・まんが4
+Eyes, Manga / Comic / Cartoon 4
+$0954000
+
+め・まんが5
+Eyes, Manga / Comic / Cartoon 5
+$0954010
+
+め・まんが6
+Eyes, Manga / Comic / Cartoon 6
+$0954020
+
+め・まんが7
+Eyes, Manga / Comic / Cartoon 7
+$0954030
+
+め・まんが8
+Eyes, Manga / Comic / Cartoon 8
+$0954040
+
+め・まんが9
+Eyes, Manga / Comic / Cartoon 9
+$0954050
+
+め・まんが10
+Eyes, Manga / Comic / Cartoon 10
+$0954060
+
+め・まんが11
+Eyes, Manga / Comic / Cartoon 11
+$0954070
+
+め・まんが12
+Eyes, Manga / Comic / Cartoon 12
+$0954080
+
+め・まんが13
+Eyes, Manga / Comic / Cartoon 13
+$0954090
+
+め・まんが14
+Eyes, Manga / Comic / Cartoon 14
+$09540A0
+
+め・まんが15
+Eyes, Manga / Comic / Cartoon 15
+$09540B0
+
+め・まんが16
+Eyes, Manga / Comic / Cartoon 16
+$09540C0
+
+め・まんが17
+Eyes, Manga / Comic / Cartoon 17
+$09540D0
+
+め・まんが18
+Eyes, Manga / Comic / Cartoon 18
+$09540E0
+
+め・まんが19
+Eyes, Manga / Comic / Cartoon 19
+$09540F0
+
+め・まんが20
+Eyes, Manga / Comic / Cartoon 20
+$0954100
+
+め・まんが21
+Eyes, Manga / Comic / Cartoon 21
+$0954110
+
+め・まんが22
+Eyes, Manga / Comic / Cartoon 22
+$0954120
+
+め・まんが23
+Eyes, Manga / Comic / Cartoon 23
+$0954130
+
+め・まんが24
+Eyes, Manga / Comic / Cartoon 24
+$0954140
+
+め・まんが25
+Eyes, Manga / Comic / Cartoon 25
+$0954150
+
+め・まんが26
+Eyes, Manga / Comic / Cartoon 26
+$0954160
+
+め・まんが27
+Eyes, Manga / Comic / Cartoon 27
+$0954170
+
+め・まんが28
+Eyes, Manga / Comic / Cartoon 28
+$0954180
+
+くち・リアル1
+Mouth, Realistic 1
+$0954190
+
+くち・リアル2
+Mouth, Realistic 2
+$09541A0
+
+くち・リアル3
+Mouth, Realistic 3
+$09541B0
+
+くち・リアル4
+Mouth, Realistic 4
+$09541C0
+
+くち・リアル5
+Mouth, Realistic 5
+$09541D0
+
+くち・リアル6
+Mouth, Realistic 6
+$09541E0
+
+くち・リアル7
+Mouth, Realistic 7
+$09541F0
+
+くち・リアル8
+Mouth, Realistic 8
+$0954200
+
+くち・リアル9
+Mouth, Realistic 9
+$0954210
+
+くち・リアル10
+Mouth, Realistic 10
+$0954220
+
+くち・リアル11
+Mouth, Realistic 11
+$0954234
+
+くち・リアル12
+Mouth, Realistic 12
+$0954248
+
+くち・リアル13
+Mouth, Realistic 13
+$095425C
+
+くち・リアル14
+Mouth, Realistic 14
+$0954270
+
+くち・まんが1
+Mouth, Manga / Comic / Cartoon 1
+$0954284
+
+くち・まんが2
+Mouth, Manga / Comic / Cartoon 2
+$0954294
+
+くち・まんが3
+Mouth, Manga / Comic / Cartoon 3
+$09542A4
+
+くち・まんが4
+Mouth, Manga / Comic / Cartoon 4
+$09542B4
+
+くち・まんが5
+Mouth, Manga / Comic / Cartoon 5
+$09542C4
+
+くち・まんが6
+Mouth, Manga / Comic / Cartoon 6
+$09542D4
+
+くち・まんが7
+Mouth, Manga / Comic / Cartoon 7
+$09542E4
+
+シール1
+Seal / Sticker 1
+$09542F4
+
+シール2
+Seal / Sticker 2
+$0954300
+
+シール3
+Seal / Sticker 3
+$095430C
+
+シール4
+Seal / Sticker 4
+$0954318
+
+シール5
+Seal / Sticker 5
+$0954324
+
+シール6
+Seal / Sticker 6
+$0954330
+
+シール7
+Seal / Sticker 7
+$095433C
+
+シール8
+Seal / Sticker 8
+$0954348
+
+シール9
+Seal / Sticker 9
+$0954354
+
+シール10
+Seal / Sticker 10
+$0954360
+
+シール11
+Seal / Sticker 11
+$095436C
+
+シール12
+Seal / Sticker 12
+$0954378
+
+シール13
+Seal / Sticker 13
+$0954384
+
+シール14
+Seal / Sticker 14
+$0954390
+
+シール15
+Seal / Sticker 15
+$095439C
+
+シール16
+Seal / Sticker 16
+$09543A8
+
+シール17
+Seal / Sticker 17
+$09543B4
+
+シール18
+Seal / Sticker 18
+$09543C0
+
+シール19
+Seal / Sticker 19
+$09543CC
+
+シール20
+Seal / Sticker 20
+$09543D8
+
+シール21
+Seal / Sticker 21
+$09543E4
+
+シール22
+Seal / Sticker 22
+$09543F0
+
+シール23
+Seal / Sticker 23
+$09543FC
+
+シール24
+Seal / Sticker 24
+$0954408
+
+シール25
+Seal / Sticker 25
+$0954414
+
+シール26
+Seal / Sticker 26
+$0954420
+
+シール27
+Seal / Sticker 27
+$095442C
+
+シール28
+Seal / Sticker 28
+$0954438
+
+シール29
+Seal / Sticker 29
+$0954444
+
+シール30
+Seal / Sticker 30
+$0954450
+
+シール31
+Seal / Sticker 31
+$095445C
+
+シール32
+Seal / Sticker 32
+$0954468
+
+シール33
+Seal / Sticker 33
+$0954474
+
+シール34
+Seal / Sticker 34
+$0954480
+
+シール35
+Seal / Sticker 35
+$095448C
+
+シール36
+Seal / Sticker 36
+$0954498
+
+シール37
+Seal / Sticker 37
+$09544A4
+
+シール38
+Seal / Sticker 38
+$09544B0
+
+シール39
+Seal / Sticker 39
+$09544BC
+
+シール40
+Seal / Sticker 40
+$09544C8
+
+シール41
+Seal / Sticker 41
+$09544D4
+
+シール42
+Seal / Sticker 42
+$09544E0
+
+シール43
+Seal / Sticker 43
+$09544EC
+
+シール44
+Seal / Sticker 44
+$09544F8
+
+シール45
+Seal / Sticker 45
+$0954504
+
+シール46
+Seal / Sticker 46
+$0954510
+
+シール47
+Seal / Sticker 47
+$095451C
+
+シール48
+Seal / Sticker 48
+$0954528
+
+シール49
+Seal / Sticker 49
+$0954534
+
+もよう1
+Pattern / Figure / Design 1
+$0954540
+
+もよう2
+Pattern / Figure / Design 2
+$095454C
+
+もよう3
+Pattern / Figure / Design 3
+$0954558
+
+もよう4
+Pattern / Figure / Design 4
+$0954564
+
+もよう5
+Pattern / Figure / Design 5
+$0954570
+
+もよう6
+Pattern / Figure / Design 6
+$095457C
+
+もよう7
+Pattern / Figure / Design 7
+$0954588
+
+もよう8
+Pattern / Figure / Design 8
+$0954594
+
+もよう9
+Pattern / Figure / Design 9
+$09545A0
+
+もよう10
+Pattern / Figure / Design 10
+$09545AC
+
+もよう11
+Pattern / Figure / Design 11
+$09545B8
+
+もよう12
+Pattern / Figure / Design 12
+$09545C4
+
+もよう13
+Pattern / Figure / Design 13
+$09545D0
+
+もよう14
+Pattern / Figure / Design 14
+$09545DC
+
+もよう15
+Pattern / Figure / Design 15
+$09545E8
+
+もよう16
+Pattern / Figure / Design 16
+$09545F4
+
+もよう17
+Pattern / Figure / Design 17
+$0954600
+
+もよう18
+Pattern / Figure / Design 18
+$095460C
+
+もよう19
+Pattern / Figure / Design 19
+$0954618
+
+もよう20
+Pattern / Figure / Design 20
+$0954624
+
+もよう21
+Pattern / Figure / Design 21
+$0954630
+
+もよう22
+Pattern / Figure / Design 22
+$095463C
+
+もよう23
+Pattern / Figure / Design 23
+$0954648
+
+もよう24
+Pattern / Figure / Design 24
+$0954654
+
+もよう25
+Pattern / Figure / Design 25
+$0954660
+
+もよう26
+Pattern / Figure / Design 26
+$095466C
+
+もよう27
+Pattern / Figure / Design 27
+$0954678
+
+もよう28
+Pattern / Figure / Design 28
+$0954684
+
+もよう29
+Pattern / Figure / Design 29
+$0954690
+
+もよう30
+Pattern / Figure / Design 30
+$095469C
+
+もよう31
+Pattern / Figure / Design 31
+$09546A8
+
+もよう32
+Pattern / Figure / Design 32
+$09546B4
+
+もよう33
+Pattern / Figure / Design 33
+$09546C0
+
+もよう34
+Pattern / Figure / Design 34
+$09546CC
+
+もよう35
+Pattern / Figure / Design 35
+$09546D8
+
+もよう36
+Pattern / Figure / Design 36
+$09546E4
+
+もよう37
+Pattern / Figure / Design 37
+$09546F0
+
+もよう38
+Pattern / Figure / Design 38
+$09546FC
+
+もよう39
+Pattern / Figure / Design 39
+$0954708
+
+もよう40
+Pattern / Figure / Design 40
+$0954714
+
+もよう41
+Pattern / Figure / Design 41
+$0954720
+
+もよう42
+Pattern / Figure / Design 42
+$095472C
