@@ -43,6 +43,23 @@ $01BA614
 00 55	00 4E	00 44	00 4F	00 00	00 00	| New English Hex
 
 
+らくちんチェンジ
+Easy Change
+$01BA648
+00 A7	00 6D	00 7F	00 B1	00 E0	00 C6	01 13	00 D7	00 00	00 00	| Original Japanese Hex
+ #  ら	 #  く	 #  ち	 #  ん	 #  チ	 #  ェ	 #  ン	 #  ジ	 #  #	 #  #	| Original Japanese Text
+ #  C	 #  h	 #  a	 #  n	 #  g	 #  e	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 23	00 48	00 41	00 4E	00 47	00 45	00 00	00 00	00 00	00 00	| New English Hex
+
+らくちんカスタム
+Easy Customize
+$01BA65C
+00 A7	00 6D	00 7F	00 B1	00 CA	00 D8	00 DE	01 00	00 00	00 00	| Original Japanese Hex
+ #  ら	 #  く	 #  ち	 #  ん	 #  カ	 #  ス	 #  タ	 #  ム	 #  #	 #  #	| Original Japanese Text
+ #  C	 #  u	 #  s	 #  t	 #  o	 #  m	 #  i	 #  z	 #  e	 #  #	| New English Text
+00 23	00 55	00 53	00 54	00 4F	00 4D	00 49	00 5A	00 45	00 00	| New English Hex
+
+
 つくりかたムービー
 How To Make / Construction / Tutorial Movies / Films / Videos
 $07FBC80

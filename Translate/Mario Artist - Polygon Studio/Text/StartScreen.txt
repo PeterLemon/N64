@@ -1,0 +1,41 @@
+﻿SHIFT-JIS
+------------
+StartScreen:
+------------
+Controller:
+オプション
+Options
+
+Hat:
+かんたんにつくる
+Make it Easy
+
+Crown:
+プロへのみち
+Road to Professional
+
+Cube:
+ギャラリー
+Gallery
+
+げんざいのさくひんが
+The current work
+$01C9B48 (Line 1)
+82 B0	82 F1	82 B4	82 A2	82 CC	82 B3	82 AD	82 D0	82 F1	82 AA	00 00	00 00	| Original Japanese Hex
+ #  げ	 #  ん	 #  ざ	 #  い	 #  の	 #  さ	 #  く	 #  ひ	 #  ん	 #  が	 #  #	 #  #	| Original Japanese Text
+ #  C	 #  u	 #  r	 #  r	 #  e	 #  n	 #  t	 #  W	 #  o	 #  r	 #  k	 #  #	| New English Text
+82 62	82 94	82 92	82 92	82 85	82 8E	82 94	82 76	82 8F	82 92	82 8B	00 00	| New English Hex
+消えますが
+will disappear / go
+$01C9B60 (Line 2)
+8F C1	82 A6	82 DC	82 B7	82 AA	00 00	| Original Japanese Hex
+ #  消	 #  え	 #  ま	 #  す	 #  が	 #  #	| Original Japanese Text
+ #  G	 #  e	 #  t	 #  s	 #  #	 #  #	| New English Text
+82 66	82 85	82 94	82 93	00 00	00 00	| New English Hex
+よろしいですか？
+Is this OK?
+$01C9B6C (Line 3)
+82 E6	82 EB	82 B5	82 A2	82 C5	82 B7	82 A9	81 48	00 00	00 00	| Original Japanese Hex
+ #  よ	 #  ろ	 #  し	 #  い	 #  で	 #  す	 #  か	 #  ？	 #  #	 #  #	| Original Japanese Text
+ #  W	 #  i	 #  p	 #  e	 #  d	 #  	 #  O	 #  K	 #  ?	 #  #	| New English Text
+82 76	82 89	82 90	82 85	82 84	82 40	82 6E	82 6A	81 48	00 00	| New English Hex

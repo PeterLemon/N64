@@ -1,0 +1,131 @@
+﻿---------
+EasyMode:
+---------
+けす
+Extinguish / Erase / Delete
+$07BA31C
+00 6F	00 77	00 00	00 00	| Original Japanese Hex
+ #  け	 #  す	 #  #	 #  #	| Original Japanese Text
+ #  D	 #  e	 #  l	 #  #	| New English Text
+00 24	00 45	00 5C	00 00	| New English Hex
+
+せっちゃく
+Adhesion / Bond / Glue
+$07BA324
+00 79	00 81	00 7F	00 A1	00 6D	00 00	| Original Japanese Hex
+ #  せ	 #  っ	 #  ち	 #  ゃ	 #  く	 #  #	| Original Japanese Text
+ #  G	 #  l	 #  u	 #  e	 #  #	 #  #	| New English Text
+00 27	00 4C	00 55	00 45	00 00	00 00	| New English Hex
+
+せっちゃくリセット
+Adhesion / Bond / Glue Reset
+$07BA330
+00 79	00 81	00 7F	00 A1	00 6D	01 0A	00 DA	00 E2	00 E7	00 00	| Original Japanese Hex
+ #  せ	 #  っ	 #  ち	 #  ゃ	 #  く	 #  リ	 #  セ	 #  ッ	 #  ト	 #  #	| Original Japanese Text
+ #  G	 #  l	 #  u	 #  e	 #  R	 #  e	 #  s	 #  e	 #  t	 #  #	| New English Text
+00 27	00 4C	00 55	00 45	00 32	00 45	00 53	00 45	00 54	00 00	| New English Hex
+
+
+いちをかえる
+Change Position / Move
+$07BA378
+00 62	00 7F	00 B0	00 69	00 66	00 A9	00 00	00 00	| Original Japanese Hex
+ #  い	 #  ち	 #  を	 #  か	 #  え	 #  る	 #  #	 #  #	| Original Japanese Text
+ #  M	 #  o	 #  v	 #  e	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 2D	00 4F	00 56	00 45	00 00	00 00	00 00	00 00	| New English Hex
+
+むきをかえる
+Turn / Rotate
+$07BA388
+00 9E	00 6B	00 B0	00 69	00 66	00 A9	00 00	00 00	| Original Japanese Hex
+ #  む	 #  き	 #  を	 #  か	 #  え	 #  る	 #  #	 #  #	| Original Japanese Text
+ #  R	 #  o	 #  t	 #  a	 #  t	 #  e	 #  #	 #  #	| New English Text
+00 52	00 4F	00 54	00 41	00 54	00 45	00 00	00 00	| New English Hex
+
+おおきさをかえる
+Vary the Scale / Size
+$07BA398
+00 68	00 68	00 6B	00 73	00 B0	00 69	00 66	00 A9	00 00	00 00	| Original Japanese Hex
+ #  お	 #  お	 #  き	 #  さ	 #  を	 #  か	 #  え	 #  る	 #  #	 #  #	| Original Japanese Text
+ #  S	 #  c	 #  a	 #  l	 #  e	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 33	00 43	00 41	00 4C	00 45	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+すべてのほうこう
+All Directions / Axis / Free Move
+$07BA3AC
+00 77	00 97	00 84	00 8C	00 99	00 64	00 71	00 64	00 00	00 00	| Original Japanese Hex
+ #  す	 #  べ	 #  て	 #  の	 #  ほ	 #  う	 #  こ	 #  う	 #  #	 #  #	| Original Japanese Text
+ #  A	 #  l	 #  l	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	 #  #	| New English Text
+00 21	00 4C	00 4C	00 21	00 58	00 49	00 53	00 00	00 00	00 00	| New English Hex
+
+アカじくのほうこう
+The Direction of the Red Axis
+$07BA3C0
+00 C1	00 CA	00 76	00 6D	00 8C	00 99	00 64	00 71	00 64	00 00	| Original Japanese Hex
+ #  ア	 #  カ	 #  じ	 #  く	 #  の	 #  ほ	 #  う	 #  こ	 #  う	 #  #	| Original Japanese Text
+ #  R	 #  e	 #  d	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	 #  #	| New English Text
+00 32	00 45	00 44	00 21	00 58	00 49	00 53	00 00	00 00	00 00	| New English Hex
+
+ミドリじくのほうこう
+The Direction of the Green Axis
+$07BA3D4
+00 FE	00 E8	01 0A	00 76	00 6D	00 8C	00 99	00 64	00 71	00 64	00 00	00 00	| Original Japanese Hex
+ #  ミ	 #  ド	 #  リ	 #  じ	 #  く	 #  の	 #  ほ	 #  う	 #  こ	 #  う	 #  #	 #  #	| Original Japanese Text
+ #  G	 #  r	 #  e	 #  e	 #  n	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	 #  #	| New English Text
+00 27	00 52	00 45	00 45	00 4E	00 21	00 58	00 49	00 53	00 00	00 00	00 00	| New English Hex
+
+アオじくのほうこう
+The Direction of the Blue Axis
+$07BA3EC
+00 C1	00 C9	00 76	00 6D	00 8C	00 99	00 64	00 71	00 64	00 00	| Original Japanese Hex
+ #  ア	 #  オ	 #  じ	 #  く	 #  の	 #  ほ	 #  う	 #  こ	 #  う	 #  #	| Original Japanese Text
+ #  B	 #  l	 #  u	 #  e	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	| New English Text
+00 22	00 4C	00 55	00 45	00 21	00 58	00 49	00 53	00 00	00 00	| New English Hex
+
+アカじくをちゅうしんに
+Around the Red Axis
+$07BA400
+00 C1	00 CA	00 76	00 6D	00 B0	00 7F	00 A3	00 64	00 75	00 B1	00 89	00 00	| Original Japanese Hex
+ #  ア	 #  カ	 #  じ	 #  く	 #  を	 #  ち	 #  ゅ	 #  う	 #  し	 #  ん	 #  に	 #  #	| Original Japanese Text
+ #  R	 #  e	 #  d	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 32	00 45	00 44	00 21	00 58	00 49	00 53	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ミドリじくをちゅうしんに
+Around the Green Axis
+$07BA418
+00 FE	00 E8	01 0A	00 76	00 6D	00 B0	00 7F	00 A3	00 64	00 75	00 B1	00 89	00 00	00 00	| Original Japanese Hex
+ #  ミ	 #  ド	 #  リ	 #  じ	 #  く	 #  を	 #  ち	 #  ゅ	 #  う	 #  し	 #  ん	 #  に	 #  #	 #  #	| Original Japanese Text
+ #  G	 #  r	 #  e	 #  e	 #  n	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 27	00 52	00 45	00 45	00 4E	00 21	00 58	00 49	00 53	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+アオじくをちゅうしんに
+Around the Blue Axis
+$07BA434
+00 C1	00 C9	00 76	00 6D	00 B0	00 7F	00 A3	00 64	00 75	00 B1	00 89	00 00	| Original Japanese Hex
+ #  ア	 #  オ	 #  じ	 #  く	 #  を	 #  ち	 #  ゅ	 #  う	 #  し	 #  ん	 #  に	 #  #	| Original Japanese Text
+ #  B	 #  l	 #  u	 #  e	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 22	00 4C	00 55	00 45	00 21	00 58	00 49	00 53	00 00	00 00	00 00	00 00	| New English Hex
+
+アカじくにそって
+Along the Red Axis
+$07BA44C
+00 C1	00 CA	00 76	00 6D	00 89	00 7B	00 81	00 84	00 00	00 00	| Original Japanese Hex
+ #  ア	 #  カ	 #  じ	 #  く	 #  に	 #  そ	 #  っ	 #  て	 #  #	 #  #	| Original Japanese Text
+ #  R	 #  e	 #  d	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	 #  #	| New English Text
+00 32	00 45	00 44	00 21	00 58	00 49	00 53	00 00	00 00	00 00	| New English Hex
+
+ミドリじくにそって
+Along the Green Axis
+$07BA460
+00 FE	00 E8	01 0A	00 76	00 6D	00 89	00 7B	00 81	00 84	00 00	| Original Japanese Hex
+ #  ミ	 #  ド	 #  リ	 #  じ	 #  く	 #  に	 #  そ	 #  っ	 #  て	 #  #	| Original Japanese Text
+ #  G	 #  r	 #  e	 #  e	 #  n	 #  A	 #  x	 #  i	 #  s	 #  #	| New English Text
+00 27	00 52	00 45	00 45	00 4E	00 21	00 58	00 49	00 53	00 00	| New English Hex
+
+アオじくにそって
+Along the Blue Axis
+$07BA474
+00 C1	00 C9	00 76	00 6D	00 89	00 7B	00 81	00 84	00 00	00 00	| Original Japanese Hex
+ #  ア	 #  オ	 #  じ	 #  く	 #  に	 #  そ	 #  っ	 #  て	 #  #	 #  #	| Original Japanese Text
+ #  B	 #  l	 #  u	 #  e	 #  A	 #  x	 #  i	 #  s	 #  #	 #  #	| New English Text
+00 22	00 4C	00 55	00 45	00 21	00 58	00 49	00 53	00 00	00 00	| New English Hex

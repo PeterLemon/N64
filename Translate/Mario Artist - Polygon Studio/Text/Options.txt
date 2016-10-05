@@ -1,0 +1,90 @@
+﻿--------
+Options:
+--------
+モノラル
+Monaural
+$02668AC
+01 02	00 ED	01 09	01 0B	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  モ	 #  ノ	 #  ラ	 #  ル	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  M	 #  o	 #  n	 #  o	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 2D	00 4F	00 4E	00 4F	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ステレオ
+Stereo
+$02668C0
+00 D8	00 E5	01 0C	00 C9	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ス	 #  テ	 #  レ	 #  オ	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  S	 #  t	 #  e	 #  r	 #  e	 #  o	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 33	00 54	00 45	00 52	00 45	00 4F	00 00	00 00	00 00	00 00	| New English Hex
+
+ヘッドホン
+Headphones
+$02668D4
+00 F7	00 E2	00 E8	00 FA	01 13	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ヘ	 #  ッ	 #  ド	 #  ホ	 #  ン	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  H	 #  e	 #  a	 #  d	 #  p	 #  h	 #  o	 #  n	 #  e	 #  #	| New English Text
+00 28	00 45	00 41	00 44	00 50	00 48	00 4F	00 4E	00 45	00 00	| New English Hex
+
+おそい
+Slow
+$02668E8
+00 68	00 7B	00 62	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  お	 #  そ	 #  い	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  S	 #  l	 #  o	 #  w	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 33	00 4C	00 4F	00 57	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+ふつう
+Ordinary / Normal / Medium
+$02668FC
+00 93	00 82	00 64	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ふ	 #  つ	 #  う	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  N	 #  o	 #  r	 #  m	 #  a	 #  l	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 2E	00 4F	00 52	00 4D	00 41	00 4C	00 00	00 00	00 00	00 00	| New English Hex
+
+はやい
+Fast
+$0266910
+00 8D	00 A2	00 62	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  は	 #  や	 #  い	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  F	 #  a	 #  s	 #  t	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 26	00 41	00 53	00 54	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+Aボタンとおなじ
+Same as A Button
+$0266924
+00 21	00 FB	00 DE	01 13	00 86	00 68	00 88	00 76	00 00	00 00	| Original Japanese Hex
+ #  A	 #  ボ	 #  タ	 #  ン	 #  と	 #  お	 #  な	 #  じ	 #  #	 #  #	| Original Japanese Text
+ #  S	 #  a	 #  m	 #  e	 #   	 #  a	 #  s	 #   	 #  A	 #  #	| New English Text
+00 33	00 41	00 4D	00 45	00 40	00 41	00 53	00 40	00 21	00 00	| New English Hex
+
+カーソルがおそく
+Slow Down the Cursor
+$0266938
+00 CA	01 1E	00 DC	01 0B	00 6A	00 68	00 7B	00 6D	00 00	00 00	| Original Japanese Hex
+ #  カ	 #  ー	 #  ソ	 #  ル	 #  が	 #  お	 #  そ	 #  く	 #  #	 #  #	| Original Japanese Text
+ #  S	 #  l	 #  o	 #  w	 #   	 #  D	 #  o	 #  w	 #  n	 #  #	| New English Text
+00 33	00 4C	00 4F	00 57	00 40	00 24	00 4F	00 57	00 4E	00 00	| New English Hex
+
+ひょうじする
+Display / Show
+$026694C
+00 90	00 A5	00 64	00 76	00 77	00 A9	00 00	00 00	00 00	00 00	| Original Japanese Hex
+ #  ひ	 #  ょ	 #  う	 #  じ	 #  す	 #  る	 #  #	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  D	 #  i	 #  s	 #  p	 #  l	 #  a	 #  y	 #  #	 #  #	 #  #	| New English Text
+00 24	00 49	00 53	00 50	00 4C	00 41	00 59	00 00	00 00	00 00	| New English Hex
+
+ひょうじすない
+Not to be Displayed
+$0266960
+00 90	00 A5	00 64	00 76	00 75	00 88	00 62	00 00	00 00	00 00	| Original Japanese Hex
+ #  ひ	 #  ょ	 #  う	 #  じ	 #  す	 #  な	 #  い	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  N	 #  o	 #  D	 #  i	 #  s	 #  p	 #  l	 #  a	 #  y	 #  #	| New English Text
+00 2E	00 4F	00 24	00 49	00 53	00 50	00 4C	00 41	00 59	00 00	| New English Hex
+
+けってい(セーブ)
+Determine / Apply (Save)
+$0266974
+00 6F	00 81	00 84	00 62	00 08	00 DA	01 1E	00 F5	00 09	00 00	| Original Japanese Hex
+ #  け	 #  っ	 #  て	 #  い	 #  (	 #  セ	 #  ー	 #  ブ	 #  )	 #  #	| Original Japanese Text
+ #  A	 #  p	 #  p	 #  l	 #  y	 #  S	 #  a	 #  v	 #  e	 #  #	| New English Text
+00 21	00 50	00 50	00 4C	00 59	00 33	00 41	00 56	00 45	00 00	| New English Hex

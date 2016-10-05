@@ -1,6 +1,14 @@
 ﻿-----
 Menu:
 -----
+セレクトがめんにもどる
+Select returns from model / menu
+$01C2040
+00 DA	01 0C	00 CE	00 E7	00 6A	00 9F	00 B1	00 89	00 A0	00 87	00 A9	00 00	| Original Japanese Hex
+ #  セ	 #  レ	 #  ク	 #  ト	 #  が	 #  め	 #  ん	 #  に	 #  も	 #  ど	 #  る	 #  #	| Original Japanese Text
+ #  E	 #  x	 #  i	 #  t	 #  M	 #  o	 #  d	 #  e	 #  l	 #  e	 #  r	 #  #	| New English Text
+00 25	00 56	00 49	00 54	00 2D	00 4F	00 44	00 45	00 4C	00 45	00 52	00 00	| New English Hex
+
 でる
 Out / End / Exit
 $01C2058
@@ -9,6 +17,21 @@ $01C2058
  #  O	 #  u	 #  t	 #  #	| New English Text
 00 2F	00 55	00 54	00 00	| New English Hex
 
+[ステージさくひん]のセーブ・ロード
+[Stage Work] Save & Load
+$01C2060
+00 3B	00 D8	00 E5	01 1E	00 D7	00 73	00 6D	00 90	00 B1	00 3D	00 8C	00 DA	01 1E	00 F5	00 B2	01 0D	01 1E	00 E8	00 00	00 00	| Original Japanese Hex
+ #  [	 #  ス	 #  テ	 #  ー	 #  ジ	 #  さ	 #  く	 #  ひ	 #  ん	 #  ]	 #  の	 #  セ	 #  ー	 #  ブ	 #  ・	 #  ロ	 #  ー	 #  ド	 #  #	 #  #	| Original Japanese Text
+ #  [	 #  S	 #  t	 #  a	 #  g	 #  e	 #  W	 #  o	 #  r	 #  k	 #  ]	 #  L	 #  o	 #  a	 #  d	 #  S	 #  a	 #  v	 #  e	 #  #	| New English Text
+00 3B	00 33	00 54	00 41	00 47	00 45	00 37	00 4F	00 52	00 4B	00 3D	00 2C	00 4F	00 41	00 44	00 33	00 41	00 56	00 45	00 00	| New English Hex
+
+[ブロックさくひん]のセーブ・ロード
+[Block Work] Save & Load
+$01C2088
+00 3B	00 F5	01 0D	00 E2	00 CE	00 73	00 6D	00 90	00 B1	00 3D	00 8C	00 DA	01 1E	00 F5	00 B2	01 0D	01 1E	00 E8	00 00	00 00	| Original Japanese Hex
+ #  [	 #  ブ	 #  ロ	 #  ッ	 #  ク	 #  さ	 #  く	 #  ひ	 #  ん	 #  ]	 #  の	 #  セ	 #  ー	 #  ブ	 #  ・	 #  ロ	 #  ー	 #  ド	 #  #	 #  #	| Original Japanese Text
+ #  [	 #  B	 #  l	 #  o	 #  c	 #  k	 #  W	 #  o	 #  r	 #  k	 #  ]	 #  L	 #  o	 #  a	 #  d	 #  S	 #  a	 #  v	 #  e	 #  #	| New English Text
+00 3B	00 22	00 4C	00 4F	00 43	00 4B	00 37	00 4F	00 52	00 4B	00 3D	00 2C	00 4F	00 41	00 44	00 33	00 41	00 56	00 45	00 00	| New English Hex
 
 [3Dさくひん]のセーブ・ロード
 [3D Work] Save & Load
@@ -27,6 +50,22 @@ $01C20D4
 00 34	00 4F	00 44	00 41	00 59	00 00	00 00	00 00	00 00	00 00	| New English Hex
 
 
+かんしょうする
+Interlude / Intermission / Observation
+$01C20FC
+00 69	00 B1	00 75	00 A5	00 64	00 77	00 A9	00 00	| Original Japanese Hex
+ #  か	 #  ん	 #  し	 #  ょ	 #  う	 #  す	 #  る	 #  #	| Original Japanese Text
+ #  O	 #  b	 #  s	 #  e	 #  r	 #  v	 #  e	 #  #	| New English Text
+00 2F	00 42	00 53	00 45	00 52	00 56	00 45	00 00	| New English Hex
+
+しゃしんをとる
+Take a Picture / Photograph
+$01C210C
+00 75	00 A1	00 75	00 B1	00 B0	00 86	00 A9	00 00	| Original Japanese Hex
+ #  し	 #  ゃ	 #  し	 #  ん	 #  を	 #  と	 #  る	 #  #	| Original Japanese Text
+ #  P	 #  h	 #  o	 #  t	 #  o	 #  #	 #  #	 #  #	| New English Text
+00 30	00 48	00 4F	00 54	00 4F	00 00	00 00	00 00	| New English Hex
+
 ちょっときゅうけい
 A Little Break / Take a Break
 $01C211C
@@ -35,6 +74,14 @@ $01C211C
  #  T	 #  a	 #  k	 #  e	 #  B	 #  r	 #  e	 #  a	 #  k	 #  #	| New English Text
 00 34	00 41	00 4B	00 45	00 21	00 52	00 45	00 41	00 4B	00 00	| New English Hex
 
+
+くみたてる
+Assemble / Build / Compose / Construct
+$01C2144
+00 6D	00 9D	00 7D	00 84	00 A9	00 00	| Original Japanese Hex
+ #  く	 #  み	 #  た	 #  て	 #  る	 #  #	| Original Japanese Text
+ #  B	 #  u	 #  i	 #  l	 #  d	 #  #	| New English Text
+00 22	00 55	00 49	00 4C	00 44	00 00	| New English Hex
 
 つくる
 To Make / Make

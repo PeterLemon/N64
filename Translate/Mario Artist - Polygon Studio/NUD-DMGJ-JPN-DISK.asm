@@ -6,15 +6,37 @@ output "Mario Artist - Polygon Studio.ndd", create
 origin $000000; insert "NUD-DMGJ-JPN.ndd" // Include Japanese Mario Artist - Polygon Studio N64 DD ROM
 
 macro TextSmall(OFFSET, TEXT) {
+  // Map Character Table
+  map '!', $0001, 32 // Map Special Characters & Numbers
+  map 'A', $0021, 31 // Map English "Upper Case" Characters & Special Characters
+  map ' ', $0040     // Map Space Character
+  map 'a', $0041, 30 // Map English "Lower Case" Characters & Special Characters
+
   origin {OFFSET}
   dh {TEXT} // Text To Print
 }
 
-// Character Table
-map '!', $0001, 32 // Map Special Characters & Numbers
-map 'A', $0021, 31 // Map English "Upper Case" Characters & Special Characters
-map ' ', $0040     // Map Space Character
-map 'a', $0041, 30 // Map English "Lower Case" Characters & Special Characters
+macro TextShiftJIS(OFFSET, TEXT) {
+  // Map Shift-JIS
+  map ' ',  $8140
+  map $2C,  $8143 // Comma ","
+  map '.',  $8144
+  map ':',  $8146
+  map '?',  $8148
+  map '!',  $8149
+  map '-',  $815B
+  map '~',  $8160
+  map '-',  $817C
+  map '\s', $818C // Single Quote "'"
+  map '\d', $818D // Double Quote '"'
+  map '&',  $8195
+  map '0',  $824F, 10 // Map Numbers
+  map 'A',  $8260, 26 // Map English "Upper Case" Characters
+  map 'a',  $8281, 26 // Map English "Lower Case" Characters
+
+  origin {OFFSET}
+  dh {TEXT} // Shift-JIS Text To Print
+}
 
 TextSmall($011F680, "Selected Color") ; fill 4
 
@@ -26,18 +48,44 @@ TextSmall($01BA5DC, "Center") ; fill 8
 TextSmall($01BA60C, "Out") ; fill 2
 TextSmall($01BA614, "Undo") ; fill 4
 
-// Menu
-TextSmall($01C2058, "Out") ; fill 2
+TextSmall($01BA648, "Change") ; fill 8
+TextSmall($01BA65C, "Customize") ; fill 2
 
+// Menu
+TextSmall($01C2040, "ExitModeler") ; fill 2
+TextSmall($01C2058, "Out") ; fill 2
+TextSmall($01C2060, "[StageWork]LoadSave") ; fill 2
+TextSmall($01C2088, "[BlockWork]LoadSave") ; fill 2
 TextSmall($01C20B0, "[3DWork]Load&Save") ; fill 2
 TextSmall($01C20D4, "Today") ; fill 10
 
+TextSmall($01C20FC, "Observe") ; fill 2
+TextSmall($01C210C, "Photo") ; fill 6
 TextSmall($01C211C, "TakeBreak") ; fill 2
 
+TextSmall($01C2144, "Build") ; fill 2
 TextSmall($01C2150, "3D") ; fill 4
 TextSmall($01C2158, "Paint") ; fill 4
 
 TextSmall($01C2190, "BGM") ; fill 10
+
+// Start Screen
+TextShiftJIS($01C9B48, "CurrentWork") ; fill 2
+TextShiftJIS($01C9B60, "Gets") ; fill 4
+TextShiftJIS($01C9B6C, "Wiped OK?") ; fill 2
+
+// Options
+TextSmall($02668AC, "Mono") ; fill 12
+TextSmall($02668C0, "Stereo") ; fill 8
+TextSmall($02668D4, "Headphone") ; fill 2
+TextSmall($02668E8, "Slow") ; fill 12
+TextSmall($02668FC, "Normal") ; fill 8
+TextSmall($0266910, "Fast") ; fill 12
+TextSmall($0266924, "Same as A") ; fill 2
+TextSmall($0266938, "Slow Down") ; fill 2
+TextSmall($026694C, "Display") ; fill 6
+TextSmall($0266960, "NoDisplay") ; fill 2
+TextSmall($0266974, "ApplySave") ; fill 2
 
 // Video Tutorial
 TextSmall($061036C, "Chair") ; fill 10
@@ -56,6 +104,25 @@ TextSmall($0610448, "PropPlane") ; fill 2
 TextSmall($07FBC80, "Tutorials") ; fill 2
 TextSmall($07FBC94, "Skeleton") ; fill 4
 TextSmall($07FBCA8, "Tape") ; fill 12
+
+// Easy Mode
+TextSmall($07BA31C, "Del") ; fill 2
+TextSmall($07BA324, "Glue") ; fill 4
+TextSmall($07BA330, "GlueReset") ; fill 2
+
+TextSmall($07BA378, "Move") ; fill 8
+TextSmall($07BA388, "Rotate") ; fill 4
+TextSmall($07BA398, "Scale") ; fill 10
+TextSmall($07BA3AC, "AllAxis") ; fill 6
+TextSmall($07BA3C0, "RedAxis") ; fill 6
+TextSmall($07BA3D4, "GreenAxis") ; fill 6
+TextSmall($07BA3EC, "BlueAxis") ; fill 4
+TextSmall($07BA400, "RedAxis") ; fill 10
+TextSmall($07BA418, "GreenAxis") ; fill 10
+TextSmall($07BA434, "BlueAxis") ; fill 8
+TextSmall($07BA44C, "RedAxis") ; fill 6
+TextSmall($07BA460, "GreenAxis") ; fill 2
+TextSmall($07BA474, "BlueAxis") ; fill 4
 
 origin $08961F8 // Origin In ROM
 base $8060EE38  // Base In RDRAM
