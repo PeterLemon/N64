@@ -36,7 +36,11 @@ macro TextShiftJIS(OFFSET, TEXT) {
   dh {TEXT} // Shift-JIS Text To Print
 }
 
-//TextSmall($00ACEA8, "Selected Color") ; fill 4
+// Complement Check & Checksum
+origin $0000010
+dw $C0833735, $41DBD6C1
+
+TextSmall($00ACEA8, "Selected Color") ; fill 4
 
 // Model
 TextSmall($0147DE4, "Reset") ; fill 6
