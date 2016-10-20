@@ -1,0 +1,91 @@
+﻿--------
+Gallery:
+--------
+エントリーNo.1
+Entry No.1
+$0732A04
+00 C7	01 13	00 E7	01 0A	01 1E	00 2E	00 4F	00 0E	00 11	00 00	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  ン	 #  ト	 #  リ	 #  ー	 #  N	 #  o	 #  .	 #  1	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  E	 #  n	 #  t	 #  r	 #  y	 #   	 #  N	 #  o	 #  .	 #  1	 #  #	 #  #	| New English Text
+00 25	00 4E	00 54	00 52	00 59	00 40	00 2E	00 4F	00 0E	00 11	00 00	00 00	| New English Hex
+
+エントリーNo.2
+Entry No.2
+$0732A1C
+00 C7	01 13	00 E7	01 0A	01 1E	00 2E	00 4F	00 0E	00 12	00 00	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  ン	 #  ト	 #  リ	 #  ー	 #  N	 #  o	 #  .	 #  2	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  E	 #  n	 #  t	 #  r	 #  y	 #   	 #  N	 #  o	 #  .	 #  2	 #  #	 #  #	| New English Text
+00 25	00 4E	00 54	00 52	00 59	00 40	00 2E	00 4F	00 0E	00 12	00 00	00 00	| New English Hex
+
+エントリーNo.3
+Entry No.3
+$0732A34
+00 C7	01 13	00 E7	01 0A	01 1E	00 2E	00 4F	00 0E	00 13	00 00	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  ン	 #  ト	 #  リ	 #  ー	 #  N	 #  o	 #  .	 #  3	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  E	 #  n	 #  t	 #  r	 #  y	 #   	 #  N	 #  o	 #  .	 #  3	 #  #	 #  #	| New English Text
+00 25	00 4E	00 54	00 52	00 59	00 40	00 2E	00 4F	00 0E	00 13	00 00	00 00	| New English Hex
+
+エントリーNo.4
+Entry No.4
+$0732A4C
+00 C7	01 13	00 E7	01 0A	01 1E	00 2E	00 4F	00 0E	00 14	00 00	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  ン	 #  ト	 #  リ	 #  ー	 #  N	 #  o	 #  .	 #  4	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  E	 #  n	 #  t	 #  r	 #  y	 #   	 #  N	 #  o	 #  .	 #  4	 #  #	 #  #	| New English Text
+00 25	00 4E	00 54	00 52	00 59	00 40	00 2E	00 4F	00 0E	00 14	00 00	00 00	| New English Hex
+
+エントリーNo.5
+Entry No.5
+$0732A64
+00 C7	01 13	00 E7	01 0A	01 1E	00 2E	00 4F	00 0E	00 15	00 00	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  ン	 #  ト	 #  リ	 #  ー	 #  N	 #  o	 #  .	 #  5	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  E	 #  n	 #  t	 #  r	 #  y	 #   	 #  N	 #  o	 #  .	 #  5	 #  #	 #  #	| New English Text
+00 25	00 4E	00 54	00 52	00 59	00 40	00 2E	00 4F	00 0E	00 15	00 00	00 00	| New English Hex
+
+エントリーNo.6
+Entry No.6
+$0732A7C
+00 C7	01 13	00 E7	01 0A	01 1E	00 2E	00 4F	00 0E	00 16	00 00	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  ン	 #  ト	 #  リ	 #  ー	 #  N	 #  o	 #  .	 #  6	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  E	 #  n	 #  t	 #  r	 #  y	 #   	 #  N	 #  o	 #  .	 #  6	 #  #	 #  #	| New English Text
+00 25	00 4E	00 54	00 52	00 59	00 40	00 2E	00 4F	00 0E	00 16	00 00	00 00	| New English Hex
+
+エントリーNo.7
+Entry No.7
+$0732A94
+00 C7	01 13	00 E7	01 0A	01 1E	00 2E	00 4F	00 0E	00 17	00 00	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  ン	 #  ト	 #  リ	 #  ー	 #  N	 #  o	 #  .	 #  7	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  E	 #  n	 #  t	 #  r	 #  y	 #   	 #  N	 #  o	 #  .	 #  7	 #  #	 #  #	| New English Text
+00 25	00 4E	00 54	00 52	00 59	00 40	00 2E	00 4F	00 0E	00 17	00 00	00 00	| New English Hex
+
+エントリーNo.8
+Entry No.8
+$0732AAC
+00 C7	01 13	00 E7	01 0A	01 1E	00 2E	00 4F	00 0E	00 18	00 00	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  ン	 #  ト	 #  リ	 #  ー	 #  N	 #  o	 #  .	 #  8	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  E	 #  n	 #  t	 #  r	 #  y	 #   	 #  N	 #  o	 #  .	 #  8	 #  #	 #  #	| New English Text
+00 25	00 4E	00 54	00 52	00 59	00 40	00 2E	00 4F	00 0E	00 18	00 00	00 00	| New English Hex
+
+エントリーNo.9
+Entry No.9
+$0732AC4
+00 C7	01 13	00 E7	01 0A	01 1E	00 2E	00 4F	00 0E	00 19	00 00	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  ン	 #  ト	 #  リ	 #  ー	 #  N	 #  o	 #  .	 #  9	 #  #	 #  #	 #  #	| Original Japanese Text
+ #  E	 #  n	 #  t	 #  r	 #  y	 #   	 #  N	 #  o	 #  .	 #  9	 #  #	 #  #	| New English Text
+00 25	00 4E	00 54	00 52	00 59	00 40	00 2E	00 4F	00 0E	00 19	00 00	00 00	| New English Hex
+
+エントリーNo.10
+Entry No.10
+$0732ADC
+00 C7	01 13	00 E7	01 0A	01 1E	00 2E	00 4F	00 0E	00 11	00 10	00 00	00 00	| Original Japanese Hex
+ #  エ	 #  ン	 #  ト	 #  リ	 #  ー	 #  N	 #  o	 #  .	 #  1	 #  0	 #  #	 #  #	| Original Japanese Text
+ #  E	 #  n	 #  t	 #  r	 #  y	 #   	 #  N	 #  o	 #  .	 #  1	 #  0	 #  #	| New English Text
+00 25	00 4E	00 54	00 52	00 59	00 40	00 2E	00 4F	00 0E	00 11	00 10	00 00	| New English Hex
+
+
+セレクトがめんにもどる
+Select returns from gallery / menu
+$0732AF4
+00 DA	01 0C	00 CE	00 E7	00 6A	00 9F	00 B1	00 89	00 A0	00 87	00 A9	00 00	| Original Japanese Hex
+ #  セ	 #  レ	 #  ク	 #  ト	 #  が	 #  め	 #  ん	 #  に	 #  も	 #  ど	 #  る	 #  #	| Original Japanese Text
+ #  E	 #  x	 #  i	 #  t	 #  G	 #  a	 #  l	 #  l	 #  e	 #  r	 #  y	 #  #	| New English Text
+00 25	00 56	00 49	00 54	00 27	00 41	00 4C	00 4C	00 45	00 52	00 59	00 00	| New English Hex

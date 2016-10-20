@@ -99,6 +99,20 @@ TextSmall($0610420, "Boat") ; fill 12
 TextSmall($0610434, "Submarine") ; fill 2
 TextSmall($0610448, "PropPlane") ; fill 2
 
+// Gallery
+TextSmall($0732A04, "Entry No.1") ; fill 4
+TextSmall($0732A1C, "Entry No.2") ; fill 4
+TextSmall($0732A34, "Entry No.3") ; fill 4
+TextSmall($0732A4C, "Entry No.4") ; fill 4
+TextSmall($0732A64, "Entry No.5") ; fill 4
+TextSmall($0732A7C, "Entry No.6") ; fill 4
+TextSmall($0732A94, "Entry No.7") ; fill 4
+TextSmall($0732AAC, "Entry No.8") ; fill 4
+TextSmall($0732AC4, "Entry No.9") ; fill 4
+TextSmall($0732ADC, "Entry No.10") ; fill 2
+
+TextSmall($0732AF4, "ExitGallery") ; fill 2
+
 TextSmall($07FBC80, "Tutorials") ; fill 2
 TextSmall($07FBC94, "Skeleton") ; fill 4
 TextSmall($07FBCA8, "Tape") ; fill 12
