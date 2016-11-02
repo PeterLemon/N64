@@ -55,19 +55,10 @@ dct_result_1d = [ # Discrete Cosine Transform (DCT) 8x8 Result Matrix
 ##    0,0,0,0,0,0,0,0,
 ##    0,0,0,0,0,0,0,0]
 
-##    950,0,0,0,0,0,0,0, # Placing An AC Value At The Opposite Side Of The DC Value.
-##    0,0,0,0,0,0,0,0,   # The Highest Possible Frequency Of 8 Is Applied In Both X- & Y- Direction.
-##    0,0,0,0,0,0,0,0,   # Because Of The High Frequency The Neighbouring Values Differ Numerously.
-##    0,0,0,0,0,0,0,0,   # The Picture Shows A Checker-Like Appearance.
-##    0,0,0,0,0,0,0,0,
-##    0,0,0,0,0,0,0,0,
-##    0,0,0,0,0,0,0,0,
-##    0,0,0,0,0,0,0,500]
-
-    950,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,
+    950,0,0,0,0,0,0,0, # Placing An AC Value At The Opposite Side Of The DC Value.
+    0,0,0,0,0,0,0,0,   # The Highest Possible Frequency Of 8 Is Applied In Both X- & Y- Direction.
+    0,0,0,0,0,0,0,0,   # Because Of The High Frequency The Neighbouring Values Differ Numerously.
+    0,0,0,0,0,0,0,0,   # The Picture Shows A Checker-Like Appearance.
     0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,
