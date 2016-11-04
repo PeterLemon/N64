@@ -34,7 +34,7 @@ Start:
 	and t3,r0 // T3 = U
 	IDCTU: // While (U < 8)
           // IDCT[Y*8 + X] += DCT[V*8 + U]
-	  lhu t4,0(a1) // T4 = DCT[V*8 + U]
+	  lh t4,0(a1) // T4 = DCT[V*8 + U]
           addiu a1,2 // DCT += 2
           // * C[U]
 	  sll t5,t3,1 // T5 = U Offset
@@ -42,14 +42,14 @@ Start:
 	  lhu t5,0(t5) // T5 = C[U]
 	  multu t4,t5 // T4 *= C[U]
           mflo t4
-	  srl t4,16 // Shift .16
+	  sra t4,16 // Shift S.16
           // * C[V]
 	  sll t5,t2,1 // T5 = V Offset
           addu t5,a2 // T5 = C[V] Offset
 	  lhu t5,0(t5) // T5 = C[V]
 	  multu t4,t5 // T4 *= C[V]
           mflo t4
-	  srl t4,16 // Shift .16
+	  sra t4,16 // Shift S.16
           // * COS[U*8 + X]
           sll t5,t3,3 // T5 = U*8
           addu t5,t1 // T5 = U*8 + X
