@@ -24,9 +24,9 @@ Start:
 
   // DCT Block Decode (Inverse Quantization)
   QLoop:
-    lbu t2,0(a0) // T2 = Q
+    lbu t1,0(a0) // T1 = Q
     addiu a0,1 // Q++
-    lb t1,0(a1) // T1 = DCTQ
+    lb t2,0(a1) // T2 = DCTQ
     addiu a1,1 // DCTQ++
     mult t1,t2 // T1 = DCTQ * Q
     mflo t1
