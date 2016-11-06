@@ -1,0 +1,2 @@
+bass QuantizationBlockDecode.asm
+chksum64 QuantizationBlockDecode.N64
