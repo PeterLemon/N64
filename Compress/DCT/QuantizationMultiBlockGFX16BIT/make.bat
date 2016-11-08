@@ -1,0 +1,2 @@
+bass QuantizationMultiBlockGFX16BIT.asm
+chksum64 QuantizationMultiBlockGFX16BIT.N64

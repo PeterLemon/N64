@@ -1,0 +1,2 @@
+bass QuantizationMultiBlockGFX8BIT.asm
+chksum64 QuantizationMultiBlockGFX8BIT.N64
