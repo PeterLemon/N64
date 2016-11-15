@@ -271,7 +271,7 @@ Start:
   } // End Of Static Loop Rows
 
   // Copy IDCT Block To VRAM
-  la a0,DCT // A0 = DCT/IDCT
+  la a0,DCT // A0 = IDCT
   lui a1,$A010 // A1 = VRAM
   lli t0,7 // T0 = Y
   lli t4,255 // T4 = 255
