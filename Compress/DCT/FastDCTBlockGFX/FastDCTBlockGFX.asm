@@ -30,7 +30,7 @@ Start:
   add t2,t0,t1 // Z1 = (Z2 + Z3) * 0.541196100
   addi t3,r0,4433 // T3 = 0.541196100
   mult t2,t3
-  mflo t4 // T2 = Z1
+  mflo t2 // T2 = Z1
   addi t3,r0,-15137 // TMP2 = Z1 + (Z3 * -1.847759065)
   mult t1,t3
   mflo t1
@@ -146,7 +146,7 @@ Start:
   add t2,t0,t1 // Z1 = (Z2 + Z3) * 0.541196100
   addi t3,r0,4433 // T3 = 0.541196100
   mult t2,t3
-  mflo t4 // T2 = Z1
+  mflo t2 // T2 = Z1
   addi t3,r0,-15137 // TMP2 = Z1 + (Z3 * -1.847759065)
   mult t1,t3
   mflo t1
