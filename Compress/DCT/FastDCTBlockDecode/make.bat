@@ -1,0 +1,2 @@
+bass FastDCTBlockDecode.asm
+chksum64 FastDCTBlockDecode.N64
