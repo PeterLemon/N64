@@ -1,0 +1,2 @@
+bass FastQuantizationBlockDecode.asm
+chksum64 FastQuantizationBlockDecode.N64

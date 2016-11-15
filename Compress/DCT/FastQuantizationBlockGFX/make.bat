@@ -1,0 +1,2 @@
+bass FastQuantizationBlockGFX.asm
+chksum64 FastQuantizationBlockGFX.N64
