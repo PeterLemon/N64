@@ -17,7 +17,7 @@ Start:
   la a1,DCTQ // A1 = DCTQ
   la a2,DCT // A2 = DCT
 
-  lli t0,63 // T0 = 63
+  ori t0,r0,63 // T0 = 63
 
   // DCT Block Decode (Inverse Quantization)
   QLoop:
@@ -30,14 +30,14 @@ Start:
     sh t1,0(a2) // DCT = T1
     addiu a2,2 // DCT += 2
     bnez t0,QLoop // IF (T0 != 0) Q Loop
-    subiu t0,1 // T0--
+    subiu t0,1 // T0-- (Delay Slot)
 
 
   la a0,IDCT // A0 = IDCT
   la a2,CLUT // A2 = CLUT
   la a3,COSLUT // A3 = COSLUT
 
-  lli t7,7 // T7 = 7
+  ori t7,r0,7 // T7 = 7
 
   // IDCT Block Decode
   and t0,r0 // T0 = Y

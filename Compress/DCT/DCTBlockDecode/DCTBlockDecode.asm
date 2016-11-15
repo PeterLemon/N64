@@ -17,7 +17,7 @@ Start:
   la a2,CLUT // A2 = CLUT
   la a3,COSLUT // A3 = COSLUT
 
-  lli t7,7 // T7 = 7
+  ori t7,r0,7 // T7 = 7
 
   // IDCT Block Decode
   and t0,r0 // T0 = Y

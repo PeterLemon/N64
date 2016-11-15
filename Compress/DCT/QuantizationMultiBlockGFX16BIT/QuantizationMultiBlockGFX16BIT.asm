@@ -19,15 +19,15 @@ Start:
 
   la s0,DCTQBLOCKS // S0 = DCTQ Blocks
   lui s1,$A010 // S1 = VRAM
-  lli s2,40 // S2 = Block Row Count
-  lli s3,29 // S3 = Block Column Count - 1
+  ori s2,r0,40 // S2 = Block Row Count
+  ori s3,r0,29 // S3 = Block Column Count - 1
 
   LoopBlocks:
 
   la a0,Q // A0 = Q
   la a1,DCT // A2 = DCT
 
-  lli t0,63 // T0 = 63
+  ori t0,r0,63 // T0 = 63
 
   // DCT Block Decode (Inverse Quantization)
   QLoop:
@@ -40,14 +40,14 @@ Start:
     sh t1,0(a1) // DCT = T1
     addiu a1,2 // DCT += 2
     bnez t0,QLoop // IF (T0 != 0) Q Loop
-    subiu t0,1 // T0--
+    subiu t0,1 // T0-- (Delay Slot)
 
 
   la a0,IDCT // A0 = IDCT
   la a2,CLUT // A2 = CLUT
   la a3,COSLUT // A3 = COSLUT
 
-  lli t7,7 // T7 = 7
+  ori t7,r0,7 // T7 = 7
 
   // IDCT Block Decode
   and t0,r0 // T0 = Y
@@ -115,10 +115,10 @@ Start:
 
   // Copy IDCT Block To VRAM
   la a0,IDCT // A0 = IDCT
-  lli t0,7 // T0 = Y
-  lli t4,255 // T4 = 255
+  ori t0,r0,7 // T0 = Y
+  ori t4,r0,255 // T4 = 255
   LoopY: // While Y
-    lli t1,7 // T1 = X
+    ori t1,r0,7 // T1 = X
     LoopX: // While X
       lh t2,0(a0) // T2 = IDCT Block Pixel
       addiu a0,2 // IDCT += 2
@@ -151,7 +151,7 @@ Start:
   subiu s1,(320*8*4)-8*4 // Jump 8 Scanlines Up, 8 Pixels Forwards (Delay Slot)
 
   addiu s1,(320*7*4) // Jump 7 Scanlines Down
-  lli s2,40 // Block Row Count = 40
+  ori s2,r0,40 // Block Row Count = 40
 
   bnez s3,LoopBlocks // IF (Block Column Count != 0) LoopBlocks
   subiu s3,1 // Block Column Count-- (Delay Slot)

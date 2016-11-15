@@ -1,0 +1,2 @@
+bass FastQuantizationMultiBlockGFX8BIT.asm
+chksum64 FastQuantizationMultiBlockGFX8BIT.N64

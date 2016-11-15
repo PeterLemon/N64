@@ -20,7 +20,7 @@ Start:
   la a2,CLUT // A2 = CLUT
   la a3,COSLUT // A3 = COSLUT
 
-  lli t7,7 // T7 = 7
+  ori t7,r0,7 // T7 = 7
 
   // IDCT Block Decode
   and t0,r0 // T0 = Y
@@ -89,10 +89,10 @@ Start:
   // Copy IDCT Block To VRAM
   la a0,IDCT // A0 = IDCT
   lui a1,$A010 // A1 = VRAM
-  lli t0,7 // T0 = Y
-  lli t4,255 // T4 = 255
+  ori t0,r0,7 // T0 = Y
+  ori t4,r0,255 // T4 = 255
   LoopY: // While Y
-    lli t1,7 // T1 = X
+    ori t1,r0,7 // T1 = X
     LoopX: // While X
       lh t2,0(a0) // T2 = IDCT Block Pixel
       addiu a0,2 // IDCT += 2

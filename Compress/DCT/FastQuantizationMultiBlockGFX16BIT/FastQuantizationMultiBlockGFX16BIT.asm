@@ -1,7 +1,7 @@
-// N64 'Bare Metal' Fast Quantization Block GFX Demo by krom (Peter Lemon):
+// N64 'Bare Metal' Fast Quantization Multi Block GFX 16-Bit Demo by krom (Peter Lemon):
 arch n64.cpu
 endian msb
-output "FastQuantizationBlockGFX.N64", create
+output "FastQuantizationMultiBlockGFX16BIT.N64", create
 fill 1052672 // Set ROM Size
 
 origin $00000000
@@ -17,25 +17,34 @@ Start:
   ScreenNTSC(320, 240, BPP32, $A0100000) // Screen NTSC: 320x240, 32BPP, DRAM Origin $A0100000
 
   la a0,Q // A0 = Q
-  la a1,DCTQ // A1 = DCTQ
-  la a2,DCT // A2 = DCT
+  la a1,DCTQBLOCKS // A1 = DCTQ Blocks
+  la a2,DCT // A2 = DCT/IDCT
 
-  ori t0,r0,63 // T0 = 63
+  ori t0,r0,(320/8)*(240/8) // T0 = Block Count
+  QBlockLoop:
+    ori t1,r0,63 // T1 = 63
 
-  // DCT Block Decode (Inverse Quantization)
-  QLoop:
-    lbu t1,0(a0) // T1 = Q
-    addiu a0,1 // Q++
-    lb t2,0(a1) // T2 = DCTQ
-    addiu a1,1 // DCTQ++
-    mult t1,t2 // T1 = DCTQ * Q
-    mflo t1
-    sh t1,0(a2) // DCT = T1
-    addiu a2,2 // DCT += 2
-    bnez t0,QLoop // IF (T0 != 0) Q Loop
+    // DCT Block Decode (Inverse Quantization)
+    QLoop:
+      lbu t2,0(a0) // T2 = Q
+      addiu a0,1 // Q++
+      lh t3,0(a1) // T3 = DCTQ
+      addiu a1,2 // DCTQ += 2
+      mult t2,t3 // T2 = DCTQ * Q
+      mflo t2
+      sh t2,0(a2) // DCT = T2
+      addiu a2,2 // DCT += 2
+      bnez t1,QLoop // IF (T1 != 0) Q Loop
+      subiu t1,1 // T1-- (Delay Slot)
+
+    subiu a0,64 // Q -= 64
+    bnez t0,QBlockLoop // IF (T0 != 0) Q Block Loop
     subiu t0,1 // T0-- (Delay Slot)
 
+
   la a0,DCT // A0 = DCT/IDCT
+
+  LoopIDCT:
 
   // Fast IDCT Block Decode
   // Pass 1: Process Columns From Input, Store Into Work Array.
@@ -270,9 +279,19 @@ Start:
   evaluate CTR({CTR} + 1)
   } // End Of Static Loop Rows
 
-  // Copy IDCT Block To VRAM
+  la t0,DCT+((320*240)*2)-128 // T0 = DCT/IDCT End Offset
+  bne a0,t0,LoopIDCT // IF (DCT/IDCT != WRAM End Offset) Loop IDCT
+  addiu a0,128 // DCT/IDCT += 128 (Delay Slot)
+
+
+  ori s2,r0,40 // S2 = Block Row Count
+  ori s3,r0,29 // S3 = Block Column Count - 1
   la a0,DCT // A0 = IDCT
   lui a1,$A010 // A1 = VRAM
+
+  LoopBlocks:
+
+  // Copy IDCT Block To VRAM
   ori t0,r0,7 // T0 = Y
   ori t4,r0,255 // T4 = 255
   LoopY: // While Y
@@ -304,36 +323,54 @@ Start:
     bnez t0,LoopY // IF (Y != 0) Loop Y
     subiu t0,1 // Y-- (Delay Slot)
 
+  subiu s2,1 // Block Row Count--
+  bnez s2,LoopBlocks // IF (Block Row Count != 0) LoopBlocks
+  subiu a1,(320*8*4)-8*4 // Jump 8 Scanlines Up, 8 Pixels Forwards (Delay Slot)
+
+  addiu a1,(320*7*4) // Jump 7 Scanlines Down
+  ori s2,r0,40 // Block Row Count = 40
+
+  bnez s3,LoopBlocks // IF (Block Column Count != 0) LoopBlocks
+  subiu s3,1 // Block Column Count-- (Delay Slot)
+
 Loop:
   j Loop
   nop // Delay Slot
 
-Q: // JPEG Standard Quantization 8x8 Result Matrix (Quality = 50)
-  db 16,11,10,16,24,40,51,61
-  db 12,12,14,19,26,58,60,55
-  db 14,13,16,24,40,57,69,56
-  db 14,17,22,29,51,87,80,62
-  db 18,22,37,56,68,109,103,77
-  db 24,35,55,64,81,104,113,92
-  db 49,64,78,87,103,121,120,101
-  db 72,92,95,98,112,100,103,99
+//Q: // JPEG Standard Quantization 8x8 Result Matrix (Quality = 10)
+//  db 80,55,50,80,120,200,255,255
+//  db 60,60,70,95,130,255,255,255
+//  db 70,65,80,120,200,255,255,255
+//  db 70,85,110,145,255,255,255,255
+//  db 90,110,185,255,255,255,255,255
+//  db 120,175,255,255,255,255,255,255
+//  db 245,255,255,255,255,255,255,255
+//  db 255,255,255,255,255,255,255,255
 
-DCTQ: // DCT Quantization 8x8 Result Matrix (Quality = 50)
-  db 38,0,-26,0,-8,0,-2,0
-  db -9,0,-14,0,10,0,3,0
-  db -13,0,6,0,5,0,-3,0
-  db 16,0,-8,0,2,0,-2,0
-  db 0,0,0,0,0,0,0,0
-  db -6,0,2,0,-1,0,1,0
-  db 2,0,-1,0,-1,0,1,0
-  db 0,0,0,0,0,0,0,0
+//Q: // JPEG Standard Quantization 8x8 Result Matrix (Quality = 50)
+//  db 16,11,10,16,24,40,51,61
+//  db 12,12,14,19,26,58,60,55
+//  db 14,13,16,24,40,57,69,56
+//  db 14,17,22,29,51,87,80,62
+//  db 18,22,37,56,68,109,103,77
+//  db 24,35,55,64,81,104,113,92
+//  db 49,64,78,87,103,121,120,101
+//  db 72,92,95,98,112,100,103,99
+
+Q: // JPEG Standard Quantization 8x8 Result Matrix (Quality = 90)
+  db 3,2,2,3,5,8,10,12
+  db 2,2,3,4,5,12,12,11
+  db 3,3,3,5,8,11,14,11
+  db 3,3,4,6,10,17,16,12
+  db 4,4,7,11,14,22,21,15
+  db 5,7,11,13,16,21,23,18
+  db 10,13,16,17,21,24,24,20
+  db 14,18,19,20,22,20,21,20
+
+DCTQBLOCKS: // DCT Quantization 8x8 Matrix Blocks (Signed 16-Bit)
+  //insert "frame10.dct" // Frame Quality = 10
+  //insert "frame50.dct" // Frame Quality = 50
+  insert "frame90.dct" // Frame Quality = 90
 
 DCT: // Discrete Cosine Transform (DCT) 8x8 Result Matrix
-  dh 0,0,0,0,0,0,0,0
-  dh 0,0,0,0,0,0,0,0
-  dh 0,0,0,0,0,0,0,0
-  dh 0,0,0,0,0,0,0,0
-  dh 0,0,0,0,0,0,0,0
-  dh 0,0,0,0,0,0,0,0
-  dh 0,0,0,0,0,0,0,0
-  dh 0,0,0,0,0,0,0,0
+  fill (320*240)*2
