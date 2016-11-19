@@ -1,0 +1,2 @@
+bass RSPFastDCTBlockDecode.asm
+chksum64 RSPFastDCTBlockDecode.N64
