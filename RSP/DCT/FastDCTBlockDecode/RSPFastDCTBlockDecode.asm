@@ -17,11 +17,27 @@ Start:
 
   ScreenNTSC(320, 240, BPP32, $A0100000) // Screen NTSC: 320x240, 32BPP, DRAM Origin $A0100000
 
+  WaitScanline($200) // Wait For Scanline To Reach Vertical Blank
+
   // Load RSP Code To IMEM
   DMASPRD(RSPCode, RSPCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
+  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
+  RSPCodeDMABusy:
+    lw t0,SP_STATUS(a0) // T0 = Byte From SP Status Register ($A4040010)
+    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
+    bnez t0,RSPCodeDMABusy // IF TRUE DMA Is Busy
+    nop // Delay Slot
+
   // Load RSP Data To DMEM
   DMASPRD(RSPData, RSPDataEnd, SP_DMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+
+  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
+  RSPDataDMABusy:
+    lw t0,SP_STATUS(a0) // T0 = Byte From SP Status Register ($A4040010)
+    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
+    bnez t0,RSPDataDMABusy // IF TRUE DMA Is Busy
+    nop // Delay Slot
 
   // Set RSP Program Counter
   lui a0,SP_PC_BASE // A0 = SP PC Base Register ($A4080000)
@@ -294,7 +310,6 @@ RSPStart:
   sqv v19[e0],5(a0) // Store 6th Row From Transposed Matrix Vector Register Block
   sqv v20[e0],6(a0) // Store 7th Row From Transposed Matrix Vector Register Block
   sqv v21[e0],7(a0) // Store 8th Row From Transposed Matrix Vector Register Block
-
 
 
   // Output 8x8 Block Of Pixel Values To RGB Tile
