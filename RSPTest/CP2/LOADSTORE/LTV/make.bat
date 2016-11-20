@@ -1,0 +1,2 @@
+bass RSPCP2LTV.asm
+chksum64 RSPCP2LTV.N64
