@@ -25,7 +25,7 @@ Start:
 
   lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
   PALCodeDMABusy:
-    lb t0,SP_STATUS(a0) // T0 = Byte From SP Status Register ($A4040010)
+    lw t0,SP_STATUS(a0) // T0 = Word From SP Status Register ($A4040010)
     andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,PALCodeDMABusy // IF TRUE DMA Is Busy
     nop // Delay Slot
@@ -52,7 +52,7 @@ DelayPAL:
 
   lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
   TILECodeDMABusy:
-    lb t0,SP_STATUS(a0) // T0 = Byte From SP Status Register ($A4040010)
+    lw t0,SP_STATUS(a0) // T0 = Word From SP Status Register ($A4040010)
     andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,TILECodeDMABusy // IF TRUE DMA Is Busy
     nop // Delay Slot
