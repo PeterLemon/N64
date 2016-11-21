@@ -972,14 +972,14 @@ base $0000 // Set Base Of RSP Code Object To Zero
   ltv v0[e10],5(r0) // V0..V7 = 128-Bit DMEM $010(R0), Load Transpose To Vector: LTV VT[ELEMENT],$OFFSET(BASE)
   ltv v0[e12],6(r0) // V0..V7 = 128-Bit DMEM $010(R0), Load Transpose To Vector: LTV VT[ELEMENT],$OFFSET(BASE)
   ltv v0[e14],7(r0) // V0..V7 = 128-Bit DMEM $010(R0), Load Transpose To Vector: LTV VT[ELEMENT],$OFFSET(BASE)
-  sqv v0[e0],0(r0) // Store 1st Row From Transposed Matrix Vector Register Block
-  sqv v1[e0],1(r0) // Store 2nd Row From Transposed Matrix Vector Register Block
-  sqv v2[e0],2(r0) // Store 3rd Row From Transposed Matrix Vector Register Block
-  sqv v3[e0],3(r0) // Store 4th Row From Transposed Matrix Vector Register Block
-  sqv v4[e0],4(r0) // Store 5th Row From Transposed Matrix Vector Register Block
-  sqv v5[e0],5(r0) // Store 6th Row From Transposed Matrix Vector Register Block
-  sqv v6[e0],6(r0) // Store 7th Row From Transposed Matrix Vector Register Block
-  sqv v7[e0],7(r0) // Store 8th Row From Transposed Matrix Vector Register Block
+  sqv v0[e0],0(r0) // 128-Bit DMEM $000(R0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  sqv v1[e0],1(r0) // 128-Bit DMEM $010(R0) = V1, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  sqv v2[e0],2(r0) // 128-Bit DMEM $020(R0) = V2, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  sqv v3[e0],3(r0) // 128-Bit DMEM $030(R0) = V3, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  sqv v4[e0],4(r0) // 128-Bit DMEM $040(R0) = V4, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  sqv v5[e0],5(r0) // 128-Bit DMEM $050(R0) = V5, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  sqv v6[e0],6(r0) // 128-Bit DMEM $060(R0) = V6, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  sqv v7[e0],7(r0) // 128-Bit DMEM $070(R0) = V7, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
 align(8) // Align 64-Bit
 base RSPLTVCode+pc() // Set End Of RSP Code Object
@@ -989,22 +989,22 @@ arch n64.rsp
 align(8) // Align 64-Bit
 RSPSTVCode:
 base $0000 // Set Base Of RSP Code Object To Zero
-  lqv v0[e0],0(r0) // Load 1st Row To Transposed Matrix Vector Register Block
-  lqv v1[e0],1(r0) // Load 2nd Row To Transposed Matrix Vector Register Block
-  lqv v2[e0],2(r0) // Load 3rd Row To Transposed Matrix Vector Register Block
-  lqv v3[e0],3(r0) // Load 4th Row To Transposed Matrix Vector Register Block
-  lqv v4[e0],4(r0) // Load 5th Row To Transposed Matrix Vector Register Block
-  lqv v5[e0],5(r0) // Load 6th Row To Transposed Matrix Vector Register Block
-  lqv v6[e0],6(r0) // Load 7th Row To Transposed Matrix Vector Register Block
-  lqv v7[e0],7(r0) // Load 8th Row To Transposed Matrix Vector Register Block
-  stv v0[e0],0(r0)  // V0..V7 = 128-Bit DMEM $000(R0), Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
-  stv v0[e2],1(r0)  // V0..V7 = 128-Bit DMEM $010(R0), Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
-  stv v0[e4],2(r0)  // V0..V7 = 128-Bit DMEM $010(R0), Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
-  stv v0[e6],3(r0)  // V0..V7 = 128-Bit DMEM $010(R0), Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
-  stv v0[e8],4(r0)  // V0..V7 = 128-Bit DMEM $010(R0), Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
-  stv v0[e10],5(r0) // V0..V7 = 128-Bit DMEM $010(R0), Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
-  stv v0[e12],6(r0) // V0..V7 = 128-Bit DMEM $010(R0), Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
-  stv v0[e14],7(r0) // V0..V7 = 128-Bit DMEM $010(R0), Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
+  lqv v0[e0],0(r0) // V0 = 128-Bit DMEM $000(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
+  lqv v1[e0],1(r0) // V1 = 128-Bit DMEM $010(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
+  lqv v2[e0],2(r0) // V2 = 128-Bit DMEM $020(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
+  lqv v3[e0],3(r0) // V3 = 128-Bit DMEM $030(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
+  lqv v4[e0],4(r0) // V4 = 128-Bit DMEM $040(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
+  lqv v5[e0],5(r0) // V5 = 128-Bit DMEM $050(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
+  lqv v6[e0],6(r0) // V6 = 128-Bit DMEM $060(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
+  lqv v7[e0],7(r0) // V7 = 128-Bit DMEM $070(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
+  stv v0[e0],0(r0)  // 128-Bit DMEM $000(R0) = V0..V7, Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
+  stv v0[e2],1(r0)  // 128-Bit DMEM $010(R0) = V0..V7, Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
+  stv v0[e4],2(r0)  // 128-Bit DMEM $010(R0) = V0..V7, Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
+  stv v0[e6],3(r0)  // 128-Bit DMEM $010(R0) = V0..V7, Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
+  stv v0[e8],4(r0)  // 128-Bit DMEM $010(R0) = V0..V7, Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
+  stv v0[e10],5(r0) // 128-Bit DMEM $010(R0) = V0..V7, Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
+  stv v0[e12],6(r0) // 128-Bit DMEM $010(R0) = V0..V7, Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
+  stv v0[e14],7(r0) // 128-Bit DMEM $010(R0) = V0..V7, Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
   break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
 align(8) // Align 64-Bit
 base RSPSTVCode+pc() // Set End Of RSP Code Object
