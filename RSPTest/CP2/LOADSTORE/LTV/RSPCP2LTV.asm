@@ -924,38 +924,38 @@ VALUEDMEMH:
 VALUEDMEMHEnd:
 
 LTVCHECKA:
-  dh $0001, $0002, $0003, $0004, $0005, $0006, $0007, $0008
+  dh $0001, $0057, $0049, $0041, $0033, $0025, $0017, $0009
 LTVCHECKB:
-  dh $0009, $0010, $0011, $0012, $0013, $0014, $0015, $0016
+  dh $0010, $0002, $0058, $0050, $0042, $0034, $0026, $0018
 LTVCHECKC:
-  dh $0017, $0018, $0019, $0020, $0021, $0022, $0023, $0024
+  dh $0019, $0011, $0003, $0059, $0051, $0043, $0035, $0027
 LTVCHECKD:
-  dh $0025, $0026, $0027, $0028, $0029, $0030, $0031, $0032
+  dh $0028, $0020, $0012, $0004, $0060, $0052, $0044, $0036
 LTVCHECKE:
-  dh $0033, $0034, $0035, $0036, $0037, $0038, $0039, $0040
+  dh $0037, $0029, $0021, $0013, $0005, $0061, $0053, $0045
 LTVCHECKF:
-  dh $0041, $0042, $0043, $0044, $0045, $0046, $0047, $0048
+  dh $0046, $0038, $0030, $0022, $0014, $0006, $0062, $0054
 LTVCHECKG:
-  dh $0049, $0050, $0051, $0052, $0053, $0054, $0055, $0056
+  dh $0055, $0047, $0039, $0031, $0023, $0015, $0007, $0063
 LTVCHECKH:
-  dh $0057, $0058, $0059, $0060, $0061, $0062, $0063, $0064
+  dh $0064, $0056, $0048, $0040, $0032, $0024, $0016, $0008
 
 STVCHECKA:
-  dh $0001, $0002, $0003, $0004, $0005, $0006, $0007, $0008
+  dh $0001, $0010, $0019, $0028, $0037, $0046, $0055, $0064
 STVCHECKB:
-  dh $0010, $0011, $0012, $0013, $0014, $0015, $0016, $0009
+  dh $0009, $0018, $0027, $0036, $0045, $0054, $0063, $0008
 STVCHECKC:
-  dh $0019, $0020, $0021, $0022, $0023, $0024, $0017, $0018
+  dh $0017, $0026, $0035, $0044, $0053, $0062, $0007, $0016
 STVCHECKD:
-  dh $0028, $0029, $0030, $0031, $0032, $0025, $0026, $0027
+  dh $0025, $0034, $0043, $0052, $0061, $0006, $0015, $0024
 STVCHECKE:
-  dh $0037, $0038, $0039, $0040, $0033, $0034, $0035, $0036
+  dh $0033, $0042, $0051, $0060, $0005, $0014, $0023, $0032
 STVCHECKF:
-  dh $0046, $0047, $0048, $0041, $0042, $0043, $0044, $0045
+  dh $0041, $0050, $0059, $0004, $0013, $0022, $0031, $0040
 STVCHECKG:
-  dh $0055, $0056, $0049, $0050, $0051, $0052, $0053, $0054
+  dh $0049, $0058, $0003, $0012, $0021, $0030, $0039, $0048
 STVCHECKH:
-  dh $0064, $0057, $0058, $0059, $0060, $0061, $0062, $0063
+  dh $0057, $0002, $0011, $0020, $0029, $0038, $0047, $0056
 
 DMEMQUAD:
   dh $0000, $0000, $0000, $0000, $0000, $0000, $0000, $0000
@@ -972,14 +972,14 @@ base $0000 // Set Base Of RSP Code Object To Zero
   ltv v0[e10],5(r0) // V0..V7 = 128-Bit DMEM $010(R0), Load Transpose To Vector: LTV VT[ELEMENT],$OFFSET(BASE)
   ltv v0[e12],6(r0) // V0..V7 = 128-Bit DMEM $010(R0), Load Transpose To Vector: LTV VT[ELEMENT],$OFFSET(BASE)
   ltv v0[e14],7(r0) // V0..V7 = 128-Bit DMEM $010(R0), Load Transpose To Vector: LTV VT[ELEMENT],$OFFSET(BASE)
-  sqv v0[e0],0(a0) // Store 1st Row From Transposed Matrix Vector Register Block
-  sqv v1[e0],1(a0) // Store 2nd Row From Transposed Matrix Vector Register Block
-  sqv v2[e0],2(a0) // Store 3rd Row From Transposed Matrix Vector Register Block
-  sqv v3[e0],3(a0) // Store 4th Row From Transposed Matrix Vector Register Block
-  sqv v4[e0],4(a0) // Store 5th Row From Transposed Matrix Vector Register Block
-  sqv v5[e0],5(a0) // Store 6th Row From Transposed Matrix Vector Register Block
-  sqv v6[e0],6(a0) // Store 7th Row From Transposed Matrix Vector Register Block
-  sqv v7[e0],7(a0) // Store 8th Row From Transposed Matrix Vector Register Block
+  sqv v0[e0],0(r0) // Store 1st Row From Transposed Matrix Vector Register Block
+  sqv v1[e0],1(r0) // Store 2nd Row From Transposed Matrix Vector Register Block
+  sqv v2[e0],2(r0) // Store 3rd Row From Transposed Matrix Vector Register Block
+  sqv v3[e0],3(r0) // Store 4th Row From Transposed Matrix Vector Register Block
+  sqv v4[e0],4(r0) // Store 5th Row From Transposed Matrix Vector Register Block
+  sqv v5[e0],5(r0) // Store 6th Row From Transposed Matrix Vector Register Block
+  sqv v6[e0],6(r0) // Store 7th Row From Transposed Matrix Vector Register Block
+  sqv v7[e0],7(r0) // Store 8th Row From Transposed Matrix Vector Register Block
   break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
 align(8) // Align 64-Bit
 base RSPLTVCode+pc() // Set End Of RSP Code Object
@@ -989,14 +989,14 @@ arch n64.rsp
 align(8) // Align 64-Bit
 RSPSTVCode:
 base $0000 // Set Base Of RSP Code Object To Zero
-  lqv v0[e0],0(a0) // Load 1st Row To Transposed Matrix Vector Register Block
-  lqv v1[e0],1(a0) // Load 2nd Row To Transposed Matrix Vector Register Block
-  lqv v2[e0],2(a0) // Load 3rd Row To Transposed Matrix Vector Register Block
-  lqv v3[e0],3(a0) // Load 4th Row To Transposed Matrix Vector Register Block
-  lqv v4[e0],4(a0) // Load 5th Row To Transposed Matrix Vector Register Block
-  lqv v5[e0],5(a0) // Load 6th Row To Transposed Matrix Vector Register Block
-  lqv v6[e0],6(a0) // Load 7th Row To Transposed Matrix Vector Register Block
-  lqv v7[e0],7(a0) // Load 8th Row To Transposed Matrix Vector Register Block
+  lqv v0[e0],0(r0) // Load 1st Row To Transposed Matrix Vector Register Block
+  lqv v1[e0],1(r0) // Load 2nd Row To Transposed Matrix Vector Register Block
+  lqv v2[e0],2(r0) // Load 3rd Row To Transposed Matrix Vector Register Block
+  lqv v3[e0],3(r0) // Load 4th Row To Transposed Matrix Vector Register Block
+  lqv v4[e0],4(r0) // Load 5th Row To Transposed Matrix Vector Register Block
+  lqv v5[e0],5(r0) // Load 6th Row To Transposed Matrix Vector Register Block
+  lqv v6[e0],6(r0) // Load 7th Row To Transposed Matrix Vector Register Block
+  lqv v7[e0],7(r0) // Load 8th Row To Transposed Matrix Vector Register Block
   stv v0[e0],0(r0)  // V0..V7 = 128-Bit DMEM $000(R0), Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
   stv v0[e2],1(r0)  // V0..V7 = 128-Bit DMEM $010(R0), Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
   stv v0[e4],2(r0)  // V0..V7 = 128-Bit DMEM $010(R0), Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
