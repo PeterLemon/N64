@@ -1,0 +1,2 @@
+bass RSPTransposeMatrix.asm
+chksum64 RSPTransposeMatrix.N64
