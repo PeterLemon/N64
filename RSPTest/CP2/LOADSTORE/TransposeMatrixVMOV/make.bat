@@ -1,0 +1,2 @@
+bass RSPTransposeMatrixVMOV.asm
+chksum64 RSPTransposeMatrixVMOV.N64
