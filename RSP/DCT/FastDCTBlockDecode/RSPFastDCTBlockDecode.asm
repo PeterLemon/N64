@@ -312,200 +312,190 @@ RSPStart:
   sqv v21[e0],7(a0) // Store 8th Row From Transposed Matrix Vector Register Block
 
 
+  // Load RGB Tile Pixel Multipliers
+  lqv v2[e0],RGBTilePixelA>>4(r0) // V2 = Store Pixel 1 & 5  (128-Bit Quad)
+  lqv v3[e0],RGBTilePixelB>>4(r0) // V3 = Store Pixel 2 & 6 (128-Bit Quad)
+  lqv v4[e0],RGBTilePixelC>>4(r0) // V4 = Store Pixel 3 & 7  (128-Bit Quad)
+  lqv v5[e0],RGBTilePixelD>>4(r0) // V5 = Store Pixel 4 & 8 (128-Bit Quad)
+
   // Output 8x8 Block Of Pixel Values To RGB Tile
   la a0,RGBTile // A0 = RGB Tile DMEM Address
 
   // Row 0: Double Up Element Byte Values (X += X << 8)
-  vmudn v2,v14,v1[e13] // V2 = V14 << 8
-  vadd v2,v14[e0] // V2 = 8 Double Pixels
+  vmudn v6,v14,v1[e13] // V6 = V14 << 8
+  vadd v6,v14[e0] // V6 = 8 Double Pixels
 
-  vmov v3[e0],v2[e0]
-  vmov v3[e1],v2[e0]
-  vmov v3[e2],v2[e1]
-  vmov v3[e3],v2[e1]
-  vmov v3[e4],v2[e2]
-  vmov v3[e5],v2[e2]
-  vmov v3[e6],v2[e3]
-  vmov v3[e7],v2[e3] // V3 = 32-Bit Pixels 1..4
-  sqv v3[e0],0(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e8]
+  vmudn v8,v3,v6[e9]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e10]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e11]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
+  sqv v7[e0],0(a0) // Store 32-Bit RGBA Values
 
-  vmov v3[e0],v2[e4]
-  vmov v3[e1],v2[e4]
-  vmov v3[e2],v2[e5]
-  vmov v3[e3],v2[e5]
-  vmov v3[e4],v2[e6]
-  vmov v3[e5],v2[e6]
-  vmov v3[e6],v2[e7]
-  vmov v3[e7],v2[e7] // V3 = 32-Bit Pixels 5..8
-  sqv v3[e0],1(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e12]
+  vmudn v8,v3,v6[e13]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e14]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e15]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
+  sqv v7[e0],1(a0) // Store 32-Bit RGBA Values
 
   // Row 1: Double Up Element Byte Values (X += X << 8)
-  vmudn v2,v15,v1[e13] // V2 = V15 << 8
-  vadd v2,v15[e0] // V2 = 8 Double Pixels
+  vmudn v6,v15,v1[e13] // V6 = V15 << 8
+  vadd v6,v15[e0] // V6 = 8 Double Pixels
 
-  vmov v3[e0],v2[e0]
-  vmov v3[e1],v2[e0]
-  vmov v3[e2],v2[e1]
-  vmov v3[e3],v2[e1]
-  vmov v3[e4],v2[e2]
-  vmov v3[e5],v2[e2]
-  vmov v3[e6],v2[e3]
-  vmov v3[e7],v2[e3] // V3 = 32-Bit Pixels 1..4
-  sqv v3[e0],2(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e8]
+  vmudn v8,v3,v6[e9]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e10]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e11]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
+  sqv v7[e0],2(a0) // Store 32-Bit RGBA Values
 
-  vmov v3[e0],v2[e4]
-  vmov v3[e1],v2[e4]
-  vmov v3[e2],v2[e5]
-  vmov v3[e3],v2[e5]
-  vmov v3[e4],v2[e6]
-  vmov v3[e5],v2[e6]
-  vmov v3[e6],v2[e7]
-  vmov v3[e7],v2[e7] // V3 = 32-Bit Pixels 5..8
-  sqv v3[e0],3(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e12]
+  vmudn v8,v3,v6[e13]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e14]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e15]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
+  sqv v7[e0],3(a0) // Store 32-Bit RGBA Values
 
   // Row 2: Double Up Element Byte Values (X += X << 8)
-  vmudn v2,v16,v1[e13] // V2 = V16 << 8
-  vadd v2,v16[e0] // V2 = 8 Double Pixels
+  vmudn v6,v16,v1[e13] // V6 = V16 << 8
+  vadd v6,v16[e0] // V6 = 8 Double Pixels
 
-  vmov v3[e0],v2[e0]
-  vmov v3[e1],v2[e0]
-  vmov v3[e2],v2[e1]
-  vmov v3[e3],v2[e1]
-  vmov v3[e4],v2[e2]
-  vmov v3[e5],v2[e2]
-  vmov v3[e6],v2[e3]
-  vmov v3[e7],v2[e3] // V3 = 32-Bit Pixels 1..4
-  sqv v3[e0],4(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e8]
+  vmudn v8,v3,v6[e9]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e10]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e11]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
+  sqv v7[e0],4(a0) // Store 32-Bit RGBA Values
 
-  vmov v3[e0],v2[e4]
-  vmov v3[e1],v2[e4]
-  vmov v3[e2],v2[e5]
-  vmov v3[e3],v2[e5]
-  vmov v3[e4],v2[e6]
-  vmov v3[e5],v2[e6]
-  vmov v3[e6],v2[e7]
-  vmov v3[e7],v2[e7] // V3 = 32-Bit Pixels 5..8
-  sqv v3[e0],5(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e12]
+  vmudn v8,v3,v6[e13]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e14]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e15]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
+  sqv v7[e0],5(a0) // Store 32-Bit RGBA Values
 
   // Row 3: Double Up Element Byte Values (X += X << 8)
-  vmudn v2,v17,v1[e13] // V2 = V17 << 8
-  vadd v2,v17[e0] // V2 = 8 Double Pixels
+  vmudn v6,v17,v1[e13] // V6 = V17 << 8
+  vadd v6,v17[e0] // V6 = 8 Double Pixels
 
-  vmov v3[e0],v2[e0]
-  vmov v3[e1],v2[e0]
-  vmov v3[e2],v2[e1]
-  vmov v3[e3],v2[e1]
-  vmov v3[e4],v2[e2]
-  vmov v3[e5],v2[e2]
-  vmov v3[e6],v2[e3]
-  vmov v3[e7],v2[e3] // V3 = 32-Bit Pixels 1..4
-  sqv v3[e0],6(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e8]
+  vmudn v8,v3,v6[e9]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e10]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e11]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
+  sqv v7[e0],6(a0) // Store 32-Bit RGBA Values
 
-  vmov v3[e0],v2[e4]
-  vmov v3[e1],v2[e4]
-  vmov v3[e2],v2[e5]
-  vmov v3[e3],v2[e5]
-  vmov v3[e4],v2[e6]
-  vmov v3[e5],v2[e6]
-  vmov v3[e6],v2[e7]
-  vmov v3[e7],v2[e7] // V3 = 32-Bit Pixels 5..8
-  sqv v3[e0],7(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e12]
+  vmudn v8,v3,v6[e13]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e14]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e15]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
+  sqv v7[e0],7(a0) // Store 32-Bit RGBA Values
 
   // Row 4: Double Up Element Byte Values (X += X << 8)
-  vmudn v2,v18,v1[e13] // V2 = V18 << 8
-  vadd v2,v18[e0] // V2 = 8 Double Pixels
+  vmudn v6,v18,v1[e13] // V6 = V18 << 8
+  vadd v6,v18[e0] // V6 = 8 Double Pixels
 
-  vmov v3[e0],v2[e0]
-  vmov v3[e1],v2[e0]
-  vmov v3[e2],v2[e1]
-  vmov v3[e3],v2[e1]
-  vmov v3[e4],v2[e2]
-  vmov v3[e5],v2[e2]
-  vmov v3[e6],v2[e3]
-  vmov v3[e7],v2[e3] // V3 = 32-Bit Pixels 1..4
-  sqv v3[e0],8(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e8]
+  vmudn v8,v3,v6[e9]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e10]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e11]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
+  sqv v7[e0],8(a0) // Store 32-Bit RGBA Values
 
-  vmov v3[e0],v2[e4]
-  vmov v3[e1],v2[e4]
-  vmov v3[e2],v2[e5]
-  vmov v3[e3],v2[e5]
-  vmov v3[e4],v2[e6]
-  vmov v3[e5],v2[e6]
-  vmov v3[e6],v2[e7]
-  vmov v3[e7],v2[e7] // V3 = 32-Bit Pixels 5..8
-  sqv v3[e0],9(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e12]
+  vmudn v8,v3,v6[e13]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e14]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e15]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
+  sqv v7[e0],9(a0) // Store 32-Bit RGBA Values
 
   // Row 5: Double Up Element Byte Values (X += X << 8)
-  vmudn v2,v19,v1[e13] // V2 = V19 << 8
-  vadd v2,v19[e0] // V2 = 8 Double Pixels
+  vmudn v6,v19,v1[e13] // V6 = V19 << 8
+  vadd v6,v19[e0] // V6 = 8 Double Pixels
 
-  vmov v3[e0],v2[e0]
-  vmov v3[e1],v2[e0]
-  vmov v3[e2],v2[e1]
-  vmov v3[e3],v2[e1]
-  vmov v3[e4],v2[e2]
-  vmov v3[e5],v2[e2]
-  vmov v3[e6],v2[e3]
-  vmov v3[e7],v2[e3] // V3 = 32-Bit Pixels 1..4
-  sqv v3[e0],10(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e8]
+  vmudn v8,v3,v6[e9]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e10]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e11]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
+  sqv v7[e0],10(a0) // Store 32-Bit RGBA Values
 
-  vmov v3[e0],v2[e4]
-  vmov v3[e1],v2[e4]
-  vmov v3[e2],v2[e5]
-  vmov v3[e3],v2[e5]
-  vmov v3[e4],v2[e6]
-  vmov v3[e5],v2[e6]
-  vmov v3[e6],v2[e7]
-  vmov v3[e7],v2[e7] // V3 = 32-Bit Pixels 5..8
-  sqv v3[e0],11(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e12]
+  vmudn v8,v3,v6[e13]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e14]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e15]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
+  sqv v7[e0],11(a0) // Store 32-Bit RGBA Values
 
   // Row 6: Double Up Element Byte Values (X += X << 8)
-  vmudn v2,v20,v1[e13] // V2 = V20 << 8
-  vadd v2,v20[e0] // V2 = 8 Double Pixels
+  vmudn v6,v20,v1[e13] // V6 = V20 << 8
+  vadd v6,v20[e0] // V6 = 8 Double Pixels
 
-  vmov v3[e0],v2[e0]
-  vmov v3[e1],v2[e0]
-  vmov v3[e2],v2[e1]
-  vmov v3[e3],v2[e1]
-  vmov v3[e4],v2[e2]
-  vmov v3[e5],v2[e2]
-  vmov v3[e6],v2[e3]
-  vmov v3[e7],v2[e3] // V3 = 32-Bit Pixels 1..4
-  sqv v3[e0],12(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e8]
+  vmudn v8,v3,v6[e9]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e10]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e11]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
+  sqv v7[e0],12(a0) // Store 32-Bit RGBA Values
 
-  vmov v3[e0],v2[e4]
-  vmov v3[e1],v2[e4]
-  vmov v3[e2],v2[e5]
-  vmov v3[e3],v2[e5]
-  vmov v3[e4],v2[e6]
-  vmov v3[e5],v2[e6]
-  vmov v3[e6],v2[e7]
-  vmov v3[e7],v2[e7] // V3 = 32-Bit Pixels 5..8
-  sqv v3[e0],13(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e12]
+  vmudn v8,v3,v6[e13]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e14]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e15]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
+  sqv v7[e0],13(a0) // Store 32-Bit RGBA Values
 
   // Row 7: Double Up Element Byte Values (X += X << 8)
-  vmudn v2,v21,v1[e13] // V2 = V21 << 8
-  vadd v2,v21[e0] // V2 = 8 Double Pixels
+  vmudn v6,v21,v1[e13] // V6 = V21 << 8
+  vadd v6,v21[e0] // V6 = 8 Double Pixels
 
-  vmov v3[e0],v2[e0]
-  vmov v3[e1],v2[e0]
-  vmov v3[e2],v2[e1]
-  vmov v3[e3],v2[e1]
-  vmov v3[e4],v2[e2]
-  vmov v3[e5],v2[e2]
-  vmov v3[e6],v2[e3]
-  vmov v3[e7],v2[e3] // V3 = 32-Bit Pixels 1..4
-  sqv v3[e0],14(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e8]
+  vmudn v8,v3,v6[e9]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e10]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e11]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
+  sqv v7[e0],14(a0) // Store 32-Bit RGBA Values
 
-  vmov v3[e0],v2[e4]
-  vmov v3[e1],v2[e4]
-  vmov v3[e2],v2[e5]
-  vmov v3[e3],v2[e5]
-  vmov v3[e4],v2[e6]
-  vmov v3[e5],v2[e6]
-  vmov v3[e6],v2[e7]
-  vmov v3[e7],v2[e7] // V3 = 32-Bit Pixels 5..8
-  sqv v3[e0],15(a0) // Store 32-Bit RGBA Values
+  vmudn v7,v2,v6[e12]
+  vmudn v8,v3,v6[e13]
+  vadd v7,v8[e0]
+  vmudn v8,v4,v6[e14]
+  vadd v7,v8[e0]
+  vmudn v8,v5,v6[e15]
+  vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
+  sqv v7[e0],15(a0) // Store 32-Bit RGBA Values
 
 
 // DMA & Stride RGB Tile To VI RAM
@@ -618,6 +608,15 @@ FIX_LUT: // Signed Fractions (S1.15) (Float * 32768)
   dh $0100  // Left Shift Using Multiply: << 8
   dh 0 // Zero Padding Vector Register B[6]
   dh 0 // Zero Padding Vector Register B[7]
+
+RGBTilePixelA: // Used To Store Pixel 1 & 5
+  dh 1,1,0,0,0,0,0,0
+RGBTilePixelB: // Used To Store Pixel 2 & 6
+  dh 0,0,1,1,0,0,0,0
+RGBTilePixelC: // Used To Store Pixel 3 & 7
+  dh 0,0,0,0,1,1,0,0
+RGBTilePixelD: // Used To Store Pixel 4 & 8
+  dh 0,0,0,0,0,0,1,1
 
 align(8) // Align 64-Bit
 base RSPData+pc() // Set End Of RSP Data Object
