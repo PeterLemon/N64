@@ -469,8 +469,6 @@ LoopBlocks:
     nop // Delay Slot
 
   Finished:
-    nop // Delay Slot
-
   break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
 align(8) // Align 64-Bit
 base RSPCode+pc() // Set End Of RSP Code Object
