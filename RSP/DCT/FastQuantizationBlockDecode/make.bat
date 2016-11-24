@@ -1,0 +1,2 @@
+bass RSPFastQuantizationBlockDecode.asm
+chksum64 RSPFastQuantizationBlockDecode.N64
