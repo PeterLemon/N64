@@ -149,41 +149,42 @@ RSPStart:
   vadd v5,v13[e0] // V5 = TMP3
 
   // Final Output Stage: Inputs Are TMP10..TMP13, TMP0..TMP3
-  vadd v14,v6,v5[e0] // DCT[CTR + 8*0] = TMP10 + TMP3
-  vadd v15,v7,v4[e0] // DCT[CTR + 8*1] = TMP11 + TMP2
-  vadd v16,v8,v3[e0] // DCT[CTR + 8*2] = TMP12 + TMP1
-  vadd v17,v9,v2[e0] // DCT[CTR + 8*3] = TMP13 + TMP0
-  vsub v18,v9,v2[e0] // DCT[CTR + 8*4] = TMP13 - TMP0
-  vsub v19,v8,v3[e0] // DCT[CTR + 8*5] = TMP12 - TMP1
-  vsub v20,v7,v4[e0] // DCT[CTR + 8*6] = TMP11 - TMP2
-  vsub v21,v6,v5[e0] // DCT[CTR + 8*7] = TMP10 - TMP3
+  vadd v16,v6,v5[e0] // DCT[CTR + 8*0] = TMP10 + TMP3
+  vadd v17,v7,v4[e0] // DCT[CTR + 8*1] = TMP11 + TMP2
+  vadd v18,v8,v3[e0] // DCT[CTR + 8*2] = TMP12 + TMP1
+  vadd v19,v9,v2[e0] // DCT[CTR + 8*3] = TMP13 + TMP0
+  vsub v20,v9,v2[e0] // DCT[CTR + 8*4] = TMP13 - TMP0
+  vsub v21,v8,v3[e0] // DCT[CTR + 8*5] = TMP12 - TMP1
+  vsub v22,v7,v4[e0] // DCT[CTR + 8*6] = TMP11 - TMP2
+  vsub v23,v6,v5[e0] // DCT[CTR + 8*7] = TMP10 - TMP3
 
-  // Store Transposed Matrix From Row Ordered Vector Register Block (V14 = Block Base Register)
-  stv v14[e0],0(a0)  // Store 1st Element Diagonals From Vector Register Block
-  stv v14[e2],1(a0)  // Store 2nd Element Diagonals From Vector Register Block
-  stv v14[e4],2(a0)  // Store 3rd Element Diagonals From Vector Register Block
-  stv v14[e6],3(a0)  // Store 4th Element Diagonals From Vector Register Block
-  stv v14[e8],4(a0)  // Store 5th Element Diagonals From Vector Register Block
-  stv v14[e10],5(a0) // Store 6th Element Diagonals From Vector Register Block
-  stv v14[e12],6(a0) // Store 7th Element Diagonals From Vector Register Block
-  stv v14[e14],7(a0) // Store 8th Element Diagonals From Vector Register Block 
 
-  ltv v14[e14],1(a0) // Load 8th Element Diagonals To Vector Register Block
-  ltv v14[e12],2(a0) // Load 7th Element Diagonals To Vector Register Block
-  ltv v14[e10],3(a0) // Load 6th Element Diagonals To Vector Register Block
-  ltv v14[e8],4(a0)  // Load 5th Element Diagonals To Vector Register Block
-  ltv v14[e6],5(a0)  // Load 4th Element Diagonals To Vector Register Block
-  ltv v14[e4],6(a0)  // Load 3rd Element Diagonals To Vector Register Block
-  ltv v14[e2],7(a0)  // Load 2nd Element Diagonals To Vector Register Block
+  // Store Transposed Matrix From Row Ordered Vector Register Block (V16 = Block Base Register)
+  stv v16[e0],0(a0)  // Store 1st Element Diagonals From Vector Register Block
+  stv v16[e2],1(a0)  // Store 2nd Element Diagonals From Vector Register Block
+  stv v16[e4],2(a0)  // Store 3rd Element Diagonals From Vector Register Block
+  stv v16[e6],3(a0)  // Store 4th Element Diagonals From Vector Register Block
+  stv v16[e8],4(a0)  // Store 5th Element Diagonals From Vector Register Block
+  stv v16[e10],5(a0) // Store 6th Element Diagonals From Vector Register Block
+  stv v16[e12],6(a0) // Store 7th Element Diagonals From Vector Register Block
+  stv v16[e14],7(a0) // Store 8th Element Diagonals From Vector Register Block 
 
-  sqv v14[e0],0(a0) // Store 1st Row From Transposed Matrix Vector Register Block
-  sqv v15[e0],1(a0) // Store 2nd Row From Transposed Matrix Vector Register Block
-  sqv v16[e0],2(a0) // Store 3rd Row From Transposed Matrix Vector Register Block
-  sqv v17[e0],3(a0) // Store 4th Row From Transposed Matrix Vector Register Block
-  sqv v18[e0],4(a0) // Store 5th Row From Transposed Matrix Vector Register Block
-  sqv v19[e0],5(a0) // Store 6th Row From Transposed Matrix Vector Register Block
-  sqv v20[e0],6(a0) // Store 7th Row From Transposed Matrix Vector Register Block
-  sqv v21[e0],7(a0) // Store 8th Row From Transposed Matrix Vector Register Block
+  ltv v16[e14],1(a0) // Load 8th Element Diagonals To Vector Register Block
+  ltv v16[e12],2(a0) // Load 7th Element Diagonals To Vector Register Block
+  ltv v16[e10],3(a0) // Load 6th Element Diagonals To Vector Register Block
+  ltv v16[e8],4(a0)  // Load 5th Element Diagonals To Vector Register Block
+  ltv v16[e6],5(a0)  // Load 4th Element Diagonals To Vector Register Block
+  ltv v16[e4],6(a0)  // Load 3rd Element Diagonals To Vector Register Block
+  ltv v16[e2],7(a0)  // Load 2nd Element Diagonals To Vector Register Block
+
+  sqv v16[e0],0(a0) // Store 1st Row From Transposed Matrix Vector Register Block
+  sqv v17[e0],1(a0) // Store 2nd Row From Transposed Matrix Vector Register Block
+  sqv v18[e0],2(a0) // Store 3rd Row From Transposed Matrix Vector Register Block
+  sqv v19[e0],3(a0) // Store 4th Row From Transposed Matrix Vector Register Block
+  sqv v20[e0],4(a0) // Store 5th Row From Transposed Matrix Vector Register Block
+  sqv v21[e0],5(a0) // Store 6th Row From Transposed Matrix Vector Register Block
+  sqv v22[e0],6(a0) // Store 7th Row From Transposed Matrix Vector Register Block
+  sqv v23[e0],7(a0) // Store 8th Row From Transposed Matrix Vector Register Block
 
 
   // Pass 2: Process Rows From Work Array, Store Into Output Array.
@@ -267,63 +268,63 @@ RSPStart:
   vadd v5,v13[e0] // V5 = TMP3
 
   // Final Output Stage: Inputs Are TMP10..TMP13, TMP0..TMP3
-  vadd v14,v6,v5[e0] // DCT[CTR*8 + 0] = (TMP10 + TMP3) * 0.125
-  vmulu v14,v1[e12]  // Produce Unsigned Result For RGB Pixels
-  vadd v15,v7,v4[e0] // DCT[CTR*8 + 1] = (TMP11 + TMP2) * 0.125
-  vmulu v15,v1[e12]  // Produce Unsigned Result For RGB Pixels
-  vadd v16,v8,v3[e0] // DCT[CTR*8 + 2] = (TMP12 + TMP1) * 0.125
+  vadd v16,v6,v5[e0] // DCT[CTR*8 + 0] = (TMP10 + TMP3) * 0.125
   vmulu v16,v1[e12]  // Produce Unsigned Result For RGB Pixels
-  vadd v17,v9,v2[e0] // DCT[CTR*8 + 3] = (TMP13 + TMP0) * 0.125
+  vadd v17,v7,v4[e0] // DCT[CTR*8 + 1] = (TMP11 + TMP2) * 0.125
   vmulu v17,v1[e12]  // Produce Unsigned Result For RGB Pixels
-  vsub v18,v9,v2[e0] // DCT[CTR*8 + 4] = (TMP13 - TMP0) * 0.125
+  vadd v18,v8,v3[e0] // DCT[CTR*8 + 2] = (TMP12 + TMP1) * 0.125
   vmulu v18,v1[e12]  // Produce Unsigned Result For RGB Pixels
-  vsub v19,v8,v3[e0] // DCT[CTR*8 + 5] = (TMP12 - TMP1) * 0.125
+  vadd v19,v9,v2[e0] // DCT[CTR*8 + 3] = (TMP13 + TMP0) * 0.125
   vmulu v19,v1[e12]  // Produce Unsigned Result For RGB Pixels
-  vsub v20,v7,v4[e0] // DCT[CTR*8 + 6] = (TMP11 - TMP2) * 0.125
+  vsub v20,v9,v2[e0] // DCT[CTR*8 + 4] = (TMP13 - TMP0) * 0.125
   vmulu v20,v1[e12]  // Produce Unsigned Result For RGB Pixels
-  vsub v21,v6,v5[e0] // DCT[CTR*8 + 7] = (TMP10 - TMP3) * 0.125
+  vsub v21,v8,v3[e0] // DCT[CTR*8 + 5] = (TMP12 - TMP1) * 0.125
   vmulu v21,v1[e12]  // Produce Unsigned Result For RGB Pixels
+  vsub v22,v7,v4[e0] // DCT[CTR*8 + 6] = (TMP11 - TMP2) * 0.125
+  vmulu v22,v1[e12]  // Produce Unsigned Result For RGB Pixels
+  vsub v23,v6,v5[e0] // DCT[CTR*8 + 7] = (TMP10 - TMP3) * 0.125
+  vmulu v23,v1[e12]  // Produce Unsigned Result For RGB Pixels
 
-  // Store Transposed Matrix From Row Ordered Vector Register Block (V14 = Block Base Register)
-  stv v14[e0],0(a0)  // Store 1st Element Diagonals From Vector Register Block
-  stv v14[e2],1(a0)  // Store 2nd Element Diagonals From Vector Register Block
-  stv v14[e4],2(a0)  // Store 3rd Element Diagonals From Vector Register Block
-  stv v14[e6],3(a0)  // Store 4th Element Diagonals From Vector Register Block
-  stv v14[e8],4(a0)  // Store 5th Element Diagonals From Vector Register Block
-  stv v14[e10],5(a0) // Store 6th Element Diagonals From Vector Register Block
-  stv v14[e12],6(a0) // Store 7th Element Diagonals From Vector Register Block
-  stv v14[e14],7(a0) // Store 8th Element Diagonals From Vector Register Block 
+  // Store Transposed Matrix From Row Ordered Vector Register Block (V16 = Block Base Register)
+  stv v16[e0],0(a0)  // Store 1st Element Diagonals From Vector Register Block
+  stv v16[e2],1(a0)  // Store 2nd Element Diagonals From Vector Register Block
+  stv v16[e4],2(a0)  // Store 3rd Element Diagonals From Vector Register Block
+  stv v16[e6],3(a0)  // Store 4th Element Diagonals From Vector Register Block
+  stv v16[e8],4(a0)  // Store 5th Element Diagonals From Vector Register Block
+  stv v16[e10],5(a0) // Store 6th Element Diagonals From Vector Register Block
+  stv v16[e12],6(a0) // Store 7th Element Diagonals From Vector Register Block
+  stv v16[e14],7(a0) // Store 8th Element Diagonals From Vector Register Block 
 
-  ltv v14[e14],1(a0) // Load 8th Element Diagonals To Vector Register Block
-  ltv v14[e12],2(a0) // Load 7th Element Diagonals To Vector Register Block
-  ltv v14[e10],3(a0) // Load 6th Element Diagonals To Vector Register Block
-  ltv v14[e8],4(a0)  // Load 5th Element Diagonals To Vector Register Block
-  ltv v14[e6],5(a0)  // Load 4th Element Diagonals To Vector Register Block
-  ltv v14[e4],6(a0)  // Load 3rd Element Diagonals To Vector Register Block
-  ltv v14[e2],7(a0)  // Load 2nd Element Diagonals To Vector Register Block
+  ltv v16[e14],1(a0) // Load 8th Element Diagonals To Vector Register Block
+  ltv v16[e12],2(a0) // Load 7th Element Diagonals To Vector Register Block
+  ltv v16[e10],3(a0) // Load 6th Element Diagonals To Vector Register Block
+  ltv v16[e8],4(a0)  // Load 5th Element Diagonals To Vector Register Block
+  ltv v16[e6],5(a0)  // Load 4th Element Diagonals To Vector Register Block
+  ltv v16[e4],6(a0)  // Load 3rd Element Diagonals To Vector Register Block
+  ltv v16[e2],7(a0)  // Load 2nd Element Diagonals To Vector Register Block
 
-  sqv v14[e0],0(a0) // Store 1st Row From Transposed Matrix Vector Register Block
-  sqv v15[e0],1(a0) // Store 2nd Row From Transposed Matrix Vector Register Block
-  sqv v16[e0],2(a0) // Store 3rd Row From Transposed Matrix Vector Register Block
-  sqv v17[e0],3(a0) // Store 4th Row From Transposed Matrix Vector Register Block
-  sqv v18[e0],4(a0) // Store 5th Row From Transposed Matrix Vector Register Block
-  sqv v19[e0],5(a0) // Store 6th Row From Transposed Matrix Vector Register Block
-  sqv v20[e0],6(a0) // Store 7th Row From Transposed Matrix Vector Register Block
-  sqv v21[e0],7(a0) // Store 8th Row From Transposed Matrix Vector Register Block
+  sqv v16[e0],0(a0) // Store 1st Row From Transposed Matrix Vector Register Block
+  sqv v17[e0],1(a0) // Store 2nd Row From Transposed Matrix Vector Register Block
+  sqv v18[e0],2(a0) // Store 3rd Row From Transposed Matrix Vector Register Block
+  sqv v19[e0],3(a0) // Store 4th Row From Transposed Matrix Vector Register Block
+  sqv v20[e0],4(a0) // Store 5th Row From Transposed Matrix Vector Register Block
+  sqv v21[e0],5(a0) // Store 6th Row From Transposed Matrix Vector Register Block
+  sqv v22[e0],6(a0) // Store 7th Row From Transposed Matrix Vector Register Block
+  sqv v23[e0],7(a0) // Store 8th Row From Transposed Matrix Vector Register Block
 
 
   // Load RGB Tile Pixel Multipliers
-  lqv v2[e0],RGBTilePixelA>>4(r0) // V2 = Store Pixel 1 & 5  (128-Bit Quad)
+  lqv v2[e0],RGBTilePixelA>>4(r0) // V2 = Store Pixel 1 & 5 (128-Bit Quad)
   lqv v3[e0],RGBTilePixelB>>4(r0) // V3 = Store Pixel 2 & 6 (128-Bit Quad)
-  lqv v4[e0],RGBTilePixelC>>4(r0) // V4 = Store Pixel 3 & 7  (128-Bit Quad)
+  lqv v4[e0],RGBTilePixelC>>4(r0) // V4 = Store Pixel 3 & 7 (128-Bit Quad)
   lqv v5[e0],RGBTilePixelD>>4(r0) // V5 = Store Pixel 4 & 8 (128-Bit Quad)
 
   // Output 8x8 Block Of Pixel Values To RGB Tile
   la a0,RGBTile // A0 = RGB Tile DMEM Address
 
   // Row 0: Double Up Element Byte Values (X += X << 8)
-  vmudn v6,v14,v1[e13] // V6 = V14 << 8
-  vadd v6,v14[e0] // V6 = 8 Double Pixels
+  vmudn v6,v16,v1[e13] // V6 = V16 << 8
+  vadd v6,v16[e0] // V6 = 8 Double Pixels
 
   vmudn v7,v2,v6[e8]
   vmudn v8,v3,v6[e9]
@@ -344,8 +345,8 @@ RSPStart:
   sqv v7[e0],1(a0) // Store 32-Bit RGBA Values
 
   // Row 1: Double Up Element Byte Values (X += X << 8)
-  vmudn v6,v15,v1[e13] // V6 = V15 << 8
-  vadd v6,v15[e0] // V6 = 8 Double Pixels
+  vmudn v6,v17,v1[e13] // V6 = V17 << 8
+  vadd v6,v17[e0] // V6 = 8 Double Pixels
 
   vmudn v7,v2,v6[e8]
   vmudn v8,v3,v6[e9]
@@ -366,8 +367,8 @@ RSPStart:
   sqv v7[e0],3(a0) // Store 32-Bit RGBA Values
 
   // Row 2: Double Up Element Byte Values (X += X << 8)
-  vmudn v6,v16,v1[e13] // V6 = V16 << 8
-  vadd v6,v16[e0] // V6 = 8 Double Pixels
+  vmudn v6,v18,v1[e13] // V6 = V18 << 8
+  vadd v6,v18[e0] // V6 = 8 Double Pixels
 
   vmudn v7,v2,v6[e8]
   vmudn v8,v3,v6[e9]
@@ -388,8 +389,8 @@ RSPStart:
   sqv v7[e0],5(a0) // Store 32-Bit RGBA Values
 
   // Row 3: Double Up Element Byte Values (X += X << 8)
-  vmudn v6,v17,v1[e13] // V6 = V17 << 8
-  vadd v6,v17[e0] // V6 = 8 Double Pixels
+  vmudn v6,v19,v1[e13] // V6 = V19 << 8
+  vadd v6,v19[e0] // V6 = 8 Double Pixels
 
   vmudn v7,v2,v6[e8]
   vmudn v8,v3,v6[e9]
@@ -410,8 +411,8 @@ RSPStart:
   sqv v7[e0],7(a0) // Store 32-Bit RGBA Values
 
   // Row 4: Double Up Element Byte Values (X += X << 8)
-  vmudn v6,v18,v1[e13] // V6 = V18 << 8
-  vadd v6,v18[e0] // V6 = 8 Double Pixels
+  vmudn v6,v20,v1[e13] // V6 = V20 << 8
+  vadd v6,v20[e0] // V6 = 8 Double Pixels
 
   vmudn v7,v2,v6[e8]
   vmudn v8,v3,v6[e9]
@@ -432,8 +433,8 @@ RSPStart:
   sqv v7[e0],9(a0) // Store 32-Bit RGBA Values
 
   // Row 5: Double Up Element Byte Values (X += X << 8)
-  vmudn v6,v19,v1[e13] // V6 = V19 << 8
-  vadd v6,v19[e0] // V6 = 8 Double Pixels
+  vmudn v6,v21,v1[e13] // V6 = V21 << 8
+  vadd v6,v21[e0] // V6 = 8 Double Pixels
 
   vmudn v7,v2,v6[e8]
   vmudn v8,v3,v6[e9]
@@ -454,8 +455,8 @@ RSPStart:
   sqv v7[e0],11(a0) // Store 32-Bit RGBA Values
 
   // Row 6: Double Up Element Byte Values (X += X << 8)
-  vmudn v6,v20,v1[e13] // V6 = V20 << 8
-  vadd v6,v20[e0] // V6 = 8 Double Pixels
+  vmudn v6,v22,v1[e13] // V6 = V22 << 8
+  vadd v6,v22[e0] // V6 = 8 Double Pixels
 
   vmudn v7,v2,v6[e8]
   vmudn v8,v3,v6[e9]
@@ -476,8 +477,8 @@ RSPStart:
   sqv v7[e0],13(a0) // Store 32-Bit RGBA Values
 
   // Row 7: Double Up Element Byte Values (X += X << 8)
-  vmudn v6,v21,v1[e13] // V6 = V21 << 8
-  vadd v6,v21[e0] // V6 = 8 Double Pixels
+  vmudn v6,v23,v1[e13] // V6 = V23 << 8
+  vadd v6,v23[e0] // V6 = 8 Double Pixels
 
   vmudn v7,v2,v6[e8]
   vmudn v8,v3,v6[e9]
