@@ -74,7 +74,7 @@ RSPStart:
   lqv v31[e0],Q+112>>4(r0) // V31 = JPEG Standard Quantization Row 8
 
 lui a1,$0010 // A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
-la a2,DCTQBLOCKS // A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
+la a2,DCTQBLOCKS // A2 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
 
 // DCT Block Decode (Inverse Quantization)
   ori s1,r0,(240/8)-1 // S1 = Row Block Count -1
