@@ -172,9 +172,9 @@ RSPTILEStart:
     bnez t0,SHIFTDMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
-  lqv v0[e0],ShiftLeftRightA>>4(r0) // V0 = Left Shift Using Multiply: << 0..7,  Right Shift Using Multiply: >> 16..9 (128-Bit Quad)
-  lqv v1[e0],ShiftLeftRightB>>4(r0) // V1 = Left Shift Using Multiply: << 8..15, Right Shift Using Multiply: >> 8..1  (128-Bit Quad)
-  llv v2[e0],ANDNibble>>2(r0) // V2 = $000F (AND Lo Nibble), $0F00 (AND Hi Nibble) (32-Bit Long)
+  lqv v0[e0],ShiftLeftRightA(r0) // V0 = Left Shift Using Multiply: << 0..7,  Right Shift Using Multiply: >> 16..9 (128-Bit Quad)
+  lqv v1[e0],ShiftLeftRightB(r0) // V1 = Left Shift Using Multiply: << 8..15, Right Shift Using Multiply: >> 8..1  (128-Bit Quad)
+  llv v2[e0],ANDNibble(r0) // V2 = $000F (AND Lo Nibble), $0F00 (AND Hi Nibble) (32-Bit Long)
 
 // Decode Tiles
   lli t2,1 // T2 = Tile Block Counter
@@ -224,7 +224,7 @@ LoopTiles:
 
 // Pack Column 0,1 Nibbles:
   subi a0,8
-  lqv v4[e0],0(a0)  // V4 = Column 0,1
+  lqv v4[e0],0(a0) // V4 = Column 0,1
   vand v5,v4,v2[e9] // V5 = Nibble Of Column 0 (& $0F00)
   vand v6,v4,v2[e8] // V6 = Nibble Of Column 1 (& $000F)
   vmudn v5,v0[e11]  // V5 = Nibble Of Column 0 << 3
@@ -256,7 +256,7 @@ LoopTiles:
 
 // Pack Column 2,3 Nibbles:
   subi a0,8
-  lqv v4[e0],0(a0)  // V4 = Column 2,3
+  lqv v4[e0],0(a0) // V4 = Column 2,3
   vand v5,v4,v2[e9] // V5 = Nibble Of Column 0 (& $0F00)
   vand v6,v4,v2[e8] // V6 = Nibble Of Column 1 (& $000F)
   vmudn v5,v0[e11]  // V5 = Nibble Of Column 2 << 3
@@ -288,7 +288,7 @@ LoopTiles:
 
 // Pack Column 4,5 Nibbles:
   subi a0,8
-  lqv v4[e0],0(a0)  // V4 = Column 4,5
+  lqv v4[e0],0(a0) // V4 = Column 4,5
   vand v5,v4,v2[e9] // V5 = Nibble Of Column 0 (& $0F00)
   vand v6,v4,v2[e8] // V6 = Nibble Of Column 1 (& $000F)
   vmudn v5,v0[e11]  // V5 = Nibble Of Column 4 << 3
@@ -320,7 +320,7 @@ LoopTiles:
 
 // Pack Column 6,7 Nibbles:
   subi a0,8
-  lqv v4[e0],0(a0)  // V4 = Column 6,7
+  lqv v4[e0],0(a0) // V4 = Column 6,7
   vand v5,v4,v2[e9] // V5 = Nibble Of Column 0 (& $0F00)
   vand v6,v4,v2[e8] // V6 = Nibble Of Column 1 (& $000F)
   vmudn v5,v0[e11]  // V5 = Nibble Of Column 6 << 3
