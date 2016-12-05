@@ -183,9 +183,9 @@ RSPPALStart:
     bnez t0,PALDATADMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
-  lqv v0[e0],AlphaOR>>4(r0)  // V0 = 1 * $0000, 7 * $0001 (OR Alpha 1 Bit) (128-Bit Quad)
-  lqv v1[e0],ANDByte>>4(r0)  // V1 = AND Lo/Hi/Red/Green/Blue Bytes (128-Bit Quad)
-  ldv v2[e0],PALShift>>3(r0) // V2 = Shift Using Multiply: Red/Green/Blue (64-Bit Double)
+  lqv v0[e0],AlphaOR(r0)  // V0 = 1 * $0000, 7 * $0001 (OR Alpha 1 Bit) (128-Bit Quad)
+  lqv v1[e0],ANDByte(r0)  // V1 = AND Lo/Hi/Red/Green/Blue Bytes (128-Bit Quad)
+  ldv v2[e0],PALShift(r0) // V2 = Shift Using Multiply: Red/Green/Blue (64-Bit Double)
 
 // Decode Colors
   lli a0,0 // A0 = Palette Start Offset
@@ -301,9 +301,9 @@ RSPTILEStart:
     bnez t0,SHIFTDMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
-  lqv v0[e0],ShiftLeftRightA>>4(r0) // V0 = Left Shift Using Multiply: << 0..7,  Right Shift Using Multiply: >> 16..9 (128-Bit Quad)
-  lqv v1[e0],ShiftLeftRightB>>4(r0) // V1 = Left Shift Using Multiply: << 8..15, Right Shift Using Multiply: >> 8..1  (128-Bit Quad)
-  llv v2[e0],ANDNibble>>2(r0) // V2 = $000F (AND Lo Nibble), $0F00 (AND Hi Nibble) (32-Bit Long)
+  lqv v0[e0],ShiftLeftRightA(r0) // V0 = Left Shift Using Multiply: << 0..7,  Right Shift Using Multiply: >> 16..9 (128-Bit Quad)
+  lqv v1[e0],ShiftLeftRightB(r0) // V1 = Left Shift Using Multiply: << 8..15, Right Shift Using Multiply: >> 8..1  (128-Bit Quad)
+  llv v2[e0],ANDNibble(r0) // V2 = $000F (AND Lo Nibble), $0F00 (AND Hi Nibble) (32-Bit Long)
 
 // Decode Tiles
   lli t2,15 // T2 = Tile Block Counter
@@ -326,8 +326,8 @@ LoopTileBlocks:
     nop // Delay Slot
 
 LoopTiles:
-  lqv v3[e0],0(a0) // V3 = Tile BitPlane 0,1 Row 0..7
-  lqv v4[e0],1(a0) // V4 = Tile BitPlane 2,3 Row 0..7
+  lqv v3[e0],$00(a0) // V3 = Tile BitPlane 0,1 Row 0..7
+  lqv v4[e0],$10(a0) // V4 = Tile BitPlane 2,3 Row 0..7
 
 // Vector Grab Column 0:
   vand v5,v3,v1[e8] // V5 = bp0 Of r0..r7 (& $0100)
