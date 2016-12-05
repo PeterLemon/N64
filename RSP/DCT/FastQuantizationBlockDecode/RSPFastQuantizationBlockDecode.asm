@@ -61,54 +61,54 @@ base $0000 // Set Base Of RSP Code Object To Zero
 RSPStart:
 
 // DCT Block Decode (Inverse Quantization)
-  lqv v24[e0],Q>>4(r0)    // V24 = JPEG Standard Quantization Row 1
-  lqv v25[e0],Q+16>>4(r0) // V25 = JPEG Standard Quantization Row 2
-  lqv v26[e0],Q+32>>4(r0) // V26 = JPEG Standard Quantization Row 3
-  lqv v27[e0],Q+48>>4(r0) // V27 = JPEG Standard Quantization Row 4
-  lqv v28[e0],Q+64>>4(r0) // V28 = JPEG Standard Quantization Row 5
-  lqv v29[e0],Q+80>>4(r0) // V29 = JPEG Standard Quantization Row 6
-  lqv v30[e0],Q+96>>4(r0) // V30 = JPEG Standard Quantization Row 7
-  lqv v31[e0],Q+112>>4(r0) // V31 = JPEG Standard Quantization Row 8
+  lqv v24[e0],Q(r0)    // V24 = JPEG Standard Quantization Row 1
+  lqv v25[e0],Q+16(r0) // V25 = JPEG Standard Quantization Row 2
+  lqv v26[e0],Q+32(r0) // V26 = JPEG Standard Quantization Row 3
+  lqv v27[e0],Q+48(r0) // V27 = JPEG Standard Quantization Row 4
+  lqv v28[e0],Q+64(r0) // V28 = JPEG Standard Quantization Row 5
+  lqv v29[e0],Q+80(r0) // V29 = JPEG Standard Quantization Row 6
+  lqv v30[e0],Q+96(r0) // V30 = JPEG Standard Quantization Row 7
+  lqv v31[e0],Q+112(r0) // V31 = JPEG Standard Quantization Row 8
 
   la a0,DCTQ // A0 = DCTQ 8x8 Matrix DMEM Address
-  lqv v0[e0],0(a0) // V0 = DCTQ Row 1
-  lqv v1[e0],1(a0) // V1 = DCTQ Row 2
-  lqv v2[e0],2(a0) // V2 = DCTQ Row 3
-  lqv v3[e0],3(a0) // V3 = DCTQ Row 4
-  lqv v4[e0],4(a0) // V4 = DCTQ Row 5
-  lqv v5[e0],5(a0) // V5 = DCTQ Row 6
-  lqv v6[e0],6(a0) // V6 = DCTQ Row 7
-  lqv v7[e0],7(a0) // V7 = DCTQ Row 8
+  lqv v0[e0],$00(a0) // V0 = DCTQ Row 1
+  lqv v1[e0],$10(a0) // V1 = DCTQ Row 2
+  lqv v2[e0],$20(a0) // V2 = DCTQ Row 3
+  lqv v3[e0],$30(a0) // V3 = DCTQ Row 4
+  lqv v4[e0],$40(a0) // V4 = DCTQ Row 5
+  lqv v5[e0],$50(a0) // V5 = DCTQ Row 6
+  lqv v6[e0],$60(a0) // V6 = DCTQ Row 7
+  lqv v7[e0],$70(a0) // V7 = DCTQ Row 8
   
-  vmulq v0,v24[e0] // DCTQ *= Q Row 1
-  vmulq v1,v25[e0] // DCTQ *= Q Row 2
-  vmulq v2,v26[e0] // DCTQ *= Q Row 3
-  vmulq v3,v27[e0] // DCTQ *= Q Row 4
-  vmulq v4,v28[e0] // DCTQ *= Q Row 5
-  vmulq v5,v29[e0] // DCTQ *= Q Row 6
-  vmulq v6,v30[e0] // DCTQ *= Q Row 7
-  vmulq v7,v31[e0] // DCTQ *= Q Row 8
+  vmudn v0,v24[e0] // DCTQ *= Q Row 1
+  vmudn v1,v25[e0] // DCTQ *= Q Row 2
+  vmudn v2,v26[e0] // DCTQ *= Q Row 3
+  vmudn v3,v27[e0] // DCTQ *= Q Row 4
+  vmudn v4,v28[e0] // DCTQ *= Q Row 5
+  vmudn v5,v29[e0] // DCTQ *= Q Row 6
+  vmudn v6,v30[e0] // DCTQ *= Q Row 7
+  vmudn v7,v31[e0] // DCTQ *= Q Row 8
 
-  sqv v0[e0],0(a0) // DCTQ Row 1 = V0
-  sqv v1[e0],1(a0) // DCTQ Row 2 = V1
-  sqv v2[e0],2(a0) // DCTQ Row 3 = V2
-  sqv v3[e0],3(a0) // DCTQ Row 4 = V3
-  sqv v4[e0],4(a0) // DCTQ Row 5 = V4
-  sqv v5[e0],5(a0) // DCTQ Row 6 = V5
-  sqv v6[e0],6(a0) // DCTQ Row 7 = V6
-  sqv v7[e0],7(a0) // DCTQ Row 8 = V7
+  sqv v0[e0],$00(a0) // DCTQ Row 1 = V0
+  sqv v1[e0],$10(a0) // DCTQ Row 2 = V1
+  sqv v2[e0],$20(a0) // DCTQ Row 3 = V2
+  sqv v3[e0],$30(a0) // DCTQ Row 4 = V3
+  sqv v4[e0],$40(a0) // DCTQ Row 5 = V4
+  sqv v5[e0],$50(a0) // DCTQ Row 6 = V5
+  sqv v6[e0],$60(a0) // DCTQ Row 7 = V6
+  sqv v7[e0],$70(a0) // DCTQ Row 8 = V7
 
 // Decode DCT 8x8 Block Using IDCT
   // Load Fixed Point Signed Fractions LUT
-  lqv v0[e0],FIX_LUT>>4(r0)    // V0 = Look Up Table 0..7  (128-Bit Quad)
-  lqv v1[e0],FIX_LUT+16>>4(r0) // V1 = Look Up Table 8..15 (128-Bit Quad)
+  lqv v0[e0],FIX_LUT(r0)    // V0 = Look Up Table 0..7  (128-Bit Quad)
+  lqv v1[e0],FIX_LUT+16(r0) // V1 = Look Up Table 8..15 (128-Bit Quad)
 
   // Fast IDCT Block Decode
   // Pass 1: Process Columns From Input, Store Into Work Array.
 
   // Even part: Reverse The Even Part Of The Forward DCT. The Rotator Is SQRT(2)*C(-6).
-  lqv v2[e0],2(a0) // V2 = Z2 = DCT[CTR + 8*2]
-  lqv v3[e0],6(a0) // V3 = Z3 = DCT[CTR + 8*6]
+  lqv v2[e0],$20(a0) // V2 = Z2 = DCT[CTR + 8*2]
+  lqv v3[e0],$60(a0) // V3 = Z3 = DCT[CTR + 8*6]
 
   vadd v4,v2,v3[e0] // Z1 = (Z2 + Z3) * 0.541196100
   vmulf v4,v0[e10] // V4 = Z1
@@ -120,8 +120,8 @@ RSPStart:
   vmulf v6,v2,v0[e11] // TMP3 = Z1 + (Z2 * 0.765366865)
   vadd v2,v6,v4[e0] // V2 = TMP3
 
-  lqv v6[e0],0(a0) // V6 = Z2 = DCT[CTR + 8*0]
-  lqv v7[e0],4(a0) // V7 = Z3 = DCT[CTR + 8*4]
+  lqv v6[e0],$00(a0) // V6 = Z2 = DCT[CTR + 8*0]
+  lqv v7[e0],$40(a0) // V7 = Z3 = DCT[CTR + 8*4]
 
   vadd v4,v6,v7[e0] // V4 = TMP0 = Z2 + Z3
   vsub v5,v6,v7[e0] // V5 = TMP1 = Z2 - Z3
@@ -132,10 +132,10 @@ RSPStart:
   vsub v9,v4,v2[e0] // V9 = TMP13 = TMP0 - TMP3
 
   // Odd Part Per Figure 8; The Matrix Is Unitary And Hence Its Transpose Is Its Inverse.
-  lqv v2[e0],7(a0) // V2 = TMP0 = DCT[CTR + 8*7]
-  lqv v3[e0],5(a0) // V3 = TMP1 = DCT[CTR + 8*5]
-  lqv v4[e0],3(a0) // V4 = TMP2 = DCT[CTR + 8*3]
-  lqv v5[e0],1(a0) // V5 = TMP3 = DCT[CTR + 8*1]
+  lqv v2[e0],$70(a0) // V2 = TMP0 = DCT[CTR + 8*7]
+  lqv v3[e0],$50(a0) // V3 = TMP1 = DCT[CTR + 8*5]
+  lqv v4[e0],$30(a0) // V4 = TMP2 = DCT[CTR + 8*3]
+  lqv v5[e0],$10(a0) // V5 = TMP3 = DCT[CTR + 8*1]
 
   vadd v12,v2,v4[e0] // V12 = Z3 = TMP0 + TMP2
   vadd v13,v3,v5[e0] // R13 = Z4 = TMP1 + TMP3
@@ -196,38 +196,38 @@ RSPStart:
 
 
   // Store Transposed Matrix From Row Ordered Vector Register Block (V16 = Block Base Register)
-  stv v16[e0],0(a0)  // Store 1st Element Diagonals From Vector Register Block
-  stv v16[e2],1(a0)  // Store 2nd Element Diagonals From Vector Register Block
-  stv v16[e4],2(a0)  // Store 3rd Element Diagonals From Vector Register Block
-  stv v16[e6],3(a0)  // Store 4th Element Diagonals From Vector Register Block
-  stv v16[e8],4(a0)  // Store 5th Element Diagonals From Vector Register Block
-  stv v16[e10],5(a0) // Store 6th Element Diagonals From Vector Register Block
-  stv v16[e12],6(a0) // Store 7th Element Diagonals From Vector Register Block
-  stv v16[e14],7(a0) // Store 8th Element Diagonals From Vector Register Block 
+  stv v16[e0],$00(a0)  // Store 1st Element Diagonals From Vector Register Block
+  stv v16[e2],$10(a0)  // Store 2nd Element Diagonals From Vector Register Block
+  stv v16[e4],$20(a0)  // Store 3rd Element Diagonals From Vector Register Block
+  stv v16[e6],$30(a0)  // Store 4th Element Diagonals From Vector Register Block
+  stv v16[e8],$40(a0)  // Store 5th Element Diagonals From Vector Register Block
+  stv v16[e10],$50(a0) // Store 6th Element Diagonals From Vector Register Block
+  stv v16[e12],$60(a0) // Store 7th Element Diagonals From Vector Register Block
+  stv v16[e14],$70(a0) // Store 8th Element Diagonals From Vector Register Block 
 
-  ltv v16[e14],1(a0) // Load 8th Element Diagonals To Vector Register Block
-  ltv v16[e12],2(a0) // Load 7th Element Diagonals To Vector Register Block
-  ltv v16[e10],3(a0) // Load 6th Element Diagonals To Vector Register Block
-  ltv v16[e8],4(a0)  // Load 5th Element Diagonals To Vector Register Block
-  ltv v16[e6],5(a0)  // Load 4th Element Diagonals To Vector Register Block
-  ltv v16[e4],6(a0)  // Load 3rd Element Diagonals To Vector Register Block
-  ltv v16[e2],7(a0)  // Load 2nd Element Diagonals To Vector Register Block
+  ltv v16[e14],$10(a0) // Load 8th Element Diagonals To Vector Register Block
+  ltv v16[e12],$20(a0) // Load 7th Element Diagonals To Vector Register Block
+  ltv v16[e10],$30(a0) // Load 6th Element Diagonals To Vector Register Block
+  ltv v16[e8],$40(a0)  // Load 5th Element Diagonals To Vector Register Block
+  ltv v16[e6],$50(a0)  // Load 4th Element Diagonals To Vector Register Block
+  ltv v16[e4],$60(a0)  // Load 3rd Element Diagonals To Vector Register Block
+  ltv v16[e2],$70(a0)  // Load 2nd Element Diagonals To Vector Register Block
 
-  sqv v16[e0],0(a0) // Store 1st Row From Transposed Matrix Vector Register Block
-  sqv v17[e0],1(a0) // Store 2nd Row From Transposed Matrix Vector Register Block
-  sqv v18[e0],2(a0) // Store 3rd Row From Transposed Matrix Vector Register Block
-  sqv v19[e0],3(a0) // Store 4th Row From Transposed Matrix Vector Register Block
-  sqv v20[e0],4(a0) // Store 5th Row From Transposed Matrix Vector Register Block
-  sqv v21[e0],5(a0) // Store 6th Row From Transposed Matrix Vector Register Block
-  sqv v22[e0],6(a0) // Store 7th Row From Transposed Matrix Vector Register Block
-  sqv v23[e0],7(a0) // Store 8th Row From Transposed Matrix Vector Register Block
+  sqv v16[e0],$00(a0) // Store 1st Row From Transposed Matrix Vector Register Block
+  sqv v17[e0],$10(a0) // Store 2nd Row From Transposed Matrix Vector Register Block
+  sqv v18[e0],$20(a0) // Store 3rd Row From Transposed Matrix Vector Register Block
+  sqv v19[e0],$30(a0) // Store 4th Row From Transposed Matrix Vector Register Block
+  sqv v20[e0],$40(a0) // Store 5th Row From Transposed Matrix Vector Register Block
+  sqv v21[e0],$50(a0) // Store 6th Row From Transposed Matrix Vector Register Block
+  sqv v22[e0],$60(a0) // Store 7th Row From Transposed Matrix Vector Register Block
+  sqv v23[e0],$70(a0) // Store 8th Row From Transposed Matrix Vector Register Block
 
 
   // Pass 2: Process Rows From Work Array, Store Into Output Array.
 
   // Even part: Reverse The Even Part Of The Forward DCT. The Rotator Is SQRT(2)*C(-6).
-  lqv v2[e0],2(a0) // V2 = Z2 = DCT[CTR*8 + 2]
-  lqv v3[e0],6(a0) // V3 = Z3 = DCT[CTR*8 + 6]
+  lqv v2[e0],$20(a0) // V2 = Z2 = DCT[CTR*8 + 2]
+  lqv v3[e0],$60(a0) // V3 = Z3 = DCT[CTR*8 + 6]
 
   vadd v4,v2,v3[e0] // Z1 = (Z2 + Z3) * 0.541196100
   vmulf v4,v0[e10] // V4 = Z1
@@ -239,8 +239,8 @@ RSPStart:
   vmulf v6,v2,v0[e11] // TMP3 = Z1 + (Z2 * 0.765366865)
   vadd v2,v6,v4[e0] // V2 = TMP3
 
-  lqv v6[e0],0(a0) // V6 = Z2 = DCT[CTR*8 + 0]
-  lqv v7[e0],4(a0) // V7 = Z3 = DCT[CTR*8 + 4]
+  lqv v6[e0],$00(a0) // V6 = Z2 = DCT[CTR*8 + 0]
+  lqv v7[e0],$40(a0) // V7 = Z3 = DCT[CTR*8 + 4]
 
   vadd v4,v6,v7[e0] // V4 = TMP0 = Z2 + Z3
   vsub v5,v6,v7[e0] // V5 = TMP1 = Z2 - Z3
@@ -251,10 +251,10 @@ RSPStart:
   vsub v9,v4,v2[e0] // V9 = TMP13 = TMP0 - TMP3
 
   // Odd Part Per Figure 8; The Matrix Is Unitary And Hence Its Transpose Is Its Inverse.
-  lqv v2[e0],7(a0) // V2 = TMP0 = DCT[CTR*8 + 7]
-  lqv v3[e0],5(a0) // V3 = TMP1 = DCT[CTR*8 + 5]
-  lqv v4[e0],3(a0) // V4 = TMP2 = DCT[CTR*8 + 3]
-  lqv v5[e0],1(a0) // V5 = TMP3 = DCT[CTR*8 + 1]
+  lqv v2[e0],$70(a0) // V2 = TMP0 = DCT[CTR*8 + 7]
+  lqv v3[e0],$50(a0) // V3 = TMP1 = DCT[CTR*8 + 5]
+  lqv v4[e0],$30(a0) // V4 = TMP2 = DCT[CTR*8 + 3]
+  lqv v5[e0],$10(a0) // V5 = TMP3 = DCT[CTR*8 + 1]
 
   vadd v12,v2,v4[e0] // V12 = Z3 = TMP0 + TMP2
   vadd v13,v3,v5[e0] // R13 = Z4 = TMP1 + TMP3
@@ -322,38 +322,38 @@ RSPStart:
   vmulu v23,v1[e12]  // Produce Unsigned Result For RGB Pixels
 
   // Store Transposed Matrix From Row Ordered Vector Register Block (V16 = Block Base Register)
-  stv v16[e0],0(a0)  // Store 1st Element Diagonals From Vector Register Block
-  stv v16[e2],1(a0)  // Store 2nd Element Diagonals From Vector Register Block
-  stv v16[e4],2(a0)  // Store 3rd Element Diagonals From Vector Register Block
-  stv v16[e6],3(a0)  // Store 4th Element Diagonals From Vector Register Block
-  stv v16[e8],4(a0)  // Store 5th Element Diagonals From Vector Register Block
-  stv v16[e10],5(a0) // Store 6th Element Diagonals From Vector Register Block
-  stv v16[e12],6(a0) // Store 7th Element Diagonals From Vector Register Block
-  stv v16[e14],7(a0) // Store 8th Element Diagonals From Vector Register Block 
+  stv v16[e0],$00(a0)  // Store 1st Element Diagonals From Vector Register Block
+  stv v16[e2],$10(a0)  // Store 2nd Element Diagonals From Vector Register Block
+  stv v16[e4],$20(a0)  // Store 3rd Element Diagonals From Vector Register Block
+  stv v16[e6],$30(a0)  // Store 4th Element Diagonals From Vector Register Block
+  stv v16[e8],$40(a0)  // Store 5th Element Diagonals From Vector Register Block
+  stv v16[e10],$50(a0) // Store 6th Element Diagonals From Vector Register Block
+  stv v16[e12],$60(a0) // Store 7th Element Diagonals From Vector Register Block
+  stv v16[e14],$70(a0) // Store 8th Element Diagonals From Vector Register Block 
 
-  ltv v16[e14],1(a0) // Load 8th Element Diagonals To Vector Register Block
-  ltv v16[e12],2(a0) // Load 7th Element Diagonals To Vector Register Block
-  ltv v16[e10],3(a0) // Load 6th Element Diagonals To Vector Register Block
-  ltv v16[e8],4(a0)  // Load 5th Element Diagonals To Vector Register Block
-  ltv v16[e6],5(a0)  // Load 4th Element Diagonals To Vector Register Block
-  ltv v16[e4],6(a0)  // Load 3rd Element Diagonals To Vector Register Block
-  ltv v16[e2],7(a0)  // Load 2nd Element Diagonals To Vector Register Block
+  ltv v16[e14],$10(a0) // Load 8th Element Diagonals To Vector Register Block
+  ltv v16[e12],$20(a0) // Load 7th Element Diagonals To Vector Register Block
+  ltv v16[e10],$30(a0) // Load 6th Element Diagonals To Vector Register Block
+  ltv v16[e8],$40(a0)  // Load 5th Element Diagonals To Vector Register Block
+  ltv v16[e6],$50(a0)  // Load 4th Element Diagonals To Vector Register Block
+  ltv v16[e4],$60(a0)  // Load 3rd Element Diagonals To Vector Register Block
+  ltv v16[e2],$70(a0)  // Load 2nd Element Diagonals To Vector Register Block
 
-  sqv v16[e0],0(a0) // Store 1st Row From Transposed Matrix Vector Register Block
-  sqv v17[e0],1(a0) // Store 2nd Row From Transposed Matrix Vector Register Block
-  sqv v18[e0],2(a0) // Store 3rd Row From Transposed Matrix Vector Register Block
-  sqv v19[e0],3(a0) // Store 4th Row From Transposed Matrix Vector Register Block
-  sqv v20[e0],4(a0) // Store 5th Row From Transposed Matrix Vector Register Block
-  sqv v21[e0],5(a0) // Store 6th Row From Transposed Matrix Vector Register Block
-  sqv v22[e0],6(a0) // Store 7th Row From Transposed Matrix Vector Register Block
-  sqv v23[e0],7(a0) // Store 8th Row From Transposed Matrix Vector Register Block
+  sqv v16[e0],$00(a0) // Store 1st Row From Transposed Matrix Vector Register Block
+  sqv v17[e0],$10(a0) // Store 2nd Row From Transposed Matrix Vector Register Block
+  sqv v18[e0],$20(a0) // Store 3rd Row From Transposed Matrix Vector Register Block
+  sqv v19[e0],$30(a0) // Store 4th Row From Transposed Matrix Vector Register Block
+  sqv v20[e0],$40(a0) // Store 5th Row From Transposed Matrix Vector Register Block
+  sqv v21[e0],$50(a0) // Store 6th Row From Transposed Matrix Vector Register Block
+  sqv v22[e0],$60(a0) // Store 7th Row From Transposed Matrix Vector Register Block
+  sqv v23[e0],$70(a0) // Store 8th Row From Transposed Matrix Vector Register Block
 
 
   // Load RGB Tile Pixel Multipliers
-  lqv v2[e0],RGBTilePixelA>>4(r0) // V2 = Store Pixel 1 & 5 (128-Bit Quad)
-  lqv v3[e0],RGBTilePixelB>>4(r0) // V3 = Store Pixel 2 & 6 (128-Bit Quad)
-  lqv v4[e0],RGBTilePixelC>>4(r0) // V4 = Store Pixel 3 & 7 (128-Bit Quad)
-  lqv v5[e0],RGBTilePixelD>>4(r0) // V5 = Store Pixel 4 & 8 (128-Bit Quad)
+  lqv v2[e0],RGBTilePixelA(r0) // V2 = Store Pixel 1 & 5 (128-Bit Quad)
+  lqv v3[e0],RGBTilePixelB(r0) // V3 = Store Pixel 2 & 6 (128-Bit Quad)
+  lqv v4[e0],RGBTilePixelC(r0) // V4 = Store Pixel 3 & 7 (128-Bit Quad)
+  lqv v5[e0],RGBTilePixelD(r0) // V5 = Store Pixel 4 & 8 (128-Bit Quad)
 
   // Output 8x8 Block Of Pixel Values To RGB Tile
   la a0,RGBTile // A0 = RGB Tile DMEM Address
@@ -369,7 +369,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e11]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
-  sqv v7[e0],0(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$00(a0) // Store 32-Bit RGBA Values
 
   vmudn v7,v2,v6[e12]
   vmudn v8,v3,v6[e13]
@@ -378,7 +378,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e15]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
-  sqv v7[e0],1(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$10(a0) // Store 32-Bit RGBA Values
 
   // Row 1: Double Up Element Byte Values (X += X << 8)
   vmudn v6,v17,v1[e13] // V6 = V17 << 8
@@ -391,7 +391,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e11]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
-  sqv v7[e0],2(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$20(a0) // Store 32-Bit RGBA Values
 
   vmudn v7,v2,v6[e12]
   vmudn v8,v3,v6[e13]
@@ -400,7 +400,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e15]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
-  sqv v7[e0],3(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$30(a0) // Store 32-Bit RGBA Values
 
   // Row 2: Double Up Element Byte Values (X += X << 8)
   vmudn v6,v18,v1[e13] // V6 = V18 << 8
@@ -413,7 +413,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e11]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
-  sqv v7[e0],4(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$40(a0) // Store 32-Bit RGBA Values
 
   vmudn v7,v2,v6[e12]
   vmudn v8,v3,v6[e13]
@@ -422,7 +422,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e15]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
-  sqv v7[e0],5(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$50(a0) // Store 32-Bit RGBA Values
 
   // Row 3: Double Up Element Byte Values (X += X << 8)
   vmudn v6,v19,v1[e13] // V6 = V19 << 8
@@ -435,7 +435,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e11]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
-  sqv v7[e0],6(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$60(a0) // Store 32-Bit RGBA Values
 
   vmudn v7,v2,v6[e12]
   vmudn v8,v3,v6[e13]
@@ -444,7 +444,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e15]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
-  sqv v7[e0],7(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$70(a0) // Store 32-Bit RGBA Values
 
   // Row 4: Double Up Element Byte Values (X += X << 8)
   vmudn v6,v20,v1[e13] // V6 = V20 << 8
@@ -457,7 +457,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e11]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
-  sqv v7[e0],8(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$80(a0) // Store 32-Bit RGBA Values
 
   vmudn v7,v2,v6[e12]
   vmudn v8,v3,v6[e13]
@@ -466,7 +466,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e15]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
-  sqv v7[e0],9(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$90(a0) // Store 32-Bit RGBA Values
 
   // Row 5: Double Up Element Byte Values (X += X << 8)
   vmudn v6,v21,v1[e13] // V6 = V21 << 8
@@ -479,7 +479,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e11]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
-  sqv v7[e0],10(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$A0(a0) // Store 32-Bit RGBA Values
 
   vmudn v7,v2,v6[e12]
   vmudn v8,v3,v6[e13]
@@ -488,7 +488,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e15]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
-  sqv v7[e0],11(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$B0(a0) // Store 32-Bit RGBA Values
 
   // Row 6: Double Up Element Byte Values (X += X << 8)
   vmudn v6,v22,v1[e13] // V6 = V22 << 8
@@ -501,7 +501,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e11]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
-  sqv v7[e0],12(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$C0(a0) // Store 32-Bit RGBA Values
 
   vmudn v7,v2,v6[e12]
   vmudn v8,v3,v6[e13]
@@ -510,7 +510,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e15]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
-  sqv v7[e0],13(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$D0(a0) // Store 32-Bit RGBA Values
 
   // Row 7: Double Up Element Byte Values (X += X << 8)
   vmudn v6,v23,v1[e13] // V6 = V23 << 8
@@ -523,7 +523,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e11]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 1..4
-  sqv v7[e0],14(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$E0(a0) // Store 32-Bit RGBA Values
 
   vmudn v7,v2,v6[e12]
   vmudn v8,v3,v6[e13]
@@ -532,7 +532,7 @@ RSPStart:
   vadd v7,v8[e0]
   vmudn v8,v5,v6[e15]
   vadd v7,v8[e0] // V7 = 32-Bit Pixels 5..8
-  sqv v7[e0],15(a0) // Store 32-Bit RGBA Values
+  sqv v7[e0],$F0(a0) // Store 32-Bit RGBA Values
 
 
 // DMA & Stride RGB Tile To VI RAM
