@@ -596,14 +596,14 @@ arch n64.rsp
 align(8) // Align 64-Bit
 RSPVMOVCode:
 base $0000 // Set Base Of RSP Code Object To Zero
-  lqv v14[e0],0(r0) // Load 1st Row To Transposed Matrix Vector Register Block
-  lqv v15[e0],1(r0) // Load 2nd Row To Transposed Matrix Vector Register Block
-  lqv v16[e0],2(r0) // Load 3rd Row To Transposed Matrix Vector Register Block
-  lqv v17[e0],3(r0) // Load 4th Row To Transposed Matrix Vector Register Block
-  lqv v18[e0],4(r0) // Load 5th Row To Transposed Matrix Vector Register Block
-  lqv v19[e0],5(r0) // Load 6th Row To Transposed Matrix Vector Register Block
-  lqv v20[e0],6(r0) // Load 7th Row To Transposed Matrix Vector Register Block
-  lqv v21[e0],7(r0) // Load 8th Row To Transposed Matrix Vector Register Block
+  lqv v14[e0],$00(r0) // Load 1st Row To Transposed Matrix Vector Register Block
+  lqv v15[e0],$10(r0) // Load 2nd Row To Transposed Matrix Vector Register Block
+  lqv v16[e0],$20(r0) // Load 3rd Row To Transposed Matrix Vector Register Block
+  lqv v17[e0],$30(r0) // Load 4th Row To Transposed Matrix Vector Register Block
+  lqv v18[e0],$40(r0) // Load 5th Row To Transposed Matrix Vector Register Block
+  lqv v19[e0],$50(r0) // Load 6th Row To Transposed Matrix Vector Register Block
+  lqv v20[e0],$60(r0) // Load 7th Row To Transposed Matrix Vector Register Block
+  lqv v21[e0],$70(r0) // Load 8th Row To Transposed Matrix Vector Register Block
 
   vmov v2[e0],v14[e0] // Load Tranposed Matrix 1st Row
   vmov v2[e1],v15[e0]
@@ -613,7 +613,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   vmov v2[e5],v19[e0]
   vmov v2[e6],v20[e0]
   vmov v2[e7],v21[e0] // V2 = Tranposed Matrix 1st Row
-  sqv v2[e0],0(r0) // Store 1st Transposed Matrix Row
+  sqv v2[e0],$00(r0) // Store 1st Transposed Matrix Row
 
   vmov v2[e0],v14[e1] // Load Tranposed Matrix 2nd Row
   vmov v2[e1],v15[e1]
@@ -623,7 +623,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   vmov v2[e5],v19[e1]
   vmov v2[e6],v20[e1]
   vmov v2[e7],v21[e1] // V2 = Tranposed Matrix 2nd Row
-  sqv v2[e0],1(r0) // Store 2nd Transposed Matrix Row
+  sqv v2[e0],$10(r0) // Store 2nd Transposed Matrix Row
 
   vmov v2[e0],v14[e2] // Load Tranposed Matrix 3rd Row
   vmov v2[e1],v15[e2]
@@ -633,7 +633,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   vmov v2[e5],v19[e2]
   vmov v2[e6],v20[e2]
   vmov v2[e7],v21[e2] // V2 = Tranposed Matrix 3rd Row
-  sqv v2[e0],2(r0) // Store 3rd Transposed Matrix Row
+  sqv v2[e0],$20(r0) // Store 3rd Transposed Matrix Row
 
   vmov v2[e0],v14[e3] // Load Tranposed Matrix 4th Row
   vmov v2[e1],v15[e3]
@@ -643,7 +643,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   vmov v2[e5],v19[e3]
   vmov v2[e6],v20[e3]
   vmov v2[e7],v21[e3] // V2 = Tranposed Matrix 4th Row
-  sqv v2[e0],3(r0) // Store 4th Transposed Matrix Row
+  sqv v2[e0],$30(r0) // Store 4th Transposed Matrix Row
 
   vmov v2[e0],v14[e4] // Load Tranposed Matrix 5th Row
   vmov v2[e1],v15[e4]
@@ -653,7 +653,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   vmov v2[e5],v19[e4]
   vmov v2[e6],v20[e4]
   vmov v2[e7],v21[e4] // V2 = Tranposed Matrix 5th Row
-  sqv v2[e0],4(r0) // Store 5th Transposed Matrix Row
+  sqv v2[e0],$40(r0) // Store 5th Transposed Matrix Row
 
   vmov v2[e0],v14[e5] // Load Tranposed Matrix 6th Row
   vmov v2[e1],v15[e5]
@@ -663,7 +663,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   vmov v2[e5],v19[e5]
   vmov v2[e6],v20[e5]
   vmov v2[e7],v21[e5] // V2 = Tranposed Matrix 6th Row
-  sqv v2[e0],5(r0) // Store 6th Transposed Matrix Row
+  sqv v2[e0],$50(r0) // Store 6th Transposed Matrix Row
 
   vmov v2[e0],v14[e6] // Load Tranposed Matrix 7th Row
   vmov v2[e1],v15[e6]
@@ -673,7 +673,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   vmov v2[e5],v19[e6]
   vmov v2[e6],v20[e6]
   vmov v2[e7],v21[e6] // V2 = Tranposed Matrix 7th Row
-  sqv v2[e0],6(r0) // Store 7th Transposed Matrix Row
+  sqv v2[e0],$60(r0) // Store 7th Transposed Matrix Row
 
   vmov v2[e0],v14[e7] // Load Tranposed Matrix 8th Row
   vmov v2[e1],v15[e7]
@@ -683,7 +683,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   vmov v2[e5],v19[e7]
   vmov v2[e6],v20[e7]
   vmov v2[e7],v21[e7] // V2 = Tranposed Matrix 8th Row
-  sqv v2[e0],7(r0) // Store 8th Transposed Matrix Row
+  sqv v2[e0],$70(r0) // Store 8th Transposed Matrix Row
 
   break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
 align(8) // Align 64-Bit
