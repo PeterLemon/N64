@@ -49,16 +49,16 @@ base $0000 // Set Base Of RSP Code Object To Zero
 
 RSPStart:
 // Load Point X,Y,Z
-  lqv v0[e0],PointX>>4(r0) // V0 = Point X ($000)
-  lqv v1[e0],PointY>>4(r0) // V1 = Point Y ($010)
-  lqv v2[e0],PointZ>>4(r0) // V2 = Point Z ($020)
+  lqv v0[e0],PointX(r0) // V0 = Point X ($000)
+  lqv v1[e0],PointY(r0) // V1 = Point Y ($010)
+  lqv v2[e0],PointZ(r0) // V2 = Point Z ($020)
 
 // Load Camera
-  lqv v3[e0],HALF_SCREEN_XY_FOV>>4(r0) // V3 = Screen X / 2, Screen Y / 2, FOV ($030)
+  lqv v3[e0],HALF_SCREEN_XY_FOV(r0) // V3 = Screen X / 2, Screen Y / 2, FOV ($030)
 
 // Load Matrix
-  lqv v4[e0],MatrixRow01XYZT>>4(r0) // V4 = Row 0,1 XYZT ($040)
-  lqv v5[e0],MatrixRow23XYZT>>4(r0) // V5 = Row 2,3 XYZT ($050)
+  lqv v4[e0],MatrixRow01XYZT(r0) // V4 = Row 0,1 XYZT ($040)
+  lqv v5[e0],MatrixRow23XYZT(r0) // V5 = Row 2,3 XYZT ($050)
 
 // Calculate X,Y,Z 3D
   vmudh v6,v0,v4[e8] // X = (Matrix[0] * X) + (Matrix[1] * Y) + (Matrix[2] * Z) + Matrix[3]
@@ -79,7 +79,7 @@ RSPStart:
 // Store Rectangle Z Coords To DMEM
   vsub v9,v8,v8[e0] // V9 = Negative Z
   vsub v9,v8[e0]
-  sqv v9[e0],PointZ>>4(r0) // DMEM $020 = Point Z
+  sqv v9[e0],PointZ(r0) // DMEM $020 = Point Z
 
 // Calculate X,Y 2D
   vmudh v8,v3[e10] // V8 = Z / FOV
@@ -91,8 +91,8 @@ RSPStart:
   vadd v7,v3[e9]
 
 // Store Rectangle X,Y Coords To DMEM
-  sqv v6[e0],PointX>>4(r0) // DMEM $000 = Point X
-  sqv v7[e0],PointY>>4(r0) // DMEM $010 = Point Y
+  sqv v6[e0],PointX(r0) // DMEM $000 = Point X
+  sqv v7[e0],PointY(r0) // DMEM $010 = Point Y
 
 
   lli a0,PointX // A0 = X Vector DMEM Offset
