@@ -967,23 +967,23 @@ align(8) // Align 64-Bit
 RSPLTVCode:
 base $0000 // Set Base Of RSP Code Object To Zero
   // Store Transposed Matrix From Row Ordered Vector Register Block (V0 = Block Base Register)
-  ltv v0[e0],0(r0)  // Load 1st Element Diagonals To Vector Register Block
-  ltv v0[e14],1(r0) // Load 8th Element Diagonals To Vector Register Block
-  ltv v0[e12],2(r0) // Load 7th Element Diagonals To Vector Register Block
-  ltv v0[e10],3(r0) // Load 6th Element Diagonals To Vector Register Block
-  ltv v0[e8],4(r0)  // Load 5th Element Diagonals To Vector Register Block
-  ltv v0[e6],5(r0)  // Load 4th Element Diagonals To Vector Register Block
-  ltv v0[e4],6(r0)  // Load 3rd Element Diagonals To Vector Register Block
-  ltv v0[e2],7(r0)  // Load 2nd Element Diagonals To Vector Register Block
+  ltv v0[e0],$00(r0)  // Load 1st Element Diagonals To Vector Register Block
+  ltv v0[e14],$10(r0) // Load 8th Element Diagonals To Vector Register Block
+  ltv v0[e12],$20(r0) // Load 7th Element Diagonals To Vector Register Block
+  ltv v0[e10],$30(r0) // Load 6th Element Diagonals To Vector Register Block
+  ltv v0[e8],$40(r0)  // Load 5th Element Diagonals To Vector Register Block
+  ltv v0[e6],$50(r0)  // Load 4th Element Diagonals To Vector Register Block
+  ltv v0[e4],$60(r0)  // Load 3rd Element Diagonals To Vector Register Block
+  ltv v0[e2],$70(r0)  // Load 2nd Element Diagonals To Vector Register Block
 
-  swv v0[e0],0(r0)  // Store 1st Element Diagonals From Vector Register Block
-  swv v1[e2],1(r0)  // Store 2nd Element Diagonals From Vector Register Block
-  swv v2[e4],2(r0)  // Store 3rd Element Diagonals From Vector Register Block
-  swv v3[e6],3(r0)  // Store 4th Element Diagonals From Vector Register Block
-  swv v4[e8],4(r0)  // Store 5th Element Diagonals From Vector Register Block
-  swv v5[e10],5(r0) // Store 6th Element Diagonals From Vector Register Block
-  swv v6[e12],6(r0) // Store 7th Element Diagonals From Vector Register Block
-  swv v7[e14],7(r0) // Store 8th Element Diagonals From Vector Register Block 
+  swv v0[e0],$00(r0)  // Store 1st Element Diagonals From Vector Register Block
+  swv v1[e2],$10(r0)  // Store 2nd Element Diagonals From Vector Register Block
+  swv v2[e4],$20(r0)  // Store 3rd Element Diagonals From Vector Register Block
+  swv v3[e6],$30(r0)  // Store 4th Element Diagonals From Vector Register Block
+  swv v4[e8],$40(r0)  // Store 5th Element Diagonals From Vector Register Block
+  swv v5[e10],$50(r0) // Store 6th Element Diagonals From Vector Register Block
+  swv v6[e12],$60(r0) // Store 7th Element Diagonals From Vector Register Block
+  swv v7[e14],$70(r0) // Store 8th Element Diagonals From Vector Register Block 
 
   break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
 align(8) // Align 64-Bit
@@ -995,40 +995,40 @@ align(8) // Align 64-Bit
 RSPSTVCode:
 base $0000 // Set Base Of RSP Code Object To Zero
   // Store Transposed Matrix From Row Ordered Vector Register Block (V0 = Block Base Register)
-  lqv v0[e0],0(r0) // Load 1st Row To Transposed Matrix Vector Register Block
-  lqv v1[e0],1(r0) // Load 2nd Row To Transposed Matrix Vector Register Block
-  lqv v2[e0],2(r0) // Load 3rd Row To Transposed Matrix Vector Register Block
-  lqv v3[e0],3(r0) // Load 4th Row To Transposed Matrix Vector Register Block
-  lqv v4[e0],4(r0) // Load 5th Row To Transposed Matrix Vector Register Block
-  lqv v5[e0],5(r0) // Load 6th Row To Transposed Matrix Vector Register Block
-  lqv v6[e0],6(r0) // Load 7th Row To Transposed Matrix Vector Register Block
-  lqv v7[e0],7(r0) // Load 8th Row To Transposed Matrix Vector Register Block
+  lqv v0[e0],$00(r0) // Load 1st Row To Transposed Matrix Vector Register Block
+  lqv v1[e0],$10(r0) // Load 2nd Row To Transposed Matrix Vector Register Block
+  lqv v2[e0],$20(r0) // Load 3rd Row To Transposed Matrix Vector Register Block
+  lqv v3[e0],$30(r0) // Load 4th Row To Transposed Matrix Vector Register Block
+  lqv v4[e0],$40(r0) // Load 5th Row To Transposed Matrix Vector Register Block
+  lqv v5[e0],$50(r0) // Load 6th Row To Transposed Matrix Vector Register Block
+  lqv v6[e0],$60(r0) // Load 7th Row To Transposed Matrix Vector Register Block
+  lqv v7[e0],$70(r0) // Load 8th Row To Transposed Matrix Vector Register Block
 
-  stv v0[e0],0(r0)  // Store 1st Element Diagonals From Vector Register Block
-  stv v0[e2],1(r0)  // Store 2nd Element Diagonals From Vector Register Block
-  stv v0[e4],2(r0)  // Store 3rd Element Diagonals From Vector Register Block
-  stv v0[e6],3(r0)  // Store 4th Element Diagonals From Vector Register Block
-  stv v0[e8],4(r0)  // Store 5th Element Diagonals From Vector Register Block
-  stv v0[e10],5(r0) // Store 6th Element Diagonals From Vector Register Block
-  stv v0[e12],6(r0) // Store 7th Element Diagonals From Vector Register Block
-  stv v0[e14],7(r0) // Store 8th Element Diagonals From Vector Register Block 
+  stv v0[e0],$00(r0)  // Store 1st Element Diagonals From Vector Register Block
+  stv v0[e2],$10(r0)  // Store 2nd Element Diagonals From Vector Register Block
+  stv v0[e4],$20(r0)  // Store 3rd Element Diagonals From Vector Register Block
+  stv v0[e6],$30(r0)  // Store 4th Element Diagonals From Vector Register Block
+  stv v0[e8],$40(r0)  // Store 5th Element Diagonals From Vector Register Block
+  stv v0[e10],$50(r0) // Store 6th Element Diagonals From Vector Register Block
+  stv v0[e12],$60(r0) // Store 7th Element Diagonals From Vector Register Block
+  stv v0[e14],$70(r0) // Store 8th Element Diagonals From Vector Register Block 
 
-  ltv v0[e14],1(r0) // Load 8th Element Diagonals To Vector Register Block
-  ltv v0[e12],2(r0) // Load 7th Element Diagonals To Vector Register Block
-  ltv v0[e10],3(r0) // Load 6th Element Diagonals To Vector Register Block
-  ltv v0[e8],4(r0)  // Load 5th Element Diagonals To Vector Register Block
-  ltv v0[e6],5(r0)  // Load 4th Element Diagonals To Vector Register Block
-  ltv v0[e4],6(r0)  // Load 3rd Element Diagonals To Vector Register Block
-  ltv v0[e2],7(r0)  // Load 2nd Element Diagonals To Vector Register Block
+  ltv v0[e14],$10(r0) // Load 8th Element Diagonals To Vector Register Block
+  ltv v0[e12],$20(r0) // Load 7th Element Diagonals To Vector Register Block
+  ltv v0[e10],$30(r0) // Load 6th Element Diagonals To Vector Register Block
+  ltv v0[e8],$40(r0)  // Load 5th Element Diagonals To Vector Register Block
+  ltv v0[e6],$50(r0)  // Load 4th Element Diagonals To Vector Register Block
+  ltv v0[e4],$60(r0)  // Load 3rd Element Diagonals To Vector Register Block
+  ltv v0[e2],$70(r0)  // Load 2nd Element Diagonals To Vector Register Block
 
-  sqv v0[e0],0(r0) // Store 1st Row From Transposed Matrix Vector Register Block
-  sqv v1[e0],1(r0) // Store 2nd Row From Transposed Matrix Vector Register Block
-  sqv v2[e0],2(r0) // Store 3rd Row From Transposed Matrix Vector Register Block
-  sqv v3[e0],3(r0) // Store 4th Row From Transposed Matrix Vector Register Block
-  sqv v4[e0],4(r0) // Store 5th Row From Transposed Matrix Vector Register Block
-  sqv v5[e0],5(r0) // Store 6th Row From Transposed Matrix Vector Register Block
-  sqv v6[e0],6(r0) // Store 7th Row From Transposed Matrix Vector Register Block
-  sqv v7[e0],7(r0) // Store 8th Row From Transposed Matrix Vector Register Block
+  sqv v0[e0],$00(r0) // Store 1st Row From Transposed Matrix Vector Register Block
+  sqv v1[e0],$10(r0) // Store 2nd Row From Transposed Matrix Vector Register Block
+  sqv v2[e0],$20(r0) // Store 3rd Row From Transposed Matrix Vector Register Block
+  sqv v3[e0],$30(r0) // Store 4th Row From Transposed Matrix Vector Register Block
+  sqv v4[e0],$40(r0) // Store 5th Row From Transposed Matrix Vector Register Block
+  sqv v5[e0],$50(r0) // Store 6th Row From Transposed Matrix Vector Register Block
+  sqv v6[e0],$60(r0) // Store 7th Row From Transposed Matrix Vector Register Block
+  sqv v7[e0],$70(r0) // Store 8th Row From Transposed Matrix Vector Register Block
 
   break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
 align(8) // Align 64-Bit
