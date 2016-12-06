@@ -52,9 +52,9 @@ RSPStart:
 LoopVRAM:  
   move a0,r0 // A0 = 0
 LoopScanline:
-  lqv v0[e0],$01(a0) // V0 = 128-Bit DMEM $010(A0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
+  lqv v0[e0],$10(a0) // V0 = 128-Bit DMEM $010(A0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
   vsubc v0,v1[e0] // V0 = V0 - V1[0], Vector Subtract Short Elements With Carry: VSUBC VD,VS,VT[ELEMENT]
-  sqv v0[e0],$01(a0) // 128-Bit DMEM $010(A0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
+  sqv v0[e0],$10(a0) // 128-Bit DMEM $010(A0) = V0, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   bne a0,t0,LoopScanline
   addi a0,16 // A0 += 16 (Delay Slot)
 
