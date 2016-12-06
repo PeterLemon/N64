@@ -49,20 +49,20 @@ base $0000 // Set Base Of RSP Code Object To Zero
 
 RSPStart:
 // Load Point X,Y,Z
-  lqv v0[e0],PointXI>>4(r0) // V0 = Point X Integer ($000)
-  lqv v1[e0],PointXF>>4(r0) // V1 = Point X Fraction ($010)
-  lqv v2[e0],PointYI>>4(r0) // V2 = Point Y Integer ($020)
-  lqv v3[e0],PointYF>>4(r0) // V3 = Point Y Fraction ($030)
-  lqv v4[e0],PointZI>>4(r0) // V4 = Point Z Integer ($040)
-  lqv v5[e0],PointZF>>4(r0) // V5 = Point Z Fraction ($050)
+  lqv v0[e0],PointXI(r0) // V0 = Point X Integer ($000)
+  lqv v1[e0],PointXF(r0) // V1 = Point X Fraction ($010)
+  lqv v2[e0],PointYI(r0) // V2 = Point Y Integer ($020)
+  lqv v3[e0],PointYF(r0) // V3 = Point Y Fraction ($030)
+  lqv v4[e0],PointZI(r0) // V4 = Point Z Integer ($040)
+  lqv v5[e0],PointZF(r0) // V5 = Point Z Fraction ($050)
 
 // Load Camera
-  lqv v6[e0],HALF_SCREEN_XY_FOV>>4(r0) // V6 = Screen X / 2 Integer, Screen Y / 2 Integer, FOV Integer ($060)
+  lqv v6[e0],HALF_SCREEN_XY_FOV(r0) // V6 = Screen X / 2 Integer, Screen Y / 2 Integer, FOV Integer ($060)
 
 // Calculate X,Y,Z 3D
-  lqv v7[e0],MatrixRow0XYZTIF>>4(r0) // V7 = Row 0 XYZT Integer/Fraction ($070)
-  lqv v8[e0],MatrixRow1XYZTIF>>4(r0) // V8 = Row 1 XYZT Integer/Fraction ($080)
-  lqv v9[e0],MatrixRow2XYZTIF>>4(r0) // V9 = Row 2 XYZT Integer/Fraction ($090)
+  lqv v7[e0],MatrixRow0XYZTIF(r0) // V7 = Row 0 XYZT Integer/Fraction ($070)
+  lqv v8[e0],MatrixRow1XYZTIF(r0) // V8 = Row 1 XYZT Integer/Fraction ($080)
+  lqv v9[e0],MatrixRow2XYZTIF(r0) // V9 = Row 2 XYZT Integer/Fraction ($090)
 
   vmudl v10,v1,v7[e9] // X = (Matrix[0] * X) + (Matrix[1] * Y) + (Matrix[2] * Z) + Matrix[3]
   vmadm v10,v0,v7[e9]
@@ -118,7 +118,7 @@ RSPStart:
 // Store Rectangle Z Coords To DMEM
   vsub v13,v12,v12[e0] // V13 = Negative Z
   vsub v13,v12[e0]
-  sqv v13[e0],$02(r0) // DMEM $020 = Point Z
+  sqv v13[e0],$20(r0) // DMEM $020 = Point Z
 
 // Calculate X,Y 2D
   vmudh v12,v6[e10] // V12 = Z / FOV
@@ -131,7 +131,7 @@ RSPStart:
 
 // Store Rectangle X,Y Coords To DMEM
   sqv v10[e0],$00(r0) // DMEM $000 = Point X
-  sqv v11[e0],$01(r0) // DMEM $010 = Point Y
+  sqv v11[e0],$10(r0) // DMEM $010 = Point Y
 
 
   lli a0,PointXI // A0 = X Vector DMEM Offset
