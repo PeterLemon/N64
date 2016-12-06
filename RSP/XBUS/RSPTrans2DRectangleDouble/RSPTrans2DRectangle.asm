@@ -49,13 +49,13 @@ base $0000 // Set Base Of RSP Code Object To Zero
 
 RSPStart:
 // Load Point X,Y
-  lqv v0[e0],PointXI>>4(r0) // V0 = Point X Integer ($000)
-  lqv v1[e0],PointXF>>4(r0) // V1 = Point X Fraction ($010)
-  lqv v2[e0],PointYI>>4(r0) // V2 = Point Y Integer ($020)
-  lqv v3[e0],PointYF>>4(r0) // V3 = Point Y Fraction ($030)
+  lqv v0[e0],PointXI(r0) // V0 = Point X Integer ($000)
+  lqv v1[e0],PointXF(r0) // V1 = Point X Fraction ($010)
+  lqv v2[e0],PointYI(r0) // V2 = Point Y Integer ($020)
+  lqv v3[e0],PointYF(r0) // V3 = Point Y Fraction ($030)
 
 // Calculate X,Y 2D
-  lqv v4[e0],HALF_SCREEN_XYIF>>4(r0) // V4 = Screen X / 2 Integer, Screen X / 2 Fraction, Screen Y / 2 Integer, Screen Y / 2 Fraction ($040)
+  lqv v4[e0],HALF_SCREEN_XYIF(r0) // V4 = Screen X / 2 Integer, Screen X / 2 Fraction, Screen Y / 2 Integer, Screen Y / 2 Fraction ($040)
  
   vaddc v1,v4[e9] // X = X + (ScreenX / 2)
   vadd v0,v4[e8]
@@ -63,8 +63,8 @@ RSPStart:
   vadd v2,v4[e10]
 
 // Store Rectangle Coords To DMEM
-  sqv v0[e0],PointXI>>4(r0) // DMEM $000 = Point XI
-  sqv v2[e0],PointYI>>4(r0) // DMEM $020 = Point YI
+  sqv v0[e0],PointXI(r0) // DMEM $000 = Point XI
+  sqv v2[e0],PointYI(r0) // DMEM $020 = Point YI
 
 
   lli a0,PointXI // A0 = X Vector DMEM Offset
