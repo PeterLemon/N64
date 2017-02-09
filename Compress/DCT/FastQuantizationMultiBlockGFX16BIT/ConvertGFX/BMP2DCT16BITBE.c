@@ -180,7 +180,7 @@ static void convert_dct(FILE *source_file, FILE *target_file, long ofs, long ofs
 
 }
 
-// Create GRB From Source Filename & Target Filename (Return 0 On Success)
+// Create DCT From Source Filename & Target Filename (Return 0 On Success)
 static int create_binary(const char *source_filename, const char *target_filename) {
   FILE *source_file = NULL;
   long source_size;
