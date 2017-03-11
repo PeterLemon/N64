@@ -426,7 +426,7 @@ align(256)
 
 align(256)
   // $17 OR    A, [dp]+Y        Logical OR Value From Indirect Absolute Address In Direct Page Offset Added With Value Y With A
-  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG]
+  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG]
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
@@ -434,9 +434,9 @@ align(256)
   lbu t0,0(a2)
   lbu t1,1(a2)
   srl t1,8
-  or t0,t1                      // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)]
-  addu t0,s2                    // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG
-  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate) | (P_FLAG << 3) + Y_REG]
+  or t0,t1                      // T0 = MEM_MAP[Immediate | (P_FLAG << 3)]
+  addu t0,s2                    // T0 = MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG
+  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate | (P_FLAG << 3) + Y_REG]
   lbu t0,0(a2)                  // T0 = DPYI
   or s0,t0                      // A_REG |= DPYI
   andi t0,s0,$80                // Test Negative MSB
@@ -1047,7 +1047,7 @@ align(256)
 
 align(256)
   // $37 AND   A, [dp]+Y        Logical AND Value From Indirect Absolute Address In Direct Page Offset Added With Value Y With A
-  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG]
+  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG]
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
@@ -1055,9 +1055,9 @@ align(256)
   lbu t0,0(a2)
   lbu t1,1(a2)
   srl t1,8
-  or t0,t1                      // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)]
-  addu t0,s2                    // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG
-  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate) | (P_FLAG << 3) + Y_REG]
+  or t0,t1                      // T0 = MEM_MAP[Immediate | (P_FLAG << 3)]
+  addu t0,s2                    // T0 = MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG
+  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate | (P_FLAG << 3) + Y_REG]
   lbu t0,0(a2)                  // T0 = DPYI
   and s0,t0                     // A_REG &= DPYI
   andi t0,s0,$80                // Test Negative MSB
@@ -1682,7 +1682,7 @@ align(256)
 
 align(256)
   // $57 EOR   A, [dp]+Y        Exclusive OR Value From Indirect Absolute Address In Direct Page Offset Added With Value Y With A
-  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG]
+  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG]
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
@@ -1690,9 +1690,9 @@ align(256)
   lbu t0,0(a2)
   lbu t1,1(a2)
   srl t1,8
-  or t0,t1                      // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)]
-  addu t0,s2                    // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG
-  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate) | (P_FLAG << 3) + Y_REG]
+  or t0,t1                      // T0 = MEM_MAP[Immediate | (P_FLAG << 3)]
+  addu t0,s2                    // T0 = MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG
+  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate | (P_FLAG << 3) + Y_REG]
   lbu t0,0(a2)                  // T0 = DPYI
   xor s0,t0                     // A_REG ^= DPYI
   andi t0,s0,$80                // Test Negative MSB
@@ -2437,7 +2437,7 @@ align(256)
 
 align(256)
   // $77 CMP   A, [dp]+Y        CoMPare Value From Indirect Absolute Address In Direct Page Offset Added With Value Y With A
-  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG]
+  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG]
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
@@ -2445,9 +2445,9 @@ align(256)
   lbu t0,0(a2)
   lbu t1,1(a2)
   srl t1,8
-  or t0,t1                      // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)]
-  addu t0,s2                    // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG
-  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate) | (P_FLAG << 3) + Y_REG]
+  or t0,t1                      // T0 = MEM_MAP[Immediate | (P_FLAG << 3)]
+  addu t0,s2                    // T0 = MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG
+  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate | (P_FLAG << 3) + Y_REG]
   lbu t0,0(a2)                  // T0 = DPYI
   subu t1,s0,t0                 // T1 = A_REG - DPYI
   andi t1,$FF
@@ -3316,7 +3316,7 @@ align(256)
 
 align(256)
   // $97 ADC   A, [dp]+Y        ADd Value From Indirect Absolute Address In Direct Page Offset Added With Value Y + Carry Flag To A
-  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG]
+  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG]
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
@@ -3324,9 +3324,9 @@ align(256)
   lbu t0,0(a2)
   lbu t1,1(a2)
   srl t1,8
-  or t0,t1                      // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)]
-  addu t0,s2                    // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG
-  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate) | (P_FLAG << 3) + Y_REG]
+  or t0,t1                      // T0 = MEM_MAP[Immediate | (P_FLAG << 3)]
+  addu t0,s2                    // T0 = MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG
+  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate | (P_FLAG << 3) + Y_REG]
   lbu t0,0(a2)                  // T0 = DPYI
   andi t1,s5,C_FLAG             // T1 = C_FLAG
   andi t2,s0,$80                // T2 = A_REG & 0x80
@@ -4232,7 +4232,7 @@ align(256)
 
 align(256)
   // $B7 SBC   A, [dp]+Y        SuBtract Value From Indirect Absolute Address In Direct Page Offset Added With Value Y + Carry Flag From A
-  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG]
+  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG]
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
@@ -4240,9 +4240,9 @@ align(256)
   lbu t0,0(a2)
   lbu t1,1(a2)
   srl t1,8
-  or t0,t1                      // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)]
-  addu t0,s2                    // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG
-  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate) | (P_FLAG << 3) + Y_REG]
+  or t0,t1                      // T0 = MEM_MAP[Immediate | (P_FLAG << 3)]
+  addu t0,s2                    // T0 = MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG
+  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate | (P_FLAG << 3) + Y_REG]
   lbu t0,0(a2)                  // T0 = DPYI
   andi t1,s5,C_FLAG             // T1 = C_FLAG
   andi t2,s0,$80                // T2 = A_REG & 0x80
@@ -4838,7 +4838,7 @@ align(256)
 
 align(256)
   // $D7 MOV   [dp]+Y, A        MOVe Value A Into Indirect Absolute Address In Direct Page Offset Added With Value Y
-  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG]
+  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG]
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
@@ -4846,9 +4846,9 @@ align(256)
   lbu t0,0(a2)
   lbu t1,1(a2)
   srl t1,8
-  or t0,t1                      // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)]
-  addu t0,s2                    // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG
-  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate) | (P_FLAG << 3) + Y_REG]
+  or t0,t1                      // T0 = MEM_MAP[Immediate | (P_FLAG << 3)]
+  addu t0,s2                    // T0 = MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG
+  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate | (P_FLAG << 3) + Y_REG]
   sb s0,0(a2)                   // DPYI = A_REG
   addiu s3,1                    // PC_REG++
   jr ra
@@ -5369,7 +5369,7 @@ align(256)
 
 align(256)
   // $F7 MOV   A, [dp]+Y        MOVe Value From Indirect Absolute Address In Direct Page Offset Added With Value Y Into A
-  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG]
+  andi t0,s5,P_FLAG             // DPYI = MEM_MAP[MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG]
   sll t0,3                      // T0 = P_FLAG << 3
   lbu t1,1(a2)                  // T1 = Immediate
   or t0,t1                      // T0 = Immediate | (P_FLAG << 3)
@@ -5377,9 +5377,9 @@ align(256)
   lbu t0,0(a2)
   lbu t1,1(a2)
   srl t1,8
-  or t0,t1                      // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)]
-  addu t0,s2                    // T0 = MEM_MAP[Immediate) | (P_FLAG << 3)] + Y_REG
-  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate) | (P_FLAG << 3) + Y_REG]
+  or t0,t1                      // T0 = MEM_MAP[Immediate | (P_FLAG << 3)]
+  addu t0,s2                    // T0 = MEM_MAP[Immediate | (P_FLAG << 3)] + Y_REG
+  addu a2,a0,t0                 // A2 = MEM_MAP + MEM_MAP[Immediate | (P_FLAG << 3) + Y_REG]
   lbu s0,0(a2)                  // A_REG = DPYI
   andi t0,s0,$80                // Test Negative MSB
   andi s5,~N_FLAG               // PSW_REG: N Flag Reset
