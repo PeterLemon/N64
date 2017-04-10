@@ -72,7 +72,27 @@ DelayTILES:
   bnez t0,DelayTILES
   subi t0,1
 
-  DPC(RDPBuffer, RDPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
+// Convert SNES Tile Map To RDP List
+la a0,SNESMAP // A0 = SNES Tile Map Address
+la a1,$A0000000|((RDPSNESTILE+12)&$3FFFFFF) // A1 = N64 RDP SNES Tile Map Address
+la a2,(N64TILE&$3FFFFFF) // A2 = N64 Tile Address
+lli t0,895 // T0 = Number Of Tiles To Convert
+MAPLoop:
+  lbu t1,0(a0) // T1 = SNES Tile Map # Lo Byte
+  lbu t2,1(a0) // T2 = SNES Tile Map # Hi Byte
+  addiu a0,2   // A0 += 2
+  sll t2,8     // T2 <<= 8
+  or t1,t2     // T1 != T2 
+  sll t1,5     // T1 *= 32
+  addu t1,a2   // T1 += N64 Tile Address
+  sw t1,0(a1)  // Store SNES Tile Map # To N64 RDP SNES Tile Map
+  addiu a1,40  // A1 += 40
+  bnez t0,MAPLoop // IF (Number Of Tiles To Convert != 0) Map Loop
+  subiu t0,1 // Decrement Number Of Tiles To Convert (Delay Slot)
+
+WaitScanline($200) // Wait For Scanline To Reach Vertical Blank
+
+DPC(RDPBuffer, RDPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
 
 Loop:
   j Loop
@@ -91,6 +111,9 @@ insert SNESPAL, "BG.pal"
 
 align(8) // Align 64-Bit
 insert SNESTILE, "BG.pic"
+
+align(8) // Align 64-Bit
+insert SNESMAP, "BG.map" // SNES 32x32 Background Tile Map (2048 Bytes)
 
 align(8) // Align 64-Bit
 RSPPALData:
@@ -312,6 +335,7 @@ RSPTILEStart:
   la a2,SNESTILE // A2 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
 
 LoopTileBlocks:
+  // Uses DMA To Copy 4096 Bytes To DMEM, For 4BPPSNES->4BPPN64
   lli t0,4095 // T0 = Length Of DMA Transfer In Bytes - 1
   lli t1,127 // T1 = Tile Counter
 
