@@ -190,15 +190,15 @@ ClearScreen:
   lh t0,0(a0)     // T0 = Half Data
   la a0,IMEMLastInstructionDelaySlotCHECK // A0 = Half Check Data Offset
   lh t1,0(a0)     // T1 = Half Check Data
-  bne t0,t1,LWVFAILA // Compare Result Equality With Check Data
+  bne t0,t1,IMEMLastInstructionDelaySlotFAIL // Compare Result Equality With Check Data
   nop // Delay Slot
 
   PrintString($A0100000,256,32,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
-  j LWVENDA
+  j IMEMLastInstructionDelaySlotEND
   nop // Delay Slot
-  LWVFAILA:
+  IMEMLastInstructionDelaySlotFAIL:
   PrintString($A0100000,256,32,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
-  LWVENDA:
+  IMEMLastInstructionDelaySlotEND:
 
 
   PrintString($A0100000,0,40,FontBlack,PAGEBREAK,39) // Print Text String To VRAM Using Font At X,Y Position
@@ -239,15 +239,15 @@ ClearScreen:
   lh t0,0(a0)     // T0 = Half Data
   la a0,IMEMInstructionWrapCHECK // A0 = Half Check Data Offset
   lh t1,0(a0)     // T1 = Half Check Data
-  bne t0,t1,SWVFAILA // Compare Result Equality With Check Data
+  bne t0,t1,IMEMInstructionWrapFAIL // Compare Result Equality With Check Data
   nop // Delay Slot
 
   PrintString($A0100000,256,56,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
-  j SWVENDA
+  j IMEMInstructionWrapEND
   nop // Delay Slot
-  SWVFAILA:
+  IMEMInstructionWrapFAIL:
   PrintString($A0100000,256,56,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
-  SWVENDA:
+  IMEMInstructionWrapEND:
 
 
   PrintString($A0100000,0,64,FontBlack,PAGEBREAK,39) // Print Text String To VRAM Using Font At X,Y Position
