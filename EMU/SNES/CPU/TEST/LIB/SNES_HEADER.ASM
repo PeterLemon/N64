@@ -3,7 +3,7 @@
 //=============
 seek($FFC0)
 // PROGRAM TITLE (21 Byte ASCII String, Use Spaces For Unused Bytes)
-db "SNES EMU TEST ROM    "
+db "HELLO WORLD TEXT DEMO"
 // "123456789012345678901"
 
 // ROM MODE/SPEED (Bits 7-4 = Speed, Bits 3-0 = Map Mode)
@@ -89,5 +89,5 @@ dw $0000 // COP VECTOR   (COP Opcode)
 dw $0000 // BRK VECTOR   (Unused)
 dw $0000 // ABORT VECTOR (Unused)
 dw $0000 // NMI VECTOR   (V-Blank Interrupt)
-dw Start // RESET VECTOR (CPU is always in 6502 mode on RESET)
+dw $8000 // RESET VECTOR (CPU is always in 6502 mode on RESET)
 dw $0000 // IRQ/BRK VECTOR

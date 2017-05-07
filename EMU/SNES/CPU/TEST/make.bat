@@ -1,1 +1,1 @@
-bass Test.asm
+bass HelloWorld.asm
