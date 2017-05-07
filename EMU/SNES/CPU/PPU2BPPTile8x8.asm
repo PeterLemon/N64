@@ -1,9 +1,9 @@
-la a0,VRAM
-la a1,VRAM+$10000
+la a0,$80000000    // A0 = Cache Start
+la a1,$80002000-32 // A1 = Cache End
 LoopCache:
-   cache 1,0(a0)
-   bne a0,a1,LoopCache
-   addiu a0,4 // Delay Slot
+  cache $C|1,0(a0) // Data Cache: Create Dirty Exclusive
+  bne a0,a1,LoopCache
+  addiu a0,16 // Address += Data Line Size (Delay Slot)
 
 // Convert SNES Palette To N64 TLUT
   // Load RSP Code To IMEM
