@@ -40,10 +40,19 @@ Start:
   li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
   sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
 
-  lli t0,$800 // Wait For RSP To Compute
-DelayPAL:
-  bnez t0,DelayPAL
-  subi t0,1
+DelayPAL: // Wait For RSP To Compute
+  lwu t0,SP_STATUS(a0) // T0 = RSP Status
+  andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
+  beqz t0,DelayPAL // IF (RSP Halt Flag == 0) Delay PAL
+  nop // Delay Slot
+
+
+// Copy SNES Clear Color To RDP List
+la a0,N64TLUT // A0 = N64 TLUT Address
+la a1,RDPSNESCLEARCOL+4 // A1 = N64 RDP SNES Clear Color Address
+lhu t0,0(a0) // T0 = TLUT Color 0
+sh t0,0(a1) // Store Color 0 To RDP Fill Color Hi
+sh t0,2(a1) // Store Color 0 To RDP Fill Color Lo
 
 
 // Convert SNES Tiles To N64 Linear Texture
@@ -67,15 +76,17 @@ DelayPAL:
   li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
   sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
 
-  li t0,$22000 // Wait For RSP To Compute
-DelayTILES:
-  bnez t0,DelayTILES
-  subi t0,1
+DelayTILES: // Wait For RSP To Compute
+  lwu t0,SP_STATUS(a0) // T0 = RSP Status
+  andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
+  beqz t0,DelayTILES // IF (RSP Halt Flag == 0) Delay TILES
+  nop // Delay Slot
+
 
 // Convert SNES Tile Map To RDP List
 la a0,SNESMAP // A0 = SNES Tile Map Address
 la a1,$A0000000|((RDPSNESTILE+12)&$3FFFFFF) // A1 = N64 RDP SNES Tile Map Address
-la a2,(N64TILE&$3FFFFFF) // A2 = N64 Tile Address
+la a2,N64TILE // A2 = N64 Tile Address
 lli t0,895 // T0 = Number Of Tiles To Convert
 MAPLoop:
   lbu t1,0(a0) // T1 = SNES Tile Map # Lo Byte
@@ -582,6 +593,8 @@ arch n64.rdp
   Set_Scissor 32<<2,8<<2, 0,0, 288<<2,232<<2 // Set Scissor: XH 32.0,YH 8.0, Scissor Field Enable Off,Field Off, XL 288.0,YL 232.0
   Set_Other_Modes CYCLE_TYPE_FILL // Set Other Modes
   Set_Color_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,320-1, $00100000 // Set Color Image: FORMAT RGBA,SIZE 16B,WIDTH 320, DRAM ADDRESS $00100000
+
+RDPSNESCLEARCOL:
   Set_Fill_Color $00010001 // Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels
   Fill_Rectangle 319<<2,239<<2, 0<<2,0<<2 // Fill Rectangle: XL 319.0,YL 239.0, XH 0.0,YH 0.0
 

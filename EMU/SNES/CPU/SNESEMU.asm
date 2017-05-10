@@ -194,3 +194,4 @@ MEM_MAP: // Memory Map = $10000 Bytes
   //fill $10000 // Generates $10000 Bytes Containing $00
   fill $8000 // Generates $8000 Bytes Containing $00
 insert CART_ROM, "HelloWorld.sfc" // Copy 32768 Bytes of Cartridge into Memory Map
+//insert CART_ROM, "CPUADC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map

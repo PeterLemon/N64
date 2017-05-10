@@ -26,10 +26,19 @@ LoopCache:
   li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
   sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
 
-  lli t0,$800 // Wait For RSP To Compute
-DelayPAL:
-  bnez t0,DelayPAL
-  subi t0,1
+DelayPAL: // Wait For RSP To Compute
+  lwu t0,SP_STATUS(a0) // T0 = RSP Status
+  andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
+  beqz t0,DelayPAL // IF (RSP Halt Flag == 0) Delay PAL
+  nop // Delay Slot
+
+
+// Copy SNES Clear Color To RDP List
+la a0,N64TLUT // A0 = N64 TLUT Address
+la a1,RDPSNESCLEARCOL+4 // A1 = N64 RDP SNES Clear Color Address
+lhu t0,0(a0) // T0 = TLUT Color 0
+sh t0,0(a1) // Store Color 0 To RDP Fill Color Hi
+sh t0,2(a1) // Store Color 0 To RDP Fill Color Lo
 
 
 // Convert SNES Tiles To N64 Linear Texture
@@ -53,10 +62,11 @@ DelayPAL:
   li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
   sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
 
-  li t0,$22000 // Wait For RSP To Compute
-DelayTILES:
-  bnez t0,DelayTILES
-  subi t0,1
+DelayTILES: // Wait For RSP To Compute
+  lwu t0,SP_STATUS(a0) // T0 = RSP Status
+  andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
+  beqz t0,DelayTILES // IF (RSP Halt Flag == 0) Delay TILES
+  nop // Delay Slot
 
 
 // Convert SNES Tile Map To RDP List
@@ -80,4 +90,3 @@ MAPLoop:
 WaitScanline($200) // Wait For Scanline To Reach Vertical Blank
 
 DPC(RDPBuffer, RDPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
-
