@@ -504,9 +504,21 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $20 ???   ???               ?????
+  // $20 JSR   nnnn              Jump To Subroutine Absolute
+  addiu s3,1             // PC_REG++
+  addu a2,a0,s4          // STACK = PC_REG (16-Bit)
+  sb s3,-1(a2)
+  srl t0,s3,8
+  sb t0,0(a2)
+  subiu s4,2             // S_REG -= 2 (Decrement Stack)
+  andi s4,$FFFF
+  addu a2,a0,s3          // PC_REG: Set To 16-Bit Absolute Address
+  lbu t0,0(a2)
+  sll t0,8
+  lbu s3,-1(a2)
+  or s3,t0
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $21 ???   ???               ?????
@@ -1351,9 +1363,17 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $60 ???   ???               ?????
+  // $60 RTS                     Return From Subroutine
+  addiu s4,2             // S_REG += 2 (Increment Stack)
+  andi s4,$FFFF
+  addu a2,a0,s4          // PC_REG = STACK (16-Bit)
+  lbu t0,0(a2)
+  sll t0,8
+  lbu s3,-1(a2)
+  or s3,t0
+  addiu s3,1             // PC_REG++
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $61 ???   ???               ?????
@@ -1361,9 +1381,22 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $62 ???   ???               ?????
+  // $62 PER   nnnn              Push Effective PC Relative Indirect Address
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
+  addu a2,a0,s3          // Load Signed 16-Bit Relative Address
+  lb t0,-1(a2)
+  sll t0,8
+  lbu t1,-2(a2)
+  or t0,t1
+  add t0,s3,t0           // Load 16-Bit Effective PC Relative Indirect Address
+  addu a2,a0,s4          // STACK = Effective PC Relative Indirect Address (16-Bit)
+  sb t0,-1(a2)
+  srl t0,8
+  sb t0,0(a2)
+  subiu s4,2             // S_REG -= 2 (Decrement Stack)
+  andi s4,$FFFF
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $63 ???   ???               ?????
@@ -1432,9 +1465,34 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $69 ???   ???               ?????
+  // $69 ADC   #nn               Add With Carry Accumulator With Memory Immediate
+  addu a2,a0,s3          // A_REG: Add With Carry With 8-Bit Immediate
+  lbu t0,0(a2)
+  addu s0,t0
+  andi t0,s5,C_FLAG
+  addu s0,t0
+  andi t0,s0,$80         // Test Negative MSB
+  andi s5,~N_FLAG        // P_REG: N Flag Reset
+  or s5,t0               // P_REG: N Flag = Result MSB
+  andi t0,s0,$0180       // Test Signed Overflow
+  ori t1,r0,$0180
+  beq t0,t1,ADCIMMM1X1V  // IF (Signed Overflow) V Flag Set
+  ori s5,V_FLAG          // P_REG: V Flag Set (Delay Slot)
+  andi s5,~V_FLAG        // P_REG: V Flag Reset
+  ADCIMMM1X1V:
+  ori t1,r0,$0100        // Test Unsigned Overflow
+  beq t0,t1,ADCIMMM1X1C  // IF (Unsigned Overflow) C Flag Set
+  ori s5,C_FLAG          // P_REG: C Flag Set (Delay Slot)
+  andi s5,~C_FLAG        // P_REG: C Flag Reset
+  ADCIMMM1X1C:
+  andi s0,$FF
+  beqz s0,ADCIMMM1X1Z    // IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          // P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        // P_REG: Z Flag Reset
+  ADCIMMM1X1Z:
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
   // $6A ROR A                   Rotate Accumulator Right
@@ -1680,9 +1738,16 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $82 ???   ???               ?????
+  // $82 BRL   nnnn              Branch Always Long
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
+  addu a2,a0,s3          // Load Signed 16-Bit Relative Address
+  lb t0,-1(a2)
+  sll t0,8
+  lbu t1,-2(a2)
+  or t0,t1
+  add s3,t0              // PC_REG: Set To 16-Bit Relative Address
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
   // $83 ???   ???               ?????
@@ -2569,9 +2634,23 @@ align(256)
   addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
-  // $C6 ???   ???               ?????
+  // $C6 DEC   dp                Decrement Value In Direct Page Offset
+  lbu t0,1(a2)           // DP = MEM_MAP[Immediate + D_REG]
+  addu t0,s6             // T0 = Immediate + D_REG
+  addu a2,a0,t0          // A2 = MEM_MAP + Immediate + D_REG
+  lbu t0,0(a2)           // T0 = DP
+  subiu t0,1             // DP--
+  sb t0,0(a2)
+  andi t1,t0,$80         // Test Negative MSB
+  andi s5,~N_FLAG        // P_REG: N Flag Reset
+  or s5,t1               // P_REG: N Flag = Result MSB
+  beqz t0,DECDPM1X1      // IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          // P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        // P_REG: Z Flag Reset
+  DECDPM1X1:
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $C7 ???   ???               ?????
@@ -2686,9 +2765,28 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $CE ???   ???               ?????
+  // $CE DEC   nnnn              Decrement Memory Absolute
+  addu a2,a0,s3          // Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          // Decrement DB_REG:MEM (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  lbu t0,0(a2)
+  subiu t0,1
+  sb t0,0(a2)
+  andi t1,t0,$80         // Test Negative MSB
+  andi s5,~N_FLAG        // P_REG: N Flag Reset
+  or s5,t1               // P_REG: N Flag = Result MSB
+  beqz t0,DECABSM1X1     // IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          // P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        // P_REG: Z Flag Reset
+  DECABSM1X1:
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $CF ???   ???               ?????
@@ -2724,9 +2822,21 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $D4 ???   ???               ?????
+  // $D4 PEI   nn                Push Effective Indirect Address
+  addu a2,a0,s3          // Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          // Load D_REG+MEM (16-Bit)
+  addu a2,s6
+  lbu t0,0(a2)           // Load 16-Bit Effective Indirect Address
+  lbu t1,1(a2)
+  addu a2,a0,s4          // STACK = Effective Indirect Address (16-Bit)
+  sb t0,-1(a2)
+  sb t1,0(a2)
+  subiu s4,2             // S_REG -= 2 (Decrement Stack)
+  andi s4,$FFFF
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $D5 CMP   nn,X              Compare Accumulator With Memory Direct Page Indexed, X
@@ -2753,9 +2863,25 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $D6 ???   ???               ?????
+  // $D6 DEC   nn,X              Decrement Memory Direct Page Indexed, X
+  addu a2,a0,s3          // Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          // Decrement D_REG+MEM+X_REG (8-Bit)
+  addu a2,s6
+  addu a2,s1
+  lbu t0,0(a2)
+  subiu t0,1
+  sb t0,0(a2)
+  andi t1,t0,$80         // Test Negative MSB
+  andi s5,~N_FLAG        // P_REG: N Flag Reset
+  or s5,t1               // P_REG: N Flag = Result MSB
+  beqz t0,DECDPXM1X1     // IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          // P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        // P_REG: Z Flag Reset
+  DECDPXM1X1:
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $D7 ???   ???               ?????
@@ -2844,9 +2970,29 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $DE ???   ???               ?????
+  // $DE DEC   nnnn,X            Decrement Memory Absolute Indexed, X
+  addu a2,a0,s3          // Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          // Decrement DB_REG:MEM+X_REG (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s1
+  lbu t0,0(a2)
+  subiu t0,1
+  sb t0,0(a2)
+  andi t1,t0,$80         // Test Negative MSB
+  andi s5,~N_FLAG        // P_REG: N Flag Reset
+  or s5,t1               // P_REG: N Flag = Result MSB
+  beqz t0,DECABSXM1X1    // IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          // P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        // P_REG: Z Flag Reset
+  DECABSXM1X1:
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
   // $DF ???   ???               ?????
@@ -2921,9 +3067,24 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $E6 ???   ???               ?????
+  // $E6 INC   dp                Increment Value In Direct Page Offset
+  lbu t0,1(a2)           // DP = MEM_MAP[Immediate + D_REG]
+  addu t0,s6             // T0 = Immediate + D_REG
+  addu a2,a0,t0          // A2 = MEM_MAP + Immediate + D_REG
+  lbu t0,0(a2)           // T0 = DP
+  addiu t0,1             // DP++
+  sb t0,0(a2)
+  andi t0,$FF
+  andi t1,t0,$80         // Test Negative MSB
+  andi s5,~N_FLAG        // P_REG: N Flag Reset
+  or s5,t1               // P_REG: N Flag = Result MSB
+  beqz t0,INCDPM1X1      // IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          // P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        // P_REG: Z Flag Reset
+  INCDPM1X1:
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $E7 ???   ???               ?????
@@ -3004,9 +3165,29 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $EE ???   ???               ?????
+  // $EE INC   nnnn              Increment Memory Absolute
+  addu a2,a0,s3          // Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          // Increment DB_REG:MEM (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  lbu t0,0(a2)
+  addiu t0,1
+  sb t0,0(a2)
+  andi t0,$FF
+  andi t1,t0,$80         // Test Negative MSB
+  andi s5,~N_FLAG        // P_REG: N Flag Reset
+  or s5,t1               // P_REG: N Flag = Result MSB
+  beqz t0,INCABSM1X1     // IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          // P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        // P_REG: Z Flag Reset
+  INCABSM1X1:
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $EF ???   ???               ?????
@@ -3042,9 +3223,18 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $F4 ???   ???               ?????
+  // $F4 PEA   nnnn              Push Effective Absolute Address
+  addu a2,a0,s3          // Load 16-Bit Effective Absolute Address
+  lbu t0,0(a2)
+  lbu t1,1(a2)
+  addu a2,a0,s4          // STACK = Effective Absolute Address (16-Bit)
+  sb t0,-1(a2)
+  sb t1,0(a2)
+  subiu s4,2             // S_REG -= 2 (Decrement Stack)
+  andi s4,$FFFF
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $F5 ???   ???               ?????
@@ -3052,9 +3242,26 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $F6 ???   ???               ?????
+  // $F6 INC   nn,X              Increment Memory Direct Page Indexed, X
+  addu a2,a0,s3          // Load 8-Bit Address
+  lbu t0,0(a2)
+  addu a2,a0,t0          // Increment D_REG+MEM+X_REG (8-Bit)
+  addu a2,s6
+  addu a2,s1
+  lbu t0,0(a2)
+  addiu t0,1
+  sb t0,0(a2)
+  andi t0,$FF
+  andi t1,t0,$80         // Test Negative MSB
+  andi s5,~N_FLAG        // P_REG: N Flag Reset
+  or s5,t1               // P_REG: N Flag = Result MSB
+  beqz t0,INCDPXM1X1     // IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          // P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        // P_REG: Z Flag Reset
+  INCDPXM1X1:
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $F7 ???   ???               ?????
@@ -3118,9 +3325,30 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $FE ???   ???               ?????
+  // $FE INC   nnnn,X            Increment Memory Absolute Indexed, X
+  addu a2,a0,s3          // Load 16-Bit Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu t1,0(a2)
+  or t0,t1
+  addu a2,a0,t0          // Increment DB_REG:MEM+X_REG (8-Bit)
+  sll t0,s7,16
+  addu a2,t0
+  addu a2,s1
+  lbu t0,0(a2)
+  addiu t0,1
+  sb t0,0(a2)
+  andi t0,$FF
+  andi t1,t0,$80         // Test Negative MSB
+  andi s5,~N_FLAG        // P_REG: N Flag Reset
+  or s5,t1               // P_REG: N Flag = Result MSB
+  beqz t0,INCABSXM1X1    // IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG          // P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG        // P_REG: Z Flag Reset
+  INCABSXM1X1:
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
   // $FF ???   ???               ?????

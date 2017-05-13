@@ -1,1 +1,0 @@
-bass HelloWorld.asm

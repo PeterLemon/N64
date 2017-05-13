@@ -193,4 +193,13 @@ WRAM: // Work RAM (128KB)
 MEM_MAP: // Memory Map = $10000 Bytes
   //fill $10000 // Generates $10000 Bytes Containing $00
   fill $8000 // Generates $8000 Bytes Containing $00
-insert CART_ROM, "HelloWorld.sfc" // Copy 32768 Bytes of Cartridge into Memory Map
+//insert CART_ROM, "TEST/HelloWorld.sfc" // Copy 32768 Bytes of Cartridge into Memory Map
+//insert CART_ROM, "TEST/CPUADC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map
+//insert CART_ROM, "TEST/CPUASL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPUBRA.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPUDEC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+insert CART_ROM, "TEST/CPUINC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPULSR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPUPHL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPUROL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPUROR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
