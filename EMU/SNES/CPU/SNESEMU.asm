@@ -196,10 +196,14 @@ MEM_MAP: // Memory Map = $10000 Bytes
 //insert CART_ROM, "TEST/HelloWorld.sfc" // Copy 32768 Bytes of Cartridge into Memory Map
 //insert CART_ROM, "TEST/CPUADC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map
 //insert CART_ROM, "TEST/CPUASL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPUBIT.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/CPUBRA.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/CPUDEC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 insert CART_ROM, "TEST/CPUINC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPUJMP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/CPULSR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/CPUPHL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPUPSR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/CPUROL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/CPUROR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPUTRN.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **

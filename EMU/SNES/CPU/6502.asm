@@ -273,7 +273,7 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $15 ORA   nn,X              OR Accumulator With Memory Direct Page Indexed, X
+  // $15 ORA   dp,X              OR Accumulator With Memory Direct Page Indexed, X
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // A_REG: OR With D_REG+MEM+X_REG (8-Bit)
@@ -293,7 +293,7 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $16 ASL   nn,X              Shift Memory Left Direct Page Indexed, X
+  // $16 ASL   dp,X              Shift Memory Left Direct Page Indexed, X
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // Load D_REG+MEM+X_REG (8-Bit)
@@ -447,9 +447,9 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $22 ???   ???               ?????
+  // $22 UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
   // $23 ???   ???               ?????
@@ -457,7 +457,7 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $24 BIT   nn                Test Memory Bits Against Accumulator Direct Page
+  // $24 BIT   dp                Test Memory Bits Against Accumulator Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // Load D_REG+MEM (8-Bit)
@@ -476,7 +476,7 @@ align(256)
   addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
-  // $25 AND   nn                AND Accumulator With Memory Direct Page
+  // $25 AND   dp                AND Accumulator With Memory Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // A_REG: AND With D_REG+MEM (8-Bit)
@@ -495,7 +495,7 @@ align(256)
   addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
-  // $26 ROL   nn                Rotate Memory Left Direct Page
+  // $26 ROL   dp                Rotate Memory Left Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // Load D_REG+MEM (8-Bit)
@@ -688,7 +688,7 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $35 AND   nn,X              AND Accumulator With Memory Direct Page Indexed, X
+  // $35 AND   dp,X              AND Accumulator With Memory Direct Page Indexed, X
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // A_REG: AND With D_REG+MEM+X_REG (8-Bit)
@@ -708,7 +708,7 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $36 ROL   nn,X              Rotate Memory Left Direct Page Indexed, X
+  // $36 ROL   dp,X              Rotate Memory Left Direct Page Indexed, X
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // Load D_REG+MEM+X_REG (8-Bit)
@@ -868,7 +868,7 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $45 EOR   nn                Exclusive-OR Accumulator With Memory Direct Page
+  // $45 EOR   dp                Exclusive-OR Accumulator With Memory Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // A_REG: Exclusive-OR With D_REG+MEM (8-Bit)
@@ -887,7 +887,7 @@ align(256)
   addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
-  // $46 LSR   nn                Logical Shift Memory Right Direct Page
+  // $46 LSR   dp                Logical Shift Memory Right Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // Load D_REG+MEM (8-Bit)
@@ -1051,7 +1051,7 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $55 EOR   nn,X              Exclusive-OR Accumulator With Memory Direct Page Indexed, X
+  // $55 EOR   dp,X              Exclusive-OR Accumulator With Memory Direct Page Indexed, X
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // A_REG: Exclusive-OR With D_REG+MEM+X_REG (8-Bit)
@@ -1071,7 +1071,7 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $56 LSR   nn,X              Logical Shift Memory Right Direct Page Indexed, X
+  // $56 LSR   dp,X              Logical Shift Memory Right Direct Page Indexed, X
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // Load D_REG+MEM+X_REG (8-Bit)
@@ -1234,7 +1234,7 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $66 ROR   nn                Rotate Memory Right Direct Page
+  // $66 ROR   dp                Rotate Memory Right Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // Load D_REG+MEM (8-Bit)
@@ -1326,14 +1326,24 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $6B ???   ???               ?????
+  // $6B UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $6C ???   ???               ?????
+  // $6C JMP   (nnnn)            Jump Absolute Indirect
+  addu a2,a0,s3          // Load 16-Bit Absolute Indirect Address
+  lbu t0,0(a2)
+  lbu t1,1(a2)
+  sll t1,8
+  or t0,t1
+  addu a2,a0,t0          // PC_REG: Set To 16-Bit Absolute Indirect Address
+  lbu t0,1(a2)
+  sll t0,8
+  lbu s3,0(a2)
+  or s3,t0
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $6D ???   ???               ?????
@@ -1412,7 +1422,7 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $76 ROR   nn,X              Rotate Memory Right Direct Page Indexed, X
+  // $76 ROR   dp,X              Rotate Memory Right Direct Page Indexed, X
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // Load D_REG+MEM+X_REG (8-Bit)
@@ -1463,9 +1473,9 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $7C ???   ???               ?????
+  // $7C UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
   // $7D ???   ???               ?????
@@ -1527,7 +1537,7 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $84 STY   nn                Store Index Register Y To Memory Direct Page
+  // $84 STY   dp                Store Index Register Y To Memory Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // D_REG+MEM: Set To Index Register Y (8-Bit)
@@ -1538,7 +1548,7 @@ align(256)
   addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
-  // $85 STA   nn                Store Accumulator To Memory Direct Page
+  // $85 STA   dp                Store Accumulator To Memory Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // D_REG+MEM: Set To Accumulator (8-Bit)
@@ -1549,7 +1559,7 @@ align(256)
   addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
-  // $86 STX   nn                Store Index Register X To Memory Direct Page
+  // $86 STX   dp                Store Index Register X To Memory Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // D_REG+MEM: Set To Index Register X (8-Bit)
@@ -1692,7 +1702,7 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $94 STY   nn,X              Store Index Register Y To Memory Direct Page Indexed, X
+  // $94 STY   dp,X              Store Index Register Y To Memory Direct Page Indexed, X
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu t0,s1
@@ -1708,7 +1718,7 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $95 STA   nn,X              Store Accumulator To Memory Direct Page Indexed, X
+  // $95 STA   dp,X              Store Accumulator To Memory Direct Page Indexed, X
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu t0,s1
@@ -1724,7 +1734,7 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $96 STX   nn,Y              Store Index Register X To Memory Direct Page Indexed, Y
+  // $96 STX   dp,Y              Store Index Register X To Memory Direct Page Indexed, Y
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu t0,s2
@@ -1864,7 +1874,7 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $A4 LDY   nn                Load Index Register Y From Memory Direct Page
+  // $A4 LDY   dp                Load Index Register Y From Memory Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // Y_REG: Set To D_REG+MEM (8-Bit)
@@ -1882,7 +1892,7 @@ align(256)
   addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
-  // $A5 LDA   nn                Load Accumulator From Memory Direct Page
+  // $A5 LDA   dp                Load Accumulator From Memory Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // A_REG: Set To D_REG+MEM (8-Bit)
@@ -1900,7 +1910,7 @@ align(256)
   addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
-  // $A6 LDX   nn                Load Index Register X From Memory Direct Page
+  // $A6 LDX   dp                Load Index Register X From Memory Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // X_REG: Set To D_REG+MEM (8-Bit)
@@ -2068,7 +2078,7 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $B4 LDY   nn,X              Load Index Register Y From Memory Direct Page Indexed, X
+  // $B4 LDY   dp,X              Load Index Register Y From Memory Direct Page Indexed, X
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // Y_REG: Set To D_REG+MEM+X_REG (8-Bit)
@@ -2087,7 +2097,7 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $B5 LDA   nn,X              Load Accumulator From Memory Direct Page Indexed, X
+  // $B5 LDA   dp,X              Load Accumulator From Memory Direct Page Indexed, X
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // A_REG: Set To D_REG+MEM+X_REG (8-Bit)
@@ -2106,7 +2116,7 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $B6 LDX   nn,Y              Load Index Register X From Memory Direct Page Indexed, Y
+  // $B6 LDX   dp,Y              Load Index Register X From Memory Direct Page Indexed, Y
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // X_REG: Set To D_REG+MEM+Y_REG (8-Bit)
@@ -2293,7 +2303,7 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $C4 CPY   nn                Compare Index Register Y With Memory Direct Page
+  // $C4 CPY   dp                Compare Index Register Y With Memory Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // Y_REG: Compare With D_REG+MEM (8-Bit)
@@ -2316,7 +2326,7 @@ align(256)
   addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
-  // $C5 CMP   nn                Compare Accumulator With Memory Direct Page
+  // $C5 CMP   dp                Compare Accumulator With Memory Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // A_REG: Compare With D_REG+MEM (8-Bit)
@@ -2532,7 +2542,7 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $D5 CMP   nn,X              Compare Accumulator With Memory Direct Page Indexed, X
+  // $D5 CMP   dp,X              Compare Accumulator With Memory Direct Page Indexed, X
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // A_REG: Compare With D_REG+MEM+X_REG (8-Bit)
@@ -2556,7 +2566,7 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $D6 DEC   nn,X              Decrement Memory Direct Page Indexed, X
+  // $D6 DEC   dp,X              Decrement Memory Direct Page Indexed, X
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // Decrement D_REG+MEM+X_REG (8-Bit)
@@ -2626,9 +2636,9 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $DC ???   ???               ?????
+  // $DC UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
   // $DD CMP   nnnn,X            Compare Accumulator With Memory Absolute Indexed, X
@@ -2729,7 +2739,7 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $E4 CPX   nn                Compare Index Register X With Memory Direct Page
+  // $E4 CPX   dp                Compare Index Register X With Memory Direct Page
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // X_REG: Compare With D_REG+MEM (8-Bit)
@@ -2911,7 +2921,7 @@ align(256)
   addiu v0,1             // Cycles += 1 (Delay Slot)
 
 align(256)
-  // $F6 INC   nn,X              Increment Memory Direct Page Indexed, X
+  // $F6 INC   dp,X              Increment Memory Direct Page Indexed, X
   addu a2,a0,s3          // Load 8-Bit Address
   lbu t0,0(a2)
   addu a2,a0,t0          // Increment D_REG+MEM+X_REG (8-Bit)
@@ -2973,9 +2983,9 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $FC ???   ???               ?????
+  // $FC UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
   // $FD ???   ???               ?????
