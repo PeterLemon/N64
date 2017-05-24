@@ -509,7 +509,7 @@ macro TestNZ16(reg) { // Test 16-Bit Result Negative / Zero Flags Of Register
 macro TestNZCASLROL8(reg) { // Test ASL / ROL 8-Bit Result Negative / Zero / Carry Flags Of Register
   andi t1,{reg},$80         // Test Negative MSB
   srl t2,{reg},8            // Test Carry
-  or t1,t2                  // T0 = N/C Flag
+  or t1,t2                  // T1 = N/C Flag
   andi s5,~(N_FLAG+C_FLAG)  // P_REG: N/C Flag Reset
   or s5,t1                  // P_REG: N/C Flag = Result MSB / Carry
   andi {reg},$FF            // Register = 8-Bit
@@ -521,9 +521,9 @@ macro TestNZCASLROL8(reg) { // Test ASL / ROL 8-Bit Result Negative / Zero / Car
 
 macro TestNZCASLROL16(reg) { // Test ASL / ROL 16-Bit Result Negative / Zero / Carry Flags Of Register
   andi t1,{reg},$8000        // Test Negative MSB
-  srl t1,8                   // T0 = N Flag
+  srl t1,8                   // T1 = N Flag
   srl t2,{reg},16            // Test Carry
-  or t1,t2                   // T0 = N/C Flag
+  or t1,t2                   // T1 = N/C Flag
   andi s5,~(N_FLAG+C_FLAG)   // P_REG: N/C Flag Reset
   or s5,t1                   // P_REG: N/C Flag = Result MSB / Carry
   andi {reg},$FFFF           // Register = 16-Bit
@@ -540,6 +540,37 @@ macro TestNZCLSRROR(reg) { // Test LSR / ROR 8-Bit / 16-Bit Result Negative / Ze
   ori s5,Z_FLAG            // P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG          // P_REG: Z Flag Reset
   {#}NZCLSRROL:
+}
+
+macro TestNZCCMP8(reg) { // Test CMP 8-Bit Result Negative / Zero / Carry Flags Of Register
+  blt {reg},t0,{#}NZCMP8C // IF (Register < T0) C Flag Reset
+  andi s5,~C_FLAG         // P_REG: C Flag Reset (Delay Slot)
+  ori s5,C_FLAG           // P_REG: C Flag Set
+  {#}NZCMP8C:
+  subu t0,{reg},t0        // T0 = Register - T0 (8-Bit)
+  andi t1,t0,$80          // Test Negative MSB
+  andi s5,~N_FLAG         // P_REG: N Flag Reset
+  or s5,t1                // P_REG: N Flag = Result MSB
+  beqz t0,{#}NZCMP8Z      // IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG           // P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG         // P_REG: Z Flag Reset
+  {#}NZCMP8Z:
+}
+
+macro TestNZCCMP16(reg) { // Test CMP 16-Bit Result Negative / Zero / Carry Flags Of Register
+  blt {reg},t0,{#}NZCMP16C // IF (Register < T0) C Flag Reset
+  andi s5,~C_FLAG          // P_REG: C Flag Reset (Delay Slot)
+  ori s5,C_FLAG            // P_REG: C Flag Set
+  {#}NZCMP16C:
+  subu t0,{reg},t0         // T0 = Register - T0 (16-Bit)
+  andi t1,t0,$8000         // Test Negative MSB
+  srl t1,8                 // T1 = N Flag
+  andi s5,~N_FLAG          // P_REG: N Flag Reset
+  or s5,t1                 // P_REG: N Flag = Result MSB
+  beqz t0,{#}NZCMP16Z      // IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG            // P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG          // P_REG: Z Flag Reset
+  {#}NZCMP16Z:
 }
 
 macro XCE() { // Exchange Carry & Emulation Bits
