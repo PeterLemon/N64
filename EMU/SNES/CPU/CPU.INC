@@ -378,6 +378,25 @@ macro LoadDPX16(reg) { // Load 16-Bit Direct Page (DP) Indexed, X Memory To Regi
   or {reg},t1          // Register = DP Indexed, X (16-Bit)
 }
 
+macro LoadDPY8(reg) { // Load 8-Bit Direct Page (DP) Indexed, Y Memory To Register
+  lbu t0,1(a2)        // DP Indexed, Y = MEM_MAP[D_REG + Immediate + Y_REG]
+  addu t0,s6          // T0 = D_REG + Immediate
+  addu a2,a0,t0       // A2 = MEM_MAP + D_REG + Immediate
+  addu a2,s2          // A2 = MEM_MAP + D_REG + Immediate + Y_REG
+  lbu {reg},0(a2)     // Register = DP Indexed, Y (8-Bit)
+}
+
+macro LoadDPY16(reg) { // Load 16-Bit Direct Page (DP) Indexed, Y Memory To Register
+  lbu t0,1(a2)         // DP Indexed, Y = MEM_MAP[D_REG + Immediate + Y_REG]
+  addu t0,s6           // T0 = D_REG + Immediate
+  addu a2,a0,t0        // A2 = MEM_MAP + D_REG + Immediate
+  addu a2,s2           // A2 = MEM_MAP + D_REG + Immediate + Y_REG
+  lbu {reg},1(a2)      // Register = DP Indexed, Y HI Byte
+  sll {reg},8          // Register <<= 8
+  lbu t1,0(a2)         // T1 = DP Indexed, Y LO Byte
+  or {reg},t1          // Register = DP Indexed, Y (16-Bit)
+}
+
 macro LoadSR8(reg) { // Load 8-Bit Stack Relative (SR) Memory To Register
   lbu t0,1(a2)       // SR = MEM_MAP[Immediate + S_REG]
   addu a2,a0,t0      // A2 = MEM_MAP + Immediate
