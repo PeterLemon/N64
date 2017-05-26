@@ -207,6 +207,7 @@ insert CART_ROM, "TEST/CPUINC.sfc" // Copy 32768 Bytes of Cartridge into Memory 
 //insert CART_ROM, "TEST/CPUJMP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
 //insert CART_ROM, "TEST/CPULDR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
 //insert CART_ROM, "TEST/CPULSR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
+//insert CART_ROM, "TEST/CPUMOV.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
 //insert CART_ROM, "TEST/CPUORA.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
 //insert CART_ROM, "TEST/CPUPHL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
 //insert CART_ROM, "TEST/CPUPSR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)

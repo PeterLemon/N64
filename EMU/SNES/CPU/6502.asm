@@ -503,9 +503,9 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $44 ???   ???               ?????
+  // $44 UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
   // $45 EOR   dp                Exclusive-OR Accumulator With Memory Direct Page
@@ -617,9 +617,9 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $54 ???   ???               ?????
+  // $54 UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
   // $55 EOR   dp,X              Exclusive-OR Accumulator With Memory Direct Page Indexed, X

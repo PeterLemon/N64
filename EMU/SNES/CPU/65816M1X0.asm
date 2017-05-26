@@ -615,9 +615,11 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $44 ???   ???               ?????
+  // $44 MVP   sb,db             Block Move Previous
+  BlockMVP()             // Transfer Bytes From Source Bank To Destination Bank
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
   // $45 EOR   dp                Exclusive-OR Accumulator With Memory Direct Page
@@ -746,9 +748,11 @@ align(256)
   addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
-  // $54 ???   ???               ?????
+  // $54 MVN   sb,db             Block Move Next
+  BlockMVN()             // Transfer Bytes From Source Bank To Destination Bank
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
   // $55 EOR   dp,X              Exclusive-OR Accumulator With Memory Direct Page Indexed, X

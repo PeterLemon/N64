@@ -1,3 +1,60 @@
+//-----------------------
+// CPU Block Move Macros
+//-----------------------
+macro BlockMVN() { // Block Move Next (C = Count, X = Source, Y = Destination)
+  lbu t0,1(a2)     // T0 = SRCBANK (8-Bit)
+  sll t0,16        // T0 <<= 8
+  lbu s7,2(a2)     // DB_REG = DSTBANK (8-Bit)
+  sll t1,s7,16     // T1 = DB_REG << 8
+
+  or t0,s1         // T0 = SRCBANK:X
+  addu a2,a0,t0    // A2 = MEM_MAP + SRCBANK:X
+  or t1,s2         // T1 = DSTBANK:Y
+  addu a3,a0,t1    // A3 = MEM_MAP + DSTBANK:Y
+
+  addu s1,s0    // X_REG += A_REG
+  addiu s1,1    // X_REG++
+  andi s1,$FFFF // X_REG = 16-Bit
+  addu s2,s0    // Y_REG += A_REG
+  addiu s2,1    // Y_REG++
+  andi s2,$FFFF // Y_REG = 16-Bit
+
+  {#}MVNCopy:
+    lbu t0,0(a2) // Copy 1 Byte From MEM_MAP[SRCBANK:X] To MEM_MAP[DSTBANK:Y]
+    addiu a2,1   // SRC++ (Increment Source)
+    sb t0,0(a3)  // DST = SRC
+    addiu a3,1   // DST++ (Increment Destination)
+    bnez s0,{#}MVNCopy
+    subiu s0,1   // A_REG-- (Decrement Count) (Delay Slot)
+}
+
+macro BlockMVP() { // Block Move Previous (C = Count, X = Source, Y = Destination)
+  lbu t0,1(a2)     // T0 = SRCBANK (8-Bit)
+  sll t0,16        // T0 <<= 8
+  lbu s7,2(a2)     // DB_REG = DSTBANK (8-Bit)
+  sll t1,s7,16     // T1 = DB_REG << 8
+
+  or t0,s1         // T0 = SRCBANK:X
+  addu a2,a0,t0    // A2 = MEM_MAP + SRCBANK:X
+  or t1,s2         // T1 = DSTBANK:Y
+  addu a3,a0,t1    // A3 = MEM_MAP + DSTBANK:Y
+
+  subu s1,s0    // X_REG -= A_REG
+  subiu s1,1    // X_REG--
+  andi s1,$FFFF // X_REG = 16-Bit
+  subu s2,s0    // Y_REG -= A_REG
+  subiu s2,1    // Y_REG--
+  andi s2,$FFFF // Y_REG = 16-Bit
+
+  {#}MVPCopy:
+    lbu t0,0(a2) // Copy 1 Byte From MEM_MAP[SRCBANK:X] To MEM_MAP[DSTBANK:Y]
+    subiu a2,1   // SRC-- (Decrement Source)
+    sb t0,0(a3)  // DST = SRC
+    subiu a3,1   // DST-- (Decrement Destination)
+    bnez s0,{#}MVPCopy
+    subiu s0,1   // A_REG-- (Decrement Count) (Delay Slot)
+}
+
 //-------------------
 // CPU Branch Macros
 //-------------------
