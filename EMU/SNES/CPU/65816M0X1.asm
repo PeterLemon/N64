@@ -907,13 +907,10 @@ align(256)
 
 align(256)
   // $64 STZ   dp                Store Zero To Memory Direct Page
-  addu a2,a0,s3          // Load 8-Bit Address
-  lbu t0,0(a2)
-  addu a2,a0,t0          // D_REG+MEM: Set To Zero (16-Bit)
-  addu a2,s6
-  sb r0,0(a2)
-  sb r0,1(a2)
-  addiu s3,1             // PC_REG++ (Increment Program Counter)
+  StoreDP16(r0)          // DP = 0 (16-Bit)
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
+  addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
@@ -1070,18 +1067,10 @@ align(256)
 
 align(256)
   // $74 STZ   dp,X              Store Zero To Memory Direct Page Indexed, X
-  addu a2,a0,s3          // Load 8-Bit Address
-  lbu t0,0(a2)
-  addu t0,s1
-  addu a2,a0,t0          // D_REG+MEM+X_REG: Set To Zero (16-Bit)
-  addu a2,s6
-  sb r0,0(a2)
-  sb r0,1(a2)
-
+  StoreDPX16(r0)         // DP Indexed, X = 0 (16-Bit)
   la sp,StoreWord        // Store Word
   jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
-
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
 
@@ -1179,9 +1168,13 @@ align(256)
   addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
-  // $81 ???   ???               ?????
+  // $81 STA   (dp,X)            Store Accumulator To Memory Direct Page Indexed Indirect, X
+  StoreDPIX16(s0)        // DP Indexed Indirect, X = A_REG (16-Bit)
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
+  addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
   // $82 BRL   nnnn              Branch Always Long
@@ -1190,49 +1183,49 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $83 ???   ???               ?????
+  // $83 STA   sr,S              Store Accumulator To Memory Stack Relative
+  StoreSR16(s0)          // SR = A_REG (16-Bit)
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
+  addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $84 STY   dp                Store Index Register Y To Memory Direct Page
-  addu a2,a0,s3          // Load 8-Bit Address
-  lbu t0,0(a2)
-  addu a2,a0,t0          // D_REG+MEM: Set To Index Register Y (8-Bit)
-  addu a2,s6
-  sb s2,0(a2)
-  addiu s3,1             // PC_REG++ (Increment Program Counter)
+  StoreDP8(s2)           // DP = Y_REG (8-Bit)
+  la sp,StoreByte        // Store Byte
+  jalr sp,sp
+  addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
   // $85 STA   dp                Store Accumulator To Memory Direct Page
-  addu a2,a0,s3          // Load 8-Bit Address
-  lbu t0,0(a2)
-  addu a2,a0,t0          // D_REG+MEM: Set To Accumulator (16-Bit)
-  addu a2,s6
-  sb s0,0(a2)
-  srl t0,s0,8
-  sb t0,1(a2)
-  addiu s3,1             // PC_REG++ (Increment Program Counter)
+  StoreDP16(s0)          // DP = A_REG (16-Bit)
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
+  addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
   // $86 STX   dp                Store Index Register X To Memory Direct Page
-  addu a2,a0,s3          // Load 8-Bit Address
-  lbu t0,0(a2)
-  addu a2,a0,t0          // D_REG+MEM: Set To Index Register X (8-Bit)
-  addu a2,s6
-  sb s1,0(a2)
-  addiu s3,1             // PC_REG++ (Increment Program Counter)
+  StoreDP8(s1)           // DP = X_REG (8-Bit)
+  la sp,StoreByte        // Store Byte
+  jalr sp,sp
+  addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
-  // $87 ???   ???               ?????
+  // $87 STA   [dp]              Store Accumulator To Memory Direct Page Indirect Long
+  StoreDPIL16(s0)        // DP Indirect Long = A_REG (16-Bit)
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
+  addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
   // $88 DEY                     Decrement Index Register Y
@@ -1265,67 +1258,39 @@ align(256)
 
 align(256)
   // $8C STY   nnnn              Store Index Register Y To Memory Absolute
-  addu a2,a0,s3          // Load 16-Bit Address
-  lbu t0,1(a2)
-  sll t0,8
-  lbu t1,0(a2)
-  or t0,t1
-  addu a2,a0,t0          // DB_REG:MEM: Set To Index Register Y (8-Bit)
-  sll t1,s7,16
-  addu a2,t1
-  sb s2,0(a2)
-
+  StoreABS8(s2)          // Absolute = Y_REG (8-Bit)
   la sp,StoreByte        // Store Byte
   jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
-
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
   // $8D STA   nnnn              Store Accumulator To Memory Absolute
-  addu a2,a0,s3          // Load 16-Bit Address
-  lbu t0,1(a2)
-  sll t0,8
-  lbu t1,0(a2)
-  or t0,t1
-  addu a2,a0,t0          // DB_REG:MEM: Set To Accumulator (16-Bit)
-  sll t1,s7,16
-  addu a2,t1
-  sb s0,0(a2)
-  srl t1,s0,8
-  sb t1,1(a2)
-
+  StoreABS16(s0)         // Absolute = A_REG (16-Bit)
   la sp,StoreWord        // Store Word
   jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
-
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $8E STX   nnnn              Store Index Register X To Memory Absolute
-  addu a2,a0,s3          // Load 16-Bit Address
-  lbu t0,1(a2)
-  sll t0,8
-  lbu t1,0(a2)
-  or t0,t1
-  addu a2,a0,t0          // DB_REG:MEM: Set To Index Register X (8-Bit)
-  sll t1,s7,16
-  addu a2,t1
-  sb s1,0(a2)
-
+  StoreABS8(s1)          // Absolute = X_REG (8-Bit)
   la sp,StoreByte        // Store Byte
   jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
-
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $8F ???   ???               ?????
+  // $8F STA   nnnnnn            Store Accumulator To Memory Absolute Long
+  StoreABSL16(s0)        // Absolute Long = A_REG (16-Bit)
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
+  addiu s3,3             // PC_REG += 3 (Increment Program Counter) (Delay Slot)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $90 BCC   nn                Branch IF Carry Clear
@@ -1334,74 +1299,67 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $91 ???   ???               ?????
+  // $91 STA   (dp),Y            Store Accumulator To Memory Direct Page Indirect Indexed, Y
+  StoreDPIY16(s0)        // DP Indirect Indexed, Y = A_REG (16-Bit)
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
+  addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
-  // $92 ???   ???               ?????
+  // $92 STA   (dp)              Store Accumulator To Memory Direct Page Indirect
+  StoreDPI16(s0)         // DP Indirect = A_REG (16-Bit)
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
+  addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
-  // $93 ???   ???               ?????
+  // $93 STA   (sr,S),Y          Store Accumulator To Memory Stack Relative Indirect Indexed, Y
+  StoreSRIY16(s0)        // SR Indirect Indexed, Y = A_REG (16-Bit)
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
+  addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,8             // Cycles += 8 (Delay Slot)
 
 align(256)
   // $94 STY   dp,X              Store Index Register Y To Memory Direct Page Indexed, X
-  addu a2,a0,s3          // Load 8-Bit Address
-  lbu t0,0(a2)
-  addu t0,s1
-  addu a2,a0,t0          // D_REG+MEM+X_REG: Set To Index Register Y (8-Bit)
-  addu a2,s6
-  sb s2,0(a2)
-
+  StoreDPX8(s2)          // DP Indexed, X = Y_REG (8-Bit)
   la sp,StoreByte        // Store Byte
   jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
-
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
   // $95 STA   dp,X              Store Accumulator To Memory Direct Page Indexed, X
-  addu a2,a0,s3          // Load 8-Bit Address
-  lbu t0,0(a2)
-  addu t0,s1
-  addu a2,a0,t0          // D_REG+MEM+X_REG: Set To Accumulator (16-Bit)
-  addu a2,s6
-  sb s0,0(a2)
-  srl t1,s0,8
-  sb t1,1(a2)
-
+  StoreDPX16(s0)         // DP Indexed, X = A_REG (16-Bit)
   la sp,StoreWord        // Store Word
   jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
-
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $96 STX   dp,Y              Store Index Register X To Memory Direct Page Indexed, Y
-  addu a2,a0,s3          // Load 8-Bit Address
-  lbu t0,0(a2)
-  addu t0,s2
-  addu a2,a0,t0          // D_REG+MEM+Y_REG: Set To Index Register X (8-Bit)
-  addu a2,s6
-  sb s1,0(a2)
-
+  StoreDPY8(s1)          // DP Indexed, Y = X_REG (8-Bit)
   la sp,StoreByte        // Store Byte
   jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
-
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $97 ???   ???               ?????
+  // $97 STA   [dp],Y            Store Accumulator To Memory Direct Page Indirect Long Indexed, Y
+  StoreDPILY16(s0)       // DP Indirect Long Indexed, Y = A_REG (16-Bit)
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
+  addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
   // $98 TYA                     Transfer Index Register Y To Accumulator
@@ -1412,23 +1370,10 @@ align(256)
 
 align(256)
   // $99 STA   nnnn,Y            Store Accumulator To Memory Absolute Indexed, Y
-  addu a2,a0,s3          // Load 16-Bit Address
-  lbu t0,1(a2)
-  sll t0,8
-  lbu t1,0(a2)
-  or t0,t1
-  addu t0,s2
-  addu a2,a0,t0          // DB_REG:MEM+Y_REG: Set To Accumulator (16-Bit)
-  sll t1,s7,16
-  addu a2,t1
-  sb s0,0(a2)
-  srl t1,s0,8
-  sb t1,1(a2)
-
+  StoreABSY16(s0)        // Absolute Indexed, Y = A_REG (16-Bit)
   la sp,StoreWord        // Store Word
   jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
-
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)
 
@@ -1447,71 +1392,39 @@ align(256)
 
 align(256)
   // $9C STZ   nnnn              Store Zero To Memory Absolute
-  addu a2,a0,s3          // Load 16-Bit Address
-  lbu t0,1(a2)
-  sll t0,8
-  lbu t1,0(a2)
-  or t0,t1
-  addu a2,a0,t0          // DB_REG:MEM: Set To Zero (16-Bit)
-  sll t1,s7,16
-  addu a2,t1
-  sb r0,0(a2)
-  sb r0,1(a2)
-
+  StoreABS16(r0)         // Absolute = 0 (16-Bit)
   la sp,StoreWord        // Store Word
   jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
-
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $9D STA   nnnn,X            Store Accumulator To Memory Absolute Indexed, X
-  addu a2,a0,s3          // Load 16-Bit Address
-  lbu t0,1(a2)
-  sll t0,8
-  lbu t1,0(a2)
-  or t0,t1
-  addu t0,s1
-  addu a2,a0,t0          // DB_REG:MEM+X_REG: Set To Accumulator (16-Bit)
-  sll t1,s7,16
-  addu a2,t1
-  sb s0,0(a2)
-  srl t1,s0,8
-  sb t1,1(a2)
-
+  StoreABSX16(s0)        // Absolute Indexed, X = A_REG (16-Bit)
   la sp,StoreWord        // Store Word
   jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
-
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $9E STZ   nnnn,X            Store Zero To Memory Absolute Indexed, X
-  addu a2,a0,s3          // Load 16-Bit Address
-  lbu t0,1(a2)
-  sll t0,8
-  lbu t1,0(a2)
-  or t0,t1
-  addu t0,s1
-  addu a2,a0,t0          // DB_REG:MEM+X_REG: Set To Zero (16-Bit)
-  sll t1,s7,16
-  addu a2,t1
-  sb r0,0(a2)
-  sb r0,1(a2)
-
+  StoreABSX16(r0)        // Absolute Indexed, X = 0 (16-Bit)
   la sp,StoreWord        // Store Word
   jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
-
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
-  // $9F ???   ???               ?????
+  // $9F STA   nnnnnn,X          Store Accumulator To Memory Absolute Long Indexed, X
+  StoreABSLX16(s0)       // Absolute Long Indexed, X = A_REG (16-Bit)
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
+  addiu s3,3             // PC_REG += 3 (Increment Program Counter) (Delay Slot)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $A0 LDY   #nn               Load Index Register Y From Memory Immediate
