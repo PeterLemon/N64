@@ -1959,9 +1959,12 @@ align(256)
   addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
-  // $E1 ???   ???               ?????
+  // $E1 SBC   (dp,X)            Subtract With Borrow From Accumulator With Memory Direct Page Indexed Indirect, X
+  LoadDPIX16(t0)         // T0 = DP Indexed Indirect, X (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
   // $E2 SEP   #nn               Set Status Bits
@@ -1971,9 +1974,12 @@ align(256)
   addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
-  // $E3 ???   ???               ?????
+  // $E3 SBC   sr,S              Subtract With Borrow From Accumulator With Memory Stack Relative
+  LoadSR16(t0)           // T0 = SR (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $E4 CPX   dp                Compare Index Register X With Memory Direct Page
@@ -1984,9 +1990,12 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $E5 ???   ???               ?????
+  // $E5 SBC   dp                Subtract With Borrow From Accumulator With Memory Direct Page
+  LoadDP16(t0)           // T0 = DP (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
   // $E6 INC   dp                Increment Memory Direct Page
@@ -2002,9 +2011,12 @@ align(256)
   addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
-  // $E7 ???   ???               ?????
+  // $E7 SBC   [dp]              Subtract With Borrow From Accumulator With Memory Direct Page Indirect Long
+  LoadDPIL16(t0)         // T0 = DP Indirect Long (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
   // $E8 INX                     Increment Index Register X
@@ -2015,9 +2027,12 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $E9 ???   ???               ?????
+  // $E9 SBC   #nnnn             Subtract With Borrow From Accumulator With Memory Immediate
+  LoadIMM16(t0)          // T0 = Immediate (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
   // $EA NOP                     No Operation
@@ -2043,9 +2058,12 @@ align(256)
   addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
-  // $ED ???   ???               ?????
+  // $ED SBC   nnnn              Subtract With Borrow From Accumulator With Memory Absolute
+  LoadABS16(t0)          // T0 = Absolute (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $EE INC   nnnn              Increment Memory Absolute
@@ -2061,9 +2079,12 @@ align(256)
   addiu v0,8             // Cycles += 8 (Delay Slot)
 
 align(256)
-  // $EF ???   ???               ?????
+  // $EF SBC   nnnnnn            Subtract With Borrow From Accumulator With Memory Absolute Long
+  LoadABSL16(t0)         // T0 = Absolute Long (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,3             // PC_REG += 3 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $F0 BEQ   nn                Branch IF Equal
@@ -2072,19 +2093,28 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $F1 ???   ???               ?????
+  // $F1 SBC   (dp),Y            Subtract With Borrow From Accumulator With Memory Direct Page Indirect Indexed, Y
+  LoadDPIY16(t0)         // T0 = DP Indirect Indexed, Y (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
-  // $F2 ???   ???               ?????
+  // $F2 SBC   (dp)              Subtract With Borrow From Accumulator With Memory Direct Page Indirect
+  LoadDPI16(t0)          // T0 = DP Indirect (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
-  // $F3 ???   ???               ?????
+  // $F3 SBC   (sr,S),Y          Subtract With Borrow From Accumulator With Memory Stack Relative Indirect Indexed, Y
+  LoadSRIY16(t0)         // T0 = SR Indirect Indexed, Y (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,8             // Cycles += 8 (Delay Slot)
 
 align(256)
   // $F4 PEA   nnnn              Push Effective Absolute Address
@@ -2094,9 +2124,12 @@ align(256)
   addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
-  // $F5 ???   ???               ?????
+  // $F5 SBC   dp,X              Subtract With Borrow From Accumulator With Memory Direct Page Indexed, X
+  LoadDPX16(t0)          // T0 = DP Indexed, X (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $F6 INC   dp,X              Increment Memory Direct Page Indexed, X
@@ -2112,9 +2145,12 @@ align(256)
   addiu v0,8             // Cycles += 8 (Delay Slot)
 
 align(256)
-  // $F7 ???   ???               ?????
+  // $F7 SBC   [dp],Y            Subtract With Borrow From Accumulator With Memory Direct Page Indirect Long Indexed, Y
+  LoadDPILY16(t0)        // T0 = DP Indirect Long Indexed, Y (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
   // $F8 SED                     Set Decimal Mode Flag
@@ -2123,9 +2159,12 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $F9 ???   ???               ?????
+  // $F9 SBC   nnnn,Y            Subtract With Borrow From Accumulator With Memory Absolute Indexed, Y
+  LoadABSY16(t0)         // T0 = Absolute Indexed, Y (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $FA PLX                     Pull Index Register X From Stack
@@ -2149,9 +2188,12 @@ align(256)
   addiu v0,8             // Cycles += 8 (Delay Slot)
 
 align(256)
-  // $FD ???   ???               ?????
+  // $FD SBC   nnnn,X            Subtract With Borrow From Accumulator With Memory Absolute Indexed, X
+  LoadABSX16(t0)         // T0 = Absolute Indexed, X (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $FE INC   nnnn,X            Increment Memory Absolute Indexed, X
@@ -2167,6 +2209,9 @@ align(256)
   addiu v0,9             // Cycles += 9 (Delay Slot)
 
 align(256)
-  // $FF ???   ???               ?????
+  // $FF SBC   nnnnnn,X          Subtract With Borrow From Accumulator With Memory Absolute Long Indexed, X
+  LoadABSLX16(t0)        // T0 = Absolute Long Indexed, X (16-Bit)
+  TestNVZCSBC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,3             // PC_REG += 3 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)

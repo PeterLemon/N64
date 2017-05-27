@@ -942,14 +942,14 @@ macro TestNVZCADC8(reg) { // Test ADC 8-Bit Result Negative / Overflow / Zero / 
 
   or {reg},t1,r0           // Register = A
   b {#}NVZCADC8V
-  nop                      // Delay Slot
+  ori s5,V_FLAG            // P_REG: V Flag Set (Delay Slot)
 
   {#}NVZCADCBIN:
-  addu {reg},t1            // A_REG += C Flag
+  addu {reg},t1            // Register += C Flag
   andi t1,{reg},$80        // 8-Bit Sign Extend (A_REG + C Flag)
   sll t1,1
   or {reg},t1
-  addu {reg},t0            // A_REG += Immediate (8-Bit)
+  addu {reg},t0            // Register += Memory (8-Bit)
 
   andi t0,{reg},$0180      // Test Signed Overflow
   ori t1,r0,$0180          // T1 = $0180
@@ -985,14 +985,14 @@ macro TestNVZCADC16(reg) { // Test ADC 16-Bit Result Negative / Overflow / Zero 
 
   or {reg},t1,r0           // Register = A
   b {#}NVZCADC16V
-  nop                      // Delay Slot
+  ori s5,V_FLAG            // P_REG: V Flag Set (Delay Slot)
 
   {#}NVZCADCBIN:
-  addu {reg},t1            // A_REG += C Flag
+  addu {reg},t1            // Register += C Flag
   andi t1,{reg},$8000      // 16-Bit Sign Extend (A_REG + C Flag)
   sll t1,1
   or {reg},t1
-  addu {reg},t0            // A_REG += Immediate (16-Bit)
+  addu {reg},t0            // Register += Memory (16-Bit)
 
   li t1,$00018000          // Test Signed Overflow
   and t0,{reg},t1
@@ -1016,6 +1016,96 @@ macro TestNVZCADC16(reg) { // Test ADC 16-Bit Result Negative / Overflow / Zero 
   ori s5,Z_FLAG            // P_REG: Z Flag Set (Delay Slot)
   andi s5,~Z_FLAG          // P_REG: Z Flag Reset
   {#}NVZCADC16Z:
+}
+
+macro TestNVZCSBC8(reg) { // Test SBC 8-Bit Result Negative / Overflow / Zero / Carry Flags Of Register
+  andi t1,s5,D_FLAG        // T1 = D Flag
+  beqz t1,{#}NVZCSBCBIN    // IF (D Flag == 0) Binary Mode, ELSE Decimal Mode
+  andi t1,s5,C_FLAG        // T1 = C Flag (Delay Slot)
+  subiu t1,1               // T1 = C Flag - 1
+
+  ori t8,r0,1              // T8 = 1 (Nibble Count)
+  la t9,SBCBCD             // T9 = SBC BCD Calculation
+  jalr t9,t9               // Run SBC BCD Calculation
+  nop                      // Delay Slot
+
+  or {reg},t1,r0           // Register = A
+  b {#}NVZCSBC8V
+  andi s5,~V_FLAG          // P_REG: V Flag Reset (Delay Slot)
+
+  {#}NVZCSBCBIN:
+  subiu t1,1               // T1 = C Flag - 1
+  addu {reg},t1            // Register += C Flag
+  andi t1,{reg},$80        // 8-Bit Sign Extend (A_REG + C Flag)
+  sll t1,1
+  or {reg},t1
+  subu {reg},t0            // Register += Memory (8-Bit)
+
+  andi t0,{reg},$0180      // Test Signed Overflow
+  ori t1,r0,$0180          // T1 = $0180
+  beq t0,t1,{#}NVZCSBC8V   // IF (Signed Overflow) V Flag Set
+  ori s5,V_FLAG            // P_REG: V Flag Set (Delay Slot)
+  andi s5,~V_FLAG          // P_REG: V Flag Reset
+  {#}NVZCSBC8V:
+  andi t1,{reg},$80        // Test Negative MSB
+  andi s5,~N_FLAG          // P_REG: N Flag Reset
+  or s5,t1                 // P_REG: N Flag = Result MSB
+  andi t0,{reg},$0180      // Test Unsigned Borrow
+  beqz t0,{#}NVZCSBC8C     // IF (Unsigned Borrow) C Flag Reset
+  ori s5,C_FLAG            // P_REG: C Flag Set (Delay Slot)
+  andi s5,~C_FLAG          // P_REG: C Flag Reset
+  {#}NVZCSBC8C:
+  andi {reg},$FF           // Register = 8-Bit
+  beqz {reg},{#}NVZCSBC8Z  // IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG            // P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG          // P_REG: Z Flag Reset
+  {#}NVZCSBC8Z:
+}
+
+macro TestNVZCSBC16(reg) { // Test SBC 16-Bit Result Negative / Overflow / Zero / Carry Flags Of Register
+  andi t1,s5,D_FLAG        // T1 = D Flag
+  beqz t1,{#}NVZCSBCBIN    // IF (D Flag == 0) Binary Mode, ELSE Decimal Mode
+  andi t1,s5,C_FLAG        // T1 = C Flag (Delay Slot)
+  subiu t1,1               // T1 = C Flag - 1
+
+  ori t8,r0,3              // T8 = 3 (Nibble Count)
+  la t9,SBCBCD             // T9 = SBC BCD Calculation
+  jalr t9,t9               // Run SBC BCD Calculation
+  nop                      // Delay Slot
+
+  or {reg},t1,r0           // Register = A
+  b {#}NVZCSBC16V
+  andi s5,~V_FLAG          // P_REG: V Flag Reset (Delay Slot)
+
+  {#}NVZCSBCBIN:
+  subiu t1,1               // T1 = C Flag - 1
+  addu {reg},t1            // Register += C Flag - 1
+  andi t1,{reg},$8000      // 16-Bit Sign Extend (A_REG + C Flag)
+  sll t1,1
+  or {reg},t1
+  subu {reg},t0            // Register -= Memory (16-Bit)
+
+  li t1,$00018000          // Test Signed Overflow
+  and t0,{reg},t1
+  beq t0,t1,{#}NVZCSBC16V  // IF (Signed Overflow) V Flag Set
+  ori s5,V_FLAG            // P_REG: V Flag Set (Delay Slot)
+  andi s5,~V_FLAG          // P_REG: V Flag Reset
+  {#}NVZCSBC16V:
+  andi t1,{reg},$8000      // Test Negative MSB
+  srl t1,8                 // T1 >>= 8
+  andi s5,~N_FLAG          // P_REG: N Flag Reset
+  or s5,t1                 // P_REG: N Flag = Result MSB
+  li t1,$00018000          // Test Unsigned Borrow
+  and t0,{reg},t1
+  beqz t0,{#}NVZCSBC16C    // IF (Unsigned Borrow) C Flag Reset
+  ori s5,C_FLAG            // P_REG: C Flag Set (Delay Slot)
+  andi s5,~C_FLAG          // P_REG: C Flag Reset
+  {#}NVZCSBC16C:
+  andi {reg},$FFFF         // Register = 16-Bit
+  beqz {reg},{#}NVZCSBC16Z // IF (Result == 0) Z Flag Set
+  ori s5,Z_FLAG            // P_REG: Z Flag Set (Delay Slot)
+  andi s5,~Z_FLAG          // P_REG: Z Flag Reset
+  {#}NVZCSBC16Z:
 }
 
 macro TestZBIT(reg) { // Test 8-Bit / 16-Bit Result Zero Flag Of Register Against Accumulator
@@ -1293,7 +1383,7 @@ ADCBCD: // Calculate ADC BCD (S0 = A, T0 = B, T1 = C Flag, T8 = Nibble Count)
   ADCBCDLoop:
     and t2,s0,t3         // A = (A & $F) + (B & $F) + T1
     addu t1,t2           // T1 += (A & $F)
-    and t2,t0,t3         // T1 += (B & $F)
+    and t2,t0,t3         // T2 = (B & $F)
     addu t1,t2           // T1 = A
     blt t1,t4,ADCBCDSkip // IF (A >= $A) A = ((A + $6) & $F) + $10
     nop                  // Delay Slot
@@ -1308,6 +1398,32 @@ ADCBCD: // Calculate ADC BCD (S0 = A, T0 = B, T1 = C Flag, T8 = Nibble Count)
       sll t7,4           // T7 <<= 4
       ori t7,$F          // T7 &= $F
       bnez t8,ADCBCDLoop // IF (Nibble Count != 0) ADC BCD Loop
+      subiu t8,1         // Nibble Count-- (Delay Slot)
+      jr t9
+      nop // Delay Slot
+
+SBCBCD: // Calculate SBC BCD (S0 = A, T0 = B, T1 = C Flag - 1, T8 = Nibble Count)
+  ori t3,r0,$F           // T3 = $F
+  ori t4,r0,$6           // T4 = $6
+  ori t5,r0,$10          // T5 = $10
+  ori t6,r0,$F           // T6 = $F
+  SBCBCDLoop:
+    and t2,s0,t3         // A = (A & $F) - (B & $F) + T1
+    addu t1,t2           // T1 += (A & $F)
+    and t2,t0,t3         // T2 = (B & $F)
+    subu t1,t2           // T1 = A
+    bgez t1,SBCBCDSkip   // IF (A < 0) A = ((A - $6) & $F) - $10
+    nop                  // Delay Slot
+    subu t1,t4           // A -= $6
+    and t1,t6            // A &= $F
+    subu t1,t5           // A -= $10
+    SBCBCDSkip:
+      sll t3,4           // T3 <<= 4
+      sll t4,4           // T4 <<= 4
+      sll t5,4           // T5 <<= 4
+      sll t6,4           // T6 <<= 4
+      ori t6,$F          // T6 &= $F
+      bnez t8,SBCBCDLoop // IF (Nibble Count != 0) SBC BCD Loop
       subiu t8,1         // Nibble Count-- (Delay Slot)
       jr t9
       nop // Delay Slot
