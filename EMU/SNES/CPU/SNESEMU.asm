@@ -195,7 +195,7 @@ MEM_MAP: // Memory Map = $10000 Bytes
   //fill $10000 // Generates $10000 Bytes Containing $00
   fill $8000 // Generates $8000 Bytes Containing $00
 //insert CART_ROM, "TEST/HelloWorld.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUADC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map
+insert CART_ROM, "TEST/CPUADC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
 //insert CART_ROM, "TEST/CPUAND.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
 //insert CART_ROM, "TEST/CPUASL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
 //insert CART_ROM, "TEST/CPUBIT.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
@@ -203,7 +203,7 @@ MEM_MAP: // Memory Map = $10000 Bytes
 //insert CART_ROM, "TEST/CPUCMP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
 //insert CART_ROM, "TEST/CPUDEC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
 //insert CART_ROM, "TEST/CPUEOR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
-insert CART_ROM, "TEST/CPUINC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
+//insert CART_ROM, "TEST/CPUINC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
 //insert CART_ROM, "TEST/CPUJMP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
 //insert CART_ROM, "TEST/CPULDR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)
 //insert CART_ROM, "TEST/CPULSR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS ** (Overhaul)

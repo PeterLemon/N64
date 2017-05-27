@@ -893,9 +893,12 @@ align(256)
   addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
-  // $61 ???   ???               ?????
+  // $61 ADC   (dp,X)            Add With Carry Accumulator With Memory Direct Page Indexed Indirect, X
+  LoadDPIX16(t0)         // T0 = DP Indexed Indirect, X (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
   // $62 PER   nnnn              Push Effective PC Relative Indirect Address
@@ -905,9 +908,12 @@ align(256)
   addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
-  // $63 ???   ???               ?????
+  // $63 ADC   sr,S              Add With Carry Accumulator With Memory Stack Relative
+  LoadSR16(t0)           // T0 = SR (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $64 STZ   dp                Store Zero To Memory Direct Page
@@ -919,9 +925,12 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $65 ???   ???               ?????
+  // $65 ADC   dp                Add With Carry Accumulator With Memory Direct Page
+  LoadDP16(t0)           // T0 = DP (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
   // $66 ROR   dp                Rotate Memory Right Direct Page
@@ -942,9 +951,12 @@ align(256)
   addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
-  // $67 ???   ???               ?????
+  // $67 ADC   [dp]              Add With Carry Accumulator With Memory Direct Page Indirect Long
+  LoadDPIL16(t0)         // T0 = DP Indirect Long (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
   // $68 PLA                     Pull Accumulator
@@ -955,34 +967,8 @@ align(256)
 
 align(256)
   // $69 ADC   #nnnn             Add With Carry Accumulator With Memory Immediate
-  addu a2,a0,s3          // A_REG: Add With Carry With 16-Bit Immediate
-  lbu t1,1(a2)
-  sll t1,8
-  lbu t0,0(a2)
-  or t0,t1
-  addu s0,t0
-  andi t0,s5,C_FLAG
-  addu s0,t0
-  andi t0,s0,$8000       // Test Negative MSB
-  srl t0,8
-  andi s5,~N_FLAG        // P_REG: N Flag Reset
-  or s5,t0               // P_REG: N Flag = Result MSB
-  li t1,$00018000        // Test Signed Overflow
-  and t0,s0,t1
-  beq t0,t1,ADCIMMM0X1V  // IF (Signed Overflow) V Flag Set
-  ori s5,V_FLAG          // P_REG: V Flag Set (Delay Slot)
-  andi s5,~V_FLAG        // P_REG: V Flag Reset
-  ADCIMMM0X1V:
-  lui t1,$0001           // Test Unsigned Overflow
-  beq t0,t1,ADCIMMM0X1C  // IF (Unsigned Overflow) C Flag Set
-  ori s5,C_FLAG          // P_REG: C Flag Set (Delay Slot)
-  andi s5,~C_FLAG        // P_REG: C Flag Reset
-  ADCIMMM0X1C:
-  andi s0,$FFFF
-  beqz s0,ADCIMMM0X1Z    // IF (Result == 0) Z Flag Set
-  ori s5,Z_FLAG          // P_REG: Z Flag Set (Delay Slot)
-  andi s5,~Z_FLAG        // P_REG: Z Flag Reset
-  ADCIMMM0X1Z:
+  LoadIMM16(t0)          // T0 = Immediate (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
   addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
   addiu v0,3             // Cycles += 3 (Delay Slot)
@@ -1021,9 +1007,12 @@ align(256)
   addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
-  // $6D ???   ???               ?????
+  // $6D ADC   nnnn              Add With Carry Accumulator With Memory Absolute
+  LoadABS16(t0)          // T0 = Absolute (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $6E ROR   nnnn              Rotate Memory Right Absolute
@@ -1044,9 +1033,12 @@ align(256)
   addiu v0,8             // Cycles += 8 (Delay Slot)
 
 align(256)
-  // $6F ???   ???               ?????
+  // $6F ADC   nnnnnn            Add With Carry Accumulator With Memory Absolute Long
+  LoadABSL16(t0)         // T0 = Absolute Long (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,3             // PC_REG += 3 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $70 BVS   nn                Branch IF Overflow Set
@@ -1055,19 +1047,28 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $71 ???   ???               ?????
+  // $71 ADC   (dp),Y            Add With Carry Accumulator With Memory Direct Page Indirect Indexed, Y
+  LoadDPIY16(t0)         // T0 = DP Indirect Indexed, Y (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
-  // $72 ???   ???               ?????
+  // $72 ADC   (dp)              Add With Carry Accumulator With Memory Direct Page Indirect
+  LoadDPI16(t0)          // T0 = DP Indirect (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
-  // $73 ???   ???               ?????
+  // $73 ADC   (sr,S),Y          Add With Carry Accumulator With Memory Stack Relative Indirect Indexed, Y
+  LoadSRIY16(t0)         // T0 = SR Indirect Indexed, Y (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,8             // Cycles += 8 (Delay Slot)
 
 align(256)
   // $74 STZ   dp,X              Store Zero To Memory Direct Page Indexed, X
@@ -1079,9 +1080,12 @@ align(256)
   addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
-  // $75 ???   ???               ?????
+  // $75 ADC   dp,X              Add With Carry Accumulator With Memory Direct Page Indexed, X
+  LoadDPX16(t0)          // T0 = DP Indexed, X (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $76 ROR   dp,X              Rotate Memory Right Direct Page Indexed, X
@@ -1102,9 +1106,12 @@ align(256)
   addiu v0,8             // Cycles += 8 (Delay Slot)
 
 align(256)
-  // $77 ???   ???               ?????
+  // $77 ADC   [dp],Y            Add With Carry Accumulator With Memory Direct Page Indirect Long Indexed, Y
+  LoadDPILY16(t0)        // T0 = DP Indirect Long Indexed, Y (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
   // $78 SEI                     Set Interrupt Disable Flag
@@ -1113,9 +1120,12 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $79 ???   ???               ?????
+  // $79 ADC   nnnn,Y            Add With Carry Accumulator With Memory Absolute Indexed, Y
+  LoadABSY16(t0)         // T0 = Absolute Indexed, Y (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $7A PLY                     Pull Index Register Y From Stack
@@ -1138,9 +1148,12 @@ align(256)
   addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
-  // $7D ???   ???               ?????
+  // $7D ADC   nnnn,X            Add With Carry Accumulator With Memory Absolute Indexed, X
+  LoadABSX16(t0)         // T0 = Absolute Indexed, X (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,2             // PC_REG += 2 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
   // $7E ROR   nnnn,X            Rotate Memory Right Absolute Indexed, X
@@ -1161,9 +1174,12 @@ align(256)
   addiu v0,9             // Cycles += 9 (Delay Slot)
 
 align(256)
-  // $7F ???   ???               ?????
+  // $7F ADC   nnnnnn,X          Add With Carry Accumulator With Memory Absolute Long Indexed, X
+  LoadABSLX16(t0)        // T0 = Absolute Long Indexed, X (16-Bit)
+  TestNVZCADC16(s0)      // Test Result Negative / Overflow / Zero / Carry Flags Of A_REG (16-Bit)
+  addiu s3,3             // PC_REG += 3 (Increment Program Counter)
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $80 BRA   nn                Branch Always
