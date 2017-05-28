@@ -1,20 +1,6 @@
 align(256)
   // $00 BRK   #nn               Software Break
-  subiu s4,3             // S_REG -= 3 (Decrement Stack)
-  andi s4,$FF
-  addu a2,a0,s4          // STACK = MEM_MAP[$100 + S_REG]
-  addiu a2,$100          // A2 = STACK
-  addiu s3,1             // PC_REG++ (Increment Program Counter)
-  sb s3,2(a2)            // STACK = PC_REG
-  srl t0,s3,8
-  sb t0,3(a2)
-  ori s5,B_FLAG          // P_REG: B Flag Set (6502 Emulation Mode)                 
-  sb s5,1(a2)            // STACK = P_REG
-  ori s5,I_FLAG          // P_REG: I Flag Set
-  lbu t0,IRQ2_VEC+1(a0)  // PC_REG: Set To 6502 IRQ Vector ($FFFE)
-  sll t0,8
-  lbu s3,IRQ2_VEC(a0)
-  or s3,t0
+  BRKEMU()               // STACK = PC_REG & P_REG, PC_REG = Breakpoint
   jr ra
   addiu v0,7             // Cycles += 7 (Delay Slot)
 
@@ -479,9 +465,10 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $40 ???   ???               ?????
+  // $40 RTI                     Return From Interrupt
+  RTIEMU()               // PC_REG & P_REG = STACK
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,6             // Cycles += 6 (Delay Slot)
 
 align(256)
   // $41 EOR   (dp,X)            Exclusive-OR Accumulator With Memory Direct Page Indexed Indirect, X
@@ -703,14 +690,8 @@ align(256)
 
 align(256)
   // $60 RTS                     Return From Subroutine
-  addiu s4,2             // S_REG += 2 (Increment Stack)
-  andi s4,$FFFF
-  addu a2,a0,s4          // PC_REG = STACK (16-Bit)
-  lbu t0,0(a2)
-  sll t0,8
-  lbu s3,-1(a2)
-  or s3,t0
-  addiu s3,1             // PC_REG++
+  PullEMU16(s3)          // PC_REG = STACK (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)
 

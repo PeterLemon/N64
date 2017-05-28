@@ -880,7 +880,6 @@ macro StoreSRIY16(reg) { // Store 16-Bit Register To Stack Relative (SR) Indirec
 //-----------------
 // CPU Flag Macros
 //-----------------
-
 macro REPEMU() { // Reset Status Bits (Emulation Mode)
   lbu t0,1(a2)             // T0 = Immediate (8-Bit)
   andi t0,~(B_FLAG+U_FLAG) // Ignore Break & Unused Flags (6502 Emulation Mode)
@@ -1221,6 +1220,50 @@ macro XCE() { // Exchange Carry & Emulation Bits
   {#}XCENAT:
 }
 
+//----------------------
+// CPU Interrupt Macros
+//----------------------
+macro BRKEMU() { // Software Break (Emulation Mode)
+  ori a2,s4,$100        // STACK = MEM_MAP[01:S_REG]
+  addu a2,a0            // A2 = MEM_MAP + 01:S_REG
+  addiu s3,1            // PC_REG++ (Increment Program Counter)
+  sb s3,-1(a2)          // STACK = PC_REG LO Byte
+  srl t0,s3,8           // T0 = PC_REG HI Byte
+  sb t0,0(a2)           // STACK = PC_REG (16-Bit)
+  ori s5,B_FLAG         // P_REG: B Flag Set (6502 Emulation Mode)                 
+  sb s5,-2(a2)          // STACK = P_REG
+  ori s5,I_FLAG         // P_REG: I Flag Set
+  ori a2,r0,IRQ2_VEC    // A2 = IRQ2_VEC
+  addu a2,a0            // A2 = MEM_MAP + IRQ2_VEC
+  lbu t0,1(a2)          // T0 = 6502 IRQ Vector HI Byte
+  sll t0,8              // T0 <<= 8
+  lbu s3,0(a2)          // PC_REG = 6502 IRQ Vector LO Byte
+  or s3,t0              // PC_REG = 6502 IRQ Vector ($FFFE)
+  subiu s4,3            // S_REG -= 3 (Decrement Stack)
+  andi s4,$FF           // S_REG = 8-Bit
+}
+
+macro BRKNAT() { // Software Break (Native Mode)
+  addu a2,a0,s4         // STACK = MEM_MAP[S_REG]
+  sb s8,0(a2)           // STACK = PB_REG (65816 Native Mode)
+  and s8,r0             // PB_REG = 0 (65816 Native Mode)
+  addiu s3,1            // PC_REG++ (Increment Program Counter)
+  sb s3,-2(a2)          // STACK = PC_REG LO Byte
+  srl t0,s3,8           // T0 = PC_REG HI Byte
+  sb t0,-1(a2)          // STACK = PC_REG (16-Bit)                 
+  sb s5,-3(a2)          // STACK = P_REG
+  ori s5,I_FLAG         // P_REG: I Flag Set
+  andi s5,~D_FLAG       // P_REG: D Flag Reset (65816 Native Mode)
+  ori a2,r0,BRK1_VEC    // A2 = BRK1_VEC
+  addu a2,a0            // A2 = MEM_MAP + BRK1_VEC
+  lbu t0,1(a2)          // T0 = 65816 Break Vector HI Byte
+  sll t0,8              // T0 <<= 8
+  lbu s3,0(a2)          // PC_REG = 65816 Break Vector LO Byte
+  or s3,t0              // PC_REG = 65816 Break Vector ($FFE6)
+  subiu s4,4            // S_REG -= 4 (Decrement Stack)
+  andi s4,$FFFF         // S_REG = 16-Bit
+}
+
 //-----------------
 // CPU Jump Macros
 //-----------------
@@ -1251,42 +1294,82 @@ macro JumpABSIX16() { // Jump 16-Bit Absolute Indexed Indirect Memory To PC
   or s3,t1            // PC_REG = Absolute Indexed Indirect (16-Bit)
 }
 
+//-------------------
+// CPU Return Macros
+//-------------------
+macro RTIEMU() { // Return From Interrupt (Emulation Mode)
+  addiu s4,3     // S_REG += 3 (Increment Stack)
+  andi s4,$FF    // S_REG = 8-Bit
+  ori a2,s4,$100 // STACK = MEM_MAP[01:S_REG]
+  addu a2,a0     // A2 = MEM_MAP + 01:S_REG
+  lbu s5,-2(a2)  // P_REG = STACK (8-Bit)
+  ori s5,E_FLAG  // P_REG: E Flag Set (Emulation Mode)
+  lbu t0,0(a2)   // T0 = STACK HI Byte
+  sll t0,8       // T0 <<= 8
+  lbu s3,-1(a2)  // PC_REG = STACK LO Byte
+  or s3,t0       // PC_REG = STACK (16-Bit)
+  
+}
+
+macro RTINAT() { // Return From Interrupt (Native Mode)
+  addiu s4,4     // S_REG += 4 (Increment Stack)
+  andi s4,$FFFF  // S_REG = 16-Bit
+  addu a2,a0,s4  // STACK = MEM_MAP[S_REG]
+  lbu s5,-3(a2)  // P_REG = STACK (8-Bit)
+  lbu t0,-1(a2)  // T0 = STACK HI Byte
+  sll t0,8       // T0 <<= 8
+  lbu s3,-2(a2)  // PC_REG = STACK LO Byte
+  or s3,t0       // PC_REG = STACK (16-Bit)
+  lbu s8,0(a2)   // PB_REG = STACK (8-Bit)
+}
+
+macro RTLNAT() { // Return from Subroutine Long (Native Mode)
+  addiu s4,3     // S_REG += 3 (Increment Stack)
+  andi s4,$FFFF  // S_REG = 16-Bit
+  addu a2,a0,s4  // STACK = MEM_MAP[S_REG]
+  lbu t0,-1(a2)  // T0 = STACK HI Byte
+  sll t0,8       // T0 <<= 8
+  lbu s3,-2(a2)  // PC_REG = STACK LO Byte
+  or s3,t0       // PC_REG = STACK (16-Bit)
+  lbu s8,0(a2)   // PB_REG = STACK (8-Bit)
+}
+
 //------------------
 // CPU Stack Macros
 //------------------
 macro PullEMU8(reg) { // Pull 8-Bit Register From Stack (Emulation Mode)
   addiu s4,1          // S_REG++ (Increment Stack)
   andi s4,$FF         // S_REG = 8-Bit
-  ori t1,s4,$100      // STACK = MEM_MAP[01:S_REG]
-  addu t1,a0          // T1 = MEM_MAP + 01:S_REG
-  lbu {reg},0(t1)     // Register = STACK (8-Bit)
+  ori a2,s4,$100      // STACK = MEM_MAP[01:S_REG]
+  addu a2,a0          // A2 = MEM_MAP + 01:S_REG
+  lbu {reg},0(a2)     // Register = STACK (8-Bit)
 }
 
 macro PullEMU16(reg) { // Pull 16-Bit Register From Stack (Emulation Mode)
   addiu s4,2           // S_REG += 2 (Increment Stack)
   andi s4,$FF          // S_REG = 8-Bit
-  ori t1,s4,$100       // STACK = MEM_MAP[01:S_REG]
-  addu t1,a0           // T1 = MEM_MAP + 01:S_REG
-  lbu {reg},0(t1)      // Register = STACK HI Byte
+  ori a2,s4,$100       // STACK = MEM_MAP[01:S_REG]
+  addu a2,a0           // A2 = MEM_MAP + 01:S_REG
+  lbu {reg},0(a2)      // Register = STACK HI Byte
   sll {reg},8          // Register <<= 8
-  lbu t0,-1(t1)        // T0 = STACK LO Byte
+  lbu t0,-1(a2)        // T0 = STACK LO Byte
   or {reg},t0          // Register = STACK (16-Bit)
 }
 
 macro PullNAT8(reg) { // Pull 8-Bit Register From Stack (Native Mode)
   addiu s4,1          // S_REG++ (Increment Stack)
   andi s4,$FFFF       // S_REG = 16-Bit
-  addu t1,a0,s4       // STACK = MEM_MAP[S_REG]
-  lbu {reg},0(t1)     // Register = STACK (8-Bit)
+  addu a2,a0,s4       // STACK = MEM_MAP[S_REG]
+  lbu {reg},0(a2)     // Register = STACK (8-Bit)
 }
 
 macro PullNAT16(reg) { // Pull 16-Bit Register From Stack (Native Mode)
   addiu s4,2           // S_REG += 2 (Increment Stack)
   andi s4,$FFFF        // S_REG = 16-Bit
-  addu t1,a0,s4        // STACK = MEM_MAP[S_REG]
-  lbu {reg},0(t1)      // Register = STACK HI Byte
+  addu a2,a0,s4        // STACK = MEM_MAP[S_REG]
+  lbu {reg},0(a2)      // Register = STACK HI Byte
   sll {reg},8          // Register <<= 8
-  lbu t0,-1(t1)        // T0 = STACK LO Byte
+  lbu t0,-1(a2)        // T0 = STACK LO Byte
   or {reg},t0          // Register = STACK (16-Bit)
 }
 
@@ -1328,9 +1411,9 @@ macro PushER16() { // Push 16-Bit Effective PC Relative Indirect Address To Stac
 }
 
 macro PushEMU8(reg) { // Push 8-Bit Register To Stack (Emulation Mode)
-  ori t1,s4,$100      // STACK = MEM_MAP[01:S_REG]
-  addu t1,a0          // T1 = MEM_MAP + 01:S_REG
-  sb {reg},0(t1)      // STACK = Register (8-Bit)
+  ori a2,s4,$100      // STACK = MEM_MAP[01:S_REG]
+  addu a2,a0          // A2 = MEM_MAP + 01:S_REG
+  sb {reg},0(a2)      // STACK = Register (8-Bit)
   subiu s4,1          // S_REG-- (Decrement Stack)
   andi s4,$FF         // S_REG = 8-Bit
 }
@@ -1346,8 +1429,8 @@ macro PushEMU16(reg) { // Push 16-Bit Register To Stack (Emulation Mode)
 }
 
 macro PushNAT8(reg) { // Push 8-Bit Register To Stack (Native Mode)
-  addu t1,a0,s4       // STACK = MEM_MAP[S_REG]
-  sb {reg},0(t1)      // STACK = Register (8-Bit)
+  addu a2,a0,s4       // STACK = MEM_MAP[S_REG]
+  sb {reg},0(a2)      // STACK = Register (8-Bit)
   subiu s4,1          // S_REG-- (Decrement Stack)
   andi s4,$FFFF       // S_REG = 16-Bit
 }

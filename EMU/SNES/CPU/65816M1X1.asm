@@ -1,22 +1,6 @@
 align(256)
   // $00 BRK   #nn               Software Break
-  subiu s4,4             // S_REG -= 4 (Decrement Stack)
-  andi s4,$FFFF
-  addu a2,a0,s4          // STACK = MEM_MAP[$100 + S_REG]
-  addiu a2,$100          // A2 = STACK                 
-  sb s8,4(a2)            // STACK = PB_REG (65816 Native Mode)
-  addiu s3,1             // PC_REG++ (Increment Program Counter)
-  sb s3,2(a2)            // STACK = PC_REG
-  srl t0,s3,8
-  sb t0,3(a2)                 
-  sb s5,1(a2)            // STACK = P_REG
-  ori s5,I_FLAG          // P_REG: I Flag Set
-  andi s5,~D_FLAG        // P_REG: D Flag Reset (65816 Native Mode)
-  and s8,r0              // PB_REG = 0 (65816 Native Mode)
-  lbu t0,BRK1_VEC+1(a0)  // PC_REG: Set To 65816 Break Vector ($FFE6)
-  sll t0,8
-  lbu s3,BRK1_VEC(a0)
-  or s3,t0
+  BRKNAT()               // STACK = PB:PC_REG & P_REG, PB_REG = 0 & PC_REG = Breakpoint
   jr ra
   addiu v0,8             // Cycles += 8 (Delay Slot)
 
@@ -324,7 +308,7 @@ align(256)
 align(256)
   // $22 JSL   nnnnnn            Jump To Subroutine Absolute Long
   addiu s3,2             // PC_REG += 2
-  PushNAT24(s3)          // STACK = PC_REG (16-Bit), PB_REG (8-Bit)
+  PushNAT24(s3)          // STACK = PB:PC_REG (24-Bit)
   LoadIMM16(s3)          // PC_REG = Immediate (16-Bit)
   lbu s8,3(a2)           // PB_REG = Bank Address (8-Bit)
   jr ra
@@ -586,9 +570,10 @@ align(256)
   addiu v0,5             // Cycles += 5 (Delay Slot)
 
 align(256)
-  // $40 ???   ???               ?????
+  // $40 RTI                     Return From Interrupt
+  RTINAT()               // PB:PC_REG & P_REG = STACK
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,7             // Cycles += 7 (Delay Slot)
 
 align(256)
   // $41 EOR   (dp,X)            Exclusive-OR Accumulator With Memory Direct Page Indexed Indirect, X
@@ -865,14 +850,8 @@ align(256)
 
 align(256)
   // $60 RTS                     Return From Subroutine
-  addiu s4,2             // S_REG += 2 (Increment Stack)
-  andi s4,$FFFF
-  addu a2,a0,s4          // PC_REG = STACK (16-Bit)
-  lbu t0,0(a2)
-  sll t0,8
-  lbu s3,-1(a2)
-  or s3,t0
-  addiu s3,1             // PC_REG++
+  PullNAT16(s3)          // PC_REG = STACK (16-Bit)
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)
 
@@ -968,15 +947,8 @@ align(256)
 
 align(256)
   // $6B RTL                     Return From Subroutine Long
-  addiu s4,3             // S_REG += 3 (Increment Stack)
-  andi s4,$FFFF
-  addu a2,a0,s4          // PC_REG = STACK (16-Bit)
-  lbu t0,-1(a2)
-  sll t0,8
-  lbu s3,-2(a2)
-  or s3,t0
-  addiu s3,1             // PC_REG++
-  lbu s8,0(a2)           // PB_REG = STACK
+  RTLNAT()               // PB:PC_REG = STACK
+  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)
 
