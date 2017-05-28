@@ -1233,6 +1233,7 @@ macro BRKEMU() { // Software Break (Emulation Mode)
   ori s5,B_FLAG         // P_REG: B Flag Set (6502 Emulation Mode)                 
   sb s5,-2(a2)          // STACK = P_REG
   ori s5,I_FLAG         // P_REG: I Flag Set
+  andi s5,~D_FLAG       // P_REG: D Flag Reset
   ori a2,r0,IRQ2_VEC    // A2 = IRQ2_VEC
   addu a2,a0            // A2 = MEM_MAP + IRQ2_VEC
   lbu t0,1(a2)          // T0 = 6502 IRQ Vector HI Byte
@@ -1253,13 +1254,55 @@ macro BRKNAT() { // Software Break (Native Mode)
   sb t0,-1(a2)          // STACK = PC_REG (16-Bit)                 
   sb s5,-3(a2)          // STACK = P_REG
   ori s5,I_FLAG         // P_REG: I Flag Set
-  andi s5,~D_FLAG       // P_REG: D Flag Reset (65816 Native Mode)
+  andi s5,~D_FLAG       // P_REG: D Flag Reset
   ori a2,r0,BRK1_VEC    // A2 = BRK1_VEC
   addu a2,a0            // A2 = MEM_MAP + BRK1_VEC
   lbu t0,1(a2)          // T0 = 65816 Break Vector HI Byte
   sll t0,8              // T0 <<= 8
   lbu s3,0(a2)          // PC_REG = 65816 Break Vector LO Byte
   or s3,t0              // PC_REG = 65816 Break Vector ($FFE6)
+  subiu s4,4            // S_REG -= 4 (Decrement Stack)
+  andi s4,$FFFF         // S_REG = 16-Bit
+}
+
+macro COPEMU() { // Co-Processor Enable (Emulation Mode)
+  ori a2,s4,$100        // STACK = MEM_MAP[01:S_REG]
+  addu a2,a0            // A2 = MEM_MAP + 01:S_REG
+  addiu s3,1            // PC_REG++ (Increment Program Counter)
+  sb s3,-1(a2)          // STACK = PC_REG LO Byte
+  srl t0,s3,8           // T0 = PC_REG HI Byte
+  sb t0,0(a2)           // STACK = PC_REG (16-Bit)
+  ori s5,B_FLAG         // P_REG: B Flag Set (6502 Emulation Mode)                 
+  sb s5,-2(a2)          // STACK = P_REG
+  ori s5,I_FLAG         // P_REG: I Flag Set
+  andi s5,~D_FLAG       // P_REG: D Flag Reset
+  ori a2,r0,COP2_VEC    // A2 = COP2_VEC
+  addu a2,a0            // A2 = MEM_MAP + COP2_VEC
+  lbu t0,1(a2)          // T0 = 6502 COP Vector HI Byte
+  sll t0,8              // T0 <<= 8
+  lbu s3,0(a2)          // PC_REG = 6502 COP Vector LO Byte
+  or s3,t0              // PC_REG = 6502 COP Vector ($FFF4)
+  subiu s4,3            // S_REG -= 3 (Decrement Stack)
+  andi s4,$FF           // S_REG = 8-Bit
+}
+
+macro COPNAT() { // Co-Processor Enable (Native Mode)
+  addu a2,a0,s4         // STACK = MEM_MAP[S_REG]
+  sb s8,0(a2)           // STACK = PB_REG (65816 Native Mode)
+  and s8,r0             // PB_REG = 0 (65816 Native Mode)
+  addiu s3,1            // PC_REG++ (Increment Program Counter)
+  sb s3,-2(a2)          // STACK = PC_REG LO Byte
+  srl t0,s3,8           // T0 = PC_REG HI Byte
+  sb t0,-1(a2)          // STACK = PC_REG (16-Bit)                 
+  sb s5,-3(a2)          // STACK = P_REG
+  ori s5,I_FLAG         // P_REG: I Flag Set
+  andi s5,~D_FLAG       // P_REG: D Flag Reset
+  ori a2,r0,COP1_VEC    // A2 = COP1_VEC
+  addu a2,a0            // A2 = MEM_MAP + COP1_VEC
+  lbu t0,1(a2)          // T0 = 65816 COP Vector HI Byte
+  sll t0,8              // T0 <<= 8
+  lbu s3,0(a2)          // PC_REG = 65816 COP Vector LO Byte
+  or s3,t0              // PC_REG = 65816 COP Vector ($FFE4)
   subiu s4,4            // S_REG -= 4 (Decrement Stack)
   andi s4,$FFFF         // S_REG = 16-Bit
 }

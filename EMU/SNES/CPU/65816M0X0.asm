@@ -1,6 +1,6 @@
 align(256)
   // $00 BRK   #nn               Software Break
-  BRKNAT()               // STACK = PB:PC_REG & P_REG, PB_REG = 0 & PC_REG = Breakpoint
+  BRKNAT()               // STACK = PB:PC_REG & P_REG, PB_REG = 0 & PC_REG = Breakpoint Vector
   jr ra
   addiu v0,8             // Cycles += 8 (Delay Slot)
 
@@ -15,23 +15,7 @@ align(256)
 
 align(256)
   // $02 COP   #nn               Co-Processor Enable
-  subiu s4,4             // S_REG -= 4 (Decrement Stack)
-  andi s4,$FFFF
-  addu a2,a0,s4          // STACK = MEM_MAP[$100 + S_REG]
-  addiu a2,$100          // A2 = STACK
-  sb s8,4(a2)            // STACK = PB_REG (65816 Native Mode)
-  addiu s3,1             // PC_REG++ (Increment Program Counter)
-  sb s3,2(a2)            // STACK = PC_REG
-  srl t0,s3,8
-  sb t0,3(a2)
-  sb s5,1(a2)            // STACK = P_REG
-  ori s5,I_FLAG          // P_REG: I Flag Set
-  andi s5,~D_FLAG        // P_REG: D Flag Reset
-  and s8,r0              // PB_REG = 0 (65816 Native Mode)
-  lbu t0,COP1_VEC+1(a0)  // PC_REG: Set To 65816 COP Vector ($FFE4)
-  sll t0,8
-  lbu s3,COP1_VEC(a0)
-  or s3,t0
+  COPNAT()               // STACK = PB:PC_REG & P_REG, PB_REG = 0 & PC_REG = COP Vector
   jr ra
   addiu v0,8             // Cycles += 8 (Delay Slot)
 
@@ -1757,9 +1741,9 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $CB ???   ???               ?????
+  // $CB WAI                     Wait For Interrupt
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,3             // Cycles += 3 (Delay Slot)
 
 align(256)
   // $CC CPY   nnnn              Compare Index Register Y With Memory Absolute
@@ -1883,9 +1867,9 @@ align(256)
   addiu v0,4             // Cycles += 4 (Delay Slot)
 
 align(256)
-  // $DB ???   ???               ?????
+  // $DB STP                     Stop the Processor
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
   // $DC JML   (nnnn)            Jump Absolute Indirect Long

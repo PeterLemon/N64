@@ -1,6 +1,6 @@
 align(256)
   // $00 BRK   #nn               Software Break
-  BRKEMU()               // STACK = PC_REG & P_REG, PC_REG = Breakpoint
+  BRKEMU()               // STACK = PC_REG & P_REG, PC_REG = Breakpoint Vector
   jr ra
   addiu v0,7             // Cycles += 7 (Delay Slot)
 
@@ -15,21 +15,7 @@ align(256)
 
 align(256)
   // $02 COP   #nn               Co-Processor Enable
-  subiu s4,3             // S_REG -= 3 (Decrement Stack)
-  andi s4,$FF
-  addu a2,a0,s4          // STACK = MEM_MAP[$100 + S_REG]
-  addiu a2,$100          // A2 = STACK
-  addiu s3,1             // PC_REG++ (Increment Program Counter)
-  sb s3,2(a2)            // STACK = PC_REG
-  srl t0,s3,8
-  sb t0,3(a2)
-  sb s5,1(a2)            // STACK = P_REG
-  ori s5,I_FLAG          // P_REG: I Flag Set
-  andi s5,~D_FLAG        // P_REG: D Flag Reset
-  lbu t0,COP2_VEC+1(a0)  // PC_REG: Set To 6502 COP Vector ($FFF4)
-  sll t0,8
-  lbu s3,COP2_VEC(a0)
-  or s3,t0
+  COPEMU()               // STACK = PC_REG & P_REG, PC_REG = COP Vector
   jr ra
   addiu v0,7             // Cycles += 7 (Delay Slot)
 
@@ -1453,9 +1439,9 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $CB ???   ???               ?????
+  // $CB UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
   // $CC CPY   nnnn              Compare Index Register Y With Memory Absolute
@@ -1560,9 +1546,9 @@ align(256)
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
-  // $DB ???   ???               ?????
+  // $DB UNUSED OPCODE           No Operation
   jr ra
-  addiu v0,1             // Cycles += 1 (Delay Slot)
+  addiu v0,2             // Cycles += 2 (Delay Slot)
 
 align(256)
   // $DC UNUSED OPCODE           No Operation
