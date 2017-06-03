@@ -76,10 +76,14 @@ align(256)
     lbu t1,3(t0)          // T1 = MEM_MAP[REG_A1TXH]
     sll t1,8              // T1 <<= 8
     or at,t1              // AT = REG_A1TX
-    addu at,a0            // AT += MEM_MAP
+
+    // (DB:ADDR) - (DB * 32768) (LoROM)
     lbu t1,4(t0)          // T1 = MEM_MAP[REG_A1BX] (Bank)
-    sll t1,15             // T1 << = 15 (Bank * 32768)
-    addu at,t1            // AT += Bank (DMA Start Address)
+    sll t2,t1,15          // T2 = DB * 32768
+    sll t1,16             // T1 <<= 16
+    or at,t1              // AT += Bank (DMA Start Address)
+    subu at,t2
+    addu at,a0            // AT += MEM_MAP
 
     lbu k0,5(t0)          // K0 = MEM_MAP[REG_DASXL]
     lbu t1,6(t0)          // T1 = MEM_MAP[REG_DASXH]

@@ -22,7 +22,36 @@ align(256)
   nop                    // Delay Slot
 
 align(256)
-  // $01 DMA   ???               ?????
+  // $01 DMA   Increment Source, Transfer 2 Bytes, CPU To I/O
+  ori t7,t8,$2100        // T7 = I/O Offset ($21XX)
+  addu t7,a0             // T7 += MEM_MAP
+
+  sll t8,8               // Offset <<= 8 (Table Offset)
+  la t0,STORE21XX        // T0 = Store I/O Table
+  addu t8,t0             // T8 = Store I/O Table + Table Offset
+
+  DMAP01LOOP:
+    lbu t6,0(at)         // T6 = MEM_MAP[DMA Address]
+    addiu at,1           // DMA Address++
+    jalr gp,t8           // Run Store I/O Table Instruction
+    sb t6,0(t7)          // MEM_MAP[$21XX] = T6 (Delay Slot)
+
+    subiu k0,1           // K0-- (Decrement DMA Count) (Delay Slot)
+    andi k0,$FFFF        // K0 &= $FFFF
+    beqz k0,DMAP01END
+    addiu t8,256         // T8 += 256 (Delay Slot)
+
+    lbu t6,0(at)         // T6 = MEM_MAP[DMA Address]
+    addiu at,1           // DMA Address++
+    jalr gp,t8           // Run Store I/O Table Instruction
+    sb t6,1(t7)          // MEM_MAP[$21XX] = T6 (Delay Slot)
+
+    subiu k0,1           // K0-- (Decrement DMA Count) (Delay Slot)
+    andi k0,$FFFF        // K0 &= $FFFF
+    bnez k0,DMAP01LOOP
+    subiu t8,256         // T8 -= 256 (Delay Slot)
+
+  DMAP01END:
   j MDMAENCHECK
   nop                    // Delay Slot
 

@@ -63,26 +63,27 @@ Refresh:
   CPU_EMU:
     addu a2,a0,s3 // A2 = MEM_MAP + PC
     lbu t0,0(a2)  // T0 = CPU Instruction
-    sll t0,8 // T0 = CPU Instruction * 256
+    sll t0,2 // T0 = CPU Instruction * 4
 
     andi t1,s5,E_FLAG // P_REG: Test Emulation Flag
     bnez t1,EXECUTE // IF (E Flag != 0) Emulation Mode
-    lui t1,$0004    // T1 = Emulation Mode CPU Instruction Base (Delay Slot)
+    ori t1,r0,$1000 // T1 = Emulation Mode CPU Instruction Base (Delay Slot)
     andi t1,s5,M_FLAG+X_FLAG // T1 = M & X Flags
-    sll t1,12 // T1 = Native Mode CPU Instruction Base
+    sll t1,6 // T1 = Native Mode CPU Instruction Base
 
     EXECUTE:
-      or t0,t1   // T0 |= Native/Emulation Mode CPU Instruction Base
-      addu t0,a1 // T0 = CPU Instruction Table Opcode Offset
-      jalr t0    // Run CPU Instruction
-      addiu s3,1 // PC_REG++ (Delay Slot)
+      or t0,t1    // T0 |= Native/Emulation Mode CPU Instruction Base
+      addu t0,a1  // T0 = CPU Instruction Table Opcode Indirect Offset
+      lw t0,0(t0) // T0 = CPU Instruction Table Opcode Offset
+      jalr t0     // Run CPU Instruction
+      addiu s3,1  // PC_REG++ (Delay Slot)
 
       include "IOPORT.asm" // Run IO Port
 
       blt v0,v1,CPU_EMU // Compare Cycles Counter To Refresh Cycles
       nop // Delay Slot
 
-  include "PPU2BPPTile8x8.asm" // Run PPU
+  include "PPU/PPU.asm" // Run PPU
 
   la a0,MEM_MAP  // A0 = MEM_MAP
   la a1,CPU_INST // A1 = CPU Instruction Table
@@ -144,14 +145,7 @@ StoreWord:
     jr sp
     nop // Delay Slot
 
-include "CPU.INC" // Include CPU Macros
-align(256)
-CPU_INST:
-  include "65816M0X0.asm" // 65816 CPU Instruction Table (X = 0, M = 0, E = 0)
-  include "65816M0X1.asm" // 65816 CPU Instruction Table (X = 1, M = 0, E = 0)
-  include "65816M1X0.asm" // 65816 CPU Instruction Table (X = 0, M = 1, E = 0)
-  include "65816M1X1.asm" // 65816 CPU Instruction Table (X = 1, M = 1, E = 0)
-  include "6502.asm" // 6502 CPU Instruction Table (E = 1)
+include "CPU/CPU.asm" // Include CPU Macros & Jump Tables
 
 align(256)
 STORE21XX:
@@ -165,9 +159,11 @@ align(256)
 DMAPXX:
   include "DMAPXX.asm" // DMA 0..7 Table
 
-align(256)
-PPUDATA:
-  include "PPUDATA.asm" // PPU Data
+// PPU Data
+include "PPU/PPUPALRDP.asm" // PPU Palette Data
+include "PPU/PPU2BPPRDP.asm" // PPU 2BPP Data
+include "PPU/PPU4BPPRDP.asm" // PPU 4BPP Data
+include "PPU/PPU8BPPRDP.asm" // PPU 8BPP Data
 
 // Additional Memory (Not Mapped To CPU Addresses) (Accessible Only Via I/O)
 align(8) // Align 64-Bit
@@ -194,6 +190,9 @@ WRAM: // Work RAM (128KB)
 MEM_MAP: // Memory Map = $10000 Bytes
   //fill $10000 // Generates $10000 Bytes Containing $00
   fill $8000 // Generates $8000 Bytes Containing $00
+//insert CART_ROM, "TEST/LinearPicture2BPP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/LinearPicture4BPP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/LinearPicture8BPP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/HelloWorld.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 insert CART_ROM, "TEST/CPUADC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/CPUAND.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
