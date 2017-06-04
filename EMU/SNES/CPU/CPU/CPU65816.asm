@@ -191,9 +191,7 @@ CPU65816HEXD4:
 
 CPU65816HEXDB:
   // $DB STP                     Stop The Processor
-  //STPLoop:
-  //  b STPLoop            // Stop Processor Loop
-  //  nop                  // Delay Slot
+  subiu s3,1             // PC_REG-- (Decrement Program Counter)
   jr ra
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
