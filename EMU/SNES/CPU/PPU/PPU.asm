@@ -20,7 +20,7 @@
   sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
 
 DelayPAL: // Wait For RSP To Compute
-  lwu t0,SP_STATUS(a0) // T0 = RSP Status
+  lw t0,SP_STATUS(a0) // T0 = RSP Status
   andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
   beqz t0,DelayPAL // IF (RSP Halt Flag == 0) Delay PAL
   nop // Delay Slot
@@ -75,7 +75,7 @@ MAP2BPPLoop:
 
 lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
 DelayTILES2BPP: // Wait For RSP To Compute
-  lwu t0,SP_STATUS(a0) // T0 = RSP Status
+  lw t0,SP_STATUS(a0) // T0 = RSP Status
   andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
   beqz t0,DelayTILES2BPP // IF (RSP Halt Flag == 0) Delay TILES
   nop // Delay Slot
@@ -122,7 +122,7 @@ MAP4BPPLoop:
 
 lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
 DelayTILES4BPP: // Wait For RSP To Compute
-  lwu t0,SP_STATUS(a0) // T0 = RSP Status
+  lw t0,SP_STATUS(a0) // T0 = RSP Status
   andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
   beqz t0,DelayTILES4BPP // IF (RSP Halt Flag == 0) Delay TILES
   nop // Delay Slot
@@ -169,7 +169,7 @@ MAP8BPPLoop:
 
 lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
 DelayTILES8BPP: // Wait For RSP To Compute
-  lwu t0,SP_STATUS(a0) // T0 = RSP Status
+  lw t0,SP_STATUS(a0) // T0 = RSP Status
   andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
   beqz t0,DelayTILES8BPP // IF (RSP Halt Flag == 0) Delay TILES
   nop // Delay Slot
@@ -188,7 +188,7 @@ DPC(RDPPALBuffer, RDPPALBufferEnd) // Run DPC Command Buffer: Start Address, End
 
 lui a0,DPC_BASE // A0 = DP Command (DPC) Base Register ($A4100000)
 WaitRDPPAL: // Wait For RDP To Finish
-  lwu t0,DPC_STATUS(a0) // T0 = RDP Status
+  lw t0,DPC_STATUS(a0) // T0 = RDP Status
   andi t0,$100 // RDP Status &= RDP DMA Busy Flag
   bnez t0,WaitRDPPAL // IF (RDP DMA Busy Flag != 0) Delay TILES
   nop // Delay Slot

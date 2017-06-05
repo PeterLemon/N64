@@ -1,1369 +1,1287 @@
-align(256)
-  // $00 DMA   Increment Source, Transfer 1 Byte, CPU To I/O
-  ori t7,t8,$2100        // T7 = I/O Offset ($21XX)
-  addu t7,a0             // T7 += MEM_MAP
-
-  sll t8,8               // Offset <<= 8 (Table Offset)
-  la t0,STORE21XX        // T0 = Store I/O Table
-  addu t8,t0             // T8 = Store I/O Table + Table Offset
-
-  DMAP00LOOP:
-    lbu t6,0(at)         // T6 = MEM_MAP[DMA Address]
-    addiu at,1           // DMA Address++
-    jalr gp,t8           // Run Store I/O Table Instruction
-    sb t6,0(t7)          // MEM_MAP[$21XX] = T6 (Delay Slot)
-
-    subiu k0,1           // K0-- (Decrement DMA Count) (Delay Slot)
-    andi k0,$FFFF        // K0 &= $FFFF
-    bnez k0,DMAP00LOOP
-    nop                  // Delay Slot
-
+DMAPHEX00:
+  // $00 DMA   Transfer Mode 0: Increment Source, Transfer 1 Byte, CPU To I/O (XX)
+  DMAIOSRC()             // DMA CPU Source & I/O Destination ($21XX) 
+  DMACPUINCSRC0()        // DMA Transfer Bytes From CPU To I/O Using Mode 0, Increment Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
-  // $01 DMA   Increment Source, Transfer 2 Bytes, CPU To I/O
-  ori t7,t8,$2100        // T7 = I/O Offset ($21XX)
-  addu t7,a0             // T7 += MEM_MAP
-
-  sll t8,8               // Offset <<= 8 (Table Offset)
-  la t0,STORE21XX        // T0 = Store I/O Table
-  addu t8,t0             // T8 = Store I/O Table + Table Offset
-
-  DMAP01LOOP:
-    lbu t6,0(at)         // T6 = MEM_MAP[DMA Address]
-    addiu at,1           // DMA Address++
-    jalr gp,t8           // Run Store I/O Table Instruction
-    sb t6,0(t7)          // MEM_MAP[$21XX] = T6 (Delay Slot)
-
-    subiu k0,1           // K0-- (Decrement DMA Count) (Delay Slot)
-    andi k0,$FFFF        // K0 &= $FFFF
-    beqz k0,DMAP01END
-    addiu t8,256         // T8 += 256 (Delay Slot)
-
-    lbu t6,0(at)         // T6 = MEM_MAP[DMA Address]
-    addiu at,1           // DMA Address++
-    jalr gp,t8           // Run Store I/O Table Instruction
-    sb t6,1(t7)          // MEM_MAP[$21XX] = T6 (Delay Slot)
-
-    subiu k0,1           // K0-- (Decrement DMA Count) (Delay Slot)
-    andi k0,$FFFF        // K0 &= $FFFF
-    bnez k0,DMAP01LOOP
-    subiu t8,256         // T8 -= 256 (Delay Slot)
-
-  DMAP01END:
+DMAPHEX01:
+  // $01 DMA   Transfer Mode 1: Increment Source, Transfer 2 Bytes, CPU To I/O (XX, XX+1)
+  DMAIOSRC()             // DMA CPU Source & I/O Destination ($21XX)
+  DMACPUINCSRC1()        // DMA Transfer Bytes From CPU To I/O Using Mode 1, Increment Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX02:
   // $02 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX03:
   // $03 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX04:
   // $04 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX05:
   // $05 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX06:
   // $06 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX07:
   // $07 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
-  // $08 DMA   Fixed Source, Transfer 1 Byte, CPU To I/O
-  lbu t6,0(at)           // T6 = MEM_MAP[DMA Address]
-  ori t7,t8,$2100        // T7 = I/O Offset ($21XX)
-  addu t7,a0             // T7 += MEM_MAP
-
-  sll t8,8               // Offset <<= 8 (Table Offset)
-  la t0,STORE21XX        // T0 = Store I/O Table
-  addu t8,t0             // T8 = Store I/O Table + Table Offset
-
-  DMAP08LOOP:
-    jalr gp,t8           // Run Store I/O Table Instruction
-    sb t6,0(t7)          // MEM_MAP[$21XX] = T6 (Delay Slot)
-
-    subiu k0,1           // K0-- (Decrement DMA Count) (Delay Slot)
-    andi k0,$FFFF        // K0 &= $FFFF
-    bnez k0,DMAP08LOOP
-    nop                  // Delay Slot
-
+DMAPHEX08:
+  // $08 DMA   Transfer Mode 0: Fixed Source, Transfer 1 Byte, CPU To I/O (xx)
+  DMAIOFIXSRC()          // DMA CPU Fixed Source & I/O Destination ($21XX)
+  DMACPUFIXSRC0()        // DMA Transfer Bytes From CPU To I/O Using Mode 0
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
-  // $09 DMA   Fixed Source, Transfer 2 Bytes, CPU To I/O
-  lbu t6,0(at)           // T6 = MEM_MAP[DMA Address]
-  ori t7,t8,$2100        // T7 = I/O Offset ($21XX)
-  addu t7,a0             // T7 += MEM_MAP
-
-  sll t8,8               // Offset <<= 8 (Table Offset)
-  la t0,STORE21XX        // T0 = Store I/O Table
-  addu t8,t0             // T8 = Store I/O Table + Table Offset
-
-  DMAP09LOOP:
-    jalr gp,t8           // Run Store I/O Table Instruction
-    sb t6,0(t7)          // MEM_MAP[$21XX] = T6 (Delay Slot)
-
-    subiu k0,1           // K0-- (Decrement DMA Count) (Delay Slot)
-    andi k0,$FFFF        // K0 &= $FFFF
-    beqz k0,DMAP09END
-    addiu t8,256         // T8 += 256 (Delay Slot)
-
-    jalr gp,t8           // Run Store I/O Table Instruction
-    sb t6,1(t7)          // MEM_MAP[$21XX] = T6 (Delay Slot)
-
-    subiu k0,1           // K0-- (Decrement DMA Count) (Delay Slot)
-    andi k0,$FFFF        // K0 &= $FFFF
-    bnez k0,DMAP09LOOP
-    subiu t8,256         // T8 -= 256 (Delay Slot)
-
-  DMAP09END:
+DMAPHEX09:
+  // $09 DMA   Transfer Mode 1: Fixed Source, Transfer 2 Bytes, CPU To I/O (XX, XX+1)
+  DMAIOFIXSRC()          // DMA CPU Fixed Source & I/O Destination ($21XX)
+  DMACPUFIXSRC1()        // DMA Transfer Bytes From CPU To I/O Using Mode 1
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX0A:
   // $0A DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX0B:
   // $0B DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX0C:
   // $0C DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX0D:
   // $0D DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX0E:
   // $0E DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX0F:
   // $0F DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX10:
   // $10 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX11:
   // $11 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX12:
   // $12 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX13:
   // $13 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX14:
   // $14 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX15:
   // $15 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX16:
   // $16 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX17:
   // $17 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX18:
   // $18 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX19:
   // $19 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX1A:
   // $1A DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX1B:
   // $1B DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX1C:
   // $1C DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX1D:
   // $1D DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX1E:
   // $1E DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX1F:
   // $1F DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX20:
   // $20 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX21:
   // $21 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX22:
   // $22 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX23:
   // $23 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX24:
   // $24 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX25:
   // $25 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX26:
   // $26 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX27:
   // $27 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX28:
   // $28 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX29:
   // $29 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX2A:
   // $2A DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX2B:
   // $2B DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX2C:
   // $2C DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX2D:
   // $2D DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX2E:
   // $2E DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX2F:
   // $2F DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX30:
   // $30 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX31:
   // $31 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX32:
   // $32 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX33:
   // $33 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX34:
   // $34 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX35:
   // $35 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX36:
   // $36 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX37:
   // $37 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX38:
   // $38 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX39:
   // $39 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX3A:
   // $3A DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX3B:
   // $3B DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX3C:
   // $3C DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX3D:
   // $3D DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX3E:
   // $3E DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX3F:
   // $3F DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX40:
   // $40 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX41:
   // $41 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX42:
   // $42 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX43:
   // $43 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX44:
   // $44 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX45:
   // $45 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX46:
   // $46 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX47:
   // $47 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX48:
   // $48 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX49:
   // $49 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX4A:
   // $4A DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX4B:
   // $4B DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX4C:
   // $4C DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX4D:
   // $4D DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX4E:
   // $4E DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX4F:
   // $4F DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX50:
   // $50 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX51:
   // $51 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX52:
   // $52 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX53:
   // $53 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX54:
   // $54 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX55:
   // $55 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX56:
   // $56 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX57:
   // $57 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX58:
   // $58 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX59:
   // $59 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX5A:
   // $5A DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX5B:
   // $5B DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX5C:
   // $5C DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX5D:
   // $5D DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX5E:
   // $5E DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX5F:
   // $5F DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX60:
   // $60 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX61:
   // $61 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX62:
   // $62 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX63:
   // $63 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX64:
   // $64 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX65:
   // $65 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX66:
   // $66 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX67:
   // $67 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX68:
   // $68 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX69:
   // $69 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX6A:
   // $6A DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX6B:
   // $6B DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX6C:
   // $6C DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX6D:
   // $6D DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX6E:
   // $6E DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX6F:
   // $6F DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX70:
   // $70 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX71:
   // $71 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX72:
   // $72 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX73:
   // $73 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX74:
   // $74 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX75:
   // $75 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX76:
   // $76 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX77:
   // $77 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX78:
   // $78 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX79:
   // $79 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX7A:
   // $7A DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX7B:
   // $7B DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX7C:
   // $7C DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX7D:
   // $7D DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX7E:
   // $7E DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX7F:
   // $7F DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX80:
   // $80 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX81:
   // $81 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX82:
   // $82 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX83:
   // $83 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX84:
   // $84 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX85:
   // $85 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX86:
   // $86 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX87:
   // $87 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX88:
   // $88 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX89:
   // $89 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX8A:
   // $8A DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX8B:
   // $8B DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX8C:
   // $8C DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX8D:
   // $8D DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX8E:
   // $8E DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX8F:
   // $8F DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX90:
   // $90 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX91:
   // $91 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX92:
   // $92 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX93:
   // $93 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX94:
   // $94 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX95:
   // $95 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX96:
   // $96 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX97:
   // $97 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX98:
   // $98 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX99:
   // $99 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX9A:
   // $9A DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX9B:
   // $9B DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX9C:
   // $9C DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX9D:
   // $9D DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX9E:
   // $9E DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEX9F:
   // $9F DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXA0:
   // $A0 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXA1:
   // $A1 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXA2:
   // $A2 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXA3:
   // $A3 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXA4:
   // $A4 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXA5:
   // $A5 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXA6:
   // $A6 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXA7:
   // $A7 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXA8:
   // $A8 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXA9:
   // $A9 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXAA:
   // $AA DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXAB:
   // $AB DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXAC:
   // $AC DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXAD:
   // $AD DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXAE:
   // $AE DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXAF:
   // $AF DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXB0:
   // $B0 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXB1:
   // $B1 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXB2:
   // $B2 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXB3:
   // $B3 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXB4:
   // $B4 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXB5:
   // $B5 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXB6:
   // $B6 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXB7:
   // $B7 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXB8:
   // $B8 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXB9:
   // $B9 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXBA:
   // $BA DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXBB:
   // $BB DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXBC:
   // $BC DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXBD:
   // $BD DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXBE:
   // $BE DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXBF:
   // $BF DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXC0:
   // $C0 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXC1:
   // $C1 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXC2:
   // $C2 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXC3:
   // $C3 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXC4:
   // $C4 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXC5:
   // $C5 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXC6:
   // $C6 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXC7:
   // $C7 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXC8:
   // $C8 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXC9:
   // $C9 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXCA:
   // $CA DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXCB:
   // $CB DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXCC:
   // $CC DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXCD:
   // $CD DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXCE:
   // $CE DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXCF:
   // $CF DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXD0:
   // $D0 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXD1:
   // $D1 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXD2:
   // $D2 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXD3:
   // $D3 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXD4:
   // $D4 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXD5:
   // $D5 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXD6:
   // $D6 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXD7:
   // $D7 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXD8:
   // $D8 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXD9:
   // $D9 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXDA:
   // $DA DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXDB:
   // $DB DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXDC:
   // $DC DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXDD:
   // $DD DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXDE:
   // $DE DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXDF:
   // $DF DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXE0:
   // $E0 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXE1:
   // $E1 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXE2:
   // $E2 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXE3:
   // $E3 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXE4:
   // $E4 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXE5:
   // $E5 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXE6:
   // $E6 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXE7:
   // $E7 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXE8:
   // $E8 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXE9:
   // $E9 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXEA:
   // $EA DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXEB:
   // $EB DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXEC:
   // $EC DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXED:
   // $ED DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXEE:
   // $EE DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXEF:
   // $EF DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXF0:
   // $F0 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXF1:
   // $F1 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXF2:
   // $F2 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXF3:
   // $F3 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXF4:
   // $F4 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXF5:
   // $F5 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXF6:
   // $F6 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXF7:
   // $F7 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXF8:
   // $F8 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXF9:
   // $F9 DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXFA:
   // $FA DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXFB:
   // $FB DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXFC:
   // $FC DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXFD:
   // $FD DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXFE:
   // $FE DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot
 
-align(256)
+DMAPHEXFF:
   // $FF DMA   ???               ?????
   j MDMAENCHECK
   nop                    // Delay Slot

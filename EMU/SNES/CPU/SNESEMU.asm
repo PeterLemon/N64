@@ -73,12 +73,12 @@ Refresh:
 
     EXECUTE:
       or t0,t1    // T0 |= Native/Emulation Mode CPU Instruction Base
-      addu t0,a1  // T0 = CPU Instruction Table Opcode Indirect Offset
+      addu t0,a1  // T0 = CPU Instruction Indirect Table Opcode Offset
       lw t0,0(t0) // T0 = CPU Instruction Table Opcode Offset
       jalr t0     // Run CPU Instruction
       addiu s3,1  // PC_REG++ (Delay Slot)
 
-      include "IOPORT.asm" // Run IO Port
+      include "IO/IOPORT.asm" // Run IO Port
 
       blt v0,v1,CPU_EMU // Compare Cycles Counter To Refresh Cycles
       nop // Delay Slot
@@ -91,73 +91,9 @@ Refresh:
   b Refresh
   nop // Delay Slot
 
-StoreByte:
-  srl t1,t0,8   // T1 = Offset >> 8
-  ori t2,r0,$21 // T2 = $21
-  bne t1,t2,StoreByte42XX // IF (T1 != $21) Store Byte $42XX
-  andi t0,$FF   // Offset &= $FF (Delay Slot)
-  sll t0,8      // Offset <<= 8 (Table Offset)
-  la a3,STORE21XX // A3 = Store I/O Table
-  addu a3,t0    // A3 = Store I/O Table + Table Offset
-  jalr gp,a3    // Run Store I/O Table Instruction
-  nop // Delay Slot
-
-  StoreByte42XX:
-  ori t2,r0,$42 // T2 = $42
-  bne t1,t2,StoreByteEnd // IF (T1 != $21) Store Byte End
-  andi t0,$FF   // Offset &= $FF (Delay Slot)
-  sll t0,8      // Offset <<= 8 (Table Offset)
-  la a3,STORE42XX // A3 = Store I/O Table
-  addu a3,t0    // A3 = Store I/O Table + Table Offset
-  jalr k1,a3    // Run Store I/O Table Instruction
-  nop // Delay Slot
-
-  StoreByteEnd:
-    jr sp
-    nop // Delay Slot
-
-StoreWord:
-  srl t1,t0,8   // T1 = Offset >> 8
-  ori t2,r0,$21 // T2 = $21
-  bne t1,t2,StoreWord42XX // IF (T1 != $21) Store Word $42XX
-  andi t0,$FF   // Offset &= $FF (Delay Slot)
-  sll t0,8      // Offset <<= 8 (Table Offset)
-  la a3,STORE21XX // A3 = Store I/O Table
-  addu a3,t0    // A3 = Store I/O Table + Table Offset
-  jalr gp,a3    // Run Store I/O Table Instruction
-  addiu a3,256  // A3 += 256 (Delay Slot)
-  jalr gp,a3    // Run Store I/O Table Instruction
-  nop // Delay Slot
-
-  StoreWord42XX:
-  ori t2,r0,$42 // T2 = $42
-  bne t1,t2,StoreWordEnd // IF (T1 != $21) Store Word End
-  andi t0,$FF   // Offset &= $FF (Delay Slot)
-  sll t0,8      // Offset <<= 8 (Table Offset)
-  la a3,STORE42XX // A3 = Store I/O Table
-  addu a3,t0    // A3 = Store I/O Table + Table Offset
-  jalr k1,a3    // Run Store I/O Table Instruction
-  addiu a3,256  // A3 += 256 (Delay Slot)
-  jalr k1,a3    // Run Store I/O Table Instruction
-  nop // Delay Slot
-
-  StoreWordEnd:
-    jr sp
-    nop // Delay Slot
-
-include "CPU/CPU.asm" // Include CPU Macros & Jump Tables
-
-align(256)
-STORE21XX:
-  include "STORE21XX.asm" // Store I/O $21XX Table
-
-align(256)
-STORE42XX:
-  include "STORE42XX.asm" // Store I/O $42XX Table
-
-align(256)
-DMAPXX:
-  include "DMAPXX.asm" // DMA 0..7 Table
+include "CPU/CPU.asm" // Include CPU Macros & Tables
+include "DMA/DMA.asm" // Include DMA Macros & Tables
+include "IO/IO.asm"   // Include I/O Macros & Tables
 
 // PPU Data
 include "PPU/PPUPALRDP.asm" // PPU Palette Data
