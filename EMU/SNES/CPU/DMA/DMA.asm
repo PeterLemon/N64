@@ -20,6 +20,325 @@ macro DMAIOFIXSRC() { // DMA CPU Fixed Source & I/O Destination ($21XX)
   addu t8,t0      // T8 = Store I/O $21XX Indirect Table Offset
 }
 
+
+macro DMACPUFIXSRC0() { // DMA Transfer Mode 0: Fixed Source, Transfer 1 Byte, CPU To I/O (xx)
+  lw t8,0(t8)     // T8 = Store I/O $21XX Table Offset
+  {#}DMALOOP:
+    jalr gp,t8    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+}
+
+macro DMACPUFIXSRC1() { // DMA Transfer Mode 1: Fixed Source, Transfer 2 Bytes, CPU To I/O (XX, XX+1)
+  {#}DMALOOP:
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+  {#}DMAEND:
+}
+
+macro DMACPUFIXSRC2() { // DMA Transfer Mode 2: Fixed Source, Transfer 2 Bytes, CPU To I/O (XX, XX)
+  lw t8,0(t8)     // T8 = Store I/O $21XX Table Offset
+  {#}DMALOOP:
+    jalr gp,t8    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    jalr gp,t8    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+  {#}DMAEND:
+}
+
+macro DMACPUFIXSRC3() { // DMA Transfer Mode 3: Fixed Source, Transfer 4 Bytes, CPU To I/O (XX, XX, XX+1, XX+1)
+  {#}DMALOOP:
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+  {#}DMAEND:
+}
+
+macro DMACPUFIXSRC4() { // DMA Transfer Mode 4: Fixed Source, Transfer 4 Bytes, CPU To I/O (XX, XX+1, XX+2, XX+3)
+  {#}DMALOOP:
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lw t0,8(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,2(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lw t0,12(t8)  // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,3(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+  {#}DMAEND:
+}
+
+macro DMACPUFIXSRC5() { // DMA Transfer Mode 5: Fixed Source, Transfer 4 Bytes, CPU To I/O (XX, XX+1, XX, XX+1)
+  {#}DMALOOP:
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+  {#}DMAEND:
+}
+
+
+macro DMACPUDECSRC0() { // DMA Transfer Mode 0: Decrement Source, Transfer 1 Byte, CPU To I/O (xx)
+  lw t8,0(t8)     // T8 = Store I/O $21XX Table Offset
+  {#}DMALOOP:
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    jalr gp,t8    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+}
+
+macro DMACPUDECSRC1() { // DMA Transfer Mode 1: Decrement Source, Transfer 2 Bytes, CPU To I/O (XX, XX+1)
+  {#}DMALOOP:
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+  {#}DMAEND:
+}
+
+macro DMACPUDECSRC2() { // DMA Transfer Mode 2: Decrement Source, Transfer 2 Bytes, CPU To I/O (XX, XX)
+  lw t8,0(t8)     // T8 = Store I/O $21XX Table Offset
+  {#}DMALOOP:
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    jalr gp,t8    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    jalr gp,t8    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+  {#}DMAEND:
+}
+
+macro DMACPUDECSRC3() { // DMA Transfer Mode 3: Decrement Source, Transfer 4 Bytes, CPU To I/O (XX, XX, XX+1, XX+1)
+  {#}DMALOOP:
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+  {#}DMAEND:
+}
+
+macro DMACPUDECSRC4() { // DMA Transfer Mode 4: Decrement Source, Transfer 4 Bytes, CPU To I/O (XX, XX+1, XX+2, XX+3)
+  {#}DMALOOP:
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    lw t0,8(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,2(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    lw t0,12(t8)  // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,3(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+  {#}DMAEND:
+}
+
+macro DMACPUDECSRC5() { // DMA Transfer Mode 5: Decrement Source, Transfer 4 Bytes, CPU To I/O (XX, XX+1, XX, XX+1)
+  {#}DMALOOP:
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    subiu at,1    // DMA Address-- (Decrement Source)
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+  {#}DMAEND:
+}
+
+
 macro DMACPUINCSRC0() { // DMA Transfer Mode 0: Increment Source, Transfer 1 Byte, CPU To I/O (xx)
   lw t8,0(t8)     // T8 = Store I/O $21XX Table Offset
   {#}DMALOOP:
@@ -27,7 +346,6 @@ macro DMACPUINCSRC0() { // DMA Transfer Mode 0: Increment Source, Transfer 1 Byt
     addiu at,1    // DMA Address++ (Increment Source)
     jalr gp,t8    // Run Store I/O $21XX Instruction
     sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
-
     subiu k0,1    // K0-- (Decrement DMA Count)
     bnez k0,{#}DMALOOP
     andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
@@ -40,7 +358,6 @@ macro DMACPUINCSRC1() { // DMA Transfer Mode 1: Increment Source, Transfer 2 Byt
     lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
     jalr gp,t0    // Run Store I/O $21XX Instruction
     sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
-
     subiu k0,1    // K0-- (Decrement DMA Count)
     beqz k0,{#}DMAEND
     andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
@@ -50,40 +367,147 @@ macro DMACPUINCSRC1() { // DMA Transfer Mode 1: Increment Source, Transfer 2 Byt
     lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
     jalr gp,t0    // Run Store I/O $21XX Instruction
     sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
-
     subiu k0,1    // K0-- (Decrement DMA Count)
     bnez k0,{#}DMALOOP
     andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
   {#}DMAEND:
 }
 
-
-
-macro DMACPUFIXSRC0() { // DMA Transfer Mode 0: Fixed Source, Transfer 1 Byte, CPU To I/O (xx)
+macro DMACPUINCSRC2() { // DMA Transfer Mode 2: Increment Source, Transfer 2 Bytes, CPU To I/O (XX, XX)
   lw t8,0(t8)     // T8 = Store I/O $21XX Table Offset
   {#}DMALOOP:
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    addiu at,1    // DMA Address++ (Increment Source)
     jalr gp,t8    // Run Store I/O $21XX Instruction
     sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
-
-    subiu k0,1    // K0-- (Decrement DMA Count)
-    bnez k0,{#}DMALOOP
-    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
-}
-
-macro DMACPUFIXSRC1() { // DMA Transfer Mode 1: Fixed Source, Transfer 2 Bytes, CPU To I/O (XX, XX+1)
-  {#}DMALOOP:
-    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
-    jalr gp,t0    // Run Store I/O $21XX Instruction
-    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
-
     subiu k0,1    // K0-- (Decrement DMA Count)
     beqz k0,{#}DMAEND
     andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
 
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    addiu at,1    // DMA Address++ (Increment Source)
+    jalr gp,t8    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+  {#}DMAEND:
+}
+
+macro DMACPUINCSRC3() { // DMA Transfer Mode 3: Increment Source, Transfer 4 Bytes, CPU To I/O (XX, XX, XX+1, XX+1)
+  {#}DMALOOP:
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    addiu at,1    // DMA Address++ (Increment Source)
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    addiu at,1    // DMA Address++ (Increment Source)
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    addiu at,1    // DMA Address++ (Increment Source)
     lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
     jalr gp,t0    // Run Store I/O $21XX Instruction
     sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
 
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    addiu at,1    // DMA Address++ (Increment Source)
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+  {#}DMAEND:
+}
+
+macro DMACPUINCSRC4() { // DMA Transfer Mode 4: Increment Source, Transfer 4 Bytes, CPU To I/O (XX, XX+1, XX+2, XX+3)
+  {#}DMALOOP:
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    addiu at,1    // DMA Address++ (Increment Source)
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    addiu at,1    // DMA Address++ (Increment Source)
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    addiu at,1    // DMA Address++ (Increment Source)
+    lw t0,8(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,2(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    addiu at,1    // DMA Address++ (Increment Source)
+    lw t0,12(t8)  // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,3(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    bnez k0,{#}DMALOOP
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+  {#}DMAEND:
+}
+
+macro DMACPUINCSRC5() { // DMA Transfer Mode 5: Increment Source, Transfer 4 Bytes, CPU To I/O (XX, XX+1, XX, XX+1)
+  {#}DMALOOP:
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    addiu at,1    // DMA Address++ (Increment Source)
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    addiu at,1    // DMA Address++ (Increment Source)
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    addiu at,1    // DMA Address++ (Increment Source)
+    lw t0,0(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,0(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
+    subiu k0,1    // K0-- (Decrement DMA Count)
+    beqz k0,{#}DMAEND
+    andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
+
+    lbu t6,0(at)  // T6 = MEM_MAP[DMA Address]
+    addiu at,1    // DMA Address++ (Increment Source)
+    lw t0,4(t8)   // T0 = Store I/O $21XX Table Offset
+    jalr gp,t0    // Run Store I/O $21XX Instruction
+    sb t6,1(t7)   // MEM_MAP[$21XX] = T6 (Delay Slot)
     subiu k0,1    // K0-- (Decrement DMA Count)
     bnez k0,{#}DMALOOP
     andi k0,$FFFF // K0 &= $FFFF (Delay Slot)
@@ -92,14 +516,14 @@ macro DMACPUFIXSRC1() { // DMA Transfer Mode 1: Fixed Source, Transfer 2 Bytes, 
 
 DMAPXX:
 // DMAPXX 0..7 Indirect Table
-dw DMAPHEX00, DMAPHEX01, DMAPHEX02, DMAPHEX03, DMAPHEX04, DMAPHEX05, DMAPHEX06, DMAPHEX07, DMAPHEX08, DMAPHEX09, DMAPHEX0A, DMAPHEX0B, DMAPHEX0C, DMAPHEX0D, DMAPHEX0E, DMAPHEX0F
-dw DMAPHEX10, DMAPHEX11, DMAPHEX12, DMAPHEX13, DMAPHEX14, DMAPHEX15, DMAPHEX16, DMAPHEX17, DMAPHEX18, DMAPHEX19, DMAPHEX1A, DMAPHEX1B, DMAPHEX1C, DMAPHEX1D, DMAPHEX1E, DMAPHEX1F
-dw DMAPHEX20, DMAPHEX21, DMAPHEX22, DMAPHEX23, DMAPHEX24, DMAPHEX25, DMAPHEX26, DMAPHEX27, DMAPHEX28, DMAPHEX29, DMAPHEX2A, DMAPHEX2B, DMAPHEX2C, DMAPHEX2D, DMAPHEX2E, DMAPHEX2F
-dw DMAPHEX30, DMAPHEX31, DMAPHEX32, DMAPHEX33, DMAPHEX34, DMAPHEX35, DMAPHEX36, DMAPHEX37, DMAPHEX38, DMAPHEX39, DMAPHEX3A, DMAPHEX3B, DMAPHEX3C, DMAPHEX3D, DMAPHEX3E, DMAPHEX3F
-dw DMAPHEX40, DMAPHEX41, DMAPHEX42, DMAPHEX43, DMAPHEX44, DMAPHEX45, DMAPHEX46, DMAPHEX47, DMAPHEX48, DMAPHEX49, DMAPHEX4A, DMAPHEX4B, DMAPHEX4C, DMAPHEX4D, DMAPHEX4E, DMAPHEX4F
-dw DMAPHEX50, DMAPHEX51, DMAPHEX52, DMAPHEX53, DMAPHEX54, DMAPHEX55, DMAPHEX56, DMAPHEX57, DMAPHEX58, DMAPHEX59, DMAPHEX5A, DMAPHEX5B, DMAPHEX5C, DMAPHEX5D, DMAPHEX5E, DMAPHEX5F
-dw DMAPHEX60, DMAPHEX61, DMAPHEX62, DMAPHEX63, DMAPHEX64, DMAPHEX65, DMAPHEX66, DMAPHEX67, DMAPHEX68, DMAPHEX69, DMAPHEX6A, DMAPHEX6B, DMAPHEX6C, DMAPHEX6D, DMAPHEX6E, DMAPHEX6F
-dw DMAPHEX70, DMAPHEX71, DMAPHEX72, DMAPHEX73, DMAPHEX74, DMAPHEX75, DMAPHEX76, DMAPHEX77, DMAPHEX78, DMAPHEX79, DMAPHEX7A, DMAPHEX7B, DMAPHEX7C, DMAPHEX7D, DMAPHEX7E, DMAPHEX7F
+dw DMAPHEX00, DMAPHEX01, DMAPHEX02, DMAPHEX03, DMAPHEX04, DMAPHEX05, DMAPHEX02, DMAPHEX03, DMAPHEX08, DMAPHEX09, DMAPHEX0A, DMAPHEX0B, DMAPHEX0C, DMAPHEX0D, DMAPHEX0A, DMAPHEX0B
+dw DMAPHEX10, DMAPHEX11, DMAPHEX12, DMAPHEX13, DMAPHEX14, DMAPHEX15, DMAPHEX12, DMAPHEX13, DMAPHEX08, DMAPHEX09, DMAPHEX0A, DMAPHEX0B, DMAPHEX0C, DMAPHEX0D, DMAPHEX0A, DMAPHEX0B
+dw DMAPHEX00, DMAPHEX01, DMAPHEX02, DMAPHEX03, DMAPHEX04, DMAPHEX05, DMAPHEX02, DMAPHEX03, DMAPHEX08, DMAPHEX09, DMAPHEX0A, DMAPHEX0B, DMAPHEX0C, DMAPHEX0D, DMAPHEX0A, DMAPHEX0B
+dw DMAPHEX10, DMAPHEX11, DMAPHEX12, DMAPHEX13, DMAPHEX14, DMAPHEX15, DMAPHEX12, DMAPHEX13, DMAPHEX08, DMAPHEX09, DMAPHEX0A, DMAPHEX0B, DMAPHEX0C, DMAPHEX0D, DMAPHEX0A, DMAPHEX0B
+dw DMAPHEX00, DMAPHEX01, DMAPHEX02, DMAPHEX03, DMAPHEX04, DMAPHEX05, DMAPHEX02, DMAPHEX03, DMAPHEX08, DMAPHEX09, DMAPHEX0A, DMAPHEX0B, DMAPHEX0C, DMAPHEX0D, DMAPHEX0A, DMAPHEX0B
+dw DMAPHEX10, DMAPHEX11, DMAPHEX12, DMAPHEX13, DMAPHEX14, DMAPHEX15, DMAPHEX12, DMAPHEX13, DMAPHEX08, DMAPHEX09, DMAPHEX0A, DMAPHEX0B, DMAPHEX0C, DMAPHEX0D, DMAPHEX0A, DMAPHEX0B
+dw DMAPHEX00, DMAPHEX01, DMAPHEX02, DMAPHEX03, DMAPHEX04, DMAPHEX05, DMAPHEX02, DMAPHEX03, DMAPHEX08, DMAPHEX09, DMAPHEX0A, DMAPHEX0B, DMAPHEX0C, DMAPHEX0D, DMAPHEX0A, DMAPHEX0B
+dw DMAPHEX10, DMAPHEX11, DMAPHEX12, DMAPHEX13, DMAPHEX14, DMAPHEX15, DMAPHEX12, DMAPHEX13, DMAPHEX08, DMAPHEX09, DMAPHEX0A, DMAPHEX0B, DMAPHEX0C, DMAPHEX0D, DMAPHEX0A, DMAPHEX0B
 dw DMAPHEX80, DMAPHEX81, DMAPHEX82, DMAPHEX83, DMAPHEX84, DMAPHEX85, DMAPHEX86, DMAPHEX87, DMAPHEX88, DMAPHEX89, DMAPHEX8A, DMAPHEX8B, DMAPHEX8C, DMAPHEX8D, DMAPHEX8E, DMAPHEX8F
 dw DMAPHEX90, DMAPHEX91, DMAPHEX92, DMAPHEX93, DMAPHEX94, DMAPHEX95, DMAPHEX96, DMAPHEX97, DMAPHEX98, DMAPHEX99, DMAPHEX9A, DMAPHEX9B, DMAPHEX9C, DMAPHEX9D, DMAPHEX9E, DMAPHEX9F
 dw DMAPHEXA0, DMAPHEXA1, DMAPHEXA2, DMAPHEXA3, DMAPHEXA4, DMAPHEXA5, DMAPHEXA6, DMAPHEXA7, DMAPHEXA8, DMAPHEXA9, DMAPHEXAA, DMAPHEXAB, DMAPHEXAC, DMAPHEXAD, DMAPHEXAE, DMAPHEXAF

@@ -13,636 +13,114 @@ DMAPHEX01:
   nop                    // Delay Slot
 
 DMAPHEX02:
-  // $02 DMA   ???               ?????
+  // $02 DMA   Transfer Mode 2: Increment Source, Transfer 2 Bytes, CPU To I/O (XX, XX)
+  DMAIOSRC()             // DMA CPU Source & I/O Destination ($21XX)
+  DMACPUINCSRC2()        // DMA Transfer Bytes From CPU To I/O Using Mode 2, Increment Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX03:
-  // $03 DMA   ???               ?????
+  // $03 DMA   Transfer Mode 3: Increment Source, Transfer 4 Bytes, CPU To I/O (XX, XX, XX+1, XX+1)
+  DMAIOSRC()             // DMA CPU Source & I/O Destination ($21XX)
+  DMACPUINCSRC3()        // DMA Transfer Bytes From CPU To I/O Using Mode 3, Increment Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX04:
-  // $04 DMA   ???               ?????
+  // $04 DMA   Transfer Mode 4: Increment Source, Transfer 4 Bytes, CPU To I/O (XX, XX+1, XX+2, XX+3)
+  DMAIOSRC()             // DMA CPU Source & I/O Destination ($21XX)
+  DMACPUINCSRC4()        // DMA Transfer Bytes From CPU To I/O Using Mode 4, Increment Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX05:
-  // $05 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX06:
-  // $06 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX07:
-  // $07 DMA   ???               ?????
+  // $05 DMA   Transfer Mode 5: Increment Source, Transfer 4 Bytes, CPU To I/O (XX, XX+1, XX, XX+1)
+  DMAIOSRC()             // DMA CPU Source & I/O Destination ($21XX)
+  DMACPUINCSRC5()        // DMA Transfer Bytes From CPU To I/O Using Mode 5, Increment Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX08:
   // $08 DMA   Transfer Mode 0: Fixed Source, Transfer 1 Byte, CPU To I/O (xx)
   DMAIOFIXSRC()          // DMA CPU Fixed Source & I/O Destination ($21XX)
-  DMACPUFIXSRC0()        // DMA Transfer Bytes From CPU To I/O Using Mode 0
+  DMACPUFIXSRC0()        // DMA Transfer Bytes From CPU To I/O Using Mode 0, Fixed Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX09:
   // $09 DMA   Transfer Mode 1: Fixed Source, Transfer 2 Bytes, CPU To I/O (XX, XX+1)
   DMAIOFIXSRC()          // DMA CPU Fixed Source & I/O Destination ($21XX)
-  DMACPUFIXSRC1()        // DMA Transfer Bytes From CPU To I/O Using Mode 1
+  DMACPUFIXSRC1()        // DMA Transfer Bytes From CPU To I/O Using Mode 1, Fixed Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX0A:
-  // $0A DMA   ???               ?????
+  // $0A DMA   Transfer Mode 2: Fixed Source, Transfer 2 Bytes, CPU To I/O (XX, XX)
+  DMAIOFIXSRC()          // DMA CPU Fixed Source & I/O Destination ($21XX)
+  DMACPUFIXSRC2()        // DMA Transfer Bytes From CPU To I/O Using Mode 2, Fixed Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX0B:
-  // $0B DMA   ???               ?????
+  // $0B DMA   Transfer Mode 3: Fixed Source, Transfer 4 Bytes, CPU To I/O (XX, XX, XX+1, XX+1)
+  DMAIOFIXSRC()          // DMA CPU Fixed Source & I/O Destination ($21XX)
+  DMACPUFIXSRC3()        // DMA Transfer Bytes From CPU To I/O Using Mode 3, Fixed Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX0C:
-  // $0C DMA   ???               ?????
+  // $0C DMA   Transfer Mode 4: Fixed Source, Transfer 4 Bytes, CPU To I/O (XX, XX+1, XX+2, XX+3)
+  DMAIOFIXSRC()          // DMA CPU Fixed Source & I/O Destination ($21XX)
+  DMACPUFIXSRC4()        // DMA Transfer Bytes From CPU To I/O Using Mode 4, Fixed Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX0D:
-  // $0D DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX0E:
-  // $0E DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX0F:
-  // $0F DMA   ???               ?????
+  // $0D DMA   Transfer Mode 5: Fixed Source, Transfer 4 Bytes, CPU To I/O (XX, XX+1, XX, XX+1)
+  DMAIOFIXSRC()          // DMA CPU Fixed Source & I/O Destination ($21XX)
+  DMACPUFIXSRC5()        // DMA Transfer Bytes From CPU To I/O Using Mode 5, Fixed Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX10:
-  // $10 DMA   ???               ?????
+  // $10 DMA   Transfer Mode 0: Decrement Source, Transfer 1 Byte, CPU To I/O (XX)
+  DMAIOSRC()             // DMA CPU Source & I/O Destination ($21XX) 
+  DMACPUDECSRC0()        // DMA Transfer Bytes From CPU To I/O Using Mode 0, Decrement Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX11:
-  // $11 DMA   ???               ?????
+  // $11 DMA   Transfer Mode 1: Decrement Source, Transfer 2 Bytes, CPU To I/O (XX, XX+1)
+  DMAIOSRC()             // DMA CPU Source & I/O Destination ($21XX)
+  DMACPUDECSRC1()        // DMA Transfer Bytes From CPU To I/O Using Mode 1, Decrement Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX12:
-  // $12 DMA   ???               ?????
+  // $12 DMA   Transfer Mode 2: Decrement Source, Transfer 2 Bytes, CPU To I/O (XX, XX)
+  DMAIOSRC()             // DMA CPU Source & I/O Destination ($21XX)
+  DMACPUDECSRC2()        // DMA Transfer Bytes From CPU To I/O Using Mode 2, Decrement Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX13:
-  // $13 DMA   ???               ?????
+  // $13 DMA   Transfer Mode 3: Decrement Source, Transfer 4 Bytes, CPU To I/O (XX, XX, XX+1, XX+1)
+  DMAIOSRC()             // DMA CPU Source & I/O Destination ($21XX)
+  DMACPUDECSRC3()        // DMA Transfer Bytes From CPU To I/O Using Mode 3, Decrement Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX14:
-  // $14 DMA   ???               ?????
+  // $14 DMA   Transfer Mode 4: Decrement Source, Transfer 4 Bytes, CPU To I/O (XX, XX+1, XX+2, XX+3)
+  DMAIOSRC()             // DMA CPU Source & I/O Destination ($21XX)
+  DMACPUDECSRC4()        // DMA Transfer Bytes From CPU To I/O Using Mode 4, Decrement Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
 DMAPHEX15:
-  // $15 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX16:
-  // $16 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX17:
-  // $17 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX18:
-  // $18 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX19:
-  // $19 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX1A:
-  // $1A DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX1B:
-  // $1B DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX1C:
-  // $1C DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX1D:
-  // $1D DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX1E:
-  // $1E DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX1F:
-  // $1F DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX20:
-  // $20 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX21:
-  // $21 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX22:
-  // $22 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX23:
-  // $23 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX24:
-  // $24 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX25:
-  // $25 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX26:
-  // $26 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX27:
-  // $27 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX28:
-  // $28 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX29:
-  // $29 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX2A:
-  // $2A DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX2B:
-  // $2B DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX2C:
-  // $2C DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX2D:
-  // $2D DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX2E:
-  // $2E DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX2F:
-  // $2F DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX30:
-  // $30 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX31:
-  // $31 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX32:
-  // $32 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX33:
-  // $33 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX34:
-  // $34 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX35:
-  // $35 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX36:
-  // $36 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX37:
-  // $37 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX38:
-  // $38 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX39:
-  // $39 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX3A:
-  // $3A DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX3B:
-  // $3B DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX3C:
-  // $3C DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX3D:
-  // $3D DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX3E:
-  // $3E DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX3F:
-  // $3F DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX40:
-  // $40 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX41:
-  // $41 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX42:
-  // $42 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX43:
-  // $43 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX44:
-  // $44 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX45:
-  // $45 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX46:
-  // $46 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX47:
-  // $47 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX48:
-  // $48 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX49:
-  // $49 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX4A:
-  // $4A DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX4B:
-  // $4B DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX4C:
-  // $4C DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX4D:
-  // $4D DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX4E:
-  // $4E DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX4F:
-  // $4F DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX50:
-  // $50 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX51:
-  // $51 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX52:
-  // $52 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX53:
-  // $53 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX54:
-  // $54 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX55:
-  // $55 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX56:
-  // $56 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX57:
-  // $57 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX58:
-  // $58 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX59:
-  // $59 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX5A:
-  // $5A DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX5B:
-  // $5B DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX5C:
-  // $5C DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX5D:
-  // $5D DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX5E:
-  // $5E DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX5F:
-  // $5F DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX60:
-  // $60 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX61:
-  // $61 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX62:
-  // $62 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX63:
-  // $63 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX64:
-  // $64 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX65:
-  // $65 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX66:
-  // $66 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX67:
-  // $67 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX68:
-  // $68 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX69:
-  // $69 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX6A:
-  // $6A DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX6B:
-  // $6B DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX6C:
-  // $6C DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX6D:
-  // $6D DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX6E:
-  // $6E DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX6F:
-  // $6F DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX70:
-  // $70 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX71:
-  // $71 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX72:
-  // $72 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX73:
-  // $73 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX74:
-  // $74 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX75:
-  // $75 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX76:
-  // $76 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX77:
-  // $77 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX78:
-  // $78 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX79:
-  // $79 DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX7A:
-  // $7A DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX7B:
-  // $7B DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX7C:
-  // $7C DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX7D:
-  // $7D DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX7E:
-  // $7E DMA   ???               ?????
-  j MDMAENCHECK
-  nop                    // Delay Slot
-
-DMAPHEX7F:
-  // $7F DMA   ???               ?????
+  // $15 DMA   Transfer Mode 5: Decrement Source, Transfer 4 Bytes, CPU To I/O (XX, XX+1, XX, XX+1)
+  DMAIOSRC()             // DMA CPU Source & I/O Destination ($21XX)
+  DMACPUDECSRC5()        // DMA Transfer Bytes From CPU To I/O Using Mode 5, Decrement Source
   j MDMAENCHECK
   nop                    // Delay Slot
 
