@@ -635,8 +635,6 @@ CPU6502HEX7E:
 CPU6502HEX81:
   // $81 STA   (dp,X)            Store Accumulator To Memory Direct Page Indexed Indirect, X
   StoreDPIX8(s0)         // DP Indexed Indirect, X = A_REG (8-Bit)
-  la sp,StoreByte        // Store Byte
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)
@@ -644,8 +642,6 @@ CPU6502HEX81:
 CPU6502HEX84:
   // $84 STY   dp                Store Index Register Y To Memory Direct Page
   StoreDP8(s2)           // DP = Y_REG (8-Bit)
-  la sp,StoreByte        // Store Byte
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,3             // Cycles += 3 (Delay Slot)
@@ -653,8 +649,6 @@ CPU6502HEX84:
 CPU6502HEX85:
   // $85 STA   dp                Store Accumulator To Memory Direct Page
   StoreDP8(s0)           // DP = A_REG (8-Bit)
-  la sp,StoreByte        // Store Byte
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,3             // Cycles += 3 (Delay Slot)
@@ -662,8 +656,6 @@ CPU6502HEX85:
 CPU6502HEX86:
   // $86 STX   dp                Store Index Register X To Memory Direct Page
   StoreDP8(s1)           // DP = X_REG (8-Bit)
-  la sp,StoreByte        // Store Byte
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,3             // Cycles += 3 (Delay Slot)
@@ -686,8 +678,6 @@ CPU6502HEX8A:
 CPU6502HEX8C:
   // $8C STY   nnnn              Store Index Register Y To Memory Absolute
   StoreABS8(s2)          // Absolute = Y_REG (8-Bit)
-  la sp,StoreByte        // Store Byte
-  jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
@@ -695,8 +685,6 @@ CPU6502HEX8C:
 CPU6502HEX8D:
   // $8D STA   nnnn              Store Accumulator To Memory Absolute
   StoreABS8(s0)          // Absolute = A_REG (8-Bit)
-  la sp,StoreByte        // Store Byte
-  jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
@@ -704,8 +692,6 @@ CPU6502HEX8D:
 CPU6502HEX8E:
   // $8E STX   nnnn              Store Index Register X To Memory Absolute
   StoreABS8(s1)          // Absolute = X_REG (8-Bit)
-  la sp,StoreByte        // Store Byte
-  jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
@@ -719,8 +705,6 @@ CPU6502HEX90:
 CPU6502HEX91:
   // $91 STA   (dp),Y            Store Accumulator To Memory Direct Page Indirect Indexed, Y
   StoreDPIY8(s0)         // DP Indirect Indexed, Y = A_REG (8-Bit)
-  la sp,StoreByte        // Store Byte
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)
@@ -728,8 +712,6 @@ CPU6502HEX91:
 CPU6502HEX94:
   // $94 STY   dp,X              Store Index Register Y To Memory Direct Page Indexed, X
   StoreDPX8(s2)          // DP Indexed, X = Y_REG (8-Bit)
-  la sp,StoreByte        // Store Byte
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
@@ -737,8 +719,6 @@ CPU6502HEX94:
 CPU6502HEX95:
   // $95 STA   dp,X              Store Accumulator To Memory Direct Page Indexed, X
   StoreDPX8(s0)          // DP Indexed, X = A_REG (8-Bit)
-  la sp,StoreByte        // Store Byte
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
@@ -746,8 +726,6 @@ CPU6502HEX95:
 CPU6502HEX96:
   // $96 STX   dp,Y              Store Index Register X To Memory Direct Page Indexed, Y
   StoreDPY8(s1)          // DP Indexed, Y = X_REG (8-Bit)
-  la sp,StoreByte        // Store Byte
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
@@ -762,8 +740,6 @@ CPU6502HEX98:
 CPU6502HEX99:
   // $99 STA   nnnn,Y            Store Accumulator To Memory Absolute Indexed, Y
   StoreABSY8(s0)         // Absolute Indexed, Y = A_REG (8-Bit)
-  la sp,StoreByte        // Store Byte
-  jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
@@ -777,8 +753,6 @@ CPU6502HEX9A:
 CPU6502HEX9D:
   // $9D STA   nnnn,X            Store Accumulator To Memory Absolute Indexed, X
   StoreABSX8(s0)         // Absolute Indexed, X = A_REG (8-Bit)
-  la sp,StoreByte        // Store Byte
-  jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)

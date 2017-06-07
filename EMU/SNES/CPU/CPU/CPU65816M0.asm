@@ -706,8 +706,6 @@ CPU65816M0HEX63:
 CPU65816M0HEX64:
   // $64 STZ   dp                Store Zero To Memory Direct Page
   StoreDP16(r0)          // DP = 0 (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
@@ -835,8 +833,6 @@ CPU65816M0HEX73:
 CPU65816M0HEX74:
   // $74 STZ   dp,X              Store Zero To Memory Direct Page Indexed, X
   StoreDPX16(r0)         // DP Indexed, X = 0 (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
@@ -920,8 +916,6 @@ CPU65816M0HEX7F:
 CPU65816M0HEX81:
   // $81 STA   (dp,X)            Store Accumulator To Memory Direct Page Indexed Indirect, X
   StoreDPIX16(s0)        // DP Indexed Indirect, X = A_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,7             // Cycles += 7 (Delay Slot)
@@ -929,8 +923,6 @@ CPU65816M0HEX81:
 CPU65816M0HEX83:
   // $83 STA   sr,S              Store Accumulator To Memory Stack Relative
   StoreSR16(s0)          // SR = A_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
@@ -938,8 +930,6 @@ CPU65816M0HEX83:
 CPU65816M0HEX85:
   // $85 STA   dp                Store Accumulator To Memory Direct Page
   StoreDP16(s0)          // DP = A_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
@@ -947,8 +937,6 @@ CPU65816M0HEX85:
 CPU65816M0HEX87:
   // $87 STA   [dp]              Store Accumulator To Memory Direct Page Indirect Long
   StoreDPIL16(s0)        // DP Indirect Long = A_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,7             // Cycles += 7 (Delay Slot)
@@ -964,8 +952,6 @@ CPU65816M0HEX89:
 CPU65816M0HEX8D:
   // $8D STA   nnnn              Store Accumulator To Memory Absolute
   StoreABS16(s0)         // Absolute = A_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
@@ -973,8 +959,6 @@ CPU65816M0HEX8D:
 CPU65816M0HEX8F:
   // $8F STA   nnnnnn            Store Accumulator To Memory Absolute Long
   StoreABSL16(s0)        // Absolute Long = A_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,3             // PC_REG += 3 (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)
@@ -982,8 +966,6 @@ CPU65816M0HEX8F:
 CPU65816M0HEX91:
   // $91 STA   (dp),Y            Store Accumulator To Memory Direct Page Indirect Indexed, Y
   StoreDPIY16(s0)        // DP Indirect Indexed, Y = A_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,7             // Cycles += 7 (Delay Slot)
@@ -991,8 +973,6 @@ CPU65816M0HEX91:
 CPU65816M0HEX92:
   // $92 STA   (dp)              Store Accumulator To Memory Direct Page Indirect
   StoreDPI16(s0)         // DP Indirect = A_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)
@@ -1000,8 +980,6 @@ CPU65816M0HEX92:
 CPU65816M0HEX93:
   // $93 STA   (sr,S),Y          Store Accumulator To Memory Stack Relative Indirect Indexed, Y
   StoreSRIY16(s0)        // SR Indirect Indexed, Y = A_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,8             // Cycles += 8 (Delay Slot)
@@ -1009,8 +987,6 @@ CPU65816M0HEX93:
 CPU65816M0HEX95:
   // $95 STA   dp,X              Store Accumulator To Memory Direct Page Indexed, X
   StoreDPX16(s0)         // DP Indexed, X = A_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
@@ -1018,8 +994,6 @@ CPU65816M0HEX95:
 CPU65816M0HEX97:
   // $97 STA   [dp],Y            Store Accumulator To Memory Direct Page Indirect Long Indexed, Y
   StoreDPILY16(s0)       // DP Indirect Long Indexed, Y = A_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,7             // Cycles += 7 (Delay Slot)
@@ -1027,8 +1001,6 @@ CPU65816M0HEX97:
 CPU65816M0HEX99:
   // $99 STA   nnnn,Y            Store Accumulator To Memory Absolute Indexed, Y
   StoreABSY16(s0)        // Absolute Indexed, Y = A_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)
@@ -1036,8 +1008,6 @@ CPU65816M0HEX99:
 CPU65816M0HEX9C:
   // $9C STZ   nnnn              Store Zero To Memory Absolute
   StoreABS16(r0)         // Absolute = 0 (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
@@ -1045,8 +1015,6 @@ CPU65816M0HEX9C:
 CPU65816M0HEX9D:
   // $9D STA   nnnn,X            Store Accumulator To Memory Absolute Indexed, X
   StoreABSX16(s0)        // Absolute Indexed, X = A_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)
@@ -1054,8 +1022,6 @@ CPU65816M0HEX9D:
 CPU65816M0HEX9E:
   // $9E STZ   nnnn,X            Store Zero To Memory Absolute Indexed, X
   StoreABSX16(r0)        // Absolute Indexed, X = 0 (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)
@@ -1063,8 +1029,6 @@ CPU65816M0HEX9E:
 CPU65816M0HEX9F:
   // $9F STA   nnnnnn,X          Store Accumulator To Memory Absolute Long Indexed, X
   StoreABSLX16(s0)       // Absolute Long Indexed, X = A_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,3             // PC_REG += 3 (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)

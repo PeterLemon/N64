@@ -119,6 +119,10 @@ macro LoadABS8(reg) { // Load 8-Bit Absolute Memory To Register
   sll t1,s7,16        // T1 = DB_REG << 16 
   or t0,t1            // T0 = DB_REG:Immediate
   addu a2,a0,t0       // A2 = MEM_MAP + DB_REG:Immediate
+
+  la sp,LoadByte      // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)     // Register = Absolute (8-Bit)
 }
 
@@ -130,6 +134,10 @@ macro LoadABS16(reg) { // Load 16-Bit Absolute Memory To Register
   sll t1,s7,16         // T1 = DB_REG << 16 
   or t0,t1             // T0 = DB_REG:Immediate
   addu a2,a0,t0        // A2 = MEM_MAP + DB_REG:Immediate
+
+  la sp,LoadWord       // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)      // Register = Absolute HI Byte
   sll {reg},8          // Register <<= 8
   lbu t1,0(a2)         // T1 = Absolute LO Byte
@@ -145,6 +153,10 @@ macro LoadABSL8(reg) { // Load 8-Bit Absolute Long Memory To Register
   lbu t1,1(a2)         // T1 = Immediate LO Byte
   or t0,t1             // T0 = Immediate (24-Bit)
   addu a2,a0,t0        // A2 = MEM_MAP + Immediate
+
+  la sp,LoadByte       // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)      // Register = Absolute Long (8-Bit)
 }
 
@@ -157,6 +169,10 @@ macro LoadABSL16(reg) { // Load 16-Bit Absolute Long Memory To Register
   lbu t1,1(a2)          // T1 = Immediate LO Byte
   or t0,t1              // T0 = Immediate (24-Bit)
   addu a2,a0,t0         // A2 = MEM_MAP + Immediate
+
+  la sp,LoadWord        // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)       // Register = Absolute Long HI Byte
   sll {reg},8           // Register <<= 8
   lbu t1,0(a2)          // T1 = Absolute Long LO Byte
@@ -173,6 +189,10 @@ macro LoadABSLX8(reg) { // Load 8-Bit Absolute Long Indexed, X Memory To Registe
   or t0,t1              // T0 = Immediate (24-Bit)
   addu t0,s1            // T0 = Immediate + X_REG
   addu a2,a0,t0         // A2 = MEM_MAP + Immediate + X_REG
+
+  la sp,LoadByte        // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)       // Register = Absolute Long Indexed, X (8-Bit)
 }
 
@@ -186,6 +206,10 @@ macro LoadABSLX16(reg) { // Load 16-Bit Absolute Long Indexed, X Memory To Regis
   or t0,t1               // T0 = Immediate (24-Bit)
   addu t0,s1             // T0 = Immediate + X_REG
   addu a2,a0,t0          // A2 = MEM_MAP + Immediate + X_REG
+
+  la sp,LoadWord         // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)        // Register = Absolute Long Indexed, X HI Byte
   sll {reg},8            // Register <<= 8
   lbu t1,0(a2)           // T1 = Absolute Long Indexed, X LO Byte
@@ -201,6 +225,10 @@ macro LoadABSX8(reg) { // Load 8-Bit Absolute Indexed, X Memory To Register
   or t0,t1             // T0 = DB_REG:Immediate
   addu t0,s1           // T0 = DB_REG:Immediate + X_REG
   addu a2,a0,t0        // A2 = MEM_MAP + DB_REG:Immediate + X_REG
+
+  la sp,LoadByte       // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)      // Register = Absolute Indexed, X (8-Bit)
 }
 
@@ -213,6 +241,10 @@ macro LoadABSX16(reg) { // Load 16-Bit Absolute Indexed, X Memory To Register
   or t0,t1              // T0 = DB_REG:Immediate
   addu t0,s1            // T0 = DB_REG:Immediate + X_REG
   addu a2,a0,t0         // A2 = MEM_MAP + DB_REG:Immediate + X_REG
+
+  la sp,LoadWord         // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)       // Register = Absolute Indexed, X HI Byte
   sll {reg},8           // Register <<= 8
   lbu t1,0(a2)          // T1 = Absolute Indexed, X LO Byte
@@ -228,6 +260,10 @@ macro LoadABSY8(reg) { // Load 8-Bit Absolute Indexed, Y Memory To Register
   or t0,t1             // T0 = DB_REG:Immediate
   addu t0,s2           // T0 = DB_REG:Immediate + Y_REG
   addu a2,a0,t0        // A2 = MEM_MAP + DB_REG:Immediate + Y_REG
+
+  la sp,LoadByte       // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)      // Register = Absolute Indexed, Y (8-Bit)
 }
 
@@ -240,6 +276,10 @@ macro LoadABSY16(reg) { // Load 16-Bit Absolute Indexed, Y Memory To Register
   or t0,t1              // T0 = DB_REG:Immediate
   addu t0,s2            // T0 = DB_REG:Immediate + Y_REG
   addu a2,a0,t0         // A2 = MEM_MAP + DB_REG:Immediate + Y_REG
+
+  la sp,LoadWord        // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)       // Register = Absolute Indexed, Y HI Byte
   sll {reg},8           // Register <<= 8
   lbu t1,0(a2)          // T1 = Absolute Indexed, Y LO Byte
@@ -250,6 +290,10 @@ macro LoadDP8(reg) { // Load 8-Bit Direct Page (DP) Memory To Register
   lbu t0,1(a2)       // DP = MEM_MAP[D_REG + Immediate]
   addu t0,s6         // T0 = D_REG + Immediate
   addu a2,a0,t0      // A2 = MEM_MAP + D_REG + Immediate
+
+  la sp,LoadByte     // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)    // Register = DP (8-Bit)
 }
 
@@ -257,6 +301,10 @@ macro LoadDP16(reg) { // Load 16-Bit Direct Page (DP) Memory To Register
   lbu t0,1(a2)        // DP = MEM_MAP[D_REG + Immediate]
   addu t0,s6          // T0 = D_REG + Immediate
   addu a2,a0,t0       // A2 = MEM_MAP + D_REG + Immediate
+
+  la sp,LoadWord      // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)     // Register = DP HI Byte
   sll {reg},8         // Register <<= 8
   lbu t1,0(a2)        // T1 = DP LO Byte
@@ -272,6 +320,10 @@ macro LoadDPI8(reg) { // Load 8-Bit Direct Page (DP) Indirect Memory To Register
   lbu t1,0(a2)        // T1 = DP Indirect WORD LO Byte
   or t0,t1            // T0 = DP Indirect WORD
   addu a2,a0,t0       // A2 = MEM_MAP + DP Indirect WORD
+
+  la sp,LoadByte      // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)     // Register = DP Indirect (8-Bit)
 }
 
@@ -284,6 +336,10 @@ macro LoadDPI16(reg) { // Load 16-Bit Direct Page (DP) Indirect Memory To Regist
   lbu t1,0(a2)         // T1 = DP Indirect WORD LO Byte
   or t0,t1             // T0 = DP Indirect WORD
   addu a2,a0,t0        // A2 = MEM_MAP + DP Indirect WORD
+
+  la sp,LoadWord       // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)      // Register = DP Indirect HI Byte
   sll {reg},8          // Register <<= 8
   lbu t1,0(a2)         // T1 = DP Indirect LO Byte
@@ -302,6 +358,10 @@ macro LoadDPIL8(reg) { // Load 8-Bit Direct Page (DP) Indirect Long Memory To Re
   lbu t1,0(a2)         // T1 = DP Indirect Long FAR LO Byte
   or t0,t1             // T0 = DP Indirect Long FAR
   addu a2,a0,t0        // A2 = MEM_MAP + DP Indirect Long FAR
+
+  la sp,LoadByte       // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)      // Register = DP Indirect Long (8-Bit)
 }
 
@@ -317,6 +377,10 @@ macro LoadDPIL16(reg) { // Load 16-Bit Direct Page (DP) Indirect Long Memory To 
   lbu t1,0(a2)          // T1 = DP Indirect Long FAR LO Byte
   or t0,t1              // T0 = DP Indirect Long FAR
   addu a2,a0,t0         // A2 = MEM_MAP + DP Indirect Long FAR
+
+  la sp,LoadWord        // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)       // Register = DP Indirect Long HI Byte
   sll {reg},8           // Register <<= 8
   lbu t1,0(a2)          // T1 = DP Indirect Long LO Byte
@@ -336,6 +400,10 @@ macro LoadDPILY8(reg) { // Load 8-Bit Direct Page (DP) Indirect Long Indexed, Y 
   or t0,t1              // T0 = DP Indirect Long FAR
   addu t0,s2            // T0 = DP Indirect Long FAR + Y_REG
   addu a2,a0,t0         // A2 = MEM_MAP + DP Indirect Long FAR + Y_REG
+
+  la sp,LoadByte        // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)       // Register = DP Indirect Long Indexed, Y (8-Bit)
 }
 
@@ -352,6 +420,10 @@ macro LoadDPILY16(reg) { // Load 16-Bit Direct Page (DP) Indirect Long Indexed, 
   or t0,t1               // T0 = DP Indirect Long FAR
   addu t0,s2             // T0 = DP Indirect Long FAR + Y_REG
   addu a2,a0,t0          // A2 = MEM_MAP + DP Indirect Long FAR + Y_REG
+
+  la sp,LoadWord         // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)        // Register = DP Indirect Long Indexed, Y HI Byte
   sll {reg},8            // Register <<= 8
   lbu t1,0(a2)           // T1 = DP Indirect Long LO Indexed, Y Byte
@@ -368,6 +440,10 @@ macro LoadDPIX8(reg) { // Load 8-Bit Direct Page (DP) Indexed Indirect, X Memory
   lbu t1,0(a2)         // T1 = DP Indexed Indirect, X WORD LO Byte
   or t0,t1             // T0 = DP Indexed Indirect, X WORD
   addu a2,a0,t0        // A2 = MEM_MAP + DP Indexed Indirect, X WORD
+
+  la sp,LoadByte       // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)      // Register = DP Indexed Indirect, X (8-Bit)
 }
 
@@ -381,6 +457,10 @@ macro LoadDPIX16(reg) { // Load 16-Bit Direct Page (DP) Indexed Indirect, X Memo
   lbu t1,0(a2)          // T1 = DP Indexed Indirect, X WORD LO Byte
   or t0,t1              // T0 = DP Indexed Indirect, X WORD
   addu a2,a0,t0         // A2 = MEM_MAP + DP Indexed Indirect, X WORD
+
+  la sp,LoadWord        // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)       // Register = DP Indexed Indirect, X HI Byte
   sll {reg},8           // Register <<= 8
   lbu t1,0(a2)          // T1 = DP Indexed Indirect, X LO Byte
@@ -397,6 +477,10 @@ macro LoadDPIY8(reg) { // Load 8-Bit Direct Page (DP) Indirect Indexed, Y Memory
   or t0,t1             // T0 = DP Indirect WORD
   addu t0,s2           // T0 = DP Indirect WORD + Y_REG
   addu a2,a0,t0        // A2 = MEM_MAP + DP Indirect WORD + Y_REG
+
+  la sp,LoadByte       // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)      // Register = DP Indirect Indexed, Y (8-Bit)
 }
 
@@ -410,6 +494,10 @@ macro LoadDPIY16(reg) { // Load 16-Bit Direct Page (DP) Indirect Indexed, Y Memo
   or t0,t1              // T0 = DP Indirect WORD
   addu t0,s2            // T0 = DP Indirect WORD + Y_REG
   addu a2,a0,t0         // A2 = MEM_MAP + DP Indirect WORD + Y_REG
+
+  la sp,LoadWord        // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)       // Register = DP Indirect Indexed, Y HI Byte
   sll {reg},8           // Register <<= 8
   lbu t1,0(a2)          // T1 = DP Indirect Indexed, Y LO Byte
@@ -421,6 +509,10 @@ macro LoadDPX8(reg) { // Load 8-Bit Direct Page (DP) Indexed, X Memory To Regist
   addu t0,s6          // T0 = D_REG + Immediate
   addu t0,s1          // T0 = D_REG + Immediate + X_REG
   addu a2,a0,t0       // A2 = MEM_MAP + D_REG + Immediate + X_REG
+
+  la sp,LoadByte      // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)     // Register = DP Indexed, X (8-Bit)
 }
 
@@ -429,6 +521,10 @@ macro LoadDPX16(reg) { // Load 16-Bit Direct Page (DP) Indexed, X Memory To Regi
   addu t0,s6           // T0 = D_REG + Immediate
   addu t0,s1           // T0 = D_REG + Immediate + X_REG
   addu a2,a0,t0        // A2 = MEM_MAP + D_REG + Immediate + X_REG
+
+  la sp,LoadWord       // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)      // Register = DP Indexed, X HI Byte
   sll {reg},8          // Register <<= 8
   lbu t1,0(a2)         // T1 = DP Indexed, X LO Byte
@@ -440,6 +536,10 @@ macro LoadDPY8(reg) { // Load 8-Bit Direct Page (DP) Indexed, Y Memory To Regist
   addu t0,s6          // T0 = D_REG + Immediate
   addu t0,s2          // T0 = D_REG + Immediate + Y_REG
   addu a2,a0,t0       // A2 = MEM_MAP + D_REG + Immediate + Y_REG
+
+  la sp,LoadByte      // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)     // Register = DP Indexed, Y (8-Bit)
 }
 
@@ -448,6 +548,10 @@ macro LoadDPY16(reg) { // Load 16-Bit Direct Page (DP) Indexed, Y Memory To Regi
   addu t0,s6           // T0 = D_REG + Immediate
   addu t0,s2           // T0 = D_REG + Immediate + Y_REG
   addu a2,a0,t0        // A2 = MEM_MAP + D_REG + Immediate + Y_REG
+
+  la sp,LoadWord       // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)      // Register = DP Indexed, Y HI Byte
   sll {reg},8          // Register <<= 8
   lbu t1,0(a2)         // T1 = DP Indexed, Y LO Byte
@@ -458,6 +562,10 @@ macro LoadSR8(reg) { // Load 8-Bit Stack Relative (SR) Memory To Register
   lbu t0,1(a2)       // SR = MEM_MAP[Immediate + S_REG]
   addu t0,s4         // T0 = Immediate + S_REG
   addu a2,a0,t0      // A2 = MEM_MAP + Immediate + S_REG
+
+  la sp,LoadByte     // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)    // Register = SR (8-Bit)
 }
 
@@ -465,6 +573,10 @@ macro LoadSR16(reg) { // Load 16-Bit Stack Relative (SR) Memory To Register
   lbu t0,1(a2)        // SR = MEM_MAP[Immediate + S_REG]
   addu t0,s4          // T0 = Immediate + S_REG
   addu a2,a0,t0       // A2 = MEM_MAP + Immediate + S_REG
+
+  la sp,LoadWord      // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)     // Register = SR HI Byte
   sll {reg},8         // Register <<= 8
   lbu t1,0(a2)        // T1 = SR LO Byte
@@ -481,6 +593,10 @@ macro LoadSRIY8(reg) { // Load 8-Bit Stack Relative (SR) Indirect Indexed, Y Mem
   or t0,t1             // T0 = SR Indirect WORD
   addu t0,s2           // T0 = SR Indirect WORD + Y_REG
   addu a2,a0,t0        // A2 = MEM_MAP + SR Indirect WORD + Y_REG
+
+  la sp,LoadByte       // Load Byte
+  jalr sp,sp
+
   lbu {reg},0(a2)      // Register = SR Indirect Indexed, Y (8-Bit)
 }
 
@@ -494,6 +610,10 @@ macro LoadSRIY16(reg) { // Load 16-Bit Stack Relative (SR) Indirect Indexed, Y M
   or t0,t1              // T0 = SR Indirect WORD
   addu t0,s2            // T0 = SR Indirect WORD + Y_REG
   addu a2,a0,t0         // A2 = MEM_MAP + SR Indirect WORD + Y_REG
+
+  la sp,LoadWord        // Load Word
+  jalr sp,sp
+
   lbu {reg},1(a2)       // Register = SR Indirect Indexed, Y HI Byte
   sll {reg},8           // Register <<= 8
   lbu t1,0(a2)          // T1 = SR Indirect Indexed, Y LO Byte
@@ -512,6 +632,9 @@ macro StoreABS8(reg) { // Store 8-Bit Register To Absolute Memory
   or t0,t1             // T0 = DB_REG:Immediate
   addu a2,a0,t0        // A2 = MEM_MAP + DB_REG:Immediate
   sb {reg},0(a2)       // Absolute = Register (8-Bit)
+
+  la sp,StoreByte      // Store Byte
+  jalr sp,sp
 }
 
 macro StoreABS16(reg) { // Store 16-Bit Register To Absolute Memory 
@@ -525,6 +648,9 @@ macro StoreABS16(reg) { // Store 16-Bit Register To Absolute Memory
   sb {reg},0(a2)        // Absolute = Register LO Byte
   srl t1,{reg},8        // T1 = Register >> 8
   sb t1,1(a2)           // Absolute = Register (16-Bit)
+
+  la sp,StoreWord       // Store Word
+  jalr sp,sp
 }
 
 macro StoreABSL8(reg) { // Store 8-Bit Register To Absolute Long Memory
@@ -537,6 +663,9 @@ macro StoreABSL8(reg) { // Store 8-Bit Register To Absolute Long Memory
   or t0,t1              // T0 = Immediate (24-Bit)
   addu a2,a0,t0         // A2 = MEM_MAP + Immediate
   sb {reg},0(a2)        // Absolute Long = Register (8-Bit)
+
+  la sp,StoreByte       // Store Byte
+  jalr sp,sp
 }
 
 macro StoreABSL16(reg) { // Store 16-Bit Register To Absolute Long Memory
@@ -551,6 +680,9 @@ macro StoreABSL16(reg) { // Store 16-Bit Register To Absolute Long Memory
   sb {reg},0(a2)         // Absolute Long = Register LO Byte
   srl t1,{reg},8         // T1 = Register >> 8
   sb t1,1(a2)            // Absolute Long = Register (16-Bit)
+
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
 }
 
 macro StoreABSLX8(reg) { // Store 8-Bit Register To Absolute Long Indexed, X Memory
@@ -564,6 +696,9 @@ macro StoreABSLX8(reg) { // Store 8-Bit Register To Absolute Long Indexed, X Mem
   addu t0,s1             // T0 = Immediate + X_REG
   addu a2,a0,t0          // A2 = MEM_MAP + Immediate + X_REG
   sb {reg},0(a2)         // Absolute Long Indexed, X = Register (8-Bit)
+
+  la sp,StoreByte        // Store Byte
+  jalr sp,sp
 }
 
 macro StoreABSLX16(reg) { // Store 16-Bit Register To Absolute Long Indexed, X Memory
@@ -579,6 +714,9 @@ macro StoreABSLX16(reg) { // Store 16-Bit Register To Absolute Long Indexed, X M
   sb {reg},0(a2)          // Absolute Long Indexed, X Memory = Register LO Byte
   srl t1,{reg},8          // T1 = Register >> 8
   sb t1,1(a2)             // Absolute Long Indexed, X Memory = Register (16-Bit)
+
+  la sp,StoreWord         // Store Word
+  jalr sp,sp
 }
 
 macro StoreABSX8(reg) { // Store 8-Bit Register To Absolute Indexed, X Memory
@@ -591,6 +729,9 @@ macro StoreABSX8(reg) { // Store 8-Bit Register To Absolute Indexed, X Memory
   addu t0,s1            // T0 = DB_REG:Immediate + X_REG
   addu a2,a0,t0         // A2 = MEM_MAP + DB_REG:Immediate + X_REG
   sb {reg},0(a2)        // Absolute Indexed, X = Register (8-Bit)
+
+  la sp,StoreByte       // Store Byte
+  jalr sp,sp
 }
 
 macro StoreABSX16(reg) { // Store 16-Bit Register To Absolute Indexed, X Memory
@@ -605,6 +746,9 @@ macro StoreABSX16(reg) { // Store 16-Bit Register To Absolute Indexed, X Memory
   sb {reg},0(a2)         // Absolute Indexed, X Memory = Register LO Byte
   srl t1,{reg},8         // T1 = Register >> 8
   sb t1,1(a2)            // Absolute Indexed, X Memory = Register (16-Bit)
+
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
 }
 
 macro StoreABSY8(reg) { // Store 8-Bit Register To Absolute Indexed, Y Memory
@@ -617,6 +761,9 @@ macro StoreABSY8(reg) { // Store 8-Bit Register To Absolute Indexed, Y Memory
   addu t0,s2            // T0 = DB_REG:Immediate + Y_REG
   addu a2,a0,t0         // A2 = MEM_MAP + DB_REG:Immediate + Y_REG
   sb {reg},0(a2)        // Absolute Indexed, Y = Register (8-Bit)
+
+  la sp,StoreByte       // Store Byte
+  jalr sp,sp
 }
 
 macro StoreABSY16(reg) { // Store 16-Bit Register To Absolute Indexed, Y Memory
@@ -631,6 +778,9 @@ macro StoreABSY16(reg) { // Store 16-Bit Register To Absolute Indexed, Y Memory
   sb {reg},0(a2)         // Absolute Indexed, Y Memory = Register LO Byte
   srl t1,{reg},8         // T1 = Register >> 8
   sb t1,1(a2)            // Absolute Indexed, Y Memory = Register (16-Bit)
+
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
 }
 
 macro StoreDP8(reg) { // Store 8-Bit Register To Direct Page (DP) Memory
@@ -638,6 +788,9 @@ macro StoreDP8(reg) { // Store 8-Bit Register To Direct Page (DP) Memory
   addu t0,s6          // T0 = D_REG + Immediate
   addu a2,a0,t0       // A2 = MEM_MAP + D_REG + Immediate
   sb {reg},0(a2)      // DP = Register (8-Bit)
+
+  la sp,StoreByte     // Store Byte
+  jalr sp,sp
 }
 
 macro StoreDP16(reg) { // Store 16-Bit Register To Direct Page (DP) Memory
@@ -647,6 +800,9 @@ macro StoreDP16(reg) { // Store 16-Bit Register To Direct Page (DP) Memory
   sb {reg},0(a2)       // DP = Register LO Byte
   srl t1,{reg},8       // T1 = Register >> 8
   sb t1,1(a2)          // DP = Register (16-Bit)
+
+  la sp,StoreWord      // Store Word
+  jalr sp,sp
 }
 
 macro StoreDPI8(reg) { // Store 8-Bit Register To Direct Page (DP) Indirect Memory
@@ -659,6 +815,9 @@ macro StoreDPI8(reg) { // Store 8-Bit Register To Direct Page (DP) Indirect Memo
   or t0,t1             // T0 = DP Indirect WORD
   addu a2,a0,t0        // A2 = MEM_MAP + DP Indirect WORD
   sb {reg},0(a2)       // DP Indirect = Register (8-Bit)
+
+  la sp,StoreByte      // Store Byte
+  jalr sp,sp
 }
 
 macro StoreDPI16(reg) { // Store 16-Bit Register To Direct Page (DP) Indirect Memory
@@ -673,6 +832,9 @@ macro StoreDPI16(reg) { // Store 16-Bit Register To Direct Page (DP) Indirect Me
   sb {reg},0(a2)        // DP Indirect = Register LO Byte
   srl t1,{reg},8        // T1 = Register >> 8
   sb t1,1(a2)           // DP Indirect = Register (16-Bit)
+
+  la sp,StoreWord       // Store Word
+  jalr sp,sp
 }
 
 macro StoreDPIL8(reg) { // Store 8-Bit Register To Direct Page (DP) Indirect Long Memory
@@ -688,6 +850,9 @@ macro StoreDPIL8(reg) { // Store 8-Bit Register To Direct Page (DP) Indirect Lon
   or t0,t1              // T0 = DP Indirect Long FAR
   addu a2,a0,t0         // A2 = MEM_MAP + DP Indirect Long FAR
   sb {reg},0(a2)        // DP Indirect Long = Register (8-Bit)
+
+  la sp,StoreByte       // Store Byte
+  jalr sp,sp
 }
 
 macro StoreDPIL16(reg) { // Store 16-Bit Register To Direct Page (DP) Indirect Long Memory
@@ -705,6 +870,9 @@ macro StoreDPIL16(reg) { // Store 16-Bit Register To Direct Page (DP) Indirect L
   sb {reg},0(a2)         // DP Indirect Long = Register LO Byte
   srl t1,{reg},8         // T1 = Register >> 8
   sb t1,1(a2)            // DP Indirect Long = Register (16-Bit)
+
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
 }
 
 macro StoreDPILY8(reg) { // Store 8-Bit Register To Direct Page (DP) Indirect Long Indexed, Y Memory
@@ -721,6 +889,9 @@ macro StoreDPILY8(reg) { // Store 8-Bit Register To Direct Page (DP) Indirect Lo
   addu t0,s2             // T0 = DP Indirect Long FAR + Y_REG
   addu a2,a0,t0          // A2 = MEM_MAP + DP Indirect Long FAR + Y_REG
   sb {reg},0(a2)         // DP Indirect Long Indexed, Y = Register (8-Bit)
+
+  la sp,StoreByte        // Store Byte
+  jalr sp,sp
 }
 
 macro StoreDPILY16(reg) { // Store 16-Bit Register To Direct Page (DP) Indirect Long Indexed, Y Memory
@@ -739,6 +910,9 @@ macro StoreDPILY16(reg) { // Store 16-Bit Register To Direct Page (DP) Indirect 
   sb {reg},0(a2)          // DP Indirect Long Indexed, Y = Register LO Byte
   srl t1,{reg},8          // T1 = Register >> 8
   sb t1,1(a2)             // DP Indirect Long Indexed, Y = Register (16-Bit)
+
+  la sp,StoreWord         // Store Word
+  jalr sp,sp
 }
 
 macro StoreDPIX8(reg) { // Store 8-Bit Register To Direct Page (DP) Indexed Indirect, X Memory
@@ -752,6 +926,9 @@ macro StoreDPIX8(reg) { // Store 8-Bit Register To Direct Page (DP) Indexed Indi
   or t0,t1              // T0 = DP Indexed Indirect, X WORD
   addu a2,a0,t0         // A2 = MEM_MAP + DP Indexed Indirect, X WORD
   sb {reg},0(a2)        // DP Indexed Indirect, X = Register (8-Bit)
+
+  la sp,StoreByte       // Store Byte
+  jalr sp,sp
 }
 
 macro StoreDPIX16(reg) { // Store 16-Bit Register To Direct Page (DP) Indexed Indirect, X Memory
@@ -767,6 +944,9 @@ macro StoreDPIX16(reg) { // Store 16-Bit Register To Direct Page (DP) Indexed In
   sb {reg},0(a2)         // DP Indexed Indirect, X = Register LO Byte
   srl t1,{reg},8         // T1 = Register >> 8
   sb t1,1(a2)            // DP Indexed Indirect, X = Register (16-Bit)
+
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
 }
 
 macro StoreDPIY8(reg) { // Store 8-Bit Register To Direct Page (DP) Indirect Indexed, Y Memory
@@ -780,6 +960,9 @@ macro StoreDPIY8(reg) { // Store 8-Bit Register To Direct Page (DP) Indirect Ind
   addu t0,s2            // T0 = DP Indirect WORD + Y_REG
   addu a2,a0,t0         // A2 = MEM_MAP + DP Indirect WORD + Y_REG
   sb {reg},0(a2)        // DP Indirect Indexed, Y = Register (8-Bit)
+
+  la sp,StoreByte       // Store Byte
+  jalr sp,sp
 }
 
 macro StoreDPIY16(reg) { // Store 16-Bit Register To Direct Page (DP) Indirect Indexed, Y Memory
@@ -795,6 +978,9 @@ macro StoreDPIY16(reg) { // Store 16-Bit Register To Direct Page (DP) Indirect I
   sb {reg},0(a2)         // DP Indirect Indexed, Y = Register LO Byte
   srl t1,{reg},8         // T1 = Register >> 8
   sb t1,1(a2)            // DP Indirect Indexed, Y = Register (16-Bit)
+
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
 }
 
 macro StoreDPX8(reg) { // Store 8-Bit Register To Direct Page (DP) Indexed, X Memory
@@ -803,6 +989,9 @@ macro StoreDPX8(reg) { // Store 8-Bit Register To Direct Page (DP) Indexed, X Me
   addu t0,s1           // T0 = D_REG + Immediate + X_REG
   addu a2,a0,t0        // A2 = MEM_MAP + D_REG + Immediate + X_REG
   sb {reg},0(a2)       // DP Indexed, X = Register (8-Bit)
+
+  la sp,StoreByte      // Store Byte
+  jalr sp,sp
 }
 
 macro StoreDPX16(reg) { // Store 16-Bit Register To Direct Page (DP) Indexed, X Memory
@@ -813,6 +1002,9 @@ macro StoreDPX16(reg) { // Store 16-Bit Register To Direct Page (DP) Indexed, X 
   sb {reg},0(a2)        // DP Indexed, X = Register LO Byte
   srl t1,{reg},8        // T1 = Register >> 8
   sb t1,1(a2)           // DP Indexed, X = Register (16-Bit)
+
+  la sp,StoreWord       // Store Word
+  jalr sp,sp
 }
 
 macro StoreDPY8(reg) { // Store 8-Bit Register To Direct Page (DP) Indexed, Y Memory
@@ -821,6 +1013,9 @@ macro StoreDPY8(reg) { // Store 8-Bit Register To Direct Page (DP) Indexed, Y Me
   addu t0,s2           // T0 = D_REG + Immediate + Y_REG
   addu a2,a0,t0        // A2 = MEM_MAP + D_REG + Immediate + Y_REG
   sb {reg},0(a2)       // DP Indexed, Y = Register (8-Bit)
+
+  la sp,StoreByte      // Store Byte
+  jalr sp,sp
 }
 
 macro StoreDPY16(reg) { // Store 16-Bit Register To Direct Page (DP) Indexed, Y Memory
@@ -831,6 +1026,9 @@ macro StoreDPY16(reg) { // Store 16-Bit Register To Direct Page (DP) Indexed, Y 
   sb {reg},0(a2)        // DP Indexed, Y = Register LO Byte
   srl t1,{reg},8        // T1 = Register >> 8
   sb t1,1(a2)           // DP Indexed, Y = Register (16-Bit)
+
+  la sp,StoreWord       // Store Word
+  jalr sp,sp
 }
 
 macro StoreSR8(reg) { // Store 8-Bit Register To Stack Relative (SR) Memory
@@ -838,6 +1036,9 @@ macro StoreSR8(reg) { // Store 8-Bit Register To Stack Relative (SR) Memory
   addu t0,s4          // T0 = Immediate + S_REG
   addu a2,a0,t0       // A2 = MEM_MAP + Immediate + S_REG
   sb {reg},0(a2)      // SR = Register (8-Bit)
+
+  la sp,StoreByte     // Store Byte
+  jalr sp,sp
 }
 
 macro StoreSR16(reg) { // Store 16-Bit Register To Stack Relative (SR) Memory
@@ -847,6 +1048,9 @@ macro StoreSR16(reg) { // Store 16-Bit Register To Stack Relative (SR) Memory
   sb {reg},0(a2)       // SR = Register LO Byte
   srl t1,{reg},8       // T1 = Register >> 8
   sb t1,1(a2)          // SR = Register (16-Bit)
+
+  la sp,StoreWord      // Store Word
+  jalr sp,sp
 }
 
 macro StoreSRIY8(reg) { // Store 8-Bit Register To Stack Relative (SR) Indirect Indexed, Y Memory
@@ -860,6 +1064,9 @@ macro StoreSRIY8(reg) { // Store 8-Bit Register To Stack Relative (SR) Indirect 
   addu t0,s2            // T0 = SR Indirect WORD + Y_REG
   addu a2,a0,t0         // A2 = MEM_MAP + SR Indirect WORD + Y_REG
   sb {reg},0(a2)        // SR Indirect Indexed, Y = Register (8-Bit)
+
+  la sp,StoreByte       // Store Byte
+  jalr sp,sp
 }
 
 macro StoreSRIY16(reg) { // Store 16-Bit Register To Stack Relative (SR) Indirect Indexed, Y Memory
@@ -875,6 +1082,9 @@ macro StoreSRIY16(reg) { // Store 16-Bit Register To Stack Relative (SR) Indirec
   sb {reg},0(a2)         // SR Indirect Indexed, Y = Register LO Byte
   srl t1,{reg},8         // T1 = Register >> 8
   sb t1,1(a2)            // SR Indirect Indexed, Y = Register (16-Bit)
+
+  la sp,StoreWord        // Store Word
+  jalr sp,sp
 }
 
 //-----------------

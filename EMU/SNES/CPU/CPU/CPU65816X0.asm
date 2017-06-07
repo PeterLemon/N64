@@ -14,8 +14,6 @@ CPU65816X0HEX7A:
 CPU65816X0HEX84:
   // $84 STY   dp                Store Index Register Y To Memory Direct Page
   StoreDP16(s2)          // DP = Y_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
@@ -23,8 +21,6 @@ CPU65816X0HEX84:
 CPU65816X0HEX86:
   // $86 STX   dp                Store Index Register X To Memory Direct Page
   StoreDP16(s1)          // DP = X_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
@@ -47,8 +43,6 @@ CPU65816X0HEX8A:
 CPU65816X0HEX8C:
   // $8C STY   nnnn              Store Index Register Y To Memory Absolute
   StoreABS16(s2)         // Absolute = Y_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
@@ -56,8 +50,6 @@ CPU65816X0HEX8C:
 CPU65816X0HEX8E:
   // $8E STX   nnnn              Store Index Register X To Memory Absolute
   StoreABS16(s1)         // Absolute = X_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,2             // PC_REG += 2 (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
@@ -65,8 +57,6 @@ CPU65816X0HEX8E:
 CPU65816X0HEX94:
   // $94 STY   dp,X              Store Index Register Y To Memory Direct Page Indexed, X
   StoreDPX16(s2)         // DP Indexed, X = Y_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
@@ -74,8 +64,6 @@ CPU65816X0HEX94:
 CPU65816X0HEX96:
   // $96 STX   dp,Y              Store Index Register X To Memory Direct Page Indexed, Y
   StoreDPY16(s1)         // DP Indexed, Y = X_REG (16-Bit)
-  la sp,StoreWord        // Store Word
-  jalr sp,sp
   addiu s3,1             // PC_REG++ (Increment Program Counter) (Delay Slot)
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
