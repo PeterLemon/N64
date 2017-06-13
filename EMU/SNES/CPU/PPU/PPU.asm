@@ -2,7 +2,7 @@
 // PPU Macros
 //------------
 macro PPUBGMAPBASE(bg) { // SNES BGX Tile Map Base Address
-  la a0,{bg}   // A0 = BGXSC
+  la a0,{bg}SC // A0 = BGXSC
   lbu t0,0(a0) // T0 = BGXSC Byte
   andi t0,$7C  // T0 &= $7C (VRAM 64KB Mirror)
   sll t0,9     // T0 = BG Tile Map Base Address
@@ -479,7 +479,7 @@ PPUMODE0: // BGMODE: Mode 0
   andi t0,1    // T0 = TM BG1 Enable Bit
   beqz t0,PPUMODE0BG2 // IF (TM:BG1 == 0) PPUMODE0BG2
   nop // Delay Slot
-PPUBGMAPBASE(BG1SC) // A0 = SNES BG1 Tile Map Base Address
+PPUBGMAPBASE(BG1) // A0 = SNES BG1 Tile Map Base Address
 PPUBG1TILEBASE(N64TILE2BPP) // A1 = SNES BG1 Tile Data Base Address
 PPUBGMAP2BPP(BG1) // Convert SNES 2BPP BG Tile Map To RDP List
 DPC(RDPBG2BPPBuffer, RDPBG2BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
@@ -490,7 +490,7 @@ PPUMODE0BG2:
   andi t0,2    // T0 = TM BG2 Enable Bit
   beqz t0,PPUMODE0BG3 // IF (TM:BG2 == 0) PPUMODE0BG3
   nop // Delay Slot
-PPUBGMAPBASE(BG2SC) // A0 = SNES BG2 Tile Map Base Address
+PPUBGMAPBASE(BG2) // A0 = SNES BG2 Tile Map Base Address
 PPUBG2TILEBASE(N64TILE2BPP) // A1 = SNES BG2 Tile Data Base Address
 PPUBGMAP2BPP(BG2) // Convert SNES 2BPP BG Tile Map To RDP List
 DPC(RDPBG2BPPBuffer, RDPBG2BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
@@ -501,7 +501,7 @@ PPUMODE0BG3:
   andi t0,4    // T0 = TM BG3 Enable Bit
   beqz t0,PPUMODE0BG4 // IF (TM:BG3 == 0) PPUMODE0BG4
   nop // Delay Slot
-PPUBGMAPBASE(BG3SC) // A0 = SNES BG3 Tile Map Base Address
+PPUBGMAPBASE(BG3) // A0 = SNES BG3 Tile Map Base Address
 PPUBG3TILEBASE(N64TILE2BPP) // A1 = SNES BG3 Tile Data Base Address
 PPUBGMAP2BPP(BG3) // Convert SNES 2BPP BG Tile Map To RDP List
 DPC(RDPBG2BPPBuffer, RDPBG2BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
@@ -512,7 +512,7 @@ PPUMODE0BG4:
   andi t0,8    // T0 = TM BG4 Enable Bit
   beqz t0,PPUEND // IF (TM:BG4 == 0) PPUEND
   nop // Delay Slot
-PPUBGMAPBASE(BG4SC) // A0 = SNES BG4 Tile Map Base Address
+PPUBGMAPBASE(BG4) // A0 = SNES BG4 Tile Map Base Address
 PPUBG4TILEBASE(N64TILE2BPP) // A1 = SNES BG4 Tile Data Base Address
 PPUBGMAP2BPP(BG4) // Convert SNES 2BPP BG Tile Map To RDP List
 DPC(RDPBG2BPPBuffer, RDPBG2BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
@@ -537,7 +537,7 @@ PPUMODE3: // BGMODE: Mode 3
   andi t0,1    // T0 = TM BG1 Enable Bit
   beqz t0,PPUMODE3BG2 // IF (TM:BG1 == 0) PPUMODE3BG2
   nop // Delay Slot
-PPUBGMAPBASE(BG1SC) // A0 = SNES BG1 Tile Map Base Address
+PPUBGMAPBASE(BG1) // A0 = SNES BG1 Tile Map Base Address
 PPUBG1TILEBASE(N64TILE8BPP) // A1 = SNES BG1 Tile Data Base Address
 PPUBGMAP8BPP(BG1) // Convert SNES 8BPP Tile Map To RDP List
 DPC(RDPBG8BPPBuffer, RDPBG8BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
@@ -548,7 +548,7 @@ PPUMODE3BG2:
   andi t0,2    // T0 = TM BG2 Enable Bit
   beqz t0,PPUEND // IF (TM:BG2 == 0) PPUEND
   nop // Delay Slot
-PPUBGMAPBASE(BG2SC) // A0 = SNES BG2 Tile Map Base Address
+PPUBGMAPBASE(BG2) // A0 = SNES BG2 Tile Map Base Address
 PPUBG2TILEBASE(N64TILE4BPP) // A1 = SNES BG2 Tile Data Base Address
 PPUBGMAP4BPP(BG2) // Convert SNES 4BPP Tile Map To RDP List
 DPC(RDPBG4BPPBuffer, RDPBG4BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
