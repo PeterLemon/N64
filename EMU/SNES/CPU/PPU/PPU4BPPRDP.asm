@@ -278,15 +278,15 @@ RSPTILE4BPPCodeEnd:
 align(8) // Align 64-Bit
 RDPBG4BPPBuffer:
 arch n64.rdp
-// BG Column 0..31 / Row 0..27
+// BG Column 0..32 / Row 0..28
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_4B,1, $000, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT COLOR INDEX,SIZE 4B,Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
 
 RDPSNESTILE4BPP:
 
   define y(0)
-  while {y} < 28 {
+  while {y} < 29 {
     define x(0)
-    while {x} < 32 {
+    while {x} < 33 {
       Sync_Tile // Sync Tile
       Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,4-1, N64TILE4BPP+(32*(({y}*32)+{x})) // Set Texture Image: FORMAT COLOR INDEX,SIZE 8B,WIDTH 4, Tile DRAM ADDRESS
       Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 // Load Tile: SL,TL, Tile, SH,TH

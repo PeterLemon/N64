@@ -128,9 +128,9 @@ MEM_MAP: // Memory Map = $10000 Bytes
   fill $8000 // Generates $8000 Bytes Containing $00
 //insert CART_ROM, "TEST/LinearPicture2BPP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/LinearPicture4BPP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-insert CART_ROM, "TEST/LinearPicture8BPP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/LinearPicture8BPP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/HelloWorld.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUADC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+insert CART_ROM, "TEST/CPUADC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/CPUAND.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/CPUASL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/CPUBIT.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **

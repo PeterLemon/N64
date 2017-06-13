@@ -46,55 +46,259 @@ macro PPUBG4TILEBASE(tile) { // SNES BG4 Tile Data Base Address
   addu a1,t0    // A1 = N64 Tile + BG4 Tile Data Base Address
 }
 
-macro PPUBGMAP2BPP() { // Convert SNES 2BPP BG Tile Map To RDP List
+macro PPUBGMAP2BPP(bg) { // Convert SNES 2BPP Tile Map To RDP List
   la a2,$A0000000|((RDPSNESTILE2BPP+12)&$3FFFFFF) // A2 = N64 RDP SNES Tile Map Address
-  lli t0,895 // T0 = Number Of Tiles To Convert
-  {#}PPUBGMAP2BPPLoop:
-    lbu t1,0(a0) // T1 = SNES Tile Map # Lo Byte
-    lbu t2,1(a0) // T2 = SNES Tile Map # Hi Byte
-    addiu a0,2   // A0 += 2
-    sll t2,8     // T2 <<= 8
-    or t1,t2     // T1 |= T2 
-    sll t1,5     // T1 *= 32 (2BPP/4BPP)
-    addu t1,a1   // T1 += N64 Tile Address
-    sw t1,0(a2)  // Store SNES Tile Map # To N64 RDP SNES Tile Map
-    addiu a2,40  // A2 += 40
-    bnez t0,{#}PPUBGMAP2BPPLoop // IF (Number Of Tiles To Convert != 0) Map Loop
-    subiu t0,1 // Decrement Number Of Tiles To Convert (Delay Slot)
+  la a3,{bg}HOFS // A3 = BGXHOFS
+  lhu t0,0(a3)   // T0 = BGXHOFS Word
+  andi k0,t0,7   // K0 = BGXHOFS & 7
+  srl t0,3       // T0 = BGXHOFS >> 3
+  la a3,{bg}VOFS // A3 = BGXVOFS
+  lhu t1,0(a3)   // T1 = BGXVOFS Word
+  andi k1,t1,7   // K1 = BGXVOFS & 7
+  srl t1,3       // T1 = BGXVOFS >> 3
+  ori t2,r0,32   // T2 = 32 (SCREENMAPX)
+  ori t3,r0,28   // T3 = 28 (SCREENMAPY)
+
+  la a3,{bg}SC   // A3 = BGXSC
+  lbu t4,0(a3)   // T4 = BGXSC Byte
+  andi t5,t4,2   // T5 = BGXSC & 2 (SCREENSIZE: 0=32x32, 1=64x32, 2=32x64, 3=64x64)
+  ori t6,r0,5    // T6 = 5 (SCREENXSHIFT * 32)
+  beqz t5,{#}PPUBGMAP2BPPYSIZE32
+  ori t5,r0,$1F  // T5 = $1F (Delay Slot)
+  ori t5,r0,$3F  // T5 = $3F (SCREENYAND)
+  {#}PPUBGMAP2BPPYSIZE32:
+  andi t4,1      // T4 = BGXSC & 1 (SCREENSIZE: 0=32x32, 1=64x32, 2=32x64, 3=64x64)
+  beqz t4,{#}PPUBGMAP2BPPXSIZE32
+  ori t4,r0,$1F  // T4 = $1F (Delay Slot)
+  ori t4,r0,$3F  // T4 = $3F (SCREENXAND)
+  ori t6,r0,6    // T6 = 6 (SCREENXSHIFT * 64)
+  {#}PPUBGMAP2BPPXSIZE32:
+
+  ori t7,r0,0    // T7 = 0 (Y)
+  {#}PPUBGMAP2BPPLoopY:
+    ori t8,r0,0  // T8 = 0 (X)
+    {#}PPUBGMAP2BPPLoopX:
+      addu t9,t7,t1 // BGTILE = BGMAP[(((Y+(BGXVOFS>>3))&SCREENYAND)<<SCREENXSHIFT) + ((X+(BGXHOFS>>3))&SCREENXAND)])
+      and t9,t5
+      sllv t9,t6    // T9 = (((Y+(BGXVOFS>>3))&SCREENYAND)<<SCREENXSHIFT)
+      addu a3,t8,t0
+      and a3,t4     // A3 = ((X+(BGXHOFS>>3))&SCREENXAND)
+      addu t9,a3    // T9 = (((Y+(BGXVOFS>>3))&SCREENYAND)<<SCREENXSHIFT) + ((X+(BGXHOFS>>3))&SCREENXAND)
+      sll t9,1      // T9 <<= 1
+
+      addu t9,a0
+      lbu a3,0(t9)  // A3 = SNES Tile Map # Lo Byte
+      lbu t9,1(t9)  // T9 = SNES Tile Map # Hi Byte
+      sll t9,8      // T9 <<= 8
+      or t9,a3      // T9 |= A3
+      andi t9,$3FF  // T9 &= $3FF 
+      sll t9,5      // T9 *= 32 (2BPP/4BPP)
+      addu t9,a1    // T9 += N64 Tile Address
+      sw t9,0(a2)   // Store SNES Tile Map # To N64 RDP SNES Tile Map
+
+      ori t9,r0,40  // XLYL = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
+      subu t9,k0
+      sll a3,t8,3
+      addu t9,a3
+      sll t9,14
+      lui a3,$2500
+      or t9,a3      // T9 = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14)
+      ori a3,r0,16
+      subu a3,k1
+      sll gp,t7,3
+      addu a3,gp
+      sll a3,2
+      addu t9,a3    // T9 = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
+      sw t9,12(a2)
+
+      ori t9,r0,32  // XHYH = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
+      subu t9,k0
+      sll a3,t8,3
+      addu t9,a3
+      sll t9,14     // T9 = (((32-(BGXHOFS&7))+(X<<3))<<14)
+      ori a3,r0,8
+      subu a3,k1
+      sll gp,t7,3
+      addu a3,gp
+      sll a3,2
+      addu t9,a3    // T9 = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
+      sw t9,16(a2)
+
+      addiu a2,40   // A2 += 40
+      bne t8,t2,{#}PPUBGMAP2BPPLoopX // IF (X != SCREENMAPX) Map Loop X
+      addiu t8,1 // Increment X (Delay Slot)
+      bne t7,t3,{#}PPUBGMAP2BPPLoopY // IF (Y != SCREENMAPY) Map Loop Y
+      addiu t7,1 // Increment Y (Delay Slot)
 }
 
-macro PPUBGMAP4BPP() { // Convert SNES 4BPP Tile Map To RDP List
+macro PPUBGMAP4BPP(bg) { // Convert SNES 4BPP Tile Map To RDP List
   la a2,$A0000000|((RDPSNESTILE4BPP+12)&$3FFFFFF) // A2 = N64 RDP SNES Tile Map Address
-  lli t0,895 // T0 = Number Of Tiles To Convert
-  {#}PPUBGMAP4BPPLoop:
-    lbu t1,0(a0) // T1 = SNES Tile Map # Lo Byte
-    lbu t2,1(a0) // T2 = SNES Tile Map # Hi Byte
-    addiu a0,2   // A0 += 2
-    sll t2,8     // T2 <<= 8
-    or t1,t2     // T1 |= T2 
-    sll t1,5     // T1 *= 32 (2BPP/4BPP)
-    addu t1,a1   // T1 += N64 Tile Address
-    sw t1,0(a2)  // Store SNES Tile Map # To N64 RDP SNES Tile Map
-    addiu a2,40  // A2 += 40
-    bnez t0,{#}PPUBGMAP4BPPLoop // IF (Number Of Tiles To Convert != 0) Map Loop
-    subiu t0,1 // Decrement Number Of Tiles To Convert (Delay Slot)
+  la a3,{bg}HOFS // A3 = BGXHOFS
+  lhu t0,0(a3)   // T0 = BGXHOFS Word
+  andi k0,t0,7   // K0 = BGXHOFS & 7
+  srl t0,3       // T0 = BGXHOFS >> 3
+  la a3,{bg}VOFS // A3 = BGXVOFS
+  lhu t1,0(a3)   // T1 = BGXVOFS Word
+  andi k1,t1,7   // K1 = BGXVOFS & 7
+  srl t1,3       // T1 = BGXVOFS >> 3
+  ori t2,r0,32   // T2 = 32 (SCREENMAPX)
+  ori t3,r0,28   // T3 = 28 (SCREENMAPY)
+
+  la a3,{bg}SC   // A3 = BGXSC
+  lbu t4,0(a3)   // T4 = BGXSC Byte
+  andi t5,t4,2   // T5 = BGXSC & 2 (SCREENSIZE: 0=32x32, 1=64x32, 2=32x64, 3=64x64)
+  ori t6,r0,5    // T6 = 5 (SCREENXSHIFT * 32)
+  beqz t5,{#}PPUBGMAP4BPPYSIZE32
+  ori t5,r0,$1F  // T5 = $1F (Delay Slot)
+  ori t5,r0,$3F  // T5 = $3F (SCREENYAND)
+  {#}PPUBGMAP4BPPYSIZE32:
+  andi t4,1      // T4 = BGXSC & 1 (SCREENSIZE: 0=32x32, 1=64x32, 2=32x64, 3=64x64)
+  beqz t4,{#}PPUBGMAP4BPPXSIZE32
+  ori t4,r0,$1F  // T4 = $1F (Delay Slot)
+  ori t4,r0,$3F  // T4 = $3F (SCREENXAND)
+  ori t6,r0,6    // T6 = 6 (SCREENXSHIFT * 64)
+  {#}PPUBGMAP4BPPXSIZE32:
+
+  ori t7,r0,0    // T7 = 0 (Y)
+  {#}PPUBGMAP4BPPLoopY:
+    ori t8,r0,0  // T8 = 0 (X)
+    {#}PPUBGMAP4BPPLoopX:
+      addu t9,t7,t1 // BGTILE = BGMAP[(((Y+(BGXVOFS>>3))&SCREENYAND)<<SCREENXSHIFT) + ((X+(BGXHOFS>>3))&SCREENXAND)])
+      and t9,t5
+      sllv t9,t6    // T9 = (((Y+(BGXVOFS>>3))&SCREENYAND)<<SCREENXSHIFT)
+      addu a3,t8,t0
+      and a3,t4     // A3 = ((X+(BGXHOFS>>3))&SCREENXAND)
+      addu t9,a3    // T9 = (((Y+(BGXVOFS>>3))&SCREENYAND)<<SCREENXSHIFT) + ((X+(BGXHOFS>>3))&SCREENXAND)
+      sll t9,1      // T9 <<= 1
+
+      addu t9,a0
+      lbu a3,0(t9)  // A3 = SNES Tile Map # Lo Byte
+      lbu t9,1(t9)  // T9 = SNES Tile Map # Hi Byte
+      sll t9,8      // T9 <<= 8
+      or t9,a3      // T9 |= A3
+      andi t9,$3FF  // T9 &= $3FF 
+      sll t9,5      // T9 *= 32 (2BPP/4BPP)
+      addu t9,a1    // T9 += N64 Tile Address
+      sw t9,0(a2)   // Store SNES Tile Map # To N64 RDP SNES Tile Map
+
+      ori t9,r0,40  // XLYL = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
+      subu t9,k0
+      sll a3,t8,3
+      addu t9,a3
+      sll t9,14
+      lui a3,$2500
+      or t9,a3      // T9 = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14)
+      ori a3,r0,16
+      subu a3,k1
+      sll gp,t7,3
+      addu a3,gp
+      sll a3,2
+      addu t9,a3    // T9 = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
+      sw t9,12(a2)
+
+      ori t9,r0,32  // XHYH = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
+      subu t9,k0
+      sll a3,t8,3
+      addu t9,a3
+      sll t9,14     // T9 = (((32-(BGXHOFS&7))+(X<<3))<<14)
+      ori a3,r0,8
+      subu a3,k1
+      sll gp,t7,3
+      addu a3,gp
+      sll a3,2
+      addu t9,a3    // T9 = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
+      sw t9,16(a2)
+
+      addiu a2,40   // A2 += 40
+      bne t8,t2,{#}PPUBGMAP4BPPLoopX // IF (X != SCREENMAPX) Map Loop X
+      addiu t8,1 // Increment X (Delay Slot)
+      bne t7,t3,{#}PPUBGMAP4BPPLoopY // IF (Y != SCREENMAPY) Map Loop Y
+      addiu t7,1 // Increment Y (Delay Slot)
 }
 
-macro PPUBGMAP8BPP() { // Convert SNES 8BPP Tile Map To RDP List
+macro PPUBGMAP8BPP(bg) { // Convert SNES 8BPP Tile Map To RDP List
   la a2,$A0000000|((RDPSNESTILE8BPP+12)&$3FFFFFF) // A2 = N64 RDP SNES Tile Map Address
-  lli t0,895 // T0 = Number Of Tiles To Convert
-  {#}PPUBGMAP8BPPLoop:
-    lbu t1,0(a0) // T1 = SNES Tile Map # Lo Byte
-    lbu t2,1(a0) // T2 = SNES Tile Map # Hi Byte
-    addiu a0,2   // A0 += 2
-    sll t2,8     // T2 <<= 8
-    or t1,t2     // T1 |= T2 
-    sll t1,6     // T1 *= 64 (8BPP)
-    addu t1,a1   // T1 += N64 Tile Address
-    sw t1,0(a2)  // Store SNES Tile Map # To N64 RDP SNES Tile Map
-    addiu a2,40  // A2 += 40
-    bnez t0,{#}PPUBGMAP8BPPLoop // IF (Number Of Tiles To Convert != 0) Map Loop
-    subiu t0,1 // Decrement Number Of Tiles To Convert (Delay Slot)
+  la a3,{bg}HOFS // A3 = BGXHOFS
+  lhu t0,0(a3)   // T0 = BGXHOFS Word
+  andi k0,t0,7   // K0 = BGXHOFS & 7
+  srl t0,3       // T0 = BGXHOFS >> 3
+  la a3,{bg}VOFS // A3 = BGXVOFS
+  lhu t1,0(a3)   // T1 = BGXVOFS Word
+  andi k1,t1,7   // K1 = BGXVOFS & 7
+  srl t1,3       // T1 = BGXVOFS >> 3
+  ori t2,r0,32   // T2 = 32 (SCREENMAPX)
+  ori t3,r0,28   // T3 = 28 (SCREENMAPY)
+
+  la a3,{bg}SC   // A3 = BGXSC
+  lbu t4,0(a3)   // T4 = BGXSC Byte
+  andi t5,t4,2   // T5 = BGXSC & 2 (SCREENSIZE: 0=32x32, 1=64x32, 2=32x64, 3=64x64)
+  ori t6,r0,5    // T6 = 5 (SCREENXSHIFT * 32)
+  beqz t5,{#}PPUBGMAP8BPPYSIZE32
+  ori t5,r0,$1F  // T5 = $1F (Delay Slot)
+  ori t5,r0,$3F  // T5 = $3F (SCREENYAND)
+  {#}PPUBGMAP8BPPYSIZE32:
+  andi t4,1      // T4 = BGXSC & 1 (SCREENSIZE: 0=32x32, 1=64x32, 2=32x64, 3=64x64)
+  beqz t4,{#}PPUBGMAP8BPPXSIZE32
+  ori t4,r0,$1F  // T4 = $1F (Delay Slot)
+  ori t4,r0,$3F  // T4 = $3F (SCREENXAND)
+  ori t6,r0,6    // T6 = 6 (SCREENXSHIFT * 64)
+  {#}PPUBGMAP8BPPXSIZE32:
+
+  ori t7,r0,0    // T7 = 0 (Y)
+  {#}PPUBGMAP8BPPLoopY:
+    ori t8,r0,0  // T8 = 0 (X)
+    {#}PPUBGMAP8BPPLoopX:
+      addu t9,t7,t1 // BGTILE = BGMAP[(((Y+(BGXVOFS>>3))&SCREENYAND)<<SCREENXSHIFT) + ((X+(BGXHOFS>>3))&SCREENXAND)])
+      and t9,t5
+      sllv t9,t6    // T9 = (((Y+(BGXVOFS>>3))&SCREENYAND)<<SCREENXSHIFT)
+      addu a3,t8,t0
+      and a3,t4     // A3 = ((X+(BGXHOFS>>3))&SCREENXAND)
+      addu t9,a3    // T9 = (((Y+(BGXVOFS>>3))&SCREENYAND)<<SCREENXSHIFT) + ((X+(BGXHOFS>>3))&SCREENXAND)
+      sll t9,1      // T9 <<= 1
+
+      addu t9,a0
+      lbu a3,0(t9)  // A3 = SNES Tile Map # Lo Byte
+      lbu t9,1(t9)  // T9 = SNES Tile Map # Hi Byte
+      sll t9,8      // T9 <<= 8
+      or t9,a3      // T9 |= A3
+      andi t9,$3FF  // T9 &= $3FF 
+      sll t9,6      // T9 *= 64 (8BPP)
+      addu t9,a1    // T9 += N64 Tile Address
+      sw t9,0(a2)   // Store SNES Tile Map # To N64 RDP SNES Tile Map
+
+      ori t9,r0,40  // XLYL = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
+      subu t9,k0
+      sll a3,t8,3
+      addu t9,a3
+      sll t9,14
+      lui a3,$2500
+      or t9,a3      // T9 = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14)
+      ori a3,r0,16
+      subu a3,k1
+      sll gp,t7,3
+      addu a3,gp
+      sll a3,2
+      addu t9,a3    // T9 = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
+      sw t9,12(a2)
+
+      ori t9,r0,32  // XHYH = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
+      subu t9,k0
+      sll a3,t8,3
+      addu t9,a3
+      sll t9,14     // T9 = (((32-(BGXHOFS&7))+(X<<3))<<14)
+      ori a3,r0,8
+      subu a3,k1
+      sll gp,t7,3
+      addu a3,gp
+      sll a3,2
+      addu t9,a3    // T9 = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
+      sw t9,16(a2)
+
+      addiu a2,40   // A2 += 40
+      bne t8,t2,{#}PPUBGMAP8BPPLoopX // IF (X != SCREENMAPX) Map Loop X
+      addiu t8,1 // Increment X (Delay Slot)
+      bne t7,t3,{#}PPUBGMAP8BPPLoopY // IF (Y != SCREENMAPY) Map Loop Y
+      addiu t7,1 // Increment Y (Delay Slot)
 }
 
 
@@ -230,7 +434,7 @@ sh t0,2(a1) // Store Color 0 To RDP Fill Color Lo
     nop // Delay Slot
 
 
-WaitScanline($200) // Wait For Scanline To Reach Vertical Blank
+WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
 
 // Run RDP Palette & Screen Setup
 DPC(RDPPALBuffer, RDPPALBufferEnd) // Run DPC Command Buffer: Start Address, End Address
@@ -277,7 +481,7 @@ PPUMODE0: // BGMODE: Mode 0
   nop // Delay Slot
 PPUBGMAPBASE(BG1SC) // A0 = SNES BG1 Tile Map Base Address
 PPUBG1TILEBASE(N64TILE2BPP) // A1 = SNES BG1 Tile Data Base Address
-PPUBGMAP2BPP() // Convert SNES 2BPP BG Tile Map To RDP List
+PPUBGMAP2BPP(BG1) // Convert SNES 2BPP BG Tile Map To RDP List
 DPC(RDPBG2BPPBuffer, RDPBG2BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
 
 PPUMODE0BG2:
@@ -288,7 +492,7 @@ PPUMODE0BG2:
   nop // Delay Slot
 PPUBGMAPBASE(BG2SC) // A0 = SNES BG2 Tile Map Base Address
 PPUBG2TILEBASE(N64TILE2BPP) // A1 = SNES BG2 Tile Data Base Address
-PPUBGMAP2BPP() // Convert SNES 2BPP BG Tile Map To RDP List
+PPUBGMAP2BPP(BG2) // Convert SNES 2BPP BG Tile Map To RDP List
 DPC(RDPBG2BPPBuffer, RDPBG2BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
 
 PPUMODE0BG3:
@@ -299,7 +503,7 @@ PPUMODE0BG3:
   nop // Delay Slot
 PPUBGMAPBASE(BG3SC) // A0 = SNES BG3 Tile Map Base Address
 PPUBG3TILEBASE(N64TILE2BPP) // A1 = SNES BG3 Tile Data Base Address
-PPUBGMAP2BPP() // Convert SNES 2BPP BG Tile Map To RDP List
+PPUBGMAP2BPP(BG3) // Convert SNES 2BPP BG Tile Map To RDP List
 DPC(RDPBG2BPPBuffer, RDPBG2BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
 
 PPUMODE0BG4:
@@ -310,7 +514,7 @@ PPUMODE0BG4:
   nop // Delay Slot
 PPUBGMAPBASE(BG4SC) // A0 = SNES BG4 Tile Map Base Address
 PPUBG4TILEBASE(N64TILE2BPP) // A1 = SNES BG4 Tile Data Base Address
-PPUBGMAP2BPP() // Convert SNES 2BPP BG Tile Map To RDP List
+PPUBGMAP2BPP(BG4) // Convert SNES 2BPP BG Tile Map To RDP List
 DPC(RDPBG2BPPBuffer, RDPBG2BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
 
 b PPUEND
@@ -335,7 +539,7 @@ PPUMODE3: // BGMODE: Mode 3
   nop // Delay Slot
 PPUBGMAPBASE(BG1SC) // A0 = SNES BG1 Tile Map Base Address
 PPUBG1TILEBASE(N64TILE8BPP) // A1 = SNES BG1 Tile Data Base Address
-PPUBGMAP8BPP() // Convert SNES 8BPP Tile Map To RDP List
+PPUBGMAP8BPP(BG1) // Convert SNES 8BPP Tile Map To RDP List
 DPC(RDPBG8BPPBuffer, RDPBG8BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
 
 PPUMODE3BG2:
@@ -346,7 +550,7 @@ PPUMODE3BG2:
   nop // Delay Slot
 PPUBGMAPBASE(BG2SC) // A0 = SNES BG2 Tile Map Base Address
 PPUBG2TILEBASE(N64TILE4BPP) // A1 = SNES BG2 Tile Data Base Address
-PPUBGMAP4BPP() // Convert SNES 4BPP Tile Map To RDP List
+PPUBGMAP4BPP(BG2) // Convert SNES 4BPP Tile Map To RDP List
 DPC(RDPBG4BPPBuffer, RDPBG4BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
 
 b PPUEND
