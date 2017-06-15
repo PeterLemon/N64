@@ -126,9 +126,13 @@ WRAM: // Work RAM (128KB)
 MEM_MAP: // Memory Map = $10000 Bytes
   //fill $10000 // Generates $10000 Bytes Containing $00
   fill $8000 // Generates $8000 Bytes Containing $00
+//insert CART_ROM, "TEST/8x8BGMap8BPP32x32.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/8x8BGMap8BPP32x64.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/8x8BGMap8BPP64x32.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/8x8BGMap8BPP64x64.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/LinearPicture2BPP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/LinearPicture4BPP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/LinearPicture8BPP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/LinearPicture4BPP.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/LinearPicture8BPP.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/HelloWorld.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 insert CART_ROM, "TEST/CPUADC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/CPUAND.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
