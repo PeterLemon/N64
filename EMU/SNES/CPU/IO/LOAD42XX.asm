@@ -80,7 +80,12 @@ LOAD420F:
 
 LOAD4210:
   // $4210 REG_RDNMI             V-Blank NMI Flag and CPU Version Number (Read/Ack)   1B/R
-//  sb r0,REG_RDNMI(a0)    // MEM_MAP[REG_RDNMI] = 0 (NMI Reset After Read)
+  lbu t1,REG_RDNMI(a0)   // T1 = MEM_MAP[REG_RDNMI]
+  beqz t1,RDNMISKIP      // IF (REG_RDNMI == 0) RDNMI Skip
+  ori t2,r0,$80          // T2 = $80 (Delay Slot)
+  la t1,RDNMI            // T1 = RDNMI
+  sb t2,0(t1)            // RDNMI = $80 (NMI Reset After Read)
+  RDNMISKIP:
   jr k1
   nop                    // Delay Slot
 
