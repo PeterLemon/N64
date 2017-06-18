@@ -1,7 +1,10 @@
 CPU65816M1HEX03:
   // $03 ORA   sr,S              OR Accumulator With Memory Stack Relative
   LoadSR8(t0)            // T0 = SR (8-Bit)
-  or s0,t0               // A_REG |= SR
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  or t1,t0               // T1 |= SR
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -10,7 +13,8 @@ CPU65816M1HEX03:
 CPU65816M1HEX04:
   // $04 TSB   dp                Test & Set Bits In Direct Page Offset With A
   LoadDP8(t0)            // T0 = DP (8-Bit)
-  or t1,t0,s0            // T1 = A_REG | DP (Set Bits)
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  or t1,t0               // T1 |= DP (Set Bits)
   sb t1,0(a2)            // DP = Set Bits (8-Bit)
   TestZBIT(t0)           // Test Result Zero Flag Of DP (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
@@ -20,7 +24,10 @@ CPU65816M1HEX04:
 CPU65816M1HEX07:
   // $07 ORA   [dp]              OR Accumulator With Memory Direct Page Indirect Long
   LoadDPIL8(t0)          // T0 = DP Indirect Long (8-Bit)
-  or s0,t0               // A_REG |= DP Indirect Long
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  or t1,t0               // T1 |= DP Indirect Long
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -29,7 +36,8 @@ CPU65816M1HEX07:
 CPU65816M1HEX0C:
   // $0C TSB   nnnn              Test & Set Memory Bits Against Accumulator Absolute
   LoadABS8(t0)           // T0 = Absolute (8-Bit)
-  or t1,t0,s0            // T1 = A_REG | Absolute (Set Bits)
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  or t1,t0               // T1 |= Absolute (Set Bits)
   sb t1,0(a2)            // Absolute = Set Bits (8-Bit)
   TestZBIT(t0)           // Test Result Zero Flag Of Absolute (8-Bit)
   addiu s3,2             // PC_REG += 2 (Increment Program Counter)
@@ -39,25 +47,22 @@ CPU65816M1HEX0C:
 CPU65816M1HEX0F:
   // $0F ORA   nnnnnn            OR Accumulator With Memory Absolute Long
   LoadABSL8(t0)          // T0 = Absolute Long (8-Bit)
-  or s0,t0               // A_REG |= Absolute Long
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  or t1,t0               // T1 |= Absolute Long
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,3             // PC_REG += 3 (Increment Program Counter)
-  jr ra
-  addiu v0,5             // Cycles += 5 (Delay Slot)
-
-CPU65816M1HEX11:
-  // $11 ORA   (dp),Y            OR Accumulator With Memory Direct Page Indirect Indexed, Y
-  LoadDPIY8(t0)          // T0 = DP Indirect Indexed, Y (8-Bit)
-  or s0,t0               // A_REG |= DP Indirect Indexed, Y
-  TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
-  addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
   addiu v0,5             // Cycles += 5 (Delay Slot)
 
 CPU65816M1HEX12:
   // $12 ORA   (dp)              OR Accumulator With Memory Direct Page Indirect
   LoadDPI8(t0)           // T0 = DP Indirect (8-Bit)
-  or s0,t0               // A_REG |= DP Indirect
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  or t1,t0               // T1 |= DP Indirect
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -66,7 +71,10 @@ CPU65816M1HEX12:
 CPU65816M1HEX13:
   // $13 ORA   (sr,S),Y          OR Accumulator With Memory Stack Relative Indirect Indexed, Y
   LoadSRIY8(t0)          // T0 = SR Indirect Indexed, Y (8-Bit)
-  or s0,t0               // A_REG |= SR Indirect Indexed, Y
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  or t1,t0               // T1 |= SR Indirect Indexed, Y
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -86,7 +94,10 @@ CPU65816M1HEX14:
 CPU65816M1HEX17:
   // $17 ORA   [dp],Y            OR Accumulator With Memory Direct Page Indirect Long Indexed, Y
   LoadDPILY8(t0)         // T0 = DP Indirect Long Indexed, Y (8-Bit)
-  or s0,t0               // A_REG |= DP Indirect Long Indexed, Y
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  or t1,t0               // T1 |= DP Indirect Long Indexed, Y
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -94,8 +105,11 @@ CPU65816M1HEX17:
 
 CPU65816M1HEX1A:
   // $1A INA                     Increment Accumulator
-  addiu s0,1             // A_REG++ (8-Bit)
-  andi s0,$FF            // A_REG = 8-Bit
+  andi t0,s0,$FF         // T0 = A_REG (8-Bit)
+  addiu t0,1             // T0++ (8-Bit)
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  andi t0,$FF            // T0 &= $FF
+  or s0,t0               // A_REG |= T0
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   jr ra
   addiu v0,2             // Cycles += 2 (Delay Slot)
@@ -114,7 +128,10 @@ CPU65816M1HEX1C:
 CPU65816M1HEX1F:
   // $1F ORA   nnnnnn,X          OR Accumulator With Memory Absolute Long Indexed, X
   LoadABSLX8(t0)         // T0 = Absolute Long Indexed, X (8-Bit)
-  or s0,t0               // A_REG |= Absolute Long Indexed, X
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  or t1,t0               // T1 |= Absolute Long Indexed, X
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,3             // PC_REG += 3 (Increment Program Counter)
   jr ra
@@ -123,7 +140,10 @@ CPU65816M1HEX1F:
 CPU65816M1HEX23:
   // $23 AND   sr,S              AND Accumulator With Memory Stack Relative
   LoadSR8(t0)            // T0 = SR (8-Bit)
-  and s0,t0              // A_REG &= SR
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  and t1,t0              // T1 &= SR
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -132,7 +152,10 @@ CPU65816M1HEX23:
 CPU65816M1HEX27:
   // $27 AND   [dp]              AND Accumulator With Memory Direct Page Indirect Long
   LoadDPIL8(t0)          // T0 = DP Indirect Long (8-Bit)
-  and s0,t0              // A_REG &= DP Indirect Long
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  and t1,t0              // T1 &= DP Indirect Long
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -141,7 +164,10 @@ CPU65816M1HEX27:
 CPU65816M1HEX2F:
   // $2F AND   nnnnnn            AND Accumulator With Memory Absolute Long
   LoadABSL8(t0)          // T0 = Absolute Long (8-Bit)
-  and s0,t0              // A_REG &= Absolute Long
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  and t1,t0              // T1 &= Absolute Long
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,3             // PC_REG += 3 (Increment Program Counter)
   jr ra
@@ -150,7 +176,10 @@ CPU65816M1HEX2F:
 CPU65816M1HEX32:
   // $32 AND   (dp)              AND Accumulator With Memory Direct Page Indirect
   LoadDPI8(t0)           // T0 = DP Indirect (8-Bit)
-  and s0,t0              // A_REG &= DP Indirect
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  and t1,t0              // T1 &= DP Indirect
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -159,7 +188,10 @@ CPU65816M1HEX32:
 CPU65816M1HEX33:
   // $33 AND   (sr,S),Y          AND Accumulator With Memory Stack Relative Indirect Indexed, Y
   LoadSRIY8(t0)          // T0 = SR Indirect Indexed, Y (8-Bit)
-  and s0,t0              // A_REG &= SR Indirect Indexed, Y
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  and t1,t0              // T1 &= SR Indirect Indexed, Y
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -176,7 +208,10 @@ CPU65816M1HEX34:
 CPU65816M1HEX37:
   // $37 AND   [dp],Y            AND Accumulator With Memory Direct Page Indirect Long Indexed, Y
   LoadDPILY8(t0)         // T0 = DP Indirect Long Indexed, Y (8-Bit)
-  and s0,t0              // A_REG &= DP Indirect Long Indexed, Y
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  and t1,t0              // T1 &= DP Indirect Long Indexed, Y
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -184,8 +219,11 @@ CPU65816M1HEX37:
 
 CPU65816M1HEX3A:
   // $3A DEA                     Decrement Accumulator
-  subiu s0,1             // A_REG-- (8-Bit)
-  andi s0,$FF            // A_REG = 8-Bit
+  andi t0,s0,$FF         // T0 = A_REG (8-Bit)
+  subiu t0,1             // T0-- (8-Bit)
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  andi t0,$FF            // T0 &= $FF
+  or s0,t0               // A_REG |= T0
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   jr ra
   addiu v0,2             // Cycles += 2 (Delay Slot)
@@ -201,7 +239,10 @@ CPU65816M1HEX3C:
 CPU65816M1HEX3F:
   // $3F AND   nnnnnn,X          AND Accumulator With Memory Absolute Long Indexed, X
   LoadABSLX8(t0)         // T0 = Absolute Long Indexed, X (8-Bit)
-  and s0,t0              // A_REG &= Absolute Long Indexed, X
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  and t1,t0              // T1 &= Absolute Long Indexed, X
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,3             // PC_REG += 3 (Increment Program Counter)
   jr ra
@@ -210,7 +251,10 @@ CPU65816M1HEX3F:
 CPU65816M1HEX43:
   // $43 EOR   sr,S              Exclusive-OR Accumulator With Memory Stack Relative
   LoadSR8(t0)            // T0 = SR (8-Bit)
-  xor s0,t0              // A_REG ^= SR
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  xor t1,t0              // T1 ^= SR
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -219,7 +263,10 @@ CPU65816M1HEX43:
 CPU65816M1HEX47:
   // $47 EOR   [dp]              Exclusive-OR Accumulator With Memory Direct Page Indirect Long
   LoadDPIL8(t0)          // T0 = DP Indirect Long (8-Bit)
-  xor s0,t0              // A_REG ^= DP Indirect Long
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  xor t1,t0              // T1 ^= DP Indirect Long
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -234,7 +281,10 @@ CPU65816M1HEX48:
 CPU65816M1HEX4F:
   // $4F EOR   nnnnnn            Exclusive-OR Accumulator With Memory Absolute Long
   LoadABSL8(t0)          // T0 = Absolute Long (8-Bit)
-  xor s0,t0              // A_REG ^= Absolute Long
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  xor t1,t0              // T1 ^= Absolute Long
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,3             // PC_REG += 3 (Increment Program Counter)
   jr ra
@@ -243,7 +293,10 @@ CPU65816M1HEX4F:
 CPU65816M1HEX52:
   // $52 EOR   (dp)              Exclusive-OR Accumulator With Memory Direct Page Indirect
   LoadDPI8(t0)           // T0 = DP Indirect (8-Bit)
-  xor s0,t0              // A_REG ^= DP Indirect
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  xor t1,t0              // T1 ^= DP Indirect
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -252,7 +305,10 @@ CPU65816M1HEX52:
 CPU65816M1HEX53:
   // $53 EOR   (sr,S),Y          Exclusive-OR Accumulator With Memory Stack Relative Indirect Indexed, Y
   LoadSRIY8(t0)          // T0 = SR Indirect Indexed, Y (8-Bit)
-  xor s0,t0              // A_REG ^= SR Indirect Indexed, Y
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  xor t1,t0              // T1 ^= SR Indirect Indexed, Y
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -261,7 +317,10 @@ CPU65816M1HEX53:
 CPU65816M1HEX57:
   // $57 EOR   [dp],Y            Exclusive-OR Accumulator With Memory Direct Page Indirect Long Indexed, Y
   LoadDPILY8(t0)         // T0 = DP Indirect Long Indexed, Y (8-Bit)
-  xor s0,t0              // A_REG ^= DP Indirect Long Indexed, Y
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  xor t1,t0              // T1 ^= DP Indirect Long Indexed, Y
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -270,7 +329,10 @@ CPU65816M1HEX57:
 CPU65816M1HEX5F:
   // $5F EOR   nnnnnn,X          Exclusive-OR Accumulator With Memory Absolute Long Indexed, X
   LoadABSLX8(t0)         // T0 = Absolute Long Indexed, X (8-Bit)
-  xor s0,t0              // A_REG ^= Absolute Long Indexed, X
+  andi t1,s0,$FF         // T1 = A_REG (8-Bit)
+  xor t1,t0              // T1 ^= Absolute Long Indexed, X
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t1               // A_REG |= T1
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,3             // PC_REG += 3 (Increment Program Counter)
   jr ra
@@ -301,7 +363,9 @@ CPU65816M1HEX67:
 
 CPU65816M1HEX68:
   // $68 PLA                     Pull Accumulator
-  PullNAT8(s0)           // A_REG = STACK (8-Bit)
+  PullNAT8(t0)           // T0 = STACK (8-Bit)
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t0               // A_REG |= T0
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   jr ra
   addiu v0,4             // Cycles += 4 (Delay Slot)
@@ -375,15 +439,6 @@ CPU65816M1HEX89:
   jr ra
   addiu v0,2             // Cycles += 2 (Delay Slot)
 
-CPU65816M1HEX8A:
-  // $8A TXA                     Transfer Index Register X To Accumulator
-  andi t0,s1,$FF         // T0 = X_REG (8-Bit)
-  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
-  or s0,t0               // A_REG = X_REG (8-Bit)
-  TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
-  jr ra
-  addiu v0,2             // Cycles += 2 (Delay Slot)
-
 CPU65816M1HEX8F:
   // $8F STA   nnnnnn            Store Accumulator To Memory Absolute Long
   StoreABSL8(s0)         // Absolute Long = A_REG (8-Bit)
@@ -412,15 +467,6 @@ CPU65816M1HEX97:
   jr ra
   addiu v0,6             // Cycles += 6 (Delay Slot)
 
-CPU65816M1HEX98:
-  // $98 TYA                     Transfer Index Register Y To Accumulator
-  andi t0,s2,$FF         // T0 = Y_REG (8-Bit)
-  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
-  or s0,t0               // A_REG = Y_REG (8-Bit)
-  TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
-  jr ra
-  addiu v0,2             // Cycles += 2 (Delay Slot)
-
 CPU65816M1HEX9C:
   // $9C STZ   nnnn              Store Zero To Memory Absolute
   StoreABS8(r0)          // Absolute = 0 (8-Bit)
@@ -444,7 +490,9 @@ CPU65816M1HEX9F:
 
 CPU65816M1HEXA3:
   // $A3 LDA   sr,S              Load Accumulator From Memory Stack Relative
-  LoadSR8(s0)            // A_REG = SR (8-Bit)
+  LoadSR8(t0)            // T0 = SR (8-Bit)
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t0               // A_REG |= T0
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -452,7 +500,9 @@ CPU65816M1HEXA3:
 
 CPU65816M1HEXA7:
   // $A7 LDA   [dp]              Load Accumulator From Memory Direct Page Indirect Long
-  LoadDPIL8(s0)          // A_REG = DP Indirect Long (8-Bit)
+  LoadDPIL8(t0)          // T0 = DP Indirect Long (8-Bit)
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t0               // A_REG |= T0
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -460,7 +510,9 @@ CPU65816M1HEXA7:
 
 CPU65816M1HEXAF:
   // $AF LDA   nnnnnn            Load Accumulator From Memory Absolute Long
-  LoadABSL8(s0)          // A_REG = Absolute Long (8-Bit)
+  LoadABSL8(t0)          // T0 = Absolute Long (8-Bit)
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t0               // A_REG |= T0
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,3             // PC_REG += 3 (Increment Program Counter)
   jr ra
@@ -468,7 +520,9 @@ CPU65816M1HEXAF:
 
 CPU65816M1HEXB2:
   // $B2 LDA   (dp)              Load Accumulator From Memory Direct Page Indirect
-  LoadDPI8(s0)           // A_REG = DP Indirect (8-Bit)
+  LoadDPI8(t0)           // T0 = DP Indirect (8-Bit)
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t0               // A_REG |= T0
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -476,7 +530,9 @@ CPU65816M1HEXB2:
 
 CPU65816M1HEXB3:
   // $B3 LDA   (sr,S),Y          Load Accumulator From Memory Stack Relative Indirect Indexed, Y
-  LoadSRIY8(s0)          // A_REG = SR Indirect Indexed, Y (8-Bit)
+  LoadSRIY8(t0)          // T0 = SR Indirect Indexed, Y (8-Bit)
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t0               // A_REG |= T0
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -484,7 +540,9 @@ CPU65816M1HEXB3:
 
 CPU65816M1HEXB7:
   // $B7 LDA   [dp],Y            Load Accumulator From Memory Direct Page Indirect Long Indexed, Y
-  LoadDPILY8(s0)         // A_REG = DP Indirect Long Indexed, Y (8-Bit)
+  LoadDPILY8(t0)         // T0 = DP Indirect Long Indexed, Y (8-Bit)
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t0               // A_REG |= T0
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,1             // PC_REG++ (Increment Program Counter)
   jr ra
@@ -492,7 +550,9 @@ CPU65816M1HEXB7:
 
 CPU65816M1HEXBF:
   // $BF LDA   nnnnnn,X          Load Accumulator From Memory Absolute Long Indexed, X
-  LoadABSLX8(s0)         // A_REG = Absolute Long Indexed, X (8-Bit)
+  LoadABSLX8(t0)         // T0 = Absolute Long Indexed, X (8-Bit)
+  andi s0,$FF00          // Preserve Hidden B Register (8-Bit)
+  or s0,t0               // A_REG |= T0
   TestNZ8(s0)            // Test Result Negative / Zero Flags Of A_REG (8-Bit)
   addiu s3,3             // PC_REG += 3 (Increment Program Counter)
   jr ra

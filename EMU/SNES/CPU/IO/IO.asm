@@ -394,3 +394,9 @@ SETINI:  // $2133 REG_SETINI            Display Control 2                       
 align(4)
 WMADD:   // $2181..$2183 REG_VMADDL/M/H WRAM Address (Lower/Middle 8bit, Upper 1bit)         3B/W
   dw 0   // WMADD
+
+//------------------------
+// I/O 42XX Shadow Memory
+//------------------------
+RDNMI:   // $4210 REG_RDNMI             V-Blank NMI Flag and CPU Version Number (Read/Ack)   1B/R
+  db 0   // RDNMI
