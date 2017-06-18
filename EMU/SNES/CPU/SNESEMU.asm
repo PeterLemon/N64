@@ -29,7 +29,7 @@ Start:
   include "LIB/N64_GFX.INC" // Include Graphics Macros
   include "LIB/N64_RSP.INC" // Include RSP Macros
   N64_INIT() // Run N64 Initialisation Routine
-  ScreenNTSC(320, 240, BPP16|GAMMA_EN|AA_MODE_3, $A0100000) // Screen NTSC: 320x240, 16BPP, Gamma Enable, Replicate Pixels & No Interpolation, DRAM Origin $A0100000
+  ScreenNTSC(320, 240, BPP16|AA_MODE_3, $A0100000) // Screen NTSC: 320x240, 16BPP, Replicate Pixels & No Interpolation, DRAM Origin $A0100000
 
   la a0,MEM_MAP // A0 = MEM_MAP
   la a1,CPU_INST // A1 = CPU Instruction Table
