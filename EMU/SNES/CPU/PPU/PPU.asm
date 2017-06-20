@@ -353,34 +353,6 @@ LoopCache:
   addiu a0,16 // Address += Data Line Size (Delay Slot)
 
 
-// Convert SNES Palette To N64 TLUT
-  // Load RSP Code To IMEM
-  DMASPRD(RSPPALCode, RSPPALCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  PALCodeDMABusy:
-    lw t0,SP_STATUS(a0) // T0 = Word From SP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,PALCodeDMABusy // IF TRUE DMA Is Busy
-    nop // Delay Slot
-
-  // Set RSP Program Counter
-  lui a0,SP_PC_BASE // A0 = SP PC Base Register ($A4080000)
-  lli t0,RSPPALStart // T0 = RSP Program Counter Set To Start Of RSP Code
-  sw t0,SP_PC(a0) // Store RSP Program Counter To SP PC Register ($A4080000)
-
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
-DelayPAL: // Wait For RSP To Compute
-  lw t0,SP_STATUS(a0) // T0 = RSP Status
-  andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
-  beqz t0,DelayPAL // IF (RSP Halt Flag == 0) Delay PAL
-  nop // Delay Slot
-
-
 // Copy SNES Clear Color To RDP List
 la a0,N64TLUT // A0 = N64 TLUT Address
 la a1,RDPSNESCLEARCOL+4 // A1 = N64 RDP SNES Clear Color Address
@@ -393,13 +365,6 @@ WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
 
 // Run RDP Palette & Screen Setup
 DPC(RDPPALBuffer, RDPPALBufferEnd) // Run DPC Command Buffer: Start Address, End Address
-
-lui a0,DPC_BASE // A0 = DP Command (DPC) Base Register ($A4100000)
-WaitRDPPAL: // Wait For RDP To Finish
-  lw t0,DPC_STATUS(a0) // T0 = RDP Status
-  andi t0,$100 // RDP Status &= RDP DMA Busy Flag
-  bnez t0,WaitRDPPAL // IF (RDP DMA Busy Flag != 0) Delay TILES
-  nop // Delay Slot
 
 
 // Detect Mode
@@ -533,7 +498,15 @@ nop // Delay Slot
 
 
 PPUEND:
-  // Convert SNES 2BPP/4BPP/8BPP Tiles To N64 Linear Texture
+
+  // Wait For RSP To Compute
+  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
+  lw t0,SP_STATUS(a0) // T0 = RSP Status
+  andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
+  beqz t0,SkipRSP // IF (RSP Halt Flag == 0) Skip RSP
+  nop // Delay Slot
+
+  // Convert SNES Palette To N64 TLUT & Convert SNES 2BPP/4BPP/8BPP 8x8 Tiles To N64 Linear Textures
   // Load RSP Code To IMEM
   DMASPRD(RSPTILEXBPPCode, RSPTILEXBPPCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
 
@@ -553,3 +526,5 @@ PPUEND:
   lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
   li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
   sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+
+  SkipRSP:
