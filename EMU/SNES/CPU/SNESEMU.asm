@@ -97,9 +97,10 @@ include "IO/IO.asm"   // Include I/O Macros & Tables
 
 // PPU Data
 include "PPU/PPUPALRDP.asm" // PPU Palette Data
-include "PPU/PPU2BPPRDP.asm" // PPU 2BPP Data
-include "PPU/PPU4BPPRDP.asm" // PPU 4BPP Data
-include "PPU/PPU8BPPRDP.asm" // PPU 8BPP Data
+include "PPU/PPU2BPPRDP.asm" // PPU 2BPP RDP Data
+include "PPU/PPU4BPPRDP.asm" // PPU 4BPP RDP Data
+include "PPU/PPU8BPPRDP.asm" // PPU 8BPP RDP Data
+include "PPU/PPUXBPPRSP.asm" // PPU XBPP RSP Data
 
 // Additional Memory (Not Mapped To CPU Addresses) (Accessible Only Via I/O)
 align(8) // Align 64-Bit

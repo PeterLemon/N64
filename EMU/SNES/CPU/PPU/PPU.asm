@@ -389,93 +389,6 @@ sh t0,0(a1) // Store Color 0 To RDP Fill Color Hi
 sh t0,2(a1) // Store Color 0 To RDP Fill Color Lo
 
 
-// Convert SNES 2BPP Tiles To N64 Linear Texture
-  // Load RSP Code To IMEM
-  DMASPRD(RSPTILE2BPPCode, RSPTILE2BPPCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  TILE2BPPCodeDMABusy:
-    lw t0,SP_STATUS(a0) // T0 = Word From SP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,TILE2BPPCodeDMABusy // IF TRUE DMA Is Busy
-    nop // Delay Slot
-
-  // Set RSP Program Counter
-  lui a0,SP_PC_BASE // A0 = SP PC Base Register ($A4080000)
-  lli t0,RSPTILE2BPPStart // T0 = RSP Program Counter Set To Start Of RSP Code
-  sw t0,SP_PC(a0) // Store RSP Program Counter To SP PC Register ($A4080000)
-
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  DelayTILES2BPP: // Wait For RSP To Compute
-    lw t0,SP_STATUS(a0) // T0 = RSP Status
-    andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
-    beqz t0,DelayTILES2BPP // IF (RSP Halt Flag == 0) Delay TILES
-    nop // Delay Slot
-
-
-// Convert SNES 4BPP Tiles To N64 Linear Texture
-  // Load RSP Code To IMEM
-  DMASPRD(RSPTILE4BPPCode, RSPTILE4BPPCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  TILE4BPPCodeDMABusy:
-    lw t0,SP_STATUS(a0) // T0 = Word From SP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,TILE4BPPCodeDMABusy // IF TRUE DMA Is Busy
-    nop // Delay Slot
-
-  // Set RSP Program Counter
-  lui a0,SP_PC_BASE // A0 = SP PC Base Register ($A4080000)
-  lli t0,RSPTILE4BPPStart // T0 = RSP Program Counter Set To Start Of RSP Code
-  sw t0,SP_PC(a0) // Store RSP Program Counter To SP PC Register ($A4080000)
-
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  DelayTILES4BPP: // Wait For RSP To Compute
-    lw t0,SP_STATUS(a0) // T0 = RSP Status
-    andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
-    beqz t0,DelayTILES4BPP // IF (RSP Halt Flag == 0) Delay TILES
-    nop // Delay Slot
-
-
-// Convert SNES 8BPP Tiles To N64 Linear Texture
-  // Load RSP Code To IMEM
-  DMASPRD(RSPTILE8BPPCode, RSPTILE8BPPCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  TILE8BPPCodeDMABusy:
-    lw t0,SP_STATUS(a0) // T0 = Word From SP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,TILE8BPPCodeDMABusy // IF TRUE DMA Is Busy
-    nop // Delay Slot
-
-  // Set RSP Program Counter
-  lui a0,SP_PC_BASE // A0 = SP PC Base Register ($A4080000)
-  lli t0,RSPTILE8BPPStart // T0 = RSP Program Counter Set To Start Of RSP Code
-  sw t0,SP_PC(a0) // Store RSP Program Counter To SP PC Register ($A4080000)
-
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
-
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  DelayTILES8BPP: // Wait For RSP To Compute
-    lw t0,SP_STATUS(a0) // T0 = RSP Status
-    andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
-    beqz t0,DelayTILES8BPP // IF (RSP Halt Flag == 0) Delay TILES
-    nop // Delay Slot
-
-
 WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
 
 // Run RDP Palette & Screen Setup
@@ -620,3 +533,23 @@ nop // Delay Slot
 
 
 PPUEND:
+  // Convert SNES 2BPP/4BPP/8BPP Tiles To N64 Linear Texture
+  // Load RSP Code To IMEM
+  DMASPRD(RSPTILEXBPPCode, RSPTILEXBPPCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+
+  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
+  TILEXBPPCodeDMABusy:
+    lw t0,SP_STATUS(a0) // T0 = Word From SP Status Register ($A4040010)
+    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
+    bnez t0,TILEXBPPCodeDMABusy // IF TRUE DMA Is Busy
+    nop // Delay Slot
+
+  // Set RSP Program Counter
+  lui a0,SP_PC_BASE // A0 = SP PC Base Register ($A4080000)
+  lli t0,RSPTILEXBPPStart // T0 = RSP Program Counter Set To Start Of RSP Code
+  sw t0,SP_PC(a0) // Store RSP Program Counter To SP PC Register ($A4080000)
+
+  // Set RSP Status (Start Execution)
+  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
+  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
+  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
