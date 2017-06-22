@@ -105,6 +105,16 @@ macro PPU8x8BGMAP2BPP(bg) { // Convert SNES 2BPP Tile Map To RDP List
       lbu t9,1(t9)  // T9 = SNES Tile Map # Hi Byte
       sll t9,8      // T9 <<= 8
       or t9,a3      // T9 |= A3
+
+      // BG Tile X/Y Flip
+      srl a3,t9,14  // A3 = X/Y Flip (Bit0: X-Flip, Bit1: Y-Flip)
+      sll a3,3      // A3 *= 8 (PPU Tile Flip RDP Data Offset)
+      la gp,PPUTileFlipRDP // GP = PPU Tile Flip RDP Data
+      addu a3,gp    // A3 += GP
+      ld a3,0(a3)   // A3 = PPU Tile Flip RDP Data Double
+      sd a3,20(a2)
+
+      // BG Tile Map
       andi t9,$3FF  // T9 &= $3FF 
       sll t9,5      // T9 *= 32 (2BPP/4BPP)
       addu t9,a1    // T9 += N64 Tile Address
@@ -204,6 +214,16 @@ macro PPU8x8BGMAP4BPP(bg) { // Convert SNES 4BPP Tile Map To RDP List
       lbu t9,1(t9)  // T9 = SNES Tile Map # Hi Byte
       sll t9,8      // T9 <<= 8
       or t9,a3      // T9 |= A3
+
+      // BG Tile X/Y Flip
+      srl a3,t9,14  // A3 = X/Y Flip (Bit0: X-Flip, Bit1: Y-Flip)
+      sll a3,3      // A3 *= 8 (PPU Tile Flip RDP Data Offset)
+      la gp,PPUTileFlipRDP // GP = PPU Tile Flip RDP Data
+      addu a3,gp    // A3 += GP
+      ld a3,0(a3)   // A3 = PPU Tile Flip RDP Data Double
+      sd a3,20(a2)
+
+      // BG Tile Map
       andi t9,$3FF  // T9 &= $3FF 
       sll t9,5      // T9 *= 32 (2BPP/4BPP)
       addu t9,a1    // T9 += N64 Tile Address
@@ -303,6 +323,16 @@ macro PPU8x8BGMAP8BPP(bg) { // Convert SNES 8BPP Tile Map To RDP List
       lbu t9,1(t9)  // T9 = SNES Tile Map # Hi Byte
       sll t9,8      // T9 <<= 8
       or t9,a3      // T9 |= A3
+
+      // BG Tile X/Y Flip
+      srl a3,t9,14  // A3 = X/Y Flip (Bit0: X-Flip, Bit1: Y-Flip)
+      sll a3,3      // A3 *= 8 (PPU Tile Flip RDP Data Offset)
+      la gp,PPUTileFlipRDP // GP = PPU Tile Flip RDP Data
+      addu a3,gp    // A3 += GP
+      ld a3,0(a3)   // A3 = PPU Tile Flip RDP Data Double
+      sd a3,20(a2)
+
+      // BG Tile Map
       andi t9,$3FF  // T9 &= $3FF 
       sll t9,6      // T9 *= 64 (8BPP)
       addu t9,a1    // T9 += N64 Tile Address
@@ -361,7 +391,7 @@ sh t0,0(a1) // Store Color 0 To RDP Fill Color Hi
 sh t0,2(a1) // Store Color 0 To RDP Fill Color Lo
 
 
-WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
+WaitScanline($1D8) // Wait For Scanline To Reach Vertical Blank
 
 // Run RDP Palette & Screen Setup
 DPC(RDPPALBuffer, RDPPALBufferEnd) // Run DPC Command Buffer: Start Address, End Address
