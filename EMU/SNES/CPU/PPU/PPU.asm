@@ -373,7 +373,6 @@ macro PPU8x8BGMAP8BPP(bg) { // Convert SNES 8BPP Tile Map To RDP List
       addiu t7,1 // Increment Y (Delay Slot)
 }
 
-
 // Flush Data Cache: Index Writeback Invalidate
 la a0,$80000000    // A0 = Cache Start
 la a1,$80002000-16 // A1 = Cache End
@@ -385,10 +384,21 @@ LoopCache:
 
 // Copy SNES Clear Color To RDP List
 la a0,N64TLUT // A0 = N64 TLUT Address
-la a1,RDPSNESCLEARCOL+4 // A1 = N64 RDP SNES Clear Color Address
-lhu t0,0(a0) // T0 = TLUT Color 0
-sh t0,0(a1) // Store Color 0 To RDP Fill Color Hi
-sh t0,2(a1) // Store Color 0 To RDP Fill Color Lo
+lhu t0,0(a0)  // T0 = TLUT Color 0
+la a0,RDPSNESCLEARCOL+4 // A0 = N64 RDP SNES Clear Color Address
+sh t0,0(a0)   // Store Color 0 To RDP Fill Color Hi
+sh t0,2(a0)   // Store Color 0 To RDP Fill Color Lo
+
+// Copy SNES Brightness Level RGBA Color To RDP List
+la a0,INIDISP // A0 = INIDISP Address
+lbu t0,0(a0)  // T0 = INIDISP
+andi t0,$0F   // T0 = INIDISP: Master Brightness
+sll t0,2      // T0 *= 4
+la a0,PPURDPSNESBRIGHTNESS // A0 = N64 PPU RDP SNES BRIGHTNESS Address
+addu a0,t0    // A0 += T0
+lw t0,0(a0)   // T0 = N64 PPU RDP SNES BRIGHTNESS RGBA Word
+la a0,RDPSNESBRIGHTNESS+4 // A0 = N64 RDP SNES Brightness Level RGBA Color Address
+sw t0,0(a0)   // Store N64 PPU RDP SNES BRIGHTNESS RGBA Word To RDP List
 
 
 WaitScanline($1D8) // Wait For Scanline To Reach Vertical Blank

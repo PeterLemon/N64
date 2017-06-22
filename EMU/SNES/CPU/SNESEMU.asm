@@ -131,8 +131,8 @@ MEM_MAP: // Memory Map = $10000 Bytes
 //insert CART_ROM, "TEST/8x8BGMap8BPP32x32.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/8x8BGMap8BPP32x64.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/8x8BGMap8BPP64x32.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/8x8BGMap8BPP64x64.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
-insert CART_ROM, "TEST/8x8BGMapTileFlip.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+insert CART_ROM, "TEST/8x8BGMap8BPP64x64.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/8x8BGMapTileFlip.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/LinearPicture2BPP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/LinearPicture4BPP.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/LinearPicture8BPP.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
