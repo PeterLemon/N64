@@ -28,8 +28,11 @@ constant E_FLAG($100) // P Register Bit 8 Emulation Flag (Can Be Accessed Only V
 Start:
   include "LIB/N64_GFX.INC" // Include Graphics Macros
   include "LIB/N64_RSP.INC" // Include RSP Macros
+  include "LIB/N64_INPUT.INC" // Include Input Macros
   N64_INIT() // Run N64 Initialisation Routine
   ScreenNTSC(320, 240, BPP16|AA_MODE_2, $A0100000) // Screen NTSC: 320x240, 16BPP, Resample Only, DRAM Origin $A0100000
+
+  InitController(PIF1) // Initialize Controller
 
   la a0,MEM_MAP // A0 = MEM_MAP
   la a1,CPU_INST // A1 = CPU Instruction Table
@@ -102,6 +105,20 @@ include "PPU/PPU4BPPRDP.asm" // PPU 4BPP RDP Data
 include "PPU/PPU8BPPRDP.asm" // PPU 8BPP RDP Data
 include "PPU/PPUXBPPRSP.asm" // PPU XBPP RSP Data
 include "PPU/PPUTileFlipRDP.asm" // PPU Tile Flip RDP Data
+
+align(8) // Align 64-Bit
+PIF1:
+  dw $FF010401,0
+  dw 0,0
+  dw 0,0
+  dw 0,0
+  dw $FE000000,0
+  dw 0,0
+  dw 0,0
+  dw 0,1
+
+PIF2:
+  fill 64 // Generate 64 Bytes Containing $00
 
 // Additional Memory (Not Mapped To CPU Addresses) (Accessible Only Via I/O)
 align(8) // Align 64-Bit

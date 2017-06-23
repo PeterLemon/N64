@@ -80,11 +80,11 @@ LOAD420F:
 
 LOAD4210:
   // $4210 REG_RDNMI             V-Blank NMI Flag and CPU Version Number (Read/Ack)   1B/R
-  lbu t1,REG_RDNMI(a0)   // T1 = MEM_MAP[REG_RDNMI]
-  beqz t1,RDNMISKIP      // IF (REG_RDNMI == 0) RDNMI Skip
-  ori t2,r0,$80          // T2 = $80 (Delay Slot)
-  la t1,RDNMI            // T1 = RDNMI
-  sb t2,0(t1)            // RDNMI = $80 (NMI Reset After Read)
+  lbu t0,REG_RDNMI(a0)   // T0 = MEM_MAP[REG_RDNMI]
+  beqz t0,RDNMISKIP      // IF (REG_RDNMI == 0) RDNMI Skip
+  ori t1,r0,$80          // T1 = $80 (Delay Slot)
+  la t0,RDNMI            // T0 = RDNMI
+  sb t1,0(t0)            // RDNMI = $80 (NMI Reset After Read)
   RDNMISKIP:
   jr k1
   nop                    // Delay Slot
@@ -126,11 +126,49 @@ LOAD4217:
 
 LOAD4218:
   // $4218 REG_JOY1L             Joypad 1 (Gameport 1, Pin 4) (Lower 8bit)            2B/R
+  la t0,NMITIMEN // T0 = NMITIMEN Address
+  lbu t0,0(t0) // T0 = NMITIMEN Byte
+  andi t0,1 // T0 &= NMITIMEN: Joypad Enable
+  beqz t0,JOY1LSKIP // IF (Joypad Enable == 0) JOY1L Skip
+  sb r0,REG_JOY1L(a0) // MEM_MAP[REG_JOY1L] = 0 (Delay Slot)
+
+  // Read N64 Controller 1 Buttons Hi Byte (L & R, N64 CAMERA LEFT = SNES X, N64 CAMERA DOWN = SNES A)
+  lui t0,PIF_BASE // T0 = PIF Base Register ($BFC00000)
+  lui t1,SI_BASE // T1 = SI Base Register ($A4800000)
+  la t2,PIF2 // T2 = PIF2 Offset
+  sw t2,SI_DRAM_ADDR(t1) // Store PIF2 To SI_DRAM_ADDR ($A4800000)
+  ori t2,t1,PIF_RAM // T2 = PIF_RAM: JoyChannel ($BFC007C0)
+  sw t2,SI_PIF_ADDR_RD64B(t1) // 64 Byte Read PIF -> DRAM ($A4800004)
+  lbu t0,PIF_HWORD+1(t0) // T0 = Buttons Lo Byte ($BFC007C4)
+  andi t1,t0,$30 // T1 = L & R
+  andi t0,$6     // T0 = CAMERA LEFT & CAMERA DOWN
+  sll t0,3       // T0 <<= 3
+  or t0,t1       // T0 |= T1
+  sb t0,REG_JOY1L(a0)  // MEM_MAP[REG_JOY1L] = T0
+
+  JOY1LSKIP:
   jr k1
   nop                    // Delay Slot
 
 LOAD4219:
   // $4219 REG_JOY1H             Joypad 1 (Gameport 1, Pin 4) (Upper 8bit)            1B/R
+  la t0,NMITIMEN // T0 = NMITIMEN Address
+  lbu t0,0(t0) // T0 = NMITIMEN Byte
+  andi t0,1 // T0 &= NMITIMEN: Joypad Enable
+  beqz t0,JOY1HSKIP // IF (Joypad Enable == 0) JOY1H Skip
+  sb r0,REG_JOY1H(a0) // MEM_MAP[REG_JOY1H] = 0 (Delay Slot)
+
+  // Read N64 Controller 1 Buttons Hi Byte (Directions & Start, N64 B = SNES Y, N64 A = SNES B, N64 Z = SNES Select)
+  lui t0,PIF_BASE // T0 = PIF Base Register ($BFC00000)
+  lui t1,SI_BASE // T1 = SI Base Register ($A4800000)
+  la t2,PIF2 // T2 = PIF2 Offset
+  sw t2,SI_DRAM_ADDR(t1) // Store PIF2 To SI_DRAM_ADDR ($A4800000)
+  ori t2,t1,PIF_RAM // T2 = PIF_RAM: JoyChannel ($BFC007C0)
+  sw t2,SI_PIF_ADDR_RD64B(t1) // 64 Byte Read PIF -> DRAM ($A4800004)
+  lbu t0,PIF_HWORD(t0) // T0 = Buttons Hi Byte ($BFC007C4)
+  sb t0,REG_JOY1H(a0)  // MEM_MAP[REG_JOY1H] = T0
+
+  JOY1HSKIP:
   jr k1
   nop                    // Delay Slot
 

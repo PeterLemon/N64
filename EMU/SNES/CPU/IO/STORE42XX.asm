@@ -1,7 +1,10 @@
 STORE4200:
   // $4200 REG_NMITIMEN          Interrupt Enable & Joypad Request                    1B/W
+  lbu t0,REG_NMITIMEN(a0) // T0 = MEM_MAP[REG_NMITIMEN]
+  sb r0,REG_NMITIMEN(a0)  // MEM_MAP[REG_NMITIMEN] = 0
+  la t1,NMITIMEN          // T1 = NMITIMEN
   jr k1
-  nop                    // Delay Slot
+  sb t0,0(t1)             // NMITIMEN = T0 (Delay Slot)
 
 STORE4201:
   // $4201 REG_WRIO              Joypad Programmable I/O Port (Open-Collector Output) 1B/W
