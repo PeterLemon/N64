@@ -36,8 +36,8 @@ Start:
 
   la a0,MEM_MAP // A0 = MEM_MAP
   la a1,CPU_INST // A1 = CPU Instruction Table
-  //ori v1,r0,$73E2 // V1 = Refresh Cycles 1.78MHz (1780000Hz / 60Hz = 29666 CPU Cycles)
-  ori v1,r0,$AE7A // V1 = Refresh Cycles 2.68MHz (2680000Hz / 60Hz = 44666 CPU Cycles)
+  ori v1,r0,$73E2 // V1 = Refresh Cycles 1.78MHz (1780000Hz / 60Hz = 29666 CPU Cycles)
+  //ori v1,r0,$AE7A // V1 = Refresh Cycles 2.68MHz (2680000Hz / 60Hz = 44666 CPU Cycles)
   //ori v1,r0,$E912 // V1 = Refresh Cycles 3.58MHz (3580000Hz / 60Hz = 59666 CPU Cycles)
 
   // Setup SNES Registers

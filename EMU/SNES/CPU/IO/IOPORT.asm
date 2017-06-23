@@ -5,7 +5,9 @@ bnez t0,VBLANKEND      // ELSE FORCED BLANK
 sb t0,REG_RDNMI(a0)    // MEM_MAP[REG_RDNMI] = $80 (Delay Slot)
 
 la t1,RDNMI           // T1 = RDNMI
-ori t0,r0,$94C0       // T0 = $94C0 (($AE7A / 262) * 224)
+ori t0,r0,$66C0       // T0 = $66C0 1.78MHz (($73E2 / 262) * 224)
+//ori t0,r0,$94C0       // T0 = $94C0 2.68MHz (($AE7A / 262) * 224)
+//ori t0,r0,$CFA4       // T0 = $CFA4 3.58MHz (($E912 / 262) * 224)
 bge v0,t0,VBLANKSTART // IF (Cycles Counter > $94C0) VBLANK START
 nop                   // Delay Slot
 
