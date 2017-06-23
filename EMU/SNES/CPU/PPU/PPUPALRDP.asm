@@ -1,6 +1,6 @@
 align(4) // Align 32-Bit
 PPURDPSNESBRIGHTNESS: // SNES Brightness Level RDP RGBA Color Data
-  dw $00000000 // SNES Brightness Level: 0
+  dw $000000FF // SNES Brightness Level: 0
   dw $111111FF // SNES Brightness Level: 1
   dw $222222FF // SNES Brightness Level: 2
   dw $333333FF // SNES Brightness Level: 3
