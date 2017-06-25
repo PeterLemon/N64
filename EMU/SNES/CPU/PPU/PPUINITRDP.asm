@@ -18,7 +18,7 @@ PPURDPSNESBRIGHTNESS: // SNES Brightness Level RDP RGBA Color Data
   dw $FFFFFFFF // SNES Brightness Level: 15
 
 align(8) // Align 64-Bit
-RDPPALBuffer:
+RDPINITBuffer:
 arch n64.rdp
   Set_Scissor 32<<2,8<<2, 0,0, 288<<2,232<<2 // Set Scissor: XH 32.0,YH 8.0, Scissor Field Enable Off,Field Off, XL 288.0,YL 232.0
   Set_Other_Modes CYCLE_TYPE_FILL // Set Other Modes
@@ -33,9 +33,4 @@ RDPSNESCLEARCOL:
 
 RDPSNESBRIGHTNESS:
   Set_Prim_Color 0,0, $FFFFFFFF // Set The Primitive Color: MinLev,LevFrac, RGB
-
-  Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,1-1, N64TLUT // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 1, N64TLUT DRAM ADDRESS
-  Set_Tile 0,0,0, $100, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: TMEM Address $100, Tile 0
-  Load_Tlut 0<<2,0<<2, 0, 255<<2,0<<2 // Load Tlut: SL 0.0,TL 0.0, Tile 0, SH 255.0,TH 0.0
-  Sync_Tile // Sync Tile
-RDPPALBufferEnd:
+RDPINITBufferEnd:

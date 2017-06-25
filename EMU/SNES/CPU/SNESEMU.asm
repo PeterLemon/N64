@@ -99,7 +99,7 @@ include "DMA/DMA.asm" // Include DMA Macros & Tables
 include "IO/IO.asm"   // Include I/O Macros & Tables
 
 // PPU Data
-include "PPU/PPUPALRDP.asm"  // PPU Palette RDP Data
+include "PPU/PPUINITRDP.asm" // PPU Init RDP Data
 include "PPU/PPU2BPPRDP.asm" // PPU 2BPP RDP Data
 include "PPU/PPU4BPPRDP.asm" // PPU 4BPP RDP Data
 include "PPU/PPU8BPPRDP.asm" // PPU 8BPP RDP Data
@@ -145,35 +145,41 @@ WRAM: // Work RAM (128KB)
 MEM_MAP: // Memory Map = $10000 Bytes
   //fill $10000 // Generates $10000 Bytes Containing $00
   fill $8000 // Generates $8000 Bytes Containing $00
-//insert CART_ROM, "TEST/8x8BGMap8BPP32x32.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/8x8BGMap8BPP32x64.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/8x8BGMap8BPP64x32.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
-insert CART_ROM, "TEST/8x8BGMap8BPP64x64.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/8x8BGMapTileFlip.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/LinearPicture2BPP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/LinearPicture4BPP.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/LinearPicture8BPP.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/HelloWorld.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUADC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUAND.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUASL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUBIT.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUBRA.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUCMP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUDEC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUEOR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUINC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUJMP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPULDR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPULSR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUMOV.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUMSC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUORA.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUPHL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUPSR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPURET.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUROL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUROR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUSBC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUSTR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/CPUTRN.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+
+//insert CART_ROM, "TEST/PPU/8x8BG1Map2BPP32x328PAL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/PPU/8x8BG2Map2BPP32x328PAL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/PPU/8x8BG3Map2BPP32x328PAL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/PPU/8x8BG4Map2BPP32x328PAL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+insert CART_ROM, "TEST/PPU/8x8BGMap4BPP32x328PAL.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/PPU/8x8BGMap8BPP32x32.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/PPU/8x8BGMap8BPP32x64.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/PPU/8x8BGMap8BPP64x32.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/PPU/8x8BGMap8BPP64x64.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/PPU/8x8BGMapTileFlip.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/PPU/LinearPicture2BPP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/PPU/LinearPicture4BPP.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/PPU/LinearPicture8BPP.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/PPU/HelloWorld.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUADC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUAND.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUASL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUBIT.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUBRA.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUCMP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUDEC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUEOR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUINC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUJMP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPULDR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPULSR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUMOV.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUMSC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUORA.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUPHL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUPSR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPURET.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUROL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUROR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUSBC.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUSTR.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/CPU/CPUTRN.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **

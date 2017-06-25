@@ -106,13 +106,18 @@ macro PPU8x8BGMAP2BPP(bg) { // Convert SNES 2BPP Tile Map To RDP List
       sll t9,8      // T9 <<= 8
       or t9,a3      // T9 |= A3
 
+      // BG Palette Number
+      andi a3,t9,$1C00 // A3 = Palette Number (0..7)
+      srl a3,6      // A3 >>= 6
+      sb a3,9(a2)   // Store SNES Palette Number To N64 RDP SNES Tile Map
+
       // BG Tile X/Y Flip
       srl a3,t9,14  // A3 = X/Y Flip (Bit0: X-Flip, Bit1: Y-Flip)
       sll a3,3      // A3 *= 8 (PPU Tile Flip RDP Data Offset)
       la gp,PPUTileFlipRDP // GP = PPU Tile Flip RDP Data
       addu a3,gp    // A3 += GP
       ld a3,0(a3)   // A3 = PPU Tile Flip RDP Data Double
-      sd a3,20(a2)
+      sd a3,28(a2)
 
       // BG Tile Map
       andi t9,$3FF  // T9 &= $3FF 
@@ -133,7 +138,7 @@ macro PPU8x8BGMAP2BPP(bg) { // Convert SNES 2BPP Tile Map To RDP List
       addu a3,gp
       sll a3,2
       addu t9,a3    // T9 = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
-      sw t9,12(a2)
+      sw t9,20(a2)
 
       ori t9,r0,32  // XHYH = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
       subu t9,k0
@@ -146,9 +151,9 @@ macro PPU8x8BGMAP2BPP(bg) { // Convert SNES 2BPP Tile Map To RDP List
       addu a3,gp
       sll a3,2
       addu t9,a3    // T9 = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
-      sw t9,16(a2)
+      sw t9,24(a2)
 
-      addiu a2,40   // A2 += 40
+      addiu a2,48   // A2 += 48
       bne t8,t2,{#}PPU8x8BGMAP2BPPLoopX // IF (X != SCREENMAPX) Map Loop X
       addiu t8,1 // Increment X (Delay Slot)
       bne t7,t3,{#}PPU8x8BGMAP2BPPLoopY // IF (Y != SCREENMAPY) Map Loop Y
@@ -215,13 +220,18 @@ macro PPU8x8BGMAP4BPP(bg) { // Convert SNES 4BPP Tile Map To RDP List
       sll t9,8      // T9 <<= 8
       or t9,a3      // T9 |= A3
 
+      // BG Palette Number
+      andi a3,t9,$1C00 // A3 = Palette Number (0..7)
+      srl a3,6      // A3 >>= 6
+      sb a3,9(a2)   // Store SNES Palette Number To N64 RDP SNES Tile Map
+
       // BG Tile X/Y Flip
       srl a3,t9,14  // A3 = X/Y Flip (Bit0: X-Flip, Bit1: Y-Flip)
       sll a3,3      // A3 *= 8 (PPU Tile Flip RDP Data Offset)
       la gp,PPUTileFlipRDP // GP = PPU Tile Flip RDP Data
       addu a3,gp    // A3 += GP
       ld a3,0(a3)   // A3 = PPU Tile Flip RDP Data Double
-      sd a3,20(a2)
+      sd a3,28(a2)
 
       // BG Tile Map
       andi t9,$3FF  // T9 &= $3FF 
@@ -242,7 +252,7 @@ macro PPU8x8BGMAP4BPP(bg) { // Convert SNES 4BPP Tile Map To RDP List
       addu a3,gp
       sll a3,2
       addu t9,a3    // T9 = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
-      sw t9,12(a2)
+      sw t9,20(a2)
 
       ori t9,r0,32  // XHYH = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
       subu t9,k0
@@ -255,9 +265,9 @@ macro PPU8x8BGMAP4BPP(bg) { // Convert SNES 4BPP Tile Map To RDP List
       addu a3,gp
       sll a3,2
       addu t9,a3    // T9 = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
-      sw t9,16(a2)
+      sw t9,24(a2)
 
-      addiu a2,40   // A2 += 40
+      addiu a2,48   // A2 += 48
       bne t8,t2,{#}PPU8x8BGMAP4BPPLoopX // IF (X != SCREENMAPX) Map Loop X
       addiu t8,1 // Increment X (Delay Slot)
       bne t7,t3,{#}PPU8x8BGMAP4BPPLoopY // IF (Y != SCREENMAPY) Map Loop Y
@@ -383,7 +393,7 @@ LoopCache:
 
 
 // Copy SNES Clear Color To RDP List
-la a0,N64TLUT // A0 = N64 TLUT Address
+la a0,N64TLUT8BPP // A0 = N64 TLUT Address
 lhu t0,0(a0)  // T0 = TLUT Color 0
 la a0,RDPSNESCLEARCOL+4 // A0 = N64 RDP SNES Clear Color Address
 sh t0,0(a0)   // Store Color 0 To RDP Fill Color Hi
@@ -401,10 +411,10 @@ la a0,RDPSNESBRIGHTNESS+4 // A0 = N64 RDP SNES Brightness Level RGBA Color Addre
 sw t0,0(a0)   // Store N64 PPU RDP SNES BRIGHTNESS RGBA Word To RDP List
 
 
-WaitScanline($1D8) // Wait For Scanline To Reach Vertical Blank
+WaitScanline($1D0) // Wait For Scanline To Reach Vertical Blank
 
 // Run RDP Palette & Screen Setup
-DPC(RDPPALBuffer, RDPPALBufferEnd) // Run DPC Command Buffer: Start Address, End Address
+DPC(RDPINITBuffer, RDPINITBufferEnd) // Run DPC Command Buffer: Start Address, End Address
 
 
 // Detect Mode
@@ -442,6 +452,9 @@ PPUMODE0: // BGMODE: Mode 0
 PPUBGMAPBASE(BG1) // A0 = SNES BG1 Tile Map Base Address
 PPUBG1TILEBASE(N64TILE2BPP) // A1 = SNES BG1 Tile Data Base Address
 PPU8x8BGMAP2BPP(BG1) // Convert SNES 2BPP 8x8 BG Tile Map To RDP List
+la a0,RDPBG2BPPBuffer // A0 = RDPBG2BPPBuffer Address
+li t0,N64TLUT2BPP // T0 = TLUT Offset
+sw t0,4(a0) // Store TLUT Offset To RDP List
 DPC(RDPBG2BPPBuffer, RDPBG2BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
 
 PPUMODE0BG2:
@@ -453,6 +466,9 @@ PPUMODE0BG2:
 PPUBGMAPBASE(BG2) // A0 = SNES BG2 Tile Map Base Address
 PPUBG2TILEBASE(N64TILE2BPP) // A1 = SNES BG2 Tile Data Base Address
 PPU8x8BGMAP2BPP(BG2) // Convert SNES 2BPP 8x8 BG Tile Map To RDP List
+la a0,RDPBG2BPPBuffer // A0 = RDPBG2BPPBuffer Address
+li t0,N64TLUT2BPP+256 // T0 = TLUT Offset
+sw t0,4(a0) // Store TLUT Offset To RDP List
 DPC(RDPBG2BPPBuffer, RDPBG2BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
 
 PPUMODE0BG3:
@@ -464,6 +480,9 @@ PPUMODE0BG3:
 PPUBGMAPBASE(BG3) // A0 = SNES BG3 Tile Map Base Address
 PPUBG3TILEBASE(N64TILE2BPP) // A1 = SNES BG3 Tile Data Base Address
 PPU8x8BGMAP2BPP(BG3) // Convert SNES 2BPP 8x8 BG Tile Map To RDP List
+la a0,RDPBG2BPPBuffer // A0 = RDPBG2BPPBuffer Address
+li t0,N64TLUT2BPP+512 // T0 = TLUT Offset
+sw t0,4(a0) // Store TLUT Offset To RDP List
 DPC(RDPBG2BPPBuffer, RDPBG2BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
 
 PPUMODE0BG4:
@@ -475,6 +494,9 @@ PPUMODE0BG4:
 PPUBGMAPBASE(BG4) // A0 = SNES BG4 Tile Map Base Address
 PPUBG4TILEBASE(N64TILE2BPP) // A1 = SNES BG4 Tile Data Base Address
 PPU8x8BGMAP2BPP(BG4) // Convert SNES 2BPP 8x8 BG Tile Map To RDP List
+la a0,RDPBG2BPPBuffer // A0 = RDPBG2BPPBuffer Address
+li t0,N64TLUT2BPP+768 // T0 = TLUT Offset
+sw t0,4(a0) // Store TLUT Offset To RDP List
 DPC(RDPBG2BPPBuffer, RDPBG2BPPBufferEnd) // Run DPC Command Buffer: Start Address, End Address
 
 b PPUEND

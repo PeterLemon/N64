@@ -1,6 +1,10 @@
 align(8) // Align 64-Bit
-N64TLUT:
+N64TLUT8BPP: // N64 TLUT 8BPP (Alpha = 0 On 1st Color Of 256 Color Pallete)
   fill 512 // Generates 512 Bytes Containing $00
+N64TLUT4BPP: // N64 TLUT 4BPP (Alpha = 0 On 1st Color Of 16 Color Palette)
+  fill 512 // Generates 512 Bytes Containing $00
+N64TLUT2BPP: // N64 TLUT 2BPP (Alpha = 0 On 1st Color Of 4 Color Palette, Padded for use with TLUT)
+  fill 1024 // Generates 1024 Bytes Containing $00
 
 align(8) // Align 64-Bit
 N64TILE2BPP: // SNES 2BPP Tiles -> N64 4BPP Linear Texture
@@ -51,6 +55,14 @@ ANDNibbleByte:
   // $03E0 (AND Green 5 Bits) (e13)
   // $7C00 (AND Blue  5 Bits) (e14)
 
+AlphaAND2BPP: // 8BPP TLUT -> 2BPP TLUT
+  dh $FFFE, $FFFF, $FFFF, $FFFF, $FFFE, $FFFF, $FFFF, $FFFF
+  // 1 * $FFFE, 3 * $FFFF, 1 * $FFFE, 3 * $FFFF (AND Alpha 1 Bit)
+
+AlphaAND4BPP: // 8BPP TLUT -> 4BPP TLUT
+  dh $FFFE, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF, $FFFF
+  // 1 * $FFFE, 7 * $FFFF (AND Alpha 1 Bit)
+
 // Uses Whole Vector For 1st 8 Colors To Preserve SNES Palette Color 0 Alpha
 // Uses Element 9 To OR Vector By Scalar $0001 For Other Colors
 AlphaOR:
@@ -77,38 +89,40 @@ RSPTILEXBPPStart:
   mtc0 a1,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
   mtc0 t0,c2 // Store DMA Length To SP Read Length Register ($A4040008)
 
-  SHIFTDMAREAD2BPPBusy:
+  SHIFTDMAREADBusy:
     mfc0 t0,c4 // T0 = RSP Status Register ($A4040010)
     andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,SHIFTDMAREAD2BPPBusy // IF TRUE DMA Is Busy
+    bnez t0,SHIFTDMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
   lqv v0[e0],ShiftLeftRightA(r0) // V0 = Left Shift Using Multiply: << 0..7,  Right Shift Using Multiply: >> 16..9 (128-Bit Quad)
   lqv v1[e0],ShiftLeftRightB(r0) // V1 = Left Shift Using Multiply: << 8..15, Right Shift Using Multiply: >> 8..1  (128-Bit Quad)
   lqv v2[e0],ANDNibbleByte(r0)   // V2 = $000F, $0F00 (AND Lo/Hi Nibble), $00FF, $FF00 (AND Lo/Hi Byte), $001F, $03E0, $7C00 (AND R/G/B 5 Bits) (128-Bit Quad)
+  lqv v29[e0],AlphaAND2BPP(r0)   // V29 = 1 * $FFFE, 3 * $FFFF, 1 * $FFFE, 3 * $FFFF (AND Alpha 1 Bit) (128-Bit Quad)
+  lqv v30[e0],AlphaAND4BPP(r0)   // V30 = 1 * $FFFE, 7 * $FFFF (AND Alpha 1 Bit) (128-Bit Quad)
   lqv v31[e0],AlphaOR(r0)        // V31 = 1 * $0000, 7 * $0001 (OR Alpha 1 Bit) (128-Bit Quad)
 
-//---------------
-// Decode Colors
-//---------------
-  ori a0,r0,0 // A0 = Palette Start Offset
-  la a1,N64TLUT // A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
-  la a2,CGRAM // A2 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
 
+//--------------------
+// Decode 8BPP Colors
+//--------------------
+  ori a0,r0,0 // A0 = 8BPP Palette Start Offset
+  la a1,CGRAM // A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
   ori t0,r0,511 // T0 = Length Of DMA Transfer In Bytes - 1
-  ori t1,r0,30 // T1 = Color Counter
 
   mtc0 a0,c0 // Store Memory Offset To SP Memory Address Register ($A4040000)
-  mtc0 a2,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
+  mtc0 a1,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
   mtc0 t0,c2 // Store DMA Length To SP Read Length Register ($A4040008)
 
-  PALDMAREADBusy:
+  PAL8BPPDMAREADBusy:
     mfc0 t0,c4 // T0 = RSP Status Register ($A4040010)
     andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,PALDMAREADBusy // IF TRUE DMA Is Busy
+    bnez t0,PAL8BPPDMAREADBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
-// Vector Grab 1st 8 Colors:
+  ori t0,r0,30 // T0 = Color Counter
+
+  // Vector Grab 1st 8 Colors:
   lqv v3[e0],0(a0) // V3 = Palette Colors 0..7
 
   vand v4,v3,v2[e10] // V4 = Lo Byte Color 0..7 (& $00FF)
@@ -129,12 +143,11 @@ RSPTILEXBPPStart:
   vor v5,v6[e0]      // V5 = RED,GREEN,BLUE 15 Bits, Color 0..7
   vor v5,v31[e0]     // V5 = RED,GREEN,BLUE,ALPHA 16 Bits, Color 0..7
 
-// Store Colors 0..7:
-  sqv v5[e0],0(a0) // Palette Colors 0..8 = V5 Quad
+  // Store Colors 0..7:
+  sqv v5[e0],0(a0) // Palette Colors 0..7 = V5 Quad
 
-
-LoopColors:
-// Vector Grab Next 8 Colors:
+Loop8BPPColors:
+  // Vector Grab Next 8 Colors:
   addiu a0,16
   lqv v3[e0],0(a0) // V3 = Palette Colors 0..7
 
@@ -156,15 +169,61 @@ LoopColors:
   vor v5,v6[e0]      // V5 = RED,GREEN,BLUE 15 Bits, Color 0..7
   vor v5,v31[e9]     // V5 = RED,GREEN,BLUE,ALPHA 16 Bits, Color 0..7
 
-// Store Colors 0..7:
-  sqv v5[e0],0(a0) // Palette Colors 0..8 = V5 Quad
+  // Store Colors 0..7:
+  sqv v5[e0],0(a0) // Palette Colors 0..7 = V5 Quad
 
-  bnez t1,LoopColors // IF (Tile Counter != 0) Loop Colors
-  subiu t1,1 // Decrement Color Counter (Delay Slot)
+  bnez t0,Loop8BPPColors // IF (Tile Counter != 0) Loop Colors
+  subiu t0,1 // Decrement Color Counter (Delay Slot)
 
 
+//--------------------
+// Decode 4BPP Colors
+//--------------------
+  ori a0,r0,0 // A0 = 8BPP Palette Start Offset
+  ori t0,r0,15 // T0 = Color Counter
+
+Loop4BPPColors:
+  // Vector Grab 1st 8 Colors:
+  lqv v3[e0],0(a0) // V3 = Palette Colors 0..7
+  vand v3,v30[e0]  // V3 = RED,GREEN,BLUE,ALPHA 16 Bits, Color 0..7
+
+  // Store Colors 0..7:
+  sqv v3[e0],512(a0) // Palette Colors 0..7 = V3 Quad
+
+  // Vector Grab Next 8 Colors:
+  lqv v3[e0],16(a0) // V3 = Palette Colors 0..7
+
+  // Store Colors 0..7:
+  sqv v3[e0],528(a0) // Palette Colors 0..7 = V3 Quad
+
+  addiu a0,32
+  bnez t0,Loop4BPPColors // IF (Tile Counter != 0) Loop Colors
+  subiu t0,1 // Decrement Color Counter (Delay Slot)
+
+
+//--------------------
+// Decode 2BPP Colors
+//--------------------
+  ori a0,r0,512 // A0 = 4BPP Palette Start Offset
+  ori t0,r0,15 // T0 = Color Counter
+
+Loop2BPPColors:
+  // Vector Grab 8 Colors:
+  lqv v3[e0],0(a0) // V3 = Palette Colors 0..7
+  vand v3,v29[e0]  // V3 = RED,GREEN,BLUE,ALPHA 16 Bits, Color 0..7
+
+  // Store Colors 0..7:
+  sqv v3[e0],512(a0) // Palette Colors 0..7 = V3 Quad
+
+  addiu a0,16
+  bnez t0,Loop2BPPColors // IF (Tile Counter != 0) Loop Colors
+  subiu t0,1 // Decrement Color Counter (Delay Slot)
+
+
+  // DMA 8BPP & 4BPP TLUT
   ori a0,r0,0 // A0 = SP Memory Address Offset DMEM ($A4000000..$A4001FFF 8KB)
-  ori t0,r0,511 // T0 = Length Of DMA Transfer In Bytes - 1
+  la a1,N64TLUT8BPP // A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
+  ori t0,r0,1023 // T0 = Length Of DMA Transfer In Bytes - 1
 
   mtc0 a0,c0 // Store Memory Offset To SP Memory Address Register ($A4040000)
   mtc0 a1,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
@@ -174,6 +233,21 @@ LoopColors:
     mfc0 t0,c4 // T0 = RSP Status Register ($A4040010)
     andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
     bnez t0,PALDMAWRITEBusy // IF TRUE DMA Is Busy
+    nop // Delay Slot
+
+  // DMA With Stride 2BPP TLUT
+  ori a0,r0,1024 // A0 = SP Memory Address Offset DMEM ($A4000000..$A4001FFF 8KB)
+  la a1,N64TLUT2BPP // A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
+  li t0,(7 | (31<<12) | (24<<20)) // T0 = Length Of DMA Transfer In Bytes - 1, DMA Line Count - 1, Line Skip/Stride
+
+  mtc0 a0,c0 // Store Memory Offset To SP Memory Address Register ($A4040000)
+  mtc0 a1,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
+  mtc0 t0,c3 // Store DMA Length To SP Write Length Register ($A404000C)
+
+  PAL2BPPDMAWRITEBusy:
+    mfc0 t0,c4 // T0 = RSP Status Register ($A4040010)
+    andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
+    bnez t0,PAL2BPPDMAWRITEBusy // IF TRUE DMA Is Busy
     nop // Delay Slot
 
 
