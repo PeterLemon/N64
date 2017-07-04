@@ -20,8 +20,9 @@ constant Z_FLAG($80) // F Register Bit 7 Zero Flag (0=Nonzero, 1=Zero)
 
 Start:
   include "LIB/N64_GFX.INC" // Include Graphics Macros
+  include "LIB/N64_RSP.INC" // Include RSP Macros
   N64_INIT() // Run N64 Initialisation Routine
-  ScreenNTSC(320, 240, BPP32, $A0100000) // Screen NTSC: 320x240, 32BPP, DRAM Origin $A0100000
+  ScreenNTSC(320, 240, BPP16|AA_MODE_2, $A0100000) // Screen NTSC: 320x240, 16BPP, Resample Only, DRAM Origin $A0100000
 
   // Setup CPU Registers
   and s0,r0 // S0 = 16-Bit Register AF (Bits 0..7 = F, Bits 8..15 = A)
@@ -69,37 +70,39 @@ Start:
 
   la a0,MEM_MAP // A0 = MEM_MAP
   la a1,CPU_INST // A1 = CPU Instruction Table
-  lli v1,$4444 // V1 = Refresh Cycles 4MHz (4194304 Hz / 60 Hz = 69905 CPU Cycles / 4 = 17476 Quad Cycles)
+  ori v1,r0,$4444 // V1 = Refresh Cycles 4MHz (4194304 Hz / 60 Hz = 69905 CPU Cycles / 4 = 17476 Quad Cycles)
 
 Refresh: // Refresh At 60 Hz
   and v0,r0 // V0 = Quad Cycles Counter (Reset To Zero)
   and k0,r0 // K0 = Old Quad Cycles Counter (Reset To Zero)
   CPU_EMU:
     addu a2,a0,s4 // A2 = MEM_MAP + PC
-    lbu gp,0(a2) // GP = CPU Instruction
-    sll t0,gp,8 // T0 = CPU Instruction * 256
-    addu t0,a1 // T0 = CPU Instruction Table Opcode Offset
-    jalr t0    // Run CPU Instruction
-    addiu s4,1 // PC_REG++ (Delay Slot)
+    lbu t0,0(a2)  // T0 = CPU Instruction
+    sll t0,2      // T0 = CPU Instruction * 4
+    addu t0,a1    // T0 = CPU Instruction Indirect Table Opcode Offset
+    lw t0,0(t0)   // T0 = CPU Instruction Table Opcode Offset
+    jalr t0       // Run CPU Instruction
+    addiu s4,1    // PC_REG++ (Delay Slot)
 
     include "IOPORT.asm" // Run IO Port
 
     blt v0,v1,CPU_EMU // Compare Quad Cycles Counter To Refresh Cycles
     nop // Delay Slot
 
-  lui a2,VI_BASE // A2 = VI Base Register ($A4400000)
-  lli t0,$1E0 // T0 = Scan Line
-  WaitScanline:
-    lw t1,VI_V_CURRENT_LINE(a2) // T1 = Current Scan Line
-    bne t1,t0,WaitScanline // IF (Current Scan Line != Scan Line) Wait
-    nop // ELSE Continue (Delay Slot)
+  include "PPU/PPU.asm" // Run PPU
 
-  j Refresh
+  la a0,MEM_MAP  // A0 = MEM_MAP
+  la a1,CPU_INST // A1 = CPU Instruction Table
+
+  b Refresh
   nop // Delay Slot
 
-align(256)
-CPU_INST:
-  include "CPU.asm" // GameBoy CPU Instruction Table
+include "CPU.asm" // GameBoy CPU Instruction Table
+
+// PPU Data
+include "PPU/PPUINITRDP.asm" // PPU Init RDP Data
+include "PPU/PPU2BPPRDP.asm" // PPU 2BPP RDP Data
+include "PPU/PPUXBPPRSP.asm" // PPU XBPP RSP Data
 
 // Memory
 MEM_MAP: // SPC-700 Memory Map = $10000 Bytes
@@ -107,15 +110,16 @@ MEM_MAP: // SPC-700 Memory Map = $10000 Bytes
 
 insert GB_BIOS, "DMG_ROM.bin" // Include Game Boy DMG BIOS ROM (256 Bytes)
 
-insert GB_CART, "ROMS/01-special.gb" // PASSED
-//insert GB_CART, "ROMS/02-interrupts.gb" // PASSED
-//insert GB_CART, "ROMS/03-op sp,hl.gb" // PASSED
-//insert GB_CART, "ROMS/04-op r,imm.gb" // PASSED
-//insert GB_CART, "ROMS/05-op rp.gb" // PASSED
-//insert GB_CART, "ROMS/06-ld r,r.gb" // PASSED
-//insert GB_CART, "ROMS/07-jr,jp,call,ret,rst.gb" // PASSED
-//insert GB_CART, "ROMS/08-misc instrs.gb" // PASSED
-//insert GB_CART, "ROMS/09-op r,r.gb" // PASSED
-//insert GB_CART, "ROMS/10-bit ops.gb" // PASSED
-//insert GB_CART, "ROMS/11-op a,(hl).gb" // PASSED
-//insert GB_CART, "ROMS/instr_timing.gb" // FAILED #255
+insert GB_CART, "ROMS/PPU/HelloWorld.gb" // ** PASS **
+//insert GB_CART, "ROMS/CPU/01-special.gb"
+//insert GB_CART, "ROMS/CPU/02-interrupts.gb"
+//insert GB_CART, "ROMS/CPU/03-op sp,hl.gb"
+//insert GB_CART, "ROMS/CPU/04-op r,imm.gb"
+//insert GB_CART, "ROMS/CPU/05-op rp.gb"
+//insert GB_CART, "ROMS/CPU/06-ld r,r.gb"
+//insert GB_CART, "ROMS/CPU/07-jr,jp,call,ret,rst.gb"
+//insert GB_CART, "ROMS/CPU/08-misc instrs.gb"
+//insert GB_CART, "ROMS/CPU/09-op r,r.gb"
+//insert GB_CART, "ROMS/CPU/10-bit ops.gb"
+//insert GB_CART, "ROMS/CPU/11-op a,(hl).gb"
+//insert GB_CART, "ROMS/CPU/instr_timing.gb"
