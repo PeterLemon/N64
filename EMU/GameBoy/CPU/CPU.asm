@@ -247,8 +247,8 @@ HEX0F:
 
 HEX10:
   // $10 STOP                   Halt CPU & LCD Display Until Button Press
-  lli t9,1                      // IME_FLAG = 1
-  lli t0,$10                    // IF_REG = $10 (Set Joypad Interrupt On)
+  ori t9,r0,1                   // IME_FLAG = 1
+  ori t0,r0,$10                 // IF_REG = $10 (Set Joypad Interrupt On)
   addiu a2,a0,IF_REG            // A2 = MEM_MAP + IF_REG
   sb t0,0(a2)
   jr ra
@@ -557,14 +557,14 @@ HEX27:
   bnez t1,DAA_H_FLAG            //   IF (H_FLAG || (A & $F) > $9) A += $6
   addiu t0,6                    //   A += $6 (Delay Slot)
   andi t1,t0,$F
-  lli t2,9
+  ori t2,r0,9
   bgt t1,t2,DAA_H_FLAG
   addiu t0,6                    //   A += $6 (Delay Slot)
 DAA_H_FLAG:
   andi t1,s0,C_FLAG
   bnez t1,DAA_END               //   IF (C_FLAG || A > $9F) A += $60 }
   addiu t0,$60                  //   A += $60 (Delay Slot)
-  lli t1,$9F
+  ori t1,r0,$9F
   bgt t0,t1,DAA_END
   addiu t0,$60                  //   A += $60 (Delay Slot)
   b DAA_END
@@ -899,7 +899,7 @@ HEX3E:
 
 HEX3F:
   // $3F CCF                    Complement Carry Flag (Flip Carry Bit)
-  xor s0,C_FLAG                 // F_REG ^= $10
+  xori s0,C_FLAG                // F_REG ^= $10
   andi s0,~(H_FLAG+N_FLAG)      // F_REG: H Flag Reset, N Flag Reset
   jr ra
   addiu v0,1                    // QCycles++ (Delay Slot)
@@ -1083,6 +1083,7 @@ HEX55:
   // $55 LD    D, L             Load Value L To D
   andi t0,s3,$FF                // D_REG = L_REG
   andi s2,$FF
+  sll t0,8
   or s2,t0
   jr ra
   addiu v0,1                    // QCycles++ (Delay Slot)
@@ -1352,8 +1353,8 @@ HEX75:
 
 HEX76:
   // $76 HALT                   Power Down CPU Until An Interrupt Occurs
-  lli t9,1                      // IME_FLAG = 1
-  lli t0,$1F                    // IF_REG = $1F (Set All Interrupts On)
+  ori t9,r0,1                   // IME_FLAG = 1
+  ori t0,r0,$1F                 // IF_REG = $1F (Set All Interrupts On)
   addiu a2,a0,IF_REG            // A2 = MEM_MAP + IF_REG
   sb t0,0(a2)
   jr ra
@@ -2381,8 +2382,8 @@ HEX9F:
   // $9F SBC   A, A             Subtract A + Carry Flag From A
   andi t0,s0,C_FLAG             // A_REG = -C_FLAG
   beqz t0,SBCAA
-  lli t0,0
-  lli t0,$FF
+  ori t0,r0,0
+  ori t0,r0,$FF
   SBCAA:
   andi s0,$FF
   sll t0,8
@@ -3019,7 +3020,7 @@ HEXC7:
   sb s4,0(a2)                   // STACK = PC_REG
   srl t0,s4,8
   sb t0,1(a2)
-  lli s4,$0000                  // PC_REG = $0000
+  ori s4,r0,$0000               // PC_REG = $0000
   jr ra
   addiu v0,4                    // QCycles += 4 (Delay Slot)
 
@@ -3150,7 +3151,7 @@ HEXCF:
   sb s4,0(a2)                   // STACK = PC_REG
   srl t0,s4,8
   sb t0,1(a2)
-  lli s4,$0008                  // PC_REG = $0008
+  ori s4,r0,$0008               // PC_REG = $0008
   jr ra
   addiu v0,4                    // QCycles += 4 (Delay Slot)
 
@@ -3266,7 +3267,7 @@ HEXD7:
   sb s4,0(a2)                   // STACK = PC_REG
   srl t0,s4,8
   sb t0,1(a2)
-  lli s4,$0010                  // PC_REG = $0010
+  ori s4,r0,$0010               // PC_REG = $0010
   jr ra
   addiu v0,4                    // QCycles += 4 (Delay Slot)
 
@@ -3294,7 +3295,7 @@ HEXD9:
   sll t0,8
   or s4,t0
   addiu sp,2                    // SP_REG += 2
-  lli t9,1                      // IME_FLAG = 1
+  ori t9,r0,1                   // IME_FLAG = 1
   jr ra
   addiu v0,4                    // QCycles += 4 (Delay Slot)
 
@@ -3382,7 +3383,7 @@ HEXDF:
   sb s4,0(a2)                   // STACK = PC_REG
   srl t0,s4,8
   sb t0,1(a2)
-  lli s4,$0018                  // PC_REG = $0018
+  ori s4,r0,$0018               // PC_REG = $0018
   jr ra
   addiu v0,4                    // QCycles += 4 (Delay Slot)
 
@@ -3462,7 +3463,7 @@ HEXE7:
   sb s4,0(a2)                   // STACK = PC_REG
   srl t0,s4,8
   sb t0,1(a2)
-  lli s4,$0020                  // PC_REG = $0020
+  ori s4,r0,$0020               // PC_REG = $0020
   jr ra
   addiu v0,4                    // QCycles += 4 (Delay Slot)
 
@@ -3491,7 +3492,7 @@ HEXE8:
 
 HEXE9:
   // $E9 JP    (HL)             Jump To 16-Bit Immediate Address Contained In HL
-  addu s4,r0,s3                 // PC_REG = HL_REG
+  or s4,r0,s3                   // PC_REG = HL_REG
   jr ra
   addiu v0,1                    // QCycles++ (Delay Slot)
 
@@ -3545,7 +3546,7 @@ HEXEF:
   sb s4,0(a2)                   // STACK = PC_REG
   srl t0,s4,8
   sb t0,1(a2)
-  lli s4,$0028                  // PC_REG = $0028
+  ori s4,r0,$0028               // PC_REG = $0028
   jr ra
   addiu v0,4                    // QCycles += 4 (Delay Slot)
 
@@ -3588,7 +3589,7 @@ HEXF2:
 
 HEXF3:
   // $F3 DI                     Disable Interrupts 2 Instructions After DI Is Executed
-  lli t9,0                      // IME_FLAG = 0
+  ori t9,r0,0                   // IME_FLAG = 0
   jr ra
   addiu v0,1                    // QCycles++ (Delay Slot)
 
@@ -3629,7 +3630,7 @@ HEXF7:
   sb s4,0(a2)                   // STACK = PC_REG
   srl t0,s4,8
   sb t0,1(a2)
-  lli s4,$0030                  // PC_REG = $0030
+  ori s4,r0,$0030               // PC_REG = $0030
   jr ra
   addiu v0,4                    // QCycles += 4 (Delay Slot)
 
@@ -3680,7 +3681,7 @@ HEXFA:
 
 HEXFB:
   // $FB EI                     Enable Interrupts 2 Instructions After EI Is Executed
-  lli t9,1                      // IME_FLAG = 1
+  ori t9,r0,1                   // IME_FLAG = 1
   jr ra
   addiu v0,1                    // QCycles++ (Delay Slot)
 
@@ -3725,7 +3726,7 @@ HEXFF:
   sb s4,0(a2)                   // STACK = PC_REG
   srl t0,s4,8
   sb t0,1(a2)
-  lli s4,$0038                  // PC_REG = $0038
+  ori s4,r0,$0038               // PC_REG = $0038
   jr ra
   addiu v0,4                    // QCycles += 4 (Delay Slot)
 

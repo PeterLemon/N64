@@ -106,7 +106,7 @@ ori t1,1      // Add Alpha Bit
 sh t1,4(a0)   // Store Color 2
 
 andi t1,t0,192 // BGP Color 3 ((PAL&192)>>6))
-xor t1,192     // Invert Bits
+xori t1,192    // Invert Bits
 sll t1,3       // Shift Color To Green
 ori t1,1       // Add Alpha Bit
 sh t1,6(a0)    // Store Color 3
