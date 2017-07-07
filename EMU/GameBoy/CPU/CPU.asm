@@ -237,10 +237,13 @@ HEX0F:
   andi s0,~C_FLAG               // F_REG: C Flag Reset (Old Bit 0)
   RRCC:
   srl t1,s0,9                   // A_REG = (A_REG >> 1) | (A_REG << 7)
+  beqz t0,RRCA
+  nop                           // Delay Slot
+  ori t1,$80
+  RRCA:
   sll t1,8
-  or t0,t1
   andi s0,$FF
-  or s0,t0
+  or s0,t1
   andi s0,~(H_FLAG+N_FLAG+Z_FLAG) // F_REG: H Flag Reset, N Flag Reset, Z Flag Reset
   jr ra
   addiu v0,1                    // QCycles++ (Delay Slot)
@@ -556,17 +559,21 @@ HEX27:
   andi t1,s0,H_FLAG
   bnez t1,DAA_H_FLAG            //   IF (H_FLAG || (A & $F) > $9) A += $6
   addiu t0,6                    //   A += $6 (Delay Slot)
+  subiu t0,6                    //   A -= $6
   andi t1,t0,$F
   ori t2,r0,9
   bgt t1,t2,DAA_H_FLAG
   addiu t0,6                    //   A += $6 (Delay Slot)
+  subiu t0,6                    //   A -= $6
 DAA_H_FLAG:
   andi t1,s0,C_FLAG
   bnez t1,DAA_END               //   IF (C_FLAG || A > $9F) A += $60 }
   addiu t0,$60                  //   A += $60 (Delay Slot)
+  subiu t0,$60                  //   A -= $60
   ori t1,r0,$9F
   bgt t0,t1,DAA_END
   addiu t0,$60                  //   A += $60 (Delay Slot)
+  subiu t0,$60                  //   A -= $60
   b DAA_END
   nop                           //   Delay Slot
 DAA_N_FLAG:                     // ELSE {
@@ -575,14 +582,18 @@ DAA_N_FLAG:                     // ELSE {
   nop                           //   Delay Slot
   subiu t0,6                    //     A -= $6
   andi t1,s0,C_FLAG
-  beqz t1,DAA_C_FLAG            //     IF (! C_FLAG) A &= $FF }
+  bnez t1,DAA_C_FLAG            //     IF (! C_FLAG) A &= $FF }
+  nop                           //   Delay Slot
   andi t0,$FF                   //     A &= $FF (Delay Slot)
 DAA_C_FLAG:
+  andi t1,s0,C_FLAG
   bnez t1,DAA_END               //   IF (C_FLAG) A -= $60 }
   subiu t0,$60                  //   A -= $60 (Delay Slot)
+  addiu t0,$60                  //   A += $60
 DAA_END:
   andi t1,t0,$100               // IF (A & $100) C Flag Set (Carry From Bit 7)
-  bnez t1,DAAC
+  beqz t1,DAAC
+  nop                           //   Delay Slot
   ori s0,C_FLAG                 // F_REG: C Flag Set (Carry From Bit 7) (Delay Slot)
   DAAC:
   andi s0,~H_FLAG               // F_REG: H Flag Reset
@@ -1655,7 +1666,7 @@ HEX87:
   andi t1,t0,$F
   sll t1,1
   andi t1,$10
-  bnez t2,ADDAAH
+  bnez t1,ADDAAH
   ori s0,H_FLAG                 // F_REG: H Flag Set (Carry From Bit 3) (Delay Slot)
   andi s0,~H_FLAG               // F_REG: H Flag Reset (No Carry From Bit 3)
   ADDAAH:
@@ -1920,7 +1931,7 @@ HEX8F:
   // $8F ADC   A, A             Add A + Carry Flag To A
   srl t0,s0,8                   // IF (((A_REG & $F) << 1) + C_FLAG & $10) H Flag Set (Carry From Bit 3)
   andi t1,t0,$F
-  srl t1,t1,1
+  sll t1,t1,1
   andi t2,s0,C_FLAG
   srl t2,4
   addu t1,t2
@@ -2161,7 +2172,7 @@ HEX98:
   andi t3,t1,$F
   sub t2,t3
   andi t3,s0,C_FLAG
-  sll t3,4
+  srl t3,4
   sub t2,t3
   bltz t2,SUBCABH
   ori s0,H_FLAG                 // F_REG: H Flag Set (No Borrow From Bit 4) (Delay Slot)
@@ -2193,7 +2204,7 @@ HEX99:
   andi t3,t1,$F
   sub t2,t3
   andi t3,s0,C_FLAG
-  sll t3,4
+  srl t3,4
   sub t2,t3
   bltz t2,SUBCACH
   ori s0,H_FLAG                 // F_REG: H Flag Set (No Borrow From Bit 4) (Delay Slot)
@@ -2225,7 +2236,7 @@ HEX9A:
   andi t3,t1,$F
   sub t2,t3
   andi t3,s0,C_FLAG
-  sll t3,4
+  srl t3,4
   sub t2,t3
   bltz t2,SUBCADH
   ori s0,H_FLAG                 // F_REG: H Flag Set (No Borrow From Bit 4) (Delay Slot)
@@ -2257,7 +2268,7 @@ HEX9B:
   andi t3,t1,$F
   sub t2,t3
   andi t3,s0,C_FLAG
-  sll t3,4
+  srl t3,4
   sub t2,t3
   bltz t2,SUBCAEH
   ori s0,H_FLAG                 // F_REG: H Flag Set (No Borrow From Bit 4) (Delay Slot)
@@ -2289,7 +2300,7 @@ HEX9C:
   andi t3,t1,$F
   sub t2,t3
   andi t3,s0,C_FLAG
-  sll t3,4
+  srl t3,4
   sub t2,t3
   bltz t2,SUBCAHH
   ori s0,H_FLAG                 // F_REG: H Flag Set (No Borrow From Bit 4) (Delay Slot)
@@ -2321,7 +2332,7 @@ HEX9D:
   andi t3,t1,$F
   sub t2,t3
   andi t3,s0,C_FLAG
-  sll t3,4
+  srl t3,4
   sub t2,t3
   bltz t2,SUBCALH
   ori s0,H_FLAG                 // F_REG: H Flag Set (No Borrow From Bit 4) (Delay Slot)
@@ -2354,7 +2365,7 @@ HEX9E:
   andi t3,t1,$F
   sub t2,t3
   andi t3,s0,C_FLAG
-  sll t3,4
+  srl t3,4
   sub t2,t3
   bltz t2,SUBCAHLH
   ori s0,H_FLAG                 // F_REG: H Flag Set (No Borrow From Bit 4) (Delay Slot)
@@ -2382,13 +2393,13 @@ HEX9F:
   // $9F SBC   A, A             Subtract A + Carry Flag From A
   andi t0,s0,C_FLAG             // A_REG = -C_FLAG
   beqz t0,SBCAA
-  ori t0,r0,0
+  ori t0,r0,$00
   ori t0,r0,$FF
   SBCAA:
   andi s0,$FF
   sll t0,8
   or s0,t0
-  bltz t0,SUBCAAH               // IF (-C_FLAG > $F) H Flag Set (No Borrow From Bit 4)
+  bnez t0,SUBCAAH               // IF (-C_FLAG > $F) H Flag Set (No Borrow From Bit 4)
   ori s0,H_FLAG                 // F_REG: H Flag Set (No Borrow From Bit 4)
   andi s0,~H_FLAG               // F_REG: H Flag Reset (Borrow From Bit 4)
   SUBCAAH:
@@ -3351,7 +3362,7 @@ HEXDE:
   andi t3,t1,$F
   sub t2,t3
   andi t3,s0,C_FLAG
-  sll t3,4
+  srl t3,4
   sub t2,t3
   bltz t2,SUBCAIH
   ori s0,H_FLAG                 // F_REG: H Flag Set (No Borrow From Bit 4) (Delay Slot)
@@ -3473,7 +3484,8 @@ HEXE8:
   lbu t1,1(a2)
   andi t2,t1,$F
   addu t0,t2
-  bnez t2,ADDSPH
+  andi t0,$10
+  bnez t0,ADDSPH
   ori s0,H_FLAG                 // F_REG: H Flag Set (Carry From Bit 3) (Delay Slot)
   andi s0,~H_FLAG               // F_REG: H Flag Reset (No Carry From Bit 3)
   ADDSPH:
@@ -3651,7 +3663,7 @@ HEXF8:
   andi t0,s3,$FF
   blt t0,t1,LDHLSPC             // IF ((HL_REG & $FF) < Imm8Bit) C Flag Set (Carry From Bit 7)
   ori s0,C_FLAG                 // F_REG: C Flag Set (Carry From Bit 7) (Delay Slot)
-  andi s0,C_FLAG                // F_REG: C Flag Reset (No Carry From Bit 7)
+  andi s0,~C_FLAG               // F_REG: C Flag Reset (No Carry From Bit 7)
   LDHLSPC:
   andi s0,~(N_FLAG+Z_FLAG)      // F_REG: N Flag Reset, Z Flag Reset
   addiu s4,1                    // PC_REG++
@@ -3738,8 +3750,8 @@ HEXCB00:
   srl t1,s1,15
   or t0,t1
   andi s1,$FF
-  sll t0,8
-  or s1,t0
+  sll t1,t0,8
+  or s1,t1
   beqz t0,RLCBZ                 // IF (! B_REG) Z Flag Set (Result Is Zero)
   ori s0,Z_FLAG                 // F_REG: Z Flag Set (Result Is Zero) (Delay Slot)
   andi s0,~Z_FLAG               // F_REG: Z Flag Reset (Result Is Not Zero)
@@ -3781,8 +3793,8 @@ HEXCB02:
   srl t1,s2,15
   or t0,t1
   andi s2,$FF
-  sll t0,8
-  or s2,t0
+  sll t1,t0,8
+  or s2,t1
   beqz t0,RLCDZ                 // IF (! D_REG) Z Flag Set (Result Is Zero)
   ori s0,Z_FLAG                 // F_REG: Z Flag Set (Result Is Zero) (Delay Slot)
   andi s0,~Z_FLAG               // F_REG: Z Flag Reset (Result Is Not Zero)
@@ -3824,8 +3836,8 @@ HEXCB04:
   srl t1,s3,15
   or t0,t1
   andi s3,$FF
-  sll t0,8
-  or s3,t0
+  sll t1,t0,8
+  or s3,t1
   beqz t0,RLCHZ                 // IF (! H_REG) Z Flag Set (Result Is Zero)
   ori s0,Z_FLAG                 // F_REG: Z Flag Set (Result Is Zero) (Delay Slot)
   andi s0,~Z_FLAG               // F_REG: Z Flag Reset (Result Is Not Zero)
@@ -3871,7 +3883,7 @@ HEXCB06:
   ori s0,C_FLAG                 // F_REG: C Flag Set (Old Bit 7)
   ori t0,1
   RLCHLC:
-  sb t1,0(a2)
+  sb t0,0(a2)
   andi t0,$FF
   beqz t0,RLCHLZ                // IF (! MEM_MAP[HL_REG]) Z Flag Set (Result Is Zero)
   ori s0,Z_FLAG                 // F_REG: Z Flag Set (Result Is Zero) (Delay Slot)
@@ -3888,8 +3900,8 @@ HEXCB07:
   srl t1,s0,15
   or t0,t1
   andi s0,$FF
-  sll t0,8
-  or s0,t0
+  sll t1,t0,8
+  or s0,t1
   beqz t0,RLCAZ                 // IF (! A_REG) Z Flag Set (Result Is Zero)
   ori s0,Z_FLAG                 // F_REG: Z Flag Set (Result Is Zero) (Delay Slot)
   andi s0,~Z_FLAG               // F_REG: Z Flag Reset (Result Is Not Zero)
@@ -4027,7 +4039,7 @@ HEXCB0E:
   // $0E RRC   (HL)             Rotate 8-Bit Value From Address In HL Right, Old Bit 0 To Carry Flag
   addu a2,a0,s3                 // A2 = MEM_MAP + HL_REG
   lbu t0,0(a2)
-  andi t1,s3,1
+  andi t1,t0,1
   beqz t1,RRCHLC                // IF (MEM_MAP[HL_REG] & 1) C Flag Set (Old Bit 0)
   andi s0,~C_FLAG               // F_REG: C Flag Reset (Old Bit 0) (Delay Slot)
   ori s0,C_FLAG                 // F_REG: C Flag Set (Old Bit 0)
@@ -4247,7 +4259,7 @@ HEXCB17:
   andi t0,~1
   RLA:
   andi t1,t0,$100
-  bnez t1,RLHC                  // IF (A_REG & $100) C Flag Set (Old Bit 7)
+  bnez t1,RLAC                  // IF (A_REG & $100) C Flag Set (Old Bit 7)
   ori s0,C_FLAG                 // F_REG: C Flag Set (Old Bit 7) (Delay Slot)
   andi s0,~C_FLAG               // F_REG: C Flag Reset (Old Bit 7)
   RLAC:
@@ -4637,7 +4649,8 @@ HEXCB28:
   andi s0,~C_FLAG               // F_REG: C Flag Reset (Old Bit 0)
   SRABC:
   andi t1,s1,$8000              // IF ((B_REG>>7) & 1) B_REG = (B_REG>>1) + $80
-  bnez t1,SRAB
+  beqz t1,SRAB
+  nop                           // Delay Slot
   ori t0,$80                    // ELSE B_REG >>= 1
   SRAB:
   andi t0,$FF
@@ -4662,7 +4675,8 @@ HEXCB29:
   andi s0,~C_FLAG               // F_REG: C Flag Reset (Old Bit 0)
   SRACC:
   andi t1,s1,$80                // IF ((C_REG>>7) & 1) C_REG = (C_REG>>1) + $80
-  bnez t1,SRAC
+  beqz t1,SRAC
+  nop                           // Delay Slot
   ori t0,$80                    // ELSE C_REG >>= 1
   SRAC:
   andi t0,$FF
@@ -4685,7 +4699,8 @@ HEXCB2A:
   andi s0,~C_FLAG               // F_REG: C Flag Reset (Old Bit 0)
   SRADC:
   andi t1,s2,$8000              // IF ((D_REG>>7) & 1) D_REG = (D_REG>>1) + $80
-  bnez t1,SRAD
+  beqz t1,SRAD
+  nop                           // Delay Slot
   ori t0,$80                    // ELSE D_REG >>= 1
   SRAD:
   andi t0,$FF
@@ -4710,7 +4725,8 @@ HEXCB2B:
   andi s0,~C_FLAG               // F_REG: C Flag Reset (Old Bit 0)
   SRAEC:
   andi t1,s2,$80                // IF ((E_REG>>7) & 1) E_REG = (E_REG>>1) + $80
-  bnez t1,SRAE
+  beqz t1,SRAE
+  nop                           // Delay Slot
   ori t0,$80                    // ELSE E_REG >>= 1
   SRAE:
   andi t0,$FF
@@ -4733,7 +4749,8 @@ HEXCB2C:
   andi s0,~C_FLAG               // F_REG: C Flag Reset (Old Bit 0)
   SRAHC:
   andi t1,s3,$8000              // IF ((H_REG>>7) & 1) H_REG = (H_REG>>1) + $80
-  bnez t1,SRAH
+  beqz t1,SRAH
+  nop                           // Delay Slot
   ori t0,$80                    // ELSE H_REG >>= 1
   SRAH:
   andi t0,$FF
@@ -4758,7 +4775,8 @@ HEXCB2D:
   andi s0,~C_FLAG               // F_REG: C Flag Reset (Old Bit 0)
   SRALC:
   andi t1,s3,$80                // IF ((L_REG>>7) & 1) L_REG = (L_REG>>1) + $80
-  bnez t1,SRAL
+  beqz t1,SRAL
+  nop                           // Delay Slot
   ori t0,$80                    // ELSE L_REG >>= 1
   SRAL:
   andi t0,$FF
@@ -4775,16 +4793,16 @@ HEXCB2D:
 HEXCB2E:
   // $2E SRA   (HL)             Shift 8-Bit Value From Address In HL Right, Into Carry Flag (MSB Does Not Change)
   addu a2,a0,s3                 // A2 = MEM_MAP + HL_REG
-  lbu t0,0(a2)
-  addu t1,r0,t0
-  srl t0,1
+  lbu t1,0(a2)
+  srl t0,t1,1
   andi t2,t1,$1
   bnez t2,SRAHLC                // IF (MEM_MAP[HL_REG] & 1) C Flag Set (Old Bit 0)
   ori s0,C_FLAG                 // F_REG: C Flag Set (Old Bit 0) (Delay Slot)
   andi s0,~C_FLAG               // F_REG: C Flag Reset (Old Bit 0)
   SRAHLC:
   andi t1,$80                   // IF ((MEM_MAP[HL_REG]>>7) & 1) MEM_MAP[HL_REG] = (MEM_MAP[HL_REG]>>1) + $80
-  bnez t1,SRAHL
+  beqz t1,SRAHL
+  nop                           // Delay Slot
   ori t0,$80                    // ELSE MEM_MAP[HL_REG] >>= 1
   SRAHL:
   sb t0,0(a2)
@@ -4806,7 +4824,8 @@ HEXCB2F:
   andi s0,~C_FLAG               // F_REG: C Flag Reset (Old Bit 0)
   SRAAC:
   andi t1,s0,$8000              // IF ((A_REG>>7) & 1) A_REG = (A_REG>>1) + $80
-  bnez t1,SRAA
+  beqz t1,SRAA
+  nop                           // Delay Slot
   ori t0,$80                    // ELSE A_REG >>= 1
   SRAA:
   andi t0,$FF
