@@ -17,59 +17,59 @@ macro PPU8x8BGMAP2BPP() { // Convert GB 2BPP Tile Map To RDP List
   ori t3,r0,18   // T3 = 18 (SCREENMAPY)
   ori t4,r0,64   // T4 = 64
 
-  ori t7,r0,0    // T7 = 0 (Y)
+  ori t5,r0,0    // T5 = 0 (Y)
   {#}PPU8x8BGMAP2BPPLoopY:
-    ori t8,r0,0  // T8 = 0 (X)
+    ori t6,r0,0  // T6 = 0 (X)
     {#}PPU8x8BGMAP2BPPLoopX:
-      addu t9,t7,t1  // BGTILE = BGMAP[(((Y+(BGXVOFS>>3))&$1F)<<5) + ((X+(BGXHOFS>>3))&$1F)])
-      andi a3,t9,$1F // A3 = T9 & $1F
-      sll t9,a3,5    // T9 = (((Y+(BGXVOFS>>3))&$1F)<<5)
+      addu t7,t5,t1  // BGTILE = BGMAP[(((Y+(BGXVOFS>>3))&$1F)<<5) + ((X+(BGXHOFS>>3))&$1F)])
+      andi a3,t7,$1F // A3 = T7 & $1F
+      sll t7,a3,5    // T7 = (((Y+(BGXVOFS>>3))&$1F)<<5)
 
-      addu a3,t8,t0
+      addu a3,t6,t0
       andi gp,a3,$1F // GP = A3 & $1F
-      addu t9,gp     // T9 = (((Y+(BGXVOFS>>3))&$1F)<<5) + ((X+(BGXHOFS>>3))&$1F)
+      addu t7,gp     // T7 = (((Y+(BGXVOFS>>3))&$1F)<<5) + ((X+(BGXHOFS>>3))&$1F)
 
-      addu t9,a0
-      lbu t9,0(t9)   // T9 = GB Tile Map # Byte
+      addu t7,a0
+      lbu t7,0(t7)   // T7 = GB Tile Map # Byte
 
       // BG Tile Map
-      sll t9,5      // T9 *= 32 (2BPP/4BPP)
-      addu t9,a1    // T9 += N64 Tile Address
-      sw t9,0(a2)   // Store GB Tile Map # To N64 RDP GB Tile Map
+      sll t7,5      // T7 *= 32 (2BPP/4BPP)
+      addu t7,a1    // T7 += N64 Tile Address
+      sw t7,0(a2)   // Store GB Tile Map # To N64 RDP GB Tile Map
 
-      ori t9,r0,88  // XLYL = $25000000 + (((88-(BGXHOFS&7))+(X<<3))<<14) + (((56-(BGXVOFS&7))+(Y<<3))<<2)
-      subu t9,k0
-      sll a3,t8,3
-      addu t9,a3
-      sll t9,14
+      ori t7,r0,88  // XLYL = $25000000 + (((88-(BGXHOFS&7))+(X<<3))<<14) + (((56-(BGXVOFS&7))+(Y<<3))<<2)
+      subu t7,k0
+      sll a3,t6,3
+      addu t7,a3
+      sll t7,14
       lui a3,$2500
-      or t9,a3      // T9 = $25000000 + (((88-(BGXHOFS&7))+(X<<3))<<14)
+      or t7,a3      // T7 = $25000000 + (((88-(BGXHOFS&7))+(X<<3))<<14)
       ori a3,r0,56
       subu a3,k1
-      sll gp,t7,3
+      sll gp,t5,3
       addu a3,gp
       sll a3,2
-      addu t9,a3    // T9 = $25000000 + (((88-(BGXHOFS&7))+(X<<3))<<14) + (((56-(BGXVOFS&7))+(Y<<3))<<2)
-      sw t9,12(a2)
+      addu t7,a3    // T7 = $25000000 + (((88-(BGXHOFS&7))+(X<<3))<<14) + (((56-(BGXVOFS&7))+(Y<<3))<<2)
+      sw t7,12(a2)
 
-      ori t9,r0,80  // XHYH = (((80-(BGXHOFS&7))+(X<<3))<<14) + (((48-(BGXVOFS&7))+(Y<<3))<<2)
-      subu t9,k0
-      sll a3,t8,3
-      addu t9,a3
-      sll t9,14     // T9 = (((80-(BGXHOFS&7))+(X<<3))<<14)
+      ori t7,r0,80  // XHYH = (((80-(BGXHOFS&7))+(X<<3))<<14) + (((48-(BGXVOFS&7))+(Y<<3))<<2)
+      subu t7,k0
+      sll a3,t6,3
+      addu t7,a3
+      sll t7,14     // T7 = (((80-(BGXHOFS&7))+(X<<3))<<14)
       ori a3,r0,48
       subu a3,k1
-      sll gp,t7,3
+      sll gp,t5,3
       addu a3,gp
       sll a3,2
-      addu t9,a3    // T9 = (((80-(BGXHOFS&7))+(X<<3))<<14) + (((48-(BGXVOFS&7))+(Y<<3))<<2)
-      sw t9,16(a2)
+      addu t7,a3    // T7 = (((80-(BGXHOFS&7))+(X<<3))<<14) + (((48-(BGXVOFS&7))+(Y<<3))<<2)
+      sw t7,16(a2)
 
       addiu a2,40   // A2 += 40
-      bne t8,t2,{#}PPU8x8BGMAP2BPPLoopX // IF (X != SCREENMAPX) Map Loop X
-      addiu t8,1 // Increment X (Delay Slot)
-      bne t7,t3,{#}PPU8x8BGMAP2BPPLoopY // IF (Y != SCREENMAPY) Map Loop Y
-      addiu t7,1 // Increment Y (Delay Slot)
+      bne t6,t2,{#}PPU8x8BGMAP2BPPLoopX // IF (X != SCREENMAPX) Map Loop X
+      addiu t6,1 // Increment X (Delay Slot)
+      bne t5,t3,{#}PPU8x8BGMAP2BPPLoopY // IF (Y != SCREENMAPY) Map Loop Y
+      addiu t5,1 // Increment Y (Delay Slot)
 }
 
 
