@@ -321,12 +321,12 @@ INTR_LOOP:
   lbu t1,0(a2) // T1 = IF_REG
   ori t2,r0,1
   sllv t2,t0
-  andi t1,t2
+  and t1,t2
   beqz t1,INC_INTR // IF ((IF_REG & (1 << i)) && (IE_REG & (1 << i)) )
   nop // Delay Slot
   la a2,MEM_MAP+IE_REG // A2 = MEM_MAP + IE_REG
   lbu t1,0(a2) // T1 = IE_REG
-  andi t1,t2
+  and t1,t2
   beqz t1,INC_INTR
   nop // Delay Slot
 
@@ -437,7 +437,7 @@ INTR_LOOP:
 
   INC_INTR:
     b INTR_LOOP
-    addiu t0,1 // i++ Check Each Interrupt In Priority Order
+    addiu t0,1 // i++ Check Each Interrupt In Priority Order (Delay Slot)
 
 NO_INTR:
 

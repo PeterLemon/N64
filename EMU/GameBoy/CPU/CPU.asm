@@ -252,7 +252,7 @@ HEX10:
   // $10 STOP                   Halt CPU & LCD Display Until Button Press
   ori t9,r0,1                   // IME_FLAG = 1
   ori t0,r0,$10                 // IF_REG = $10 (Set Joypad Interrupt On)
-  addiu a2,a0,IF_REG            // A2 = MEM_MAP + IF_REG
+  la a2,MEM_MAP+IF_REG          // A2 = MEM_MAP + IF_REG
   sb t0,0(a2)
   jr ra
   addiu v0,1                    // QCycles++ (Delay Slot)
@@ -1366,7 +1366,7 @@ HEX76:
   // $76 HALT                   Power Down CPU Until An Interrupt Occurs
   ori t9,r0,1                   // IME_FLAG = 1
   ori t0,r0,$1F                 // IF_REG = $1F (Set All Interrupts On)
-  addiu a2,a0,IF_REG            // A2 = MEM_MAP + IF_REG
+  la a2,MEM_MAP+IF_REG          // A2 = MEM_MAP + IF_REG
   sb t0,0(a2)
   jr ra
   addiu v0,1                    // QCycles++ (Delay Slot)

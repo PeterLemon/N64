@@ -112,7 +112,7 @@ insert GB_BIOS, "DMG_ROM.bin" // Include Game Boy DMG BIOS ROM (256 Bytes)
 
 //insert GB_CART, "ROMS/PPU/HelloWorld.gb" // ** PASS **
 //insert GB_CART, "ROMS/CPU/01-special.gb" // ** PASS **
-insert GB_CART, "ROMS/CPU/02-interrupts.gb"
+//insert GB_CART, "ROMS/CPU/02-interrupts.gb" // ** PASS **
 //insert GB_CART, "ROMS/CPU/03-op sp,hl.gb" // ** PASS **
 //insert GB_CART, "ROMS/CPU/04-op r,imm.gb" // ** PASS **
 //insert GB_CART, "ROMS/CPU/05-op rp.gb" // ** PASS **
@@ -122,4 +122,4 @@ insert GB_CART, "ROMS/CPU/02-interrupts.gb"
 //insert GB_CART, "ROMS/CPU/09-op r,r.gb" // ** PASS **
 //insert GB_CART, "ROMS/CPU/10-bit ops.gb" // ** PASS **
 //insert GB_CART, "ROMS/CPU/11-op a,(hl).gb" // ** PASS **
-//insert GB_CART, "ROMS/CPU/instr_timing.gb"
+insert GB_CART, "ROMS/CPU/instr_timing.gb"
