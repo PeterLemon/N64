@@ -122,4 +122,4 @@ insert GB_BIOS, "DMG_ROM.bin" // Include Game Boy DMG BIOS ROM (256 Bytes)
 //insert GB_CART, "ROMS/CPU/09-op r,r.gb" // ** PASS **
 //insert GB_CART, "ROMS/CPU/10-bit ops.gb" // ** PASS **
 //insert GB_CART, "ROMS/CPU/11-op a,(hl).gb" // ** PASS **
-insert GB_CART, "ROMS/CPU/instr_timing.gb"
+insert GB_CART, "ROMS/CPU/instr_timing.gb" // ** PASS **

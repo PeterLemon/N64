@@ -192,8 +192,8 @@ beqz t2,NO_TMR // IF (TAC_REG & 4)
 nop // Delay Slot
 beq t1,s8,NO_TAC // IF (TAC_REG != OldTAC_REG)
 nop // Delay Slot
-and s8,r0,t1 // OldTAC_REG = TAC_REG
-ori t8,r0,4 // TimerQCycles = 0
+or s8,r0,t1 // OldTAC_REG = TAC_REG
+ori t8,r0,4 // TimerQCycles = 4
 
 NO_TAC:
 
@@ -248,7 +248,7 @@ TMR_262144:
     nop // Delay Slot
 
 TMR_65536:
-  ori t2,r0,5 // T2 = 5
+  ori t2,r0,6 // T2 = 6
   bne t1,t2,TMR_16384 // IF (TAC_REG == 6) (Timer Clock Frequency = 65536 Hz)
   nop // Delay Slot
   addu t8,t0 // TimerQCycles += InstQCycles

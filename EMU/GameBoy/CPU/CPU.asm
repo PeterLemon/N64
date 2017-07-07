@@ -657,7 +657,7 @@ HEX2B:
   subiu s3,1                    // HL_REG--
   andi s3,$FFFF
   jr ra
-  addiu v0,1                    // QCycles += 1 (Delay Slot)
+  addiu v0,2                    // QCycles += 2 (Delay Slot)
 
 HEX2C:
   // $2C INC   L                Increment Register L
@@ -3465,7 +3465,7 @@ HEXE6:
   andi s0,~(C_FLAG+N_FLAG)      // F_REG: C Flag Reset, N Flag Reset
   addiu s4,1                    // PC_REG++
   jr ra
-  addiu v0,1                    // QCycles++ (Delay Slot)
+  addiu v0,2                    // QCycles += 2 (Delay Slot)
 
 HEXE7:
   // $E7 RST   20H              Push Present Address To Stack, Jump To Address $0020
