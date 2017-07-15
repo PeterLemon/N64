@@ -1548,7 +1548,7 @@ arch n64.rdp
 Other: // RDP Set Other Modes DMEM Edited by Controller Input
   Set_Other_Modes EN_TLUT|SAMPLE_TYPE|BI_LERP_0|ALPHA_DITHER_SEL_NO_DITHER|B_M2B_0_2|B_M2A_0_1|FORCE_BLEND|IMAGE_READ_EN // Set Other Modes
 Combine: // RDP Set Combine Mode DMEM Edited by Controller Input
-  Set_Combine_Mode $0,$00, 0,0, $1,$07, $0,$F, 1,0, 0,0,0, 7,7,7 // Set Combine Mode: SubA RGB0,MulRGB0, SubA Alpha0,MulAlpha0, SubA RGB1,MulRGB1, SubB RGB0,SubB RGB1, SubA Alpha1,MulAlpha1, AddRGB0,SubB Alpha0,AddAlpha0, AddRGB1,SubB Alpha1,AddAlpha1
+  Set_Combine_Mode $0,$00, 0,0, $6,$01, $0,$F, 1,0, 0,0,0, 7,7,7 // Set Combine Mode: SubA RGB0,MulRGB0, SubA Alpha0,MulAlpha0, SubA RGB1,MulRGB1, SubB RGB0,SubB RGB1, SubA Alpha1,MulAlpha1, AddRGB0,SubB Alpha0,AddAlpha0, AddRGB1,SubB Alpha1,AddAlpha1
 
   Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,1-1, TLUTG // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 1, DRAM ADDRESS TLUTG
   Set_Tile 0,0,0, $100, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: TMEM Address $100, Tile 0
@@ -1970,9 +1970,9 @@ SUBBR1MEM:
 SUBBR0MEM:
   db $0  //    SUB_B Input,   RGB Components, Cycle 0 (Bit 28..31)
 MULR1MEM:
-  db $07 // Multiply Input,   RGB Components, Cycle 1 (Bit 32..36)
+  db $01 // Multiply Input,   RGB Components, Cycle 1 (Bit 32..36)
 SUBAR1MEM:
-  db $1  //    SUB_A Input,   RGB Components, Cycle 1 (Bit 37..40)
+  db $6  //    SUB_A Input,   RGB Components, Cycle 1 (Bit 37..40)
 MULA0MEM:
   db 0   // Multiply Input, Alpha Component,  Cycle 0 (Bit 41..43)
 SUBAA0MEM:
