@@ -13,14 +13,21 @@ insert "LIB/N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
 Start:
   include "LIB/N64_GFX.INC" // Include Graphics Macros
   include "LIB/N64_RSP.INC" // Include RSP Macros
+  include "LIB/N64_INPUT.INC" // Include Input Macros
   N64_INIT() // Run N64 Initialisation Routine
 
   ScreenNTSC(320, 240, BPP16, $A0100000) // Screen NTSC: 320x240, 16BPP, DRAM Origin $A0100000
+
+  InitController(PIF1) // Initialize Controller
 
   // Switch to RSP DMEM for RDP Commands
   lui a0,DPC_BASE // A0 = Reality Display Processer Control Interface Base Register ($A4100000)
   lli t0,SET_XBS // T0 = DP Status To Use RSP DMEM (Set XBUS DMEM DMA)
   sw t0,DPC_STATUS(a0) // Store DP Status To DP Status Register ($A410000C)
+
+Loop:
+  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Start
+  WaitScanline($1E2) // Wait For Scanline To Reach Vertical Blank
 
   // Load RSP Code To IMEM
   DMASPRD(RSPCode, RSPCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
@@ -38,7 +45,69 @@ Start:
   li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
   sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
 
-Loop:
+
+  // Flush Data Cache: Index Writeback Invalidate
+  la a1,$80000000    // A1 = Cache Start
+  la a2,$80002000-16 // A2 = Cache End
+  LoopCache:
+    cache $0|1,0(a1) // Data Cache: Index Writeback Invalidate
+    bne a1,a2,LoopCache
+    addiu a1,16 // Address += Data Line Size (Delay Slot)
+
+  ReadController(PIF2) // T0 = Controller Buttons, T1 = Analog X, T2 = Analog Y
+
+  la a0,RSPData+MatrixRow01XYZT
+
+Up: // Translate Y
+  andi t3,t0,JOY_UP // Test JOY UP
+  beqz t3,Down
+  nop // Delay Slot
+  lh t4,14(a0)
+  subi t4,64
+  sh t4,14(a0)
+
+Down: // Translate Y
+  andi t3,t0,JOY_DOWN // Test JOY DOWN
+  beqz t3,Left
+  nop // Delay Slot
+  lh t4,14(a0)
+  addi t4,64
+  sh t4,14(a0)
+
+Left: // Translate X
+  andi t3,t0,JOY_LEFT // Test JOY LEFT
+  beqz t3,Right
+  nop // Delay Slot
+  lh t4,6(a0)
+  subi t4,64
+  sh t4,6(a0)
+
+Right: // Translate X
+  andi t3,t0,JOY_RIGHT // Test JOY RIGHT
+  beqz t3,A_Button
+  nop // Delay Slot
+  lh t4,6(a0)
+  addi t4,64
+  sh t4,6(a0)
+
+A_Button: // Translate Z
+  andi t3,t0,JOY_A // Test JOY A
+  beqz t3,B_Button
+  nop // Delay Slot
+  lh t4,22(a0)
+  subi t4,64
+  sh t4,22(a0)
+
+B_Button: // Translate Z
+  andi t3,t0,JOY_B // Test JOY B
+  beqz t3,ControlEnd
+  nop // Delay Slot
+  lh t4,22(a0)
+  addi t4,64
+  sh t4,22(a0)
+
+ControlEnd:
+
   j Loop
   nop // Delay Slot
 
@@ -77,23 +146,44 @@ RSPStart:
   vadd v8,v5[e11]
 
 // Store Rectangle Z Coords To DMEM
-  vsub v9,v8,v8[e0] // V9 = Negative Z
-  vsub v9,v8[e0]
-  sqv v9[e0],PointZ(r0) // DMEM $020 = Point Z
+  sqv v8[e0],PointZ(r0) // DMEM $020 = Point Z
 
 // Calculate X,Y 2D
-  vmudh v8,v3[e10] // V8 = Z / FOV
+  vmulf v8,v3[e10] // V8 = Z / FOV
 
-  vmulf v6,v8[e0] // X = X / Z + (ScreenX / 2)
+  vrcp v3[e3],v8[e0] // Result Fraction (Zero), Source Integer (Z0)
+  vrcph v9[e0],v3[e3] // Result Integer, Source Fraction (Zero)
+
+  vrcp v3[e3],v8[e1] // Result Fraction (Zero), Source Integer (Z1)
+  vrcph v9[e1],v3[e3] // Result Integer, Source Fraction (Zero)
+
+  vrcp v3[e3],v8[e2] // Result Fraction (Zero), Source Integer (Z2)
+  vrcph v9[e2],v3[e3] // Result Integer, Source Fraction (Zero)
+
+  vrcp v3[e3],v8[e3] // Result Fraction (Zero), Source Integer (Z3)
+  vrcph v9[e3],v3[e3] // Result Integer, Source Fraction (Zero)
+
+  vrcp v3[e3],v8[e4] // Result Fraction (Zero), Source Integer (Z4)
+  vrcph v9[e4],v3[e3] // Result Integer, Source Fraction (Zero)
+
+  vrcp v3[e3],v8[e5] // Result Fraction (Zero), Source Integer (Z5)
+  vrcph v9[e5],v3[e3] // Result Integer, Source Fraction (Zero)
+
+  vrcp v3[e3],v8[e6] // Result Fraction (Zero), Source Integer (Z6)
+  vrcph v9[e6],v3[e3] // Result Integer, Source Fraction (Zero)
+
+  vrcp v3[e3],v8[e7] // Result Fraction (Zero), Source Integer (Z7)
+  vrcph v9[e7],v3[e3] // Result Integer, Source Fraction (Zero)
+
+  vmulf v6,v9[e0] // X = X / Z + (ScreenX / 2)
   vadd v6,v3[e8]
 
-  vmulf v7,v8[e0] // Y = Y / Z + (ScreenY / 2)
+  vmulf v7,v9[e0] // Y = Y / Z + (ScreenY / 2)
   vadd v7,v3[e9]
 
 // Store Rectangle X,Y Coords To DMEM
   sqv v6[e0],PointX(r0) // DMEM $000 = Point X
   sqv v7[e0],PointY(r0) // DMEM $010 = Point Y
-
 
   lli a0,PointX // A0 = X Vector DMEM Offset
   lli a1,RectangleZ // A1 = RDP Rectangle XY DMEM Offset
@@ -138,19 +228,21 @@ RSPData:
 base $0000 // Set Base Of RSP Data Object To Zero
 
 PointX:
-  dh -20, 20, -20,  20, -20,  20, -20,  20 // 8 * Point X (S15) (Signed Integer)
+  dh -1000,  1000, -1000,  1000, -1000, 1000, -1000,  1000 // 8 * Point X (S15) (Signed Integer)
 PointY:
-  dh  20, 20, -20, -20,  20,  20, -20, -20 // 8 * Point Y (S15) (Signed Integer)
+  dh  1000,  1000, -1000, -1000,  1000, 1000, -1000, -1000 // 8 * Point Y (S15) (Signed Integer)
 PointZ:
-  dh  20, 20,  20,  20, -20, -20, -20, -20 // 8 * Point Z (S15) (Signed Integer)
+  dh -1000, -1000, -1000, -1000,  1000, 1000,  1000,  1000 // 8 * Point Z (S15) (Signed Integer)
 
 HALF_SCREEN_XY_FOV:
-  dh 160, 120, 160, 0, 0, 0, 0, 0 // Screen X / 2 (S15) (Signed Integer), Screen Y / 2 (S15) (Signed Integer), FOV (Signed Fraction)
+  dh 160, 120, 400, 0, 0, 0, 0, 0 // Screen X / 2 (S15) (Signed Integer), Screen Y / 2 (S15) (Signed Integer), FOV (Signed Fraction), Zero Const
 
 MatrixRow01XYZT:
-  dh 1,0,0,0, 0,1,0,0 // Row 0 X,Y,Z,T (S15) (Signed Integer) (X), Row 1 X,Y,Z,T (S15) (Signed Integer) (Y)
+  dh 1,0,0,0 // Row 0 X,Y,Z,T (S15) (Signed Integer) (X)
+  dh 0,1,0,0 // Row 1 X,Y,Z,T (S15) (Signed Integer) (Y)
 MatrixRow23XYZT:
-  dh 0,0,1,200, 0,0,0,1 // Row 2 X,Y,Z,T (S15) (Signed Integer) (Z), Row 3 X,Y,Z,T (S15) (Signed Integer) (T)
+  dh 0,0,1,4000 // Row 2 X,Y,Z,T (S15) (Signed Integer) (Z)
+  dh 0,0,0,1 // Row 3 X,Y,Z,T (S15) (Signed Integer) (T)
 
 align(8) // Align 64-Bit
 RDPBuffer:
@@ -210,3 +302,16 @@ RDPBufferEnd:
 align(8) // Align 64-Bit
 base RSPData+pc() // Set End Of RSP Data Object
 RSPDataEnd:
+
+PIF1:
+  dw $FF010401,0
+  dw 0,0
+  dw 0,0
+  dw 0,0
+  dw $FE000000,0
+  dw 0,0
+  dw 0,0
+  dw 0,1
+
+PIF2:
+  fill 64 // Generate 64 Bytes Containing $00
