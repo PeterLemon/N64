@@ -72,6 +72,8 @@ RSPStart:
   lqv v4[e0],TriY2(r0) // V4 = 2nd Y Point Of 8 Triangles ($040)
   lqv v5[e0],TriY3(r0) // V5 = 3rd Y Point Of 8 Triangles ($050)
 
+  vsub v31,v31[e0] // Store Zero To V31
+
 // Calculate Triangle Coefficiants
   // Sort Of Parallel X Elements Within 3 Vectors (Uses Vector Merge To Sort Y Elements Within 3 Vectors)
   vge v6,v0,v1[e0] // VGE TMP1,  MIN, MID
