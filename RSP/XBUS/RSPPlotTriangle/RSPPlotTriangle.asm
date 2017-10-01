@@ -480,43 +480,46 @@ arch n64.rdp
   Set_Fill_Color $00010001 // Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels
   Fill_Rectangle 319<<2,239<<2, 0<<2,0<<2 // Fill Rectangle: XL 319.0,YL 239.0, XH 0.0,YH 0.0
 
+  Set_Other_Modes SAMPLE_TYPE|BI_LERP_0|ALPHA_DITHER_SEL_NO_DITHER|B_M1A_0_2 // Set Other Modes
+  Set_Combine_Mode $0,$00, 0,0, $6,$01, $0,$F, 1,0, 0,0,0, 7,7,7 // Set Combine Mode: SubA RGB0,MulRGB0, SubA Alpha0,MulAlpha0, SubA RGB1,MulRGB1, SubB RGB0,SubB RGB1, SubA Alpha1,MulAlpha1, AddRGB0,SubB Alpha0,AddAlpha0, AddRGB1,SubB Alpha1,AddAlpha1
+
   Sync_Pipe // Stall Pipeline, Until Preceeding Primitives Completely Finish
-  Set_Fill_Color $F001F001 // Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels (Red)
+  Set_Blend_Color $FF0000FF // Set Blend Color: R 255,G 0,B 0,A 255 (Red)
 RDPTriangle1:
   Fill_Triangle 0,0,0, 0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0 // Dir 1,Level 0,Tile 0, YL 100.0,YM 50.0,YH 50.0, XL 75.0,DxLDy -1.0, XH 25.0,DxHDy 0.0, XM 25.0,DxMDy 0.0
 
   Sync_Pipe // Stall Pipeline, Until Preceeding Primitives Completely Finish
-  Set_Fill_Color $0F010F01 // Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels (Green)
+  Set_Blend_Color $00FF00FF // Set Blend Color: R 0,G 255,B 0,A 255 (Green)
 RDPTriangle2:
   Fill_Triangle 0,0,0, 0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0 // Dir 1,Level 0,Tile 0, YL 100.0,YM 50.0,YH 50.0, XL 150.0,DxLDy 0.0, XH 100.0,DxHDy 1.0, XM 100.0,DxMDy 0.0
 
   Sync_Pipe // Stall Pipeline, Until Preceeding Primitives Completely Finish
-  Set_Fill_Color $003F003F // Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels (Blue)
+  Set_Blend_Color $0000FFFF // Set Blend Color: R 0,G 0,B 255,A 255 (Blue)
 RDPTriangle3:
   Fill_Triangle 0,0,0, 0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0 // Dir 1,Level 0,Tile 0, YL 100.0,YM 100.0,YH 50.0, XL 225.0,DxLDy 0.0, XH 225.0,DxHDy -1.0, XM 225.0,DxMDy 0.0
 
   Sync_Pipe // Stall Pipeline, Until Preceeding Primitives Completely Finish
-  Set_Fill_Color $FFFFFFFF // Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels (White)
+  Set_Blend_Color $FFFFFFFF // Set Blend Color: R 255,G 255,B 255,A 255 (White)
 RDPTriangle4:
   Fill_Triangle 0,0,0, 0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0 // Dir 1,Level 0,Tile 0, YL 100.0,YM 100.0,YH 50.0, XL 300.0,DxLDy 0.0, XH 250.0,DxHDy 0.0, XM 250.0,DxMDy 1.0
 
   Sync_Pipe // Stall Pipeline, Until Preceeding Primitives Completely Finish
-  Set_Fill_Color $D001F001 // Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels (Red Strips)
+  Set_Blend_Color $FF0000FF // Set Blend Color: R 255,G 0,B 0,A 255 (Red)
 RDPTriangle5:
   Fill_Triangle 0,0,0, 0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0 // Dir 1,Level 0,Tile 0, YL 200.0,YM 175.0,YH 150.0, XL 75.0,DxLDy -2.0, XH 25.0,DxHDy 0.0, XM 25.0,DxMDy 2.0
 
   Sync_Pipe // Stall Pipeline, Until Preceeding Primitives Completely Finish
-  Set_Fill_Color $0D010F01 // Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels (Green Strips)
+  Set_Blend_Color $00FF00FF // Set Blend Color: R 0,G 255,B 0,A 255 (Green)
 RDPTriangle6:
   Fill_Triangle 0,0,0, 0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0 // Dir 1,Level 0,Tile 0, YL 200.0,YM 150.0,YH 150.0, XL 150.0,DxLDy -0.5, XH 100.0,DxHDy 0.5, XM 100.0,DxMDy 0.0
 
   Sync_Pipe // Stall Pipeline, Until Preceeding Primitives Completely Finish
-  Set_Fill_Color $001F003F // Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels (Blue Strips)
+  Set_Blend_Color $0000FFFF // Set Blend Color: R 0,G 0,B 255,A 255 (Blue)
 RDPTriangle7:
   Fill_Triangle 0,0,0, 0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0 // Dir 0,Level 0,Tile 0, YL 200.0,YM 175.0,YH 150.0, XL 175.0,DxLDy 2.0, XH 225.0,DxHDy 0.0, XM 225.0,DxMDy -2.0
 
   Sync_Pipe // Stall Pipeline, Until Preceeding Primitives Completely Finish
-  Set_Fill_Color $DDDDFFFF // Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels (White Strips)
+  Set_Blend_Color $FFFFFFFF // Set Blend Color: R 255,G 255,B 255,A 255 (White)
 RDPTriangle8:
   Fill_Triangle 0,0,0, 0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0 // Dir 1,Level 0,Tile 0, YL 200.0,YM 200.0,YH 150.0, XL 300.0,DxLDy 0.0, XH 275.0,DxHDy -0.5, XM 275.0,DxMDy 0.5
 
