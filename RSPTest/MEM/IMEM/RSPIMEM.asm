@@ -157,23 +157,10 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPIMEMLastInstructionDelaySlotCode, RSPIMEMLastInstructionDelaySlotCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  RSPIMEMLastInstructionDelaySlotCodeDMABusy:
-    lw t0,SP_STATUS(a0) // T0 = Word From SP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,RSPIMEMLastInstructionDelaySlotCodeDMABusy // IF TRUE DMA Is Busy
-    nop // Delay Slot
-
-  // Set RSP Program Counter
-  lui a0,SP_PC_BASE // A0 = SP PC Base Register ($A4080000)
-  lli t0,$0FF8 // T0 = RSP Program Counter Set To $0FF8 (End Of RSP Code)
-  sw t0,SP_PC(a0) // Store RSP Program Counter To SP PC Register ($A4080000)
-
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  SetSPPC($0FF8) // Set RSP Program Counter: Set To $0FF8 (End Of RSP Code)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,32,24,FontRed,IMEMLastInstructionDelaySlotTEXT,31) // Print Text String To VRAM Using Font At X,Y Position
 
@@ -206,23 +193,10 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPIMEMInstructionWrapCode, RSPIMEMInstructionWrapCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  RSPIMEMInstructionWrapCodeDMABusy:
-    lw t0,SP_STATUS(a0) // T0 = Word From SP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,RSPIMEMInstructionWrapCodeDMABusy // IF TRUE DMA Is Busy
-    nop // Delay Slot
-
-  // Set RSP Program Counter
-  lui a0,SP_PC_BASE // A0 = SP PC Base Register ($A4080000)
-  lli t0,$0FFC // T0 = RSP Program Counter Set To $0FFC (End Of RSP Code)
-  sw t0,SP_PC(a0) // Store RSP Program Counter To SP PC Register ($A4080000)
-
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  SetSPPC($0FFC) // Set RSP Program Counter: Set To $0FFC (End Of RSP Code)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,32,48,FontRed,IMEMInstructionWrapTEXT,20) // Print Text String To VRAM Using Font At X,Y Position
 
