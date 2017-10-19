@@ -17,40 +17,18 @@ Start:
 
   ScreenNTSC(320, 240, BPP16, $A0100000) // Screen NTSC: 320x240, 16BPP, DRAM Origin $A0100000
 
-  // Switch to RSP DMEM for RDP Commands
-  lui a0,DPC_BASE // A0 = Reality Display Processer Control Interface Base Register ($A4100000)
-  lli t0,SET_XBS // T0 = DP Status To Use RSP DMEM (Set XBUS DMEM DMA)
-  sw t0,DPC_STATUS(a0) // Store DP Status To DP Status Register ($A410000C)
+  SetXBUS() // RDP Status: Set XBUS (Switch To RSP DMEM For RDP Commands)
 
   // Load RSP Code To IMEM
   DMASPRD(RSPCode, RSPCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  RSPCodeDMABusy:
-    lw t0,SP_STATUS(a0) // T0 = Word From SP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,RSPCodeDMABusy // IF TRUE DMA Is Busy
-    nop // Delay Slot
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   DMASPRD(RSPData, RSPDataEnd, SP_DMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  RSPDataDMABusy:
-    lw t0,SP_STATUS(a0) // T0 = Word From SP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,RSPDataDMABusy // IF TRUE DMA Is Busy
-    nop // Delay Slot
-
-  // Set RSP Program Counter
-  lui a0,SP_PC_BASE // A0 = SP PC Base Register ($A4080000)
-  lli t0,RSPStart // T0 = RSP Program Counter Set To Start Of RSP Code
-  sw t0,SP_PC(a0) // Store RSP Program Counter To SP PC Register ($A4080000)
-
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  SetSPPC(RSPStart) // Set RSP Program Counter: Start Address
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
 Loop:
   j Loop
