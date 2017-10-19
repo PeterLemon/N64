@@ -158,6 +158,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV0Code, RSPSRAV0CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -165,15 +166,8 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Program Counter
-  lui a0,SP_PC_BASE // A0 = SP PC Base Register ($A4080000)
-  lli t0,$0000 // T0 = RSP Program Counter Set To Zero (Start Of RSP Code)
-  sw t0,SP_PC(a0) // Store RSP Program Counter To SP PC Register ($A4080000)
-
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,8,24,FontRed,SRAV,3) // Print Text String To VRAM Using Font At X,Y Position
   PrintString($A0100000,80,24,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -200,6 +194,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV1Code, RSPSRAV1CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -207,10 +202,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,32,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,32,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -236,6 +228,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV2Code, RSPSRAV2CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -243,10 +236,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,40,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,40,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -272,6 +262,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV3Code, RSPSRAV3CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -279,10 +270,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,48,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,48,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -308,6 +296,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV4Code, RSPSRAV4CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -315,10 +304,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,56,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,56,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -344,6 +330,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV5Code, RSPSRAV5CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -351,10 +338,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,64,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,64,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -380,6 +364,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV6Code, RSPSRAV6CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -387,10 +372,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,72,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,72,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -416,6 +398,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV7Code, RSPSRAV7CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -423,10 +406,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,80,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,80,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -452,6 +432,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV8Code, RSPSRAV8CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -459,10 +440,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,88,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,88,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -488,6 +466,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV9Code, RSPSRAV9CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -495,10 +474,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,96,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,96,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -524,6 +500,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV10Code, RSPSRAV10CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -531,10 +508,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,104,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,104,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -560,6 +534,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV11Code, RSPSRAV11CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -567,10 +542,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,112,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,112,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -596,6 +568,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV12Code, RSPSRAV12CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -603,10 +576,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,120,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,120,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -632,6 +602,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV13Code, RSPSRAV13CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -639,10 +610,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,128,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,128,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -668,6 +636,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV14Code, RSPSRAV14CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -675,10 +644,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,136,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,136,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -704,6 +670,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV15Code, RSPSRAV15CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -711,10 +678,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,144,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,144,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -740,6 +704,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV16Code, RSPSRAV16CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -747,10 +712,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,152,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,152,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -776,6 +738,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV17Code, RSPSRAV17CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -783,10 +746,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,160,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,160,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -812,6 +772,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV18Code, RSPSRAV18CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -819,10 +780,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,168,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,168,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -848,6 +806,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV19Code, RSPSRAV19CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -855,10 +814,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,176,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,176,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -884,6 +840,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV20Code, RSPSRAV20CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -891,10 +848,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,184,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,184,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -920,6 +874,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV21Code, RSPSRAV21CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -927,10 +882,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,192,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,192,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -956,6 +908,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV22Code, RSPSRAV22CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -963,10 +916,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,200,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,200,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -992,6 +942,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV23Code, RSPSRAV23CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -999,10 +950,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,208,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,208,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -1028,6 +976,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV24Code, RSPSRAV24CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -1035,10 +984,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,216,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,216,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -1064,6 +1010,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV25Code, RSPSRAV25CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -1071,10 +1018,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,224,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,224,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -1100,6 +1044,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV26Code, RSPSRAV26CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -1107,10 +1052,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,232,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,232,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -1136,6 +1078,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV27Code, RSPSRAV27CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -1143,10 +1086,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,240,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,240,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -1172,6 +1112,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV28Code, RSPSRAV28CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -1179,10 +1120,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,248,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,248,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -1208,6 +1146,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV29Code, RSPSRAV29CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -1215,10 +1154,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,256,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,256,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -1244,6 +1180,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV30Code, RSPSRAV30CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -1251,10 +1188,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,264,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,264,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
@@ -1280,6 +1214,7 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSRAV31Code, RSPSRAV31CodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
   lui a0,SP_MEM_BASE // A0 = SP Memory Base Offset (DMEM)
@@ -1287,10 +1222,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,272,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,272,FontBlack,VALUEWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
