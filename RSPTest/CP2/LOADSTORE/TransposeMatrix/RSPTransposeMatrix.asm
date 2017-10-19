@@ -158,16 +158,11 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPLTVCode, RSPLTVCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
-  DMASPRD(VALUEDMEMA, VALUEDMEMAEnd, SP_DMEM)     // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPRD(VALUEDMEMB, VALUEDMEMBEnd, SP_DMEM+16)  // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPRD(VALUEDMEMC, VALUEDMEMCEnd, SP_DMEM+32)  // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPRD(VALUEDMEMD, VALUEDMEMDEnd, SP_DMEM+48)  // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPRD(VALUEDMEME, VALUEDMEMEEnd, SP_DMEM+64)  // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPRD(VALUEDMEMF, VALUEDMEMFEnd, SP_DMEM+80)  // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPRD(VALUEDMEMG, VALUEDMEMGEnd, SP_DMEM+96)  // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPRD(VALUEDMEMH, VALUEDMEMHEnd, SP_DMEM+112) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPRD(VALUEDMEMA, VALUEDMEMHEnd, SP_DMEM)     // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Set RSP Program Counter
   lui a0,SP_PC_BASE // A0 = SP PC Base Register ($A4080000)
@@ -506,16 +501,11 @@ ClearScreen:
 
   // Load RSP Code To IMEM
   DMASPRD(RSPSTVCode, RSPSTVCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Load RSP Data To DMEM
-  DMASPRD(VALUEDMEMA, VALUEDMEMAEnd, SP_DMEM)     // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPRD(VALUEDMEMB, VALUEDMEMBEnd, SP_DMEM+16)  // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPRD(VALUEDMEMC, VALUEDMEMCEnd, SP_DMEM+32)  // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPRD(VALUEDMEMD, VALUEDMEMDEnd, SP_DMEM+48)  // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPRD(VALUEDMEME, VALUEDMEMEEnd, SP_DMEM+64)  // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPRD(VALUEDMEMF, VALUEDMEMFEnd, SP_DMEM+80)  // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPRD(VALUEDMEMG, VALUEDMEMGEnd, SP_DMEM+96)  // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPRD(VALUEDMEMH, VALUEDMEMHEnd, SP_DMEM+112) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPRD(VALUEDMEMA, VALUEDMEMHEnd, SP_DMEM)     // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
   // Set RSP Program Counter
   lui a0,SP_PC_BASE // A0 = SP PC Base Register ($A4080000)
