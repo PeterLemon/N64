@@ -23,23 +23,10 @@ Start:
 // Convert GameBoy Tiles To N64 Linear Texture
   // Load RSP Code To IMEM
   DMASPRD(RSPTILECode, RSPTILECodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  TILECodeDMABusy:
-    lw t0,SP_STATUS(a0) // T0 = Word From SP Status Register ($A4040010)
-    andi t0,$C // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,TILECodeDMABusy // IF TRUE DMA Is Busy
-    nop // Delay Slot
-
-  // Set RSP Program Counter
-  lui a0,SP_PC_BASE // A0 = SP PC Base Register ($A4080000)
-  lli t0,RSPTILEStart // T0 = RSP Program Counter Set To Start Of RSP Code
-  sw t0,SP_PC(a0) // Store RSP Program Counter To SP PC Register ($A4080000)
-
-  // Set RSP Status (Start Execution)
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  li t0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // T0 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw t0,SP_STATUS(a0) // Run RSP Code: Store RSP Status To SP Status Register ($A4040010)
+  SetSPPC(RSPTILEStart) // Set RSP Program Counter: Start Address
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
 // Convert GameBoy Palette To N64 TLUT
 la a0,GBPAL  // A0 = GameBoy Palette Address
@@ -158,19 +145,8 @@ base $0000 // Set Base Of RSP Code Object To Zero
 
 RSPTILEStart:
 // Load Static Shift Data
-  lli a0,0 // A0 = Shift Start Offset
-  la a1,RSPSHIFTData // A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
-  li t0,(RSPSHIFTDataEnd-RSPSHIFTData)-1 // T0 = Length Of DMA Transfer In Bytes - 1
-
-  mtc0 a0,c0 // Store Memory Offset To SP Memory Address Register ($A4040000)
-  mtc0 a1,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
-  mtc0 t0,c2 // Store DMA Length To SP Read Length Register ($A4040008)
-
-  SHIFTDMAREADBusy:
-    mfc0 t0,c4 // T0 = RSP Status Register ($A4040010)
-    andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,SHIFTDMAREADBusy // IF TRUE DMA Is Busy
-    nop // Delay Slot
+  RSPDMASPRD(RSPSHIFTData, RSPSHIFTDataEnd, SP_DMEM) // RSP DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  RSPDMASPWait() // Wait For RSP DMA To Finish
 
   lqv v0[e0],ShiftLeftRightA(r0) // V0 = Left Shift Using Multiply: << 0..7,  Right Shift Using Multiply: >> 16..9 (128-Bit Quad)
   lqv v1[e0],ShiftLeftRightB(r0) // V1 = Left Shift Using Multiply: << 8..15, Right Shift Using Multiply: >> 8..1  (128-Bit Quad)
@@ -191,11 +167,7 @@ LoopTileBlocks:
   mtc0 a2,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
   mtc0 t0,c2 // Store DMA Length To SP Read Length Register ($A4040008)
 
-  TILEDMAREADBusy:
-    mfc0 t0,c4 // T0 = RSP Status Register ($A4040010)
-    andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,TILEDMAREADBusy // IF TRUE DMA Is Busy
-    nop // Delay Slot
+  RSPDMASPWait() // Wait For RSP DMA To Finish
 
 LoopTiles:
   lqv v3[e0],0(a0) // V3 = Tile BitPlane 0,1 Row 0..7
@@ -351,11 +323,7 @@ LoopTiles:
   mtc0 a1,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
   mtc0 t0,c3 // Store DMA Length To SP Write Length Register ($A404000C)
 
-  TILEDMAWRITEBusy:
-    mfc0 t0,c4 // T0 = RSP Status Register ($A4040010)
-    andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,TILEDMAWRITEBusy // IF TRUE DMA Is Busy
-    nop // Delay Slot
+  RSPDMASPWait() // Wait For RSP DMA To Finish
 
   addi a1,32 // A1 = Next N64  Tile Offset
   addi a2,16 // A2 = Next GameBoy Tile Offset
