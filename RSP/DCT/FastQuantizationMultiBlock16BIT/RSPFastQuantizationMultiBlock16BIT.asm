@@ -70,11 +70,7 @@ LoopDMA:
   mtc0 a2,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
   mtc0 t0,c2 // Store DMA Length To SP Read Length Register ($A4040008)
 
-  DATADMAREADBusy:
-    mfc0 t0,c4 // T0 = RSP Status Register ($A4040010)
-    andi t0,RSP_BSY|RSP_FUL // AND RSP Status Status With $C (Bit 2 = DMA Is Busy, Bit 3 = DMA Is Full)
-    bnez t0,DATADMAREADBusy // IF TRUE DMA Is Busy
-    nop // Delay Slot
+  RSPDMASPWait() // Wait For RSP DMA To Finish
 
   addiu a2,4096 // DCTQBLOCKS += 4096
 
