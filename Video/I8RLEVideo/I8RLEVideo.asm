@@ -2,9 +2,10 @@
 arch n64.cpu
 endian msb
 output "I8RLEVideo.N64", create
-fill 50331648 // Set ROM Size
+fill 66772628 // Set ROM Size
 
-constant I8($801E0000) // I8 Frame DRAM Offset
+constant AudioBuffer(RLEVideo + 65536) // Audio Frame DRAM Offset
+constant I8(AudioBuffer + 65536) // I8 Frame DRAM Offset
 
 origin $00000000
 base $80000000 // Entry Point Of Code
@@ -18,37 +19,47 @@ Start:
 
   ScreenNTSC(320, 240, BPP16, $A0100000) // Screen NTSC: 320x240, 16BPP, DRAM Origin $A0100000
 
+  lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
+  ori t0,r0,1 // T0 = AI Control DMA Enable Bit (1)
+  sw t0,AI_CONTROL(a0) // Store AI Control DMA Enable Bit To AI Control Register ($A4500008)
+  ori t0,r0,15 // T0 = Sample Bit Rate (Bitrate-1)
+  sw t0,AI_BITRATE(a0) // Store Sample Bit Rate To AI Bit Rate Register ($A4500014)
+  li t0,(VI_NTSC_CLOCK/19472)-1 // T0 = Sample Frequency: (VI_NTSC_CLOCK(48681812) / FREQ(19472)) - 1
+  sw t0,AI_DACRATE(a0) // Store Sample Frequency To AI DAC Rate Register ($A4500010)
+
 LoopVideo:
-  lui t8,$A010 // T8 = Double Buffer Frame Offset = Frame A
-  lli t9,6572-1 // T9 = Frame Count - 1
+  la t6,AudioBuffer // T6 = Sample DRAM Offset
+  la t7,$10000000|(Sample&$3FFFFFF) // T7 = Sample Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
+
+  ori t9,r0,6572-1 // T9 = Frame Count - 1
   la a3,$10000000|(RLEVideo&$3FFFFFF) // A3 = Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
   
   LoopFrames:
     lui a0,PI_BASE // A0 = PI Base Register ($A4600000)
-
     la t0,RLEVideo&$7FFFFF // T0 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
     sw t0,PI_DRAM_ADDR(a0) // Store RAM Offset To PI DRAM Address Register ($A4600000)
     sw a3,PI_CART_ADDR(a0) // Store ROM Offset To PI Cart Address Register ($A4600004)
-    lli t0,44300-1 // T0 = Length Of DMA Transfer In Bytes - 1
+    ori t0,r0,44300-1   // T0 = Length Of DMA Transfer In Bytes - 1
     sw t0,PI_WR_LEN(a0) // Store DMA Length To PI Write Length Register ($A460000C)
 
     WaitScanline($1E0) // Wait For Scanline To Reach Vertical Start
     WaitScanline($1E2) // Wait For Scanline To Reach Vertical Blank
 
-    // Double Buffer Screen
-    lui a0,VI_BASE // A0 = VI Base Register ($A4400000)
-    sw t8,VI_ORIGIN(a0) // Store Origin To VI Origin Register ($A4400004)
-    lui t0,$A010
-    beq t0,t8,FrameEnd
-    lui t8,$A020 // T8 = Double Buffer Frame Offset = Frame B
-    lui t8,$A010 // T8 = Double Buffer Frame Offset = Frame A
-    FrameEnd:
-    la a0,$A0000000|(DoubleBuffer&$3FFFFF)
-    sw t8,4(a0)
+    // Buffer Sound
+    lui a0,PI_BASE // A0 = PI Base Register ($A4600000)
+    sw t6,PI_DRAM_ADDR(a0) // Store RAM Offset To PI DRAM Address Register ($A4600000)
+    sw t7,PI_CART_ADDR(a0) // Store ROM Offset To PI Cart Address Register ($A4600004)
+    ori t0,r0,$A23 // T0 = Length Of DMA Transfer In Bytes - 1
+    sw t0,PI_WR_LEN(a0) // Store DMA Length To PI Write Length Register ($A460000C)
+
+    lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
+    sw t6,AI_DRAM_ADDR(a0) // Store Sample DRAM Offset To AI DRAM Address Register ($A4500000)
+    sw t0,AI_LEN(a0) // Store Length Of Sample Buffer To AI Length Register ($A4500004)
+    addu t7,t0 // Sample ROM Offset += $A23
 
     la a0,RLEVideo+4 // A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
-    lui a1,I8>>16 // A1 = Destination Address (DRAM Start Offset)
-    li t0,I8+76800 // T0 = Destination End Offset (DRAM End Offset)
+    la a1,I8 // A1 = Destination Address (DRAM Start Offset)
+    la t0,I8+76800 // T0 = Destination End Offset (DRAM End Offset)
 
   RLELoop:
     beq a1,t0,RLEEnd // IF (Destination Address == Destination End Offset) RLEEnd
@@ -98,15 +109,21 @@ LoopVideo:
     subu a0,a1
     addu a3,a0 // A3 += RLE End Offset 
 
-  // Decode I8 Frame Using RDP
-  lui a1,DPC_BASE // A1 = Reality Display Processer Control Interface Base Register ($A4100000)
-  la a2,RDPBuffer // A2 = DPC Command Start Address
-  sw a2,DPC_START(a1) // Store DPC Command Start Address To DP Start Register ($A4100000)
-  addi a2,RDPBufferEnd-RDPBuffer // A2 = DPC Command End Address
-  sw a2,DPC_END(a1) // Store DPC Command End Address To DP End Register ($A4100004)
+
+  // Flush Data Cache: Index Writeback Invalidate
+  la a0,$80000000    // A0 = Cache Start
+  la a1,$80002000-16 // A1 = Cache End
+  LoopCache:
+    cache $0|1,0(a0) // Data Cache: Index Writeback Invalidate
+    bne a0,a1,LoopCache
+    addiu a0,16 // Address += Data Line Size (Delay Slot)
+
 
   WaitScanline($1E0) // Wait For Scanline To Reach Vertical Start
   WaitScanline($1E2) // Wait For Scanline To Reach Vertical Blank
+
+  // Decode I8 Frame Using RDP
+  DPC(RDPBuffer, RDPBufferEnd) // Run DPC Command Buffer: Start, End
 
   bnez t9,LoopFrames
   subiu t9,1 // Frame Count -- (Delay Slot)
@@ -121,7 +138,7 @@ DoubleBuffer:
   Set_Color_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,320-1, $00100000 // Set Color Image: FORMAT RGBA,SIZE 16B,WIDTH 320, DRAM ADDRESS $00100000
 
   Set_Other_Modes SAMPLE_TYPE|BI_LERP_0|ALPHA_DITHER_SEL_NO_DITHER|B_M2A_0_1 // Set Other Modes
-  Set_Combine_Mode $0,$00, 0,0, $1,$01, $0,$F, 1,0, 0,0,0, 7,7,7 // Set Combine Mode: SubA RGB0,MulRGB0, SubA Alpha0,MulAlpha0, SubA RGB1,MulRGB1, SubB RGB0,SubB RGB1, SubA Alpha1,MulAlpha1, AddRGB0,SubB Alpha0,AddAlpha0, AddRGB1,SubB Alpha1,AddAlpha1
+  Set_Combine_Mode $0,$00, 0,0, $6,$01, $0,$F, 1,0, 0,0,0, 7,7,7 // Set Combine Mode: SubA RGB0,MulRGB0, SubA Alpha0,MulAlpha0, SubA RGB1,MulRGB1, SubB RGB0,SubB RGB1, SubA Alpha1,MulAlpha1, AddRGB0,SubB Alpha0,AddAlpha0, AddRGB1,SubB Alpha1,AddAlpha1
 
   Set_Tile IMAGE_DATA_FORMAT_I,SIZE_OF_PIXEL_8B,40, $000, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT I,SIZE 8B,Tile Line Size 40 (64bit Words), TMEM Address $000, Tile 0
 
@@ -247,4 +264,5 @@ DoubleBuffer:
   Sync_Full // Ensure Entire Scene Is Fully Drawn
 RDPBufferEnd:
 
-insert RLEVideo, "Video.rle" // 6572 320x240 RLE Compressed I8 Frames 
+insert RLEVideo, "Video.rle" // 6572 320x240 RLE Compressed I8 Frames
+insert Sample, "Sample.bin" // 16-Bit 16000Hz Signed Big-Endian Stereo Sound Sample
