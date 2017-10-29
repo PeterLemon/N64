@@ -99,7 +99,7 @@ RDPFontCharacter:
   Sync_Tile // Sync Tile
 
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_4B,1, $000, 0,PALETTE_0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT COLOR INDEX,SIZE 4B,Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0,Palette 0
-  Texture_Rectangle 0,0, 0, 0,0, 0<<5,0<<5, 1<<10,1<<10 // Texture Rectangle: XL 83.0,YL 129.0, Tile 0, XH 76.0,YH 122.0, S 0.0,T 0.0, DSDX 1.0,DTDY 1.0
+  Texture_Rectangle 0,0, 0, 0,0, 0<<5,0<<5, 1<<10,1<<10 // Texture Rectangle: XL 0.0,YL 0.0, Tile 0, XH 0.0,YH 0.0, S 0.0,T 0.0, DSDX 1.0,DTDY 1.0
   Sync_Tile // Sync Tile
 RDPBufferEnd:
 
