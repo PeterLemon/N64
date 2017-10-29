@@ -1,4 +1,4 @@
-// N64 'Bare Metal' 16BPP 320x240 Hello World RDP Demo by krom (Peter Lemon):
+// N64 'Bare Metal' 16BPP 320x240 Hello World RDP Copy Demo by krom (Peter Lemon):
 arch n64.cpu
 endian msb
 output "HelloWorldRDP16BPP320X240.N64", create
@@ -99,7 +99,7 @@ RDPFontCharacter:
   Sync_Tile // Sync Tile
 
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_4B,1, $000, 0,PALETTE_0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT COLOR INDEX,SIZE 4B,Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0,Palette 0
-  Texture_Rectangle 83<<2,129<<2, 0, 76<<2,122<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 83.0,YL 129.0, Tile 0, XH 76.0,YH 122.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
+  Texture_Rectangle 0,0, 0, 0,0, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 0.0,YL 0.0, Tile 0, XH 0.0,YH 0.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
   Sync_Tile // Sync Tile
 RDPBufferEnd:
 
