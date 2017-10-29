@@ -31,7 +31,7 @@ macro PrintString(vram, xpos, ypos, fontfile, string, length) { // Print Text St
     lb t3,0(a2) // T3 = Next Text Character
     addi a2,1
 
-    sll t3,7 // Add Shift to Correct Position in Font (*256: CHAR_X*CHAR_Y*BYTES_PER_PIXEL)
+    sll t3,7 // Add Shift to Correct Position in Font (*128: CHAR_X*CHAR_Y*BYTES_PER_PIXEL)
     add t3,a1
 
     {#}DrawCharX:
