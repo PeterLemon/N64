@@ -1,0 +1,2 @@
+bass HelloWorldRDP16BPP320X240.asm
+chksum64 HelloWorldRDP16BPP320X240.N64
