@@ -312,6 +312,39 @@ TextStyle1($0FC165C, "The designation of\n")
                   db "go back. Otherwise\n"
                   db "exit this advice.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 
+// Dr. Wright Icon / City Plan / Residential
+TextStyle1($0FC1728, "With the industrial\n")
+                  db "areas designated,\n"
+                  db "daily necessities\n"
+                  db "will be secured.\n"
+                  db "However, citizens\n"
+                  db "can't sleep or live\n"
+                  db "without a home.\n"
+                  db "Let's designate\n"
+                  db "a residential\n"
+                  db "district.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0FC17EC, "Residential\n")
+                  db "districts are\n"
+                  db "specified in the\n"
+                  db "same way as\n"
+                  db "industrial\n"
+                  db "districts. Open the\n"
+                  db "main menu, select\n"
+                  db "residential area\n"
+                  db "of section icon, &\n"
+                  db "specify 6x6 block.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+TextStyle1($0FC189C, "The designation of\n")
+                  db "residential area is\n"
+                  db "complete with this.\n\n"
+                  db "If you are unsure\n"
+                  db "or would like to\n"
+                  db "hear this again\n"
+                  db "please press B to\n"
+                  db "go back. Otherwise\n"
+                  db "exit this advice.", $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
 // Tutorial
 TextStyle1($0FD5738, "City making in Sim\n")
                   db "City-64, is choosing\n"

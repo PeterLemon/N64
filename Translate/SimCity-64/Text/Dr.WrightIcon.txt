@@ -805,3 +805,142 @@ B9 A9	B6 C8	C3 CF	B6 E8	A4 CE	BB D8	C4 EA	A4 F2	B3 AB	BB CF	A4 B7	A4 C6	A4 AF	A4
  #  工	 #  業	 #  地	 #  区	 #  の	 #  指	 #  定	 #  を	 #  開	 #  始	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #  #	 #  #	| Original Japanese Text
  #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
 00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+------------------------------------------
+Dr. Wright Icon / City Plan / Residential
+------------------------------------------
+工業地区が指定されたことにより、
+With the industrial areas designated,
+$1033F00 (Line 1)
+B9 A9	B6 C8	C3 CF	B6 E8	A4 AC	BB D8	C4 EA	A4 B5	A4 EC	A4 BF	A4 B3	A4 C8	A4 CB	A4 E8	A4 EA	A1 A2	0A	| Original Japanese Hex
+ #  工	 #  業	 #  地	 #  区	 #  が	 #  指	 #  定	 #  さ	 #  れ	 #  た	 #  こ	 #  と	 #  に	 #  よ	 #  り	 #  、	LF	| Original Japanese Text
+ W  i	 t  h	    t	 h  e	    i	 n  d	 u  s	 t  r	 i  a	 l LF	 a  r	 e  a	 s   	 d  e	 s  i	 g  n	 a	| New English Text
+57 69	74 68	20 74	68 65	20 69	6E 64	75 73	74 72	69 61	6C 0A	61 72	65 61	73 20	64 65	73 69	67 6E	61	| New English Hex
+生活必需品が確保されました。
+daily necessities will be secured.
+$1033F21 (Line 2)
+C0 B8	B3 E8	C9 AC	BC FB	C9 CA	A4 AC	B3 CE	CA DD	A4 B5	A4 EC	A4 DE	A4 B7	A4 BF	A1 A3	0A	| Original Japanese Hex
+ #  生	 #  活	 #  必	 #  需	 #  品	 #  が	 #  確	 #  保	 #  さ	 #  れ	 #  ま	 #  し	 #  た	 #  。	LF	| Original Japanese Text
+ t  e	 d  ,	LF  d	 a  i	 l  y	    n	 e  c	 e  s	 s  i	 t  i	 e  s	LF  w	 i  l	 l   	 b	| New English Text
+74 65	64 2C	0A 64	61 69	6C 79	20 6E	65 63	65 73	73 69	74 69	65 73	0A 77	69 6C	6C 20	62	| New English Hex
+しかし、家がなくては市民は寝ることも
+However, citizens can't sleep or live
+$1033F3E (Line 3)
+A4 B7	A4 AB	A4 B7	A1 A2	B2 C8	A4 AC	A4 CA	A4 AF	A4 C6	A4 CF	BB D4	CC B1	A4 CF	BF B2	A4 EB	A4 B3	A4 C8	A4 E2	0A	| Original Japanese Hex
+ #  し	 #  か	 #  し	 #  、	 #  家	 #  が	 #  な	 #  く	 #  て	 #  は	 #  市	 #  民	 #  は	 #  寝	 #  る	 #  こ	 #  と	 #  も	LF	| Original Japanese Text
+ e   	 s  e	 c  u	 r  e	 d  .	LF  H	 o  w	 e  v	 e  r	 ,   	 c  i	 t  i	 z  e	 n  s	LF  c	 a  n	 '  t	    s	 l	| New English Text
+65 20	73 65	63 75	72 65	64 2E	0A 48	6F 77	65 76	65 72	2C 20	63 69	74 69	7A 65	6E 73	0A 63	61 6E	27 74	20 73	6C	| New English Hex
+生活することも出来ません。
+without a home.
+$1033F63 (Line 4)
+C0 B8	B3 E8	A4 B9	A4 EB	A4 B3	A4 C8	A4 E2	BD D0	CD E8	A4 DE	A4 BB	A4 F3	A1 A3	0A 0A	| Original Japanese Hex
+ #  生	 #  活	 #  す	 #  る	 #  こ	 #  と	 #  も	 #  出	 #  来	 #  ま	 #  せ	 #  ん	 #  。	LF LF	| Original Japanese Text
+ e  e	 p   	 o  r	    l	 i  v	 e LF	 w  i	 t  h	 o  u	 t   	 a   	 h  o	 m  e	 . LF	| New English Text
+65 65	70 20	6F 72	20 6C	69 76	65 0A	77 69	74 68	6F 75	74 20	61 20	68 6F	6D 65	2E 0A	| New English Hex
+今度は、市民の家やマンションが建ち並ぶ
+Let's designate a residential district where citizen's houses
+$1033F7F (Line 5)
+BA A3	C5 D9	A4 CF	A1 A2	BB D4	CC B1	A4 CE	B2 C8	A4 E4	A5 DE	A5 F3	A5 B7	A5 E7	A5 F3	A4 AC	B7 FA	A4 C1	CA C2	A4 D6	0A	| Original Japanese Hex
+ #  今	 #  度	 #  は	 #  、	 #  市	 #  民	 #  の	 #  家	 #  や	 #  マ	 #  ン	 #  シ	 #  ョ	 #  ン	 #  が	 #  建	 #  ち	 #  並	 #  ぶ	LF	| Original Japanese Text
+ L  e	 t  '	 s   	 d  e	 s  i	 g  n	 a  t	 e LF	 a   	 r  e	 s  i	 d  e	 n  t	 i  a	 l LF	 d  i	 s  t	 r  i	 c  t	.	| New English Text
+4C 65	74 27	73 20	64 65	73 69	67 6E	61 74	65 0A	61 20	72 65	73 69	64 65	6E 74	69 61	6C 0A	64 69	73 74	72 69	63 74	2E	| New English Hex
+住宅地区を指定しましょう。
+& apartments stand side by side.
+$1033FA6 (Line 6)
+BD BB	C2 F0	C3 CF	B6 E8	A4 F2	BB D8	C4 EA	A4 B7	A4 DE	A4 B7	A4 E7	A4 A6	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  住	 #  宅	 #  地	 #  区	 #  を	 #  指	 #  定	 #  し	 #  ま	 #  し	 #  ょ	 #  う	 #  。	 #  #	 #  #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+住宅地区は、工業地区と同じ方法で
+Residential districts are specified in the same way as
+$1033FC4 (Line 1)
+BD BB	C2 F0	C3 CF	B6 E8	A4 CF	A1 A2	B9 A9	B6 C8	C3 CF	B6 E8	A4 C8	C6 B1	A4 B8	CA FD	CB A1	A4 C7	0A	| Original Japanese Hex
+ #  住	 #  宅	 #  地	 #  区	 #  は	 #  、	 #  工	 #  業	 #  地	 #  区	 #  と	 #  同	 #  じ	 #  方	 #  法	 #  で	LF	| Original Japanese Text
+ R  e	 s  i	 d  e	 n  t	 i  a	 l LF 	 d  i	 s  t	 r  i	 c  t	 s   	 a  r	 e LF	 s  p	 e  c	 i  f	 i	| New English Text
+52 65	73 69	64 65	6E 74	69 61	6C 0A	64 69	73 74	72 69	63 74	73 20	61 72	65 0A	73 70	65 63	69 66	69	| New English Hex
+指定します。
+industrial districts.
+$1033FE5 (Line 2)
+BB D8	C4 EA	A4 B7	A4 DE	A4 B9	A1 A3	0A 0A	| Original Japanese Hex
+ #  指	 #  定	 #  し	 #  ま	 #  す	 #  。	LF LF	| Original Japanese Text
+ e  d	    i	 n   	 t  h	 e LF	 s  a	 m  e	| New English Text
+65 64	20 69	6E 20	74 68	65 0A	73 61	6D 65	| New English Hex
+メインメニューを開き、区画アイコンの
+Open the main menu, select the low density residential
+$1033FF3 (Line 3)
+A5 E1	A5 A4	A5 F3	A5 E1	A5 CB	A5 E5	A1 BC	A4 F2	B3 AB	A4 AD	A1 A2	B6 E8	B2 E8	A5 A2	A5 A4	A5 B3	A5 F3	A4 CE	0A	| Original Japanese Hex
+ #  メ	 #  イ	 #  ン	 #  メ	 #  ニ	 #  ュ	 #  ー	 #  を	 #  開	 #  き	 #  、	 #  区	 #  画	 #  ア	 #  イ	 #  コ	 #  ン	 #  の	LF	| Original Japanese Text
+    w	 a  y	    a	 s LF	 i  n	 d  u	 s  t	 r  i	 a  l	LF  d	 i  s	 t  r	 i  c	 t  s	 .   	 O  p	 e  n	    t	 h	| New English Text
+20 77	61 79	20 61	73 0A	69 6E	64 75	73 74	72 69	61 6C	0A 64	69 73	74 72	69 63	74 73	2E 20	4F 70	65 6E	20 74	68	| New English Hex
+低密度住宅地区を選択し、
+area of the section icon,
+$1034018 (Line 4)
+C4 E3	CC A9	C5 D9	BD BB	C2 F0	C3 CF	B6 E8	A4 F2	C1 AA	C2 F2	A4 B7	A1 A2	0A	| Original Japanese Hex
+ #  低	 #  密	 #  度	 #  住	 #  宅	 #  地	 #  区	 #  を	 #  選	 #  択	 #  し	 #  、	LF	| Original Japanese Text
+ e LF	 m  a	 i  n	    m	 e  n	 u  ,	    s	 e  l	 e  c	 t LF	 r  e	 s  i	 d	| New English Text
+65 0A	6D 61	69 6E	20 6D	65 6E	75 2C	20 73	65 6C	65 63	74 0A	72 65	73 69	64	| New English Hex
+工業地区から少し離れた場所に
+please specify the size 6x6 in a place
+$1034031 (Line 5)
+B9 A9	B6 C8	C3 CF	B6 E8	A4 AB	A4 E9	BE AF	A4 B7	CE A5	A4 EC	A4 BF	BE EC	BD EA	A4 CB	0A	| Original Japanese Hex
+ #  工	 #  業	 #  地	 #  区	 #  か	 #  ら	 #  少	 #  し	 #  離	 #  れ	 #  た	 #  場	 #  所	 #  に	LF	| Original Japanese Text
+ e  n	 t  i	 a  l	LF  a	 r  e	 a   	 o  f	    s	 e  c	 t  i	 o  n	LF  i	 c  o	 n  ,	  	| New English Text
+65 6E	74 69	61 6C	20 61	72 65	61 0A	6F 66	20 73	65 63	74 69	6F 6E	20 69	63 6F	6E 2C	20	| New English Hex
+６×６の大きさで指定してください。
+slightly away from the industrial area.
+$103404E (Line 6)
+A3 B6	A1 DF	A3 B6	A4 CE	C2 E7	A4 AD	A4 B5	A4 C7	BB D8	C4 EA	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  ６	 #  ×	 #  ６	 #  の	 #  大	 #  き	 #  さ	 #  で	 #  指	 #  定	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #  #	 #  #	| Original Japanese Text
+ & LF	 s  p	 e  c	 i  f	 y   	 6  x	 6   	 b  l	 o  c	 k  .	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+26 0A	73 70	65 63	69 66	79 20	36 78	36 20	62 6C	6F 63	6B 2E	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
+
+これで住宅地区の指定は完了です。
+The designation of the residential area is completed with this.
+$1034074 (Line 1)
+A4 B3	A4 EC	A4 C7	BD BB	C2 F0	C3 CF	B6 E8	A4 CE	BB D8	C4 EA	A4 CF	B4 B0	CE BB	A4 C7	A4 B9	A1 A3	0A 0A	| Original Japanese Hex
+ #  こ	 #  れ	 #  で	 #  住	 #  宅	 #  地	 #  区	 #  の	 #  指	 #  定	 #  は	 #  完	 #  了	 #  で	 #  す	 #  。	LF LF	| Original Japanese Text
+ T  h	 e   	 d  e	 s  i	 g  n	 a  t	 i  o	 n   	 o  f	LF  r	 e  s	 i  d	 e  n	 t  i	 a  l	    a	 r  e	| New English Text
+54 68	65 20	64 65	73 69	67 6E	61 74	69 6F	6E 20	6F 66	0A 72	65 73	69 64	65 6E	74 69	61 6C	20 61	72 65	| New English Hex
+もう一度聞きたい場合や
+If you want to listen again 
+$1034096 (Line 2)
+A4 E2	A4 A6	B0 EC	C5 D9	CA B9	A4 AD	A4 BF	A4 A4	BE EC	B9 E7	A4 E4	0A	| Original Japanese Hex
+ #  も	 #  う	 #  一	 #  度	 #  聞	 #  き	 #  た	 #  い	 #  場	 #  合	 #  や	LF	| Original Japanese Text
+ a   	 i  s	    c	 o  m	 p  l	 e  t	 e   	 w  i	 t  h	    t	 h  i	 s	| New English Text
+61 20	69 73	0A 63	6F 6D	70 6C	65 74	65 20	77 69	74 68	20 74	68 69	73	| New English Hex
+まだよく分らない場合は、
+or if you do not understand well yet,
+$10340AD (Line 3)
+A4 DE	A4 C0	A4 E8	A4 AF	CA AC	A4 E9	A4 CA	A4 A4	BE EC	B9 E7	A4 CF	A1 A2	0A	| Original Japanese Hex
+ #  ま	 #  だ	 #  よ	 #  く	 #  分	 #  ら	 #  な	 #  い	 #  場	 #  合	 #  は	 #  、	LF	| Original Japanese Text
+ . LF	LF  I	 f   	 y  o	 u   	 a  r	 e   	 u  n	 s  u	 r  e	LF  o	 r   	 w	| New English Text
+2E 0A	0A 49	66 20	79 6F	75 20	61 72	65 20	75 6E	73 75	72 65	0A 6F	72 20	77	| New English Hex
+Ｂボタンで説明を読み返してください。
+please read the explanation with the B button.
+$10340C6 (Line 4)
+A3 C2	A5 DC	A5 BF	A5 F3	A4 C7	C0 E2	CC C0	A4 F2	C6 C9	A4 DF	CA D6	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	0A 0A	| Original Japanese Hex
+ #  Ｂ	 #  ボ	 #  タ	 #  ン	 #  で	 #  説	 #  明	 #  を	 #  読	 #  み	 #  返	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	LF LF	| Original Japanese Text
+ o  u	 l  d	    l	 i  k	 e   	 t  o	LF  h	 e  a	 r   	 t  h	 i  s	    a	 g  a	 i  n	LF  p	 l  e	 a  s	 e   	 p  r	| New English Text
+6F 75	6C 64	20 6C	69 6B	65 20	74 6F	0A 68	65 61	72 20	74 68	69 73	20 61	67 61	69 6E	0A 70	6C 65	61 73	65 20	70 72	| New English Hex
+もう分ったのであれば、
+If you already know,
+$10340EC (Line 5)
+A4 E2	A4 A6	CA AC	A4 C3	A4 BF	A4 CE	A4 C7	A4 A2	A4 EC	A4 D0	A1 A2	0A	| Original Japanese Hex
+ #  も	 #  う	 #  分	 #  っ	 #  た	 #  の	 #  で	 #  あ	 #  れ	 #  ば	 #  、	LF	| Original Japanese Text
+ e  s	 s   	 B   	 t  o	LF  g	 o   	 b  a	 c  k	 .   	 O  t	 h  e	 r	| New English Text
+65 73	73 20	42 20	74 6F	0A 67	6F 20	62 61	63 6B	2E 20	4F 74	68 65	72	| New English Hex
+アドバイスを終了して、
+I ended advice,
+$1034103 (Line 6)
+A5 A2	A5 C9	A5 D0	A5 A4	A5 B9	A4 F2	BD AA	CE BB	A4 B7	A4 C6	A1 A2	0A	| Original Japanese Hex
+ #  ア	 #  ド	 #  バ	 #  イ	 #  ス	 #  を	 #  終	 #  了	 #  し	 #  て	 #  、	LF	| Original Japanese Text
+ w  i	 s  e	LF  e	 x  i	 t   	 t  h	 i  s	    a	 d  v	 i  c	 e  .	#	| New English Text
+77 69	73 65	0A 65	78 69	74 20	74 68	69 73	20 61	64 76	69 63	65 2E	00	| New English Hex
+住宅地区の指定を開始してください。
+please start designating residential area.
+$103411A (Line 7)
+BD BB	C2 F0	C3 CF	B6 E8	A4 CE	BB D8	C4 EA	A4 F2	B3 AB	BB CF	A4 B7	A4 C6	A4 AF	A4 C0	A4 B5	A4 A4	A1 A3	00 00	00 00	| Original Japanese Hex
+ #  住	 #  宅	 #  地	 #  区	 #  の	 #  指	 #  定	 #  を	 #  開	 #  始	 #  し	 #  て	 #  く	 #  だ	 #  さ	 #  い	 #  。	 #  #	 #  #	| Original Japanese Text
+ #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	 #  #	| New English Text
+00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	00 00	| New English Hex
