@@ -2,7 +2,7 @@
 
 endian msb // N64 MIPS requires Big-Endian Encoding (Most Significant Bit)
 output "SimCity-64.ndd", create
-origin $000000; insert "NUD-DSCJ-JPN.ndd" // Include Japanese Sim City 64 N64 DD ROM
+origin $000000; insert "NUD-DSCJ-JPN_clean.ndd" // Include Japanese Sim City 64 N64 DD "Clean" ROM
 
 macro TextStyle1(OFFSET, TEXT) {
   origin {OFFSET}
