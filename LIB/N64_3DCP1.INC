@@ -688,8 +688,8 @@ macro XZRotCalc(x, z, precalc) { // Return XZ Rotation
   lwc1 f4,8(t1)   // F4  =  ZS
   lwc1 f12,12(t1) // F12 = -ZC
   mul.s f7,f13    // F7  =  XC * -ZS
-  mul.s f8,f13,f3 // F8  = -XC * ZC
-  mul.s f11,f9,f4 // F11 = -XS * ZS
+  mul.s f8,f13,f3 // F8  =  XC * ZC
+  mul.s f11,f9,f4 // F11 =  XS * ZS
   mul.s f12,f9    // F12 =  XS * -ZC
 }
 
