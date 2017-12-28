@@ -479,7 +479,7 @@ A4000514:
   // While ((*$A4600010 & 1)) (Wait For PI No DMA Busy Status)
   lui t3,PI_BASE // T3 = PI_BASE ($A4600000)
   lw t3,PI_STATUS(t3) // T3 = PI_STATUS WORD[$A4600010]
-  andi t3,t3,1 // T3 &= Status DMA Busy Bit 
+  andi t3,1 // T3 &= Status DMA Busy Bit 
   bnez t3,A4000514 // IF (T3 != 0) GOTO $514
   nop // Delay Slot
 
@@ -1000,4 +1000,4 @@ A4000AD0:
 A4000B6C:
   nop // Delay
 
-insert Footer, "FOOTER.BIN" // Footer Data
+include "IPL3Font.asm" // IPL3 Font Data
