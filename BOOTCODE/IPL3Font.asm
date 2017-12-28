@@ -1,4 +1,4 @@
-// IPL3 Font Data (1-BPP, 13x14 Characters, With 2 Bits Of Padding, 23 Bytes each)
+// IPL3 Font Data (1-BPP, 13x14 Characters, With 2 Bits Of Padding, 23 Bytes Each)
 // Special Thanks To Zoinkity For The IPL3 Font Documentation
 
 macro IPL3FontConvert(char) {
