@@ -8,6 +8,8 @@ origin $00000000; insert "Star Fox 64 (U) (V1.1) [!].z64" // Include USA Star Fo
 origin $00000020
 db "STARFOX64 WS               " // $00000020 - PROGRAM TITLE (27 Byte ASCII String, Use Spaces For Unused Bytes)
 
-origin $00003DA2
-         // ROM       RAM         Widescreen (Streched)
-dh $3FE3 // $00003DA2 $800031A2 - (2 Bytes) ($3FAA)
+include "LIB/N64.INC" // Include N64 Definitions
+
+origin $00003DA0
+             // ROM       RAM         Widescreen (Streched)
+lui a3,$3FE3 // $00003DA0 $800031A0 - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
