@@ -277,11 +277,11 @@ dw $24020001 //LOD High Poly Racers
 
 //Draw Distance Improvement Hack
 origin $000873B0
-dw $3C014100
+lui at,$4100
 
 origin $000873C0
-dw $44814000
-dw $3C014680
+mtc1 at,f8
+lui at,$4680
 
 origin $000873CC
-dw $44811000
+mtc1 at,f2
