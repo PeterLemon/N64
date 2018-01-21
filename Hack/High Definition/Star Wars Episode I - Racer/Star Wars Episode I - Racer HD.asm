@@ -1,4 +1,4 @@
-// N64 "Star Wars Episode I - Racer" High Definition Hack by gamemasterplc, retroben, theboy181:
+// N64 "Star Wars Episode I - Racer" High Definition Hack by gamemasterplc, retroben, shygoo, theboy181:
 
 arch n64.cpu
 endian msb // N64 MIPS requires Big-Endian Encoding (Most Significant Bit)
