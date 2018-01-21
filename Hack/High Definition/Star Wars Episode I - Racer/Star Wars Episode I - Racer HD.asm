@@ -272,8 +272,8 @@ lui at, 0xC1EA //Most Machine Status Messages X Position (-29.25f)
 origin $00059A74
 lui at, 0xC1EA //ENGINE FIRE Text X Position (-29.25f)
 
-origin $00070d68 
-dw $24020001 //LOD High Poly Racers
+origin $00070D68 
+addiu v0,r0,$0001 //LOD High Poly Racers
 
 //Draw Distance Improvement Hack
 origin $000873B0
