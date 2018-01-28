@@ -1,5 +1,5 @@
 // N64 "Automobili Lamborghini" High Definition Hack by krom (Peter Lemon):
-// Special thanks to theboy181
+// Special thanks to theboy181 & retroben
 
 arch n64.cpu
 endian msb // N64 MIPS requires Big-Endian Encoding (Most Significant Bit)
