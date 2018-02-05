@@ -1,5 +1,5 @@
 // N64 "Snowboard Kids 2" Widescreen Hack by krom (Peter Lemon):
-// Special thanks to theboy181
+// Special thanks to gamemasterplc
 
 arch n64.cpu
 endian msb // N64 MIPS requires Big-Endian Encoding (Most Significant Bit)
