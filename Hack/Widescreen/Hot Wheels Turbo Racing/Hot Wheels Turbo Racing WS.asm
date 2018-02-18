@@ -31,6 +31,19 @@ origin $00053EB8
 lui a3,$3FE3 // $00053EB8 $800B32B8 - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
 
 
+origin $00054828
+             // ROM       RAM         Car Menu Fixed For Widescreen
+lui at,$3FAA // $00054828 $800B3C28 - (4 Bytes) (LUI AT,$3F80: $3C013F80)
+
+origin $000548B4
+             // ROM       RAM         Car Menu Fixed For Widescreen
+lui at,$3FFF // $000548B4 $800B3CB4 - (4 Bytes) (LUI AT,$3FC0: $3C013FC0)
+
+origin $000548EC
+             // ROM       RAM         Car Menu Fixed For Widescreen
+lui at,$3FAA // $000548EC $800B3CEC - (4 Bytes) (LUI AT,$3F80: $3C013F80)
+
+
 origin $0005A514
     // ROM       RAM         Remove Menu Arrows For Widescreen
 nop // $0005A514 $800B9914 - (4 Bytes) (SH S3,$0030(V0): $A4530030)
