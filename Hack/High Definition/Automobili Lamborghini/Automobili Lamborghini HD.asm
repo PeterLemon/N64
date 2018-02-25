@@ -61,13 +61,13 @@ origin $00004EBC
 lui at,$4700 // $00004EBC $800042BC - (4 Bytes) (LUI AT,$43E1: $3C0143E1)
 
 origin $00089BD0
-             // ROM       RAM         Improved DD (Draw Distance)
-dw $47927C00 // $00089BD0 $80088FD0 - (4 Bytes) ($4756D800)
+                // ROM       RAM         Improved DD (Draw Distance)
+float32 75000.0 // $00089BD0 $80088FD0 - (IEEE32) (55000.0)
 
 origin $0008E2E0
-             // ROM       RAM         Improved DD (Draw Distance)
-dw $460CA000 // $0008E2E0 $8008D6E0 - (4 Bytes) ($44098000)
-dw $460CA000 // $0008E2E4 $8008D6E4 - (4 Bytes) ($43898000)
+               // ROM       RAM         Improved DD (Draw Distance)
+float32 9000.0 // $0008E2E0 $8008D6E0 - (IEEE32) (550.0)
+float32 9000.0 // $0008E2E4 $8008D6E4 - (IEEE32) (275.0)
 
 
 origin $00004D90
