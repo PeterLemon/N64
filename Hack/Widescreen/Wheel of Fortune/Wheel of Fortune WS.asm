@@ -11,6 +11,5 @@ db "WHEEL OF FORTUNE WS        " // $00000020 - PROGRAM TITLE (27 Byte ASCII Str
 include "LIB/N64.INC" // Include N64 Definitions
 
 origin $000178C4
-             // ROM       RAM         Widescreen (Streched)
-lui a3,$3FE3 // $000178C4 $80016CC4 - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
-ori a3,$8E39 // $000178C8 $80016CC8 - (4 Bytes) (ORI A3,$AAAB: $34E7AAAB)
+                // ROM       RAM         Widescreen (Streched)
+li a3,$3FE38E39 // $000178C4 $80016CC4 - (8 Bytes) (LUI A3,$3FAA: $3C073FAA, ORI A3,$AAAB: $34E7AAAB)
