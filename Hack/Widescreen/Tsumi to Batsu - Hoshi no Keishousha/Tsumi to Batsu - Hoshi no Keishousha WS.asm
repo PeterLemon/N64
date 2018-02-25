@@ -11,5 +11,5 @@ db "TSUMI TO BATSU WS          " // $00000020 - PROGRAM TITLE (27 Byte ASCII Str
 include "LIB/N64.INC" // Include N64 Definitions
 
 origin $0003E0CC
-             // ROM       RAM         Widescreen (Streched)
-dw $3FE3AAAB // $0003E0CC $80062CCC - (4 Bytes) ($3FAAAAAB)
+                   // ROM       RAM         Widescreen (Streched)
+float32 1.77777777 // $0003E0CC $80062CCC - (IEEE32) (1.33333333)
