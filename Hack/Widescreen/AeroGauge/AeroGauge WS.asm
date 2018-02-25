@@ -27,11 +27,11 @@ origin $00043BB0
 lui a3,$3FE2 // $00043BB0 $80042FB0 - (4 Bytes) (LUI A3,$3FA0: $3C073FA0)
 
 origin $000976BC
-             // ROM       RAM         Widescreen (Streched)
-dw $40638E39 // $000976BC $80096ABC - (4 Bytes) ($402AAAAB)
-dw $3FE38BAC // $000976C0 $80096AC0 - (4 Bytes) ($3FAAAAAB)
-dw $40638E39 // $000976C4 $80096AC4 - (4 Bytes) ($402AAAAB)
+                   // ROM       RAM         Widescreen (Streched)
+float32 3.55555555 // $000976BC $80096ABC - (IEEE32) (2.66666666)
+float32 1.77777777 // $000976C0 $80096AC0 - (IEEE32) (1.33333333)
+float32 3.55555555 // $000976C4 $80096AC4 - (IEEE32) (2.66666666)
 
 origin $000976CC
-             // ROM       RAM         Widescreen (Streched)
-dw $3FE38BAC // $000976CC $80096ACC - (4 Bytes) ($3FAAAAAB)
+                   // ROM       RAM         Widescreen (Streched)
+float32 1.77777777 // $000976CC $80096ACC - (IEEE32) (1.33333333)
