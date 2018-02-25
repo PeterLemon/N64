@@ -11,6 +11,5 @@ db "HYDRO THUNDER WS           " // $00000020 - PROGRAM TITLE (27 Byte ASCII Str
 include "LIB/N64.INC" // Include N64 Definitions
 
 origin $0006290C
-             // ROM       RAM         Widescreen (Streched)
-lui at,$3FE3 // $0006290C $8020B20C - (4 Bytes) (LUI AT,$3FAA: $3C013FAA)
-ori at,$8E39 // $00062910 $8020B210 - (4 Bytes) (ORI AT,$AAAB: $3421AAAB)
+                // ROM       RAM         Widescreen (Streched)
+li at,$3FE38E39 // $0006290C $8020B20C - (8 Bytes) (LUI AT,$3FAA: $3C013FAA, ORI AT,$AAAB: $3421AAAB)
