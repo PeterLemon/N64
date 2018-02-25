@@ -11,16 +11,16 @@ db "AEROGAUGE WS               " // $00000020 - PROGRAM TITLE (27 Byte ASCII Str
 include "LIB/N64.INC" // Include N64 Definitions
 
 origin $0000FC6C
-             // ROM       RAM         Widescreen (Streched)
-lui a3,$3FE2 // $0000FC6C $8000F06C - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
+                // ROM       RAM         Widescreen (Streched)
+li a3,$3FE38E39 // $0000FC6C $8000F06C - (8 Bytes) (LUI A3,$3FAA: $3C073FAA, ORI A3,$AAAB: $34E7AAAB)
 
 origin $000405C4
              // ROM       RAM         Widescreen (Streched)
 lui a3,$3FE2 // $000405C4 $8003F9C4 - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
 
 origin $00042A58
-             // ROM       RAM         Widescreen (Streched)
-lui a3,$3FE2 // $00042A58 $80041E58 - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
+                // ROM       RAM         Widescreen (Streched)
+li a3,$3FE38E39 // $00042A58 $80041E58 - (8 Bytes) (LUI A3,$3FAA: $3C073FAA, ORI A3,$AAAB: $34E7AAAB)
 
 origin $00043BB0
              // ROM       RAM         Widescreen (Streched)
