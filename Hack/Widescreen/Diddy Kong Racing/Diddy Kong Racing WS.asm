@@ -13,15 +13,18 @@ include "LIB/N64.INC" // Include N64 Definitions
 origin $00066E44
              // ROM       RAM         Widescreen (Streched)
 lui a3,$3FE3 // $00066E44 $80066244 - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
+ori a3,$8E39 // $00066E48 $80066248 - (4 Bytes) (ORI A3,$AAAB: $34E7AAAB)
 
 origin $00066F94
              // ROM       RAM         Widescreen (Streched)
 lui a3,$3FE3 // $00066F94 $80066394 - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
+ori a3,$8E39 // $00066F98 $80066398 - (4 Bytes) (ORI A3,$AAAB: $34E7AAAB)
 
 origin $00066FFC
              // ROM       RAM         Widescreen (Streched)
 lui a3,$3FE3 // $00066FFC $800663FC - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
+ori a3,$8E39 // $00067000 $80066400 - (4 Bytes) (ORI A3,$AAAB: $34E7AAAB)
 
 origin $000E8C98
-             // ROM       RAM         Widescreen (Streched)
-dw $3FE3AAAB // $000E8C98 $80126714 - (4 Bytes) ($3FAAAAAB)
+                   // ROM       RAM         Widescreen (Streched)
+float32 1.77777777 // $000E8C98 $80126714 - (IEEE32) (1.33333333)
