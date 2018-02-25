@@ -11,6 +11,5 @@ db "TOM AND JERRY WS           " // $00000020 - PROGRAM TITLE (27 Byte ASCII Str
 include "LIB/N64.INC" // Include N64 Definitions
 
 origin $0000D370
-             // ROM       RAM         Widescreen (Streched)
-lui a3,$3FE3 // $0000D370 $8000C770 - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
-ori a3,$8E39 // $0000D374 $8000C774 - (4 Bytes) (ORI A3,$AAAB: $34E7AAAB)
+                // ROM       RAM         Widescreen (Streched)
+li a3,$3FE38E39 // $0000D370 $8000C770 - (8 Bytes) (LUI A3,$3FAA: $3C073FAA, ORI A3,$AAAB: $34E7AAAB)
