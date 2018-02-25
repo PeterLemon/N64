@@ -11,5 +11,5 @@ db "CRUIS'N WORLD WS           " // $00000020 - PROGRAM TITLE (27 Byte ASCII Str
 include "LIB/N64.INC" // Include N64 Definitions
 
 origin $000A5410
-             // ROM       RAM         Widescreen (Streched)
-dw $3FE38E39 // $000A5410 $80351810 - (4 Bytes) ($3FAAAAAB)
+                   // ROM       RAM         Widescreen (Streched)
+float32 1.77777777 // $000A5410 $80351810 - (IEEE32) (1.33333333)
