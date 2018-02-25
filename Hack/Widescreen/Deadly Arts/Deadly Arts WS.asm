@@ -11,5 +11,5 @@ db "DeadlyArts WS              " // $00000020 - PROGRAM TITLE (27 Byte ASCII Str
 include "LIB/N64.INC" // Include N64 Definitions
 
 origin $000328BC
-             // ROM       RAM         Widescreen (Streched)
-dw $3FE38E38 // $000328BC $80031CBC - (4 Bytes) ($3FAAAAAB)
+                   // ROM       RAM         Widescreen (Streched)
+float32 1.77777777 // $000328BC $80031CBC - (IEEE32) (1.33333333)
