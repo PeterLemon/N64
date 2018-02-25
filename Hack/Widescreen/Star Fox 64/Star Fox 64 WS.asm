@@ -11,5 +11,5 @@ db "STARFOX64 WS               " // $00000020 - PROGRAM TITLE (27 Byte ASCII Str
 include "LIB/N64.INC" // Include N64 Definitions
 
 origin $00003DA0
-             // ROM       RAM         Widescreen (Streched)
-lui a3,$3FE3 // $00003DA0 $800031A0 - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
+                // ROM       RAM         Widescreen (Streched)
+li a3,$3FE38E39 // $00003DA0 $800031A0 - (8 Bytes) (LUI A3,$3FAA: $3C073FAA, ORI A3,$AAAB: $34E7AAAB)
