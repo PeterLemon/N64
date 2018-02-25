@@ -11,6 +11,5 @@ db "Quest 64 WS                " // $00000020 - PROGRAM TITLE (27 Byte ASCII Str
 include "LIB/N64.INC" // Include N64 Definitions
 
 origin $0001392C
-             // ROM       RAM         Widescreen (Streched)
-lui a3,$3FE3 // $0001392C $80012D2C - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
-ori a3,$8E39 // $00013930 $80012D30 - (4 Bytes) (ORI A3,$AAAB: $34E7AAAB)
+                // ROM       RAM         Widescreen (Streched)
+li a3,$3FE38E39 // $0001392C $80012D2C - (8 Bytes) (LUI A3,$3FAA: $3C073FAA, ORI A3,$AAAB: $34E7AAAB)
