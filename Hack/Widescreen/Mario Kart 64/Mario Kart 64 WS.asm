@@ -10,13 +10,13 @@ db "MARIOKART64 WS             " // $00000020 - PROGRAM TITLE (27 Byte ASCII Str
 include "LIB/N64.INC" // Include N64 Definitions
 
 origin $000952B8
-li a3, 0x3FE38E39  //Rotating Nintendo Logo Aspect Ratio (1.77777f)
+li a3,$3FE38E39 // Rotating Nintendo Logo Aspect Ratio (1.77777777f)
 
 origin $000953EC
-li a3, 0x3FE38E39 //Title Screen Flag Aspect Ratio (1.77777f)
+li a3,$3FE38E39 // Title Screen Flag Aspect Ratio (1.77777777f)
 
 origin $0012322C
-float32 1.777777 //1 Player Mode Aspect Ratio
-float32 0.888888 //2 Player Vertical Splitscreen Aspect Ratio
-float32 3.555555 //2 Player Horizontal Splitscreen Aspect Ratio
-float32 1.777777 //3 Player and 4 Player Mode Aspect Ratio
+float32 1.77777777 // 1 Player Mode Aspect Ratio
+float32 0.88888888 // 2 Player Vertical Splitscreen Aspect Ratio
+float32 3.55555555 // 2 Player Horizontal Splitscreen Aspect Ratio
+float32 1.77777777 // 3 Player and 4 Player Mode Aspect Ratio
