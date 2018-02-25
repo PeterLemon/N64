@@ -1,5 +1,5 @@
 // N64 "Quest 64" Widescreen Hack by krom (Peter Lemon):
-// Special thanks to gamemasterplc
+// Special thanks to theboy181
 
 arch n64.cpu
 endian msb // N64 MIPS requires Big-Endian Encoding (Most Significant Bit)
