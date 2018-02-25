@@ -1,6 +1,10 @@
 N64 DD Japanese To English Translation
 =======================================
 <br />
+** This translation is now discontinued **<br />
+Please go to: https://github.com/LuigiBlood/Translate/tree/master/64DD/Mario%20Artist%20Polygon%20Studio<br />
+For a full 100% complete translation by LuigiBlood.<br />
+<br />
 Translation by krom (Peter Lemon).<br />
 <br />
 All code compiles out of box with the bass assembler by byuu.<br />
