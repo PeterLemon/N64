@@ -71,16 +71,16 @@ float32 9000.0 // $0008E2E4 $8008D6E4 - (IEEE32) (275.0)
 
 
 origin $00004D90
-             // ROM       RAM         Widescreen (Streched)
-lui a3,$3FE3 // $00004D90 $80004190 - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
+                // ROM       RAM         Widescreen (Streched)
+li a3,$3FE38E39 // $00004D90 $80004190 - (8 Bytes) (LUI A3,$3FAA: $3C073FAA, ORI A3,$AAAB: $34E7AAAB)
 
 origin $00004F58
-             // ROM       RAM         Widescreen (Streched)
-lui a3,$3FE3 // $00004F58 $80004358 - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
+                // ROM       RAM         Widescreen (Streched)
+li a3,$3FE38E39 // $00004F58 $80004358 - (8 Bytes) (LUI A3,$3FAA: $3C073FAA, ORI A3,$AAAB: $34E7AAAB)
 
 origin $000438E0
-             // ROM       RAM         Widescreen (Streched)
-lui a3,$3FE3 // $000438E0 $80042CE0 - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
+                // ROM       RAM         Widescreen (Streched)
+li a3,$3FE38E39 // $000438E0 $80042CE0 - (8 Bytes) (LUI A3,$3FAA: $3C073FAA, ORI A3,$AAAB: $34E7AAAB)
 
 origin $0007617C
              // ROM       RAM         Widescreen (Streched)
