@@ -19,8 +19,8 @@ origin $000AF820
 lui a3,$3FE3 // $000AF820 $801E11F0 - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
 
 origin $000BDA20
-             // ROM       RAM         Widescreen (Streched)
-lui a3,$3FE3 // $000BDA20 $801EF3F0 - (4 Bytes) (LUI A3,$3FAA: $3C073FAA)
+                // ROM       RAM         Widescreen (Streched)
+li a3,$3FE38E39 // $000BDA20 $801EF3F0 - (8 Bytes) (LUI A3,$3FAA: $3C073FAA, ORI A3,$AAAB: $34E7AAAB)
 
 origin $000BEE14
              // ROM       RAM         Widescreen (Streched)
