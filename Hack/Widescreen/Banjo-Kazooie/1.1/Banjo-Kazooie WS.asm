@@ -9,15 +9,15 @@ db "Banjo-Kazooie WS           " // $00000020 - PROGRAM TITLE (27 Byte ASCII Str
 
 include "LIB/N64.INC" // Include N64 Definitions
 
-origin $00001034 //7 Instructions of Free Space
+origin $00001034 // 7 Instructions of Free Space
 aspectcorrections:
-lui a1, 0x4334 //Render Fix Value
-lui at, 0x8027 //Upper Half of Addresses
-sw a1, 0x683C(at) //Left Side Render Fix
-sw a1, 0x6840(at) //Right Side Render Fix
-lui a1, 0x3FE6 //Upper Half of Aspect Ratio Value
-jalr ra, t9 //Call game
-sw a1, 0x4B74(at) //Update Aspect Ratio Value
+lui a1,$4334 // Render Fix Value
+lui at,$8027 // Upper Half of Addresses
+sw a1,$683C(at) // Left Side Render Fix
+sw a1,$6840(at) // Right Side Render Fix
+lui a1,$3FE6 // Upper Half of Aspect Ratio Value
+jalr ra,t9 // Call game
+sw a1,$4B74(at) // Update Aspect Ratio Value (Delay Slot)
 
 origin $0000112C
-j $80000434 //Jump to Aspect Corrections
+j $80000434 // Jump to Aspect Corrections
