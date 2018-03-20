@@ -32,13 +32,13 @@ sw at,$0008(sp) // $00005DFC $800051FC - (4 Bytes) (SLTU AT,T6,AT: $01C1082B)
 nop             // $00005E00 $80005200 - (4 Bytes) (BNEZ AT,$8000510C: $1420FFC2)
 
 
-origin $00B36478
-                  // ROM       RAM         Faster Subscreen Delay
-addiu a1,r0,$0100 // $00B36478 $???????? - (4 Bytes) (ADDIU A1,R0,$0140: $24050140)
+//origin $00B36478
+                  // ROM       RAM         Faster Subscreen Delay (** Breaks Pause Screen **)
+//addiu a1,r0,$0100 // $00B36478 $???????? - (4 Bytes) (ADDIU A1,R0,$0140: $24050140)
 
-origin $00B36480
-                  // ROM       RAM         Faster Subscreen Delay
-addiu a2,r0,$00CA // $00B36480 $???????? - (4 Bytes) (ADDIU A2,R0,$00F0: $240600F0)
+//origin $00B36480
+                  // ROM       RAM         Faster Subscreen Delay (** Breaks Pause Screen **)
+//addiu a2,r0,$00CA // $00B36480 $???????? - (4 Bytes) (ADDIU A2,R0,$00F0: $240600F0)
 
 origin $00B36B68
                   // ROM       RAM         Faster Subscreen Delay
