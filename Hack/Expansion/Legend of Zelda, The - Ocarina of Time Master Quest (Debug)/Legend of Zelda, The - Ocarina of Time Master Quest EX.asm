@@ -42,7 +42,7 @@ nop             // $00005E00 $80005200 - (4 Bytes) (BNEZ AT,$8000510C: $1420FFC2
 
 origin $00B36B68
                   // ROM       RAM         Faster Subscreen Delay
-addiu t2,r0,$0003 // $00B36B68 $???????? - (4 Bytes) (ADDIU T2,R0,$0002: $240A0002)
+addiu t2,r0,$0003 // $00B36B68 $800BF9CB - (4 Bytes) (ADDIU T2,R0,$0002: $240A0002)
 
 
 origin $00ACEE2C
