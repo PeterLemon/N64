@@ -1,4 +1,4 @@
-// N64 'Bare Metal' CPU Halfword Test Demo by krom (Peter Lemon):
+// N64 'Bare Metal' CPU Load Halfword Test Demo by krom (Peter Lemon):
 arch n64.cpu
 endian msb
 output "CPULH.N64", create
