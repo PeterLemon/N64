@@ -1,0 +1,2 @@
+bass RSPFastZigZagQuantizationMultiBlock16BIT.asm
+chksum64 RSPFastZigZagQuantizationMultiBlock16BIT.N64
