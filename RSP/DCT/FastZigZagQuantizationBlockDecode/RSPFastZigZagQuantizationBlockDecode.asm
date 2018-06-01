@@ -34,9 +34,7 @@ Start:
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
 Loop:
-  subi t0,1 // Delay Slot
   j Loop
-  addi t0,1 // Delay Slot
   nop // Delay Slot
 
 align(8) // Align 64-Bit
