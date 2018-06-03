@@ -537,11 +537,11 @@ arch n64.rdp
   Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,8, $000, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT COLOR INDEX,SIZE 8B,Tile Line Size 8 (64bit Words), TMEM Address $000, Tile 0
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,64-1, ZigZagTexture // Set Texture Image: FORMAT COLOR INDEX,SIZE 8B,WIDTH 64, Sample DRAM ADDRESS
   Load_Tile 0<<2,0<<2, 0, 63<<2,0<<2 // Load_Tile: SL 0.0,TL 0.0, Tile 0, SH 63.0,TH 0.0
-  Sync_Tile // Sync Tile
 
   define t(0)
   define y(0)
   while {y} < 240 {
+    Sync_Tile // Sync Tile
     Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,1-1, DCTQBLOCKS+{t} // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 1, Tlut DRAM ADDRESS
     Set_Tile 0,0,0, $100, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: TMEM Address $100, Tile 0
     Load_Tlut 0<<2,0<<2, 0, 63<<2,0<<2 // Load Tlut: SL 0.0,TL 0.0, Tile 0, SH 63.0,TH 0.0
@@ -551,6 +551,7 @@ arch n64.rdp
 
     evaluate t({t} + 128)
 
+    Sync_Tile // Sync Tile
     Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,1-1, DCTQBLOCKS+{t} // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 1, Tlut DRAM ADDRESS
     Set_Tile 0,0,0, $100, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: TMEM Address $100, Tile 0
     Load_Tlut 0<<2,0<<2, 0, 63<<2,0<<2 // Load Tlut: SL 0.0,TL 0.0, Tile 0, SH 63.0,TH 0.0
@@ -560,6 +561,7 @@ arch n64.rdp
 
     evaluate t({t} + 128)
 
+    Sync_Tile // Sync Tile
     Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,1-1, DCTQBLOCKS+{t} // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 1, Tlut DRAM ADDRESS
     Set_Tile 0,0,0, $100, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: TMEM Address $100, Tile 0
     Load_Tlut 0<<2,0<<2, 0, 63<<2,0<<2 // Load Tlut: SL 0.0,TL 0.0, Tile 0, SH 63.0,TH 0.0
@@ -569,6 +571,7 @@ arch n64.rdp
 
     evaluate t({t} + 128)
 
+    Sync_Tile // Sync Tile
     Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,1-1, DCTQBLOCKS+{t} // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 1, Tlut DRAM ADDRESS
     Set_Tile 0,0,0, $100, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: TMEM Address $100, Tile 0
     Load_Tlut 0<<2,0<<2, 0, 63<<2,0<<2 // Load Tlut: SL 0.0,TL 0.0, Tile 0, SH 63.0,TH 0.0
@@ -578,6 +581,7 @@ arch n64.rdp
 
     evaluate t({t} + 128)
 
+    Sync_Tile // Sync Tile
     Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,1-1, DCTQBLOCKS+{t} // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 1, Tlut DRAM ADDRESS
     Set_Tile 0,0,0, $100, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: TMEM Address $100, Tile 0
     Load_Tlut 0<<2,0<<2, 0, 63<<2,0<<2 // Load Tlut: SL 0.0,TL 0.0, Tile 0, SH 63.0,TH 0.0
