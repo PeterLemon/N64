@@ -22,13 +22,13 @@ Start:
   // Perform Inverse ZigZag Transformation On DCT Blocks Using RDP
   DPC(RDPBuffer, RDPBufferEnd) // Run DPC Command Buffer: Start, End
 
-  // Wait For RDP To Inverse ZigZag Some Blocks Before Running RSP
-  lui a0,DPC_BASE // A0 = DP Command (DPC) Base Register ($04100000)
-  li t0,((RDPBuffer+(384*8)) & $FFFFFF) // Wait For 384 RDP Commands
-  ZigZagLoop:
-    lwu t1,DPC_CURRENT(a0) // T1 = CMD DMA Current ($04100008)
-    blt t1,t0,ZigZagLoop // IF (T1 < T0) ZigZagLoop
-    nop // Delay Slot
+//  // Wait For RDP To Inverse ZigZag Some Blocks Before Running RSP
+//  lui a0,DPC_BASE // A0 = DP Command (DPC) Base Register ($04100000)
+//  li t0,((RDPBuffer+(384*8)) & $FFFFFF) // Wait For 384 RDP Commands
+//  ZigZagLoop:
+//    lwu t1,DPC_CURRENT(a0) // T1 = CMD DMA Current ($04100008)
+//    blt t1,t0,ZigZagLoop // IF (T1 < T0) ZigZagLoop
+//    nop // Delay Slot
 
   // Load RSP Code To IMEM
   DMASPRD(RSPCode, RSPCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
@@ -440,20 +440,17 @@ LoopBlocks:
   ori s2,r0,(320/8)-1 // S2 = Column Block Count -1
   addiu a1,320*7*2 // A1 += 7 Scanlines
 
-  bnez s1,ContinueRow // IF (Row Count != 0) Continue Row
+  beqz s1,Finished // IF (Row Count == 0) Finished
   subiu s1,1 // Row Count-- (Delay Slot)
 
   ContinueRow:
-    beqz s1,Finished // IF (Row Count == 0) Finished
-    nop // Delay Slot
+    addiu a0,128 // A0 += Block Size
+    addiu a1,16 // A1 += Block Width
 
-  addiu a0,128 // A0 += Block Size
-  addiu a1,16 // A1 += Block Width
+    bnez s0,LoopBlocks // IF (DMEM Block Count != 0) Loop Blocks
+    subiu s0,1 // DMEM Block Count-- (Delay Slot)
 
-  bnez s0,LoopBlocks // IF (DMEM Block Count != 0) Loop Blocks
-  subiu s0,1 // DMEM Block Count-- (Delay Slot)
-
-  b LoopDMA
+    b LoopDMA
     nop // Delay Slot
 
   Finished:
