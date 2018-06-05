@@ -429,20 +429,17 @@ LoopBlocks:
   ori s2,r0,(320/8)-1 // S2 = Column Block Count -1
   addiu a1,320*7*2 // A1 += 7 Scanlines
 
-  bnez s1,ContinueRow // IF (Row Count != 0) Continue Row
+  beqz s1,Finished // IF (Row Count == 0) Finished
   subiu s1,1 // Row Count-- (Delay Slot)
 
   ContinueRow:
-    beqz s1,Finished // IF (Row Count == 0) Finished
-    nop // Delay Slot
+    addiu a0,128 // A0 += Block Size
+    addiu a1,16 // A1 += Block Width
 
-  addiu a0,128 // A0 += Block Size
-  addiu a1,16 // A1 += Block Width
+    bnez s0,LoopBlocks // IF (DMEM Block Count != 0) Loop Blocks
+    subiu s0,1 // DMEM Block Count-- (Delay Slot)
 
-  bnez s0,LoopBlocks // IF (DMEM Block Count != 0) Loop Blocks
-  subiu s0,1 // DMEM Block Count-- (Delay Slot)
-
-  b LoopDMA
+    b LoopDMA
     nop // Delay Slot
 
   Finished:
