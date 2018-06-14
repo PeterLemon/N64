@@ -1,0 +1,2 @@
+bass Cycle1TextureTriangle32BPPYUV16B320X240.asm
+chksum64 Cycle1TextureTriangle32BPPYUV16B320X240.N64
