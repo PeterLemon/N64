@@ -1,0 +1,3 @@
+YUV2DCTZIGZAG16BITBE.exe 320 240 frame.yuv frame10.dct 10
+YUV2DCTZIGZAG16BITBE.exe 320 240 frame.yuv frame50.dct 50
+YUV2DCTZIGZAG16BITBE.exe 320 240 frame.yuv frame90.dct 90
