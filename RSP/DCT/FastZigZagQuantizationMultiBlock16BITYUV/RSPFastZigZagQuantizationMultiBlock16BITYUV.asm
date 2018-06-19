@@ -24,7 +24,7 @@ Start:
 
   // Wait For RDP To Inverse ZigZag Some Blocks Before Running RSP
   lui a0,DPC_BASE // A0 = DP Command (DPC) Base Register ($04100000)
-  li t0,((RDPZigZagBuffer+(384*8)) & $FFFFFF) // Wait For 384 RDP Commands
+  li t0,((RDPZigZagBuffer+(13312*8)) & $FFFFFF) // Wait For 13312 RDP Commands
   ZigZagLoop:
     lwu t1,DPC_CURRENT(a0) // T1 = CMD DMA Current ($04100008)
     blt t1,t0,ZigZagLoop // IF (T1 < T0) ZigZagLoop
