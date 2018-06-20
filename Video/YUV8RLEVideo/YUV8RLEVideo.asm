@@ -105,40 +105,22 @@ LoopVideo:
   // Wait For RDP To Inverse ZigZag Some Blocks Before Running RSP
   li a1,((RDPZigZagBuffer+(15360*8)) & $FFFFFF) // Wait For 15360 RDP Commands
   ZigZagLoop:
-    lwu a2,DPC_CURRENT(a0) // T1 = CMD DMA Current ($04100008)
-    blt a2,a1,ZigZagLoop // IF (A2 < A1) ZigZagLoop
+    lwu t0,DPC_CURRENT(a0) // T0 = CMD DMA Current ($04100008)
+    blt t0,a1,ZigZagLoop // IF (A2 < A1) ZigZagLoop
     nop // Delay Slot
 
   // Load RSP Data To DMEM
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  lui a1,SP_MEM_BASE // A1 = SP Memory Base Register ($A4000000)
-  ori a1,SP_DMEM&$1FFF // A1 = SP Memory Address Offset ($A4000000..$A4001FFF 8KB)
-  sw a1,SP_MEM_ADDR(a0) // Store Memory Offset To SP Memory Address Register ($A4040000)
-  la a1,RSPData&$7FFFFFF // A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
-  sw a1,SP_DRAM_ADDR(a0) // Store RAM Offset To SP DRAM Address Register ($A4040004)
-  la a1,(RSPDataEnd-RSPData)-1 // A1 = Length Of DMA Transfer In Bytes - 1
-  sw a1,SP_RD_LEN(a0) // Store DMA Length To SP Read Length Register ($A4040008)
-  WaitRSPDMA: // Wait For RSP DMA To Finish
-    lw a1,SP_STATUS(a0) // A1 = RSP Status Register ($A4040010)
-    andi a1,RSP_BSY|RSP_FUL // AND RSP Status Status With $C: DMA Busy (Bit 2) DMA Full (Bit 3)
-    bnez a1,WaitRSPDMA // IF TRUE RSP DMA Busy & Full
-    nop // Delay Slot
+  DMASPRD(RSPData, RSPDataEnd, SP_DMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
 
-  // Set RSP Program Counter: Start Address
-  lui a0,SP_PC_BASE // A0 = SP PC Base Register ($A4080000)
-  ori a1,r0,RSPStart // A1 = RSP Program Counter Set To Start Of RSP Code
-  sw a1,SP_PC(a0) // Store RSP Program Counter To SP PC Register ($A4080000)
-
-  // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  lui a0,SP_BASE // A0 = SP Base Register ($A4040000)
-  ori a1,r0,CLR_HLT|CLR_BRK|CLR_INT|CLR_STP|CLR_IOB // A1 = RSP Status: Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
-  sw a1,SP_STATUS(a0) // Store RSP Status To SP Status Register ($A4040010)
+  SetSPPC(RSPStart) // Set RSP Program Counter: Start Address
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   DelayTILES: // Wait For RSP To Compute
-    lwu a1,SP_STATUS(a0) // A1 = RSP Status
-    andi a1,RSP_HLT // RSP Status &= RSP Halt Flag
-    beqz a1,DelayTILES // IF (RSP Halt Flag == 0) Delay TILES
-    nop // Delay Slot
+  lwu t0,SP_STATUS(a0) // T0 = RSP Status
+  andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
+  beqz t0,DelayTILES // IF (RSP Halt Flag == 0) Delay TILES
+  nop // Delay Slot
 
   // Draw YUV 8x8 Tiles Using RDP
   DPC(RDPYUVBuffer, RDPYUVBufferEnd) // Run DPC Command Buffer: Start, End
