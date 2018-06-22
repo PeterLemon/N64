@@ -107,7 +107,7 @@ static void convert_dct_Y(FILE *source_file, FILE *target_file, long ofs, long o
   ofs = 0;
   long wofs = 0;
   unsigned int block_row = 0; // Block Row Counter
-  while(wofs < width * height * 2) {
+  while(wofs < (width * height * 4) - 2048) {
 
     // Load Image Block (Y Channel)
     for(y=0; y < 8; y++) {
@@ -236,6 +236,8 @@ static void convert_dct_Y(FILE *source_file, FILE *target_file, long ofs, long o
       writevalue(SourceCHR, target_file);
       wofs++;
     }
+
+    if((wofs & 0x7FF) == 0) wofs += 2048;
   }
 
 }
@@ -265,9 +267,9 @@ static void convert_dct_U(FILE *source_file, FILE *target_file, long ofs, long o
 
   // Loop Blocks
   ofs = width * height;
-  long wofs = width * height * 2;
+  long wofs = 2048;
   unsigned int block_row = 0; // Block Row Counter
-  while(wofs < width * height * 3) {
+  while(wofs < (width * height * 4) - 1024) {
 
     // Load Image Block (U Channel)
     for(y=0; y < 8; y++) {
@@ -396,6 +398,8 @@ static void convert_dct_U(FILE *source_file, FILE *target_file, long ofs, long o
       writevalue(SourceCHR, target_file);
       wofs++;
     }
+
+    if((wofs & 0x3FF) == 0) wofs += 3072;
   }
 
 }
@@ -425,7 +429,7 @@ static void convert_dct_V(FILE *source_file, FILE *target_file, long ofs, long o
 
   // Loop Blocks
   ofs = (width * height) + ((width/2) * height);
-  long wofs = width * height * 3;
+  long wofs = 3072;
   unsigned int block_row = 0; // Block Row Counter
   while(wofs < width * height * 4) {
 
@@ -556,6 +560,8 @@ static void convert_dct_V(FILE *source_file, FILE *target_file, long ofs, long o
       writevalue(SourceCHR, target_file);
       wofs++;
     }
+
+    if((wofs & 0x3FF) == 0) wofs += 3072;
   }
 
 }
