@@ -103,7 +103,7 @@ LoopVideo:
   DPC(RDPZigZagBuffer, RDPZigZagBufferEnd) // Run DPC Command Buffer: Start, End
 
   // Wait For RDP To Inverse ZigZag Some Blocks Before Running RSP
-  li a1,((RDPZigZagBuffer+(15360*8)) & $FFFFFF) // Wait For 15360 RDP Commands
+  li a1,((RDPZigZagBuffer+(384*8)) & $FFFFFF) // Wait For 384 RDP Commands
   ZigZagLoop:
     lwu t0,DPC_CURRENT(a0) // T0 = CMD DMA Current ($04100008)
     blt t0,a1,ZigZagLoop // IF (A2 < A1) ZigZagLoop
@@ -150,39 +150,22 @@ RSPStart:
   lqv v30[e0],Q+96(r0)  // V30 = JPEG Standard Quantization Row 7
   lqv v31[e0],Q+112(r0) // V31 = JPEG Standard Quantization Row 8
 
-la a1,YUV // A1 = Y Channel Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
-la a2,YUV+(320*240*2) // A2 = U Channel Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
-la a3,YUV+(320*240*3) // A3 = V Channel Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
+la a1,YUV // A1 = YUV DCT Input  Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
+la a2,YUV // A2 = YUV DCT Output Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
 
-ori s1,r0,((320*240*2) / 2048) - 1 // S1 = Loop DMA Count -1
+ori s1,r0,((320*240*2) / 2048) - 1 // S1 = Loop DMA Count - 1
 
 LoopDMA:
   lui a0,$0000 // A0 = DCTQ 8x8 Matrix DMEM Address
 
-// DMA 2048 Bytes Of DCTQBlocks (Y Channel)
-  ori t0,r0,2047 // T0 = Length Of DMA Transfer In Bytes - 1
+// DMA 4096 Bytes Of YUV DCT Quantized Blocks (Y Channel 2KB, U Channel 1KB, V Channel 1KB)
+  ori t0,r0,4096-1 // T0 = Length Of DMA Transfer In Bytes - 1
   mtc0 r0,c0 // Store Memory Offset ($000) To SP Memory Address Register ($A4040000)
   mtc0 a1,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
   mtc0 t0,c2 // Store DMA Length To SP Read Length Register ($A4040008)
   RSPDMASPWait() // Wait For RSP DMA To Finish
 
-// DMA 1024 Bytes Of DCTQBlocks (U Channel)
-  ori t0,r0,1023 // T0 = Length Of DMA Transfer In Bytes - 1
-  ori t1,r0,2048 // T1 = SP Memory Offset
-  mtc0 t1,c0 // Store Memory Offset ($800) To SP Memory Address Register ($A4040000)
-  mtc0 a2,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
-  mtc0 t0,c2 // Store DMA Length To SP Read Length Register ($A4040008)
-  RSPDMASPWait() // Wait For RSP DMA To Finish
-
-// DMA 1024 Bytes Of DCTQBlocks (V Channel)
-  ori t0,r0,1023 // T0 = Length Of DMA Transfer In Bytes - 1
-  ori t1,r0,3072 // T1 = SP Memory Offset
-  mtc0 t1,c0 // Store Memory Offset ($C00) To SP Memory Address Register ($A4040000)
-  mtc0 a3,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
-  mtc0 t0,c2 // Store DMA Length To SP Read Length Register ($A4040008)
-  RSPDMASPWait() // Wait For RSP DMA To Finish
-
-  ori s0,r0,31 // S0 = DMEM Block Count -1
+  ori s0,r0,31 // S0 = DMEM Block Count - 1
 
 LoopBlocks:
 // DCT Block Decode (Inverse Quantization)
@@ -432,23 +415,6 @@ LoopBlocks:
   vmulu v23,v1[e12]  // Produce Unsigned Result For RGB Pixels
 
   // Store Transposed Matrix From Row Ordered Vector Register Block (V16 = Block Base Register)
-  stv v16[e0],$00(a0)  // Store 1st Element Diagonals From Vector Register Block
-  stv v16[e2],$10(a0)  // Store 2nd Element Diagonals From Vector Register Block
-  stv v16[e4],$20(a0)  // Store 3rd Element Diagonals From Vector Register Block
-  stv v16[e6],$30(a0)  // Store 4th Element Diagonals From Vector Register Block
-  stv v16[e8],$40(a0)  // Store 5th Element Diagonals From Vector Register Block
-  stv v16[e10],$50(a0) // Store 6th Element Diagonals From Vector Register Block
-  stv v16[e12],$60(a0) // Store 7th Element Diagonals From Vector Register Block
-  stv v16[e14],$70(a0) // Store 8th Element Diagonals From Vector Register Block
-
-  ltv v16[e14],$10(a0) // Load 8th Element Diagonals To Vector Register Block
-  ltv v16[e12],$20(a0) // Load 7th Element Diagonals To Vector Register Block
-  ltv v16[e10],$30(a0) // Load 6th Element Diagonals To Vector Register Block
-  ltv v16[e8],$40(a0)  // Load 5th Element Diagonals To Vector Register Block
-  ltv v16[e6],$50(a0)  // Load 4th Element Diagonals To Vector Register Block
-  ltv v16[e4],$60(a0)  // Load 3rd Element Diagonals To Vector Register Block
-  ltv v16[e2],$70(a0)  // Load 2nd Element Diagonals To Vector Register Block
-
   sqv v16[e0],$00(a0) // Store 1st Row From Transposed Matrix Vector Register Block
   sqv v17[e0],$10(a0) // Store 2nd Row From Transposed Matrix Vector Register Block
   sqv v18[e0],$20(a0) // Store 3rd Row From Transposed Matrix Vector Register Block
@@ -468,265 +434,81 @@ LoopBlocks:
   ori t1,r0,2048 // T1 = U Channel SP Memory Offset
   ori t2,r0,3072 // T2 = V Channel SP Memory Offset
   ori s0,r0,2048 // S0 = Y Channel End SP Memory Offset
-  LoopUV:
-    lqv v2[e0],$00(t1) // Load U Row 1 Values To Upper Element Bytes Of Vector Register
-    vmudn v2,v1[e13]   // V2 <<= 8
-    lqv v3[e0],$10(t1) // Load U Row 2 Values To Upper Element Bytes Of Vector Register
-    vmudn v3,v1[e13]   // V3 <<= 8
-    lqv v4[e0],$20(t1) // Load U Row 3 Values To Upper Element Bytes Of Vector Register
-    vmudn v4,v1[e13]   // V4 <<= 8
-    lqv v5[e0],$30(t1) // Load U Row 4 Values To Upper Element Bytes Of Vector Register
-    vmudn v5,v1[e13]   // V5 <<= 8
-    lqv v6[e0],$40(t1) // Load U Row 5 Values To Upper Element Bytes Of Vector Register
-    vmudn v6,v1[e13]   // V6 <<= 8
-    lqv v7[e0],$50(t1) // Load U Row 6 Values To Upper Element Bytes Of Vector Register
-    vmudn v7,v1[e13]   // V7 <<= 8
-    lqv v8[e0],$60(t1) // Load U Row 7 Values To Upper Element Bytes Of Vector Register
-    vmudn v8,v1[e13]   // V8 <<= 8
-    lqv v9[e0],$70(t1) // Load U Row 8 Values To Upper Element Bytes Of Vector Register
-    vmudn v9,v1[e13]   // V9 <<= 8
+  LoopY:
+    lqv v2[e0],$00(t1)  // Load U Row 1 Values To Upper Element Bytes Of Vector Register
+    vmudn v2,v1[e13]    // V2 <<= 8
+    lqv v16[e0],$00(t0) // Load Y Row 1 Values To Vector Register Block
+    vor v16,v2[e0]      // Y Row 1 |= U Row 1
+    lqv v2[e0],$00(t2)  // Load V Row 1 Values To Upper Element Bytes Of Vector Register
+    vmudn v2,v1[e13]    // V2 <<= 8
+    lqv v17[e0],$10(t0) // Load Y Row 2 Values To Vector Register Block
+    vor v17,v2[e0]      // Y Row 2 |= V Row 1
+    lqv v2[e0],$10(t1)  // Load U Row 2 Values To Upper Element Bytes Of Vector Register
+    vmudn v2,v1[e13]    // V2 <<= 8
+    lqv v18[e0],$20(t0) // Load Y Row 3 Values To Vector Register Block
+    vor v18,v2[e0]      // Y Row 3 |= U Row 2
+    lqv v2[e0],$10(t2)  // Load V Row 2 Values To Upper Element Bytes Of Vector Register
+    vmudn v2,v1[e13]    // V2 <<= 8
+    lqv v19[e0],$30(t0) // Load Y Row 4 Values To Vector Register Block
+    vor v19,v2[e0]      // Y Row 4 |= V Row 2
+    lqv v2[e0],$20(t1)  // Load U Row 3 Values To Upper Element Bytes Of Vector Register
+    vmudn v2,v1[e13]    // V2 <<= 8
+    lqv v20[e0],$40(t0) // Load Y Row 5 Values To Vector Register Block
+    vor v20,v2[e0]      // Y Row 5 |= U Row 3
+    lqv v2[e0],$20(t2)  // Load V Row 3 Values To Upper Element Bytes Of Vector Register
+    vmudn v2,v1[e13]    // V2 <<= 8
+    lqv v21[e0],$50(t0) // Load Y Row 6 Values To Vector Register Block
+    vor v21,v2[e0]      // Y Row 6 |= V Row 3
+    lqv v2[e0],$30(t1)  // Load U Row 4 Values To Upper Element Bytes Of Vector Register
+    vmudn v2,v1[e13]    // V2 <<= 8
+    lqv v22[e0],$60(t0) // Load Y Row 7 Values To Vector Register Block
+    vor v22,v2[e0]      // Y Row 7 |= U Row 4
+    lqv v2[e0],$30(t2)  // Load V Row 4 Values To Upper Element Bytes Of Vector Register
+    vmudn v2,v1[e13]    // V2 <<= 8
+    lqv v23[e0],$70(t0) // Load Y Row 8 Values To Vector Register Block
+    vor v23,v2[e0]      // Y Row 8 |= V Row 4
 
-    lqv v10[e0],$00(t2) // Load V Row 1 Values To Upper Element Bytes Of Vector Register
-    vmudn v10,v1[e13]   // V10 <<= 8
-    lqv v11[e0],$10(t2) // Load V Row 2 Values To Upper Element Bytes Of Vector Register
-    vmudn v11,v1[e13]   // V11 <<= 8
-    lqv v12[e0],$20(t2) // Load V Row 3 Values To Upper Element Bytes Of Vector Register
-    vmudn v12,v1[e13]   // V12 <<= 8
-    lqv v13[e0],$30(t2) // Load V Row 4 Values To Upper Element Bytes Of Vector Register
-    vmudn v13,v1[e13]   // V13 <<= 8
-    lqv v14[e0],$40(t2) // Load V Row 5 Values To Upper Element Bytes Of Vector Register
-    vmudn v14,v1[e13]   // V14 <<= 8
-    lqv v15[e0],$50(t2) // Load V Row 6 Values To Upper Element Bytes Of Vector Register
-    vmudn v15,v1[e13]   // V15 <<= 8
-    lqv v16[e0],$60(t2) // Load V Row 7 Values To Upper Element Bytes Of Vector Register
-    vmudn v16,v1[e13]   // V16 <<= 8
-    lqv v17[e0],$70(t2) // Load V Row 8 Values To Upper Element Bytes Of Vector Register
-    vmudn v17,v1[e13]   // V17 <<= 8
+    // Store Transposed Matrix From Row Ordered Vector Register Block (V16 = Block Base Register)
+    stv v16[e0],$00(t0)  // Store 1st Element Diagonals From Vector Register Block
+    stv v16[e2],$10(t0)  // Store 2nd Element Diagonals From Vector Register Block
+    stv v16[e4],$20(t0)  // Store 3rd Element Diagonals From Vector Register Block
+    stv v16[e6],$30(t0)  // Store 4th Element Diagonals From Vector Register Block
+    stv v16[e8],$40(t0)  // Store 5th Element Diagonals From Vector Register Block
+    stv v16[e10],$50(t0) // Store 6th Element Diagonals From Vector Register Block
+    stv v16[e12],$60(t0) // Store 7th Element Diagonals From Vector Register Block
+    stv v16[e14],$70(t0) // Store 8th Element Diagonals From Vector Register Block
 
-    vmov v18[e8],v2[e8] // Y Tile 1: Row 1
-    vmov v18[e9],v10[e8]
-    vmov v18[e10],v2[e9]
-    vmov v18[e11],v10[e9]
-    vmov v18[e12],v2[e10]
-    vmov v18[e13],v10[e10]
-    vmov v18[e14],v2[e11]
-    vmov v18[e15],v10[e11]
+    ltv v16[e14],$10(t0) // Load 8th Element Diagonals To Vector Register Block
+    ltv v16[e12],$20(t0) // Load 7th Element Diagonals To Vector Register Block
+    ltv v16[e10],$30(t0) // Load 6th Element Diagonals To Vector Register Block
+    ltv v16[e8],$40(t0)  // Load 5th Element Diagonals To Vector Register Block
+    ltv v16[e6],$50(t0)  // Load 4th Element Diagonals To Vector Register Block
+    ltv v16[e4],$60(t0)  // Load 3rd Element Diagonals To Vector Register Block
+    ltv v16[e2],$70(t0)  // Load 2nd Element Diagonals To Vector Register Block
 
-    lqv v19[e0],$00(t0) // Load Y Row 1 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$00(t0) // Store Row 1 Packed UYVY Bytes To Y Region
+    sqv v16[e0],$00(t0) // Store 1st Row From Transposed Matrix Vector Register Block
+    sqv v17[e0],$10(t0) // Store 2nd Row From Transposed Matrix Vector Register Block
+    sqv v18[e0],$20(t0) // Store 3rd Row From Transposed Matrix Vector Register Block
+    sqv v19[e0],$30(t0) // Store 4th Row From Transposed Matrix Vector Register Block
+    sqv v20[e0],$40(t0) // Store 5th Row From Transposed Matrix Vector Register Block
+    sqv v21[e0],$50(t0) // Store 6th Row From Transposed Matrix Vector Register Block
+    sqv v22[e0],$60(t0) // Store 7th Row From Transposed Matrix Vector Register Block
+    sqv v23[e0],$70(t0) // Store 8th Row From Transposed Matrix Vector Register Block
 
-    vmov v18[e8],v3[e8] // Y Tile 1: Row 2
-    vmov v18[e9],v11[e8]
-    vmov v18[e10],v3[e9]
-    vmov v18[e11],v11[e9]
-    vmov v18[e12],v3[e10]
-    vmov v18[e13],v11[e10]
-    vmov v18[e14],v3[e11]
-    vmov v18[e15],v11[e11]
+    addiu t0,128 // Y Channel SP Memory Offset += 128
+    addiu t1,64  // U Channel SP Memory Offset += 64
+    bne t0,s0,LoopY
+    addiu t2,64  // V Channel SP Memory Offset += 64 (Delay Slot)
 
-    lqv v19[e0],$10(t0) // Load Y Row 2 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$10(t0) // Store Row 2 Packed UYVY Bytes To Y Region
-
-    vmov v18[e8],v4[e8] // Y Tile 1: Row 3
-    vmov v18[e9],v12[e8]
-    vmov v18[e10],v4[e9]
-    vmov v18[e11],v12[e9]
-    vmov v18[e12],v4[e10]
-    vmov v18[e13],v12[e10]
-    vmov v18[e14],v4[e11]
-    vmov v18[e15],v12[e11]
-
-    lqv v19[e0],$20(t0) // Load Y Row 3 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$20(t0) // Store Row 3 Packed UYVY Bytes To Y Region
-
-    vmov v18[e8],v5[e8] // Y Tile 1: Row 4
-    vmov v18[e9],v13[e8]
-    vmov v18[e10],v5[e9]
-    vmov v18[e11],v13[e9]
-    vmov v18[e12],v5[e10]
-    vmov v18[e13],v13[e10]
-    vmov v18[e14],v5[e11]
-    vmov v18[e15],v13[e11]
-
-    lqv v19[e0],$30(t0) // Load Y Row 4 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$30(t0) // Store Row 4 Packed UYVY Bytes To Y Region
-
-    vmov v18[e8],v6[e8] // Y Tile 1: Row 5
-    vmov v18[e9],v14[e8]
-    vmov v18[e10],v6[e9]
-    vmov v18[e11],v14[e9]
-    vmov v18[e12],v6[e10]
-    vmov v18[e13],v14[e10]
-    vmov v18[e14],v6[e11]
-    vmov v18[e15],v14[e11]
-
-    lqv v19[e0],$40(t0) // Load Y Row 5 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$40(t0) // Store Row 5 Packed UYVY Bytes To Y Region
-
-    vmov v18[e8],v7[e8] // Y Tile 1: Row 6
-    vmov v18[e9],v15[e8]
-    vmov v18[e10],v7[e9]
-    vmov v18[e11],v15[e9]
-    vmov v18[e12],v7[e10]
-    vmov v18[e13],v15[e10]
-    vmov v18[e14],v7[e11]
-    vmov v18[e15],v15[e11]
-
-    lqv v19[e0],$50(t0) // Load Y Row 6 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$50(t0) // Store Row 6 Packed UYVY Bytes To Y Region
-
-    vmov v18[e8],v8[e8] // Y Tile 1: Row 7
-    vmov v18[e9],v16[e8]
-    vmov v18[e10],v8[e9]
-    vmov v18[e11],v16[e9]
-    vmov v18[e12],v8[e10]
-    vmov v18[e13],v16[e10]
-    vmov v18[e14],v8[e11]
-    vmov v18[e15],v16[e11]
-
-    lqv v19[e0],$60(t0) // Load Y Row 7 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$60(t0) // Store Row 7 Packed UYVY Bytes To Y Region
-
-    vmov v18[e8],v9[e8] // Y Tile 1: Row 8
-    vmov v18[e9],v17[e8]
-    vmov v18[e10],v9[e9]
-    vmov v18[e11],v17[e9]
-    vmov v18[e12],v9[e10]
-    vmov v18[e13],v17[e10]
-    vmov v18[e14],v9[e11]
-    vmov v18[e15],v17[e11]
-
-    lqv v19[e0],$70(t0) // Load Y Row 8 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$70(t0) // Store Row 8 Packed UYVY Bytes To Y Region
-
-
-    vmov v18[e8],v2[e12] // Y Tile 2: Row 1
-    vmov v18[e9],v10[e12]
-    vmov v18[e10],v2[e13]
-    vmov v18[e11],v10[e13]
-    vmov v18[e12],v2[e14]
-    vmov v18[e13],v10[e14]
-    vmov v18[e14],v2[e15]
-    vmov v18[e15],v10[e15]
-
-    lqv v19[e0],$80(t0) // Load Y Row 1 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$80(t0) // Store Row 1 Packed UYVY Bytes To Y Region
-
-    vmov v18[e8],v3[e12] // Y Tile 2: Row 2
-    vmov v18[e9],v11[e12]
-    vmov v18[e10],v3[e13]
-    vmov v18[e11],v11[e13]
-    vmov v18[e12],v3[e14]
-    vmov v18[e13],v11[e14]
-    vmov v18[e14],v3[e15]
-    vmov v18[e15],v11[e15]
-
-    lqv v19[e0],$90(t0) // Load Y Row 2 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$90(t0) // Store Row 2 Packed UYVY Bytes To Y Region
-
-    vmov v18[e8],v4[e12] // Y Tile 2: Row 3
-    vmov v18[e9],v12[e12]
-    vmov v18[e10],v4[e13]
-    vmov v18[e11],v12[e13]
-    vmov v18[e12],v4[e14]
-    vmov v18[e13],v12[e14]
-    vmov v18[e14],v4[e15]
-    vmov v18[e15],v12[e15]
-
-    lqv v19[e0],$A0(t0) // Load Y Row 3 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$A0(t0) // Store Row 3 Packed UYVY Bytes To Y Region
-
-    vmov v18[e8],v5[e12] // Y Tile 2: Row 4
-    vmov v18[e9],v13[e12]
-    vmov v18[e10],v5[e13]
-    vmov v18[e11],v13[e13]
-    vmov v18[e12],v5[e14]
-    vmov v18[e13],v13[e14]
-    vmov v18[e14],v5[e15]
-    vmov v18[e15],v13[e15]
-
-    lqv v19[e0],$B0(t0) // Load Y Row 4 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$B0(t0) // Store Row 4 Packed UYVY Bytes To Y Region
-
-    vmov v18[e8],v6[e12] // Y Tile 2: Row 5
-    vmov v18[e9],v14[e12]
-    vmov v18[e10],v6[e13]
-    vmov v18[e11],v14[e13]
-    vmov v18[e12],v6[e14]
-    vmov v18[e13],v14[e14]
-    vmov v18[e14],v6[e15]
-    vmov v18[e15],v14[e15]
-
-    lqv v19[e0],$C0(t0) // Load Y Row 5 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$C0(t0) // Store Row 5 Packed UYVY Bytes To Y Region
-
-    vmov v18[e8],v7[e12] // Y Tile 2: Row 6
-    vmov v18[e9],v15[e12]
-    vmov v18[e10],v7[e13]
-    vmov v18[e11],v15[e13]
-    vmov v18[e12],v7[e14]
-    vmov v18[e13],v15[e14]
-    vmov v18[e14],v7[e15]
-    vmov v18[e15],v15[e15]
-
-    lqv v19[e0],$D0(t0) // Load Y Row 6 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$D0(t0) // Store Row 6 Packed UYVY Bytes To Y Region
-
-    vmov v18[e8],v8[e12] // Y Tile 2: Row 7
-    vmov v18[e9],v16[e12]
-    vmov v18[e10],v8[e13]
-    vmov v18[e11],v16[e13]
-    vmov v18[e12],v8[e14]
-    vmov v18[e13],v16[e14]
-    vmov v18[e14],v8[e15]
-    vmov v18[e15],v16[e15]
-
-    lqv v19[e0],$E0(t0) // Load Y Row 7 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$E0(t0) // Store Row 7 Packed UYVY Bytes To Y Region
-
-    vmov v18[e8],v9[e12] // Y Tile 2: Row 8
-    vmov v18[e9],v17[e12]
-    vmov v18[e10],v9[e13]
-    vmov v18[e11],v17[e13]
-    vmov v18[e12],v9[e14]
-    vmov v18[e13],v17[e14]
-    vmov v18[e14],v9[e15]
-    vmov v18[e15],v17[e15]
-
-    lqv v19[e0],$F0(t0) // Load Y Row 8 Values To Lower Element Bytes Of Vector Register
-    vor v19,v18[e0] // Y |= UV
-    sqv v19[e0],$F0(t0) // Store Row 8 Packed UYVY Bytes To Y Region
-
-
-    addiu t0,256 // Y Channel SP Memory Offset += 256
-    addiu t1,128 // U Channel SP Memory Offset += 128
-    bne t0,s0,LoopUV
-    addiu t2,128 // V Channel SP Memory Offset += 128 (Delay Slot)
 
   // DMA 2048 Bytes of YUV Channel Data To RDRAM
-  ori t0,r0,2047 // T0 = Length Of DMA Transfer In Bytes - 1
+  ori t0,r0,2048-1 // T0 = Length Of DMA Transfer In Bytes - 1
   mtc0 r0,c0 // Store Memory Offset To SP Memory Address Register ($A4040000)
-  mtc0 a1,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
+  mtc0 a2,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
   mtc0 t0,c3 // Store DMA Length To SP Write Length Register ($A404000C)
 
-  addiu a1,2048 // DCTQBLOCKS (Y Channel) += 2048
-  addiu a2,1024 // DCTQBLOCKS (U Channel) += 1024
-  addiu a3,1024 // DCTQBLOCKS (V Channel) += 1024
+  addiu a1,4096 // YUV DCT Input  Offset += 4096
+  addiu a2,2048 // YUV DCT Output Offset += 2048
 
   bnez s1,LoopDMA // IF (Loop DMA Count != 0) Loop DMA
   subiu s1,1 // Loop DMA Count-- (Delay Slot)
