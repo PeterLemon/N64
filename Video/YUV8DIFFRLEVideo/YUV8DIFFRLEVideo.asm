@@ -53,7 +53,7 @@ LoopVideo:
     la t0,RLEVideo&$7FFFFF // T0 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
     sw t0,PI_DRAM_ADDR(a0) // Store RAM Offset To PI DRAM Address Register ($A4600000)
     sw a3,PI_CART_ADDR(a0) // Store ROM Offset To PI Cart Address Register ($A4600004)
-    ori t0,r0,31848-1 // T0 = Length Of DMA Transfer In Bytes - 1
+    ori t0,r0,29832-1 // T0 = Length Of DMA Transfer In Bytes - 1
     sw t0,PI_WR_LEN(a0) // Store DMA Length To PI Write Length Register ($A460000C)
 
     WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
