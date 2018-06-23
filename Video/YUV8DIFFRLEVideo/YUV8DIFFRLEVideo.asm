@@ -35,6 +35,14 @@ Start:
   DMASPRD(RSPCode, RSPCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
   DMASPWait() // Wait For RSP DMA To Finish
 
+  lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
+  ori t0,r0,1 // T0 = AI Control DMA Enable Bit (1)
+  sw t0,AI_CONTROL(a0) // Store AI Control DMA Enable Bit To AI Control Register ($A4500008)
+  ori t0,r0,15 // T0 = Sample Bit Rate (Bitrate-1)
+  sw t0,AI_BITRATE(a0) // Store Sample Bit Rate To AI Bit Rate Register ($A4500014)
+  li t0,(VI_NTSC_CLOCK/44100)-1 // T0 = Sample Frequency: (VI_NTSC_CLOCK(48681812) / FREQ(44100)) - 1
+  sw t0,AI_DACRATE(a0) // Store Sample Frequency To AI DAC Rate Register ($A4500010)
+
 LoopVideo:
   // Clear DCTQ Frame
   lui a0,DCTQ>>16
@@ -45,6 +53,9 @@ LoopVideo:
     bnez t0,ClearDCTQ
     subiu t0,1 // T0-- (Delay Slot)
 
+  la t6,Sample // T6 = Sample DRAM Offset
+  la t7,$10000000|(Sample&$3FFFFFF) // T7 = Sample Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
+
   lli t9,1295-1 // T9 = Frame Count - 1
   la a3,$10000000|(RLEVideo&$3FFFFFF) // A3 = Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
   
@@ -53,10 +64,30 @@ LoopVideo:
     la t0,RLEVideo&$7FFFFF // T0 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
     sw t0,PI_DRAM_ADDR(a0) // Store RAM Offset To PI DRAM Address Register ($A4600000)
     sw a3,PI_CART_ADDR(a0) // Store ROM Offset To PI Cart Address Register ($A4600004)
-    ori t0,r0,29832-1 // T0 = Length Of DMA Transfer In Bytes - 1
+    li t0,29832-1 // T0 = Length Of DMA Transfer In Bytes - 1
     sw t0,PI_WR_LEN(a0) // Store DMA Length To PI Write Length Register ($A460000C)
 
     WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
+    WaitScanline($1E2) // Wait For Scanline To Reach Vertical Blank
+
+    // Buffer Sound
+    lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
+    lb t0,AI_STATUS(a0) // T0 = AI Status Register Byte ($A450000C)
+    andi t0,$40 // AND AI Status With AI Status DMA Busy Bit ($40XXXXXX)
+    bnez t0,AIBusy // IF TRUE AI DMA Is Busy
+    nop // Delay Slot
+
+    lui a0,PI_BASE // A0 = PI Base Register ($A4600000)
+    sw t6,PI_DRAM_ADDR(a0) // Store RAM Offset To PI DRAM Address Register ($A4600000)
+    sw t7,PI_CART_ADDR(a0) // Store ROM Offset To PI Cart Address Register ($A4600004)
+    ori t0,r0,(Sample.size/1295)-1 // T0 = Length Of DMA Transfer In Bytes - 1
+    sw t0,PI_WR_LEN(a0) // Store DMA Length To PI Write Length Register ($A460000C)
+
+    lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
+    sw t6,AI_DRAM_ADDR(a0) // Store Sample DRAM Offset To AI DRAM Address Register ($A4500000)
+    sw t0,AI_LEN(a0) // Store Length Of Sample Buffer To AI Length Register ($A4500004)
+    add t7,t0 // Sample ROM Offset += $3FFF
+    AIBusy:
 
     la a0,RLEVideo+4  // A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
     lui a1,DCTQ>>16   // A1 = Destination Address (DRAM Start Offset)
@@ -142,11 +173,8 @@ LoopVideo:
   SetSPPC(RSPStart) // Set RSP Program Counter: Start Address
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
-  DelayTILES: // Wait For RSP To Compute
-  lwu t0,SP_STATUS(a0) // T0 = RSP Status
-  andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
-  beqz t0,DelayTILES // IF (RSP Halt Flag == 0) Delay TILES
-  nop // Delay Slot
+  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
+  WaitScanline($1E2) // Wait For Scanline To Reach Vertical Blank
 
   // Draw YUV 8x8 Tiles Using RDP
   DPC(RDPYUVBuffer, RDPYUVBufferEnd) // Run DPC Command Buffer: Start, End
@@ -726,4 +754,5 @@ arch n64.rdp
   Sync_Full // Ensure Entire Scene Is Fully Drawn
 RDPYUVBufferEnd:
 
+insert Sample, "Sample.bin" // 16-Bit 44100Hz Signed Big-Endian Stereo Sound Sample
 insert RLEVideo, "Video.rle" // 1295 320x240 RLE Compressed YUV Frames 
