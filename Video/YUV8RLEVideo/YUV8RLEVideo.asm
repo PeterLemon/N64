@@ -19,6 +19,17 @@ Start:
 
   ScreenNTSC(320, 240, BPP32|AA_MODE_2, $A0100000) // Screen NTSC: 320x240, 32BPP, Resample Only, DRAM Origin $A0100000
 
+  // Load RSP Data To DMEM
+  DMASPRD(RSPData, RSPDataEnd, SP_DMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
+
+  // Load RSP Init Code To IMEM
+  DMASPRD(RSPInitCode, RSPInitCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
+
+  SetSPPC(RSPStart) // Set RSP Program Counter: Start Address
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
+
   // Load RSP Code To IMEM
   DMASPRD(RSPCode, RSPCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
   DMASPWait() // Wait For RSP DMA To Finish
@@ -109,10 +120,6 @@ LoopVideo:
     blt t0,a1,ZigZagLoop // IF (A2 < A1) ZigZagLoop
     nop // Delay Slot
 
-  // Load RSP Data To DMEM
-  DMASPRD(RSPData, RSPDataEnd, SP_DMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
-  DMASPWait() // Wait For RSP DMA To Finish
-
   SetSPPC(RSPStart) // Set RSP Program Counter: Start Address
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
@@ -130,12 +137,13 @@ LoopVideo:
   j LoopVideo
   nop // Delay Slot
 
+
 align(8) // Align 64-Bit
-RSPCode:
+RSPInitCode:
 arch n64.rsp
 base $0000 // Set Base Of RSP Code Object To Zero
 
-RSPStart:
+RSPInitStart:
 // Load Fixed Point Signed Fractions LUT
   lqv v0[e0],FIX_LUT(r0)    // V0 = Look Up Table 0..7  (128-Bit Quad)
   lqv v1[e0],FIX_LUT+16(r0) // V1 = Look Up Table 8..15 (128-Bit Quad)
@@ -150,6 +158,18 @@ RSPStart:
   lqv v30[e0],Q+96(r0)  // V30 = JPEG Standard Quantization Row 7
   lqv v31[e0],Q+112(r0) // V31 = JPEG Standard Quantization Row 8
 
+  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+align(8) // Align 64-Bit
+base RSPInitCode+pc() // Set End Of RSP Code Object
+RSPInitCodeEnd:
+
+
+align(8) // Align 64-Bit
+RSPCode:
+arch n64.rsp
+base $0000 // Set Base Of RSP Code Object To Zero
+
+RSPStart:
 la a1,YUV // A1 = YUV DCT Input  Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
 la a2,YUV // A2 = YUV DCT Output Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
 
