@@ -115,7 +115,7 @@ LoopVideo:
     RLEDecode:
       addiu t1,2 // Expanded Data Length += 2
       lb t2,0(a0) // T2 = Difference Signed Byte
-      bnez t2,RLEDecodeByte // IF (Difference Signed Byte == 0) RLEDecodeByte
+      bnez t2,RLEDecodeByte // IF (Difference Signed Byte != 0) RLEDecodeByte
       addiu a0,1 // Add 1 To RLE Offset (Delay Slot)
       addu a1,t1 // Add T1 To DRAM Offset // ELSE Skip RLEDecodeByte
       addu a1,t1 // Add T1 To DRAM Offset
