@@ -104,7 +104,7 @@ LoopVideo:
       lb t2,0(a0) // T2 = Difference Signed Byte
       addiu a0,1 // Add 1 To RLE Offset
       lh t3,0(a1) // T3 = Source Data Byte
-      add t3,t2 // Add Signed Byte (T5) To Data Byte (T4)
+      add t3,t2 // Add Signed Byte (T2) To Data Byte (T3)
       sh t3,0(a1) // Store Uncompressed Byte To Destination
       addiu a1,2 // Add 2 To DRAM Offset
       bnez t1,RLECopy // IF (Expanded Data Length != 0) RLECopy
@@ -124,7 +124,7 @@ LoopVideo:
 
       RLEDecodeByte:
         lh t3,0(a1) // T3 = Source Data Byte
-        add t3,t2 // Add Signed Byte (T5) To Data Byte (T4)
+        add t3,t2 // Add Signed Byte (T2) To Data Byte (T3)
         sh t3,0(a1) // Store Uncompressed Byte To Destination
         addiu a1,2 // Add 2 To DRAM Offset
         bnez t1,RLEDecodeByte // IF (Expanded Data Length != 0) RLEDecodeByte
