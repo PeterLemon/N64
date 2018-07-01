@@ -442,7 +442,7 @@ ClearScreen:
   PrintValue($A0100000,88,168,FontBlack,VALUELONGA,7) // Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString($A0100000,360,168,FontBlack,TEXTLONGA,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintString($A0100000,376,168,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,384,168,FontBlack,HILONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,168,FontBlack,LOLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   PrintString($A0100000,80,176,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,88,176,FontBlack,VALUELONGG,7) // Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString($A0100000,224,176,FontBlack,TEXTLONGG,17) // Print Text String To VRAM Using Font At X,Y Position
@@ -472,8 +472,103 @@ ClearScreen:
   PrintString($A0100000,528,176,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   DMULTUENDG:
 
+	//la a0,VALUELONGH // A0 = Long Data Offset
+	//ld t0,0(a0)      // T0 = Long Data
+  addi t0, r0, -1
+	//la a0,VALUELONGH // A0 = Long Data Offset
+	//ld t1,0(a0)      // T1 = Long Data
+  addi t1, r0, 2
+  dmultu t0,t1 // HI/LO = Test Long Data
+  mflo t0 // T0 = LO
+  la a0,LOLONG // A0 = LOLONG Offset
+  sd t0,0(a0)  // LOLONG = Long Data
+  mfhi t0 // T0 = HI
+  la a0,HILONG // A0 = HILONG Offset
+  sd t0,0(a0)  // HILONG = Long Data
+  PrintString($A0100000,64,192,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,72,192,FontBlack,VALUELONGH,7) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,208,192,FontBlack,TEXTLONGH,19) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,192,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,192,FontBlack,LOLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  
+  PrintString($A0100000,64,200,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,72,200,FontBlack,VALUELONGI,7) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,360,200,FontBlack,TEXTLONGI,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,200,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,200,FontBlack,HILONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,LOLONG         // A0 = Long Data Offset
+  ld t0,0(a0)          // T0 = Long Data
+  la a0,DMULTULOCHECKH // A0 = Long Check Data Offset
+  ld t1,0(a0)          // T1 = Long Check Data
+  beq t0,t1,DMULTULOPASSH // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,192,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  j DMULTUENDH
+  nop // Delay Slot
+  DMULTULOPASSH:
+  PrintString($A0100000,528,192,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,HILONG         // A0 = Long Data Offset
+  ld t0,0(a0)          // T0 = Long Data
+  la a0,DMULTUHICHECKH // A0 = Long Check Data Offset
+  ld t1,0(a0)          // T1 = Long Check Data
+  beq t0,t1,DMULTUHIPASSH // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,200,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  j DMULTUENDH
+  nop // Delay Slot
+  DMULTUHIPASSH:
+  PrintString($A0100000,528,200,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  DMULTUENDH:
 
-  PrintString($A0100000,0,184,FontBlack,PAGEBREAK,79) // Print Text String To VRAM Using Font At X,Y Position
+	//la a0,VALUELONGI // A0 = Long Data Offset
+	//ld t0,0(a0)      // T0 = Long Data
+  addi t0, r0, -1
+	//la a0,VALUELONGI // A0 = Long Data Offset
+	//ld t1,0(a0)      // T1 = Long Data
+  addi t1, r0, -1
+  dmultu t0,t1 // HI/LO = Test Long Data
+  mflo t0 // T0 = LO
+  la a0,LOLONG // A0 = LOLONG Offset
+  sd t0,0(a0)  // LOLONG = Long Data
+  mfhi t0 // T0 = HI
+  la a0,HILONG // A0 = HILONG Offset
+  sd t0,0(a0)  // HILONG = Long Data
+  PrintString($A0100000,64,216,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,72,216,FontBlack,VALUELONGH,7) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,208,216,FontBlack,TEXTLONGH,19) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,216,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,216,FontBlack,LOLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  
+  PrintString($A0100000,64,224,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,72,224,FontBlack,VALUELONGH,7) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,208,224,FontBlack,TEXTLONGH,19) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,224,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,224,FontBlack,HILONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,LOLONG         // A0 = Long Data Offset
+  ld t0,0(a0)          // T0 = Long Data
+  la a0,DMULTULOCHECKI // A0 = Long Check Data Offset
+  ld t1,0(a0)          // T1 = Long Check Data
+  beq t0,t1,DMULTULOPASSI // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,216,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  j DMULTUENDI
+  nop // Delay Slot
+  DMULTULOPASSI:
+  PrintString($A0100000,528,216,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,HILONG         // A0 = Long Data Offset
+  ld t0,0(a0)          // T0 = Long Data
+  la a0,DMULTUHICHECKI // A0 = Long Check Data Offset
+  ld t1,0(a0)          // T1 = Long Check Data
+  beq t0,t1,DMULTUHIPASSI // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,224,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  j DMULTUENDI
+  nop // Delay Slot
+  DMULTUHIPASSI:
+  PrintString($A0100000,528,224,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  DMULTUENDI:
+  
+  PrintString($A0100000,0,235,FontBlack,PAGEBREAK,79) // Print Text String To VRAM Using Font At X,Y Position
 
 
 Loop:
@@ -525,7 +620,11 @@ TEXTLONGF:
   db "12345678956"
 TEXTLONGG:
   db "123456789678912345"
-
+TEXTLONGH:
+  db "18446744073709551615" // 20
+TEXTLONGI:
+  db "2"
+  
 PAGEBREAK:
   db "--------------------------------------------------------------------------------"
 
@@ -544,6 +643,10 @@ VALUELONGF:
   dd 12345678956
 VALUELONGG:
   dd 123456789678912345
+VALUELONGH:
+  dd 18446744073709551615
+VALUELONGI:
+  dd 2
 
 DMULTULOCHECKA:
   dd $0000000000000000
@@ -573,7 +676,15 @@ DMULTULOCHECKG:
   dd $0000000000000000
 DMULTUHICHECKG:
   dd $0000000000000000
-
+DMULTULOCHECKH:
+  dd $FFFFFFFFFFFFFFFE
+DMULTUHICHECKH:
+  dd $0000000000000001
+DMULTULOCHECKI:
+  dd $0000000000000001
+DMULTUHICHECKI:
+  dd $FFFFFFFFFFFFFFFE
+  
 LOLONG:
   dd 0
 HILONG:
