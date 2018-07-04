@@ -54,7 +54,7 @@ Start:
       sll t3,s0,3   // T3 = Word Byte Counter * 8
       srlv t3,s1,t3 // T3 = Copy Uncompressed Byte / Number Of Bytes To Copy & Disp MSB's
       andi t3,$00FF // T3 &= $00FF
-      bnez s0,LZSkipB // IF (Word Byte Counter != 0) LZ Skip A
+      bnez s0,LZSkipB // IF (Word Byte Counter != 0) LZ Skip B
       subiu s0,1  // Word Byte Counter-- (Delay Slot)
       ori s0,r0,3 // S0 = Word Byte Counter
       lw s1,0(a0) // S1 = ROM Word
@@ -71,7 +71,7 @@ Start:
         sll t4,s0,3   // T4 = Word Byte Counter * 8
         srlv t4,s1,t4 // T4 = Disp LSB's
         andi t4,$00FF // T4 &= $00FF
-        bnez s0,LZSkipC // IF (Word Byte Counter != 0) LZ Skip A
+        bnez s0,LZSkipC // IF (Word Byte Counter != 0) LZ Skip C
         subiu s0,1  // Word Byte Counter-- (Delay Slot)
         ori s0,r0,3 // S0 = Word Byte Counter
         lw s1,0(a0) // S1 = ROM Word
