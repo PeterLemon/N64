@@ -31,7 +31,7 @@ Start:
   LZLoop:
     lbu t1,0(a0) // T1 = Flag Data For Next 8 Blocks (0 = Uncompressed Byte, 1 = Compressed Bytes)
     addiu a0,1 // Add 1 To LZ Offset
-    lli t2,%10000000 // T2 = Flag Data Block Type Shifter
+    ori t2,r0,%10000000 // T2 = Flag Data Block Type Shifter
     LZBlockLoop:
       beq a1,t0,LZEnd // IF (Destination Address == Destination End Offset) LZEnd
       and t4,t1,t2 // Test Block Type (Delay Slot)
@@ -69,7 +69,7 @@ Loop:
   WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
   WaitScanline($1E2)
 
-  lli t0,$00000800 // Even Field
+  ori t0,r0,$00000800 // Even Field
   sw t0,VI_Y_SCALE(a0)
 
   WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
