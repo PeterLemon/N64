@@ -20,7 +20,7 @@ Start:
   lui a1,$A010 // A1 = Destination Address (DRAM Start Offset)
 
   lw t1,-4(a0) // T1 = Data Length Word
-  srl t0,t1,24 // T0 = T1 >> 24
+  srl t0,t1,16 // T0 = T1 >> 16
   andi t0,$00FF // T0 = LO Data Length Byte
   andi t2,t1,$FF00 // T2 = T1 & $FF00
   or t0,t2 // T0 = MID/LO Data Length Bytes
