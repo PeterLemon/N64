@@ -16,10 +16,10 @@ Start:
 
   ScreenNTSC(640, 480, BPP32|INTERLACE|AA_MODE_2, $A0100000) // Screen NTSC: 640x480, 32BPP, Interlace, Resample Only, DRAM Origin $A0100000
 
-  la a0,$B0000000|((LZ+4)&$FFFFFFF) // A0 = Source Address Aligned Cart ROM Offset ($B0000000..$BFFFFFFF 256MB)
+  la a0,$B0000000|(LZ&$FFFFFFF) // A0 = Source Address Aligned Cart ROM Offset ($B0000000..$BFFFFFFF 256MB)
   lui a1,$A010 // A1 = Destination Address (DRAM Start Offset)
 
-  lw t1,-4(a0) // T1 = Data Length Word
+  lw t1,0(a0) // T1 = Data Length Word
   srl t0,t1,16 // T0 = T1 >> 16
   andi t0,$00FF // T0 = LO Data Length Byte
   andi t2,t1,$FF00 // T2 = T1 & $FF00
@@ -30,8 +30,8 @@ Start:
   addu t0,a1 // T0 = Destination End Offset (DRAM End Offset)
 
   ori s0,r0,3 // S0 = Word Byte Counter
-  lw s1,0(a0) // S1 = ROM Word
-  addiu a0,4  // Source Address += 4
+  lw s1,4(a0) // S1 = ROM Word
+  addiu a0,8  // Source Address += 8
 
   LZLoop:
     sll t1,s0,3   // T1 = Word Byte Counter * 8
