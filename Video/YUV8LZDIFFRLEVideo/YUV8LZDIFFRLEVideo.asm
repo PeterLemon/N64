@@ -55,67 +55,74 @@ LoopVideo:
     subiu t0,1 // T0-- (Delay Slot)
 
   la t6,Sample // T6 = Sample DRAM Offset
-  la t7,$10000000|(Sample&$3FFFFFF) // T7 = Sample Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
+  la t7,$10000000|(Sample&$FFFFFFF) // T7 = Sample Aligned Cart Physical ROM Offset ($10000000..$1FFFFFFF 128MB)
 
   lli t9,1295-1 // T9 = Frame Count - 1
-  la a3,$10000000|(LZVideo&$3FFFFFF) // A3 = Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
-  
+  la a3,$B0000000|(LZVideo&$FFFFFFF) // A3 = Aligned Cart ROM Offset ($B0000000..$BFFFFFFF 128MB)
+
   LoopFrames:
-    lui a0,PI_BASE // A0 = PI Base Register ($A4600000)
-    la t0,LZVideo&$7FFFFF // T0 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
-    sw t0,PI_DRAM_ADDR(a0) // Store RAM Offset To PI DRAM Address Register ($A4600000)
-    sw a3,PI_CART_ADDR(a0) // Store ROM Offset To PI Cart Address Register ($A4600004)
-    ori t0,r0,20392-1 // T0 = Length Of DMA Transfer In Bytes - 1
-    sw t0,PI_WR_LEN(a0) // Store DMA Length To PI Write Length Register ($A460000C)
-
-    WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
-    WaitScanline($1E2) // Wait For Scanline To Reach Vertical Blank
-
-    // Buffer Sound
-    lui a0,PI_BASE // A0 = PI Base Register ($A4600000)
-    sw t6,PI_DRAM_ADDR(a0) // Store RAM Offset To PI DRAM Address Register ($A4600000)
-    sw t7,PI_CART_ADDR(a0) // Store ROM Offset To PI Cart Address Register ($A4600004)
-    ori t0,r0,(Sample.size/1295)-1 // T0 = Length Of DMA Transfer In Bytes - 1
-    sw t0,PI_WR_LEN(a0) // Store DMA Length To PI Write Length Register ($A460000C)
-
-    lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
-    sw t6,AI_DRAM_ADDR(a0) // Store Sample DRAM Offset To AI DRAM Address Register ($A4500000)
-    sw t0,AI_LEN(a0) // Store Length Of Sample Buffer To AI Length Register ($A4500004)
-
-    addiu t7,(Sample.size/1295) // Sample ROM Offset += Sample Length
-
   // Decode LZSS Data
-  la a0,LZVideo+4  // A0 = Source Address
   lui a1,RLE>>16 // A1 = Destination Address (DRAM Start Offset)
 
-  lbu t0,-1(a0) // T0 = HI Data Length Byte
-  sll t0,8
-  lbu t1,-2(a0) // T1 = MID Data Length Byte
-  or t0,t1
-  sll t0,8
-  lbu t1,-3(a0) // T1 = LO Data Length Byte
+  lw t1,0(a3) // T1 = Data Length Word
+  srl t0,t1,16 // T0 = T1 >> 16
+  andi t0,$00FF // T0 = LO Data Length Byte
+  andi t2,t1,$FF00 // T2 = T1 & $FF00
+  or t0,t2 // T0 = MID/LO Data Length Bytes
+  andi t1,$00FF // T1 &= $00FF
+  sll t1,16 // T1 <<= 16
   or t0,t1 // T0 = Data Length
   addu t0,a1 // T0 = Destination End Offset (DRAM End Offset)
 
+  ori s0,r0,3 // S0 = Word Byte Counter
+  lw s1,4(a3) // S1 = ROM Word
+  addiu a3,8  // Source Address += 8
+
   LZLoop:
-    lbu t1,0(a0) // T1 = Flag Data For Next 8 Blocks (0 = Uncompressed Byte, 1 = Compressed Bytes)
-    addiu a0,1 // Add 1 To LZ Offset
+    sll t1,s0,3   // T1 = Word Byte Counter * 8
+    srlv t1,s1,t1 // T1 = Flag Data For Next 8 Blocks (0 = Uncompressed Byte, 1 = Compressed Bytes)
+    andi t1,$00FF // T1 &= $00FF
+    bnez s0,LZSkipA // IF (Word Byte Counter != 0) LZ Skip A
+    subiu s0,1  // Word Byte Counter-- (Delay Slot)
+    ori s0,r0,3 // S0 = Word Byte Counter
+    lw s1,0(a3) // S1 = ROM Word
+    addiu a3,4  // Source Address += 4
+    LZSkipA:
+
     lli t2,%10000000 // T2 = Flag Data Block Type Shifter
     LZBlockLoop:
       beq a1,t0,LZEnd // IF (Destination Address == Destination End Offset) LZEnd
       and t4,t1,t2 // Test Block Type (Delay Slot)
       beqz t2,LZLoop // IF (Flag Data Block Type Shifter == 0) LZLoop
       srl t2,1 // Shift T2 To Next Flag Data Block Type (Delay Slot)
-      lbu t3,0(a0) // T3 = Copy Uncompressed Byte / Number Of Bytes To Copy & Disp MSB's
+
+      sll t3,s0,3   // T3 = Word Byte Counter * 8
+      srlv t3,s1,t3 // T3 = Copy Uncompressed Byte / Number Of Bytes To Copy & Disp MSB's
+      andi t3,$00FF // T3 &= $00FF
+      bnez s0,LZSkipB // IF (Word Byte Counter != 0) LZ Skip B
+      subiu s0,1  // Word Byte Counter-- (Delay Slot)
+      ori s0,r0,3 // S0 = Word Byte Counter
+      lw s1,0(a3) // S1 = ROM Word
+      addiu a3,4  // Source Address += 4
+      LZSkipB:
+
       bnez t4,LZDecode // IF (BlockType != 0) LZDecode Bytes
-      addiu a0,1 // Add 1 To LZ Offset (Delay Slot)
+      nop // Delay Slot
       sb t3,0(a1) // Store Uncompressed Byte To Destination
       j LZBlockLoop
       addiu a1,1 // Add 1 To DRAM Offset (Delay Slot)
 
       LZDecode:
-        lbu t4,0(a0) // T4 = Disp LSB's
-        addiu a0,1 // Add 1 To LZ Offset
+        sll t4,s0,3   // T4 = Word Byte Counter * 8
+        srlv t4,s1,t4 // T4 = Disp LSB's
+        andi t4,$00FF // T4 &= $00FF
+        bnez s0,LZSkipC // IF (Word Byte Counter != 0) LZ Skip C
+        subiu s0,1  // Word Byte Counter-- (Delay Slot)
+        ori s0,r0,3 // S0 = Word Byte Counter
+        lw s1,0(a3) // S1 = ROM Word
+        addiu a3,4  // Source Address += 4
+        LZSkipC:
+
         sll t5,t3,8 // T5 = Disp MSB's
         or t4,t5 // T4 = Disp 16-Bit
         andi t4,$FFF // T4 &= $FFF (Disp 12-Bit)
@@ -132,18 +139,12 @@ LoopVideo:
           addiu a1,1 // Add 1 To DRAM Offset (Delay Slot)
           j LZBlockLoop
           nop // Delay Slot
-    LZEnd:
-
-  // Skip Zero's At End Of LZ Compressed File
-  andi t0,a0,3  // Compare LZ Offset To A Multiple Of 4
-  beqz t0,LZEOF // IF (Multiple Of 4) LZEOF
-  subu a0,t0 // Delay Slot
-  addiu a0,4 // LZ Offset += 4
+  LZEnd:
+    ori t0,r0,3 // T0 = 3
+    bne s0,t0,LZEOF // IF (Word Byte Counter != 3) LZEOF
+    nop // Delay Slot
+    subiu a3,4 // ELSE Source Address -= 4
   LZEOF:
-
-  la a1,LZVideo
-  subu a0,a1
-  addu a3,a0 // A3 += LZ End Offset 
 
 
   // Decode RLE DIFF Data
@@ -197,16 +198,29 @@ LoopVideo:
     RLEEnd:
 
 
-  // Flush Data Cache: Index Writeback Invalidate
-  la a0,$80000000    // A0 = Cache Start
-  la a1,$80002000-16 // A1 = Cache End
-  LoopCache:
-    cache $0|1,0(a0) // Data Cache: Index Writeback Invalidate
-    bne a0,a1,LoopCache
-    addiu a0,16 // Address += Data Line Size (Delay Slot)
+  // Buffer Sound
+  lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
+  AIBusy:
+    lb t0,AI_STATUS(a0) // T0 = AI Status Register Byte ($A450000C)
+    andi t0,$40 // AND AI Status With AI Status DMA Busy Bit ($40XXXXXX)
+    bnez t0,AIBusy // IF TRUE AI DMA Is Busy
+    nop // Delay Slot
 
+  lui a0,PI_BASE // A0 = PI Base Register ($A4600000)
+  sw t6,PI_DRAM_ADDR(a0) // Store RAM Offset To PI DRAM Address Register ($A4600000)
+  sw t7,PI_CART_ADDR(a0) // Store ROM Offset To PI Cart Address Register ($A4600004)
+  ori t0,r0,(Sample.size/1295)-1 // T0 = Length Of DMA Transfer In Bytes - 1
+  sw t0,PI_WR_LEN(a0) // Store DMA Length To PI Write Length Register ($A460000C)
+
+  lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
+  sw t6,AI_DRAM_ADDR(a0) // Store Sample DRAM Offset To AI DRAM Address Register ($A4500000)
+  sw t0,AI_LEN(a0) // Store Length Of Sample Buffer To AI Length Register ($A4500004)
+
+  addiu t7,(Sample.size/1295) // Sample ROM Offset += Sample Length
+
+  
   WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
-  WaitScanline($1E2) // Wait For Scanline To Reach Vertical Blank
+
 
   // Perform Inverse ZigZag Transformation On DCT Blocks Using RDP
   DPC(RDPZigZagBuffer, RDPZigZagBufferEnd) // Run DPC Command Buffer: Start, End
@@ -220,6 +234,10 @@ LoopVideo:
 
   SetSPPC(RSPStart) // Set RSP Program Counter: Start Address
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
+
+
+  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
+
 
   // Draw YUV 8x8 Tiles Using RDP
   DPC(RDPYUVBuffer, RDPYUVBufferEnd) // Run DPC Command Buffer: Start, End
