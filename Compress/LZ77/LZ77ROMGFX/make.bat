@@ -1,0 +1,2 @@
+bass LZ77ROMGFX.asm
+chksum64 LZ77ROMGFX.N64
