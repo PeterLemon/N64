@@ -149,6 +149,9 @@ LoopVideo:
   LZEOF:
 
 
+  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
+
+
   // Decode RLE DIFF Data
   la a0,RLE+4  // A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
   lui a1,DCTQ>>16   // A1 = Destination Address (DRAM Start Offset)
@@ -219,9 +222,6 @@ LoopVideo:
   sw t0,AI_LEN(a0) // Store Length Of Sample Buffer To AI Length Register ($A4500004)
 
   addiu t7,(Sample.size/FRAMES) // Sample ROM Offset += Sample Length
-
-  
-  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
 
 
   // Perform Inverse ZigZag Transformation On DCT Blocks Using RDP
