@@ -1,0 +1,2 @@
+bass Cycle1ShadeTriangle16BPP320X240.asm
+chksum64 Cycle1ShadeTriangle16BPP320X240.N64
