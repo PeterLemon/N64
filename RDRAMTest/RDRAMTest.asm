@@ -148,6 +148,7 @@ ClearScreen:
 
 
   PrintString($A0100000,8,8,FontRed,RDRAMTEST,10) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,136,8,FontBlack,ADDRESS,7) // Print Text String To VRAM Using Font At X,Y Position
   PrintString($A0100000,208,8,FontGreen,RESULT,6) // Print Text String To VRAM Using Font At X,Y Position
 
   PrintString($A0100000,0,16,FontBlack,PAGEBREAK,39) // Print Text String To VRAM Using Font At X,Y Position
@@ -184,12 +185,127 @@ ExtendedLoop:
   PrintValue($A0100000,216,40,FontGreen,RDWORD,0) // Print HEX Chars To VRAM Using Font At X,Y Position
   PrintString($A0100000,232,40,FontGreen,MB,1) // Print Text String To VRAM Using Font At X,Y Position
 
+
+  PrintString($A0100000,0,48,FontBlack,PAGEBREAK,39) // Print Text String To VRAM Using Font At X,Y Position
+
+
+  PrintString($A0100000,8,56,FontRed,RDRAMREGISTER,13) // Print Text String To VRAM Using Font At X,Y Position
+
+  lui a3,RDRAM_BASE // A3 = RDRAM Base Register ($A3F00000)
+
+  PrintString($A0100000,32,72,FontRed,RDRAMDEVICETYPE,10) // Print Text String To VRAM Using Font At X,Y Position
+  addiu t0,a3,RDRAM_DEVICE_TYPE // T0 = RDRAM: Device Type Register Address ($A3F00000)
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,128,72,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,136,72,FontBlack,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  lw t0,RDRAM_DEVICE_TYPE(a3) // T0 = RDRAM Register Word
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,208,72,FontGreen,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,216,72,FontGreen,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+
+  PrintString($A0100000,32,88,FontRed,RDRAMDEVICEID,8) // Print Text String To VRAM Using Font At X,Y Position
+  addiu t0,a3,RDRAM_DEVICE_ID // T0 = RDRAM: Device ID Register Address ($A3F00004)
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,128,88,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,136,88,FontBlack,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  lw t0,RDRAM_DEVICE_ID(a3) // T0 = RDRAM Register Word
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,208,88,FontGreen,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,216,88,FontGreen,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+
+  PrintString($A0100000,32,104,FontRed,RDRAMDELAY,4) // Print Text String To VRAM Using Font At X,Y Position
+  addiu t0,a3,RDRAM_DELAY // T0 = RDRAM: Delay Register Address ($A3F00008)
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,128,104,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,136,104,FontBlack,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  lw t0,RDRAM_DELAY(a3) // T0 = RDRAM Register Word
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,208,104,FontGreen,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,216,104,FontGreen,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+
+  PrintString($A0100000,32,120,FontRed,RDRAMMODE,3) // Print Text String To VRAM Using Font At X,Y Position
+  addiu t0,a3,RDRAM_MODE // T0 = RDRAM: Mode Register Address ($A3F0000C)
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,128,120,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,136,120,FontBlack,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  lw t0,RDRAM_MODE(a3) // T0 = RDRAM Register Word
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,208,120,FontGreen,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,216,120,FontGreen,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+
+  PrintString($A0100000,24,136,FontRed,RDRAMREFINTERVAL,11) // Print Text String To VRAM Using Font At X,Y Position
+  addiu t0,a3,RDRAM_REF_INTERVAL // T0 = RDRAM: Ref Interval Register Address ($A3F00010)
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,128,136,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,136,136,FontBlack,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  lw t0,RDRAM_REF_INTERVAL(a3) // T0 = RDRAM Register Word
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,208,136,FontGreen,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,216,136,FontGreen,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+
+  PrintString($A0100000,24,152,FontRed,RDRAMREFROW,6) // Print Text String To VRAM Using Font At X,Y Position
+  addiu t0,a3,RDRAM_REF_ROW // T0 = RDRAM: Ref Row Register Address ($A3F00014)
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,128,152,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,136,152,FontBlack,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  lw t0,RDRAM_REF_ROW(a3) // T0 = RDRAM Register Word
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,208,152,FontGreen,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,216,152,FontGreen,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+
+  PrintString($A0100000,24,168,FontRed,RDRAMRASINTERVAL,11) // Print Text String To VRAM Using Font At X,Y Position
+  addiu t0,a3,RDRAM_RAS_INTERVAL // T0 = RDRAM: Ras Interval Register Address ($A3F00018)
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,128,168,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,136,168,FontBlack,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  lw t0,RDRAM_RAS_INTERVAL(a3) // T0 = RDRAM Register Word
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,208,168,FontGreen,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,216,168,FontGreen,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+
+  PrintString($A0100000,24,184,FontRed,RDRAMMININTERVAL,11) // Print Text String To VRAM Using Font At X,Y Position
+  addiu t0,a3,RDRAM_MIN_INTERVAL // T0 = RDRAM: Minimum Interval Register Address ($A3F0001C)
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,128,184,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,136,184,FontBlack,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  lw t0,RDRAM_MIN_INTERVAL(a3) // T0 = RDRAM Register Word
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,208,184,FontGreen,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,216,184,FontGreen,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+
+  PrintString($A0100000,32,200,FontRed,RDRAMADDRSELECT,10) // Print Text String To VRAM Using Font At X,Y Position
+  addiu t0,a3,RDRAM_ADDR_SELECT // T0 = RDRAM: Address Select Register Address ($A3F00020)
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,128,200,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,136,200,FontBlack,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  lw t0,RDRAM_ADDR_SELECT(a3) // T0 = RDRAM Register Word
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,208,200,FontGreen,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,216,200,FontGreen,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+
+  PrintString($A0100000,24,216,FontRed,RDRAMDEVICEMANUF,11) // Print Text String To VRAM Using Font At X,Y Position
+  addiu t0,a3,RDRAM_DEVICE_MANUF // T0 = RDRAM: Device Manufacturer Register Address ($A3F00024)
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,128,216,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,136,216,FontBlack,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  lw t0,RDRAM_DEVICE_MANUF(a3) // T0 = RDRAM Register Word
+  sw t0,0(s1) // Store RDRAM Word Address
+  PrintString($A0100000,208,216,FontGreen,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,216,216,FontGreen,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+
+
+  PrintString($A0100000,0,224,FontBlack,PAGEBREAK,39) // Print Text String To VRAM Using Font At X,Y Position
+
+
 Loop:
   j Loop
   nop // Delay Slot
 
 RDRAMTEST:
   db "RDRAM Test:"
+
+ADDRESS:
+  db "Address:"
 
 RESULT:
   db "Result:"
@@ -198,6 +314,39 @@ EXTENDEDRDRAM:
   db "Extended RDRAM"
 TOTALRDRAM:
   db "Total RDRAM"
+
+RDRAMREGISTER:
+  db "RDRAM Register"
+
+RDRAMDEVICETYPE:
+  db "DEVICE_TYPE"
+
+RDRAMDEVICEID:
+  db "DEVICE_ID"
+
+RDRAMDELAY:
+  db "DELAY"
+
+RDRAMMODE:
+  db "MODE"
+
+RDRAMREFINTERVAL:
+  db "REF_INTERVAL"
+
+RDRAMREFROW:
+  db "REF_ROW"
+
+RDRAMRASINTERVAL:
+  db "RAS_INTERVAL"
+
+RDRAMMININTERVAL:
+  db "MIN_INTERVAL"
+
+RDRAMADDRSELECT:
+  db "ADDR_SELECT"
+
+RDRAMDEVICEMANUF:
+  db "DEVICE_MANUF"
 
 DOLLAR:
   db "$"
