@@ -1,0 +1,2 @@
+FFMPEG: (A-Law)
+ffmpeg -i panning_drums.wav -f s16be -acodec pcm_alaw Sample.alaw
