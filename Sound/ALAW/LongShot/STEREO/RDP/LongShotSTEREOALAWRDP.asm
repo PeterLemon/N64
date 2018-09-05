@@ -2,7 +2,7 @@
 arch n64.cpu
 endian msb
 output "LongShotSTEREOALAWRDP.N64", create
-fill 4194304 // Set ROM Size
+fill 1052672 // Set ROM Size
 
 origin $00000000
 base $80000000 // Entry Point Of Code
@@ -15,13 +15,13 @@ Start:
   N64_INIT() // Run N64 Initialisation Routine
 
   lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
-  lli t0,1 // T0 = AI Control DMA Enable Bit (1)
+  ori t0,r0,1 // T0 = AI Control DMA Enable Bit (1)
   sw t0,AI_CONTROL(a0) // Store AI Control DMA Enable Bit To AI Control Register ($A4500008)
 
 LoopSample:
   la a1,Sample // A1 = Sample DRAM Offset
   la a2,$10000000|(Sample&$3FFFFFF) // A2 = Sample Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
-  lli t0,15 // T0 = Sample Bit Rate (Bitrate-1)
+  ori t0,r0,15 // T0 = Sample Bit Rate (Bitrate-1)
   sw t0,AI_BITRATE(a0) // Store Sample Bit Rate To AI Bit Rate Register ($A4500014)
   li t0,(VI_NTSC_CLOCK/44100)-1 // T0 = Sample Frequency: (VI_NTSC_CLOCK(48681812) / FREQ(44100)) - 1
   sw t0,AI_DACRATE(a0) // Store Sample Frequency To AI DAC Rate Register ($A4500010)
@@ -43,10 +43,10 @@ LoopBuffer:
 
   lui a3,$A010 // A3 = Sample DRAM Offset
   sw a3,AI_DRAM_ADDR(a0) // Store Sample DRAM Offset To AI DRAM Address Register ($A4500000)
-  lli t0,$8000-1 // T0 = Length Of Sample Buffer In Bytes - 1
+  ori t0,r0,$1000-1 // T0 = Length Of Sample Buffer In Bytes - 1
   sw t0,AI_LEN(a0) // Store Length Of Sample Buffer To AI Length Register ($A4500004)
 
-  addiu a2,$4000 // Sample ROM Offset += $4000
+  addiu a2,$0800 // Sample ROM Offset += $800
   la a3,$10000000|((Sample+Sample.size)&$3FFFFFF) // A2 = Sample END Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
   bge a2,a3,LoopSample // IF (Sample ROM Offset >= Sample END Offset) LoopSample
   nop // Delay Slot
@@ -54,7 +54,7 @@ LoopBuffer:
   lui a3,PI_BASE // A3 = PI Base Register ($A4600000)
   sw a1,PI_DRAM_ADDR(a3) // Store RAM Offset To PI DRAM Address Register ($A4600000)
   sw a2,PI_CART_ADDR(a3) // Store ROM Offset To PI Cart Address Register ($A4600004)
-  lli t0,$3FFF // T0 = Length Of DMA Transfer In Bytes - 1
+  ori t0,r0,$0800-1 // T0 = Length Of DMA Transfer In Bytes - 1
   sw t0,PI_WR_LEN(a3) // Store DMA Length To PI Write Length Register ($A460000C)
 
   j LoopBuffer
@@ -63,7 +63,7 @@ LoopBuffer:
 align(8) // Align 64-Bit
 RDPBuffer:
 arch n64.rdp
-  Set_Scissor 0<<2,0<<2, 0,0, 256<<2,512<<2 // Set Scissor: XH 0.0,YH 0.0, Scissor Field Enable Off,Field Off, XL 256.0,YL 512.0
+  Set_Scissor 0<<2,0<<2, 0,0, 256<<2,8<<2 // Set Scissor: XH 0.0,YH 0.0, Scissor Field Enable Off,Field Off, XL 256.0,YL 8.0
   Set_Color_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,256-1, $00100000 // Set Color Image: FORMAT RGBA,SIZE 16B,WIDTH 256, DRAM ADDRESS $00100000
   Set_Other_Modes CYCLE_TYPE_COPY|EN_TLUT // Set Other Modes
 
@@ -76,41 +76,6 @@ arch n64.rdp
   Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,256-1, Sample // Set Texture Image: FORMAT COLOR INDEX,SIZE 8B,WIDTH 256, Sample DRAM ADDRESS
   Load_Tile 0<<2,0<<2, 0, 255<<2,7<<2 // Load_Tile: SL 0.0,TL 0.0, Tile 0, SH 255.0,TH 7.0
   Texture_Rectangle 255<<2,7<<2, 0, 0<<2,0<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 255.0,YL 7.0, Tile 0, XH 0.0,YH 0.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
-
-  Sync_Tile // Sync Tile
-  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,256-1, Sample+(256*8) // Set Texture Image: FORMAT COLOR INDEX,SIZE 8B,WIDTH 256, Sample DRAM ADDRESS
-  Load_Tile 0<<2,0<<2, 0, 255<<2,7<<2 // Load_Tile: SL 0.0,TL 0.0, Tile 0, SH 255.0,TH 7.0
-  Texture_Rectangle 255<<2,15<<2, 0, 0<<2,8<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 255.0,YL 15.0, Tile 0, XH 0.0,YH 8.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
-
-  Sync_Tile // Sync Tile
-  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,256-1, Sample+((256*8)*2) // Set Texture Image: FORMAT COLOR INDEX,SIZE 8B,WIDTH 256, Sample DRAM ADDRESS
-  Load_Tile 0<<2,0<<2, 0, 255<<2,7<<2 // Load_Tile: SL 0.0,TL 0.0, Tile 0, SH 255.0,TH 7.0
-  Texture_Rectangle 255<<2,23<<2, 0, 0<<2,16<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 255.0,YL 23.0, Tile 0, XH 0.0,YH 16.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
-
-  Sync_Tile // Sync Tile
-  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,256-1, Sample+((256*8)*3) // Set Texture Image: FORMAT COLOR INDEX,SIZE 8B,WIDTH 256, Sample DRAM ADDRESS
-  Load_Tile 0<<2,0<<2, 0, 255<<2,7<<2 // Load_Tile: SL 0.0,TL 0.0, Tile 0, SH 255.0,TH 7.0
-  Texture_Rectangle 255<<2,31<<2, 0, 0<<2,24<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 255.0,YL 31.0, Tile 0, XH 0.0,YH 24.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
-
-  Sync_Tile // Sync Tile
-  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,256-1, Sample+((256*8)*4) // Set Texture Image: FORMAT COLOR INDEX,SIZE 8B,WIDTH 256, Sample DRAM ADDRESS
-  Load_Tile 0<<2,0<<2, 0, 255<<2,7<<2 // Load_Tile: SL 0.0,TL 0.0, Tile 0, SH 255.0,TH 7.0
-  Texture_Rectangle 255<<2,39<<2, 0, 0<<2,32<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 255.0,YL 39.0, Tile 0, XH 0.0,YH 32.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
-
-  Sync_Tile // Sync Tile
-  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,256-1, Sample+((256*8)*5) // Set Texture Image: FORMAT COLOR INDEX,SIZE 8B,WIDTH 256, Sample DRAM ADDRESS
-  Load_Tile 0<<2,0<<2, 0, 255<<2,7<<2 // Load_Tile: SL 0.0,TL 0.0, Tile 0, SH 255.0,TH 7.0
-  Texture_Rectangle 255<<2,47<<2, 0, 0<<2,40<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 255.0,YL 47.0, Tile 0, XH 0.0,YH 40.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
-
-  Sync_Tile // Sync Tile
-  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,256-1, Sample+((256*8)*6) // Set Texture Image: FORMAT COLOR INDEX,SIZE 8B,WIDTH 256, Sample DRAM ADDRESS
-  Load_Tile 0<<2,0<<2, 0, 255<<2,7<<2 // Load_Tile: SL 0.0,TL 0.0, Tile 0, SH 255.0,TH 7.0
-  Texture_Rectangle 255<<2,55<<2, 0, 0<<2,48<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 255.0,YL 55.0, Tile 0, XH 0.0,YH 48.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
-
-  Sync_Tile // Sync Tile
-  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,256-1, Sample+((256*8)*7) // Set Texture Image: FORMAT COLOR INDEX,SIZE 8B,WIDTH 256, Sample DRAM ADDRESS
-  Load_Tile 0<<2,0<<2, 0, 255<<2,7<<2 // Load_Tile: SL 0.0,TL 0.0, Tile 0, SH 255.0,TH 7.0
-  Texture_Rectangle 255<<2,63<<2, 0, 0<<2,56<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 255.0,YL 63.0, Tile 0, XH 0.0,YH 56.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
 
   Sync_Full // Ensure Entire Scene Is Fully Drawn
 RDPBufferEnd:
