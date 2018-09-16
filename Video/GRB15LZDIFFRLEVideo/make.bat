@@ -1,0 +1,2 @@
+bass GRB15LZDIFFRLEVideo.asm
+chksum64 GRB15LZDIFFRLEVideo.N64
