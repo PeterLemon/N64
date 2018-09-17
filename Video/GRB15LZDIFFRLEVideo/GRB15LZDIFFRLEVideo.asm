@@ -147,9 +147,6 @@ LoopVideo:
   LZEOF:
 
 
-  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
-
-
   // Decode RLE DIFF Data
   la a0,RLE+4 // A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
   lui a1,GRB>>16  // A1 = Destination Address (DRAM Start Offset)
@@ -234,10 +231,10 @@ LoopVideo:
   DPC(RDPBuffer, RDPBufferEnd) // Run DPC Command Buffer: Start, End
 
   // Wait For RDP To Finish
-  li a1,(RDPBufferEnd & $FFFFFF) // Wait For RDP End Command
   RDPLoop:
-    lwu t0,DPC_CURRENT(a0) // T0 = CMD DMA Current ($04100008)
-    blt t0,a1,RDPLoop // IF (A2 < A1) RDPLoop
+    lw t0,DPC_STATUS(a0) // T0 = CMD Status ($0410000C)
+    andi t0,%101100000 // Wait For RDP DMA Busy Bit 8, Command Busy Bit 6, & RDP Pipeline Busy Bit 5 To Clear
+    bnez t0,RDPLoop // IF (T0 != 0) RDPLoop
     nop // Delay Slot
 
 
