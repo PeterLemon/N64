@@ -28,7 +28,6 @@ LoopSample:
 
 LoopBuffer:
   // Decode A-Law Sound Sample Using RDP
-  //DPC(RDPBuffer, RDPBufferEnd) // Run DPC Command Buffer: Start, End
   lui s0,DPC_BASE // S0 = Reality Display Processer Control Interface Base Register ($A4100000)
   la s1,RDPBuffer // S1 = DPC Command Start Address
   sw s1,DPC_START(s0) // Store DPC Command Start Address To DP Start Register ($A4100000)
