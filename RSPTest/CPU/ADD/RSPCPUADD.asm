@@ -208,6 +208,7 @@ ClearScreen:
   lw t0,0(a1)      // T0 = Word Data
   sw t0,4(a0)      // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,144,48,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -244,6 +245,7 @@ ClearScreen:
   lw t0,0(a1)      // T0 = Word Data
   sw t0,4(a0)      // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,144,72,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -280,6 +282,7 @@ ClearScreen:
   lw t0,0(a1)      // T0 = Word Data
   sw t0,4(a0)      // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,144,96,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -316,6 +319,7 @@ ClearScreen:
   lw t0,0(a1)      // T0 = Word Data
   sw t0,4(a0)      // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,144,120,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -352,6 +356,7 @@ ClearScreen:
   lw t0,0(a1)      // T0 = Word Data
   sw t0,4(a0)      // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,144,144,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -388,6 +393,7 @@ ClearScreen:
   lw t0,0(a1)      // T0 = Word Data
   sw t0,4(a0)      // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,144,168,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -426,6 +432,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,8,192,FontRed,ADDI,3) // Print Text String To VRAM Using Font At X,Y Position
@@ -464,6 +471,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,144,216,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -501,6 +509,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,144,240,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -538,6 +547,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,144,264,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -575,6 +585,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,144,288,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -612,6 +623,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,144,312,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -645,6 +657,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,144,336,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
