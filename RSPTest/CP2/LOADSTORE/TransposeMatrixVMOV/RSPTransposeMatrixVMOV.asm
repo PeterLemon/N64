@@ -1025,7 +1025,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   vmov v2[e7],v21[e7] // V2 = Tranposed Matrix 8th Row
   sqv v2[e0],$70(r0) // Store 8th Transposed Matrix Row
 
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPVMOVCode+pc() // Set End Of RSP Code Object
 RSPVMOVCodeEnd:
@@ -1123,7 +1123,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   vmov v2[e15],v21[e15] // V2 = Tranposed Matrix 8th Row
   sqv v2[e0],$70(r0) // Store 8th Transposed Matrix Row
 
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPVMOVTransposeCode+pc() // Set End Of RSP Code Object
 RSPVMOVTransposeCodeEnd:
