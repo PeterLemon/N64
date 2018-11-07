@@ -956,7 +956,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   sqv v5[e0],$50(r0) // 128-Bit DMEM $050(R0) = V5, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   sqv v6[e0],$60(r0) // 128-Bit DMEM $060(R0) = V6, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
   sqv v7[e0],$70(r0) // 128-Bit DMEM $070(R0) = V7, Store Vector To Quad: SQV VT[ELEMENT],$OFFSET(BASE)
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPLTVCode+pc() // Set End Of RSP Code Object
 RSPLTVCodeEnd:
@@ -981,7 +981,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   stv v0[e10],$50(r0) // 128-Bit DMEM $010(R0) = V0..V7, Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
   stv v0[e12],$60(r0) // 128-Bit DMEM $010(R0) = V0..V7, Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
   stv v0[e14],$70(r0) // 128-Bit DMEM $010(R0) = V0..V7, Store Transpose From Vector: STV VT[ELEMENT],$OFFSET(BASE)
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPSTVCode+pc() // Set End Of RSP Code Object
 RSPSTVCodeEnd:
