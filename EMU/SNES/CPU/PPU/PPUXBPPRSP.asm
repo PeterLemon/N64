@@ -957,7 +957,7 @@ LoopTiles8BPP:
   subiu t2,1 // Decrement Tile Block Counter (Delay Slot)
 
 
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPTILEXBPPCode+pc() // Set End Of RSP Code Object
 RSPTILEXBPPCodeEnd:
