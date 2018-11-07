@@ -276,7 +276,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
 
   IMEMMIDDLE: // Offset == 2048 (Middle Of IMEM)
     sh t0,0(r0) // DMEM[$0000] = T0
-    break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+    break // Set SP Status Halt, Broke & Check For Interrupt
 
   define i(0)
   while {i} < 508 {
@@ -298,7 +298,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   IMEMSTARTB: // Offset == 0000 (Start Of IMEM)
     ori t0,r0,$BABE // T0 = BABE (Wrap From Last Instruction)
     sh t0,0(r0) // DMEM[$0000] = T0
-    break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+    break // Set SP Status Halt, Broke & Check For Interrupt
 
   define i(0)
   while {i} < 1020 {
