@@ -270,7 +270,7 @@ RSPInitStart:
   lqv v30[e0],Q+96(r0)  // V30 = JPEG Standard Quantization Row 7
   lqv v31[e0],Q+112(r0) // V31 = JPEG Standard Quantization Row 8
 
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPInitCode+pc() // Set End Of RSP Code Object
 RSPInitCodeEnd:
@@ -646,7 +646,7 @@ LoopBlocks:
   subiu s1,1 // Loop DMA Count-- (Delay Slot)
 
   Finished:
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPCode+pc() // Set End Of RSP Code Object
 RSPCodeEnd:
