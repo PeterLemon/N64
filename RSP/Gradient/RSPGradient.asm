@@ -66,7 +66,7 @@ LoopScanline:
   bne a2,a3,LoopVRAM
   addi a2,3840 // A2 += 3840 (Delay Slot)
 
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPCode+pc() // Set End Of RSP Code Object
 RSPCodeEnd:
