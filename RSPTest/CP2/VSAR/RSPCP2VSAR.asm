@@ -389,6 +389,7 @@ ClearScreen:
   DMASPRD(VALUEQUADB, VALUEQUADBEnd, SP_DMEM+16) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
   DMASPWait() // Wait For RSP DMA To Finish
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,0,72,FontRed,VSARMTEXT,4) // Print Text String To VRAM Using Font At X,Y Position
@@ -611,6 +612,7 @@ ClearScreen:
   DMASPRD(VALUEQUADB, VALUEQUADBEnd, SP_DMEM+16) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
   DMASPWait() // Wait For RSP DMA To Finish
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,0,120,FontRed,VSARLTEXT,4) // Print Text String To VRAM Using Font At X,Y Position
@@ -836,6 +838,7 @@ ClearScreen:
   DMASPRD(VALUEQUADB, VALUEQUADBEnd, SP_DMEM+16) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
   DMASPWait() // Wait For RSP DMA To Finish
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,0,216,FontRed,VSARHTEXT,4) // Print Text String To VRAM Using Font At X,Y Position
@@ -1058,6 +1061,7 @@ ClearScreen:
   DMASPRD(VALUEQUADB, VALUEQUADBEnd, SP_DMEM+16) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
   DMASPWait() // Wait For RSP DMA To Finish
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,0,264,FontRed,VSARMTEXT,4) // Print Text String To VRAM Using Font At X,Y Position
@@ -1280,6 +1284,7 @@ ClearScreen:
   DMASPRD(VALUEQUADB, VALUEQUADBEnd, SP_DMEM+16) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
   DMASPWait() // Wait For RSP DMA To Finish
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,0,312,FontRed,VSARLTEXT,4) // Print Text String To VRAM Using Font At X,Y Position
@@ -1664,7 +1669,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   sh t0,$42(r0) // 16-Bit DMEM $042(R0) = T0
   cfc2 t0,vce   // T0 = RSP CP2 Control Register: VCE (Vector Compare Extension)
   sb t0,$44(r0) //  8-Bit DMEM $044(R0) = T0
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPVSARH0Code+pc() // Set End Of RSP Code Object
 RSPVSARH0CodeEnd:
@@ -1689,7 +1694,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   sh t0,$42(r0) // 16-Bit DMEM $042(R0) = T0
   cfc2 t0,vce   // T0 = RSP CP2 Control Register: VCE (Vector Compare Extension)
   sb t0,$44(r0) //  8-Bit DMEM $044(R0) = T0
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPVSARM1Code+pc() // Set End Of RSP Code Object
 RSPVSARM1CodeEnd:
@@ -1714,7 +1719,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   sh t0,$42(r0) // 16-Bit DMEM $042(R0) = T0
   cfc2 t0,vce   // T0 = RSP CP2 Control Register: VCE (Vector Compare Extension)
   sb t0,$44(r0) //  8-Bit DMEM $044(R0) = T0
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPVSARL2Code+pc() // Set End Of RSP Code Object
 RSPVSARL2CodeEnd:
@@ -1740,7 +1745,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   sh t0,$42(r0) // 16-Bit DMEM $042(R0) = T0
   cfc2 t0,vce   // T0 = RSP CP2 Control Register: VCE (Vector Compare Extension)
   sb t0,$44(r0) //  8-Bit DMEM $044(R0) = T0
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPVSARH8Code+pc() // Set End Of RSP Code Object
 RSPVSARH8CodeEnd:
@@ -1765,7 +1770,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   sh t0,$42(r0) // 16-Bit DMEM $042(R0) = T0
   cfc2 t0,vce   // T0 = RSP CP2 Control Register: VCE (Vector Compare Extension)
   sb t0,$44(r0) //  8-Bit DMEM $044(R0) = T0
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPVSARM9Code+pc() // Set End Of RSP Code Object
 RSPVSARM9CodeEnd:
@@ -1790,7 +1795,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   sh t0,$42(r0) // 16-Bit DMEM $042(R0) = T0
   cfc2 t0,vce   // T0 = RSP CP2 Control Register: VCE (Vector Compare Extension)
   sb t0,$44(r0) //  8-Bit DMEM $044(R0) = T0
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPVSARLACode+pc() // Set End Of RSP Code Object
 RSPVSARLACodeEnd:
