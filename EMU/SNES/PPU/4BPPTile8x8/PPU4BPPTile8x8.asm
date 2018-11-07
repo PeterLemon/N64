@@ -263,7 +263,7 @@ LoopColors:
   RSPDMASPWait() // Wait For RSP DMA To Finish
 
 
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPPALCode+pc() // Set End Of RSP Code Object
 RSPPALCodeEnd:
@@ -517,7 +517,7 @@ LoopTiles:
   bnez t2,LoopTileBlocks // IF (Tile Block Counter != 0) Loop Tile Blocks
   subi t2,1 // Decrement Tile Block Counter (Delay Slot)
 
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPTILECode+pc() // Set End Of RSP Code Object
 RSPTILECodeEnd:
