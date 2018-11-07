@@ -318,7 +318,7 @@ IMEMSTART: // Offset == 0000 (Start Of IMEM)
   sqv v1[e0],$10(r0) // V1 = 128-Bit DMEM $010(R0), Store Quad To Vector: SQV VT[ELEMENT],$OFFSET(BASE)
   sqv v2[e0],$20(r0) // V2 = 128-Bit DMEM $020(R0), Store Quad To Vector: SQV VT[ELEMENT],$OFFSET(BASE)
 
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPSORTCode+pc() // Set End Of RSP Code Object
 RSPSORTCodeEnd:
