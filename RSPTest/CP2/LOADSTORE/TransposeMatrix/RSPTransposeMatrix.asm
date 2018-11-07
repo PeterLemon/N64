@@ -961,7 +961,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   swv v6[e12],$60(r0) // Store 7th Element Diagonals From Vector Register Block
   swv v7[e14],$70(r0) // Store 8th Element Diagonals From Vector Register Block 
 
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPLTVCode+pc() // Set End Of RSP Code Object
 RSPLTVCodeEnd:
@@ -1006,7 +1006,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   sqv v6[e0],$60(r0) // Store 7th Row From Transposed Matrix Vector Register Block
   sqv v7[e0],$70(r0) // Store 8th Row From Transposed Matrix Vector Register Block
 
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPSTVCode+pc() // Set End Of RSP Code Object
 RSPSTVCodeEnd:
