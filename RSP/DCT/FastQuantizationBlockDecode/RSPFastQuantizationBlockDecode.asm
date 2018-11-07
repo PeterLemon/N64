@@ -525,7 +525,7 @@ RSPStart:
   mtc0 a1,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
   mtc0 t0,c3 // Store DMA Length To SP Write Length Register ($A404000C)
 
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 align(8) // Align 64-Bit
 base RSPCode+pc() // Set End Of RSP Code Object
 RSPCodeEnd:
