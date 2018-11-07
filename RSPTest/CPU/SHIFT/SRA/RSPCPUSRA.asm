@@ -203,6 +203,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,32,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -237,6 +238,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,40,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -271,6 +273,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,48,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -305,6 +308,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,56,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -339,6 +343,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,64,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -373,6 +378,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,72,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -407,6 +413,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,80,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -441,6 +448,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,88,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -475,6 +483,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,96,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -509,6 +518,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,104,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -543,6 +553,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,112,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -577,6 +588,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,120,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -611,6 +623,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,128,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -645,6 +658,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,136,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -679,6 +693,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,144,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -713,6 +728,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,152,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -747,6 +763,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,160,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -781,6 +798,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,168,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -815,6 +833,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,176,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -849,6 +868,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,184,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -883,6 +903,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,192,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -917,6 +938,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,200,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -951,6 +973,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,208,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -985,6 +1008,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,216,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -1019,6 +1043,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,224,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -1053,6 +1078,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,232,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -1087,6 +1113,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,240,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -1121,6 +1148,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,248,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -1155,6 +1183,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,256,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -1189,6 +1218,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,264,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -1223,6 +1253,7 @@ ClearScreen:
   lw t0,0(a1) // T0 = Word Data
   sw t0,0(a0) // Store Word Data To DMEM
 
+  SetSPPC($0000) // Set RSP Program Counter: Set To Zero (Start Of RSP Code)
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
   PrintString($A0100000,80,272,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -1434,7 +1465,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,0 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA0Code+pc() // Set End Of RSP Code Object
 RSPSRA0CodeEnd:
 
@@ -1445,7 +1476,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,1 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA1Code+pc() // Set End Of RSP Code Object
 RSPSRA1CodeEnd:
 
@@ -1456,7 +1487,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,2 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA2Code+pc() // Set End Of RSP Code Object
 RSPSRA2CodeEnd:
 
@@ -1467,7 +1498,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,3 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA3Code+pc() // Set End Of RSP Code Object
 RSPSRA3CodeEnd:
 
@@ -1478,7 +1509,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,4 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA4Code+pc() // Set End Of RSP Code Object
 RSPSRA4CodeEnd:
 
@@ -1489,7 +1520,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,5 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA5Code+pc() // Set End Of RSP Code Object
 RSPSRA5CodeEnd:
 
@@ -1500,7 +1531,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,6 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA6Code+pc() // Set End Of RSP Code Object
 RSPSRA6CodeEnd:
 
@@ -1511,7 +1542,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,7 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA7Code+pc() // Set End Of RSP Code Object
 RSPSRA7CodeEnd:
 
@@ -1522,7 +1553,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,8 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA8Code+pc() // Set End Of RSP Code Object
 RSPSRA8CodeEnd:
 
@@ -1533,7 +1564,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,9 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA9Code+pc() // Set End Of RSP Code Object
 RSPSRA9CodeEnd:
 
@@ -1544,7 +1575,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,10 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA10Code+pc() // Set End Of RSP Code Object
 RSPSRA10CodeEnd:
 
@@ -1555,7 +1586,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,11 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA11Code+pc() // Set End Of RSP Code Object
 RSPSRA11CodeEnd:
 
@@ -1566,7 +1597,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,12 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA12Code+pc() // Set End Of RSP Code Object
 RSPSRA12CodeEnd:
 
@@ -1577,7 +1608,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,13 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA13Code+pc() // Set End Of RSP Code Object
 RSPSRA13CodeEnd:
 
@@ -1588,7 +1619,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,14 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA14Code+pc() // Set End Of RSP Code Object
 RSPSRA14CodeEnd:
 
@@ -1599,7 +1630,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,15 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA15Code+pc() // Set End Of RSP Code Object
 RSPSRA15CodeEnd:
 
@@ -1610,7 +1641,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,16 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA16Code+pc() // Set End Of RSP Code Object
 RSPSRA16CodeEnd:
 
@@ -1621,7 +1652,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,17 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA17Code+pc() // Set End Of RSP Code Object
 RSPSRA17CodeEnd:
 
@@ -1632,7 +1663,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,18 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA18Code+pc() // Set End Of RSP Code Object
 RSPSRA18CodeEnd:
 
@@ -1643,7 +1674,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,19 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA19Code+pc() // Set End Of RSP Code Object
 RSPSRA19CodeEnd:
 
@@ -1654,7 +1685,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,20 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA20Code+pc() // Set End Of RSP Code Object
 RSPSRA20CodeEnd:
 
@@ -1665,7 +1696,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,21 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA21Code+pc() // Set End Of RSP Code Object
 RSPSRA21CodeEnd:
 
@@ -1676,7 +1707,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,22 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA22Code+pc() // Set End Of RSP Code Object
 RSPSRA22CodeEnd:
 
@@ -1687,7 +1718,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,23 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA23Code+pc() // Set End Of RSP Code Object
 RSPSRA23CodeEnd:
 
@@ -1698,7 +1729,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,24 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA24Code+pc() // Set End Of RSP Code Object
 RSPSRA24CodeEnd:
 
@@ -1709,7 +1740,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,25 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA25Code+pc() // Set End Of RSP Code Object
 RSPSRA25CodeEnd:
 
@@ -1720,7 +1751,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,26 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA26Code+pc() // Set End Of RSP Code Object
 RSPSRA26CodeEnd:
 
@@ -1731,7 +1762,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,27 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA27Code+pc() // Set End Of RSP Code Object
 RSPSRA27CodeEnd:
 
@@ -1742,7 +1773,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,28 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA28Code+pc() // Set End Of RSP Code Object
 RSPSRA28CodeEnd:
 
@@ -1753,7 +1784,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,29 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA29Code+pc() // Set End Of RSP Code Object
 RSPSRA29CodeEnd:
 
@@ -1764,7 +1795,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,30 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA30Code+pc() // Set End Of RSP Code Object
 RSPSRA30CodeEnd:
 
@@ -1775,7 +1806,7 @@ base $0000 // Set Base Of RSP Code Object To Zero
   lw t0,0(a0) // T0 = Word Data 0
   sra t0,31 // T0 = Test Word Data
   sw t0,0(a0) // RSP DMEM = Test Word Data
-  break // Set SP Status Halt, Broke & Check For Interrupt, Set SP Program Counter To $0000
+  break // Set SP Status Halt, Broke & Check For Interrupt
 base RSPSRA31Code+pc() // Set End Of RSP Code Object
 RSPSRA31CodeEnd:
 
