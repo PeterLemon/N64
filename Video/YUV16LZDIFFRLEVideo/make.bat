@@ -1,0 +1,2 @@
+bass YUV16LZDIFFRLEVideo.asm
+chksum64 YUV16LZDIFFRLEVideo.N64
