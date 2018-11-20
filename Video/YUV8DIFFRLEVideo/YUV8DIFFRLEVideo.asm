@@ -7,6 +7,8 @@ fill 1052672 // Set ROM Size
 constant DCTQ($80200000) // DCTQ Frame DRAM Offset
 constant YUV($80300000)  // YUV  Frame DRAM Offset
 
+constant FRAMES(1295) // Number Of Frames
+
 origin $00000000
 base $80000000 // Entry Point Of Code
 include "LIB/N64.INC" // Include N64 Definitions
@@ -54,10 +56,10 @@ LoopVideo:
     subiu t0,1 // T0-- (Delay Slot)
 
   la t6,Sample // T6 = Sample DRAM Offset
-  la t7,$10000000|(Sample&$3FFFFFF) // T7 = Sample Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
+  la t7,$10000000|(Sample&$FFFFFFF) // T7 = Sample Aligned Cart Physical ROM Offset ($10000000..$1FFFFFFF 128MB)
 
-  lli t9,1295-1 // T9 = Frame Count - 1
-  la a3,$10000000|(RLEVideo&$3FFFFFF) // A3 = Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
+  lli t9,FRAMES-1 // T9 = Frame Count - 1
+  la a3,$10000000|(RLEVideo&$FFFFFFF) // A3 = Aligned Cart Physical ROM Offset ($10000000..$1FFFFFFF 128MB)
   
   LoopFrames:
     lui a0,PI_BASE // A0 = PI Base Register ($A4600000)
@@ -74,14 +76,14 @@ LoopVideo:
     lui a0,PI_BASE // A0 = PI Base Register ($A4600000)
     sw t6,PI_DRAM_ADDR(a0) // Store RAM Offset To PI DRAM Address Register ($A4600000)
     sw t7,PI_CART_ADDR(a0) // Store ROM Offset To PI Cart Address Register ($A4600004)
-    ori t0,r0,(Sample.size/1295)-1 // T0 = Length Of DMA Transfer In Bytes - 1
+    ori t0,r0,(Sample.size/FRAMES)-1 // T0 = Length Of DMA Transfer In Bytes - 1
     sw t0,PI_WR_LEN(a0) // Store DMA Length To PI Write Length Register ($A460000C)
 
     lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
     sw t6,AI_DRAM_ADDR(a0) // Store Sample DRAM Offset To AI DRAM Address Register ($A4500000)
     sw t0,AI_LEN(a0) // Store Length Of Sample Buffer To AI Length Register ($A4500004)
 
-    addiu t7,(Sample.size/1295) // Sample ROM Offset += Sample Length
+    addiu t7,(Sample.size/FRAMES) // Sample ROM Offset += Sample Length
 
 
     la a0,RLEVideo+4  // A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
