@@ -337,6 +337,16 @@ LoopBlocks:
   vsub v23,v6,v5[e0] // DCT[CTR*8 + 7] = (TMP10 - TMP3) * 0.125
   vmulu v23,v1[e12]  // Produce Unsigned Result For RGB Pixels
 
+  // Clamp Output Row Results (Max 0xFF)
+  vlt v16,v1[e14] // V16 = (V16 < $FF), Vector Select Less Than
+  vlt v17,v1[e14] // V17 = (V17 < $FF), Vector Select Less Than
+  vlt v18,v1[e14] // V18 = (V18 < $FF), Vector Select Less Than
+  vlt v19,v1[e14] // V19 = (V19 < $FF), Vector Select Less Than
+  vlt v20,v1[e14] // V20 = (V20 < $FF), Vector Select Less Than
+  vlt v21,v1[e14] // V21 = (V21 < $FF), Vector Select Less Than
+  vlt v22,v1[e14] // V22 = (V22 < $FF), Vector Select Less Than
+  vlt v23,v1[e14] // V23 = (V23 < $FF), Vector Select Less Than
+
   // Store Transposed Matrix From Row Ordered Vector Register Block (V16 = Block Base Register)
   sqv v16[e0],$00(a0) // Store 1st Row From Transposed Matrix Vector Register Block
   sqv v17[e0],$10(a0) // Store 2nd Row From Transposed Matrix Vector Register Block
@@ -462,7 +472,7 @@ FIX_LUT: // Signed Fractions (S1.15) (Float * 32768)
   dh 2383   //  0.072711026 FIX( 3.072711026) Vector Register B[3]
   dh 4096   //  0.125       FIX( 0.125)       Vector Register B[4]
   dh $0100  //  Left Shift Using Multiply:<<8 Vector Register B[5]
-  dh 0      //  Zero Padding                  Vector Register B[6]
+  dh $00FF  //  Vector Select Less Than Clamp Vector Register B[6]
   dh 0      //  Zero Padding                  Vector Register B[7]
 
 //Q: // JPEG Standard Quantization 8x8 Result Matrix (Quality = 10)
