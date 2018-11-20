@@ -230,6 +230,15 @@ LoopVideo:
     addiu a0,16 // Address += Data Line Size (Delay Slot)
 
 
+  // Wait For RDP To Finish
+  lui a0,DPC_BASE // A0 = Reality Display Processer Control Interface Base Register ($A4100000)
+  RDPLoop:
+    lw t0,DPC_STATUS(a0) // T0 = CMD Status ($0410000C)
+    andi t0,%101100000 // Wait For RDP DMA Busy Bit 8, Command Busy Bit 6, & RDP Pipeline Busy Bit 5 To Clear
+    bnez t0,RDPLoop // IF (T0 != 0) RDPLoop
+    nop // Delay Slot
+
+
   // Perform Inverse ZigZag Transformation On DCT Blocks Using RDP
   DPC(RDPZigZagBuffer, RDPZigZagBufferEnd) // Run DPC Command Buffer: Start, End
 
@@ -240,6 +249,7 @@ LoopVideo:
     blt t0,a1,ZigZagLoop // IF (A2 < A1) ZigZagLoop
     nop // Delay Slot
 
+
   SetSPPC(RSPStart) // Set RSP Program Counter: Start Address
   StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
 
@@ -249,6 +259,9 @@ LoopVideo:
     andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
     beqz t0,WaitRSP // IF (RSP Halt Flag == 0) Wait RSP
     nop // Delay Slot
+
+
+  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
 
 
   // Draw YUV 8x8 Tiles Using RDP
