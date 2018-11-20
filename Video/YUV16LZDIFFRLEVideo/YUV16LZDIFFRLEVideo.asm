@@ -260,6 +260,9 @@ LoopVideo:
     nop // Delay Slot
 
 
+//  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
+
+
   // Draw YUV 8x8 Tiles Using RDP
   DPC(RDPYUVBuffer, RDPYUVBufferEnd) // Run DPC Command Buffer: Start, End
 
