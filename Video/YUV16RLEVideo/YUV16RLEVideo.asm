@@ -6,6 +6,8 @@ fill 1052672 // Set ROM Size
 
 constant YUV($80200000) // YUV Frame DRAM Offset
 
+constant FRAMES(1295) // Number Of Frames
+
 origin $00000000
 base $80000000 // Entry Point Of Code
 include "LIB/N64.INC" // Include N64 Definitions
@@ -35,8 +37,8 @@ Start:
   DMASPWait() // Wait For RSP DMA To Finish
 
 LoopVideo:
-  lli t9,1295-1 // T9 = Frame Count - 1
-  la a3,$10000000|(RLEVideo&$3FFFFFF) // A3 = Aligned Cart Physical ROM Offset ($10000000..$13FFFFFF 64MB)
+  lli t9,FRAMES-1 // T9 = Frame Count - 1
+  la a3,$10000000|(RLEVideo&$FFFFFFF) // A3 = Aligned Cart Physical ROM Offset ($10000000..$1FFFFFFF 256MB)
   
   LoopFrames:
     lui a0,PI_BASE // A0 = PI Base Register ($A4600000)
