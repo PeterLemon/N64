@@ -31,10 +31,10 @@ Start:
 
 LoopVideo:
   la t6,Sample // T6 = Sample DRAM Offset
-  la t7,$10000000|(Sample&$FFFFFFF) // T7 = Sample Aligned Cart Physical ROM Offset ($10000000..$1FFFFFFF 128MB)
+  la t7,$10000000|(Sample&$FFFFFFF) // T7 = Sample Aligned Cart Physical ROM Offset ($10000000..$1FFFFFFF 256MB)
 
   ori t9,r0,FRAMES-1 // T9 = Frame Count - 1
-  la a3,$B0000000|(LZVideo&$FFFFFFF) // A3 = Aligned Cart ROM Offset ($B0000000..$BFFFFFFF 128MB)
+  la a3,$B0000000|(LZVideo&$FFFFFFF) // A3 = Aligned Cart ROM Offset ($B0000000..$BFFFFFFF 256MB)
   
   LoopFrames:
   // Decode LZSS Data
