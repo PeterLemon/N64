@@ -854,4 +854,4 @@ arch n64.rdp
 RDPYUVBufferEnd:
 
 insert Sample, "Sample.bin" // 16-Bit 22050Hz Signed Big-Endian Stereo Sound Sample
-insert LZVideo, "Video.lz" // 1295 320x240 LZ DIFF RLE Compressed YUV Frames 
+insert LZVideo, "Video.lz" // 7033 320x240 LZ DIFF RLE Compressed YUV Frames 
