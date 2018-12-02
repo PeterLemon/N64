@@ -332,23 +332,23 @@ LoopBlocks:
   lqv v7[e0],$50(a0) // V7 = DCTQ Row 6
   lqv v8[e0],$60(a0) // V8 = DCTQ Row 7
   lqv v9[e0],$70(a0) // V9 = DCTQ Row 8
-  
-  vmudn v2,v24[e0] // DCTQ *= Q Row 1
-  vmudn v3,v25[e0] // DCTQ *= Q Row 2
-  vmudn v4,v26[e0] // DCTQ *= Q Row 3
-  vmudn v5,v27[e0] // DCTQ *= Q Row 4
-  vmudn v6,v28[e0] // DCTQ *= Q Row 5
-  vmudn v7,v29[e0] // DCTQ *= Q Row 6
-  vmudn v8,v30[e0] // DCTQ *= Q Row 7
-  vmudn v9,v31[e0] // DCTQ *= Q Row 8
 
+  // Interleave VU & SU Instruction For Dual Issue Optimization
+  vmudn v2,v24[e0]   // DCTQ *= Q Row 1
   sqv v2[e0],$00(a0) // DCTQ Row 1 = V2
+  vmudn v3,v25[e0]   // DCTQ *= Q Row 2
   sqv v3[e0],$10(a0) // DCTQ Row 2 = V3
+  vmudn v4,v26[e0]   // DCTQ *= Q Row 3
   sqv v4[e0],$20(a0) // DCTQ Row 3 = V4
+  vmudn v5,v27[e0]   // DCTQ *= Q Row 4
   sqv v5[e0],$30(a0) // DCTQ Row 4 = V5
+  vmudn v6,v28[e0]   // DCTQ *= Q Row 5
   sqv v6[e0],$40(a0) // DCTQ Row 5 = V6
+  vmudn v7,v29[e0]   // DCTQ *= Q Row 6
   sqv v7[e0],$50(a0) // DCTQ Row 6 = V7
+  vmudn v8,v30[e0]   // DCTQ *= Q Row 7
   sqv v8[e0],$60(a0) // DCTQ Row 7 = V8
+  vmudn v9,v31[e0]   // DCTQ *= Q Row 8
   sqv v9[e0],$70(a0) // DCTQ Row 8 = V9
 
 // Decode DCT 8x8 Block Using IDCT
@@ -382,11 +382,11 @@ LoopBlocks:
 
   // Odd Part Per Figure 8; The Matrix Is Unitary And Hence Its Transpose Is Its Inverse.
   lqv v2[e0],$70(a0) // V2 = TMP0 = DCT[CTR + 8*7]
-  lqv v3[e0],$50(a0) // V3 = TMP1 = DCT[CTR + 8*5]
   lqv v4[e0],$30(a0) // V4 = TMP2 = DCT[CTR + 8*3]
-  lqv v5[e0],$10(a0) // V5 = TMP3 = DCT[CTR + 8*1]
-
   vadd v12,v2,v4[e0] // V12 = Z3 = TMP0 + TMP2
+
+  lqv v3[e0],$50(a0) // V3 = TMP1 = DCT[CTR + 8*5]
+  lqv v5[e0],$10(a0) // V5 = TMP3 = DCT[CTR + 8*1]
   vadd v13,v3,v5[e0] // R13 = Z4 = TMP1 + TMP3
 
   vadd v14,v12,v13[e0] // Z5 = (Z3 + Z4) * 1.175875602 # SQRT(2) * C3
@@ -500,11 +500,11 @@ LoopBlocks:
 
   // Odd Part Per Figure 8; The Matrix Is Unitary And Hence Its Transpose Is Its Inverse.
   lqv v2[e0],$70(a0) // V2 = TMP0 = DCT[CTR*8 + 7]
-  lqv v3[e0],$50(a0) // V3 = TMP1 = DCT[CTR*8 + 5]
   lqv v4[e0],$30(a0) // V4 = TMP2 = DCT[CTR*8 + 3]
-  lqv v5[e0],$10(a0) // V5 = TMP3 = DCT[CTR*8 + 1]
-
   vadd v12,v2,v4[e0] // V12 = Z3 = TMP0 + TMP2
+
+  lqv v3[e0],$50(a0) // V3 = TMP1 = DCT[CTR*8 + 5]
+  lqv v5[e0],$10(a0) // V5 = TMP3 = DCT[CTR*8 + 1]
   vadd v13,v3,v5[e0] // R13 = Z4 = TMP1 + TMP3
 
   vadd v14,v12,v13[e0] // Z5 = (Z3 + Z4) * 1.175875602 # SQRT(2) * C3
@@ -570,23 +570,23 @@ LoopBlocks:
   vmulu v23,v1[e12]  // Produce Unsigned Result For RGB Pixels
 
   // Clamp Output Row Results (Max 0xFF)
-  vlt v16,v1[e14] // V16 = (V16 < $FF), Vector Select Less Than
-  vlt v17,v1[e14] // V17 = (V17 < $FF), Vector Select Less Than
-  vlt v18,v1[e14] // V18 = (V18 < $FF), Vector Select Less Than
-  vlt v19,v1[e14] // V19 = (V19 < $FF), Vector Select Less Than
-  vlt v20,v1[e14] // V20 = (V20 < $FF), Vector Select Less Than
-  vlt v21,v1[e14] // V21 = (V21 < $FF), Vector Select Less Than
-  vlt v22,v1[e14] // V22 = (V22 < $FF), Vector Select Less Than
-  vlt v23,v1[e14] // V23 = (V23 < $FF), Vector Select Less Than
-
   // Store Transposed Matrix From Row Ordered Vector Register Block (V16 = Block Base Register)
+  // Interleave VU & SU Instruction For Dual Issue Optimization
+  vlt v16,v1[e14] // V16 = (V16 < $FF), Vector Select Less Than
   sqv v16[e0],$00(a0) // Store 1st Row From Transposed Matrix Vector Register Block
+  vlt v17,v1[e14] // V17 = (V17 < $FF), Vector Select Less Than
   sqv v17[e0],$10(a0) // Store 2nd Row From Transposed Matrix Vector Register Block
+  vlt v18,v1[e14] // V18 = (V18 < $FF), Vector Select Less Than
   sqv v18[e0],$20(a0) // Store 3rd Row From Transposed Matrix Vector Register Block
+  vlt v19,v1[e14] // V19 = (V19 < $FF), Vector Select Less Than
   sqv v19[e0],$30(a0) // Store 4th Row From Transposed Matrix Vector Register Block
+  vlt v20,v1[e14] // V20 = (V20 < $FF), Vector Select Less Than
   sqv v20[e0],$40(a0) // Store 5th Row From Transposed Matrix Vector Register Block
+  vlt v21,v1[e14] // V21 = (V21 < $FF), Vector Select Less Than
   sqv v21[e0],$50(a0) // Store 6th Row From Transposed Matrix Vector Register Block
+  vlt v22,v1[e14] // V22 = (V22 < $FF), Vector Select Less Than
   sqv v22[e0],$60(a0) // Store 7th Row From Transposed Matrix Vector Register Block
+  vlt v23,v1[e14] // V23 = (V23 < $FF), Vector Select Less Than
   sqv v23[e0],$70(a0) // Store 8th Row From Transposed Matrix Vector Register Block
 
   addiu a0,128 // A0 += Block Size
