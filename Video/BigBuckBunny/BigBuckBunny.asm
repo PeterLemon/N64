@@ -853,5 +853,5 @@ arch n64.rdp
   Sync_Full // Ensure Entire Scene Is Fully Drawn
 RDPYUVBufferEnd:
 
-insert Sample, "Sample.bin" // 16-Bit 22050Hz Signed Big-Endian Stereo Sound Sample
+insert Sample, "Sample.bin" // 16-Bit 16000Hz Signed Big-Endian Stereo Sound Sample
 insert LZVideo, "Video.lz" // 19056 320x240 LZ DIFF RLE Compressed YUV Frames 
