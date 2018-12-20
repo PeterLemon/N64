@@ -311,8 +311,53 @@ ClearScreen:
   PrintString($A0100000,528,72,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   SHENDG:
 
+  la t0,$DEADBEEF
+  la a0,WORD
+  sw t0,0(a0)
+  la t0,VALUEHALFH
+  lh t0,0(t0)
+  sh t0,0(a0)
+  PrintString($A0100000,80,80,FontBlack,DOLLAR,0)
+  PrintValue($A0100000,88,80,FontBlack,VALUEHALFH,1)
+  PrintString($A0100000,336,80,FontBlack,TEXTHALFH,3)
+  PrintString($A0100000,440,80,FontBlack,DOLLAR,0)
+  PrintValue($A0100000,448,80,FontBlack,WORD,3)
+  la t0,WORD
+  lw t0,0(t0)
+  la t1,SHCHECKH
+  lw t1,0(t1)
+  beq t0,t1,SHPASSH
+  nop
+  PrintString($A0100000,528,80,FontRed,FAIL,3)
+  j SHENDH
+  nop
+  SHPASSH:
+  PrintString($A0100000,528,80,FontGreen,PASS,3)
+  SHENDH:
 
-  PrintString($A0100000,0,80,FontBlack,PAGEBREAK,79) // Print Text String To VRAM Using Font At X,Y Position
+  la t0,VALUEHALFI
+  lh t0,0(t0)
+  la a0,WORD
+  sh t0,2(a0)
+  PrintString($A0100000,80,88,FontBlack,DOLLAR,0)
+  PrintValue($A0100000,88,88,FontBlack,VALUEHALFI,1)
+  PrintString($A0100000,328,88,FontBlack,TEXTHALFI,4)
+  PrintString($A0100000,440,88,FontBlack,DOLLAR,0)
+  PrintValue($A0100000,448,88,FontBlack,WORD,3)
+  la t0,WORD
+  lw t0,0(t0)
+  la t1,SHCHECKI
+  lw t1,0(t1)
+  beq t0,t1,SHPASSI
+  nop
+  PrintString($A0100000,528,88,FontRed,FAIL,3)
+  j SHENDI
+  nop
+  SHPASSI:
+  PrintString($A0100000,528,88,FontGreen,PASS,3)
+  SHENDI:
+
+  PrintString($A0100000,0,96,FontBlack,PAGEBREAK,79) // Print Text String To VRAM Using Font At X,Y Position
 
 
 Loop:
@@ -364,6 +409,10 @@ TEXTHALFF:
   db "-1234"
 TEXTHALFG:
   db "-12345"
+TEXTHALFH:
+  db "4660"
+TEXTHALFI:
+  db "22136"
 
 PAGEBREAK:
   db "--------------------------------------------------------------------------------"
@@ -383,6 +432,10 @@ VALUEHALFF:
   dh -1234
 VALUEHALFG:
   dh -12345
+VALUEHALFH:
+  dh $1234
+VALUEHALFI:
+  dh $5678
 
 align(4) // Align 32-Bit
 SHCHECKA:
@@ -399,6 +452,10 @@ SHCHECKF:
   dw $FB2E0000
 SHCHECKG:
   dw $CFC70000
+SHCHECKH:
+  dw $1234BEEF
+SHCHECKI:
+  dw $12345678
 
 WORD:
   dw 0
