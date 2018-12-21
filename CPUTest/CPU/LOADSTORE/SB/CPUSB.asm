@@ -311,8 +311,98 @@ ClearScreen:
   PrintString($A0100000,528,72,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   SBENDG:
 
+  la t0,$DEADBEEF
+  la a0,WORD
+  sw t0,0(a0)
+  la a0,VALUEBYTEH
+  lb t0,0(a0)
+  la a0,WORD
+  sb t0,0(a0)
+  PrintString($A0100000,80,80,FontBlack,DOLLAR,0)
+  PrintValue($A0100000,88,80,FontBlack,VALUEBYTEH,0)
+  PrintString($A0100000,352,80,FontBlack,TEXTBYTEH,1)
+  PrintString($A0100000,440,80,FontBlack,DOLLAR,0)
+  PrintValue($A0100000,448,80,FontBlack,WORD,3)
+  la a0,WORD
+  lw t0,0(a0)
+  la a0,SBCHECKH
+  lw t1,0(a0)
+  beq t0,t1,SBPASSH
+  nop
+  PrintString($A0100000,528,80,FontRed,FAIL,3)
+  j SBENDH
+  nop
+  SBPASSH:
+  PrintString($A0100000,528,80,FontGreen,PASS,3)
+  SBENDH:
 
-  PrintString($A0100000,0,80,FontBlack,PAGEBREAK,79) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,VALUEBYTEI
+  lb t0,0(a0)
+  la a0,WORD
+  sb t0,1(a0)
+  PrintString($A0100000,80,88,FontBlack,DOLLAR,0)
+  PrintValue($A0100000,88,88,FontBlack,VALUEBYTEI,0)
+  PrintString($A0100000,352,88,FontBlack,TEXTBYTEI,1)
+  PrintString($A0100000,440,88,FontBlack,DOLLAR,0)
+  PrintValue($A0100000,448,88,FontBlack,WORD,3)
+  la a0,WORD
+  lw t0,0(a0)
+  la a0,SBCHECKI
+  lw t1,0(a0)
+  beq t0,t1,SBPASSI
+  nop
+  PrintString($A0100000,528,88,FontRed,FAIL,3)
+  j SBENDI
+  nop
+  SBPASSI:
+  PrintString($A0100000,528,88,FontGreen,PASS,3)
+  SBENDI:
+
+  la a0,VALUEBYTEJ
+  lb t0,0(a0)
+  la a0,WORD
+  sb t0,2(a0)
+  PrintString($A0100000,80,96,FontBlack,DOLLAR,0)
+  PrintValue($A0100000,88,96,FontBlack,VALUEBYTEJ,0)
+  PrintString($A0100000,352,96,FontBlack,TEXTBYTEJ,1)
+  PrintString($A0100000,440,96,FontBlack,DOLLAR,0)
+  PrintValue($A0100000,448,96,FontBlack,WORD,3)
+  la a0,WORD
+  lw t0,0(a0)
+  la a0,SBCHECKJ
+  lw t1,0(a0)
+  beq t0,t1,SBPASSJ
+  nop
+  PrintString($A0100000,528,96,FontRed,FAIL,3)
+  j SBENDJ
+  nop
+  SBPASSJ:
+  PrintString($A0100000,528,96,FontGreen,PASS,3)
+  SBENDJ:
+
+  la a0,VALUEBYTEK
+  lb t0,0(a0)
+  la a0,WORD
+  sb t0,3(a0)
+  PrintString($A0100000,80,104,FontBlack,DOLLAR,0)
+  PrintValue($A0100000,88,104,FontBlack,VALUEBYTEK,0)
+  PrintString($A0100000,344,104,FontBlack,TEXTBYTEK,2)
+  PrintString($A0100000,440,104,FontBlack,DOLLAR,0)
+  PrintValue($A0100000,448,104,FontBlack,WORD,3)
+  la a0,WORD
+  lw t0,0(a0)
+  la a0,SBCHECKK
+  lw t1,0(a0)
+  beq t0,t1,SBPASSK
+  nop
+  PrintString($A0100000,528,104,FontRed,FAIL,3)
+  j SBENDK
+  nop
+  SBPASSK:
+  PrintString($A0100000,528,104,FontGreen,PASS,3)
+  SBENDK:
+
+  PrintString($A0100000,0,112,FontBlack,PAGEBREAK,79) // Print Text String To VRAM Using Font At X,Y Position
 
 
 Loop:
@@ -364,6 +454,14 @@ TEXTBYTEF:
   db "-12"
 TEXTBYTEG:
   db "-123"
+TEXTBYTEH:
+  db "18"
+TEXTBYTEI:
+  db "52"
+TEXTBYTEJ:
+  db "86"
+TEXTBYTEK:
+  db "120"
 
 PAGEBREAK:
   db "--------------------------------------------------------------------------------"
@@ -382,6 +480,14 @@ VALUEBYTEF:
   db -12
 VALUEBYTEG:
   db -123
+VALUEBYTEH:
+  db $12
+VALUEBYTEI:
+  db $34
+VALUEBYTEJ:
+  db $56
+VALUEBYTEK:
+  db $78
 
 align(4) // Align 32-Bit
 SBCHECKA:
@@ -398,6 +504,14 @@ SBCHECKF:
   dw $F4000000
 SBCHECKG:
   dw $85000000
+SBCHECKH:
+  dw $12ADBEEF
+SBCHECKI:
+  dw $1234BEEF
+SBCHECKJ:
+  dw $123456EF
+SBCHECKK:
+  dw $12345678
 
 WORD:
   dw 0
