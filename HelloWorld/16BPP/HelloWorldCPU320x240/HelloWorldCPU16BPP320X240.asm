@@ -35,9 +35,9 @@ macro PrintString(vram, xpos, ypos, fontfile, string, length) { // Print Text St
     addu t3,a1 // T3 += Font Address
 
     {#}DrawCharX:
-      lw t4,0(t3) // Load Font Text Character Pixel
+      lh t4,0(t3) // Load Font Text Character Pixel
       addiu t3,BYTES_PER_PIXEL
-      sw t4,0(a0) // Store Font Text Character Pixel into Frame Buffer
+      sh t4,0(a0) // Store Font Text Character Pixel into Frame Buffer
       addiu a0,BYTES_PER_PIXEL
 
       bnez t1,{#}DrawCharX // IF (Character X Pixel Counter != 0) DrawCharX
