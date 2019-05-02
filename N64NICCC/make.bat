@@ -1,0 +1,2 @@
+bass N64NICCC.asm
+chksum64 N64NICCC.N64
