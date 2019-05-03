@@ -45,7 +45,7 @@ Start:
   mov.s f12,f16 // F12 = CX (0.0)
   mov.s f13,f16 // F13 = CY (0.0)
 
-  lli t8,25 // T8 = Iterations
+  ori t8,r0,25 // T8 = Iterations
   li t9,$231AF900 // T9 = Multiply Colour
 
   InitController(PIF1) // Initialize Controller
@@ -69,7 +69,7 @@ Refresh:
   mov.s f12,f16 // F12 = CX (0.0)
   mov.s f13,f16 // F13 = CY (0.0)
 
-  lli t8,25 // T8 = Iterations
+  ori t8,r0,25 // T8 = Iterations
 
 Iteration_Up:
   andi t3,t0,JOY_R // Test JOY R

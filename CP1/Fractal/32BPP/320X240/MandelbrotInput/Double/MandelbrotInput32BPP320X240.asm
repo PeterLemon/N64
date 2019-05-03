@@ -40,7 +40,7 @@ Start:
   div.d f20,f9,f2 // F20 = (1.0 / SX)
   div.d f21,f9,f3 // F21 = (1.0 / SY)
 
-  lli t8,25 // T8 = Iterations
+  ori t8,r0,25 // T8 = Iterations
   li t9,$231AF900 // T9 = Multiply Colour
 
   InitController(PIF1) // Initialize Controller
@@ -61,7 +61,7 @@ Refresh:
   ldc1 f6,32(a0) // F6 = XMin
   ldc1 f7,40(a0) // F7 = YMin
 
-  lli t8,25 // T8 = Iterations
+  ori t8,r0,25 // T8 = Iterations
 
 Iteration_Up:
   andi t3,t0,JOY_R // Test JOY R

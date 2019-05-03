@@ -48,7 +48,7 @@ LoopY:
     mul.d f11,f20
     add.d f11,f7 // F11 = CY
 
-    lli t1,192 // T1 = IT (Iterations)
+    ori t1,r0,192 // T1 = IT (Iterations)
     sub.d f12,f12 // F12 = ZX
     sub.d f13,f13 // F13 = ZY
 

@@ -55,7 +55,7 @@ Refresh:
       mul.s f11,f21
       add.s f11,f7 // F11 = ZY
 
-      lli t1,192 // T1 = IT (Iterations)
+      ori t1,r0,192 // T1 = IT (Iterations)
       Iterate:
         mul.s f14,f10,f10 // XN = ((ZX * ZX) - (ZY * ZY)) + CX
         mul.s f15,f11,f11
