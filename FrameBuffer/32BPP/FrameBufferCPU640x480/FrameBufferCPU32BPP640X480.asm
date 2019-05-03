@@ -31,7 +31,7 @@ Loop:
   WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
   WaitScanline($1E2)
 
-  lli t0,$00000800 // Even Field
+  ori t0,r0,$00000800 // Even Field
   sw t0,VI_Y_SCALE(a0)
 
   WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
