@@ -12,7 +12,7 @@ insert "LIB/N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
 
 Start:
   lui a0,PIF_BASE // A0 = PIF Base Register ($BFC00000)
-  lli t0,8
+  ori t0,r0,8
   sw t0,PIF_RAM+$3C(a0)
 
 Loop:
