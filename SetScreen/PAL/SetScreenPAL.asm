@@ -13,20 +13,20 @@ insert "LIB/N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
 Start:
   N64_INIT() // Run N64 Initialisation Routine
 
-  lui a0,$A440 // A0 = VI Base Register ($A4400000)
-  lli t0,2       // T0 = Status/Control (Pixel Size = 2: 16BPP 5/5/5/1)
+  lui a0,$A440   // A0 = VI Base Register ($A4400000)
+  ori t0,r0,2    // T0 = Status/Control (Pixel Size = 2: 16BPP 5/5/5/1)
   sw t0,0(a0)    // Store Status/Control To VI Status Register ($A4400000)
   lui t0,$A000   // T0 = Origin (Frame Buffer Origin In Bytes = DRAM)
   sw t0,4(a0)    // Store Origin To VI Origin Register ($A4400004)
-  lli t0,320     // T0 = Width (Frame Buffer Line Width In Pixels = 320)
+  ori t0,r0,320  // T0 = Width (Frame Buffer Line Width In Pixels = 320)
   sw t0,8(a0)    // Store Width To VI Width Register ($A4400008)
-  lli t0,$200    // T0 = Vertical Interrupt (Interrupt When Current Half-Line = $200)
+  ori t0,r0,$200 // T0 = Vertical Interrupt (Interrupt When Current Half-Line = $200)
   sw t0,12(a0)   // Store Vertical Interrupt To VI Interrupt Register ($A440000C)
-  lli t0,0       // T0 = Current Vertical Line (Current Half-Line, Sampled Once Per Line = 0)
+  ori t0,r0,0    // T0 = Current Vertical Line (Current Half-Line, Sampled Once Per Line = 0)
   sw t0,16(a0)   // Store Current Vertical Line To VI Current Register ($A4400010)
   li t0,$404233A // T0 = Video Timing (Start Of Color Burst In Pixels from H-Sync = 4, Vertical Sync Width In Half Lines = 04, Color Burst Width In Pixels = 35, Horizontal Sync Width In Pixels = 58)
   sw t0,20(a0)   // Store Video Timing To VI Burst Register ($A4400014)
-  lli t0,$271    // T0 = Vertical Sync (Number Of Half-Lines Per Field = 625)
+  ori t0,r0,$271 // T0 = Vertical Sync (Number Of Half-Lines Per Field = 625)
   sw t0,24(a0)   // Store Vertical Sync To VI V Sync Register ($A4400018)
   li t0,$150C69  // T0 = Horizontal Sync (5-bit Leap Pattern Used For PAL only = 21: %10101, Total Duration Of A Line In 1/4 Pixel = 3177)
   sw t0,28(a0)   // Store Horizontal Sync To VI H Sync Register ($A440001C)
@@ -38,9 +38,9 @@ Start:
   sw t0,40(a0)   // Store Vertical Video To VI V Start Register ($A4400028)
   li t0,$9026B   // T0 = Vertical Burst (Start Of Color Burst Enable In Half-Lines = 9, End Of Color Burst Enable In Half-Lines = 619)
   sw t0,44(a0)   // Store Vertical Burst To VI V Burst Register ($A440002C)
-  lli t0,$200    // T0 = X-Scale (Horizontal Subpixel Offset In 2.10 Format = 0, 1/Horizontal Scale Up Factor In 2.10 Format = 512)
+  ori t0,r0,$200 // T0 = X-Scale (Horizontal Subpixel Offset In 2.10 Format = 0, 1/Horizontal Scale Up Factor In 2.10 Format = 512)
   sw t0,48(a0)   // Store X-Scale To VI X Scale Register ($A4400030)
-  lli t0,$400    // T0 = Y-Scale (Vertical Subpixel Offset In 2.10 Format = 0, 1/Vertical Scale Up Factor In 2.10 Format = 1024)
+  ori t0,r0,$400 // T0 = Y-Scale (Vertical Subpixel Offset In 2.10 Format = 0, 1/Vertical Scale Up Factor In 2.10 Format = 1024)
   sw t0,52(a0)   // Store Y-Scale To VI Y Scale Register ($A4400034)
 
 Loop:
