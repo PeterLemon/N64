@@ -17,8 +17,8 @@ Start:
 
   ScreenNTSC(320, 240, BPP32, $A0100000) // Screen NTSC: 320x240, 32BPP, DRAM Origin $A0100000
 
-  lli t5,160 // T5 = X Position (1/2 Screen X)
-  lli t6,120 // T6 = Y Position (1/2 Screen Y)
+  ori t5,r0,160 // T5 = X Position (1/2 Screen X)
+  ori t6,r0,120 // T6 = Y Position (1/2 Screen Y)
 
   la a3,$A0000000+(FillRect&$3FFFFF) // A3 = Fill Rect RAM Offset
 
@@ -31,7 +31,7 @@ Loop:
 
   ReadController(PIF2) // T0 = Controller Buttons, T1 = Analog X, T2 = Analog Y
 
-  lli t3,8
+  ori t3,r0,8
   beq t6,t3,Down // IF (Y = 8) Down (Screen Edge Collision)
   andi t3,t0,JOY_UP // Test JOY UP
   beqz t3,Down
@@ -39,7 +39,7 @@ Loop:
   subi t6,1
 
 Down:
-  lli t3,232
+  ori t3,r0,232
   beq t6,t3,Left // IF (Y = 232) Left (Screen Edge Collision)
   andi t3,t0,JOY_DOWN // Test JOY DOWN
   beqz t3,Left
@@ -47,7 +47,7 @@ Down:
   addi t6,1
 
 Left:
-  lli t3,8
+  ori t3,r0,8
   beq t5,t3,Right // IF (X = 8) Right (Screen Edge Collision)
   andi t3,t0,JOY_LEFT // Test JOY LEFT
   beqz t3,Right
@@ -55,7 +55,7 @@ Left:
   subi t5,1
 
 Right:
-  lli t3,312
+  ori t3,r0,312
   beq t5,t3,Render // IF (X = 312) Render (Screen Edge Collision)
   andi t3,t0,JOY_RIGHT // Test JOY RIGHT
   beqz t3,Render

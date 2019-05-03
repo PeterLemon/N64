@@ -19,7 +19,7 @@ Start:
 
   lui a0,$A010 // A0 = VRAM Start Offset
   la a1,$A0100000+(320*240*4)-4 // A1 = VRAM End Offset
-  lli t0,$000000FF // T0 = Black
+  ori t0,r0,$000000FF // T0 = Black
 ClearScreen:
   sw t0,0(a0)
   bne a0,a1,ClearScreen
