@@ -9,13 +9,13 @@ nop // Delay Slot
 
 
 // CONTROL Register Write
-lli t1,$72 // T1 = Read 8-Bit ByteCode
+ori t1,r0,$72 // T1 = Read 8-Bit ByteCode
 beq t0,t1,CONTROLEND // IF (I/O Read/Write Type == Read 8-Bit "r") Skip CONTROL
 nop // Delay Slot
-lli t1,$52 // T1 = Read 16-Bit ByteCode
+ori t1,r0,$52 // T1 = Read 16-Bit ByteCode
 beq t0,t1,CONTROLEND // IF (I/O Read/Write Type == Read 16-Bit "R") Skip CONTROL
 nop // Delay Slot
-lli t1,$44 // T1 = Read/Read 8-Bit ByteCode
+ori t1,r0,$44 // T1 = Read/Read 8-Bit ByteCode
 beq t0,t1,CONTROLEND // IF (I/O Read/Write Type == Read/Read 8-Bit "D") Skip CONTROL
 nop // Delay Slot
 
@@ -24,7 +24,7 @@ subiu t2,t1,1           // T2 = MEM_MAP + REG_CONTROL - 1
 beq a2,t1,CONTROLWRITE  // IF (MEMAddressA == REG_CONTROL) Control Write
 nop // Delay Slot
 
-lli t3,$57 // T3 = DP Write 16-Bit ByteCode
+ori t3,r0,$57 // T3 = DP Write 16-Bit ByteCode
 bne t0,t3,CONTROLEND // IF (I/O Read/Write Type != Read/Write 8-Bit) Skip CONTROL
 nop // Delay Slot
 bne a2,t2,CONTROLEND // IF (MEMAddressA != REG_CONTROL - 1) Skip CONTROL
@@ -43,13 +43,13 @@ CONTROLEND:
 // DSP DATA Read/Write
 la t1,DSP_MAP // T1 = DSP_MAP
 
-lli t2,$77 // T2 = Write 8-Bit ByteCode
+ori t2,r0,$77 // T2 = Write 8-Bit ByteCode
 beq t0,t2,DSPDATAWRITE // IF (I/O Read/Write Type == Write 8-Bit "w") Skip DSP Data Register
 nop // Delay Slot
-lli t2,$57 // T2 = Write 16-Bit ByteCode
+ori t2,r0,$57 // T2 = Write 16-Bit ByteCode
 beq t0,t2,DSPDATAWRITE // IF (I/O Read/Write Type == Write 16-Bit "W") Skip DSP Data Register
 nop // Delay Slot
-lli t2,$64 // T2 = Read/Write 8-Bit ByteCode
+ori t2,r0,$64 // T2 = Read/Write 8-Bit ByteCode
 beq t0,t2,DSPDATAWRITE // IF (I/O Read/Write Type == Read/Write 8-Bit "d") Skip DSP Data Register
 nop // Delay Slot
 
@@ -60,7 +60,7 @@ nop // Delay Slot
 beq a3,t2,DSPDATAREAD   // IF (MEMAddressB == REG_DSPDATA) DSP Data Read
 nop // Delay Slot
 
-lli t4,$52 // T4 = Read 16-Bit ByteCode
+ori t4,r0,$52 // T4 = Read 16-Bit ByteCode
 bne t0,t4,DSPDATAEND // IF (I/O Read/Write Type != Read 16-Bit) Skip DSP Data Register
 nop // Delay Slot
 bne a2,t3,DSPDATAEND // IF (MEMAddressA != REG_DSPDATA - 1) Skip DSP Data Register
@@ -82,7 +82,7 @@ subiu t3,t2,1           // T3 = MEM_MAP + REG_DSPDATA - 1
 beq a2,t2,DSPDATAWRITE  // IF (MEMAddressA == REG_DSPDATA) DSP Data Write
 nop // Delay Slot
 
-lli t4,$57 // T4 = Write 16-Bit ByteCode
+ori t4,r0,$57 // T4 = Write 16-Bit ByteCode
 bne t0,t4,DSPDATAEND // IF (I/O Read/Write Type != Write 16-Bit) Skip DSP Data Register
 nop // Delay Slot
 bne a2,t3,DSPDATAEND // IF (MEMAddressA != REG_DSPDATA - 1) Skip DSP Data Register

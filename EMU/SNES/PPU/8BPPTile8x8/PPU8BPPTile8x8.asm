@@ -61,7 +61,7 @@ DelayTILES: // Wait For RSP To Compute
 la a0,SNESMAP // A0 = SNES Tile Map Address
 la a1,$A0000000|((RDPSNESTILE+12)&$3FFFFFF) // A1 = N64 RDP SNES Tile Map Address
 la a2,N64TILE // A2 = N64 Tile Address
-lli t0,895 // T0 = Number Of Tiles To Convert
+ori t0,r0,895 // T0 = Number Of Tiles To Convert
 MAPLoop:
   lbu t1,0(a0) // T1 = SNES Tile Map # Lo Byte
   lbu t2,1(a0) // T2 = SNES Tile Map # Hi Byte
@@ -179,12 +179,12 @@ RSPPALStart:
   ldv v2[e0],PALShift(r0) // V2 = Shift Using Multiply: Red/Green/Blue (64-Bit Double)
 
 // Decode Colors
-  lli a0,0 // A0 = Palette Start Offset
+  ori a0,r0,0 // A0 = Palette Start Offset
   la a1,N64TLUT // A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
   la a2,SNESPAL // A2 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
 
-  lli t0,511 // T0 = Length Of DMA Transfer In Bytes - 1
-  lli t1,30 // T1 = Color Counter
+  ori t0,r0,511 // T0 = Length Of DMA Transfer In Bytes - 1
+  ori t1,r0,30 // T1 = Color Counter
 
   mtc0 a0,c0 // Store Memory Offset To SP Memory Address Register ($A4040000)
   mtc0 a2,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
@@ -247,8 +247,8 @@ LoopColors:
   subi t1,1 // Decrement Color Counter (Delay Slot)
 
 
-  lli a0,0 // A0 = SP Memory Address Offset DMEM ($A4000000..$A4001FFF 8KB)
-  lli t0,511 // T0 = Length Of DMA Transfer In Bytes - 1
+  ori a0,r0,0 // A0 = SP Memory Address Offset DMEM ($A4000000..$A4001FFF 8KB)
+  ori t0,r0,511 // T0 = Length Of DMA Transfer In Bytes - 1
 
   mtc0 a0,c0 // Store Memory Offset To SP Memory Address Register ($A4040000)
   mtc0 a1,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
@@ -277,15 +277,15 @@ RSPTILEStart:
   lqv v1[e0],ShiftLeftRightB(r0) // V1 = Left Shift Using Multiply: << 8..15, Right Shift Using Multiply: >> 8..1  (128-Bit Quad)
 
 // Decode Tiles
-  lli t2,15 // T2 = Tile Block Counter
-  lli a0,0 // A0 = Tile Start Offset
+  ori t2,r0,15 // T2 = Tile Block Counter
+  ori a0,r0,0 // A0 = Tile Start Offset
   la a1,N64TILE // A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
   la a2,SNESTILE // A2 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
 
 LoopTileBlocks:
   // Uses DMA To Copy 4096 Bytes To DMEM, For 8BPPSNES->8BPPN64
-  lli t0,4095 // T0 = Length Of DMA Transfer In Bytes - 1
-  lli t1,63 // T1 = Tile Counter
+  ori t0,r0,4095 // T0 = Length Of DMA Transfer In Bytes - 1
+  ori t1,r0,63 // T1 = Tile Counter
 
   mtc0 a0,c0 // Store Memory Offset To SP Memory Address Register ($A4040000)
   mtc0 a2,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
@@ -565,8 +565,8 @@ LoopTiles:
   subi t1,1 // Decrement Tile Counter (Delay Slot)
 
 
-  lli a0,0 // A0 = SP Memory Address Offset DMEM ($A4000000..$A4001FFF 8KB)
-  lli t0,4095 // T0 = Length Of DMA Transfer In Bytes - 1
+  ori a0,r0,0 // A0 = SP Memory Address Offset DMEM ($A4000000..$A4001FFF 8KB)
+  ori t0,r0,4095 // T0 = Length Of DMA Transfer In Bytes - 1
 
   mtc0 a0,c0 // Store Memory Offset To SP Memory Address Register ($A4040000)
   mtc0 a1,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)

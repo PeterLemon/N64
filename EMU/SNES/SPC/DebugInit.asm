@@ -11,10 +11,10 @@ macro PrintString(vram, xpos, ypos, fontfile, string, length) { // Print Text St
   li a0,{vram}+({xpos}*BYTES_PER_PIXEL)+(SCREEN_X*BYTES_PER_PIXEL*{ypos}) // A0 = Frame Buffer Pointer (Place text at XY Position)
   la a1,{fontfile} // A1 = Characters
   la a2,{string} // A2 = Text Offset
-  lli t0,{length} // T0 = Number of Text Characters to Print
+  ori t0,r0,{length} // T0 = Number of Text Characters to Print
   {#}DrawChars:
-    lli t1,CHAR_X-1 // T1 = Character X Pixel Counter
-    lli t2,CHAR_Y-1 // T2 = Character Y Pixel Counter
+    ori t1,r0,CHAR_X-1 // T1 = Character X Pixel Counter
+    ori t2,r0,CHAR_Y-1 // T2 = Character Y Pixel Counter
 
     lb t3,0(a2) // T3 = Next Text Character
     addi a2,1
@@ -32,7 +32,7 @@ macro PrintString(vram, xpos, ypos, fontfile, string, length) { // Print Text St
       subi t1,1 // Decrement Character X Pixel Counter
 
       addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump Down 1 Scanline, Jump Back 1 Char
-      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      ori t1,r0,CHAR_X-1 // Reset Character X Pixel Counter
       bnez t2,{#}DrawCharX // IF (Character Y Pixel Counter != 0) DrawCharX
       subi t2,1 // Decrement Character Y Pixel Counter
 
@@ -43,7 +43,7 @@ macro PrintString(vram, xpos, ypos, fontfile, string, length) { // Print Text St
 
   lui a0,$A010 // A0 = VRAM Start Offset
   la a1,$A0100000+((SCREEN_X*SCREEN_Y*BYTES_PER_PIXEL)-BYTES_PER_PIXEL) // A1 = VRAM End Offset
-  lli t0,$000000FF // T0 = Black
+  ori t0,r0,$000000FF // T0 = Black
 ClearScreen:
   sw t0,0(a0)
   bne a0,a1,ClearScreen

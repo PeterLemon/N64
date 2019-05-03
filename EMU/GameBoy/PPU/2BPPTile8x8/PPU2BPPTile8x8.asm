@@ -61,7 +61,7 @@ sh t1,6(a0)    // Store Color 3
 la a0,GBMAP // A0 = GameBoy Tile Map Address
 la a1,$A0000000|((RDPGBTILE+12)&$3FFFFFF) // A1 = N64 RDP GameBoy Tile Map Address
 la a2,(N64TILE&$3FFFFFF) // A2 = N64 Tile Address
-lli t0,1023 // T0 = Number Of Tiles To Convert
+ori t0,r0,1023 // T0 = Number Of Tiles To Convert
 MAPLoop:
   lbu t1,0(a0) // T1 = GameBoy Tile Map # Byte
   addiu a0,1   // A0++
@@ -153,15 +153,15 @@ RSPTILEStart:
   llv v2[e0],ANDNibble(r0) // V2 = $000F (AND Lo Nibble), $0F00 (AND Hi Nibble) (32-Bit Long)
 
 // Decode Tiles
-  lli t2,1 // T2 = Tile Block Counter
-  lli a0,0 // A0 = Tile Start Offset
+  ori t2,r0,1 // T2 = Tile Block Counter
+  ori a0,r0,0 // A0 = Tile Start Offset
   la a1,N64TILE // A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
   la a2,GBTILE // A2 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
 
 LoopTileBlocks:
   // Uses DMA To Copy 4096 Bytes To DMEM, For 2BPPGB->4BPPN64
-  lli t0,4095 // T0 = Length Of DMA Transfer In Bytes - 1
-  lli t1,127 // T1 = Tile Counter
+  ori t0,r0,4095 // T0 = Length Of DMA Transfer In Bytes - 1
+  ori t1,r0,127 // T1 = Tile Counter
 
   mtc0 a0,c0 // Store Memory Offset To SP Memory Address Register ($A4040000)
   mtc0 a2,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
@@ -315,7 +315,7 @@ LoopTiles:
   subi t1,1 // Decrement Tile Counter (Delay Slot)
 
 
-  lli a0,0 // A0 = SP Memory Address Offset DMEM ($A4000000..$A4001FFF 8KB)
+  ori a0,r0,0 // A0 = SP Memory Address Offset DMEM ($A4000000..$A4001FFF 8KB)
   // Uses DMA & Stride To Copy 128 Tiles (4096 Bytes) To RDRAM, 32 Bytes Per Tile, Followed by 32 Bytes Stride, For 2BPPGB->4BPPN64
   li t0,(31 | (127<<12) | (32<<20)) // T0 = Length Of DMA Transfer In Bytes - 1, DMA Line Count - 1, Line Skip/Stride
 

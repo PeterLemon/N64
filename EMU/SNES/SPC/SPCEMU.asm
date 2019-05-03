@@ -31,7 +31,7 @@ include "DebugInit.asm" // Debug Initialize
 
   la a0,MEM_MAP // A0 = MEM_MAP
   la a1,CPU_INST // A1 = CPU Instruction Table
-  lli v1,$42AA // V1 = Refresh Cycles 1.024MHz (1024000Hz / 60Hz = 17066 CPU Cycles)
+  ori v1,r0,$42AA // V1 = Refresh Cycles 1.024MHz (1024000Hz / 60Hz = 17066 CPU Cycles)
 
   // Setup SPC Registers
   and s0,r0 // S0 =  8-Bit Register A   (Accumulator Register)
@@ -91,7 +91,7 @@ Refresh:
 include "Debug.asm" // Show Debug
 
   lui a2,VI_BASE // A2 = VI Base Register ($A4400000)
-  lli t0,$1E0 // T0 = Scan Line
+  ori t0,r0,$1E0 // T0 = Scan Line
   WaitScanline:
     lw t1,VI_V_CURRENT_LINE(a2) // T1 = Current Scan Line
     bne t1,t0,WaitScanline // IF (Current Scan Line != Scan Line) Wait

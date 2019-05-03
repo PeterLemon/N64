@@ -2581,7 +2581,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   ADDWYADPVBSPC:
   andi t2,t1,$F00               // Test Half Carry
-  lli t3,$900
+  ori t3,r0,$900
   bgtu t2,t3,ADDWYADPHSPC       // IF ((YA_REG & $F00) > $900) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -2788,7 +2788,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   ADCADPVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,ADCADPHSPC         // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -2831,7 +2831,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   ADCAABSVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,ADCAABSHSPC        // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -2873,7 +2873,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   ADCAXVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,ADCAXHSPC          // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -2922,7 +2922,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   ADCADPXIVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,ADCADPXIHSPC       // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -2960,7 +2960,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   ADCAIMMVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,ADCAIMMHSPC        // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3008,7 +3008,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   ADCDPDPVBSPC:
   andi t2,t0,$F                 // Test Half Carry
-  lli t3,9
+  ori t3,r0,9
   bgtu t2,t3,ADCDPDPHSPC        // IF ((DPA & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3213,7 +3213,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   ADCADPXVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,ADCADPXHSPC        // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3255,7 +3255,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   ADCAABSXVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,ADCAABSXHSPC       // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3297,7 +3297,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   ADCAABSYVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,ADCAABSYHSPC       // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3346,7 +3346,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   ADCADPYIVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,ADCADPYIHSPC       // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3391,7 +3391,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   ADCDPIMMVBSPC:
   andi t2,t0,$F                 // Test Half Carry
-  lli t3,9
+  ori t3,r0,9
   bgtu t2,t3,ADCDPIMMHSPC       // IF ((DP & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3437,7 +3437,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   ADCXYVBSPC:
   andi t2,t0,$F                 // Test Half Carry
-  lli t3,9
+  ori t3,r0,9
   bgtu t2,t3,ADCXYHSPC          // IF (((X) & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3486,7 +3486,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   SUBWYADPVBSPC:
   andi t2,t1,$F00               // Test Half Carry
-  lli t3,$900
+  ori t3,r0,$900
   bgtu t2,t3,SUBWYADPHSPC       // IF ((YA_REG & $F00) > $900) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3582,7 +3582,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   DIVYAXVBSPC:
   andi t1,t0,$F00               // Test Half Carry
-  lli t2,$900
+  ori t2,r0,$900
   bgtu t1,t2,DIVYAXHSPC         // IF ((YA_REG & $F00) > $900) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3691,7 +3691,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   SBCADPVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,SBCADPHSPC         // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3734,7 +3734,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   SBCAABSVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,SBCAABSHSPC        // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3776,7 +3776,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   SBCAXVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,SBCAXHSPC          // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3825,7 +3825,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   SBCADPXIVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,SBCADPXIHSPC       // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3863,7 +3863,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   SBCAIMMVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,SBCAIMMHSPC        // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -3911,7 +3911,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   SBCDPDPVBSPC:
   andi t2,t0,$F                 // Test Half Carry
-  lli t3,9
+  ori t3,r0,9
   bgtu t2,t3,SBCDPDPHSPC        // IF ((DPA & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -4129,7 +4129,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   SBCADPXVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,SBCADPXHSPC        // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -4171,7 +4171,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   SBCAABSXVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,SBCAABSXHSPC       // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -4213,7 +4213,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   SBCAABSYVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,SBCAABSYHSPC       // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -4262,7 +4262,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   SBCADPYIVBSPC:
   andi t1,s0,$F                 // Test Half Carry
-  lli t2,9
+  ori t2,r0,9
   bgtu t1,t2,SBCADPYIHSPC       // IF ((A_REG & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -4307,7 +4307,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   SBCDPIMMVBSPC:
   andi t2,t0,$F                 // Test Half Carry
-  lli t3,9
+  ori t3,r0,9
   bgtu t2,t3,SBCDPIMMHSPC       // IF ((DP & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -4353,7 +4353,7 @@ align(256)
   andi s5,~V_FLAG               // PSW_REG: V Flag Reset
   SBCXYVBSPC:
   andi t2,t0,$F                 // Test Half Carry
-  lli t3,9
+  ori t3,r0,9
   bgtu t2,t3,SBCXYHSPC          // IF (((X) & $F) > 9) H Flag Set
   ori s5,H_FLAG                 // PSW_REG: H Flag Set (Delay Slot)
   andi s5,~H_FLAG               // PSW_REG: H Flag Reset
@@ -4446,7 +4446,7 @@ align(256)
 
 align(256)
   // $BE DAS   A                Decimal Adjust For Subtraction Register A (Convert To Binary Coded Data)
-  lli t0,$99                    // T0 = $99
+  ori t0,r0,$99                 // T0 = $99
   bleu s0,t0,DASACASPC          // IF (A_REG > $99 || ! C_FLAG)
   andi t0,s5,C_FLAG             // T0 = C_FLAG (Delay Slot)
   subiu s0,$60                  // A_REG -= $60
@@ -4459,7 +4459,7 @@ align(256)
   andi s5,~C_FLAG               // PSW_REG: C Flag Reset
   DASACBSPC:
   andi t0,s0,$F                 // T0 = A_REG & $F
-  lli t1,9                      // T1 = 9
+  ori t1,r0,9                   // T1 = 9
   bleu t0,t1,DASAHASPC          // IF ((A_REG & $F) > 9 || ! H_FLAG)
   andi t0,s5,H_FLAG             // T0 = H_FLAG (Delay Slot)
   subiu s0,$06                  // A_REG -= $06
@@ -4658,7 +4658,7 @@ align(256)
   andi t0,$1FFF                 // T0 = MEM (Absolute & 0x1FFF)
   addu a2,a0,t0                 // A2 = MEM_MAP + MEM
   lbu t0,0(a2)                  // T0 = MEM_MAP[MEM]
-  lli t2,1                      // T2 = 1
+  ori t2,r0,1                   // T2 = 1
   sllv t2,t1                    // T2 = 1 << BIT
   not t2                        // T2 = ~(1 << BIT)
   and t0,t2                     // T0 = MEM_MAP[MEM] & ~(1 << BIT)
@@ -4955,7 +4955,7 @@ align(256)
 
 align(256)
   // $DF DAA   A                Decimal Adjust For Addition Register A (Convert To Binary Coded Data)
-  lli t0,$99                    // T0 = $99
+  ori t0,r0,$99                 // T0 = $99
   bleu s0,t0,DAAACASPC          // IF (A_REG > $99 || C_FLAG)
   andi t0,s5,C_FLAG             // T0 = C_FLAG (Delay Slot)
   addiu s0,$60                  // A_REG += $60
@@ -4968,7 +4968,7 @@ align(256)
   ori s5,C_FLAG                 // PSW_REG: C Flag Set
   DAAACBSPC:
   andi t0,s0,$F                 // T0 = A_REG & $F
-  lli t1,9                      // T1 = 9
+  ori t1,r0,9                   // T1 = 9
   bleu t0,t1,DAAAHASPC          // IF ((A_REG & $F) > 9 || H_FLAG)
   andi t0,s5,H_FLAG             // T0 = H_FLAG (Delay Slot)
   addiu s0,$06                  // A_REG += $06
@@ -5167,7 +5167,7 @@ align(256)
   andi t0,$1FFF                 // T0 = MEM (Absolute & 0x1FFF)
   addu a2,a0,t0                 // A2 = MEM_MAP + MEM
   lbu t0,0(a2)                  // T0 = MEM_MAP[MEM]
-  lli t2,1                      // T2 = 1
+  ori t2,r0,1                   // T2 = 1
   sllv t2,t1                    // T2 = 1 << BIT
   and t3,t0,t2                  // T3 = MEM_MAP[MEM] & 1 << BIT
   not t3                        // T3 = ~(MEM_MAP[MEM] & 1 << BIT)

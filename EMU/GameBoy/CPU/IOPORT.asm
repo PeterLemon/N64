@@ -467,5 +467,5 @@ NO_DMA:
 
 // Joypad
 la a2,MEM_MAP+P1_REG // A2 = MEM_MAP + P1_REG
-lli t0,$F
+ori t0,r0,$F
 sb t0,0(a2) // Reset Joypad (P1_REG = $F)

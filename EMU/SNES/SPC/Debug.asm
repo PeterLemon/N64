@@ -4,8 +4,8 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
   la a2,{value} // A2 = Value Offset
   li t0,{length} // T0 = Number of HEX Chars to Print
   {#}DrawHEXChars:
-    lli t1,CHAR_X-1 // T1 = Character X Pixel Counter
-    lli t2,CHAR_Y-1 // T2 = Character Y Pixel Counter
+    ori t1,r0,CHAR_X-1 // T1 = Character X Pixel Counter
+    ori t2,r0,CHAR_Y-1 // T2 = Character Y Pixel Counter
 
     lb t3,0(a2) // T3 = Next 2 HEX Chars
     addi a2,1
@@ -35,13 +35,13 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
       subi t1,1 // Decrement Character X Pixel Counter
 
       addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump down 1 Scanline, Jump back 1 Char
-      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      ori t1,r0,CHAR_X-1 // Reset Character X Pixel Counter
       bnez t2,{#}DrawHEXCharX // IF (Character Y Pixel Counter != 0) DrawCharX
       subi t2,1 // Decrement Character Y Pixel Counter
 
     subi a0,((SCREEN_X*BYTES_PER_PIXEL)*CHAR_Y)-CHAR_X*BYTES_PER_PIXEL // Jump To Start Of Next Char
 
-    lli t2,CHAR_Y-1 // Reset Character Y Pixel Counter
+    ori t2,r0,CHAR_Y-1 // Reset Character Y Pixel Counter
 
     andi t4,t3,$F // T4 = 1st Nibble
     subi t5,t4,9
@@ -67,7 +67,7 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
       subi t1,1 // Decrement Character X Pixel Counter
 
       addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump down 1 Scanline, Jump back 1 Char
-      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      ori t1,r0,CHAR_X-1 // Reset Character X Pixel Counter
       bnez t2,{#}DrawHEXCharXB // IF (Character Y Pixel Counter != 0) DrawCharX
       subi t2,1 // Decrement Character Y Pixel Counter
 
