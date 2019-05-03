@@ -35,9 +35,9 @@ Start:
   addi t1,1 // T1 = Tree Table Size
   add t1,a0 // T1 = Compressed Bitstream Offset
 
-  subi a0,5 // A0 = Source Address
-  lli t6,0 // T6 = Branch/Leaf Flag (0 = Branch 1 = Leaf)
-  lli t7,5 // T7 = Tree Table Offset (Reset)
+  subi a0,5   // A0 = Source Address
+  ori t6,r0,0 // T6 = Branch/Leaf Flag (0 = Branch 1 = Leaf)
+  ori t7,r0,5 // T7 = Tree Table Offset (Reset)
 HuffChunkLoop:
   lbu t2,3(t1) // T2 = Data Length Byte 0
   sll t2,8
@@ -64,9 +64,9 @@ HuffChunkLoop:
     beqz t8,HuffBranch
     nop // Delay Slot
     sb t4,0(a1) // Store Data Byte To Destination IF Leaf
-    addi a1,1 // Add 1 To DRAM Offset
-    lli t6,0 // T6 = Branch
-    lli t7,5 // T7 = Tree Table Offset (Reset)
+    addi a1,1   // Add 1 To DRAM Offset
+    ori t6,r0,0 // T6 = Branch
+    ori t7,r0,5 // T7 = Tree Table Offset (Reset)
     j HuffByteLoop
     nop // Delay Slot
 
@@ -82,18 +82,18 @@ HuffChunkLoop:
       srl t3,1 // Shift T3 To Next Node Bit
       beqz t8,HuffNode0
       nop // Delay Slot
-      addi t7,1 // T7 = Node1 Child Offset
-      lli t8,$40 // T8 = Test Node1 End Flag
+      addi t7,1     // T7 = Node1 Child Offset
+      ori t8,r0,$40 // T8 = Test Node1 End Flag
       j HuffNodeEnd
       nop // Delay Slot
       HuffNode0:
-        lli t8,$80 // T8 = Test Node0 End Flag
+        ori t8,r0,$80 // T8 = Test Node0 End Flag
       HuffNodeEnd:
 
       and t9,t4,t8 // Test Node End Flag (1 = Next Child Node Is Data)
       beqz t9,HuffByteLoop
       nop // Delay Slot
-      lli t6,1 // T6 = Leaf
+      ori t6,r0,1 // T6 = Leaf
       j HuffByteLoop
       nop // Delay Slot
   HuffEnd:
@@ -102,7 +102,7 @@ Loop:
   WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
   WaitScanline($1E2)
 
-  lli t0,$00000800 // Even Field
+  ori t0,r0,$00000800 // Even Field
   sw t0,VI_Y_SCALE(a0)
 
   WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
