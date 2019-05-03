@@ -1,4 +1,4 @@
-// N64 'Bare Metal' 16BPP 320x240 Atari-ST-NICCC Demo by krom (Peter Lemon):
+// N64 'Bare Metal' 16BPP 256x200 Atari-ST-NICCC Demo by krom (Peter Lemon):
 arch n64.cpu
 endian msb
 output "N64NICCC.N64", create
@@ -14,7 +14,7 @@ Start:
   include "LIB/N64_GFX.INC" // Include Graphics Macros
   N64_INIT() // Run N64 Initialisation Routine
 
-  ScreenNTSC(320, 240, BPP16, $A0100000) // Screen NTSC: 320x240, 16BPP, DRAM Origin $A0100000
+  ScreenNTSC(256, 200, BPP16, $A0100000) // Screen NTSC: 256x200, 16BPP, DRAM Origin $A0100000
 
   la a0,SceneData // A0 = Scene Data Start Address
   la a1,Palette   // A1 = Palette Color Data Address
@@ -22,7 +22,7 @@ Start:
 
 LoopFrames:
   lui a2,VI_BASE // A2 = VI Base Register ($A4400000)
-  lli t0,200 // T0 = Scan Line
+  ori t0,r0,200  // T0 = Scan Line
   WaitVBlank:
     lw t1,VI_V_CURRENT_LINE(a2) // T1 = Current Scan Line
     bne t1,t0,WaitVBlank // IF (Current Scan Line != Scan Line) Wait
@@ -1284,12 +1284,12 @@ Slope3:
 arch n64.rdp
 align(8) // Align 64-Bit
 FrameClearScreenRDPBuffer: // Frame Clear Screen RDP Buffer
-  Set_Scissor 0<<2,0<<2, 0,0, 320<<2,240<<2 // Set Scissor: XH 0.0,YH 0.0, Scissor Field Enable Off,Field Off, XL 320.0,YL 240.0
+  Set_Scissor 0<<2,0<<2, 0,0, 256<<2,200<<2 // Set Scissor: XH 0.0,YH 0.0, Scissor Field Enable Off,Field Off, XL 256.0,YL 200.0
   Set_Other_Modes CYCLE_TYPE_FILL // Set Other Modes
 DoubleBuffer:
-  Set_Color_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,320-1, $00100000 // Set Color Image: FORMAT RGBA,SIZE 16B,WIDTH 320, DRAM ADDRESS $00100000
+  Set_Color_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,256-1, $00100000 // Set Color Image: FORMAT RGBA,SIZE 16B,WIDTH 256, DRAM ADDRESS $00100000
   Set_Fill_Color $00000000 // Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels
-  Fill_Rectangle 319<<2,239<<2, 0<<2,0<<2 // Fill Rectangle: XL 319.0,YL 239.0, XH 0.0,YH 0.0
+  Fill_Rectangle 255<<2,199<<2, 0<<2,0<<2 // Fill Rectangle: XL 255.0,YL 199.0, XH 0.0,YH 0.0
 
   Set_Other_Modes SAMPLE_TYPE|BI_LERP_0|ALPHA_DITHER_SEL_NO_DITHER|B_M1A_0_2 // Set Other Modes
   Set_Combine_Mode $0,$00, 0,0, $6,$01, $0,$F, 1,0, 0,0,0, 7,7,7 // Set Combine Mode: SubA RGB0,MulRGB0, SubA Alpha0,MulAlpha0, SubA RGB1,MulRGB1, SubB RGB0,SubB RGB1, SubA Alpha1,MulAlpha1, AddRGB0,SubB Alpha0,AddAlpha0, AddRGB1,SubB Alpha1,AddAlpha1
