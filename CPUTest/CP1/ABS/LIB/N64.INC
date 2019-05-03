@@ -242,7 +242,7 @@ macro align(size) { // Align Byte Amount
 
 macro N64_INIT() { // Initialise N64 (Stop N64 From Crashing 5 Seconds After Boot)
   lui a0,PIF_BASE // A0 = PIF Base Register ($BFC00000)
-  lli t0,8
+  ori t0,r0,8
   sw t0,PIF_RAM+$3C(a0)
 }
 
