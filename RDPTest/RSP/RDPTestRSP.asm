@@ -1,7 +1,7 @@
-// N64 'Bare Metal' RDP Test Demo by krom (Peter Lemon):
+// N64 'Bare Metal' RDP Test RSP Demo by krom (Peter Lemon):
 arch n64.cpu
 endian msb
-output "RDPTest.N64", create
+output "RDPTestRSP.N64", create
 fill 1052672 // Set ROM Size
 
 // Setup Frame Buffer
@@ -134,14 +134,32 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
 
 Start:
   include "LIB/N64_GFX.INC" // Include Graphics Macros
+  include "LIB/N64_RSP.INC" // Include RSP Macros
   N64_INIT() // Run N64 Initialisation Routine
 
   ScreenNTSC(320, 240, BPP32|AA_MODE_2, $A0100000) // Screen NTSC: 320x240, 32BPP, Resample Only, DRAM Origin = $A0100000
 
-  DPC(RDPBuffer, RDPBufferEnd) // Run DPC Command Buffer: Start, End
+  SetXBUS() // RDP Status: Set XBUS (Switch To RSP DMEM For RDP Commands)
+
+  // Load RSP Code To IMEM
+  DMASPRD(RSPCode, RSPCodeEnd, SP_IMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
+
+  // Load RSP Data To DMEM
+  DMASPRD(RSPData, RSPDataEnd, SP_DMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
+  DMASPWait() // Wait For RSP DMA To Finish
+
+  SetSPPC(RSPStart) // Set RSP Program Counter: Start Address
+  StartSP() // Start RSP Execution: RSP Status = Clear Halt, Broke, Interrupt, Single Step, Interrupt On Break
+
+  WaitRSP: // Wait For RSP To Compute
+    lwu t0,SP_STATUS(a0) // T0 = RSP Status
+    andi t0,RSP_HLT // RSP Status &= RSP Halt Flag
+    beqz t0,WaitRSP // IF (RSP Halt Flag == 0) Wait RSP
+    nop // Delay Slot
 
 
-  PrintString($A0100000,8,8,FontRed,RDPTEST,8) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,8,8,FontRed,RDPTESTRSP,12) // Print Text String To VRAM Using Font At X,Y Position
   PrintString($A0100000,120,8,FontBlack,ADDRESS,7) // Print Text String To VRAM Using Font At X,Y Position
   PrintString($A0100000,192,8,FontGreen,RESULT,6) // Print Text String To VRAM Using Font At X,Y Position
   PrintString($A0100000,272,8,FontRed,TEST,4) // Print Text String To VRAM Using Font At X,Y Position
@@ -287,8 +305,8 @@ Loop:
   j Loop
   nop // Delay Slot
 
-RDPTEST:
-  db "RDP Test:"
+RDPTESTRSP:
+  db "RDP Test RSP:"
 
 ADDRESS:
   db "Address:"
@@ -343,20 +361,37 @@ RDWORD:
   dw 0
 
 STARTCHECK:
-  dw $0001B070
+  dw $00000000
 
 ENDCHECK:
-  dw $0001B0B0
+  dw $00000040
 
 CURRENTCHECK:
-  dw $0001B0B0
+  dw $00000040
 
 STATUSCHECK:
-  dw $00000080
+  dw $00000081
 
 insert FontBlack, "FontBlack8x8.bin"
 insert FontGreen, "FontGreen8x8.bin"
 insert FontRed, "FontRed8x8.bin"
+
+align(8) // Align 64-Bit
+RSPCode:
+arch n64.rsp
+base $0000 // Set Base Of RSP Code Object To Zero
+
+RSPStart:
+  RSPDPC(RDPBuffer, RDPBufferEnd) // Run DPC Command Buffer: Start, End
+
+  break // Set SP Status Halt, Broke & Check For Interrupt
+align(8) // Align 64-Bit
+base RSPCode+pc() // Set End Of RSP Code Object
+RSPCodeEnd:
+
+align(8) // Align 64-Bit
+RSPData:
+base $0000 // Set Base Of RSP Data Object To Zero
 
 align(8) // Align 64-Bit
 RDPBuffer:
@@ -372,3 +407,7 @@ arch n64.rdp
 
   Sync_Full // Ensure Entire Scene Is Fully Drawn
 RDPBufferEnd:
+
+align(8) // Align 64-Bit
+base RSPData+pc() // Set End Of RSP Data Object
+RSPDataEnd:

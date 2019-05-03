@@ -21,7 +21,7 @@
   dd 0 // UNUSED
 
 // PROGRAM TITLE (27 Byte ASCII String, Use Spaces For Unused Bytes)
-  db "RDP TEST                   "
+  db "RDP TEST CPU               "
 //   "123456789012345678901234567"
 
 // DEVELOPER ID CODE 
