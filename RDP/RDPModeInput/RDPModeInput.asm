@@ -23,10 +23,10 @@ macro PrintString(vram, xpos, ypos, fontfile, string, length) { // Print Text St
   li a0,{vram}+({xpos}*BYTES_PER_PIXEL)+(SCREEN_X*BYTES_PER_PIXEL*{ypos}) // A0 = Frame Buffer Pointer (Place text at XY Position)
   la a1,{fontfile} // A1 = Characters
   la a2,{string} // A2 = Text Offset
-  lli t0,{length} // T0 = Number of Text Characters to Print
+  ori t0,r0,{length} // T0 = Number of Text Characters to Print
   {#}DrawChars:
-    lli t1,CHAR_X-1 // T1 = Character X Pixel Counter
-    lli t2,CHAR_Y-1 // T2 = Character Y Pixel Counter
+    ori t1,r0,CHAR_X-1 // T1 = Character X Pixel Counter
+    ori t2,r0,CHAR_Y-1 // T2 = Character Y Pixel Counter
 
     lb t3,0(a2) // T3 = Next Text Character
     addi a2,1
@@ -44,7 +44,7 @@ macro PrintString(vram, xpos, ypos, fontfile, string, length) { // Print Text St
       subi t1,1 // Decrement Character X Pixel Counter
 
       addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump Down 1 Scanline, Jump Back 1 Char
-      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      ori t1,r0,CHAR_X-1 // Reset Character X Pixel Counter
       bnez t2,{#}DrawCharX // IF (Character Y Pixel Counter != 0) DrawCharX
       subi t2,1 // Decrement Character Y Pixel Counter
 
@@ -59,8 +59,8 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
   la a2,{value} // A2 = Value Offset
   li t0,{length} // T0 = Number of HEX Chars to Print
   {#}DrawHEXChars:
-    lli t1,CHAR_X-1 // T1 = Character X Pixel Counter
-    lli t2,CHAR_Y-1 // T2 = Character Y Pixel Counter
+    ori t1,r0,CHAR_X-1 // T1 = Character X Pixel Counter
+    ori t2,r0,CHAR_Y-1 // T2 = Character Y Pixel Counter
 
     lb t3,0(a2) // T3 = Next 2 HEX Chars
     addi a2,1
@@ -90,13 +90,13 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
       subi t1,1 // Decrement Character X Pixel Counter
 
       addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump down 1 Scanline, Jump back 1 Char
-      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      ori t1,r0,CHAR_X-1 // Reset Character X Pixel Counter
       bnez t2,{#}DrawHEXCharX // IF (Character Y Pixel Counter != 0) DrawCharX
       subi t2,1 // Decrement Character Y Pixel Counter
 
     subi a0,((SCREEN_X*BYTES_PER_PIXEL)*CHAR_Y)-CHAR_X*BYTES_PER_PIXEL // Jump To Start Of Next Char
 
-    lli t2,CHAR_Y-1 // Reset Character Y Pixel Counter
+    ori t2,r0,CHAR_Y-1 // Reset Character Y Pixel Counter
 
     andi t4,t3,$F // T4 = 1st Nibble
     subi t5,t4,9
@@ -122,7 +122,7 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
       subi t1,1 // Decrement Character X Pixel Counter
 
       addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump down 1 Scanline, Jump back 1 Char
-      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      ori t1,r0,CHAR_X-1 // Reset Character X Pixel Counter
       bnez t2,{#}DrawHEXCharXB // IF (Character Y Pixel Counter != 0) DrawCharX
       subi t2,1 // Decrement Character Y Pixel Counter
 
@@ -141,7 +141,7 @@ Start:
 
   lui a0,$A010 // A0 = VRAM Start Offset
   la a1,$A0100000+((SCREEN_X*SCREEN_Y*BYTES_PER_PIXEL)-BYTES_PER_PIXEL) // A1 = VRAM End Offset
-  lli t0,$000000FF // T0 = Black
+  ori t0,r0,$000000FF // T0 = Black
 ClearScreen:
   sw t0,0(a0)
   bne a0,a1,ClearScreen
@@ -149,7 +149,7 @@ ClearScreen:
   
   InitController(PIF1) // Initialize Controller
 
-  lli t9,0 // Reset T9 = Combine Mode Line Count (0..15)
+  ori t9,r0,0 // Reset T9 = Combine Mode Line Count (0..15)
 
 Loop:
   WaitScanline($0) // Wait For Scanline To Reach Vertical Start
@@ -171,8 +171,8 @@ Loop:
 
   ReadController(PIF2) // T0 = Controller Buttons, T1 = Analog X, T2 = Analog Y
 
-  lli t8,0 // Reset T8 = INC/DEC
-  lli t7,0 // Reset UP/DOWN
+  ori t8,r0,0 // Reset T8 = INC/DEC
+  ori t7,r0,0 // Reset UP/DOWN
 
   andi t1,t0,JOY_UP // Test JOY UP
   beqz t1,Down
@@ -181,9 +181,9 @@ Loop:
 
   bgez t9,UpEnd
   nop // Delay Slot
-  lli t9,55
+  ori t9,r0,55
   UpEnd:
-  lli t7,1
+  ori t7,r0,1
 
 Down:
   andi t1,t0,JOY_DOWN // Test JOY DOWN
@@ -191,24 +191,24 @@ Down:
   nop // Delay Slot
   addi t9,1
 
-  lli t1,56
+  ori t1,r0,56
   bgt t1,t9,DownEnd
   nop // Delay Slot
-  lli t9,0
+  ori t9,r0,0
   DownEnd:
-  lli t7,1
+  ori t7,r0,1
 
 Left:
   andi t1,t0,JOY_LEFT // Test JOY LEFT
   beqz t1,Right
   nop // Delay Slot
-  lli t8,-1
+  ori t8,r0,-1
 
 Right:
   andi t1,t0,JOY_RIGHT // Test JOY RIGHT
   beqz t1,Render
   nop // Delay Slot
-  lli t8,1
+  ori t8,r0,1
 
 Render:
   // RDP Combine Mode
@@ -390,7 +390,7 @@ Render:
   PrintValue($A0100000,224,232,FontBlack,ATOMICPRIMMEM,0) // Print Text String To VRAM Using Font At X,Y Position
 
 
-  lli t0,0
+  ori t0,r0,0
   bne t0,t9,CombineMode1
   nop // Delay Slot
   PrintString($A0100000,96,8,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -410,7 +410,7 @@ Render:
   j ModeEND
 
   CombineMode1:
-  lli t0,1
+  ori t0,r0,1
   bne t0,t9,CombineMode2
   nop // Delay Slot
   PrintString($A0100000,96,16,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -430,7 +430,7 @@ Render:
   j ModeEND
 
   CombineMode2:
-  lli t0,2
+  ori t0,r0,2
   bne t0,t9,CombineMode3
   nop // Delay Slot
   PrintString($A0100000,96,24,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -450,7 +450,7 @@ Render:
   j ModeEND
 
   CombineMode3:
-  lli t0,3
+  ori t0,r0,3
   bne t0,t9,CombineMode4
   nop // Delay Slot
   PrintString($A0100000,96,32,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -470,7 +470,7 @@ Render:
   j ModeEND
 
   CombineMode4:
-  lli t0,4
+  ori t0,r0,4
   bne t0,t9,CombineMode5
   nop // Delay Slot
   PrintString($A0100000,96,40,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -490,7 +490,7 @@ Render:
   j ModeEND
 
   CombineMode5:
-  lli t0,5
+  ori t0,r0,5
   bne t0,t9,CombineMode6
   nop // Delay Slot
   PrintString($A0100000,96,48,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -510,7 +510,7 @@ Render:
   j ModeEND
 
   CombineMode6:
-  lli t0,6
+  ori t0,r0,6
   bne t0,t9,CombineMode7
   nop // Delay Slot
   PrintString($A0100000,96,56,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -530,7 +530,7 @@ Render:
   j ModeEND
 
   CombineMode7:
-  lli t0,7
+  ori t0,r0,7
   bne t0,t9,CombineMode8
   nop // Delay Slot
   PrintString($A0100000,96,64,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -550,7 +550,7 @@ Render:
   j ModeEND
 
   CombineMode8:
-  lli t0,8
+  ori t0,r0,8
   bne t0,t9,CombineMode9
   nop // Delay Slot
   PrintString($A0100000,96,72,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -570,7 +570,7 @@ Render:
   j ModeEND
 
   CombineMode9:
-  lli t0,9
+  ori t0,r0,9
   bne t0,t9,CombineMode10
   nop // Delay Slot
   PrintString($A0100000,96,80,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -590,7 +590,7 @@ Render:
   j ModeEND
 
   CombineMode10:
-  lli t0,10
+  ori t0,r0,10
   bne t0,t9,CombineMode11
   nop // Delay Slot
   PrintString($A0100000,96,88,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -610,7 +610,7 @@ Render:
   j ModeEND
 
   CombineMode11:
-  lli t0,11
+  ori t0,r0,11
   bne t0,t9,CombineMode12
   nop // Delay Slot
   PrintString($A0100000,96,96,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -630,7 +630,7 @@ Render:
   j ModeEND
 
   CombineMode12:
-  lli t0,12
+  ori t0,r0,12
   bne t0,t9,CombineMode13
   nop // Delay Slot
   PrintString($A0100000,96,104,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -650,7 +650,7 @@ Render:
   j ModeEND
 
   CombineMode13:
-  lli t0,13
+  ori t0,r0,13
   bne t0,t9,CombineMode14
   nop // Delay Slot
   PrintString($A0100000,96,112,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -670,7 +670,7 @@ Render:
   j ModeEND
 
   CombineMode14:
-  lli t0,14
+  ori t0,r0,14
   bne t0,t9,CombineMode15
   nop // Delay Slot
   PrintString($A0100000,96,120,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -690,7 +690,7 @@ Render:
   j ModeEND
 
   CombineMode15:
-  lli t0,15
+  ori t0,r0,15
   bne t0,t9,OtherModes0
   nop // Delay Slot
   PrintString($A0100000,96,128,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -710,7 +710,7 @@ Render:
   j ModeEND
 
   OtherModes0:
-  lli t0,16
+  ori t0,r0,16
   bne t0,t9,OtherModes1
   nop // Delay Slot
   PrintString($A0100000,96,144,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -730,7 +730,7 @@ Render:
   j ModeEND
 
   OtherModes1:
-  lli t0,17
+  ori t0,r0,17
   bne t0,t9,OtherModes2
   nop // Delay Slot
   PrintString($A0100000,96,152,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -750,7 +750,7 @@ Render:
   j ModeEND
 
   OtherModes2:
-  lli t0,18
+  ori t0,r0,18
   bne t0,t9,OtherModes3
   nop // Delay Slot
   PrintString($A0100000,96,160,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -770,7 +770,7 @@ Render:
   j ModeEND
 
   OtherModes3:
-  lli t0,19
+  ori t0,r0,19
   bne t0,t9,OtherModes4
   nop // Delay Slot
   PrintString($A0100000,96,168,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -790,7 +790,7 @@ Render:
   j ModeEND
 
   OtherModes4:
-  lli t0,20
+  ori t0,r0,20
   bne t0,t9,OtherModes5
   nop // Delay Slot
   PrintString($A0100000,96,176,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -810,7 +810,7 @@ Render:
   j ModeEND
 
   OtherModes5:
-  lli t0,21
+  ori t0,r0,21
   bne t0,t9,OtherModes6
   nop // Delay Slot
   PrintString($A0100000,96,184,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -830,7 +830,7 @@ Render:
   j ModeEND
 
   OtherModes6:
-  lli t0,22
+  ori t0,r0,22
   bne t0,t9,OtherModes7
   nop // Delay Slot
   PrintString($A0100000,96,192,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -850,7 +850,7 @@ Render:
   j ModeEND
 
   OtherModes7:
-  lli t0,23
+  ori t0,r0,23
   bne t0,t9,OtherModes8
   nop // Delay Slot
   PrintString($A0100000,96,200,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -870,7 +870,7 @@ Render:
   j ModeEND
 
   OtherModes8:
-  lli t0,24
+  ori t0,r0,24
   bne t0,t9,OtherModes9
   nop // Delay Slot
   PrintString($A0100000,96,208,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -890,7 +890,7 @@ Render:
   j ModeEND
 
   OtherModes9:
-  lli t0,25
+  ori t0,r0,25
   bne t0,t9,OtherModes10
   nop // Delay Slot
   PrintString($A0100000,96,216,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -910,7 +910,7 @@ Render:
   j ModeEND
 
   OtherModes10:
-  lli t0,26
+  ori t0,r0,26
   bne t0,t9,OtherModes11
   nop // Delay Slot
   PrintString($A0100000,96,224,FontGreen,LEFTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -930,7 +930,7 @@ Render:
   j ModeEND
 
   OtherModes11:
-  lli t0,27
+  ori t0,r0,27
   bne t0,t9,OtherModes12
   nop // Delay Slot
   PrintString($A0100000,208,8,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -950,7 +950,7 @@ Render:
   j ModeEND
 
   OtherModes12:
-  lli t0,28
+  ori t0,r0,28
   bne t0,t9,OtherModes13
   nop // Delay Slot
   PrintString($A0100000,208,16,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -970,7 +970,7 @@ Render:
   j ModeEND
 
   OtherModes13:
-  lli t0,29
+  ori t0,r0,29
   bne t0,t9,OtherModes14
   nop // Delay Slot
   PrintString($A0100000,208,24,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -990,7 +990,7 @@ Render:
   j ModeEND
 
   OtherModes14:
-  lli t0,30
+  ori t0,r0,30
   bne t0,t9,OtherModes15
   nop // Delay Slot
   PrintString($A0100000,208,32,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1010,7 +1010,7 @@ Render:
   j ModeEND
 
   OtherModes15:
-  lli t0,31
+  ori t0,r0,31
   bne t0,t9,OtherModes16
   nop // Delay Slot
   PrintString($A0100000,208,40,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1030,7 +1030,7 @@ Render:
   j ModeEND
 
   OtherModes16:
-  lli t0,32
+  ori t0,r0,32
   bne t0,t9,OtherModes17
   nop // Delay Slot
   PrintString($A0100000,208,48,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1050,7 +1050,7 @@ Render:
   j ModeEND
 
   OtherModes17:
-  lli t0,33
+  ori t0,r0,33
   bne t0,t9,OtherModes18
   nop // Delay Slot
   PrintString($A0100000,208,56,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1070,7 +1070,7 @@ Render:
   j ModeEND
 
   OtherModes18:
-  lli t0,34
+  ori t0,r0,34
   bne t0,t9,OtherModes19
   nop // Delay Slot
   PrintString($A0100000,208,64,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1090,7 +1090,7 @@ Render:
   j ModeEND
 
   OtherModes19:
-  lli t0,35
+  ori t0,r0,35
   bne t0,t9,OtherModes20
   nop // Delay Slot
   PrintString($A0100000,208,72,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1110,7 +1110,7 @@ Render:
   j ModeEND
 
   OtherModes20:
-  lli t0,36
+  ori t0,r0,36
   bne t0,t9,OtherModes21
   nop // Delay Slot
   PrintString($A0100000,208,80,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1130,7 +1130,7 @@ Render:
   j ModeEND
 
   OtherModes21:
-  lli t0,37
+  ori t0,r0,37
   bne t0,t9,OtherModes22
   nop // Delay Slot
   PrintString($A0100000,208,88,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1150,7 +1150,7 @@ Render:
   j ModeEND
 
   OtherModes22:
-  lli t0,38
+  ori t0,r0,38
   bne t0,t9,OtherModes23
   nop // Delay Slot
   PrintString($A0100000,208,96,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1170,7 +1170,7 @@ Render:
   j ModeEND
 
   OtherModes23:
-  lli t0,39
+  ori t0,r0,39
   bne t0,t9,OtherModes24
   nop // Delay Slot
   PrintString($A0100000,208,104,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1190,7 +1190,7 @@ Render:
   j ModeEND
 
   OtherModes24:
-  lli t0,40
+  ori t0,r0,40
   bne t0,t9,OtherModes25
   nop // Delay Slot
   PrintString($A0100000,208,112,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1210,7 +1210,7 @@ Render:
   j ModeEND
 
   OtherModes25:
-  lli t0,41
+  ori t0,r0,41
   bne t0,t9,OtherModes26
   nop // Delay Slot
   PrintString($A0100000,208,120,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1230,7 +1230,7 @@ Render:
   j ModeEND
 
   OtherModes26:
-  lli t0,42
+  ori t0,r0,42
   bne t0,t9,OtherModes27
   nop // Delay Slot
   PrintString($A0100000,208,128,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1250,7 +1250,7 @@ Render:
   j ModeEND
 
   OtherModes27:
-  lli t0,43
+  ori t0,r0,43
   bne t0,t9,OtherModes28
   nop // Delay Slot
   PrintString($A0100000,208,136,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1270,7 +1270,7 @@ Render:
   j ModeEND
 
   OtherModes28:
-  lli t0,44
+  ori t0,r0,44
   bne t0,t9,OtherModes29
   nop // Delay Slot
   PrintString($A0100000,208,144,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1290,7 +1290,7 @@ Render:
   j ModeEND
 
   OtherModes29:
-  lli t0,45
+  ori t0,r0,45
   bne t0,t9,OtherModes30
   nop // Delay Slot
   PrintString($A0100000,208,152,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1310,7 +1310,7 @@ Render:
   j ModeEND
 
   OtherModes30:
-  lli t0,46
+  ori t0,r0,46
   bne t0,t9,OtherModes31
   nop // Delay Slot
   PrintString($A0100000,208,160,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1330,7 +1330,7 @@ Render:
   j ModeEND
 
   OtherModes31:
-  lli t0,47
+  ori t0,r0,47
   bne t0,t9,OtherModes32
   nop // Delay Slot
   PrintString($A0100000,208,168,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1350,7 +1350,7 @@ Render:
   j ModeEND
 
   OtherModes32:
-  lli t0,48
+  ori t0,r0,48
   bne t0,t9,OtherModes33
   nop // Delay Slot
   PrintString($A0100000,208,176,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1370,7 +1370,7 @@ Render:
   j ModeEND
 
   OtherModes33:
-  lli t0,49
+  ori t0,r0,49
   bne t0,t9,OtherModes34
   nop // Delay Slot
   PrintString($A0100000,208,184,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1390,7 +1390,7 @@ Render:
   j ModeEND
 
   OtherModes34:
-  lli t0,50
+  ori t0,r0,50
   bne t0,t9,OtherModes35
   nop // Delay Slot
   PrintString($A0100000,208,192,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1410,7 +1410,7 @@ Render:
   j ModeEND
 
   OtherModes35:
-  lli t0,51
+  ori t0,r0,51
   bne t0,t9,OtherModes36
   nop // Delay Slot
   PrintString($A0100000,208,200,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1430,7 +1430,7 @@ Render:
   j ModeEND
 
   OtherModes36:
-  lli t0,52
+  ori t0,r0,52
   bne t0,t9,OtherModes37
   nop // Delay Slot
   PrintString($A0100000,208,208,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1450,7 +1450,7 @@ Render:
   j ModeEND
 
   OtherModes37:
-  lli t0,53
+  ori t0,r0,53
   bne t0,t9,OtherModes38
   nop // Delay Slot
   PrintString($A0100000,208,216,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1470,7 +1470,7 @@ Render:
   j ModeEND
 
   OtherModes38:
-  lli t0,54
+  ori t0,r0,54
   bne t0,t9,OtherModes39
   nop // Delay Slot
   PrintString($A0100000,208,224,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
@@ -1490,7 +1490,7 @@ Render:
   j ModeEND
 
   OtherModes39:
-  lli t0,55
+  ori t0,r0,55
   bne t0,t9,ModeEND
   nop // Delay Slot
   PrintString($A0100000,208,232,FontGreen,RIGHTTEXT,1) // Print Text String To VRAM Using Font At X,Y Position
