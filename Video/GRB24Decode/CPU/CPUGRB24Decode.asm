@@ -21,7 +21,7 @@ Start:
 
   lui a0,$A010 // A0 = VRAM Start Offset
   li a1,$A0100000+((SCREEN_X*SCREEN_Y*4)-4) // A1 = VRAM End Offset
-  lli t0,$000000FF // T0 = Black
+  ori t0,r0,$000000FF // T0 = Black
 ClearScreen:
   sw t0,0(a0)
   bne a0,a1,ClearScreen
@@ -42,7 +42,7 @@ DecodeGRB:
     addi t0,4 // VI Frame Buffer G Byte += 4 (Delay Slot)
 
   lui t0,$A010 // T0 = VI Frame Buffer R Byte
-  lli t1,(SCREEN_X/2)-1 // T1 = (SCREEN_X / 2) - 1
+  ori t1,r0,(SCREEN_X/2)-1 // T1 = (SCREEN_X / 2) - 1
   LoopR: // Loop Red Pixels (1:4)
     lbu t2,0(a2) // Load R Byte
     addi a2,1 // R Offset++
@@ -53,7 +53,7 @@ DecodeGRB:
 
     bnez t1,SkipR
     subi t1,1 // Delay Slot
-    lli t1,(SCREEN_X/2)-1 // T1 = (SCREEN_X / 2) - 1
+    ori t1,r0,(SCREEN_X/2)-1 // T1 = (SCREEN_X / 2) - 1
     addi t0,SCREEN_X*4
     SkipR:
 
@@ -61,7 +61,7 @@ DecodeGRB:
     addi t0,8 // VI Frame Buffer R Byte += 8 (Delay Slot)
 
   addi t0,a0,2 // T0 = VI Frame Buffer B Byte
-  lli t1,(SCREEN_X/4)-1 // T1 = (SCREEN_X / 4) - 1
+  ori t1,r0,(SCREEN_X/4)-1 // T1 = (SCREEN_X / 4) - 1
   addi t2,a3,SCREEN_X*SCREEN_Y/16 // T2 = B End Offset
   LoopB: // Loop Blue Pixels (1:16)
     lbu t3,0(a3) // Load B Byte
@@ -85,7 +85,7 @@ DecodeGRB:
 
     bnez t1,SkipB
     subi t1,1 // Delay Slot
-    lli t1,(SCREEN_X/4)-1 // T1 = (SCREEN_X / 4) - 1
+    ori t1,r0,(SCREEN_X/4)-1 // T1 = (SCREEN_X / 4) - 1
     addi t0,SCREEN_X*12
     SkipB:
 
