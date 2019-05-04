@@ -14,12 +14,12 @@ Start:
   N64_INIT() // Run N64 Initialisation Routine
 
   lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
-  lli t0,1 // T0 = AI Control DMA Enable Bit (1)
+  ori t0,r0,1 // T0 = AI Control DMA Enable Bit (1)
   sw t0,AI_CONTROL(a0) // Store AI Control DMA Enable Bit To AI Control Register ($A4500008)
 
   la t0,Sample // T0 = Sample DRAM Offset
   sw t0,AI_DRAM_ADDR(a0) // Store Sample DRAM Offset To AI DRAM Address Register ($A4500000)
-  lli t0,7 // T0 = Sample Bit Rate (Bitrate-1)
+  ori t0,r0,7 // T0 = Sample Bit Rate (Bitrate-1)
   sw t0,AI_BITRATE(a0) // Store Sample Bit Rate To AI Bit Rate Register ($A4500014)
 
   li t0,(VI_NTSC_CLOCK/(44100/4))-1 // T0 = Sample Frequency: (VI_NTSC_CLOCK(48681812) / FREQ(44100 / 4)) - 1

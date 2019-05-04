@@ -27,13 +27,13 @@ Start:
     srl t3,2
     andi t3,3 // T3 = Filter Number (Bits 2..3)
 
-    lli t5,8 // T5 = Sample Counter
+    ori t5,r0,8 // T5 = Sample Counter
     BRRSampleDecode: // Next 8 Bytes Contain 2 Signed 4-Bit Sample Nibbles Each (-8..+7) (Sample 1 = Bits 4..7 & Sample 2 = Bits 0..3)
       lbu t6,0(a0)  // T6 = Sample Byte
       andi t7,t6,$F // T7 = Sample 2 Unsigned Nibble
       srl t6,4      // T6 = Sample 1 Unsigned Nibble
 
-      lli t8,7 // T8 = 7
+      ori t8,r0,7 // T8 = 7
       ble t6,t8,Sample1Signed // IF (Sample 1 <= 7) Sample 1 Signed
       nop // Delay Slot
       subiu t6,16 // ELSE Sample 1 -= 16 (Convert Sample 1 To Signed Nibble)
@@ -44,7 +44,7 @@ Start:
       Sample2Signed:
 
       // Shift Samples
-      lli t8,12 // T8 = 12
+      ori t8,r0,12 // T8 = 12
       ble t4,t8,SampleShift // IF (Shift Amount <= 12) Apply Shift Amount To Samples
       nop // Delay Slot
       // ELSE Use Default Shift For Reserved Shift Amount (13..15)
@@ -66,7 +66,7 @@ Start:
       beqz t3,S1FilterEnd // IF (Filter Number == 0) GOTO Sample 1 Filter End
       nop // Delay Slot
 
-      lli t8,1 // T8 = 1
+      ori t8,r0,1 // T8 = 1
       bne t3,t8,S1Filter2 // IF (Filter Number != 1) GOTO Sample 1 Filter 2
       nop // Delay Slot
       add t0,t1 // Filter 1: New Sample += Old Sample + (-Old Sample SAR 4)
@@ -77,7 +77,7 @@ Start:
       nop // Delay Slot
 
       S1Filter2:
-      lli t8,2 // T8 = 2
+      ori t8,r0,2 // T8 = 2
       bne t3,t8,S1Filter3 // IF (Filter Number != 2) GOTO Sample 1 Filter 3
       nop // Delay Slot
       sll t8,t1,1 // Filter 2: New Sample += (Old Sample SHL 1) + ((-Old Sample * 3) SAR 5) - Older Sample + (Older Sample SAR 4)
@@ -96,7 +96,7 @@ Start:
       sll t8,t1,1 // Filter 3: New Sample += (Old Sample SHL 1) + ((-Old Sample * 13) SAR 6) - Older Sample + ((Older Sample * 3) SAR 4)
       add t0,t8 // New Sample += Old Sample SHL 1
       sub t8,r0,t1 // T8 = -Old Sample
-      lli t9,13 // T9 = 13
+      ori t9,r0,13 // T9 = 13
       mult t8,t9
       mflo t8 // T8 = -Old Sample * 13
       sra t8,6 // T8 = (-Old Sample * 13) SAR 6
@@ -117,7 +117,7 @@ Start:
       beqz t3,S2FilterEnd // IF (Filter Number == 0) GOTO Sample 2 Filter End
       nop // Delay Slot
 
-      lli t8,1 // T8 = 1
+      ori t8,r0,1 // T8 = 1
       bne t3,t8,S2Filter2 // IF (Filter Number != 1) GOTO Sample 2 Filter 2
       nop // Delay Slot
       add t0,t1 // Filter 1: New Sample += Old Sample + (-Old Sample SAR 4)
@@ -128,7 +128,7 @@ Start:
       nop // Delay Slot
 
       S2Filter2:
-      lli t8,2 // T8 = 2
+      ori t8,r0,2 // T8 = 2
       bne t3,t8,S2Filter3 // IF (Filter Number != 2) GOTO Sample 2 Filter 3
       nop // Delay Slot
       sll t8,t1,1 // Filter 2: New Sample += (Old Sample SHL 1) + ((-Old Sample * 3) SAR 5) - Older Sample + (Older Sample SAR 4)
@@ -147,7 +147,7 @@ Start:
       sll t8,t1,1 // Filter 3: New Sample += (Old Sample SHL 1) + ((-Old Sample * 13) SAR 6) - Older Sample + ((Older Sample * 3) SAR 4)
       add t0,t8 // New Sample += Old Sample SHL 1
       sub t8,r0,t1 // T8 = -Old Sample
-      lli t9,13 // T9 = 13
+      ori t9,r0,13 // T9 = 13
       mult t8,t9
       mflo t8 // T8 = -Old Sample * 13
       sra t8,6 // T8 = (-Old Sample * 13) SAR 6
@@ -172,12 +172,12 @@ Start:
     nop // Delay Slot
 
   lui a0,AI_BASE // A0 = AI Base Register ($A4500000)
-  lli t0,1 // T0 = AI Control DMA Enable Bit (1)
+  ori t0,r0,1 // T0 = AI Control DMA Enable Bit (1)
   sw t0,AI_CONTROL(a0) // Store AI Control DMA Enable Bit To AI Control Register ($A4500008)
 
   lui t0,$A010 // T0 = Sample DRAM Offset
   sw t0,AI_DRAM_ADDR(a0) // Store Sample DRAM Offset To AI DRAM Address Register ($A4500000)
-  lli t0,15 // T0 = Sample Bit Rate (Bitrate-1)
+  ori t0,r0,15 // T0 = Sample Bit Rate (Bitrate-1)
   sw t0,AI_BITRATE(a0) // Store Sample Bit Rate To AI Bit Rate Register ($A4500014)
 
   li t0,(VI_NTSC_CLOCK/(31000/2))-1 // T0 = Sample Frequency: (VI_NTSC_CLOCK(48681812) / FREQ(31000 / 2)) - 1
