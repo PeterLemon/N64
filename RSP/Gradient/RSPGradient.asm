@@ -39,9 +39,9 @@ base $0000 // Set Base Of RSP Code Object To Zero
 
 RSPStart:
   lqv v1[e0],$00(r0) // V1 = 128-Bit DMEM $000(R0), Load Quad To Vector: LQV VT[ELEMENT],$OFFSET(BASE)
-  lli t0,3840-16 // T0 = 3 Scanlines Quad Count
-  lli t1,3839 // T1 = Length Of DMA Transfer In Bytes - 1
-  lli a1,SP_DMEM+16 // A1 = SP Memory Address Offset DMEM $010 ($A4000000..$A4001FFF 8KB)
+  ori t0,r0,3840-16 // T0 = 3 Scanlines Quad Count
+  ori t1,r0,3839 // T1 = Length Of DMA Transfer In Bytes - 1
+  ori a1,r0,SP_DMEM+16 // A1 = SP Memory Address Offset DMEM $010 ($A4000000..$A4001FFF 8KB)
   lui a2,$10 // A2 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
   li a3,$100000+(320*237*4) // A3 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
 LoopVRAM:  

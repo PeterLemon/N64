@@ -518,7 +518,7 @@ RSPStart:
 
 // DMA & Stride RGB Tile To VI RAM
   li t0,((8*4)-1) | (7<<12) | (((320-8)*4)<<20) // T0 = Length Of DMA Transfer In Bytes - 1, DMA Line Count - 1, Line Skip/Stride
-  lli a0,SP_DMEM // A0 = SP Memory Address Offset DMEM $000 ($A4000000..$A4001FFF 8KB)
+  ori a0,r0,SP_DMEM // A0 = SP Memory Address Offset DMEM $000 ($A4000000..$A4001FFF 8KB)
   la a1,$100000 | ((320*4)*104)+(144*4) // A1 = Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
   
   mtc0 a0,c0 // Store Memory Offset To SP Memory Address Register ($A4040000)

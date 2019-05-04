@@ -59,9 +59,9 @@ RSPStart:
   sqv v2[e0],PointYI(r0) // DMEM $020 = Point YI
 
 
-  lli a0,PointXI // A0 = X Vector DMEM Offset
-  lli a1,RectangleXY // A1 = RDP Rectangle XY DMEM Offset
-  lli t4,7 // T4 = Point Count
+  ori a0,r0,PointXI // A0 = X Vector DMEM Offset
+  ori a1,r0,RectangleXY // A1 = RDP Rectangle XY DMEM Offset
+  ori t4,r0,7 // T4 = Point Count
 
 LoopPoint:
   lhu t0,PointXI(a0) // T0 = Point X
