@@ -23,10 +23,10 @@ macro PrintString(vram, xpos, ypos, fontfile, string, length) { // Print Text St
   li a0,{vram}+({xpos}*BYTES_PER_PIXEL)+(SCREEN_X*BYTES_PER_PIXEL*{ypos}) // A0 = Frame Buffer Pointer (Place text at XY Position)
   la a1,{fontfile} // A1 = Characters
   la a2,{string} // A2 = Text Offset
-  lli t0,{length} // T0 = Number of Text Characters to Print
+  ori t0,r0,{length} // T0 = Number of Text Characters to Print
   {#}DrawChars:
-    lli t1,CHAR_X-1 // T1 = Character X Pixel Counter
-    lli t2,CHAR_Y-1 // T2 = Character Y Pixel Counter
+    ori t1,r0,CHAR_X-1 // T1 = Character X Pixel Counter
+    ori t2,r0,CHAR_Y-1 // T2 = Character Y Pixel Counter
 
     lb t3,0(a2) // T3 = Next Text Character
     addi a2,1
@@ -44,7 +44,7 @@ macro PrintString(vram, xpos, ypos, fontfile, string, length) { // Print Text St
       subi t1,1 // Decrement Character X Pixel Counter
 
       addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump Down 1 Scanline, Jump Back 1 Char
-      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      ori t1,r0,CHAR_X-1 // Reset Character X Pixel Counter
       bnez t2,{#}DrawCharX // IF (Character Y Pixel Counter != 0) DrawCharX
       subi t2,1 // Decrement Character Y Pixel Counter
 
@@ -59,8 +59,8 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
   la a2,{value} // A2 = Value Offset
   li t0,{length} // T0 = Number of HEX Chars to Print
   {#}DrawHEXChars:
-    lli t1,CHAR_X-1 // T1 = Character X Pixel Counter
-    lli t2,CHAR_Y-1 // T2 = Character Y Pixel Counter
+    ori t1,r0,CHAR_X-1 // T1 = Character X Pixel Counter
+    ori t2,r0,CHAR_Y-1 // T2 = Character Y Pixel Counter
 
     lb t3,0(a2) // T3 = Next 2 HEX Chars
     addi a2,1
@@ -90,13 +90,13 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
       subi t1,1 // Decrement Character X Pixel Counter
 
       addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump down 1 Scanline, Jump back 1 Char
-      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      ori t1,r0,CHAR_X-1 // Reset Character X Pixel Counter
       bnez t2,{#}DrawHEXCharX // IF (Character Y Pixel Counter != 0) DrawCharX
       subi t2,1 // Decrement Character Y Pixel Counter
 
     subi a0,((SCREEN_X*BYTES_PER_PIXEL)*CHAR_Y)-CHAR_X*BYTES_PER_PIXEL // Jump To Start Of Next Char
 
-    lli t2,CHAR_Y-1 // Reset Character Y Pixel Counter
+    ori t2,r0,CHAR_Y-1 // Reset Character Y Pixel Counter
 
     andi t4,t3,$F // T4 = 1st Nibble
     subi t5,t4,9
@@ -122,7 +122,7 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
       subi t1,1 // Decrement Character X Pixel Counter
 
       addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump down 1 Scanline, Jump back 1 Char
-      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      ori t1,r0,CHAR_X-1 // Reset Character X Pixel Counter
       bnez t2,{#}DrawHEXCharXB // IF (Character Y Pixel Counter != 0) DrawCharX
       subi t2,1 // Decrement Character Y Pixel Counter
 
@@ -140,7 +140,7 @@ Start:
 
   lui a0,$A010 // A0 = VRAM Start Offset
   la a1,$A0100000+((SCREEN_X*SCREEN_Y*BYTES_PER_PIXEL)-BYTES_PER_PIXEL) // A1 = VRAM End Offset
-  lli t0,$000000FF // T0 = Black
+  ori t0,r0,$000000FF // T0 = Black
 ClearScreen:
   sw t0,0(a0)
   bne a0,a1,ClearScreen
@@ -155,12 +155,12 @@ ClearScreen:
 
 
   PrintString($A0100000,8,24,FontRed,ABSD,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ABSDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -190,12 +190,12 @@ ClearScreen:
   ABSDEND:
 
   PrintString($A0100000,8,32,FontRed,ABSS,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ABSSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -225,14 +225,14 @@ ClearScreen:
   ABSSEND:
 
   PrintString($A0100000,8,40,FontRed,ADDD,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   la t1,VALUEDOUBLEB // T1 = Double Data Offset
   ldc1 f1,0(t1)      // F1 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ADDDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -262,14 +262,14 @@ ClearScreen:
   ADDDEND:
 
   PrintString($A0100000,8,48,FontRed,ADDS,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   la t1,VALUEFLOATB // T1 = Float Data Offset
   lwc1 f1,0(t1)     // F1 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ADDSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -299,12 +299,12 @@ ClearScreen:
   ADDSEND:
 
   PrintString($A0100000,8,56,FontRed,CEILLD,7) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   CEILLDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -334,12 +334,12 @@ ClearScreen:
   CEILLDEND:
 
   PrintString($A0100000,8,64,FontRed,CEILLS,7) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   CEILLSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -369,12 +369,12 @@ ClearScreen:
   CEILLSEND:
 
   PrintString($A0100000,8,72,FontRed,CEILWD,7) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   CEILWDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -404,12 +404,12 @@ ClearScreen:
   CEILWDEND:
 
   PrintString($A0100000,8,80,FontRed,CEILWS,7) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   CEILWSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -439,12 +439,12 @@ ClearScreen:
   CEILWSEND:
 
   PrintString($A0100000,8,88,FontRed,CVTDL,6) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   CVTDLWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -474,12 +474,12 @@ ClearScreen:
   CVTDLEND:
 
   PrintString($A0100000,8,96,FontRed,CVTDS,6) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   CVTDSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -509,12 +509,12 @@ ClearScreen:
   CVTDSEND:
 
   PrintString($A0100000,8,104,FontRed,CVTDW,6) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   CVTDWWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -544,12 +544,12 @@ ClearScreen:
   CVTDWEND:
 
   PrintString($A0100000,8,112,FontRed,CVTLD,6) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   CVTLDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -579,12 +579,12 @@ ClearScreen:
   CVTLDEND:
 
   PrintString($A0100000,8,120,FontRed,CVTLS,6) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   CVTLSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -614,12 +614,12 @@ ClearScreen:
   CVTLSEND:
 
   PrintString($A0100000,8,128,FontRed,CVTSD,6) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   CVTSDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -649,12 +649,12 @@ ClearScreen:
   CVTSDEND:
 
   PrintString($A0100000,8,136,FontRed,CVTSL,6) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   CVTSLWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -684,12 +684,12 @@ ClearScreen:
   CVTSLEND:
 
   PrintString($A0100000,8,144,FontRed,CVTSW,6) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   CVTSWWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -719,12 +719,12 @@ ClearScreen:
   CVTSWEND:
 
   PrintString($A0100000,8,152,FontRed,CVTWD,6) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   CVTWDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -754,12 +754,12 @@ ClearScreen:
   CVTWDEND:
 
   PrintString($A0100000,8,160,FontRed,CVTWS,6) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   CVTWSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -789,14 +789,14 @@ ClearScreen:
   CVTWSEND:
 
   PrintString($A0100000,8,168,FontRed,DIVD,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   la t1,VALUEDOUBLEB // T1 = Double Data Offset
   ldc1 f1,0(t1)      // F1 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DIVDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -826,14 +826,14 @@ ClearScreen:
   DIVDEND:
 
   PrintString($A0100000,8,176,FontRed,DIVS,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   la t1,VALUEFLOATB // T1 = Float Data Offset
   lwc1 f1,0(t1)     // F1 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DIVSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -863,12 +863,12 @@ ClearScreen:
   DIVSEND:
 
   PrintString($A0100000,8,184,FontRed,FLOORLD,8) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   FLOORLDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -898,12 +898,12 @@ ClearScreen:
   FLOORLDEND:
 
   PrintString($A0100000,8,192,FontRed,FLOORLS,8) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   FLOORLSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -933,12 +933,12 @@ ClearScreen:
   FLOORLSEND:
 
   PrintString($A0100000,8,200,FontRed,FLOORWD,8) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   FLOORWDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -968,12 +968,12 @@ ClearScreen:
   FLOORWDEND:
 
   PrintString($A0100000,8,208,FontRed,FLOORWS,8) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   FLOORWSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1003,14 +1003,14 @@ ClearScreen:
   FLOORWSEND:
 
   PrintString($A0100000,8,216,FontRed,MULD,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   la t1,VALUEDOUBLEB // T1 = Double Data Offset
   ldc1 f1,0(t1)      // F1 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   MULDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1040,14 +1040,14 @@ ClearScreen:
   MULDEND:
 
   PrintString($A0100000,8,224,FontRed,MULS,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   la t1,VALUEFLOATB // T1 = Float Data Offset
   lwc1 f1,0(t1)     // F1 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   MULSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1077,12 +1077,12 @@ ClearScreen:
   MULSEND:
 
   PrintString($A0100000,8,232,FontRed,NEGD,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   NEGDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1112,12 +1112,12 @@ ClearScreen:
   NEGDEND:
 
   PrintString($A0100000,8,240,FontRed,NEGS,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   NEGSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1147,12 +1147,12 @@ ClearScreen:
   NEGSEND:
 
   PrintString($A0100000,8,248,FontRed,ROUNDLD,8) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ROUNDLDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1182,12 +1182,12 @@ ClearScreen:
   ROUNDLDEND:
 
   PrintString($A0100000,8,256,FontRed,ROUNDLS,8) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ROUNDLSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1217,12 +1217,12 @@ ClearScreen:
   ROUNDLSEND:
 
   PrintString($A0100000,8,264,FontRed,ROUNDWD,8) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ROUNDWDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1252,12 +1252,12 @@ ClearScreen:
   ROUNDWDEND:
 
   PrintString($A0100000,8,272,FontRed,ROUNDWS,8) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ROUNDWSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1287,12 +1287,12 @@ ClearScreen:
   ROUNDWSEND:
 
   PrintString($A0100000,8,280,FontRed,SQRTD,5) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   SQRTDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1322,12 +1322,12 @@ ClearScreen:
   SQRTDEND:
 
   PrintString($A0100000,8,288,FontRed,SQRTS,5) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   SQRTSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1357,14 +1357,14 @@ ClearScreen:
   SQRTSEND:
 
   PrintString($A0100000,8,296,FontRed,SUBD,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   la t1,VALUEDOUBLEB // T1 = Double Data Offset
   ldc1 f1,0(t1)      // F1 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   SUBDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1394,14 +1394,14 @@ ClearScreen:
   SUBDEND:
 
   PrintString($A0100000,8,304,FontRed,SUBS,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   la t1,VALUEFLOATB // T1 = Float Data Offset
   lwc1 f1,0(t1)     // F1 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   SUBSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1431,12 +1431,12 @@ ClearScreen:
   SUBSEND:
 
   PrintString($A0100000,8,312,FontRed,TRUNCLD,8) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   TRUNCLDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1466,12 +1466,12 @@ ClearScreen:
   TRUNCLDEND:
 
   PrintString($A0100000,8,320,FontRed,TRUNCLS,8) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   TRUNCLSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1501,12 +1501,12 @@ ClearScreen:
   TRUNCLSEND:
 
   PrintString($A0100000,8,328,FontRed,TRUNCWD,8) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEDOUBLEA // T1 = Double Data Offset
   ldc1 f0,0(t1)      // F0 = Double Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   TRUNCWDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1536,12 +1536,12 @@ ClearScreen:
   TRUNCWDEND:
 
   PrintString($A0100000,8,336,FontRed,TRUNCWS,8) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEFLOATA // T1 = Float Data Offset
   lwc1 f0,0(t1)     // F0 = Float Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   TRUNCWSWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1578,7 +1578,7 @@ Loop:
   WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
   WaitScanline($1E2)
 
-  lli t0,$00000800 // Even Field
+  ori t0,r0,$00000800 // Even Field
   sw t0,VI_Y_SCALE(a0)
 
   WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
