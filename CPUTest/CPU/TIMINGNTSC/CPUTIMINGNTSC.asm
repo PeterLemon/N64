@@ -23,10 +23,10 @@ macro PrintString(vram, xpos, ypos, fontfile, string, length) { // Print Text St
   li a0,{vram}+({xpos}*BYTES_PER_PIXEL)+(SCREEN_X*BYTES_PER_PIXEL*{ypos}) // A0 = Frame Buffer Pointer (Place text at XY Position)
   la a1,{fontfile} // A1 = Characters
   la a2,{string} // A2 = Text Offset
-  lli t0,{length} // T0 = Number of Text Characters to Print
+  ori t0,r0,{length} // T0 = Number of Text Characters to Print
   {#}DrawChars:
-    lli t1,CHAR_X-1 // T1 = Character X Pixel Counter
-    lli t2,CHAR_Y-1 // T2 = Character Y Pixel Counter
+    ori t1,r0,CHAR_X-1 // T1 = Character X Pixel Counter
+    ori t2,r0,CHAR_Y-1 // T2 = Character Y Pixel Counter
 
     lb t3,0(a2) // T3 = Next Text Character
     addi a2,1
@@ -44,7 +44,7 @@ macro PrintString(vram, xpos, ypos, fontfile, string, length) { // Print Text St
       subi t1,1 // Decrement Character X Pixel Counter
 
       addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump Down 1 Scanline, Jump Back 1 Char
-      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      ori t1,r0,CHAR_X-1 // Reset Character X Pixel Counter
       bnez t2,{#}DrawCharX // IF (Character Y Pixel Counter != 0) DrawCharX
       subi t2,1 // Decrement Character Y Pixel Counter
 
@@ -59,8 +59,8 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
   la a2,{value} // A2 = Value Offset
   li t0,{length} // T0 = Number of HEX Chars to Print
   {#}DrawHEXChars:
-    lli t1,CHAR_X-1 // T1 = Character X Pixel Counter
-    lli t2,CHAR_Y-1 // T2 = Character Y Pixel Counter
+    ori t1,r0,CHAR_X-1 // T1 = Character X Pixel Counter
+    ori t2,r0,CHAR_Y-1 // T2 = Character Y Pixel Counter
 
     lb t3,0(a2) // T3 = Next 2 HEX Chars
     addi a2,1
@@ -90,13 +90,13 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
       subi t1,1 // Decrement Character X Pixel Counter
 
       addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump down 1 Scanline, Jump back 1 Char
-      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      ori t1,r0,CHAR_X-1 // Reset Character X Pixel Counter
       bnez t2,{#}DrawHEXCharX // IF (Character Y Pixel Counter != 0) DrawCharX
       subi t2,1 // Decrement Character Y Pixel Counter
 
     subi a0,((SCREEN_X*BYTES_PER_PIXEL)*CHAR_Y)-CHAR_X*BYTES_PER_PIXEL // Jump To Start Of Next Char
 
-    lli t2,CHAR_Y-1 // Reset Character Y Pixel Counter
+    ori t2,r0,CHAR_Y-1 // Reset Character Y Pixel Counter
 
     andi t4,t3,$F // T4 = 1st Nibble
     subi t5,t4,9
@@ -122,7 +122,7 @@ macro PrintValue(vram, xpos, ypos, fontfile, value, length) { // Print HEX Chars
       subi t1,1 // Decrement Character X Pixel Counter
 
       addi a0,(SCREEN_X*BYTES_PER_PIXEL)-CHAR_X*BYTES_PER_PIXEL // Jump down 1 Scanline, Jump back 1 Char
-      lli t1,CHAR_X-1 // Reset Character X Pixel Counter
+      ori t1,r0,CHAR_X-1 // Reset Character X Pixel Counter
       bnez t2,{#}DrawHEXCharXB // IF (Character Y Pixel Counter != 0) DrawCharX
       subi t2,1 // Decrement Character Y Pixel Counter
 
@@ -140,7 +140,7 @@ Start:
 
   lui a0,$A010 // A0 = VRAM Start Offset
   la a1,$A0100000+((SCREEN_X*SCREEN_Y*BYTES_PER_PIXEL)-BYTES_PER_PIXEL) // A1 = VRAM End Offset
-  lli t0,$000000FF // T0 = Black
+  ori t0,r0,$000000FF // T0 = Black
 ClearScreen:
   sw t0,0(a0)
   bne a0,a1,ClearScreen
@@ -155,14 +155,14 @@ ClearScreen:
 
 
   PrintString($A0100000,8,24,FontRed,ADD,2) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ADDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -192,12 +192,12 @@ ClearScreen:
   ADDEND:
 
   PrintString($A0100000,8,32,FontRed,ADDI,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ADDIWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -227,12 +227,12 @@ ClearScreen:
   ADDIEND:
 
   PrintString($A0100000,8,40,FontRed,ADDIU,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ADDIUWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -262,14 +262,14 @@ ClearScreen:
   ADDIUEND:
 
   PrintString($A0100000,8,48,FontRed,ADDU,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ADDUWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -299,14 +299,14 @@ ClearScreen:
   ADDUEND:
 
   PrintString($A0100000,8,56,FontRed,AND,2) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ANDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -336,12 +336,12 @@ ClearScreen:
   ANDEND:
 
   PrintString($A0100000,8,64,FontRed,ANDI,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ANDIWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -371,14 +371,14 @@ ClearScreen:
   ANDIEND:
 
   PrintString($A0100000,8,72,FontRed,DADD,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DADDWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -408,12 +408,12 @@ ClearScreen:
   DADDEND:
 
   PrintString($A0100000,8,80,FontRed,DADDI,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DADDIWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -443,12 +443,12 @@ ClearScreen:
   DADDIEND:
 
   PrintString($A0100000,8,88,FontRed,DADDIU,5) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DADDIUWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -478,14 +478,14 @@ ClearScreen:
   DADDIUEND:
 
   PrintString($A0100000,8,96,FontRed,DADDU,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DADDUWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -515,14 +515,14 @@ ClearScreen:
   DADDUEND:
 
   PrintString($A0100000,8,104,FontRed,DDIV,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DDIVWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -552,14 +552,14 @@ ClearScreen:
   DDIVEND:
 
   PrintString($A0100000,8,112,FontRed,DDIVU,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DDIVUWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -589,14 +589,14 @@ ClearScreen:
   DDIVUEND:
 
   PrintString($A0100000,8,120,FontRed,DIV,2) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DIVWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -626,14 +626,14 @@ ClearScreen:
   DIVEND:
 
   PrintString($A0100000,8,128,FontRed,DIVU,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DIVUWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -663,14 +663,14 @@ ClearScreen:
   DIVUEND:
 
   PrintString($A0100000,8,136,FontRed,DMULT,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DMULTWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -700,14 +700,14 @@ ClearScreen:
   DMULTEND:
 
   PrintString($A0100000,8,144,FontRed,DMULTU,5) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DMULTUWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -737,12 +737,12 @@ ClearScreen:
   DMULTUEND:
 
   PrintString($A0100000,8,152,FontRed,DSLL,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DSLLWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -772,12 +772,12 @@ ClearScreen:
   DSLLEND:
 
   PrintString($A0100000,8,160,FontRed,DSLL32,5) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DSLL32WAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -807,14 +807,14 @@ ClearScreen:
   DSLL32END:
 
   PrintString($A0100000,8,168,FontRed,DSLLV,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DSLLVWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -844,12 +844,12 @@ ClearScreen:
   DSLLVEND:
 
   PrintString($A0100000,8,176,FontRed,DSRA,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DSRAWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -879,12 +879,12 @@ ClearScreen:
   DSRAEND:
 
   PrintString($A0100000,8,184,FontRed,DSRA32,5) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DSRA32WAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -914,14 +914,14 @@ ClearScreen:
   DSRA32END:
 
   PrintString($A0100000,8,192,FontRed,DSRAV,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DSRAVWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -951,12 +951,12 @@ ClearScreen:
   DSRAVEND:
 
   PrintString($A0100000,8,200,FontRed,DSRL,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DSRLWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -986,12 +986,12 @@ ClearScreen:
   DSRLEND:
 
   PrintString($A0100000,8,208,FontRed,DSRL32,5) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DSRL32WAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1021,14 +1021,14 @@ ClearScreen:
   DSRL32END:
 
   PrintString($A0100000,8,216,FontRed,DSRLV,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DSRLVWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1058,14 +1058,14 @@ ClearScreen:
   DSRLVEND:
 
   PrintString($A0100000,8,224,FontRed,DSUB,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DSUBWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1095,14 +1095,14 @@ ClearScreen:
   DSUBEND:
 
   PrintString($A0100000,8,232,FontRed,DSUBU,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   DSUBUWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1132,14 +1132,14 @@ ClearScreen:
   DSUBUEND:
 
   PrintString($A0100000,8,240,FontRed,MULT,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   MULTWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1169,14 +1169,14 @@ ClearScreen:
   MULTEND:
 
   PrintString($A0100000,8,248,FontRed,MULTU,4) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   MULTUWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1206,14 +1206,14 @@ ClearScreen:
   MULTUEND:
 
   PrintString($A0100000,8,256,FontRed,NOR,2) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   NORWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1243,14 +1243,14 @@ ClearScreen:
   NOREND:
 
   PrintString($A0100000,8,264,FontRed,OR,1) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ORWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1280,12 +1280,12 @@ ClearScreen:
   OREND:
 
   PrintString($A0100000,8,272,FontRed,ORI,2) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   ORIWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1315,12 +1315,12 @@ ClearScreen:
   ORIEND:
 
   PrintString($A0100000,8,280,FontRed,SLL,2) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   SLLWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1350,14 +1350,14 @@ ClearScreen:
   SLLEND:
 
   PrintString($A0100000,8,288,FontRed,SLLV,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   SLLVWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1387,12 +1387,12 @@ ClearScreen:
   SLLVEND:
 
   PrintString($A0100000,8,296,FontRed,SRA,2) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   SRAWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1422,14 +1422,14 @@ ClearScreen:
   SRAEND:
 
   PrintString($A0100000,8,304,FontRed,SRAV,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   SRAVWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1459,12 +1459,12 @@ ClearScreen:
   SRAVEND:
 
   PrintString($A0100000,8,312,FontRed,SRL,2) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   SRLWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1494,14 +1494,14 @@ ClearScreen:
   SRLEND:
 
   PrintString($A0100000,8,320,FontRed,SRLV,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   SRLVWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1531,14 +1531,14 @@ ClearScreen:
   SRLVEND:
 
   PrintString($A0100000,8,328,FontRed,SUB,2) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   SUBWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1568,14 +1568,14 @@ ClearScreen:
   SUBEND:
 
   PrintString($A0100000,8,336,FontRed,SUBU,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   SUBUWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1605,14 +1605,14 @@ ClearScreen:
   SUBUEND:
 
   PrintString($A0100000,8,344,FontRed,XOR,2) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   la t2,VALUEWORDB // T2 = Word Data Offset
   lw t2,0(t2)      // T2 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   XORWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1642,12 +1642,12 @@ ClearScreen:
   XOREND:
 
   PrintString($A0100000,8,352,FontRed,XORI,3) // Print Text String To VRAM Using Font At X,Y Position
-  lli t0,0 // T0 = Instruction Count
+  ori t0,r0,0 // T0 = Instruction Count
   la t1,VALUEWORDA // T1 = Word Data Offset
   lw t1,0(t1)      // T1 = Word Data
   lui t3,VI_BASE
-  lli t4,0
-  lli t5,$200
+  ori t4,r0,0
+  ori t5,r0,$200
   XORIWAITSTART:
     lw t6,VI_V_CURRENT_LINE(t3) // T6 = Current Scan Line
     sync // Sync Load
@@ -1684,7 +1684,7 @@ Loop:
   WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
   WaitScanline($1E2)
 
-  lli t0,$00000800 // Even Field
+  ori t0,r0,$00000800 // Even Field
   sw t0,VI_Y_SCALE(a0)
 
   WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
