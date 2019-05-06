@@ -22,7 +22,7 @@ Start:
 
 LoopFrames:
   lui a2,VI_BASE // A2 = VI Base Register ($A4400000)
-  ori t0,r0,200  // T0 = Scan Line
+  ori t0,r0,$1E0  // T0 = Scan Line
   WaitVBlank:
     lw t1,VI_V_CURRENT_LINE(a2) // T1 = Current Scan Line
     bne t1,t0,WaitVBlank // IF (Current Scan Line != Scan Line) Wait
@@ -1270,6 +1270,13 @@ Slope3:
   la t1,PolyRDPBufferEnd // T1 = DPC Command End Address
   sw t1,DPC_END(t0)      // Store DPC Command End Address To DP End Register ($A4100004)
 
+  // Wait For RDP Command Buffer Is Ready
+//  RDPLoop:
+//    lw t1,DPC_STATUS(t0) // T1 = CMD Status ($0410000C)
+//    andi t1,%10000000 // Wait For RDP Command Buffer Is Ready Bit 7
+//    beqz t1,RDPLoop // IF (T1 == 0) RDPLoop
+//    nop // Delay Slot
+
   // Wait For RDP To Finish
   li t2,$00FFFFFF // T2 = $00FFFFFF
   and t1,t2       // T1 = 24-Bit RDP Buffer End Address
@@ -1277,6 +1284,21 @@ Slope3:
     lw t2,DPC_CURRENT(t0) // T2 = CMD DMA Current ($04100008)
     bne t2,t1,RDPLoop // IF (T2 != T1) RDPLoop
     nop // Delay Slot
+
+  // Wait For RDP To Finish
+//  RDPLoop:
+//    lw t1,DPC_STATUS(t0) // T1 = CMD Status ($0410000C)
+//    andi t1,%101100000 // Wait For RDP DMA Busy Bit 8, Command Busy Bit 6, & RDP Pipeline Busy Bit 5 To Clear
+//    bnez t1,RDPLoop // IF (T1 != 0) RDPLoop
+//    nop // Delay Slot
+
+  // Flush Data Cache: Index Writeback Invalidate
+//  la t0,$80000000    // T0 = Cache Start
+//  la t1,$80002000-16 // T1 = Cache End
+//  LoopCache:
+//    cache $0|1,0(t0) // Data Cache: Index Writeback Invalidate
+//    bne t0,t1,LoopCache
+//    addiu t0,16 // Address += Data Line Size (Delay Slot)
 
   jr ra // Return
   nop   // Delay Slot
