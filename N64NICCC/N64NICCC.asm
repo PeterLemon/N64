@@ -22,7 +22,7 @@ Start:
 
 LoopFrames:
   lui a2,VI_BASE // A2 = VI Base Register ($A4400000)
-  ori t0,r0,$1E0  // T0 = Scan Line
+  ori t0,r0,$200  // T0 = Scan Line
   WaitVBlank:
     lw t1,VI_V_CURRENT_LINE(a2) // T1 = Current Scan Line
     bne t1,t0,WaitVBlank // IF (Current Scan Line != Scan Line) Wait
