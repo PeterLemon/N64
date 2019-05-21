@@ -562,8 +562,52 @@ ClearScreen:
   PrintString($A0100000,528,224,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   DDIVENDI:
 
-  PrintString($A0100000,0,232,FontBlack,PAGEBREAK,79) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,VALUELONGH // A0 = Long Data Offset
+  ld t0,0(a0)      // T0 = Long Data
+  la a0,VALUELONGI // A0 = Long Data Offset
+  ld t1,0(a0)      // T1 = Long Data
+  ddiv t0,t1 // HI/LO = Test Long Data
+  mflo t0 // T0 = LO
+  la a0,LOLONG // A0 = LOLONG Offset
+  sd t0,0(a0)  // LOLONG = Long Data
+  mfhi t0 // T0 = HI
+  la a0,HILONG // A0 = HILONG Offset
+  sd t0,0(a0)  // HILONG = Long Data
+  PrintString($A0100000,80,240,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,88,240,FontBlack,VALUELONGH,7) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,320,240,FontBlack,TEXTLONGH,5) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,240,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,240,FontBlack,LOLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,80,248,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,88,248,FontBlack,VALUELONGI,7) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,352,248,FontBlack,TEXTLONGI,1) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,248,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,248,FontBlack,HILONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,LOLONG       // A0 = Long Data Offset
+  ld t0,0(a0)        // T0 = Long Data
+  la a0,DDIVLOCHECKJ // A0 = Long Check Data Offset
+  ld t1,0(a0)        // T1 = Long Check Data
+  beq t0,t1,DDIVLOPASSJ // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,240,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  j DDIVENDJ
+  nop // Delay Slot
+  DDIVLOPASSJ:
+  PrintString($A0100000,528,240,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,HILONG       // A0 = Long Data Offset
+  ld t0,0(a0)        // T0 = Long Data
+  la a0,DDIVHICHECKJ // A0 = Long Check Data Offset
+  ld t1,0(a0)        // T1 = Long Check Data
+  beq t0,t1,DDIVHIPASSJ // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,248,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  j DDIVENDJ
+  nop // Delay Slot
+  DDIVHIPASSJ:
+  PrintString($A0100000,528,248,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  DDIVENDJ:
 
+  PrintString($A0100000,0,256,FontBlack,PAGEBREAK,79) // Print Text String To VRAM Using Font At X,Y Position
 
 Loop:
   WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
@@ -614,6 +658,10 @@ TEXTLONGF:
   db "-1234567895"
 TEXTLONGG:
   db "-12345678967891234"
+TEXTLONGH:
+  db "-2**63"
+TEXTLONGI:
+  db "-1"
 
 PAGEBREAK:
   db "--------------------------------------------------------------------------------"
@@ -633,6 +681,10 @@ VALUELONGF:
   dd -1234567895
 VALUELONGG:
   dd -12345678967891234
+VALUELONGH:
+  dd -9223372036854775808
+VALUELONGI:
+  dd -1
 
 DDIVLOCHECKA:
   dd $0000000000000000
@@ -670,6 +722,10 @@ DDIVLOCHECKI:
   dd $0000000000000001
 DDIVHICHECKI:
   dd $FFFFFFFFB669FD29
+DDIVLOCHECKJ:
+  dd $8000000000000000
+DDIVHICHECKJ:
+  dd $0000000000000000
 
 LOLONG:
   dd 0
