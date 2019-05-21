@@ -562,7 +562,52 @@ ClearScreen:
   PrintString($A0100000,528,224,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   DIVENDI:
 
-  PrintString($A0100000,0,232,FontBlack,PAGEBREAK,79) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,VALUEWORDH // A0 = Word Data Offset
+  lw t0,0(a0)      // T0 = Word Data
+  la a0,VALUEWORDI // A0 = Word Data Offset
+  lw t1,0(a0)      // T1 = Word Data
+  div t0,t1 // HI/LO = Test Word Data
+  mflo t0 // T0 = LO
+  la a0,LOWORD // A0 = LOWORD Offset
+  sw t0,0(a0)  // LOWORD = Word Data
+  mfhi t0 // T0 = HI
+  la a0,HIWORD // A0 = HIWORD Offset
+  sw t0,0(a0)  // HIWORD = Word Data
+  PrintString($A0100000,144,240,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,240,FontBlack,VALUEWORDH,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,280,240,FontBlack,TEXTWORDH,10) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,240,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,240,FontBlack,LOWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,248,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,248,FontBlack,VALUEWORDI,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,352,248,FontBlack,TEXTWORDI,1) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,440,248,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,448,248,FontBlack,HIWORD,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,LOWORD      // A0 = Word Data Offset
+  lw t0,0(a0)       // T0 = Word Data
+  la a0,DIVLOCHECKJ // A0 = Word Check Data Offset
+  lw t1,0(a0)       // T1 = Word Check Data
+  beq t0,t1,DIVLOPASSJ // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,240,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  j DIVENDJ
+  nop // Delay Slot
+  DIVLOPASSJ:
+  PrintString($A0100000,528,240,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,HIWORD      // A0 = Word Data Offset
+  lw t0,0(a0)       // T0 = Word Data
+  la a0,DIVHICHECKJ // A0 = Word Check Data Offset
+  lw t1,0(a0)       // T1 = Word Check Data
+  beq t0,t1,DIVHIPASSJ // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,248,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  j DIVENDJ
+  nop // Delay Slot
+  DIVHIPASSJ:
+  PrintString($A0100000,528,248,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  DIVENDJ:
+
+  PrintString($A0100000,0,256,FontBlack,PAGEBREAK,79) // Print Text String To VRAM Using Font At X,Y Position
 
 Loop:
   WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
@@ -613,6 +658,10 @@ TEXTWORDF:
   db "-123456"
 TEXTWORDG:
   db "-123456789"
+TEXTWORDH:
+  db "-2147483648"
+TEXTWORDI:
+  db "-1"
 
 PAGEBREAK:
   db "--------------------------------------------------------------------------------"
@@ -632,6 +681,10 @@ VALUEWORDF:
   dw -123456
 VALUEWORDG:
   dw -123456789
+VALUEWORDH:
+  dw -2147483648
+VALUEWORDI:
+  dw -1
 
 DIVLOCHECKA:
   dw $00000000
@@ -669,6 +722,10 @@ DIVLOCHECKI:
   dw $00000001
 DIVHICHECKI:
   dw $FFFE1DC0
+DIVLOCHECKJ:
+  dw $80000000
+DIVHICHECKJ:
+  dw $00000000
 
 LOWORD:
   dw 0
