@@ -1,4 +1,4 @@
-// N64 'Bare Metal' 16BPP 320x240 SNES PPU 4BPP Tile 8x8 Demo by krom (Peter Lemon):
+// N64 'Bare Metal' 16BPP 272x240 SNES PPU 4BPP Tile 8x8 Demo by krom (Peter Lemon):
 arch n64.cpu
 endian msb
 output "PPU4BPPTile8x8.N64", create
@@ -15,7 +15,7 @@ Start:
   include "LIB/N64_RSP.INC" // Include RSP Macros
   N64_INIT() // Run N64 Initialisation Routine
 
-  ScreenNTSC(320, 240, BPP16, $A0100000) // Screen NTSC: 320x240, 16BPP, DRAM Origin $A0100000
+  ScreenNTSC(272, 240, BPP16, $A0100000) // Screen NTSC: 272x240, 16BPP, DRAM Origin $A0100000
 
   WaitScanline($200) // Wait For Scanline To Reach Vertical Blank
 
@@ -526,13 +526,13 @@ RSPTILECodeEnd:
 align(8) // Align 64-Bit
 RDPBuffer:
 arch n64.rdp
-  Set_Scissor 32<<2,8<<2, 0,0, 288<<2,232<<2 // Set Scissor: XH 32.0,YH 8.0, Scissor Field Enable Off,Field Off, XL 288.0,YL 232.0
+  Set_Scissor 8<<2,8<<2, 0,0, 264<<2,232<<2 // Set Scissor: XH 8.0,YH 8.0, Scissor Field Enable Off,Field Off, XL 264.0,YL 232.0
   Set_Other_Modes CYCLE_TYPE_FILL // Set Other Modes
-  Set_Color_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,320-1, $00100000 // Set Color Image: FORMAT RGBA,SIZE 16B,WIDTH 320, DRAM ADDRESS $00100000
+  Set_Color_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,272-1, $00100000 // Set Color Image: FORMAT RGBA,SIZE 16B,WIDTH 272, DRAM ADDRESS $00100000
 
 RDPSNESCLEARCOL:
   Set_Fill_Color $00010001 // Set Fill Color: PACKED COLOR 16B R5G5B5A1 Pixels
-  Fill_Rectangle 319<<2,239<<2, 0<<2,0<<2 // Fill Rectangle: XL 319.0,YL 239.0, XH 0.0,YH 0.0
+  Fill_Rectangle 271<<2,239<<2, 0<<2,0<<2 // Fill Rectangle: XL 271.0,YL 239.0, XH 0.0,YH 0.0
 
   Set_Other_Modes EN_TLUT|SAMPLE_TYPE|BI_LERP_0|ALPHA_DITHER_SEL_NO_DITHER|B_M2A_0_1|FORCE_BLEND|IMAGE_READ_EN // Set Other Modes
   Set_Combine_Mode $0,$00, 0,0, $1,$01, $0,$F, 1,0, 0,0,0, 7,7,7 // Set Combine Mode: SubA RGB0,MulRGB0, SubA Alpha0,MulAlpha0, SubA RGB1,MulRGB1, SubB RGB0,SubB RGB1, SubA Alpha1,MulAlpha1, AddRGB0,SubB Alpha0,AddAlpha0, AddRGB1,SubB Alpha1,AddAlpha1
@@ -554,7 +554,7 @@ RDPSNESTILE:
       Sync_Tile // Sync Tile
       Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,4-1, N64TILE+(32*(({y}*32)+{x})) // Set Texture Image: FORMAT COLOR INDEX,SIZE 8B,WIDTH 4, Tile DRAM ADDRESS
       Load_Tile 0<<2,0<<2, 0, 7<<2,7<<2 // Load Tile: SL,TL, Tile, SH,TH
-      Texture_Rectangle_Flip (40+({x}*8))<<2,(16+({y}*8))<<2, 0, (32+({x}*8))<<2,(8+({y}*8))<<2, 0<<5,7<<5, 1<<10,-1<<10 // Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
+      Texture_Rectangle_Flip (16+({x}*8))<<2,(16+({y}*8))<<2, 0, (8+({x}*8))<<2,(8+({y}*8))<<2, 0<<5,7<<5, 1<<10,-1<<10 // Texture Rectangle Flip: XL,YL, Tile, XH,YH, S,T, DSDX,DTDY
 
       evaluate x({x} + 1)
     }

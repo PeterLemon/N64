@@ -30,7 +30,7 @@ Start:
   include "LIB/N64_RSP.INC" // Include RSP Macros
   include "LIB/N64_INPUT.INC" // Include Input Macros
   N64_INIT() // Run N64 Initialisation Routine
-  ScreenNTSC(320, 240, BPP16|AA_MODE_2, $A0100000) // Screen NTSC: 320x240, 16BPP, Resample Only, DRAM Origin $A0100000
+  ScreenNTSC(272, 240, BPP16|AA_MODE_2, $A0100000) // Screen NTSC: 272x240, 16BPP, Resample Only, DRAM Origin $A0100000
 
   InitController(PIF1) // Initialize Controller
 
@@ -150,11 +150,11 @@ MEM_MAP: // Memory Map = $10000 Bytes
 //insert CART_ROM, "TEST/PPU/8x8BG2Map2BPP32x328PAL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/PPU/8x8BG3Map2BPP32x328PAL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/PPU/8x8BG4Map2BPP32x328PAL.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
-insert CART_ROM, "TEST/PPU/8x8BGMap4BPP32x328PAL.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
+//insert CART_ROM, "TEST/PPU/8x8BGMap4BPP32x328PAL.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/PPU/8x8BGMap8BPP32x32.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/PPU/8x8BGMap8BPP32x64.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/PPU/8x8BGMap8BPP64x32.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
-//insert CART_ROM, "TEST/PPU/8x8BGMap8BPP64x64.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
+insert CART_ROM, "TEST/PPU/8x8BGMap8BPP64x64.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/PPU/8x8BGMapTileFlip.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/PPU/LinearPicture2BPP.sfc" // Copy 32768 Bytes of Cartridge into Memory Map ** PASS **
 //insert CART_ROM, "TEST/PPU/LinearPicture4BPP.sfc" // Copy 98304 Bytes of Cartridge into Memory Map ** PASS **

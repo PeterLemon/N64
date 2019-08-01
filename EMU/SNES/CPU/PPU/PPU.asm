@@ -125,32 +125,32 @@ macro PPU8x8BGMAP2BPP(bg) { // Convert SNES 2BPP Tile Map To RDP List
       addu t9,a1    // T9 += N64 Tile Address
       sw t9,0(a2)   // Store SNES Tile Map # To N64 RDP SNES Tile Map
 
-      ori t9,r0,40  // XLYL = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
+      ori t9,r0,16  // XLYL = $25000000 + (((16-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
       subu t9,k0
       sll a3,t8,3
       addu t9,a3
       sll t9,14
       lui a3,$2500
-      or t9,a3      // T9 = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14)
+      or t9,a3      // T9 = $25000000 + (((16-(BGXHOFS&7))+(X<<3))<<14)
       ori a3,r0,16
       subu a3,k1
       sll gp,t7,3
       addu a3,gp
       sll a3,2
-      addu t9,a3    // T9 = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
+      addu t9,a3    // T9 = $25000000 + (((16-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
       sw t9,20(a2)
 
-      ori t9,r0,32  // XHYH = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
+      ori t9,r0,8   // XHYH = (((8-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
       subu t9,k0
       sll a3,t8,3
       addu t9,a3
-      sll t9,14     // T9 = (((32-(BGXHOFS&7))+(X<<3))<<14)
+      sll t9,14     // T9 = (((8-(BGXHOFS&7))+(X<<3))<<14)
       ori a3,r0,8
       subu a3,k1
       sll gp,t7,3
       addu a3,gp
       sll a3,2
-      addu t9,a3    // T9 = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
+      addu t9,a3    // T9 = (((8-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
       sw t9,24(a2)
 
       addiu a2,48   // A2 += 48
@@ -239,32 +239,32 @@ macro PPU8x8BGMAP4BPP(bg) { // Convert SNES 4BPP Tile Map To RDP List
       addu t9,a1    // T9 += N64 Tile Address
       sw t9,0(a2)   // Store SNES Tile Map # To N64 RDP SNES Tile Map
 
-      ori t9,r0,40  // XLYL = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
+      ori t9,r0,16  // XLYL = $25000000 + (((16-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
       subu t9,k0
       sll a3,t8,3
       addu t9,a3
       sll t9,14
       lui a3,$2500
-      or t9,a3      // T9 = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14)
+      or t9,a3      // T9 = $25000000 + (((16-(BGXHOFS&7))+(X<<3))<<14)
       ori a3,r0,16
       subu a3,k1
       sll gp,t7,3
       addu a3,gp
       sll a3,2
-      addu t9,a3    // T9 = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
+      addu t9,a3    // T9 = $25000000 + (((16-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
       sw t9,20(a2)
 
-      ori t9,r0,32  // XHYH = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
+      ori t9,r0,8   // XHYH = (((8-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
       subu t9,k0
       sll a3,t8,3
       addu t9,a3
-      sll t9,14     // T9 = (((32-(BGXHOFS&7))+(X<<3))<<14)
+      sll t9,14     // T9 = (((8-(BGXHOFS&7))+(X<<3))<<14)
       ori a3,r0,8
       subu a3,k1
       sll gp,t7,3
       addu a3,gp
       sll a3,2
-      addu t9,a3    // T9 = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
+      addu t9,a3    // T9 = (((8-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
       sw t9,24(a2)
 
       addiu a2,48   // A2 += 48
@@ -348,32 +348,32 @@ macro PPU8x8BGMAP8BPP(bg) { // Convert SNES 8BPP Tile Map To RDP List
       addu t9,a1    // T9 += N64 Tile Address
       sw t9,0(a2)   // Store SNES Tile Map # To N64 RDP SNES Tile Map
 
-      ori t9,r0,40  // XLYL = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
+      ori t9,r0,16  // XLYL = $25000000 + (((16-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
       subu t9,k0
       sll a3,t8,3
       addu t9,a3
       sll t9,14
       lui a3,$2500
-      or t9,a3      // T9 = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14)
+      or t9,a3      // T9 = $25000000 + (((16-(BGXHOFS&7))+(X<<3))<<14)
       ori a3,r0,16
       subu a3,k1
       sll gp,t7,3
       addu a3,gp
       sll a3,2
-      addu t9,a3    // T9 = $25000000 + (((40-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
+      addu t9,a3    // T9 = $25000000 + (((16-(BGXHOFS&7))+(X<<3))<<14) + (((16-(BGXVOFS&7))+(Y<<3))<<2)
       sw t9,12(a2)
 
-      ori t9,r0,32  // XHYH = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
+      ori t9,r0,8   // XHYH = (((8-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
       subu t9,k0
       sll a3,t8,3
       addu t9,a3
-      sll t9,14     // T9 = (((32-(BGXHOFS&7))+(X<<3))<<14)
+      sll t9,14     // T9 = (((8-(BGXHOFS&7))+(X<<3))<<14)
       ori a3,r0,8
       subu a3,k1
       sll gp,t7,3
       addu a3,gp
       sll a3,2
-      addu t9,a3    // T9 = (((32-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
+      addu t9,a3    // T9 = (((8-(BGXHOFS&7))+(X<<3))<<14) + (((8-(BGXVOFS&7))+(Y<<3))<<2)
       sw t9,16(a2)
 
       addiu a2,40   // A2 += 40
