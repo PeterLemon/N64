@@ -25,6 +25,4 @@ RDPSNESTILE8BPP:
     }
     evaluate y({y} + 1)
   }
-
-  Sync_Full // Ensure Entire Scene Is Fully Drawn
 RDPBG8BPPBufferEnd:

@@ -23,6 +23,4 @@ RDPSNESTILE4BPP:
     }
     evaluate y({y} + 1)
   }
-
-  Sync_Full // Ensure Entire Scene Is Fully Drawn
 RDPBG4BPPBufferEnd:
