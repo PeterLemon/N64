@@ -243,7 +243,7 @@ LoopVideo:
   DPC(RDPZigZagBuffer, RDPZigZagBufferEnd) // Run DPC Command Buffer: Start, End
 
   // Wait For RDP To Inverse ZigZag Some Blocks Before Running RSP
-  li a1,((RDPZigZagBuffer+(384*8)) & $FFFFFF) // Wait For 384 RDP Commands
+  li a1,((RDPZigZagBuffer+(128*8)) & $FFFFFF) // Wait For 128 RDP Commands
   ZigZagLoop:
     lwu t0,DPC_CURRENT(a0) // T0 = CMD DMA Current ($04100008)
     blt t0,a1,ZigZagLoop // IF (A2 < A1) ZigZagLoop
@@ -742,7 +742,7 @@ align(8) // Align 64-Bit
 base RSPData+pc() // Set End Of RSP Data Object
 RSPDataEnd:
 
-ZigZagTexture: // RDP 8-Bit Color Index Texture (64x1), For Inverse ZigZag Transformation Of DCT Block
+ZigZagTexture: // RDP 8-Bit Color Index Texture (256x1), For Inverse ZigZag Transformation Of 4 DCT Blocks
   db 0,1,5,6,14,15,27,28
   db 2,4,7,13,16,26,29,42
   db 3,8,12,17,25,30,41,43
@@ -752,72 +752,57 @@ ZigZagTexture: // RDP 8-Bit Color Index Texture (64x1), For Inverse ZigZag Trans
   db 21,34,37,47,50,56,59,61
   db 35,36,48,49,57,58,62,63
 
+  db 64,65,69,70,78,79,91,92
+  db 66,68,71,77,80,90,93,106
+  db 67,72,76,81,89,94,105,107
+  db 73,75,82,88,95,104,108,117
+  db 74,83,87,96,103,109,116,118
+  db 84,86,97,102,110,115,119,124
+  db 85,98,101,111,114,120,123,125
+  db 99,100,112,113,121,122,126,127
+
+  db 128,129,133,134,142,143,155,156
+  db 130,132,135,141,144,154,157,170
+  db 131,136,140,145,153,158,169,171
+  db 137,139,146,152,159,168,172,181
+  db 138,147,151,160,167,173,180,182
+  db 148,150,161,166,174,179,183,188
+  db 149,162,165,175,178,184,187,189
+  db 163,164,176,177,185,186,190,191
+
+  db 192,193,197,198,206,207,219,220
+  db 194,196,199,205,208,218,221,234
+  db 195,200,204,209,217,222,233,235
+  db 201,203,210,216,223,232,236,245
+  db 202,211,215,224,231,237,244,246
+  db 212,214,225,230,238,243,247,252
+  db 213,226,229,239,242,248,251,253
+  db 227,228,240,241,249,250,254,255
+
 align(8) // Align 64-Bit
 RDPZigZagBuffer:
 arch n64.rdp
-  Set_Scissor 0<<2,0<<2, 0,0, 320<<2,480<<2 // Set Scissor: XH 0.0,YH 0.0, Scissor Field Enable Off,Field Off, XL 320.0,YL 480.0
-  Set_Color_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,320-1, YUV // Set Color Image: FORMAT RGBA,SIZE 16B,WIDTH 256, DRAM ADDRESS
+  Set_Scissor 0<<2,0<<2, 0,0, 256<<2,600<<2 // Set Scissor: XH 0.0,YH 0.0, Scissor Field Enable Off,Field Off, XL 256.0,YL 600.0
+  Set_Color_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,256-1, YUV // Set Color Image: FORMAT RGBA,SIZE 16B,WIDTH 256, DRAM ADDRESS
   Set_Other_Modes CYCLE_TYPE_COPY|EN_TLUT // Set Other Modes
 
-  Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,8, $000, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT COLOR INDEX,SIZE 8B,Tile Line Size 8 (64bit Words), TMEM Address $000, Tile 0
-  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,64-1, ZigZagTexture // Set Texture Image: FORMAT COLOR INDEX,SIZE 8B,WIDTH 64, Sample DRAM ADDRESS
-  Load_Tile 0<<2,0<<2, 0, 63<<2,0<<2 // Load_Tile: SL 0.0,TL 0.0, Tile 0, SH 63.0,TH 0.0
+  Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,32, $000, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT COLOR INDEX,SIZE 8B,Tile Line Size 32 (64bit Words), TMEM Address $000, Tile 0
+  Set_Texture_Image IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,256-1, ZigZagTexture // Set Texture Image: FORMAT COLOR INDEX,SIZE 8B,WIDTH 256, Sample DRAM ADDRESS
+  Load_Tile 0<<2,0<<2, 0, 255<<2,0<<2 // Load_Tile: SL 0.0,TL 0.0, Tile 0, SH 255.0,TH 0.0
 
   define t(0)
   define y(0)
-  while {y} < 480 {
+  while {y} < 600 {
     Sync_Tile // Sync Tile
     Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,1-1, DCTQ+{t} // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 1, Tlut DRAM ADDRESS
     Set_Tile 0,0,0, $100, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: TMEM Address $100, Tile 0
-    Load_Tlut 0<<2,0<<2, 0, 63<<2,0<<2 // Load Tlut: SL 0.0,TL 0.0, Tile 0, SH 63.0,TH 0.0
+    Load_Tlut 0<<2,0<<2, 0, 255<<2,0<<2 // Load Tlut: SL 0.0,TL 0.0, Tile 0, SH 255.0,TH 0.0
     Sync_Tile // Sync Tile
-    Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,8, $000, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT COLOR INDEX,SIZE 8B,Tile Line Size 8 (64bit Words), TMEM Address $000, Tile 0
-    Texture_Rectangle 63<<2,{y}<<2, 0, 0<<2,{y}<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 63.0,YL 0.0, Tile 0, XH 0.0,YH 0.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
-
-    evaluate t({t} + 128)
-
-    Sync_Tile // Sync Tile
-    Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,1-1, DCTQ+{t} // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 1, Tlut DRAM ADDRESS
-    Set_Tile 0,0,0, $100, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: TMEM Address $100, Tile 0
-    Load_Tlut 0<<2,0<<2, 0, 63<<2,0<<2 // Load Tlut: SL 0.0,TL 0.0, Tile 0, SH 63.0,TH 0.0
-    Sync_Tile // Sync Tile
-    Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,8, $000, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT COLOR INDEX,SIZE 8B,Tile Line Size 8 (64bit Words), TMEM Address $000, Tile 0
-    Texture_Rectangle 127<<2,{y}<<2, 0, 64<<2,{y}<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 127.0,YL 0.0, Tile 0, XH 64.0,YH 0.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
-
-    evaluate t({t} + 128)
-
-    Sync_Tile // Sync Tile
-    Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,1-1, DCTQ+{t} // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 1, Tlut DRAM ADDRESS
-    Set_Tile 0,0,0, $100, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: TMEM Address $100, Tile 0
-    Load_Tlut 0<<2,0<<2, 0, 63<<2,0<<2 // Load Tlut: SL 0.0,TL 0.0, Tile 0, SH 63.0,TH 0.0
-    Sync_Tile // Sync Tile
-    Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,8, $000, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT COLOR INDEX,SIZE 8B,Tile Line Size 8 (64bit Words), TMEM Address $000, Tile 0
-    Texture_Rectangle 191<<2,{y}<<2, 0, 128<<2,{y}<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 127.0,YL 0.0, Tile 0, XH 64.0,YH 0.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
-
-    evaluate t({t} + 128)
-
-    Sync_Tile // Sync Tile
-    Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,1-1, DCTQ+{t} // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 1, Tlut DRAM ADDRESS
-    Set_Tile 0,0,0, $100, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: TMEM Address $100, Tile 0
-    Load_Tlut 0<<2,0<<2, 0, 63<<2,0<<2 // Load Tlut: SL 0.0,TL 0.0, Tile 0, SH 63.0,TH 0.0
-    Sync_Tile // Sync Tile
-    Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,8, $000, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT COLOR INDEX,SIZE 8B,Tile Line Size 8 (64bit Words), TMEM Address $000, Tile 0
-    Texture_Rectangle 255<<2,{y}<<2, 0, 192<<2,{y}<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 127.0,YL 0.0, Tile 0, XH 64.0,YH 0.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
-
-    evaluate t({t} + 128)
-
-    Sync_Tile // Sync Tile
-    Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,1-1, DCTQ+{t} // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 1, Tlut DRAM ADDRESS
-    Set_Tile 0,0,0, $100, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: TMEM Address $100, Tile 0
-    Load_Tlut 0<<2,0<<2, 0, 63<<2,0<<2 // Load Tlut: SL 0.0,TL 0.0, Tile 0, SH 63.0,TH 0.0
-    Sync_Tile // Sync Tile
-    Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,8, $000, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT COLOR INDEX,SIZE 8B,Tile Line Size 8 (64bit Words), TMEM Address $000, Tile 0
-    Texture_Rectangle 319<<2,{y}<<2, 0, 256<<2,{y}<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 127.0,YL 0.0, Tile 0, XH 64.0,YH 0.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
-
-    evaluate t({t} + 128)
+    Set_Tile IMAGE_DATA_FORMAT_COLOR_INDX,SIZE_OF_PIXEL_8B,32, $000, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT COLOR INDEX,SIZE 8B,Tile Line Size 32 (64bit Words), TMEM Address $000, Tile 0
+    Texture_Rectangle 255<<2,{y}<<2, 0, 0<<2,{y}<<2, 0<<5,0<<5, 4<<10,1<<10 // Texture Rectangle: XL 255.0,YL 0.0, Tile 0, XH 0.0,YH 0.0, S 0.0,T 0.0, DSDX 4.0,DTDY 1.0
+    evaluate t({t} + 512)
     evaluate y({y} + 1)
   }
-
   Sync_Full // Ensure Entire Scene Is Fully Drawn
 RDPZigZagBufferEnd:
 
@@ -849,7 +834,6 @@ arch n64.rdp
     }
     evaluate y({y} + 1)
   }
-
   Sync_Full // Ensure Entire Scene Is Fully Drawn
 RDPYUVBufferEnd:
 
