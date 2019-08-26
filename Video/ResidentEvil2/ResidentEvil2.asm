@@ -1,4 +1,4 @@
-// N64 'Bare Metal' 320x160 YUV DCT 8-Bit LZSS DIFF RLE Video Decode Demo by krom (Peter Lemon):
+// N64 'Bare Metal' 320x240 YUV DCT 8-Bit LZSS DIFF RLE Video Decode Demo by krom (Peter Lemon):
 arch n64.cpu
 endian msb
 output "ResidentEvil2.N64", create
@@ -8,7 +8,7 @@ constant DCTQ($80200000) // DCTQ Frame DRAM Offset
 constant RLE($80300000)  // RLE  Frame DRAM Offset
 constant YUV($80380000)  // YUV  Frame DRAM Offset
 
-constant FRAMES(4169) // Number Of Frames
+constant FRAMES(4162) // Number Of Frames
 
 origin $00000000
 base $80000000 // Entry Point Of Code
@@ -21,7 +21,7 @@ Start:
   include "LIB/N64_RSP.INC" // Include RSP Macros
   N64_INIT() // Run N64 Initialisation Routine
 
-  ScreenNTSC(320, 160, BPP32|AA_MODE_2, $A0100000) // Screen NTSC: 320x160, 32BPP, Resample Only, DRAM Origin $A0100000
+  ScreenNTSC(320, 240, BPP32|AA_MODE_2, $A0100000) // Screen NTSC: 320x240, 32BPP, Resample Only, DRAM Origin $A0100000
 
   // Load RSP Data To DMEM
   DMASPRD(RSPData, RSPDataEnd, SP_DMEM) // DMA Data Read DRAM->RSP MEM: Start Address, End Address, Destination RSP MEM Address
@@ -49,7 +49,7 @@ Start:
 LoopVideo:
   // Clear DCTQ Frame
   lui a0,DCTQ>>16
-  li t0,(320*160) - 1
+  li t0,(320*240) - 1
   ClearDCTQ:
     sw r0,0(a0)
     addiu a0,4
@@ -173,7 +173,7 @@ LoopVideo:
   // Decode RLE DIFF Data
   la a0,RLE+4  // A0 = Source Address (ROM Start Offset) ($B0000000..$B3FFFFFF)
   lui a1,DCTQ>>16   // A1 = Destination Address (DRAM Start Offset)
-  la t0,DCTQ+204800 // T0 = Destination End Offset (DRAM End Offset)
+  la t0,DCTQ+307200 // T0 = Destination End Offset (DRAM End Offset)
 
   RLELoop:
     beq a1,t0,RLEEnd // IF (Destination Address == Destination End Offset) RLEEnd
@@ -309,7 +309,7 @@ RSPStart:
 la a1,YUV // A1 = YUV DCT Input  Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
 la a2,YUV // A2 = YUV DCT Output Aligned DRAM Physical RAM Offset ($00000000..$007FFFFF 8MB)
 
-ori s1,r0,((320*160*2) / 2048) - 1 // S1 = Loop DMA Count - 1
+ori s1,r0,((320*240*2) / 2048) - 1 // S1 = Loop DMA Count - 1
 
 LoopDMA:
   lui a0,$0000 // A0 = DCTQ 8x8 Matrix DMEM Address
@@ -782,7 +782,7 @@ ZigZagTexture: // RDP 8-Bit Color Index Texture (256x1), For Inverse ZigZag Tran
 align(8) // Align 64-Bit
 RDPZigZagBuffer:
 arch n64.rdp
-  Set_Scissor 0<<2,0<<2, 0,0, 256<<2,400<<2 // Set Scissor: XH 0.0,YH 0.0, Scissor Field Enable Off,Field Off, XL 256.0,YL 400.0
+  Set_Scissor 0<<2,0<<2, 0,0, 256<<2,600<<2 // Set Scissor: XH 0.0,YH 0.0, Scissor Field Enable Off,Field Off, XL 256.0,YL 600.0
   Set_Color_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,256-1, YUV // Set Color Image: FORMAT RGBA,SIZE 16B,WIDTH 256, DRAM ADDRESS
   Set_Other_Modes CYCLE_TYPE_COPY|EN_TLUT // Set Other Modes
 
@@ -792,7 +792,7 @@ arch n64.rdp
 
   define t(0)
   define y(0)
-  while {y} < 400 {
+  while {y} < 600 {
     Sync_Tile // Sync Tile
     Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,1-1, DCTQ+{t} // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 1, Tlut DRAM ADDRESS
     Set_Tile 0,0,0, $100, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: TMEM Address $100, Tile 0
@@ -803,14 +803,14 @@ arch n64.rdp
     evaluate t({t} + 512)
     evaluate y({y} + 1)
   }
-  Sync_Full // Ensure Entire Scene Is Fully Drawn
+  Sync_Full // EnsureÂ EntireÂ SceneÂ IsÂ FullyÂ Drawn
 RDPZigZagBufferEnd:
 
 
 align(8) // Align 64-Bit
 RDPYUVBuffer:
 arch n64.rdp
-  Set_Scissor 0<<2,0<<2, 0,0, 320<<2,160<<2 // Set Scissor: XH 0.0,YH 0.0, Scissor Field Enable Off,Field Off, XL 320.0,YL 160.0
+  Set_Scissor 0<<2,0<<2, 0,0, 320<<2,240<<2 // Set Scissor: XH 0.0,YH 0.0, Scissor Field Enable Off,Field Off, XL 320.0,YL 240.0
   Set_Color_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_32B,320-1, $00100000 // Set Color Image: FORMAT RGBA,SIZE 32B,WIDTH 320, DRAM ADDRESS
 
   Set_Other_Modes MID_TEXEL|SAMPLE_TYPE|ALPHA_DITHER_SEL_NO_DITHER|RGB_DITHER_SEL_NO_DITHER // Set Other Modes
@@ -818,11 +818,11 @@ arch n64.rdp
 
   Set_Convert 175,-43,-89,222,114,42 // Set Convert: K0 175,K1 -43,K2 -89,K3 222,K4 114,K5 42 (Coefficients For Converting YUV Pixels To RGB)
 
-// BG Column 0..39 / Row 0..19
+// BG Column 0..39 / Row 0..29
   Set_Tile IMAGE_DATA_FORMAT_YUV,SIZE_OF_PIXEL_16B,1, $000, 0,0, 0,0,0,0, 0,0,0,0 // Set Tile: FORMAT YUV,SIZE 16B,Tile Line Size 1 (64bit Words), TMEM Address $000, Tile 0
 
   define y(0)
-  while {y} < 20 {
+  while {y} < 30 {
     define x(0)
     while {x} < 40 {
       Set_Texture_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_16B,8-1, YUV+(128*(({y}*40)+{x})) // Set Texture Image: FORMAT RGBA,SIZE 16B,WIDTH 8, DRAM ADDRESS
@@ -834,8 +834,8 @@ arch n64.rdp
     }
     evaluate y({y} + 1)
   }
-  Sync_Full // Ensure Entire Scene Is Fully Drawn
+  Sync_Full // EnsureÂ EntireÂ SceneÂ IsÂ FullyÂ Drawn
 RDPYUVBufferEnd:
 
-insert Sample, "Sample.bin" // 16-Bit 37800Hz Signed Big-Endian Stereo Sound Sample
-insert LZVideo, "Video.lz" // 19056 320x160 LZ DIFF RLE Compressed YUV Frames 
+insert Sample, "Sample.bin" // 16-Bit 22050Hz Signed Big-Endian Stereo Sound Sample
+insert LZVideo, "Video.lz" // 4162 320x240 LZ DIFF RLE Compressed YUV Frames 
