@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
-char cmd;
-unsigned char SourceCHR;
-long width;
-long height;
-short depth;
+unsigned char yuv_file[16777216];
+unsigned char dct_file[16777216];
+unsigned int i, u, v, x, y, width, height;
 
 unsigned char quality = 50; // Quality Level (1..100 = Poor..Best)
 
@@ -23,13 +22,11 @@ double q50[64] = {16,11,10,16,24,40,51,61, // JPEG Standard Quantization 8x8 Mat
                   49,64,78,87,103,121,120,101,
                   72,92,95,98,112,100,103,99};
 
-double q[64]; // JPEG Standard Quantization 8x8 Matrix Set By Quality Level
+double q[64];   // JPEG Standard Quantization 8x8 Matrix Set By Quality Level
+double dct[64]; // DCT Block 8x8 Matrix
 
-double dct[64]; // DCT 8x8 Matrix
-
-signed short dctq[64]; // DCT Quantization 8x8 Matrix
-
-signed short dctqz[64]; // Zig-Zag DCT Quantization 8x8 Matrix
+signed short dctq[64];  // DCT Quantization Block 8x8 Matrix
+signed short dctqz[64]; // DCT Quantization Zig-Zag Block 8x8 Matrix
 
 unsigned char image[64]; // Image Data 8x8 Matrix
 
@@ -37,7 +34,7 @@ unsigned char image[64]; // Image Data 8x8 Matrix
 static void banner(void) {
   fprintf(stderr,
     "YUV To DCT Converter\n"
-    "By Peter Lemon (krom) 2018\n"
+    "By Peter Lemon (krom) 2019\n"
   );
 }
 
@@ -57,7 +54,7 @@ static void usage(const char *prgname) {
 }
 
 // Wrapper For Fopen
-static FILE *my_fopen(const char *filename, const char *mode, long *size) {
+static FILE *my_fopen(const char *filename, const char *mode, int *size) {
   FILE *f = fopen(filename, mode);
   if(!f) {
     perror(filename);
@@ -71,50 +68,18 @@ static FILE *my_fopen(const char *filename, const char *mode, long *size) {
   return f;
 }
 
-// Read 8-Bit Number From File (MSB 1st)
-static int readvalue(FILE *f) {
-  return fgetc(f);
-}
-
-// Write 8-Bit Number To File (MSB 1st)
-static void writevalue(int value, FILE *f) {
-  fputc(value, f);
-}
-
-// Convert Planar YUV 4:2:2 To 16-Bit DCT Quantization Block File (Y Channel)
-static void convert_dct_Y(FILE *source_file, FILE *target_file, long ofs, long ofs_end) {
-  unsigned int i = 0;
-  unsigned int u = 0;
-  unsigned int v = 0;
-  unsigned int x = 0;
-  unsigned int y = 0;
-
-  // Fill JPEG Standard Quantization 8x8 Matrix Set By Quality Level
-  for(i=0; i < 64; i++) {
-    if(quality > 50) q[i] = q50[i] * (100-quality)/50;
-    if(quality < 50) q[i] = q50[i] * 50/quality;
-    if(quality == 50) q[i] = q50[i];
-    if(q[i] > 255) q[i] = 255;
-    if(q[i] < 1) q[i] = 1;
-  }
-
-  // Fill COS Look Up Table
-  for(u=0; u < 8; u++) {
-    for(x=0; x < 8; x++) coslut[u*8 + x] = cos((2*x + 1) * u * M_PI / 16);
-  }
-
+// Convert Planar YUV 4:2:2 To 16-Bit DCT Quantization Zig-Zag Block File (Y Channel)
+static void convert_y(FILE *source_file, FILE *target_file) {
   // Loop Blocks
-  ofs = 0;
-  long wofs = 0;
-  unsigned int block_row = 0; // Block Row Counter
+  int ofs = 0;
+  int wofs = 0;
+  int block_row = 0; // Block Row Counter
   while(wofs < (width * height * 4) - 2048) {
 
     // Load Image Block (Y Channel)
     for(y=0; y < 8; y++) {
       for(x=0; x < 8; x++) {
-        fseek(source_file, ofs, SEEK_SET);
-        SourceCHR = readvalue(source_file);
-        image[y*8 + x] = SourceCHR;
+        image[y*8 + x] = yuv_file[ofs];
         ofs ++;
       }
       ofs += (width - 8); // Next Scanline In Block
@@ -150,7 +115,7 @@ static void convert_dct_Y(FILE *source_file, FILE *target_file, long ofs, long o
     // Write DCTQ Block (Quantization)
     for(i=0; i < 64; i++) dctq[i] = dct[i] / q[i];
 
-    // Write Zig-Zag DCTQ Block
+    // Write DCTQZ Block (Zig-Zag)
     dctqz[0] = dctq[0];
     dctqz[1] = dctq[1];
     dctqz[2] = dctq[8];
@@ -223,60 +188,30 @@ static void convert_dct_Y(FILE *source_file, FILE *target_file, long ofs, long o
     dctqz[62] = dctq[62];
     dctqz[63] = dctq[63];
 
-
     // Write DCTQZ To Output File
     for(i=0; i < 64; i++) {
-      SourceCHR = dctqz[i] >> 8;
-      fseek(target_file, wofs, SEEK_SET);
-      writevalue(SourceCHR, target_file);
+      dct_file[wofs] = dctqz[i] >> 8;
       wofs++;
-
-      SourceCHR = dctqz[i] & 0xFF;
-      fseek(target_file, wofs, SEEK_SET);
-      writevalue(SourceCHR, target_file);
+      dct_file[wofs] = dctqz[i] & 0xFF;
       wofs++;
     }
 
     if((wofs & 0x7FF) == 0) wofs += 2048;
   }
-
 }
 
-
-// Convert Planar YUV 4:2:2 To 16-Bit DCT Quantization Block File (U Channel)
-static void convert_dct_U(FILE *source_file, FILE *target_file, long ofs, long ofs_end) {
-  unsigned int i = 0;
-  unsigned int u = 0;
-  unsigned int v = 0;
-  unsigned int x = 0;
-  unsigned int y = 0;
-
-  // Fill JPEG Standard Quantization 8x8 Matrix Set By Quality Level
-  for(i=0; i < 64; i++) {
-    if(quality > 50) q[i] = q50[i] * (100-quality)/50;
-    if(quality < 50) q[i] = q50[i] * 50/quality;
-    if(quality == 50) q[i] = q50[i];
-    if(q[i] > 255) q[i] = 255;
-    if(q[i] < 1) q[i] = 1;
-  }
-
-  // Fill COS Look Up Table
-  for(u=0; u < 8; u++) {
-    for(x=0; x < 8; x++) coslut[u*8 + x] = cos((2*x + 1) * u * M_PI / 16);
-  }
-
+// Convert Planar YUV 4:2:2 To 16-Bit DCT Quantization Zig-Zag Block File (U Channel)
+static void convert_u(FILE *source_file, FILE *target_file) {
   // Loop Blocks
-  ofs = width * height;
-  long wofs = 2048;
-  unsigned int block_row = 0; // Block Row Counter
+  int ofs = width * height;
+  int wofs = 2048;
+  int block_row = 0; // Block Row Counter
   while(wofs < (width * height * 4) - 1024) {
 
     // Load Image Block (U Channel)
     for(y=0; y < 8; y++) {
       for(x=0; x < 8; x++) {
-        fseek(source_file, ofs, SEEK_SET);
-        SourceCHR = readvalue(source_file);
-        image[y*8 + x] = SourceCHR;
+        image[y*8 + x] = yuv_file[ofs];
         ofs ++;
       }
       ofs += ((width/2) - 8); // Next Scanline In Block
@@ -312,7 +247,7 @@ static void convert_dct_U(FILE *source_file, FILE *target_file, long ofs, long o
     // Write DCTQ Block (Quantization)
     for(i=0; i < 64; i++) dctq[i] = dct[i] / q[i];
 
-    // Write Zig-Zag DCTQ Block
+    // Write DCTQZ Block (Zig-Zag)
     dctqz[0] = dctq[0];
     dctqz[1] = dctq[1];
     dctqz[2] = dctq[8];
@@ -385,60 +320,30 @@ static void convert_dct_U(FILE *source_file, FILE *target_file, long ofs, long o
     dctqz[62] = dctq[62];
     dctqz[63] = dctq[63];
 
-
     // Write DCTQZ To Output File
     for(i=0; i < 64; i++) {
-      SourceCHR = dctqz[i] >> 8;
-      fseek(target_file, wofs, SEEK_SET);
-      writevalue(SourceCHR, target_file);
+      dct_file[wofs] = dctqz[i] >> 8;
       wofs++;
-
-      SourceCHR = dctqz[i] & 0xFF;
-      fseek(target_file, wofs, SEEK_SET);
-      writevalue(SourceCHR, target_file);
+      dct_file[wofs] = dctqz[i] & 0xFF;
       wofs++;
     }
 
     if((wofs & 0x3FF) == 0) wofs += 3072;
   }
-
 }
 
-
-// Convert Planar YUV 4:2:2 To 16-Bit DCT Quantization Block File (V Channel)
-static void convert_dct_V(FILE *source_file, FILE *target_file, long ofs, long ofs_end) {
-  unsigned int i = 0;
-  unsigned int u = 0;
-  unsigned int v = 0;
-  unsigned int x = 0;
-  unsigned int y = 0;
-
-  // Fill JPEG Standard Quantization 8x8 Matrix Set By Quality Level
-  for(i=0; i < 64; i++) {
-    if(quality > 50) q[i] = q50[i] * (100-quality)/50;
-    if(quality < 50) q[i] = q50[i] * 50/quality;
-    if(quality == 50) q[i] = q50[i];
-    if(q[i] > 255) q[i] = 255;
-    if(q[i] < 1) q[i] = 1;
-  }
-
-  // Fill COS Look Up Table
-  for(u=0; u < 8; u++) {
-    for(x=0; x < 8; x++) coslut[u*8 + x] = cos((2*x + 1) * u * M_PI / 16);
-  }
-
+// Convert Planar YUV 4:2:2 To 16-Bit DCT Quantization Zig-Zag Block File (V Channel)
+static void convert_v(FILE *source_file, FILE *target_file) {
   // Loop Blocks
-  ofs = (width * height) + ((width/2) * height);
-  long wofs = 3072;
-  unsigned int block_row = 0; // Block Row Counter
+  int ofs = (width * height) + ((width/2) * height);
+  int wofs = 3072;
+  int block_row = 0; // Block Row Counter
   while(wofs < width * height * 4) {
 
     // Load Image Block (V Channel)
     for(y=0; y < 8; y++) {
       for(x=0; x < 8; x++) {
-        fseek(source_file, ofs, SEEK_SET);
-        SourceCHR = readvalue(source_file);
-        image[y*8 + x] = SourceCHR;
+        image[y*8 + x] = yuv_file[ofs];
         ofs ++;
       }
       ofs += ((width/2) - 8); // Next Scanline In Block
@@ -474,7 +379,7 @@ static void convert_dct_V(FILE *source_file, FILE *target_file, long ofs, long o
     // Write DCTQ Block (Quantization)
     for(i=0; i < 64; i++) dctq[i] = dct[i] / q[i];
 
-    // Write Zig-Zag DCTQ Block
+    // Write DCTQZ Block (Zig-Zag)
     dctqz[0] = dctq[0];
     dctqz[1] = dctq[1];
     dctqz[2] = dctq[8];
@@ -547,32 +452,23 @@ static void convert_dct_V(FILE *source_file, FILE *target_file, long ofs, long o
     dctqz[62] = dctq[62];
     dctqz[63] = dctq[63];
 
-
     // Write DCTQZ To Output File
     for(i=0; i < 64; i++) {
-      SourceCHR = dctqz[i] >> 8;
-      fseek(target_file, wofs, SEEK_SET);
-      writevalue(SourceCHR, target_file);
+      dct_file[wofs] = dctqz[i] >> 8;
       wofs++;
-
-      SourceCHR = dctqz[i] & 0xFF;
-      fseek(target_file, wofs, SEEK_SET);
-      writevalue(SourceCHR, target_file);
+      dct_file[wofs] = dctqz[i] & 0xFF;
       wofs++;
     }
 
     if((wofs & 0x3FF) == 0) wofs += 3072;
   }
-
 }
 
-
 // Create DCT From Source Filename & Target Filename (Return 0 On Success)
-static int create_binary(const char *source_filename, const char *target_filename) {
+static int create_dct(const char *source_filename, const char *target_filename) {
   FILE *source_file = NULL;
-  long source_size;
+  int source_size;
   FILE *target_file = NULL;
-  long ofs;
   int e = 0;
   source_file = NULL;
 
@@ -580,19 +476,43 @@ static int create_binary(const char *source_filename, const char *target_filenam
   source_file = my_fopen(source_filename, "rb", &source_size);
   if(!source_file) goto err;
 
+  // Load Source File
+  for(i=0; i < source_size; i++) yuv_file[i] = fgetc(source_file);
+
+  float start_time = (float)clock()/CLOCKS_PER_SEC;
+
+  // Fill JPEG Standard Quantization 8x8 Matrix Set By Quality Level
+  for(i=0; i < 64; i++) {
+    if(quality > 50) q[i] = q50[i] * (100-quality)/50;
+    if(quality < 50) q[i] = q50[i] * 50/quality;
+    if(quality == 50) q[i] = q50[i];
+    if(q[i] > 255) q[i] = 255;
+    if(q[i] < 1) q[i] = 1;
+  }
+
+  // Fill COS Look Up Table
+  for(y=0; y < 8; y++) {
+    for(x=0; x < 8; x++) coslut[y*8 + x] = cos((2*x + 1) * y * M_PI / 16);
+  }
+
+  // Convert DCT Quantization Zig-Zag Block Output
+  convert_y(source_file, target_file);
+  convert_u(source_file, target_file);
+  convert_v(source_file, target_file);
+
   // Create Target File
   target_file = my_fopen(target_filename, "wb", NULL);
   if(!target_file) goto err;
   fprintf(stderr, "Creating %s...\n", target_filename);
-  ofs = 0;
 
-  // Convert DCT Quantization Block Output
-  convert_dct_Y(source_file, target_file, ofs, source_size);
-  convert_dct_U(source_file, target_file, ofs, source_size);
-  convert_dct_V(source_file, target_file, ofs, source_size);
-  
+  // Store Target File
+  for(i=0; i < source_size*2; i++) fputc(dct_file[i], target_file);
+
+  float end_time = (float)clock()/CLOCKS_PER_SEC;
+  float time_elapsed = end_time - start_time;
+
   // Finished
-  fprintf(stderr, "Done\n");
+  fprintf(stderr, "Done (%f Seconds)\n", time_elapsed);
   goto no_err;
   err:
   e = 1;
@@ -644,5 +564,5 @@ int main(int argc, char **argv) {
   }
   fprintf(stderr, "Quality = %d\n", quality);
 
-  if(create_binary(argv[3], argv[4])) return 1;
+  if(create_dct(argv[3], argv[4])) return 1;
 }
