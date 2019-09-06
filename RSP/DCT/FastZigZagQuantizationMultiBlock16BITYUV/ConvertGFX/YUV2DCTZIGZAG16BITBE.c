@@ -69,7 +69,7 @@ static FILE *my_fopen(const char *filename, const char *mode, int *size) {
 }
 
 // Convert Planar YUV 4:2:2 To 16-Bit DCT Quantization Zig-Zag Block File (Y Channel)
-static void convert_y(FILE *source_file, FILE *target_file) {
+static void convert_y() {
   // Loop Blocks
   int ofs = 0;
   int wofs = 0;
@@ -201,7 +201,7 @@ static void convert_y(FILE *source_file, FILE *target_file) {
 }
 
 // Convert Planar YUV 4:2:2 To 16-Bit DCT Quantization Zig-Zag Block File (U Channel)
-static void convert_u(FILE *source_file, FILE *target_file) {
+static void convert_u() {
   // Loop Blocks
   int ofs = width * height;
   int wofs = 2048;
@@ -333,7 +333,7 @@ static void convert_u(FILE *source_file, FILE *target_file) {
 }
 
 // Convert Planar YUV 4:2:2 To 16-Bit DCT Quantization Zig-Zag Block File (V Channel)
-static void convert_v(FILE *source_file, FILE *target_file) {
+static void convert_v() {
   // Loop Blocks
   int ofs = (width * height) + ((width/2) * height);
   int wofs = 3072;
@@ -496,9 +496,9 @@ static int create_dct(const char *source_filename, const char *target_filename) 
   }
 
   // Convert DCT Quantization Zig-Zag Block Output
-  convert_y(source_file, target_file);
-  convert_u(source_file, target_file);
-  convert_v(source_file, target_file);
+  convert_y();
+  convert_u();
+  convert_v();
 
   // Create Target File
   target_file = my_fopen(target_filename, "wb", NULL);
