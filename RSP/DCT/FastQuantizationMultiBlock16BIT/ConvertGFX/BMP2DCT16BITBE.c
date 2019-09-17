@@ -143,12 +143,21 @@ static int create_dct(const char *source_filename, const char *target_filename) 
 
   // Fill JPEG Standard Quantization 8x8 Matrix Set By Quality Level
   for(i=0; i < 64; i++) {
-    if(quality > 50) q[i] = q50[i] * (100-quality)/50;
-    if(quality < 50) q[i] = q50[i] * 50/quality;
+    if(quality > 50) q[i] = round(q50[i] * (100-quality)/50);
+    if(quality < 50) q[i] = round(q50[i] * 50/quality);
     if(quality == 50) q[i] = q50[i];
     if(q[i] > 255) q[i] = 255;
     if(q[i] < 1) q[i] = 1;
   }
+  printf("Quantization 8x8 Matrix Result:\n");
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", q[0],q[1],q[2],q[3],q[4],q[5],q[6],q[7]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", q[8],q[9],q[10],q[11],q[12],q[13],q[14],q[15]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", q[16],q[17],q[18],q[19],q[20],q[21],q[22],q[23]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", q[24],q[25],q[26],q[27],q[28],q[29],q[30],q[31]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", q[32],q[33],q[34],q[35],q[36],q[37],q[38],q[39]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", q[40],q[41],q[42],q[43],q[44],q[45],q[46],q[47]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", q[48],q[49],q[50],q[51],q[52],q[53],q[54],q[55]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", q[56],q[57],q[58],q[59],q[60],q[61],q[62],q[63]);
 
   // Fill COS Look Up Table
   for(y=0; y < 8; y++) {
