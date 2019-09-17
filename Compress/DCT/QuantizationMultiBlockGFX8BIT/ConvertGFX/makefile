@@ -1,2 +1,2 @@
 BMP2DCT8BIT : BMP2DCT8BIT.c
-	gcc -O3 -march=native BMP2DCT8BIT.c -o BMP2DCT8BIT
+	gcc -O3 -march=native -flto -Wall BMP2DCT8BIT.c -o BMP2DCT8BIT
