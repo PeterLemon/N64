@@ -13,7 +13,7 @@ double clut[8] = {1/(2*sqrt(2)),0.5,0.5,0.5,0.5,0.5,0.5,0.5}; // C Look Up Table
 
 double coslut[64]; // COS Look Up Table
 
-double q50[64] = {16,11,10,16,24,40,51,61, // JPEG Standard Quantization 8x8 Matrix (Quality = 50)
+double ql50[64] = {16,11,10,16,24,40,51,61, // JPEG Standard Luminance Quantization 8x8 Matrix (Quality = 50)
                   12,12,14,19,26,58,60,55,
                   14,13,16,24,40,57,69,56,
                   14,17,22,29,51,87,80,62,
@@ -22,7 +22,17 @@ double q50[64] = {16,11,10,16,24,40,51,61, // JPEG Standard Quantization 8x8 Mat
                   49,64,78,87,103,121,120,101,
                   72,92,95,98,112,100,103,99};
 
-double q[64];   // JPEG Standard Quantization 8x8 Matrix Set By Quality Level
+double qc50[64] = {17,18,24,47,99,99,99,99, // JPEG Standard Chrominance Quantization 8x8 Matrix (Quality = 50)
+                   18,21,26,66,99,99,99,99,
+                   24,26,56,99,99,99,99,99,
+                   47,66,99,99,99,99,99,99,
+                   99,99,99,99,99,99,99,99,
+                   99,99,99,99,99,99,99,99,
+                   99,99,99,99,99,99,99,99,
+                   99,99,99,99,99,99,99,99};
+
+double ql[64];  // JPEG Standard Luminance Quantization 8x8 Matrix Set By Quality Level
+double qc[64];  // JPEG Standard Chrominance Quantization 8x8 Matrix Set By Quality Level
 double dct[64]; // DCT Block 8x8 Matrix
 
 signed short dctq[64];  // DCT Quantization Block 8x8 Matrix
@@ -113,7 +123,7 @@ static void convert_y() {
     }
 
     // Write DCTQ Block (Quantization)
-    for(i=0; i < 64; i++) dctq[i] = dct[i] / q[i];
+    for(i=0; i < 64; i++) dctq[i] = dct[i] / ql[i];
 
     // Write DCTQZ Block (Zig-Zag)
     dctqz[0] = dctq[0];
@@ -245,7 +255,7 @@ static void convert_u() {
     }
 
     // Write DCTQ Block (Quantization)
-    for(i=0; i < 64; i++) dctq[i] = dct[i] / q[i];
+    for(i=0; i < 64; i++) dctq[i] = dct[i] / qc[i];
 
     // Write DCTQZ Block (Zig-Zag)
     dctqz[0] = dctq[0];
@@ -377,7 +387,7 @@ static void convert_v() {
     }
 
     // Write DCTQ Block (Quantization)
-    for(i=0; i < 64; i++) dctq[i] = dct[i] / q[i];
+    for(i=0; i < 64; i++) dctq[i] = dct[i] / qc[i];
 
     // Write DCTQZ Block (Zig-Zag)
     dctqz[0] = dctq[0];
@@ -481,14 +491,41 @@ static int create_dct(const char *source_filename, const char *target_filename) 
 
   float start_time = (float)clock()/CLOCKS_PER_SEC;
 
-  // Fill JPEG Standard Quantization 8x8 Matrix Set By Quality Level
+  // Fill JPEG Standard Luminance Quantization 8x8 Matrix Set By Quality Level
   for(i=0; i < 64; i++) {
-    if(quality > 50) q[i] = q50[i] * (100-quality)/50;
-    if(quality < 50) q[i] = q50[i] * 50/quality;
-    if(quality == 50) q[i] = q50[i];
-    if(q[i] > 255) q[i] = 255;
-    if(q[i] < 1) q[i] = 1;
+    if(quality > 50) ql[i] = round(ql50[i] * (100-quality)/50);
+    if(quality < 50) ql[i] = round(ql50[i] * 50/quality);
+    if(quality == 50) ql[i] = ql50[i];
+    if(ql[i] > 255) ql[i] = 255;
+    if(ql[i] < 1) ql[i] = 1;
   }
+  printf("Luminance Quantization 8x8 Matrix Result:\n");
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", ql[0],ql[1],ql[2],ql[3],ql[4],ql[5],ql[6],ql[7]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", ql[8],ql[9],ql[10],ql[11],ql[12],ql[13],ql[14],ql[15]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", ql[16],ql[17],ql[18],ql[19],ql[20],ql[21],ql[22],ql[23]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", ql[24],ql[25],ql[26],ql[27],ql[28],ql[29],ql[30],ql[31]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", ql[32],ql[33],ql[34],ql[35],ql[36],ql[37],ql[38],ql[39]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", ql[40],ql[41],ql[42],ql[43],ql[44],ql[45],ql[46],ql[47]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", ql[48],ql[49],ql[50],ql[51],ql[52],ql[53],ql[54],ql[55]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", ql[56],ql[57],ql[58],ql[59],ql[60],ql[61],ql[62],ql[63]);
+
+  // Fill JPEG Standard Chrominance Quantization 8x8 Matrix Set By Quality Level
+  for(i=0; i < 64; i++) {
+    if(quality > 50) qc[i] = round(qc50[i] * (100-quality)/50);
+    if(quality < 50) qc[i] = round(qc50[i] * 50/quality);
+    if(quality == 50) qc[i] = qc50[i];
+    if(qc[i] > 255) qc[i] = 255;
+    if(qc[i] < 1) qc[i] = 1;
+  }
+  printf("Chrominance Quantization 8x8 Matrix Result:\n");
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", qc[0],qc[1],qc[2],qc[3],qc[4],qc[5],qc[6],qc[7]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", qc[8],qc[9],qc[10],qc[11],qc[12],qc[13],qc[14],qc[15]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", qc[16],qc[17],qc[18],qc[19],qc[20],qc[21],qc[22],qc[23]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", qc[24],qc[25],qc[26],qc[27],qc[28],qc[29],qc[30],qc[31]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", qc[32],qc[33],qc[34],qc[35],qc[36],qc[37],qc[38],qc[39]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", qc[40],qc[41],qc[42],qc[43],qc[44],qc[45],qc[46],qc[47]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", qc[48],qc[49],qc[50],qc[51],qc[52],qc[53],qc[54],qc[55]);
+  printf("%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f,%.0f\n", qc[56],qc[57],qc[58],qc[59],qc[60],qc[61],qc[62],qc[63]);
 
   // Fill COS Look Up Table
   for(y=0; y < 8; y++) {
