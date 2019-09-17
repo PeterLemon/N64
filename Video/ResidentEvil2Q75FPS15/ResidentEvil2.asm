@@ -948,8 +948,8 @@ FIX_LUT: // Signed Fractions (S1.15) (Float * 32768)
   dh 0      //  Zero Padding                  Vector Register B[7]
 
 QC: // JPEG Standard Chrominance Quantization 8x8 Result Matrix (Quality = 75)
-  dh 8,9,12,24,50,50,50,50
-  dh 9,10,13,33,50,50,50,50
+  dh 9,9,12,24,50,50,50,50
+  dh 9,11,13,33,50,50,50,50
   dh 12,13,28,50,50,50,50,50
   dh 24,33,50,50,50,50,50,50
   dh 50,50,50,50,50,50,50,50
@@ -958,13 +958,13 @@ QC: // JPEG Standard Chrominance Quantization 8x8 Result Matrix (Quality = 75)
   dh 50,50,50,50,50,50,50,50
 
 QL: // JPEG Standard Luminance Quantization 8x8 Result Matrix (Quality = 75)
-  dh 8,6,5,8,12,20,26,30
+  dh 8,6,5,8,12,20,26,31
   dh 6,6,7,10,13,29,30,28
-  dh 7,6,8,12,20,28,34,28
-  dh 7,8,11,14,26,44,40,31
-  dh 9,11,18,28,34,54,52,38
-  dh 12,18,28,32,40,52,56,46
-  dh 24,32,39,44,52,60,60,50
+  dh 7,7,8,12,20,29,35,28
+  dh 7,9,11,15,26,44,40,31
+  dh 9,11,19,28,34,55,52,39
+  dh 12,18,28,32,41,52,57,46
+  dh 25,32,39,44,52,61,60,51
   dh 36,46,48,49,56,50,52,50
 
 align(8) // Align 64-Bit
