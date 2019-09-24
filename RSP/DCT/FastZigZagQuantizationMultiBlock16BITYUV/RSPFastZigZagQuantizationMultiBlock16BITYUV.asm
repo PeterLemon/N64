@@ -96,7 +96,15 @@ LoopDMA:
   mtc0 r0,c0 // Store Memory Offset ($000) To SP Memory Address Register ($A4040000)
   mtc0 a1,c1 // Store RAM Offset To SP DRAM Address Register ($A4040004)
   mtc0 t0,c2 // Store DMA Length To SP Read Length Register ($A4040008)
-  RSPDMASPWait() // Wait For RSP DMA To Finish
+
+
+  // Wait For RSP To DMA Y Channel Bytes
+  and t0,r0 // T0 = 0
+  ori s0,r0,2048 // S0 = 2048
+  WaitRSPDMA:
+    ble t0,s0,WaitRSPDMA
+    mfc0 t0,c0 // T0 = SP Memory Address Register ($A4040000) (Delay Slot)
+
 
   ori s0,r0,15 // S0 = DMEM Luminance Block Count - 1
 
@@ -325,24 +333,14 @@ LoopLuminanceBlocks: // Y Blocks
   vsub v4,v4,v12[e0] // DCT[CTR + 8*4] = (TMP13 - TMP0) * 0.125
   vmulu v4,v15[e12]  // Produce Unsigned Result
 
-  // Clamp Output Row Results (Max 0xFF)
   // Store Transposed Matrix From Row Ordered Vector Register Block (V0 = Block Base Register)
-  // Interleave VU & SU Instruction For Dual Issue Optimization
-  vlt v0,v15[e14]    // V0 = (V0 < $FF), Vector Select Less Than
   sqv v0[e0],$00(a0) // Store 1st Row From Transposed Matrix Vector Register Block
-  vlt v1,v15[e14]    // V1 = (V1 < $FF), Vector Select Less Than
   sqv v1[e0],$10(a0) // Store 2nd Row From Transposed Matrix Vector Register Block
-  vlt v2,v15[e14]    // V2 = (V2 < $FF), Vector Select Less Than
   sqv v2[e0],$20(a0) // Store 3rd Row From Transposed Matrix Vector Register Block
-  vlt v3,v15[e14]    // V3 = (V3 < $FF), Vector Select Less Than
   sqv v3[e0],$30(a0) // Store 4th Row From Transposed Matrix Vector Register Block
-  vlt v4,v15[e14]    // V4 = (V4 < $FF), Vector Select Less Than
   sqv v4[e0],$40(a0) // Store 5th Row From Transposed Matrix Vector Register Block
-  vlt v5,v15[e14]    // V5 = (V5 < $FF), Vector Select Less Than
   sqv v5[e0],$50(a0) // Store 6th Row From Transposed Matrix Vector Register Block
-  vlt v6,v15[e14]    // V6 = (V6 < $FF), Vector Select Less Than
   sqv v6[e0],$60(a0) // Store 7th Row From Transposed Matrix Vector Register Block
-  vlt v7,v15[e14]    // V7 = (V7 < $FF), Vector Select Less Than
   sqv v7[e0],$70(a0) // Store 8th Row From Transposed Matrix Vector Register Block
 
   addiu a0,128 // A0 += Block Size
@@ -559,43 +557,33 @@ LoopChrominanceBlocks: // U & V Blocks
   vadd v10,v5,v9[e0] // TMP1 += Z2 + Z4
   vadd v10,v11[e0]   // V10 = TMP1
 
-  // Final Output Stage: Inputs Are TMP10..TMP13, TMP0..TMP3
-  vsub v7,v0,v8[e0]  // DCT[CTR + 8*7] = (TMP10 - TMP3) * 0.125
-  vmulu v7,v15[e12]  // Produce Unsigned Result
-  vadd v0,v0,v8[e0]  // DCT[CTR + 8*0] = (TMP10 + TMP3) * 0.125
-  vmulu v0,v15[e12]  // Produce Unsigned Result
-  vadd v1,v6,v13[e0] // DCT[CTR + 8*1] = (TMP11 + TMP2) * 0.125
-  vmulu v1,v15[e12]  // Produce Unsigned Result
-  vsub v6,v6,v13[e0] // DCT[CTR + 8*6] = (TMP11 - TMP2) * 0.125
-  vmulu v6,v15[e12]  // Produce Unsigned Result
-  vsub v5,v2,v10[e0] // DCT[CTR + 8*5] = (TMP12 - TMP1) * 0.125
-  vmulu v5,v15[e12]  // Produce Unsigned Result
-  vadd v2,v2,v10[e0] // DCT[CTR + 8*2] = (TMP12 + TMP1) * 0.125
-  vmulu v2,v15[e12]  // Produce Unsigned Result
-  vadd v3,v4,v12[e0] // DCT[CTR + 8*3] = (TMP13 + TMP0) * 0.125
-  vmulu v3,v15[e12]  // Produce Unsigned Result
-  vsub v4,v4,v12[e0] // DCT[CTR + 8*4] = (TMP13 - TMP0) * 0.125
-  vmulu v4,v15[e12]  // Produce Unsigned Result
+  // Final Output Stage: Inputs Are TMP10..TMP13, TMP0..TMP3 (Create Packed Unsigned Bytes For UV Packing)
+  vsub v7,v0,v8[e0]  // DCT[CTR + 8*7] = (TMP10 - TMP3) * 0.125 * 128 (* 16)
+  vmudn v7,v15[e13]  // Produce Unsigned Result
+  vadd v0,v0,v8[e0]  // DCT[CTR + 8*0] = (TMP10 + TMP3) * 0.125 * 128 (* 16)
+  vmudn v0,v15[e13]  // Produce Unsigned Result
+  vadd v1,v6,v13[e0] // DCT[CTR + 8*1] = (TMP11 + TMP2) * 0.125 * 128 (* 16)
+  vmudn v1,v15[e13]  // Produce Unsigned Result
+  vsub v6,v6,v13[e0] // DCT[CTR + 8*6] = (TMP11 - TMP2) * 0.125 * 128 (* 16)
+  vmudn v6,v15[e13]  // Produce Unsigned Result
+  vsub v5,v2,v10[e0] // DCT[CTR + 8*5] = (TMP12 - TMP1) * 0.125 * 128 (* 16)
+  vmudn v5,v15[e13]  // Produce Unsigned Result
+  vadd v2,v2,v10[e0] // DCT[CTR + 8*2] = (TMP12 + TMP1) * 0.125 * 128 (* 16)
+  vmudn v2,v15[e13]  // Produce Unsigned Result
+  vadd v3,v4,v12[e0] // DCT[CTR + 8*3] = (TMP13 + TMP0) * 0.125 * 128 (* 16)
+  vmudn v3,v15[e13]  // Produce Unsigned Result
+  vsub v4,v4,v12[e0] // DCT[CTR + 8*4] = (TMP13 - TMP0) * 0.125 * 128 (* 16)
+  vmudn v4,v15[e13]  // Produce Unsigned Result
 
-  // Clamp Output Row Results (Max 0xFF)
   // Store Transposed Matrix From Row Ordered Vector Register Block (V0 = Block Base Register)
-  // Interleave VU & SU Instruction For Dual Issue Optimization
-  vlt v0,v15[e14]    // V0 = (V0 < $FF), Vector Select Less Than
-  sqv v0[e0],$00(a0) // Store 1st Row From Transposed Matrix Vector Register Block
-  vlt v1,v15[e14]    // V1 = (V1 < $FF), Vector Select Less Than
-  sqv v1[e0],$10(a0) // Store 2nd Row From Transposed Matrix Vector Register Block
-  vlt v2,v15[e14]    // V2 = (V2 < $FF), Vector Select Less Than
-  sqv v2[e0],$20(a0) // Store 3rd Row From Transposed Matrix Vector Register Block
-  vlt v3,v15[e14]    // V3 = (V3 < $FF), Vector Select Less Than
-  sqv v3[e0],$30(a0) // Store 4th Row From Transposed Matrix Vector Register Block
-  vlt v4,v15[e14]    // V4 = (V4 < $FF), Vector Select Less Than
-  sqv v4[e0],$40(a0) // Store 5th Row From Transposed Matrix Vector Register Block
-  vlt v5,v15[e14]    // V5 = (V5 < $FF), Vector Select Less Than
-  sqv v5[e0],$50(a0) // Store 6th Row From Transposed Matrix Vector Register Block
-  vlt v6,v15[e14]    // V6 = (V6 < $FF), Vector Select Less Than
-  sqv v6[e0],$60(a0) // Store 7th Row From Transposed Matrix Vector Register Block
-  vlt v7,v15[e14]    // V7 = (V7 < $FF), Vector Select Less Than
-  sqv v7[e0],$70(a0) // Store 8th Row From Transposed Matrix Vector Register Block
+  suv v0[e0],$00(a0) // Store 1st Row From Transposed Matrix Vector Register Block (Packed Unsigned Bytes)
+  suv v1[e0],$10(a0) // Store 2nd Row From Transposed Matrix Vector Register Block (Packed Unsigned Bytes)
+  suv v2[e0],$20(a0) // Store 3rd Row From Transposed Matrix Vector Register Block (Packed Unsigned Bytes)
+  suv v3[e0],$30(a0) // Store 4th Row From Transposed Matrix Vector Register Block (Packed Unsigned Bytes)
+  suv v4[e0],$40(a0) // Store 5th Row From Transposed Matrix Vector Register Block (Packed Unsigned Bytes)
+  suv v5[e0],$50(a0) // Store 6th Row From Transposed Matrix Vector Register Block (Packed Unsigned Bytes)
+  suv v6[e0],$60(a0) // Store 7th Row From Transposed Matrix Vector Register Block (Packed Unsigned Bytes)
+  suv v7[e0],$70(a0) // Store 8th Row From Transposed Matrix Vector Register Block (Packed Unsigned Bytes)
 
   addiu a0,128 // A0 += Block Size
   bnez s0,LoopChrominanceBlocks // IF (DMEM Chrominance Block Count != 0) Loop Chrominance Blocks
@@ -608,36 +596,28 @@ LoopChrominanceBlocks: // U & V Blocks
   ori t2,r0,3072 // T2 = V Channel SP Memory Offset
   ori s0,r0,2048 // S0 = Y Channel End SP Memory Offset
   LoopY:
-    lqv v8[e0],$00(t1) // Load U Row 1 Values To Upper Element Bytes Of Vector Register
-    vmudn v8,v15[e13]  // V8 <<= 8
+    lpv v8[e0],$00(t1) // Load U Row 1 Values To Upper Element Bytes Of Vector Register
     lqv v0[e0],$00(t0) // Load Y Row 1 Values To Vector Register Block
     vor v0,v8[e0]      // Y Row 1 |= U Row 1
-    lqv v8[e0],$00(t2) // Load V Row 1 Values To Upper Element Bytes Of Vector Register
-    vmudn v8,v15[e13]  // V8 <<= 8
+    lpv v8[e0],$00(t2) // Load V Row 1 Values To Upper Element Bytes Of Vector Register
     lqv v1[e0],$10(t0) // Load Y Row 2 Values To Vector Register Block
     vor v1,v8[e0]      // Y Row 2 |= V Row 1
-    lqv v8[e0],$10(t1) // Load U Row 2 Values To Upper Element Bytes Of Vector Register
-    vmudn v8,v15[e13]  // V8 <<= 8
+    lpv v8[e0],$10(t1) // Load U Row 2 Values To Upper Element Bytes Of Vector Register
     lqv v2[e0],$20(t0) // Load Y Row 3 Values To Vector Register Block
     vor v2,v8[e0]      // Y Row 3 |= U Row 2
-    lqv v8[e0],$10(t2) // Load V Row 2 Values To Upper Element Bytes Of Vector Register
-    vmudn v8,v15[e13]  // V8 <<= 8
+    lpv v8[e0],$10(t2) // Load V Row 2 Values To Upper Element Bytes Of Vector Register
     lqv v3[e0],$30(t0) // Load Y Row 4 Values To Vector Register Block
     vor v3,v8[e0]      // Y Row 4 |= V Row 2
-    lqv v8[e0],$20(t1) // Load U Row 3 Values To Upper Element Bytes Of Vector Register
-    vmudn v8,v15[e13]  // V8 <<= 8
+    lpv v8[e0],$20(t1) // Load U Row 3 Values To Upper Element Bytes Of Vector Register
     lqv v4[e0],$40(t0) // Load Y Row 5 Values To Vector Register Block
     vor v4,v8[e0]      // Y Row 5 |= U Row 3
-    lqv v8[e0],$20(t2) // Load V Row 3 Values To Upper Element Bytes Of Vector Register
-    vmudn v8,v15[e13]  // V8 <<= 8
+    lpv v8[e0],$20(t2) // Load V Row 3 Values To Upper Element Bytes Of Vector Register
     lqv v5[e0],$50(t0) // Load Y Row 6 Values To Vector Register Block
     vor v5,v8[e0]      // Y Row 6 |= V Row 3
-    lqv v8[e0],$30(t1) // Load U Row 4 Values To Upper Element Bytes Of Vector Register
-    vmudn v8,v15[e13]  // V8 <<= 8
+    lpv v8[e0],$30(t1) // Load U Row 4 Values To Upper Element Bytes Of Vector Register
     lqv v6[e0],$60(t0) // Load Y Row 7 Values To Vector Register Block
     vor v6,v8[e0]      // Y Row 7 |= U Row 4
-    lqv v8[e0],$30(t2) // Load V Row 4 Values To Upper Element Bytes Of Vector Register
-    vmudn v8,v15[e13]  // V8 <<= 8
+    lpv v8[e0],$30(t2) // Load V Row 4 Values To Upper Element Bytes Of Vector Register
     lqv v7[e0],$70(t0) // Load Y Row 8 Values To Vector Register Block
     vor v7,v8[e0]      // Y Row 8 |= V Row 4
 
@@ -711,8 +691,8 @@ FIX_LUT: // Signed Fractions (S1.15) (Float * 32768)
   dh -18446 // -0.562915447 FIX(-2.562915447) Vector Register B[2]
   dh 2383   //  0.072711026 FIX( 3.072711026) Vector Register B[3]
   dh 4096   //  0.125       FIX( 0.125)       Vector Register B[4]
-  dh $0100  //  Left Shift Using Multiply:<<8 Vector Register B[5]
-  dh $00FF  //  Vector Select Less Than Clamp Vector Register B[6]
+  dh $0010  //  0.125 * 128 FIX(16.0)         Vector Register B[5]
+  dh 0      //  Zero Padding                  Vector Register B[6]
   dh 0      //  Zero Padding                  Vector Register B[7]
 
 //QC: // JPEG Standard Chrominance Quantization 8x8 Result Matrix (Quality = 10)
