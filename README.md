@@ -20,5 +20,6 @@ Using bass Run: make.bat<br />
 Howto Run:<br />
 I only test with a real N64 using a 64drive Cartridge by marshallh from Retroactive:<br />
 http://64drive.retroactive.be<br />
+Most should run fine on EverDrive 64 if binary filesize doesn't exceed 64mb and if they don't use 64Drive-only features
 <br />
 You can also use N64 emulators like cen64 & the MAME N64 Driver.
