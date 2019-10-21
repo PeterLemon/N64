@@ -649,8 +649,6 @@ SWL:
   db "SWL"
 SWR:
   db "SWR"
-SWU:
-  db "SWU"
 
 WORDHEX:
   db "WORD (Hex)"
