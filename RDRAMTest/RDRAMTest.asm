@@ -158,16 +158,27 @@ ClearScreen:
   PrintString($A0100000,128,24,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
 
   lui a3,$A040 // A3 = Extended RDRAM Address
-  li s0,$DEADBEEF // S0 = Test Word
   la s1,RDWORD // S1 = RDRAM Word Address
+  la s2, -1 // All ones used for flipping bits.
+  lui s3, $A3F0 // End of RDRAM mapping.
 ExtendedLoop:
+  slt t0, a3, s3 // Check that we are still poking the RDRAM space.
+  beq t0, 0, EndExtendedLoop
+  nop
+
   sw a3,0(s1) // Store Extended RDRAM Address To RDRAM Word Address
-  sw s0,0(a3) // Store Test Word To Extended RDRAM Address
+
+  lw s0, 0(a3) // Load the value currently residing in the memory address.
+  nor s0, s0, s2 // Flip the bits of the value we've just read (~s0).
+  sw s0, 0(a3) // Write it back.
+
   PrintValue($A0100000,136,24,FontBlack,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  lw t0,0(a3) // T0 = Extended RDRAM Word
-  beq t0,s0,ExtendedLoop // IF (Extended RDRAM Word == Test Word) Extended Loop, ELSE Break
+
+  lw t0, 0(a3) // Read back the value we have previously overwritten.
+  beq s0, t0, ExtendedLoop // If we successfully changed the value at the memory address, then continue.
   addiu a3,256 // Extended RDRAM Address += 4 (Delay Slot)
 
+EndExtendedLoop:
   lui a0,$A040
   subu a3,a0
   sll a3,4
