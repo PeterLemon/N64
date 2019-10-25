@@ -313,13 +313,13 @@ ClearScreen:
 
 
   PrintString($A0100000,8,88,FontRed,LWL,2) // Print Text String To VRAM Using Font At X,Y Position
-  la a0,VALUEWORDA // A0 = Word Data Offset
+  la a0,VALUEWORDB // A0 = Word Data Offset
   lwl t0,0(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
   PrintString($A0100000,144,88,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,88,FontBlack,VALUEWORDA,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,360,88,FontBlack,TEXTWORDA,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,88,FontBlack,VALUEWORDB,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,296,88,FontBlack,TEXTWORDB,8) // Print Text String To VRAM Using Font At X,Y Position
   PrintString($A0100000,376,88,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,384,88,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
@@ -336,7 +336,7 @@ ClearScreen:
   LWLENDA:
 
   la a0,VALUEWORDB // A0 = Word Data Offset
-  lwl t0,0(a0) // T0 = Test Long Data
+  lwl t0,1(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
   PrintString($A0100000,144,96,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -357,13 +357,13 @@ ClearScreen:
   PrintString($A0100000,528,96,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWLENDB:
 
-  la a0,VALUEWORDC // A0 = Word Data Offset
-  lwl t0,0(a0) // T0 = Test Long Data
+  la a0,VALUEWORDB // A0 = Word Data Offset
+  lwl t0,2(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
   PrintString($A0100000,144,104,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,104,FontBlack,VALUEWORDC,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,320,104,FontBlack,TEXTWORDC,5) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,104,FontBlack,VALUEWORDB,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,296,104,FontBlack,TEXTWORDB,8) // Print Text String To VRAM Using Font At X,Y Position
   PrintString($A0100000,376,104,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,384,104,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
@@ -379,13 +379,13 @@ ClearScreen:
   PrintString($A0100000,528,104,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWLENDC:
 
-  la a0,VALUEWORDD // A0 = Word Data Offset
-  lwl t0,0(a0) // T0 = Test Long Data
+  la a0,VALUEWORDB // A0 = Word Data Offset
+  lwl t0,3(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
   PrintString($A0100000,144,112,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,112,FontBlack,VALUEWORDD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,296,112,FontBlack,TEXTWORDD,8) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,112,FontBlack,VALUEWORDB,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,296,112,FontBlack,TEXTWORDB,8) // Print Text String To VRAM Using Font At X,Y Position
   PrintString($A0100000,376,112,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,384,112,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
@@ -401,13 +401,13 @@ ClearScreen:
   PrintString($A0100000,528,112,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWLENDD:
 
-  la a0,VALUEWORDE // A0 = Word Data Offset
+  la a0,VALUEWORDG // A0 = Word Data Offset
   lwl t0,0(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
   PrintString($A0100000,144,120,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,120,FontBlack,VALUEWORDE,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,288,120,FontBlack,TEXTWORDE,9) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,120,FontBlack,VALUEWORDG,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,288,120,FontBlack,TEXTWORDG,9) // Print Text String To VRAM Using Font At X,Y Position
   PrintString($A0100000,376,120,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,384,120,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
@@ -423,13 +423,13 @@ ClearScreen:
   PrintString($A0100000,528,120,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWLENDE:
 
-  la a0,VALUEWORDF // A0 = Word Data Offset
-  lwl t0,0(a0) // T0 = Test Long Data
+  la a0,VALUEWORDG // A0 = Word Data Offset
+  lwl t0,1(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
   PrintString($A0100000,144,128,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,128,FontBlack,VALUEWORDF,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,312,128,FontBlack,TEXTWORDF,6) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,128,FontBlack,VALUEWORDG,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,288,128,FontBlack,TEXTWORDG,9) // Print Text String To VRAM Using Font At X,Y Position
   PrintString($A0100000,376,128,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
   PrintValue($A0100000,384,128,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
@@ -446,7 +446,7 @@ ClearScreen:
   LWLENDF:
 
   la a0,VALUEWORDG // A0 = Word Data Offset
-  lwl t0,0(a0) // T0 = Test Long Data
+  lwl t0,2(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
   PrintString($A0100000,144,136,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -467,30 +467,30 @@ ClearScreen:
   PrintString($A0100000,528,136,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWLENDG:
 
-
-  PrintString($A0100000,8,152,FontRed,LWR,2) // Print Text String To VRAM Using Font At X,Y Position
-  la a0,VALUEWORDA // A0 = Word Data Offset
-  lwr t0,0(a0) // T0 = Test Long Data
+  la a0,VALUEWORDG // A0 = Word Data Offset
+  lwl t0,3(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
-  PrintString($A0100000,144,152,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,152,FontBlack,VALUEWORDA,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,360,152,FontBlack,TEXTWORDA,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintString($A0100000,376,152,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,384,152,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,144,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,144,FontBlack,VALUEWORDG,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,288,144,FontBlack,TEXTWORDG,9) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,144,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,144,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
   ld t0,0(a0)     // T0 = Long Data
-  la a0,LWRCHECKA // A0 = Long Check Data Offset
+  la a0,LWLCHECKH // A0 = Long Check Data Offset
   ld t1,0(a0)     // T1 = Long Check Data
-  beq t0,t1,LWRPASSA // Compare Result Equality With Check Data
+  beq t0,t1,LWLPASSH // Compare Result Equality With Check Data
   nop // Delay Slot
-  PrintString($A0100000,528,152,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
-  j LWRENDA
+  PrintString($A0100000,528,144,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  j LWLENDH
   nop // Delay Slot
-  LWRPASSA:
-  PrintString($A0100000,528,152,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
-  LWRENDA:
+  LWLPASSH:
+  PrintString($A0100000,528,144,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  LWLENDH:
 
+
+  PrintString($A0100000,8,160,FontRed,LWR,2) // Print Text String To VRAM Using Font At X,Y Position
   la a0,VALUEWORDB // A0 = Word Data Offset
   lwr t0,0(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
@@ -502,107 +502,107 @@ ClearScreen:
   PrintValue($A0100000,384,160,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
   ld t0,0(a0)     // T0 = Long Data
+  la a0,LWRCHECKA // A0 = Long Check Data Offset
+  ld t1,0(a0)     // T1 = Long Check Data
+  beq t0,t1,LWRPASSA // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,160,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  j LWRENDA
+  nop // Delay Slot
+  LWRPASSA:
+  PrintString($A0100000,528,160,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  LWRENDA:
+
+  la a0,VALUEWORDB // A0 = Word Data Offset
+  lwr t0,1(a0) // T0 = Test Long Data
+  la a0,RTLONG // A0 = RTLONG Offset
+  sd t0,0(a0)  // RTLONG = Long Data
+  PrintString($A0100000,144,168,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,168,FontBlack,VALUEWORDB,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,296,168,FontBlack,TEXTWORDB,8) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,168,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,168,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,RTLONG    // A0 = Long Data Offset
+  ld t0,0(a0)     // T0 = Long Data
   la a0,LWRCHECKB // A0 = Long Check Data Offset
   ld t1,0(a0)     // T1 = Long Check Data
   beq t0,t1,LWRPASSB // Compare Result Equality With Check Data
   nop // Delay Slot
-  PrintString($A0100000,528,160,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,168,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j LWRENDB
   nop // Delay Slot
   LWRPASSB:
-  PrintString($A0100000,528,160,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,168,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWRENDB:
 
-  la a0,VALUEWORDC // A0 = Word Data Offset
-  lwr t0,0(a0) // T0 = Test Long Data
+  la a0,VALUEWORDB // A0 = Word Data Offset
+  lwr t0,2(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
-  PrintString($A0100000,144,168,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,168,FontBlack,VALUEWORDC,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,320,168,FontBlack,TEXTWORDC,5) // Print Text String To VRAM Using Font At X,Y Position
-  PrintString($A0100000,376,168,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,384,168,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,176,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,176,FontBlack,VALUEWORDB,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,296,176,FontBlack,TEXTWORDB,8) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,176,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,176,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
   ld t0,0(a0)     // T0 = Long Data
   la a0,LWRCHECKC // A0 = Long Check Data Offset
   ld t1,0(a0)     // T1 = Long Check Data
   beq t0,t1,LWRPASSC // Compare Result Equality With Check Data
   nop // Delay Slot
-  PrintString($A0100000,528,168,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,176,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j LWRENDC
   nop // Delay Slot
   LWRPASSC:
-  PrintString($A0100000,528,168,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,176,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWRENDC:
 
-  la a0,VALUEWORDD // T0 = Word Data Offset
-  lwr t0,0(a0) // T0 = Test Long Data
+  la a0,VALUEWORDB // T0 = Word Data Offset
+  lwr t0,3(a0) // T0 = Test Long Data
   la a0,RTLONG // T1 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
-  PrintString($A0100000,144,176,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,176,FontBlack,VALUEWORDD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,296,176,FontBlack,TEXTWORDD,8) // Print Text String To VRAM Using Font At X,Y Position
-  PrintString($A0100000,376,176,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,384,176,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,184,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,184,FontBlack,VALUEWORDB,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,296,184,FontBlack,TEXTWORDB,8) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,184,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,184,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
   ld t0,0(a0)     // T0 = Long Data
   la a0,LWRCHECKD // A0 = Long Check Data Offset
   ld t1,0(a0)     // T1 = Long Check Data
   beq t0,t1,LWRPASSD // Compare Result Equality With Check Data
   nop // Delay Slot
-  PrintString($A0100000,528,176,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,184,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j LWRENDD
   nop // Delay Slot
   LWRPASSD:
-  PrintString($A0100000,528,176,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,184,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWRENDD:
 
-  la a0,VALUEWORDE // A0 = Word Data Offset
+  la a0,VALUEWORDG // A0 = Word Data Offset
   lwr t0,0(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
-  PrintString($A0100000,144,184,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,184,FontBlack,VALUEWORDE,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,288,184,FontBlack,TEXTWORDE,9) // Print Text String To VRAM Using Font At X,Y Position
-  PrintString($A0100000,376,184,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,384,184,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,192,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,192,FontBlack,VALUEWORDG,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,288,192,FontBlack,TEXTWORDG,9) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,192,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,192,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
   ld t0,0(a0)     // T0 = Long Data
   la a0,LWRCHECKE // A0 = Long Check Data Offset
   ld t1,0(a0)     // T1 = Long Check Data
   beq t0,t1,LWRPASSE // Compare Result Equality With Check Data
   nop // Delay Slot
-  PrintString($A0100000,528,184,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,192,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j LWRENDE
   nop // Delay Slot
   LWRPASSE:
-  PrintString($A0100000,528,184,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,192,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWRENDE:
 
-  la a0,VALUEWORDF // A0 = Word Data Offset
-  lwr t0,0(a0) // T0 = Test Long Data
-  la a0,RTLONG // A0 = RTLONG Offset
-  sd t0,0(a0)  // RTLONG = Long Data
-  PrintString($A0100000,144,192,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,192,FontBlack,VALUEWORDF,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,312,192,FontBlack,TEXTWORDF,6) // Print Text String To VRAM Using Font At X,Y Position
-  PrintString($A0100000,376,192,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,384,192,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
-  la a0,RTLONG    // A0 = Long Data Offset
-  ld t0,0(a0)     // T0 = Long Data
-  la a0,LWRCHECKF // A0 = Long Check Data Offset
-  ld t1,0(a0)     // T1 = Long Check Data
-  beq t0,t1,LWRPASSF // Compare Result Equality With Check Data
-  nop // Delay Slot
-  PrintString($A0100000,528,192,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
-  j LWRENDF
-  nop // Delay Slot
-  LWRPASSF:
-  PrintString($A0100000,528,192,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
-  LWRENDF:
-
   la a0,VALUEWORDG // A0 = Word Data Offset
-  lwr t0,0(a0) // T0 = Test Long Data
+  lwr t0,1(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
   PrintString($A0100000,144,200,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
@@ -612,175 +612,219 @@ ClearScreen:
   PrintValue($A0100000,384,200,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
   ld t0,0(a0)     // T0 = Long Data
+  la a0,LWRCHECKF // A0 = Long Check Data Offset
+  ld t1,0(a0)     // T1 = Long Check Data
+  beq t0,t1,LWRPASSF // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,200,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  j LWRENDF
+  nop // Delay Slot
+  LWRPASSF:
+  PrintString($A0100000,528,200,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  LWRENDF:
+
+  la a0,VALUEWORDG // A0 = Word Data Offset
+  lwr t0,2(a0) // T0 = Test Long Data
+  la a0,RTLONG // A0 = RTLONG Offset
+  sd t0,0(a0)  // RTLONG = Long Data
+  PrintString($A0100000,144,208,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,208,FontBlack,VALUEWORDG,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,288,208,FontBlack,TEXTWORDG,9) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,208,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,208,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,RTLONG    // A0 = Long Data Offset
+  ld t0,0(a0)     // T0 = Long Data
   la a0,LWRCHECKG // A0 = Long Check Data Offset
   ld t1,0(a0)     // T1 = Long Check Data
   beq t0,t1,LWRPASSG // Compare Result Equality With Check Data
   nop // Delay Slot
-  PrintString($A0100000,528,200,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,208,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j LWRENDG
   nop // Delay Slot
   LWRPASSG:
-  PrintString($A0100000,528,200,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,208,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWRENDG:
 
+  la a0,VALUEWORDG // A0 = Word Data Offset
+  lwr t0,3(a0) // T0 = Test Long Data
+  la a0,RTLONG // A0 = RTLONG Offset
+  sd t0,0(a0)  // RTLONG = Long Data
+  PrintString($A0100000,144,216,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,216,FontBlack,VALUEWORDG,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,288,216,FontBlack,TEXTWORDG,9) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,216,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,216,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  la a0,RTLONG    // A0 = Long Data Offset
+  ld t0,0(a0)     // T0 = Long Data
+  la a0,LWRCHECKH // A0 = Long Check Data Offset
+  ld t1,0(a0)     // T1 = Long Check Data
+  beq t0,t1,LWRPASSH // Compare Result Equality With Check Data
+  nop // Delay Slot
+  PrintString($A0100000,528,216,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  j LWRENDH
+  nop // Delay Slot
+  LWRPASSH:
+  PrintString($A0100000,528,216,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  LWRENDH:
 
-  PrintString($A0100000,8,216,FontRed,LWU,2) // Print Text String To VRAM Using Font At X,Y Position
+
+  PrintString($A0100000,8,232,FontRed,LWU,2) // Print Text String To VRAM Using Font At X,Y Position
   la a0,VALUEWORDA // A0 = Word Data Offset
   lwu t0,0(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
-  PrintString($A0100000,144,216,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,216,FontBlack,VALUEWORDA,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,360,216,FontBlack,TEXTWORDA,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintString($A0100000,376,216,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,384,216,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,232,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,232,FontBlack,VALUEWORDA,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,360,232,FontBlack,TEXTWORDA,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,232,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,232,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
   ld t0,0(a0)     // T0 = Long Data
   la a0,LWUCHECKA // A0 = Long Check Data Offset
   ld t1,0(a0)     // T1 = Long Check Data
   beq t0,t1,LWUPASSA // Compare Result Equality With Check Data
   nop // Delay Slot
-  PrintString($A0100000,528,216,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,232,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j LWUENDA
   nop // Delay Slot
   LWUPASSA:
-  PrintString($A0100000,528,216,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,232,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWUENDA:
 
   la a0,VALUEWORDB // T0 = Word Data Offset
   lwu t0,0(a0) // T0 = Test Long Data
   la a0,RTLONG // T1 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
-  PrintString($A0100000,144,224,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,224,FontBlack,VALUEWORDB,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,296,224,FontBlack,TEXTWORDB,8) // Print Text String To VRAM Using Font At X,Y Position
-  PrintString($A0100000,376,224,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,384,224,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,240,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,240,FontBlack,VALUEWORDB,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,296,240,FontBlack,TEXTWORDB,8) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,240,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,240,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
   ld t0,0(a0)     // T0 = Long Data
   la a0,LWUCHECKB // A0 = Long Check Data Offset
   ld t1,0(a0)     // T1 = Long Check Data
   beq t0,t1,LWUPASSB // Compare Result Equality With Check Data
   nop // Delay Slot
-  PrintString($A0100000,528,224,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,240,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j LWUENDB
   nop // Delay Slot
   LWUPASSB:
-  PrintString($A0100000,528,224,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,240,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWUENDB:
 
   la a0,VALUEWORDC // A0 = Word Data Offset
   lwu t0,0(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
-  PrintString($A0100000,144,232,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,232,FontBlack,VALUEWORDC,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,320,232,FontBlack,TEXTWORDC,5) // Print Text String To VRAM Using Font At X,Y Position
-  PrintString($A0100000,376,232,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,384,232,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,248,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,248,FontBlack,VALUEWORDC,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,320,248,FontBlack,TEXTWORDC,5) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,248,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,248,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
   ld t0,0(a0)     // T0 = Long Data
   la a0,LWUCHECKC // A0 = Long Check Data Offset
   ld t1,0(a0)     // T1 = Long Check Data
   beq t0,t1,LWUPASSC // Compare Result Equality With Check Data
   nop // Delay Slot
-  PrintString($A0100000,528,232,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,248,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j LWUENDC
   nop // Delay Slot
   LWUPASSC:
-  PrintString($A0100000,528,232,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,248,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWUENDC:
 
   la a0,VALUEWORDD // A0 = Word Data Offset
   lwu t0,0(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
-  PrintString($A0100000,144,240,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,240,FontBlack,VALUEWORDD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,296,240,FontBlack,TEXTWORDD,8) // Print Text String To VRAM Using Font At X,Y Position
-  PrintString($A0100000,376,240,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,384,240,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,256,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,256,FontBlack,VALUEWORDD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,296,256,FontBlack,TEXTWORDD,8) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,256,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,256,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
   ld t0,0(a0)     // T0 = Long Data
   la a0,LWUCHECKD // A0 = Long Check Data Offset
   ld t1,0(a0)     // T1 = Long Check Data
   beq t0,t1,LWUPASSD // Compare Result Equality With Check Data
   nop // Delay Slot
-  PrintString($A0100000,528,240,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,256,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j LWUENDD
   nop // Delay Slot
   LWUPASSD:
-  PrintString($A0100000,528,240,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,256,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWUENDD:
 
   la a0,VALUEWORDE // A0 = Word Data Offset
   lwu t0,0(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
-  PrintString($A0100000,144,248,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,248,FontBlack,VALUEWORDE,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,288,248,FontBlack,TEXTWORDE,9) // Print Text String To VRAM Using Font At X,Y Position
-  PrintString($A0100000,376,248,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,384,248,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,264,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,264,FontBlack,VALUEWORDE,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,288,264,FontBlack,TEXTWORDE,9) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,264,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,264,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
   ld t0,0(a0)     // T0 = Long Data
   la a0,LWUCHECKE // A0 = Long Check Data Offset
   ld t1,0(a0)     // T1 = Long Check Data
   beq t0,t1,LWUPASSE // Compare Result Equality With Check Data
   nop // Delay Slot
-  PrintString($A0100000,528,248,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,264,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j LWUENDE
   nop // Delay Slot
   LWUPASSE:
-  PrintString($A0100000,528,248,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,264,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWUENDE:
 
   la a0,VALUEWORDF // A0 = Word Data Offset
   lwu t0,0(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
-  PrintString($A0100000,144,256,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,256,FontBlack,VALUEWORDF,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,312,256,FontBlack,TEXTWORDF,6) // Print Text String To VRAM Using Font At X,Y Position
-  PrintString($A0100000,376,256,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,384,256,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,272,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,272,FontBlack,VALUEWORDF,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,312,272,FontBlack,TEXTWORDF,6) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,272,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,272,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
   ld t0,0(a0)     // T0 = Long Data
   la a0,LWUCHECKF // A0 = Long Check Data Offset
   ld t1,0(a0)     // T1 = Long Check Data
   beq t0,t1,LWUPASSF // Compare Result Equality With Check Data
   nop // Delay Slot
-  PrintString($A0100000,528,256,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,272,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j LWUENDF
   nop // Delay Slot
   LWUPASSF:
-  PrintString($A0100000,528,256,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,272,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWUENDF:
 
   la a0,VALUEWORDG // A0 = Word Data Offset
   lwu t0,0(a0) // T0 = Test Long Data
   la a0,RTLONG // A0 = RTLONG Offset
   sd t0,0(a0)  // RTLONG = Long Data
-  PrintString($A0100000,144,264,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,152,264,FontBlack,VALUEWORDG,3) // Print HEX Chars To VRAM Using Font At X,Y Position
-  PrintString($A0100000,288,264,FontBlack,TEXTWORDG,9) // Print Text String To VRAM Using Font At X,Y Position
-  PrintString($A0100000,376,264,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
-  PrintValue($A0100000,384,264,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,144,280,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,152,280,FontBlack,VALUEWORDG,3) // Print HEX Chars To VRAM Using Font At X,Y Position
+  PrintString($A0100000,288,280,FontBlack,TEXTWORDG,9) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,376,280,FontBlack,DOLLAR,0) // Print Text String To VRAM Using Font At X,Y Position
+  PrintValue($A0100000,384,280,FontBlack,RTLONG,7) // Print Text String To VRAM Using Font At X,Y Position
   la a0,RTLONG    // A0 = Long Data Offset
   ld t0,0(a0)     // T0 = Long Data
   la a0,LWUCHECKG // A0 = Long Check Data Offset
   ld t1,0(a0)     // T1 = Long Check Data
   beq t0,t1,LWUPASSG // Compare Result Equality With Check Data
   nop // Delay Slot
-  PrintString($A0100000,528,264,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,280,FontRed,FAIL,3) // Print Text String To VRAM Using Font At X,Y Position
   j LWUENDG
   nop // Delay Slot
   LWUPASSG:
-  PrintString($A0100000,528,264,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,528,280,FontGreen,PASS,3) // Print Text String To VRAM Using Font At X,Y Position
   LWUENDG:
 
 
-  PrintString($A0100000,0,272,FontBlack,PAGEBREAK,79) // Print Text String To VRAM Using Font At X,Y Position
+  PrintString($A0100000,0,288,FontBlack,PAGEBREAK,79) // Print Text String To VRAM Using Font At X,Y Position
 
 
 Loop:
@@ -875,34 +919,38 @@ LWCHECKG:
   dd $FFFFFFFFF8A432EB
 
 LWLCHECKA:
-  dd $0000000000000000
-LWLCHECKB:
   dd $00000000075BCD15
+LWLCHECKB:
+  dd $000000005BCD15FF
 LWLCHECKC:
-  dd $000000000001E240
+  dd $FFFFFFFFCD15FFFF
 LWLCHECKD:
-  dd $00000000075BB762
+  dd $0000000015FFFFFF
 LWLCHECKE:
-  dd $FFFFFFFFF8A4489E
-LWLCHECKF:
-  dd $FFFFFFFFFFFE1DC0
-LWLCHECKG:
   dd $FFFFFFFFF8A432EB
+LWLCHECKF:
+  dd $FFFFFFFFA432EBFF
+LWLCHECKG:
+  dd $0000000032EBFFFF
+LWLCHECKH:
+  dd $FFFFFFFFEBFFFFFF
 
 LWRCHECKA:
-  dd $FFFFFFFFFFFFFF00
+  dd $FFFFFFFFFFFFFF07
 LWRCHECKB:
-  dd $FFFFFFFFFFFFFF07
+  dd $FFFFFFFFFFFF075B
 LWRCHECKC:
-  dd $FFFFFFFFFFFFFF00
+  dd $FFFFFFFFFF075BCD
 LWRCHECKD:
-  dd $FFFFFFFFFFFFFF07
+  dd $00000000075BCD15
 LWRCHECKE:
   dd $FFFFFFFFFFFFFFF8
 LWRCHECKF:
-  dd $FFFFFFFFFFFFFFFF
+  dd $FFFFFFFFFFFFF8A4
 LWRCHECKG:
-  dd $FFFFFFFFFFFFFFF8
+  dd $FFFFFFFFFFF8A432
+LWRCHECKH:
+  dd $FFFFFFFFF8A432EB
 
 LWUCHECKA:
   dd $0000000000000000
