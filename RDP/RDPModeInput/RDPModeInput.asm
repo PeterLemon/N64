@@ -152,22 +152,12 @@ ClearScreen:
   ori t9,r0,0 // Reset T9 = Combine Mode Line Count (0..15)
 
 Loop:
-  WaitScanline($0) // Wait For Scanline To Reach Vertical Start
-  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
-  WaitScanline($0) // Wait For Scanline To Reach Vertical Start
-  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
-  WaitScanline($0) // Wait For Scanline To Reach Vertical Start
-  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
-  WaitScanline($0) // Wait For Scanline To Reach Vertical Start
-  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
-  WaitScanline($0) // Wait For Scanline To Reach Vertical Start
-  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
-  WaitScanline($0) // Wait For Scanline To Reach Vertical Start
-  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
-  WaitScanline($0) // Wait For Scanline To Reach Vertical Start
-  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
-  WaitScanline($0) // Wait For Scanline To Reach Vertical Start
-  WaitScanline($1E0) // Wait For Scanline To Reach Vertical Blank
+  li t1, 8 // Wait for 8 frames to "debounce" inputs.
+  InputSleep:
+    jal WaitForVerticalInterrupt
+    addi t1, t1, -1
+    bne t1, 0, InputSleep
+    nop
 
   ReadController(PIF2) // T0 = Controller Buttons, T1 = Analog X, T2 = Analog Y
 
@@ -1522,6 +1512,20 @@ Render:
   j Loop
   nop // Delay Slot
 
+WaitForVerticalInterrupt:
+  lui at, MI_BASE
+
+  WaitVI:
+    lw t0, MI_INTR(at)
+    andi t0, t0, $08 // VI.
+    beq t0, 0, WaitVI
+    nop
+
+  lui at, VI_BASE
+  sw 0, VI_V_CURRENT_LINE(at) // Clear interrupt.
+  jr ra
+  nop
+
 align(8) // Align 64-Bit
 PIF1:
   dw $FF010401,0
@@ -1542,6 +1546,7 @@ arch n64.rdp
   Set_Scissor 0<<2,0<<2, 0,0, 320<<2,240<<2 // Set Scissor: XH 0.0,YH 0.0, Scissor Field Enable Off,Field Off, XL 320.0,YL 240.0
   Set_Other_Modes CYCLE_TYPE_FILL // Set Other Modes
   Set_Color_Image IMAGE_DATA_FORMAT_RGBA,SIZE_OF_PIXEL_32B,320-1, $00100000 // Set Color Image: FORMAT RGBA,SIZE 32B,WIDTH 320, DRAM ADDRESS $00100000
+  Set_Z_Image $00200000 // Set the depth buffer address.
   Set_Fill_Color $000000FF // Set Fill Color: PACKED COLOR 32B R8G8B8A8 Pixel
   Fill_Rectangle 319<<2,239<<2, 0<<2,0<<2 // Fill Rectangle: XL 319.0,YL 239.0, XH 0.0,YH 0.0
 
@@ -1837,7 +1842,7 @@ Combine: // RDP Set Combine Mode DMEM Edited by Controller Input
   Load_Tile 0<<2,0<<2, 0, 79<<2,20<<2 // Load Tile: SL 0.0,TL 0.0, Tile 0, SH 79.0,TH 20.0
   Texture_Rectangle 320<<2,240<<2, 0, 0<<2,160<<2, 0<<5,0<<5, $100,$100 // Texture Rectangle: XL 320.0,YL 240.0, Tile 0, XH 0.0,YH 160.0, S 0.0,T 0.0, DSDX 0.25,DTDY 0.25
 
-  Sync_Full // Ensure Entire Scene Is Fully Drawn
+  Sync_Full // Ensure Entire Scene Is Fully Drawn
 RDPBufferEnd:
 
 insert GRB, "frame.grb"
