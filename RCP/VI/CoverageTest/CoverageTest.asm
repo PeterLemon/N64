@@ -1,6 +1,6 @@
 arch n64.cpu
 endian msb
-output "CoverageTest.n64", create
+output "CoverageTest.N64", create
 fill 1052672
 
 origin $00000000
