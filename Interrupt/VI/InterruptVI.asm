@@ -148,11 +148,11 @@ Start:
   PrintValue($A0100000,200,40,FontGreen,RDWORD,3) // Print HEX Chars To VRAM Using Font At X,Y Position
 
 Loop:
-  ori t1,r0,60 // Wait For 60 Frames
+  ori t1,r0,60 // T1 = VI Interrupt Counter (Wait For 60 Frames)
   Sleep:
     jal WaitForVerticalInterrupt
-    addi t1,t1,-1
-    bne t1,0,Sleep
+    addi t1,-1    // T1--
+    bnez t1,Sleep // IF (VI Interrupt Counter != 0) Sleep
     nop
 
   la a0,RDWORD // A0 = RDRAM Word Address
@@ -166,17 +166,17 @@ Loop:
   nop // Delay Slot
 
 WaitForVerticalInterrupt:
-  lui a0,MI_BASE
+  lui a0,MI_BASE // A0 = MIPS Interface (MI) Base Register ($A4300000)
   WaitVI:
-    lw t0,MI_INTR(a0)
-    andi t0,t0,$08 // VI
-    beq t0,0,WaitVI
-    nop
+    lw t0,MI_INTR(a0) // T0 = MI: Interrupt Register ($A4300008)
+    andi t0,$08       // T0 &= VI Interrupt (Bit 3)
+    beqz t0,WaitVI    // IF (VI Interrupt == 0) Wait For VI Interrupt To Fire
+    nop               // Delay Slot
 
-  lui a0,VI_BASE
-  sw 0,VI_V_CURRENT_LINE(a0) // Clear Interrupt
+  lui a0,VI_BASE // A0 = Video Interface (VI) Base Register ($A4400000)
+  sw r0,VI_V_CURRENT_LINE(a0) // Clear VI Interrupt, Store Zero To VI: Current Vertical Line Register ($A4400010)
   jr ra
-  nop
+  nop // Delay Slot
 
 INTERRUPTVI:
   db "Interrupt VI:"
