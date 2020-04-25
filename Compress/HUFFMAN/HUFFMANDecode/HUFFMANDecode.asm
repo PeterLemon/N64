@@ -51,48 +51,36 @@ HuffChunkLoop:
 
   HuffByteLoop: 
     beq a1,t0,HuffEnd // IF (Destination Address == Destination End Offset) HuffEnd
-    nop // Delay Slot
+    add t8,a0,t7 // T8 = Tree Table Offset (Delay Slot)
     beqz t3,HuffChunkLoop // IF (Node Bit Shifter == 0) HuffChunkLoop
-    nop // Delay Slot
-
-    add t8,a0,t7
-    lbu t4,0(t8) // T4 = Next Node
-    andi t8,t6,1 // Test T6 == Leaf
-    beqz t8,HuffBranch
-    nop // Delay Slot
-    sb t4,0(a1) // Store Data Byte To Destination IF Leaf
-    addi a1,1   // Add 1 To DRAM Offset
-    ori t6,r0,0 // T6 = Branch
-    ori t7,r0,5 // T7 = Tree Table Offset (Reset)
+    lbu t4,0(t8) // T4 = Next Node (Delay Slot)
+    beqz t6,HuffBranch // Test T6 Branch/Leaf Flag (0 = Branch 1 = Leaf)
+    andi t5,t4,$3F // T5 = Offset To Next Child Node (Delay Slot)
+    sb t4,0(a1)    // Store Data Byte To Destination IF Leaf
+    addi a1,1      // Add 1 To DRAM Offset
+    ori t7,r0,5    // T7 = Tree Table Offset (Reset)
     j HuffByteLoop
-    nop // Delay Slot
+    ori t6,r0,0 // T6 = Branch (Delay Slot)
 
     HuffBranch:
-      andi t5,t4,$3F // T5 = Offset To Next Child Node
       sll t5,1
-      addi t5,2       // T5 = Node0 Child Offset * 2 + 2
-      li t8,$FFFFFFFE // T7 = Tree Offset NOT 1
-      and t7,t8
-      add t7,t5 // T7 = Node0 Child Offset
-
+      addi t5,2    // T5 = Node0 Child Offset * 2 + 2
+      andi t7,-2   // T7 = Tree Offset NOT 1
+      add t7,t5    // T7 = Node0 Child Offset
       and t8,t2,t3 // Test Node Bit (0 = Node0, 1 = Node1)
-      srl t3,1     // Shift T3 To Next Node Bit
       beqz t8,HuffNode0
-      nop // Delay Slot
-      addi t7,1     // T7 = Node1 Child Offset
-      ori t8,r0,$40 // T8 = Test Node1 End Flag
+      srl t3,1     // Shift T3 To Next Node Bit (Delay Slot)
+      addi t7,1    // T7 = Node1 Child Offset
       j HuffNodeEnd
-      nop // Delay Slot
+      ori t8,r0,$40 // T8 = Test Node1 End Flag (Delay Slot)
       HuffNode0:
         ori t8,r0,$80 // T8 = Test Node0 End Flag
       HuffNodeEnd:
-
-      and t9,t4,t8 // Test Node End Flag (1 = Next Child Node Is Data)
-      beqz t9,HuffByteLoop
-      nop // Delay Slot
-      ori t6,r0,1 // T6 = Leaf
-      j HuffByteLoop
-      nop // Delay Slot
+        and t8,t4 // Test Node End Flag (1 = Next Child Node Is Data)
+        beqz t8,HuffByteLoop
+        nop // Delay Slot
+        j HuffByteLoop
+        ori t6,r0,1 // T6 = Leaf (Delay Slot)
   HuffEnd:
 
 Loop:
