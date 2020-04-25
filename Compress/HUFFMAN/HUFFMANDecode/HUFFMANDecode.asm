@@ -35,16 +35,16 @@ Start:
   ori t6,r0,0 // T6 = Branch/Leaf Flag (0 = Branch 1 = Leaf)
   ori t7,r0,5 // T7 = Tree Table Offset (Reset)
 HuffChunkLoop:
-  lbu t2,3(t1) // T2 = Data Length Byte 0
-  lbu t8,2(t1) // T8 = Data Length Byte 1
+  lbu t2,3(t1) // T2 = Node Bits Byte 0
+  lbu t3,2(t1) // T3 = Node Bits Byte 1
   sll t2,8
-  or t2,t8
-  lbu t8,1(t1) // T8 = Data Length Byte 2
+  or t2,t3
+  lbu t3,1(t1) // T3 = Node Bits Byte 2
   sll t2,8
-  or t2,t8
-  lbu t8,0(t1) // T8 = Data Length Byte 3
+  or t2,t3
+  lbu t3,0(t1) // T3 = Node Bits Byte 3
   sll t2,8
-  or t2,t8     // T2 = Node Bits (Bit31 = First Bit)
+  or t2,t3     // T2 = Node Bits (Bit31 = First Bit)
   addiu t1,4   // Add 4 To Compressed Bitstream Offset
   lui t3,$8000 // T3 = Node Bit Shifter
 
