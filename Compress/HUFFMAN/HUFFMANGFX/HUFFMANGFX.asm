@@ -16,26 +16,25 @@ Start:
 
   ScreenNTSC(640, 480, BPP32|INTERLACE|AA_MODE_2, $A0100000) // Screen NTSC: 640x480, 32BPP, Interlace, Resample Only, DRAM Origin $A0100000
 
-  la a0,Huff   // A0 = Source Address
-  lui a1,$8010 // A1 = Destination Address (DRAM Start Offset)
+  la a0,Huff+4  // A0 = Source Address
+  lui a1,$8010  // A1 = Destination Address (DRAM Start Offset)
 
-  lbu t0,3(a0) // T0 = HI Data Length Byte
-  lbu t1,2(a0) // T1 = MID Data Length Byte
+  lbu t0,-1(a0) // T0 = HI Data Length Byte
+  lbu t1,-2(a0) // T1 = MID Data Length Byte
   sll t0,8
   or t0,t1
-  lbu t1,1(a0) // T1 = LO Data Length Byte
+  lbu t1,-3(a0) // T1 = LO Data Length Byte
   sll t0,8
-  or t0,t1     // T0 = Data Length
-  add t0,a1    // T0 = Destination End Offset (DRAM End Offset)
-  addi a0,4    // Add 4 To Huffman Offset
+  or t0,t1      // T0 = Data Length
+  addu t0,a1    // T0 = Destination End Offset (DRAM End Offset)
 
   lbu t1,0(a0) // T1 = (Tree Table Size / 2) - 1
-  addi a0,1    // A0 = Tree Table
+  addiu a0,1   // A0 = Tree Table Offset
   sll t1,1
-  addi t1,1    // T1 = Tree Table Size
-  add t1,a0    // T1 = Compressed Bitstream Offset
+  addiu t1,1   // T1 = Tree Table Size
+  addu t1,a0   // T1 = Compressed Bitstream Offset
 
-  subi a0,5   // A0 = Source Address
+  subiu a0,5  // A0 = Source Address
   ori t6,r0,0 // T6 = Branch/Leaf Flag (0 = Branch 1 = Leaf)
   ori t7,r0,5 // T7 = Tree Table Offset (Reset)
 HuffChunkLoop:
@@ -49,31 +48,31 @@ HuffChunkLoop:
   lbu t8,0(t1) // T8 = Data Length Byte 3
   sll t2,8
   or t2,t8     // T2 = Node Bits (Bit31 = First Bit)
-  addi t1,4    // Add 4 To Compressed Bitstream Offset
+  addiu t1,4   // Add 4 To Compressed Bitstream Offset
   lui t3,$8000 // T3 = Node Bit Shifter
 
   HuffByteLoop: 
     beq a1,t0,HuffEnd // IF (Destination Address == Destination End Offset) HuffEnd
-    add t8,a0,t7 // T8 = Tree Table Offset (Delay Slot)
+    addu t8,a0,t7 // T8 = Tree Table Offset (Delay Slot)
     beqz t3,HuffChunkLoop // IF (Node Bit Shifter == 0) HuffChunkLoop
     lbu t4,0(t8) // T4 = Next Node (Delay Slot)
     beqz t6,HuffBranch // Test T6 Branch/Leaf Flag (0 = Branch 1 = Leaf)
     andi t5,t4,$3F // T5 = Offset To Next Child Node (Delay Slot)
     sb t4,0(a1)    // Store Data Byte To Destination IF Leaf
-    addi a1,1      // Add 1 To DRAM Offset
+    addiu a1,1     // Add 1 To DRAM Offset
     ori t7,r0,5    // T7 = Tree Table Offset (Reset)
     j HuffByteLoop
     ori t6,r0,0 // T6 = Branch (Delay Slot)
 
     HuffBranch:
       sll t5,1
-      addi t5,2    // T5 = Node0 Child Offset * 2 + 2
+      addiu t5,2   // T5 = Node0 Child Offset * 2 + 2
       andi t7,-2   // T7 = Tree Offset NOT 1
-      add t7,t5    // T7 = Node0 Child Offset
+      addu t7,t5   // T7 = Node0 Child Offset
       and t8,t2,t3 // Test Node Bit (0 = Node0, 1 = Node1)
       beqz t8,HuffNode0
       srl t3,1     // Shift T3 To Next Node Bit (Delay Slot)
-      addi t7,1    // T7 = Node1 Child Offset
+      addiu t7,1   // T7 = Node1 Child Offset
       j HuffNodeEnd
       ori t8,r0,$40 // T8 = Test Node1 End Flag (Delay Slot)
       HuffNode0:
