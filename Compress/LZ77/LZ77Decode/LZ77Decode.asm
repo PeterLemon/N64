@@ -18,10 +18,10 @@ Start:
 
   lbu t0,-1(a0) // T0 = HI Data Length Byte
   lbu t1,-2(a0) // T1 = MID Data Length Byte
-  sll t0,8
-  or t0,t1
+  sll t0,8      // T0 <<= 8
+  or t0,t1      // T0 |= T1
   lbu t1,-3(a0) // T1 = LO Data Length Byte
-  sll t0,8
+  sll t0,8      // T0 <<= 8
   or t0,t1      // T0 = Data Length
   addu t0,a1    // T0 = Destination End Offset (DRAM End Offset)
 

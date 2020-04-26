@@ -21,16 +21,16 @@ Start:
 
   lbu t0,-1(a0) // T0 = HI Data Length Byte
   lbu t1,-2(a0) // T1 = MID Data Length Byte
-  sll t0,8
-  or t0,t1
+  sll t0,8      // T0 <<= 8
+  or t0,t1      // T0 |= T1
   lbu t1,-3(a0) // T1 = LO Data Length Byte
-  sll t0,8
+  sll t0,8      // T0 <<= 8
   or t0,t1      // T0 = Data Length
   addu t0,a1    // T0 = Destination End Offset (DRAM End Offset)
 
   lbu t1,0(a0) // T1 = (Tree Table Size / 2) - 1
   addiu a0,1   // A0 = Tree Table Offset
-  sll t1,1
+  sll t1,1     // T1 <<= 1
   addiu t1,1   // T1 = Tree Table Size
   addu t1,a0   // T1 = Compressed Bitstream Offset
 
@@ -40,13 +40,13 @@ Start:
 HuffChunkLoop:
   lbu t2,3(t1) // T2 = Node Bits Byte 0
   lbu t3,2(t1) // T3 = Node Bits Byte 1
-  sll t2,8
-  or t2,t3
+  sll t2,8     // T2 <<= 8
+  or t2,t3     // T2 |= T3
   lbu t3,1(t1) // T3 = Node Bits Byte 2
-  sll t2,8
-  or t2,t3
+  sll t2,8     // T2 <<= 8
+  or t2,t3     // T2 |= T3
   lbu t3,0(t1) // T3 = Node Bits Byte 3
-  sll t2,8
+  sll t2,8     // T2 <<= 8
   or t2,t3     // T2 = Node Bits (Bit31 = First Bit)
   addiu t1,4   // Add 4 To Compressed Bitstream Offset
   lui t3,$8000 // T3 = Node Bit Shifter
@@ -65,7 +65,7 @@ HuffChunkLoop:
     ori t6,r0,0 // T6 = Branch (Delay Slot)
 
     HuffBranch:
-      sll t5,1
+      sll t5,1     // T5 <<= 1
       addiu t5,2   // T5 = Node0 Child Offset * 2 + 2
       andi t7,-2   // T7 = Tree Offset NOT 1
       addu t7,t5   // T7 = Node0 Child Offset
