@@ -66,17 +66,17 @@ HuffChunkLoop:
       addiu t5,2   // T5 = Node0 Child Offset * 2 + 2
       andi t7,-2   // T7 = Tree Offset NOT 1
       addu t7,t5   // T7 = Node0 Child Offset
-      and t8,t2,t3 // Test Node Bit (0 = Node0, 1 = Node1)
-      beqz t8,HuffNode0
+      and t5,t2,t3 // Test Node Bit (0 = Node0, 1 = Node1)
+      beqz t5,HuffNode0
       srl t3,1     // Shift T3 To Next Node Bit (Delay Slot)
       addiu t7,1   // T7 = Node1 Child Offset
       j HuffNodeEnd
-      ori t8,r0,$40 // T8 = Test Node1 End Flag (Delay Slot)
+      ori t5,r0,$40 // T5 = Test Node1 End Flag (Delay Slot)
       HuffNode0:
-        ori t8,r0,$80 // T8 = Test Node0 End Flag
+        ori t5,r0,$80 // T5 = Test Node0 End Flag
       HuffNodeEnd:
-        and t8,t4 // Test Node End Flag (1 = Next Child Node Is Data)
-        beqz t8,HuffByteLoop
+        and t5,t4 // Test Node End Flag (1 = Next Child Node Is Data)
+        beqz t5,HuffByteLoop
         nop // Delay Slot
         j HuffByteLoop
         ori t6,r0,1 // T6 = Leaf (Delay Slot)
