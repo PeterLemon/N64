@@ -31,7 +31,7 @@ Start:
 
   lwu t1,4(a0) // T1 = (Tree Table Size / 2) - 1
   addiu a0,5   // A0 = Tree Table Offset
-  srl t1,23    // T5 >>= 23
+  srl t1,23    // T1 >>= 23
   ori t1,1     // T1 = Tree Table Size
   addu t1,a0   // T1 = Compressed Bitstream Offset
 
