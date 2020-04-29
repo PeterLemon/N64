@@ -22,11 +22,11 @@ but you will find that it is indeed LZ77 compatible data.<br />
 Huffman:<br />
 Command line used to compress data: "huffman -e8 Image.bin"<br />
 Original data size: Image.bin = 1228800 bytes<br />
-Compress data size: Image.huff = 230592 bytes<br />
+Compress data size: Image.huff = 277300 bytes<br />
 <br />
 LZ77:<br />
 Command line used to compress data: "lzss -ewo Image.bin"<br />
 Original data size: Image.bin = 1228800 bytes<br />
-Compress data size: Image.lz = 145741 bytes<br />
+Compress data size: Image.lz = 177788 bytes<br />
 <br />
 Many thanks to my friend Andy Smith, who helped me understand the Huffman decoding =D<br />
