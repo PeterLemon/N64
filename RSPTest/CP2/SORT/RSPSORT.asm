@@ -186,14 +186,24 @@ ClearScreen:
   PrintValue($A0100000,16,88,FontBlack,SP_MEM_BASE<<16,15) // Print HEX Chars To VRAM Using Font At X,Y Position
 
   lui a0,SP_MEM_BASE       // A0 = Quad Data Offset
-  ld t0,0(a0)              // T0 = Quad Data
   la a1,SORTQUADMINCHECK   // A0 = Quad Check Data Offset
-  ld t1,0(a1)              // T1 = Quad Check Data
+  lw t0,0(a0)              // T0 = Quad Data
+  lw t1,0(a1)              // T1 = Quad Check Data
   bne t0,t1,RSPSORTMINFAIL // Compare Result Equality With Check Data
   nop // Delay Slot
 
-  ld t0,8(a0)              // T0 = Quad Data
-  ld t1,8(a1)              // T1 = Quad Check Data
+  lw t0,4(a0)              // T0 = Quad Data
+  lw t1,4(a1)              // T1 = Quad Check Data
+  bne t0,t1,RSPSORTMINFAIL // Compare Result Equality With Check Data
+  nop // Delay Slot
+  
+  lw t0,8(a0)              // T0 = Quad Data
+  lw t1,8(a1)              // T1 = Quad Check Data
+  bne t0,t1,RSPSORTMINFAIL // Compare Result Equality With Check Data
+  nop // Delay Slot
+  
+  lw t0,12(a0)              // T0 = Quad Data
+  lw t1,12(a1)              // T1 = Quad Check Data
   bne t0,t1,RSPSORTMINFAIL // Compare Result Equality With Check Data
   nop // Delay Slot
 
@@ -209,14 +219,25 @@ ClearScreen:
   PrintValue($A0100000,16,96,FontBlack,(SP_MEM_BASE<<16)+16,15) // Print HEX Chars To VRAM Using Font At X,Y Position
 
   lui a0,SP_MEM_BASE       // A0 = Quad Data Offset
-  ld t0,16(a0)             // T0 = Quad Data
   la a1,SORTQUADMIDCHECK   // A0 = Quad Check Data Offset
-  ld t1,0(a1)              // T1 = Quad Check Data
+  lw t0,16(a0)             // T0 = Quad Data
+  lw t1,0(a1)              // T1 = Quad Check Data
+  bne t0,t1,RSPSORTMIDFAIL // Compare Result Equality With Check Data
+  nop // Delay Slot
+  
+  lw t0,20(a0)             // T0 = Quad Data
+  lw t1,4(a1)              // T1 = Quad Check Data
   bne t0,t1,RSPSORTMIDFAIL // Compare Result Equality With Check Data
   nop // Delay Slot
 
-  ld t0,24(a0)             // T0 = Quad Data
-  ld t1,8(a1)              // T1 = Quad Check Data
+
+  lw t0,24(a0)             // T0 = Quad Data
+  lw t1,8(a1)              // T1 = Quad Check Data
+  bne t0,t1,RSPSORTMIDFAIL // Compare Result Equality With Check Data
+  nop // Delay Slot
+  
+  lw t0,28(a0)             // T0 = Quad Data
+  lw t1,12(a1)              // T1 = Quad Check Data
   bne t0,t1,RSPSORTMIDFAIL // Compare Result Equality With Check Data
   nop // Delay Slot
 
@@ -232,14 +253,24 @@ ClearScreen:
   PrintValue($A0100000,16,104,FontBlack,(SP_MEM_BASE<<16)+32,15) // Print HEX Chars To VRAM Using Font At X,Y Position
 
   lui a0,SP_MEM_BASE       // A0 = Quad Data Offset
-  ld t0,32(a0)             // T0 = Quad Data
   la a1,SORTQUADMAXCHECK   // A0 = Quad Check Data Offset
-  ld t1,0(a1)              // T1 = Quad Check Data
+  lw t0,32(a0)             // T0 = Quad Data
+  lw t1,0(a1)              // T1 = Quad Check Data
   bne t0,t1,RSPSORTMAXFAIL // Compare Result Equality With Check Data
   nop // Delay Slot
 
-  ld t0,40(a0)             // T0 = Quad Data
-  ld t1,8(a1)              // T1 = Quad Check Data
+  lw t0,36(a0)             // T0 = Quad Data
+  lw t1,4(a1)              // T1 = Quad Check Data
+  bne t0,t1,RSPSORTMAXFAIL // Compare Result Equality With Check Data
+  nop // Delay Slot
+  
+  lw t0,40(a0)             // T0 = Quad Data
+  lw t1,8(a1)              // T1 = Quad Check Data
+  bne t0,t1,RSPSORTMAXFAIL // Compare Result Equality With Check Data
+  nop // Delay Slot
+  
+  lw t0,44(a0)             // T0 = Quad Data
+  lw t1,12(a1)              // T1 = Quad Check Data
   bne t0,t1,RSPSORTMAXFAIL // Compare Result Equality With Check Data
   nop // Delay Slot
 
