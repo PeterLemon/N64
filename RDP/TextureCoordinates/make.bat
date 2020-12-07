@@ -1,0 +1,2 @@
+bass TextureCoordinates.asm
+chksum64 TextureCoordinates.N64
