@@ -1,0 +1,13 @@
+bass TexturesMaskClampMirror.asm
+chksum64 TexturesMaskCMShiftT0_1.N64
+chksum64 TexturesMaskCMShiftT1_1.N64
+chksum64 TexturesMaskCMShiftT15_1.N64
+chksum64 TexturesMaskCMShiftT0_2.N64
+chksum64 TexturesMaskCMShiftT1_2.N64
+chksum64 TexturesMaskCMShiftT15_2.N64
+chksum64 TexturesMaskCMShiftT0_3.N64
+chksum64 TexturesMaskCMShiftT1_3.N64
+chksum64 TexturesMaskCMShiftT15_3.N64
+chksum64 TexturesMaskCMShiftT0_4.N64
+chksum64 TexturesMaskCMShiftT1_4.N64
+chksum64 TexturesMaskCMShiftT15_4.N64
