@@ -4,7 +4,7 @@
 output "TextureCoordinates2.N64", create
 arch n64.cpu
 endian msb
-fill 262144 // Set ROM Size
+fill 1052672 // Set ROM Size
 
 origin $00000000
 base $80000000 // Entry Point Of Code
