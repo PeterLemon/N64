@@ -12,6 +12,8 @@ constant BYTES_PER_PIXEL(4)
 constant CHAR_X(8)
 constant CHAR_Y(8)
 
+define header_title_27("COP1 full vs half mode     ")
+
 origin $00000000
 base $80000000 // Entry Point Of Code
 include "LIB/N64.INC" // Include N64 Definitions
@@ -139,6 +141,7 @@ Start:
     ldc1 f0, 0(r1)
     ldc1 f1, 0(r1)
     ldc1 f2, 0(r1)
+    ldc1 f3, 0(r1)
 
 
     // Set mode for loading registers
@@ -149,12 +152,18 @@ Start:
     nop
 
     // Load some values as 32 bit
-    la r1, Values
+    la r1, Values32
     lwc1 f0, 0(r1)
     lwc1 f1, 4(r1)
+    lwc1 f2, 8(r1)
+    lwc1 f3, 12(r1)
 
     // Load 64 bit value
-    ldc1 f2, 8(r1)
+    la r1, Values64
+    ldc1 f4, 0(r1)
+    ldc1 f5, 8(r1)
+    ldc1 f6, 16(r1)
+    ldc1 f7, 24(r1)
 
     nop
     nop
@@ -166,7 +175,7 @@ Start:
     nop
     nop
 
-    // Store as 64 bits
+    // Display those that were loaded through LWC1
     la r1, RDWORD
     dmfc1 r2, f0
     dsrl32 r2, r2, 0
@@ -191,15 +200,54 @@ Start:
     dmfc1 r2, f2
     sw r2, 0(r1)
     PrintValue($A0100000, (16 + 160 * 2 + 68), ({top}), FontBlack, RDWORD, 3)
+
+    dmfc1 r2, f3
+    dsrl32 r2, r2, 0
+    sw r2, 0(r1)
+    PrintValue($A0100000, (16 + 160 * 3 + 00), ({top}), FontBlack, RDWORD, 3)
+    dmfc1 r2, f3
+    sw r2, 0(r1)
+    PrintValue($A0100000, (16 + 160 * 3 + 68), ({top}), FontBlack, RDWORD, 3)
+
+    // Display those that were loaded through LWC1
+    la r1, RDWORD
+    dmfc1 r2, f4
+    dsrl32 r2, r2, 0
+    sw r2, 0(r1)
+    PrintValue($A0100000, (16 + 160 * 0 + 00), ({top} + 16), FontBlack, RDWORD, 3)
+    dmfc1 r2, f4
+    sw r2, 0(r1)
+    PrintValue($A0100000, (16 + 160 * 0 + 68), ({top} + 16), FontBlack, RDWORD, 3)
+
+    dmfc1 r2, f5
+    dsrl32 r2, r2, 0
+    sw r2, 0(r1)
+    PrintValue($A0100000, (16 + 160 * 1 + 00), ({top} + 16), FontBlack, RDWORD, 3)
+    dmfc1 r2, f5
+    sw r2, 0(r1)
+    PrintValue($A0100000, (16 + 160 * 1 + 68), ({top} + 16), FontBlack, RDWORD, 3)
+
+    dmfc1 r2, f6
+    dsrl32 r2, r2, 0
+    sw r2, 0(r1)
+    PrintValue($A0100000, (16 + 160 * 2 + 00), ({top} + 16), FontBlack, RDWORD, 3)
+    dmfc1 r2, f6
+    sw r2, 0(r1)
+    PrintValue($A0100000, (16 + 160 * 2 + 68), ({top} + 16), FontBlack, RDWORD, 3)
+
+    dmfc1 r2, f7
+    dsrl32 r2, r2, 0
+    sw r2, 0(r1)
+    PrintValue($A0100000, (16 + 160 * 3 + 00), ({top} + 16), FontBlack, RDWORD, 3)
+    dmfc1 r2, f7
+    sw r2, 0(r1)
+    PrintValue($A0100000, (16 + 160 * 3 + 68), ({top} + 16), FontBlack, RDWORD, 3)
   }
 
-  // Read and write in same mode
   TestFullHalf(FullMode, FullMode, 16)
-  TestFullHalf(HalfMode, HalfMode, 16 + 16 * 1)
-
-  // Read and write in different modes
   TestFullHalf(HalfMode, FullMode, 16 + 16 * 3)
-  TestFullHalf(FullMode, HalfMode, 16 + 16 * 4)
+  TestFullHalf(FullMode, FullMode, 16 + 16 * 6)
+  TestFullHalf(HalfMode, FullMode, 16 + 16 * 9)
 
 Loop:
   j Loop
@@ -207,10 +255,16 @@ Loop:
 
 
 align(8)
-Values:
-  dw 0x01230123
-  dw 0x45674567
-  dd 0x1212343456567878
+Values32:
+  dw 0x00000000
+  dw 0x11111111
+  dw 0x22222222
+  dw 0x33333333
+Values64:
+  dd 0x0000000000000000
+  dd 0x0101010110101010
+  dd 0x0202020220202020
+  dd 0x0303030330303030
 
 align(8)
 FillValue:
