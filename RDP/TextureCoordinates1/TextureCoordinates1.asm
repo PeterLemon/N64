@@ -5,7 +5,6 @@ output "TextureCoordinates1.N64", create
 arch n64.cpu
 endian msb
 fill 1052672 // Set ROM Size
-define header_title_27("Texture coordinates (1)    ")
 
 origin $00000000
 base $80000000 // Entry Point Of Code
