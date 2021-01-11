@@ -1,0 +1,8 @@
+bass ExceptionSyscall.asm
+bass ExceptionSyscallDelay.asm
+bass ExceptionSyscallDelay2.asm
+bass ExceptionSyscallWhileInException.asm
+chksum64 ExceptionSyscall.N64
+chksum64 ExceptionSyscallDelay.N64
+chksum64 ExceptionSyscallDelay2.N64
+chksum64 ExceptionSyscallWhileInException.N64

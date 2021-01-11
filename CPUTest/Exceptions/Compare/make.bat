@@ -1,0 +1,4 @@
+bass ExceptionCompareDisabled.asm
+bass ExceptionCompareRegisters.asm
+chksum64 ExceptionCompareDisabled.N64
+chksum64 ExceptionCompareRegisters.N64

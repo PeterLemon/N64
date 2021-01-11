@@ -1,0 +1,4 @@
+bass ExceptionUnaligned.asm
+bass ExceptionUnalignedDelay.asm
+chksum64 ExceptionUnaligned.N64
+chksum64 ExceptionUnalignedDelay.N64
