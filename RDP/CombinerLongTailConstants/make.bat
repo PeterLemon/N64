@@ -1,0 +1,2 @@
+bass CombinerLongTailConstants.asm
+chksum64 CombinerLongTailConstants.N64
