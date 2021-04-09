@@ -1,0 +1,2 @@
+bass ExceptionVIIntrDisabled.asm
+chksum64 ExceptionVIIntrDisabled.N64
