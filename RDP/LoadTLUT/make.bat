@@ -1,0 +1,15 @@
+bass LoadTLUT.asm
+chksum64 LoadTLUT_b8_b4.N64
+chksum64 LoadTLUT_b8_b8.N64
+chksum64 LoadTLUT_b8_b16.N64
+chksum64 LoadTLUT_b8_b32.N64
+chksum64 LoadTLUT_b16_b4.N64
+chksum64 LoadTLUT_b16_b8.N64
+chksum64 LoadTLUT_b16_b16.N64
+chksum64 LoadTLUT_b16_b32.N64
+chksum64 LoadTLUT_b32_b4.N64
+chksum64 LoadTLUT_b32_b8.N64
+chksum64 LoadTLUT_b32_b16.N64
+chksum64 LoadTLUT_b32_b32.N64
+chksum64 LoadTLUT_b16_overflow.N64
+chksum64 LoadTLUT_b16_b8_uls16.N64
