@@ -3,7 +3,7 @@ N64
 <br />
 N64 Bare Metal Code by krom (Peter Lemon).<br />
 <br />
-All code compiles out of box with the bass assembler by byuu.<br />
+All code compiles out of box with the bass (v14) assembler by byuu.<br />
 I use a special version of bass by ARM9 which has been updated with N64 MIPS/RSP/RDP output:<br />
 https://github.com/ARM9/bass<br />
 I have included binaries of all the demos.<br />
