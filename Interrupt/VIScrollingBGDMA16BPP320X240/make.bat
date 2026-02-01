@@ -1,0 +1,2 @@
+bass VIScrollingBGDMA16BPP320X240.asm
+chksum64 VIScrollingBGDMA16BPP320X240.N64
